@@ -163,3 +163,9 @@ review pack); everything after that is restated here from the conversation recor
 - 08:27 to 08:39 py313_M: exit 0; m8_check "as expected (exit 0, no checker problem, 79 KILLED, 3 EQUIVALENT: MI-36 MI-39 MD-02): True";
   82 mutants, survived 0, indeterminate 0, item_errors 0; tree changes 0.
 - 08:39 py312_T started.
+- 08:39 to 09:27 py312_T: 10 run_index rows, every exit 0, tree changes 0.
+- 09:27 to 10:21 py312_W: 19 wrappers, every exit 0; wrapper_check: checker_problems 0 on all 19, totals FILE 454 / CHECK 103 / EXCLUDED 100
+  (identical to py313), non-passing group lines none; tree changes 0.
+- 10:21 to 10:32 py312_M: exit 0; m8_check "as expected (exit 0, no checker problem, 79 KILLED, 3 EQUIVALENT: MI-36 MI-39 MD-02): True"; tree changes 0.
+- 10:32 STEP51 DONE. Step 5.1 found nothing unexpected on either Python.
+- 10:32 driver523 started (steps 5.2 and 5.3: golden, pairs, b6 and k2 against e4531a35 with the recorded totals, then m2), one job at a time.
