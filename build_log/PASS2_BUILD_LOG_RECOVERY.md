@@ -63,3 +63,16 @@ review pack); everything after that is restated here from the conversation recor
 - 16:39 full suite started on 3.13 then 3.12 (resumable driver, one job per file).
 - 51. The builder committed two __pycache__ folders in 82b82f1 (`git add -A` after a pin run that wrote bytecode). Removed in 42305fb;
   `__pycache__/` added to the clone's local exclude.
+
+### Step 3 (2026-11-11, from 16:41, written while the step 2 suite runs; nothing of it run yet)
+
+- Branch `step3` (from main 42305fb), pushed at every commit.
+- evkit: S15, S16, S17 (b) rewritten from the 12:47 rulings of 2026-11-08 (commit 2a2476b). S17 (a) has no code change.
+- Tests rewritten from amendment 5 Appendix A part 1 and the option A answer of 2026-11-09, not recovered (the 04e9f2f2 and
+  303b6414 test code was lost): test_no_timeout_kill (rows 4, 6, 11, 12/S15, 15, 19, 21, 23, 71, 72, 77, 90, 91, 92, 96, 99, 101,
+  121), test_mutation_timeout (rows 4 tool level, 41, 50, 51 to 53, D10, D14, 121), test_runner_zero_work (rows 22, 25, 30, 31, 36,
+  42, 46, 51 to 53, 55, 56, 59, 60, 69, 73, 79, 81, 85, 95, 97, 98, 100, S16), test_consumer_exit_codes (rows 34, 57, 62, 63),
+  test_exec_env (rows 22, 29).
+- Row 6: the 12:47 plan correction for rows 6 and 17 was lost with the issue record; row 6 is written as "the secret never reaches a
+  unit or a record", row 17 has no new test. Both are disclosed.
+- Still to write: rows 66 and 83, discrepancy 17, the change record, then the focused runs on both Pythons.
