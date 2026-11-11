@@ -1,0 +1,40 @@
+rule or figure,reads records,entities,minimum way in not fully built,not through the S04 reference intake today,settings without an entity id
+every M4 figure,yes,E90,E90 setup question partly,E90,-
+every M4 figure,yes,E07,-,E07,-
+M4 actual cost,yes,E23,-,-,yes (N01 or E90)
+M4 actual cost,yes,E04 E23,E04 setup question proposed,E04,-
+M4 actual cost,yes,E03 E23,E03 setup question proposed,E03,-
+M4 actual cost,yes,E24,-,-,-
+M4 commitments,yes,E21,-,-,yes (N01 or E90)
+M4 commitments,yes,E22,-,-,yes (N01 or E90)
+M4 commitments,yes,E23,-,-,yes (N01 or E90)
+M4 budget,yes,E38,-,-,yes (N01 or E90)
+M4 cost to complete,yes,E41,-,E41,yes (N01 or E90)
+M4 forecast final margin,yes,-,-,-,yes (N01 or E90)
+M4 revenue,yes,E08,-,E08,yes (N01 or E90)
+M4 revenue,yes,E09,-,E09,yes (N01 or E90)
+M4 recognised margin,yes,-,-,-,yes (N01 or E90)
+M4 retention position,yes,E75,-,E75,-
+M4 retention position,yes,E77,E77 entry screen proposed,E77,-
+M4 retention position,yes,E73,-,E73,-
+M4 security,yes,E78,-,E78,-
+M4 retention carrying cost,yes,E74,-,E74,yes (N01 or E90)
+M4 security carrying cost,no,E78,-,E78,yes (N01 or E90)
+M4 overdue receivables cost,no,E15,E15 import template proposed,E15,-
+M4 cash-position-adjusted margin,yes,-,-,-,yes (N01 or E90)
+R01 actual cost over budget,yes,-,-,-,yes (N01 or E90)
+R02 amendment without approved change,yes,E22,-,-,yes (N01 or E90)
+R03 invoiced above order,yes,E21,-,-,yes (N01 or E90)
+R09 unexplained forecast movement,yes,E41,-,E41,yes (N01 or E90)
+AGG split orders,yes,E21,-,-,yes (N01 or E90)
+D01 held cost records,yes,-,-,-,-
+R04 variation unresolved,yes,E09,-,E09,yes (N01 or E90)
+R04B instruction without variation,yes,E10,-,E10,yes (N01 or E90)
+R05 retention release overdue,yes,E75,-,E75,yes (N01 or E90)
+R06 compliance expired or expiring,yes,E82,-,E82,yes (N01 or E90)
+R07 quote above reference,yes,E30,-,-,yes (N01 or E90)
+R08 hire beyond need,yes,E64,-,E64,yes (N01 or E90)
+DLY overlapping delays,yes,E52,-,E52,yes (N01 or E90)
+LAB output per hour falling,yes,E57 E61,-,E57 E61,yes (N01 or E90)
+DEF repeat defects,yes,E66,-,E66,yes (N01 or E90)
+D02 held detection inputs,yes,-,-,-,-
