@@ -1,0 +1,13 @@
+best path: {'partly': 10, 'proposed': 51, 'exists': 38}
+with a built path: covered 11 partial 27 missing 0
+built path is a template only: 37
+path E Entry screens built 0 not built 47
+path T Import templates built 37 not built 29
+path I Integrations built 0 not built 24
+path P Phone site capture built 0 not built 14
+path S Setup questions built 1 not built 12
+path A Records APG creates built 8 not built 9
+path D Document capture built 17 not built 6
+builder-source and developer entities 65 ; no survey-supported system 32 ; and no likely system either 1 ['E05']
+entities supported per system code: {'PM': 13, 'CLM': 7, 'ERP': 11, 'ACC': 7, 'EXT': 2, 'BX': 1, 'EST': 1, 'SCH': 5, 'SITE': 2, 'BANK': 1, 'DEV': 1}
+rows 99
