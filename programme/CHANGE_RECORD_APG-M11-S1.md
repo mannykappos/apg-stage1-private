@@ -47,8 +47,8 @@ no production-readiness claim.
   - The tests added are listed in the stage 1 documents' mapping.
 - **Corrective pass 2 (2026-11-05 to 2026-11-06):**
   - **Authority:**
-    - the paper `d14/decisions/APG_D14_STAGE1_CORRECTIVE_PASS_2_DECISION_PAPER.md` (`23d2adb9…f0ea5`, authorised by the owner at 23:00 on 2026-11-05);
-    - amendment 1 (`211971452c8f…d382`, same authorisation);
+    - the paper `d14/decisions/APG_D14_STAGE1_CORRECTIVE_PASS_2_DECISION_PAPER.md` (`23d2adb9…f0ea5`, authorised by the owner at 10:56 on 2026-11-05, as amendment 1 §0 gives it; amendment 5, row 113);
+    - amendment 1 (`211971452c8f…d382`) and the build of the pass, authorised by the owner at 23:00 on 2026-11-05 (the build authorisation);
     - amendment 2 (`a3cc26b5…cd6e`, owner, 10:55 on 2026-11-06);
     - amendment 3 (`89e5a268…6715`, owner, 14:38 on 2026-11-06).
     - The decision record `rec/DECISION_RECORD_2026-11-05_STAGE1_CORRECTIVE_PASS_2.md` lists the stops and the issue records.
@@ -77,6 +77,7 @@ no production-readiness claim.
   - **The new codes and lines:**
     - `RUN_ERROR IMPORT_FAILED`;
     - `RUN_ERROR ENV_NO_PROCESS_SUPERVISION`;
+    - `RUN_ERROR ENV_THREADS_AT_FORK` (AM-6 (a); added to this list by amendment 5, row 113);
     - `RUN_ERROR CLEANUP_INCOMPLETE`;
     - `RUN_ERROR PROCESSES_LEFT run_start|run_end`;
     - `RUN_ERROR ENV_DISK_BELOW_FLOOR items|control_start|control_end`;
@@ -122,6 +123,35 @@ no production-readiness claim.
     - `tests_tools/test_apg_root.py::E4DecoyWorkingDirectory::test_successor_runners_refuse_a_working_directory_other_than_the_root` (new in this pass).
   - Each pin version has its change record in `tools/expected_counts.json`.
   - The tests added are listed in the stage 1 documents' mapping.
+
+- **Amendment 5 (owner, 11:26 on 2026-11-08; `3649fa74…dc295b`) and the rulings of 12:47 on 2026-11-08:**
+  - **Rebuilt after the workspace loss of 2026-11-11 (recovery authorisation, owner, 15:48 on 2026-11-11).** The code of this item
+    was lost with the workspace before any freeze containing it was sent. It was rewritten from the amendment and the rulings, not
+    recovered, and its bytes differ from the lost freeze `303b6414…`. The records of the owner's 11:26 post and 12:47 rulings are
+    reconstructed from the builder's notes, not verbatim.
+  - **S15 (option A), `tools/evkit._Supervision`:** an orphan found with no recorded parent is attributed, as before, to every unit
+    in flight (or the current owner); each of those owners now records it as a leak (P.6), and its `CLEANUP` record names it in
+    `left=`, even when it has exited before that owner's cleanup. The signal steps run only when a member is alive.
+  - **S16 (option A), `tools/evkit._check_wrapper`:** a `CHECK … INDETERMINATE` line of a group whose `CLEANUP` record is in the output
+    is accepted when its source is the child, or when its exit and marker are both `-` (a leak makes a check INDETERMINATE whatever its
+    exit, P.6). Without the record the AM3-4 rules apply unchanged.
+  - **S17 (a) (option A):** no code change; the row 41 tests assert `CRASH_NO_RESULT` and `CHILD_EVIDENCE_ERROR`.
+  - **S17 (b) (option A), `tools/evkit.cases_main` step 3:** a candidate factory spec must be exactly `module:attr` (a dotted module name,
+    one colon, one attribute name, `evkit.FACTORY_SPEC`); anything else is `RUN_ERROR SELECTION_INVALID <option> must be module:attr`.
+  - **AM5-4 option A, the tests of Appendix A part 1** (and the option A corrections of 2026-11-09), in the existing `tests_tools`
+    files; no product or successor-tool logic changed by them. The row-by-row list is in the stage 1 documents' mapping.
+    - `test_no_timeout_kill.py`: the P rows (4, 6, 11, 12 with S15, 15, 19, 21, 23, 71, 72, 77, 90, 91, 92, 96, 99, 101) and row 121's
+      per-test identity record (`P_IDENTITY`).
+    - `test_mutation_timeout.py`: rows 4 (tool level), 41, 50, 51 to 53, discrepancies 10 and 14, and row 121.
+    - `test_runner_zero_work.py`: rows 22, 25, 30, 31, 36, 42, 46, 51 to 53, 55, 56, 59, 60, 66, 69, 73, 79, 81, 83, 85, 95, 97, 98,
+      100, S16 and row 121. `P2FaultRunners` takes the runner's name (`TOOL`) so its full set runs on the other four fault runners.
+    - `test_consumer_exit_codes.py`: rows 34, 57, 62 and 63.
+    - `test_exec_env.py`: rows 22 and 29.
+  - **Mistakes 23, 29 and 34, as ruled in AM5-5:** mistake 23 (C.1's table incomplete; the eight moves ratified as an application of
+    its general rule, the failure to stop recorded); mistake 29 (the scan race, fixed before the stop and decision H requires: the fix
+    retained, the process recorded as non-compliant); mistake 34 (that logic change made before the stop).
+  - **Pins:** the `test_files` entries of the changed `tests_tools` files; each version has its change record in
+    `tools/expected_counts.json`.
 
 ## What changed
 `programme/APG-M11-S1_MANIFEST.csv` holds the exact list:
