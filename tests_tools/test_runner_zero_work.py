@@ -1266,6 +1266,7 @@ def _p2_behaviour(where, normal):
 
 class P2FaultRunners(unittest.TestCase):
     """B.5 on run_faults_s1 (every case) and the hang on each of the other four runners; P.10's valid_result_then_hangs for a plant."""
+    TOOL = 'run_faults_s1'      # amendment 5, row 42: the subclasses below run the same set on the other four fault runners
 
     def setUp(self):
         self.tmp = tempfile.mkdtemp(prefix='s1_p2f_')
@@ -1322,7 +1323,7 @@ class P2FaultRunners(unittest.TestCase):
                     self.assertRegex(out, r'(?m)^TIMEOUT %s cmd=reference limit=3s control_start=\d+\.\d{3}s control_end=\d+\.\d{3}s$'
                                      % _p2re.escape(self.pid0))
                 if cause == 'processes_left':
-                    self.assertRegex(out, r'(?m)^CLEANUP %s by=run_faults_s1:\d+ ' % _p2re.escape(self.pid0))
+                    self.assertRegex(out, r'(?m)^CLEANUP %s by=%s:\d+ ' % (_p2re.escape(self.pid0), self.TOOL))
 
     def test_controls(self):
         for where in ('control_start', 'control_end'):
@@ -2047,12 +2048,6 @@ class AM5FaultRunnerFullSet(P2FaultRunners):
         self.assertNotRegex(out, r'(?m)^CONTROL start CONTROL_TIMEOUT ')
         self.assertRegex(out, r'(?m)^PLANT %s %s cause=%s$' % (_p2re.escape(self.pid0), state, cause))
 
-    def test_plants(self):
-        P2FaultRunners.test_plants(self)
-        # the CLEANUP record names this runner
-        c, out = self.run_f('plant:leak')
-        self.assertRegex(out, r'(?m)^CLEANUP %s by=%s:\d+ ' % (_p2re.escape(self.pid0), self.TOOL))
-
     test_the_hang_on_each_of_the_other_four_runners = None
 
 
@@ -2722,6 +2717,76 @@ class AM5CR02(unittest.TestCase):
         self.assertIn("FIELDS True -15 bytes b''", out)
         self.assertFalse(os.path.exists(os.path.join(mark, 'second_started')))
         self.assertRegex(out.strip().splitlines()[-1], r'^INTERRUPTED signal=SIGTERM at=\S+ received=1$')
+        p2b_gone(self, seen)
+
+
+class AM5NoResultSupervisors(unittest.TestCase):
+    """Rows 83 (AM2-2 (a): SIGNAL_AFTER_COMPLETION's place, M10's exit unchanged) and 66 (AM-2: F.2 in the leaves and in
+    child_unittest_runner between tests; run_m8_tests_s1), in temporary copies."""
+
+    setUp = P2NoResultSupervisors.setUp
+    tearDown = P2NoResultSupervisors.tearDown
+    copy = P2NoResultSupervisors.copy
+
+    def test_row83_signal_after_completion_keeps_the_exit_and_its_place(self):
+        hold = ('            fixed = CANCEL.fix(last=(k == last_step))\n',
+                '            fixed = CANCEL.fix(last=(k == last_step))\n            if k == "R01":\n'
+                '                open(os.path.join(root, "_p2_after_R01"), "w").close()\n                _time.sleep(3)\n')
+        root = self.copy('plain', edits=[('tools/evkit.py',) + hold])
+        code0, out0, seen0 = p2b_run(root, ['tools/run_regression_m8_s1.py', '--step', 'R01'])
+        root = self.copy('after83', edits=[('tools/evkit.py',) + hold])
+        code, out, seen = p2b_run(root, ['tools/run_regression_m8_s1.py', '--step', 'R01'],
+                                  when=lambda t, d: os.path.exists(os.path.join(t, '_p2_after_R01')), sig=_p2sig.SIGTERM)
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, code0, out[-2000:])                    # M10's exit, unchanged by a signal after completion
+        lines = [l for l in out.splitlines() if l.strip()]
+        lines0 = [l for l in out0.splitlines() if l.strip()]
+        self.assertEqual(lines[-1], lines0[-1])                       # the tool's own last line stays last
+        k = lines.index('SIGNAL_AFTER_COMPLETION signal=SIGTERM')
+        self.assertEqual(k, len(lines) - 2)                           # immediately before it, after the CLEANUP lines
+        self.assertTrue(any(l.startswith('CLEANUP_SUMMARY ') for l in lines[:k]))
+        self.assertNotRegex(out, r'(?m)^INTERRUPTED ')
+        p2b_gone(self, seen)
+
+    LEAF_TESTS = ('import os, time, unittest\n'
+                  'D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "_p2")\n\n\n'
+                  'class T(unittest.TestCase):\n'
+                  '    def test_a(self):\n        open(os.path.join(D, "in_test"), "w").close()\n        time.sleep(6)\n\n'
+                  '    def test_b(self):\n        open(os.path.join(D, "b_started"), "w").close()\n')
+
+    def leaf_tree(self, name):
+        root = self.copy(name)
+        os.makedirs(os.path.join(root, '_p2'), exist_ok=True)
+        with open(os.path.join(root, 'tests_m8', 'test_m8_dependency.py'), 'w', encoding='utf-8') as fh:
+            fh.write(self.LEAF_TESTS)
+        p = _p2sp.run([sys.executable, '-I', '-S', '-c', 'import sys; sys.path.insert(0, "."); import tools.evkit as E; '
+                       'E.update_pins("am5 row 66 (test copy)", "am5", files=["tests_m8/test_m8_dependency.py"])'],
+                      cwd=root, capture_output=True, text=True, timeout=600)
+        self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
+        return root
+
+    def test_row66_child_unittest_runner_stops_between_tests(self):
+        root = self.leaf_tree('leaf66')
+        code, out, seen = p2b_run(root, ['tools/child_unittest_runner.py', '--caller', 'run_m8_tests_s1', '--mode', 'full',
+                                         'tests_m8.test_m8_dependency'], when=lambda t, d: os.path.exists(os.path.join(t, '_p2', 'in_test')))
+        self.assertTrue(os.path.exists(os.path.join(root, '_p2', 'in_test')))
+        self.assertFalse(os.path.exists(os.path.join(root, '_p2', 'b_started')), 'a test started after the signal')
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertRegex(out.strip().splitlines()[-1], r'^RESULT v=2 kind=tests ')
+        self.assertRegex(out, r'(?m)^INTERRUPTED signal=SIGINT at=\S+ received=1$')
+        pins = E.load_pins(os.path.join(root, 'tools', 'expected_counts.json'))[0]
+        self.assertEqual(E.check_output(out, code, pins=pins), [], out[-3000:])
+        p2b_gone(self, seen)
+
+    def test_row66_run_m8_tests_s1_stops_between_tests(self):
+        root = self.leaf_tree('m8_66')
+        code, out, seen = p2b_run(root, ['tools/run_m8_tests_s1.py', '--file', 'test_m8_dependency.py'],
+                                  when=lambda t, d: os.path.exists(os.path.join(t, '_p2', 'in_test')))
+        p2_identity_record(self, seen, out)
+        self.assertFalse(os.path.exists(os.path.join(root, '_p2', 'b_started')), 'a test started after the signal')
+        self.assertEqual(code, 3, out[-2000:])
+        pins = E.load_pins(os.path.join(root, 'tools', 'expected_counts.json'))[0]
+        self.assertEqual(E.check_output(out, code, pins=pins), [], out[-3000:])
         p2b_gone(self, seen)
 
 
