@@ -110,3 +110,10 @@ review pack); everything after that is restated here from the conversation recor
   show 21:32) and the checkpoint PRIVACY_CHECK.txt said 21:40 (made at 21:33). Both corrected before sending.
 - 21:33 Step 3 checkpoint zip built (tree be0c27b, records), privacy check: one accepted immutable hit (logs/m81 baseline),
   hostname false positives, nothing else.
+- Mistake 54 (disclosed): while pushing the data readiness rev 2 files, a git worktree command failed and the following copy and
+  commit ran in this records checkout (local commit 534af9c, rev2 files). Not pushed: the remote records branch stayed at e2437e2.
+  Undone with a reset to e2437e2; the files were then committed on the data-readiness branch as intended. Cause: a cd joined with &&
+  under set -e does not stop the script when it fails; later scripts use set -euo pipefail and separate cd lines.
+- Mistake 55 (disclosed): in the same script the session-id search for the rev 2 re-check pack used a wrong value (the folder name
+  "scratchpad", not the session id), so that check proved nothing. Rerun with the right value on the pack and the branch: no hits for
+  any searched pattern. The step 3 checkpoint check used the right value (its one hit is the accepted M10 baseline file).
