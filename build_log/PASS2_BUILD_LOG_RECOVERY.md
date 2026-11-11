@@ -117,3 +117,9 @@ review pack); everything after that is restated here from the conversation recor
 - Mistake 55 (disclosed): in the same script the session-id search for the rev 2 re-check pack used a wrong value (the folder name
   "scratchpad", not the session id), so that check proved nothing. Rerun with the right value on the pack and the branch: no hits for
   any searched pattern. The step 3 checkpoint check used the right value (its one hit is the accepted M10 baseline file).
+- 21:38 Step 4 (BUILDER-EXECUTED: NOT INDEPENDENT): freeze of main at be0c27b with builder_tools/freeze_s1.py (recovered byte-exact from
+  the e4531a35 package), built twice into separate folders: byte-identical, 1555 files, APG-M11-S1.zip SHA-256
+  67203973d4db8b361c4537b9a4affd3e323fb5c58f9c06c16fa74ae871d57aec (303b6414 is not reproduced: the tree differs, as disclosed).
+  Sanity check, frozen_compare_s1.py against APG_M10_CODE_AND_DATA.zip (bd5c592a...): changed 3, identical 1463, new 89, problems 0;
+  73 successor tools, every M10 original byte-identical. The ZIP is in freezes/be0c27b; the two hashes and the comparison CSV are in
+  evidence_recovery/step4_freeze. Step 5 (the full evidence, AM5-6 order) next.
