@@ -78,3 +78,14 @@ review pack); everything after that is restated here from the conversation recor
 - Still to write: rows 66 and 83, discrepancy 17, the change record, then the focused runs on both Pythons.
 - 17:24 Step 2 suite on Python 3.13.18: all 10 tests_tools files OK, 613 tests (51+86+39+16+12+66+4+180+34+125), as c9b324eb. 3.12 started.
 - 18:13 Step 2 suite on Python 3.12.3: all 10 files OK, 613 tests. Step 2 complete; logs in evidence_recovery/step2_suite (session id masked). Step 3 focused checks start.
+- 18:14 to 18:48 Step 3 focused checks (BUILDER-EXECUTED: NOT INDEPENDENT). First run on 3.13: failures, every one a fault in the
+  new tests, none in the code under test (no logic changed): row 6 output order; sabotage outcome names (CAUGHT/MISSED) and a failed
+  control's exit 3 (rows 41, 51 to 53); the row 30 unkillable mode name, then the test's own read waiting on a pipe the planted
+  process kept; the S16 leak first planted in the check's own tool file, which the CHECK identity pins (moved to the module it
+  imports); row 55 assumed the signal lands in G01; the run_start refusal names the selection; row 29's record precedes the RESULT
+  line; row 62 first asserted a rule K.3 does not make (rewritten to dispatch by kind and version). Each fixed test rerun on 3.13:
+  OK. 3.12, the whole focused set: OK (52 + 5 + 20 + 32 + 16 + 4).
+- 18:49 Pins v100: the five changed tests_tools files; 700 tests in tests_tools (303b6414 had 713; the rewritten tests are not the
+  lost ones, to be disclosed). Manifest regenerated (cefafbae…621c); the first attempt, on the worktree, refused because a worktree's
+  .git is a file; regenerated on an export of the branch.
+- 18:50 Step 3 full suite started on both Pythons (branch step3, e1b79ac).
