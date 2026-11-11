@@ -1269,5 +1269,269 @@ class P2MutationFamily(unittest.TestCase):
         self.assertEqual(E.check_output(out, code, selected=[pid]), [], out[-3000:])
 
 
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Amendment 5 (owner, 2026-11-08 11:26, AM5-4 option A): Appendix A part 1, rows 4, 41, 51 to 53 and 121, at tool level.
+# Rewritten after the workspace loss of 2026-11-11 from the amendment and the rulings (recovery authorisation, rebuild rule).
+# ---------------------------------------------------------------------------------------------------------------------------------------
+def p2_identity_record(test, seen, out):
+    """Amendment 5, row 121: the per-test evidence record, written to the test log (stderr): every descendant seen while the tool ran
+    (pid, start time, process group when it could be read) and the CLEANUP lines of the supervisor that cleaned them up."""
+    ds = []
+    for pid, start in sorted(seen):
+        try:
+            pg = os.getpgid(pid)
+        except OSError:
+            pg = '-'
+        ds.append('%d:%d:%s' % (pid, start, pg))
+    lines = ['P_IDENTITY test=%s run=%s descendants=%s' % (test.id(), 'tool', ','.join(ds) or '-')]
+    lines += ['P_IDENTITY test=%s %s' % (test.id(), l) for l in out.splitlines() if l.startswith('CLEANUP')]
+    sys.stderr.write('\n'.join(lines) + '\n')
+
+
+AM5_REG_STUB_END = r"""import os, sys, time, hashlib, subprocess
+# planted by tests_tools/test_mutation_timeout.py (amendment 5): sabotage_m7_s1's regression check, replaced in a copy; the end control
+# hangs (end_hang) or its last command leaves a SIGTERM-ignoring process behind (end_leak_last)
+MODE, PATH, CLEAN_SHA256, MARK = %(mode)r, %(path)r, %(sha)r, %(mark)r
+a = sys.argv[1:]
+step = a[a.index('--step') + 1]
+end = 'control_end' in os.getcwd()
+with open(os.path.join(os.getcwd(), PATH), 'rb') as fh:
+    clean = hashlib.sha256(fh.read()).hexdigest() == CLEAN_SHA256
+if end and MODE == 'end_hang':
+    time.sleep(60)
+if end and MODE == 'end_leak_last':
+    subprocess.Popen([sys.executable, '-c', 'import signal, sys, time; signal.signal(signal.SIGTERM, signal.SIG_IGN); '
+                      'open(sys.argv[1], "w").close(); time.sleep(30)', os.path.join(MARK, 'leaked')])
+if clean:
+    print('PASS %%s stub' %% step); print('checks 1  failed 0'); sys.exit(0)
+print('FAIL %%s stub' %% step); print('checks 1  failed 1'); sys.exit(1)
+"""
+
+AM5_SAB_CTL_STUB = r"""import os, sys
+# planted by tests_tools/test_mutation_timeout.py (amendment 5, row 41): the test runner of a sabotage tool's check, replaced in a copy;
+# the start or the end control crashes (no RESULT line) or returns output the checker rejects
+MODE, WHERE, OK, FAILED = %(mode)r, %(where)r, %(ok)r, %(failed)r
+a = sys.argv[1:]
+rid = a[a.index('--run-id') + 1] if '--run-id' in a else ''
+ctl = rid.startswith('control')
+here = 'end' if 'control_end' in os.getcwd() else 'start'
+if ctl and here == WHERE:
+    if MODE == 'crash':
+        print('Segmentation fault (core dumped)'); sys.exit(139)
+    lines = OK.splitlines()
+    lines[-1] = lines[-1].replace(' exit=0', ' exit=1')     # a RESULT line that contradicts the exit: rejected by the checker
+    print('\n'.join(lines)); sys.exit(0)
+if ctl:
+    print(OK); sys.exit(0)
+print(FAILED); sys.exit(1)
+"""
+
+
+class AM5ToolLevelRefusals(unittest.TestCase):
+    """Row 4 (P.2, P.10): a supervisor tool whose containment cannot be set up refuses at its start: RUN_ERROR
+    ENV_NO_PROCESS_SUPERVISION, every pinned item NOT_RUN cause=run_error, exit 2."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_am5r_')
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def tree(self, name, edits):
+        tree = os.path.join(self.tmp, name)
+        shutil.copytree(ROOT, tree, ignore=shutil.ignore_patterns('.git', 'logs', '__pycache__'))
+        p = os.path.join(tree, 'tools', 'evkit.py')
+        src = open(p, encoding='utf-8').read()
+        for old, new in edits:
+            self.assertEqual(src.count(old), 1, old)
+            src = src.replace(old, new)
+        open(p, 'w', encoding='utf-8').write(src)
+        return tree
+
+    def refused(self, out, code, tag, pinned, reason):
+        self.assertEqual(code, 2, out[-2000:])
+        self.assertIn('RUN_ERROR ENV_NO_PROCESS_SUPERVISION %s' % reason, out)
+        items = [l for l in out.splitlines() if l.startswith(tag + ' ')]
+        self.assertEqual(len(items), len(pinned))
+        self.assertEqual(items, ['%s %s NOT_RUN cause=run_error' % (tag, i) for i in pinned])
+        self.assertNotRegex(out, r'(?m)^CONTROL ')
+        self.assertEqual(E.check_output(out, code, selected=pinned), [], out[-3000:])
+
+    def test_row4_run_faults_s1_without_a_libc(self):
+        doc, _ = E.load_pins()
+        pinned = doc['plant_lists']['run_faults_s1']['ids']
+        tree = self.tree('libc', [("_LIBC = 'libc.so.6'", "_LIBC = 'libc-missing.so'")])
+        code, out, seen, sent = p2_run(tree, 'run_faults_s1.py', [])
+        self.refused(out, code, 'PLANT', pinned, 'unavailable_OSError')
+
+    def test_row4_m2_mutants_s1_without_pidfd_send_signal(self):
+        doc, _ = E.load_pins()
+        pinned = doc['mutation_lists']['m2_mutants_s1']['ids']
+        tree = self.tree('pidfd', [("_pidfd_send_signal = getattr(_signal, 'pidfd_send_signal', None)", '_pidfd_send_signal = None')])
+        code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', [])
+        self.refused(out, code, 'MUTANT', pinned, 'pidfd_unavailable')
+
+    def test_row4_sigchld_not_default_at_tool_level(self):
+        # both places that set SIGCHLD back to its default are removed; the tool is started with SIGCHLD ignored (kept across exec)
+        doc, _ = E.load_pins()
+        pinned = doc['plant_lists']['run_faults_s1']['ids']
+        tree = self.tree('sigchld', [
+            ('        if _threading.current_thread() is _threading.main_thread():\n            _signal.signal(_signal.SIGCHLD, '
+             '_signal.SIG_DFL)\n', ''),
+            ('            if _signal.getsignal(_signal.SIGCHLD) != _signal.SIG_DFL:\n                _signal.signal(_signal.SIGCHLD, '
+             '_signal.SIG_DFL)\n', '')])
+        launcher = os.path.join(self.tmp, 'launch.py')
+        with open(launcher, 'w') as fh:
+            fh.write('import os, signal, sys\nsignal.signal(signal.SIGCHLD, signal.SIG_IGN)\n'
+                     'os.execv(sys.executable, [sys.executable, "-I", "-S", "tools/run_faults_s1.py"])\n')
+        env = {'PATH': '/usr/local/bin:/usr/bin:/bin', 'LANG': 'C.UTF-8', 'LC_ALL': 'C.UTF-8', 'TZ': 'UTC', 'TMPDIR': self.tmp,
+               'PYTHONDONTWRITEBYTECODE': '1'}
+        p = _sp.run([sys.executable, '-I', '-S', launcher], cwd=tree, env=env, stdin=_sp.DEVNULL, capture_output=True, text=True,
+                    timeout=600)
+        self.refused(p.stdout, p.returncode, 'PLANT', pinned, 'sigchld_not_default')
+
+
+class AM5F2RemainingPoints(unittest.TestCase):
+    """Rows 51 to 53 (F.2): SIGTERM at the points P2MutationFamily covers with SIGINT on m2_mutants_s1, and both signals during the end
+    control and during its cleanup on sabotage_m7_s1."""
+
+    setUp = P2MutationFamily.setUp
+    tearDown = P2MutationFamily.tearDown
+    m2_tree = P2MutationFamily.m2_tree
+    last = P2MutationFamily.last
+    check = P2MutationFamily.check
+
+    def test_m2_sigterm_during_the_end_control(self):
+        tree = self.m2_tree('end_hang')
+        code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', ['--ids', self.ids[0]], when=p2_in('control_end'), sig=_p2sig.SIGTERM)
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertRegex(out, r'(?m)^CONTROL end CONTROL_NOT_RUN cause=interrupted$')
+        self.assertEqual(out.strip().splitlines()[-2], 'INTERRUPTED signal=SIGTERM at=control_end received=1')
+        self.assertIn(' control_end=NOT_RUN ', self.last(out))
+        self.check(out, code, [self.ids[0]])
+        p2_gone(self, seen)
+
+    def test_m2_sigterm_during_the_end_controls_cleanup(self):
+        tree = self.m2_tree('end_leak_last')
+        code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', ['--ids', self.ids[0]], sig=_p2sig.SIGTERM,
+                                       when=lambda d: os.path.exists(os.path.join(tree, '_p2mark', 'leaked')), delay=1.5)
+        p2_identity_record(self, seen, out)
+        self.assertTrue(sent)
+        self.assertRegex(out, r'(?m)^CONTROL end CONTROL_FAIL cause=processes_left ')
+        self.assertRegex(out, r'(?m)^SIGNAL_AFTER_COMPLETION signal=SIGTERM$')
+        self.assertNotIn('INTERRUPTED', out)
+        self.check(out, code, [self.ids[0]])
+        p2_gone(self, seen)
+
+    def test_m2_sigterm_during_an_earlier_commands_cleanup(self):
+        tree = self.m2_tree('end_leak')
+        code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', ['--ids', self.ids[0]], sig=_p2sig.SIGTERM,
+                                       when=lambda d: os.path.exists(os.path.join(tree, '_p2mark', 'leaked')), delay=1.5)
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertRegex(out, r'(?m)^CONTROL end CONTROL_NOT_RUN cause=interrupted$')
+        self.assertEqual(out.strip().splitlines()[-2], 'INTERRUPTED signal=SIGTERM at=control_end received=1')
+        self.check(out, code, [self.ids[0]])
+        p2_gone(self, seen)
+
+    def test_m2_sigterm_between_items(self):
+        hold = ('        def begin(mid):\n            with flock:\n',
+                '        def begin(mid):\n            if begun[0] == 1:\n                open(os.path.join(root, "_p2mark", "between"), "w")'
+                '.close()\n                _time.sleep(3)\n            with flock:\n')
+        tree = self.m2_tree('ok', extra=[hold])
+        code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', ['--ids', ','.join(self.ids), '--jobs', '1'], sig=_p2sig.SIGTERM,
+                                       when=lambda d: os.path.exists(os.path.join(tree, '_p2mark', 'between')))
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertEqual(out.strip().splitlines()[-2], 'INTERRUPTED signal=SIGTERM at=between received=1')
+        self.assertRegex(out, r'(?m)^MUTANT %s NOT_RUN cause=run_stopped$' % _re.escape(self.ids[1]))
+        self.check(out, code, self.ids)
+
+    def m7_tree(self, mode, tag):
+        tree = os.path.join(self.tmp, 'm7_%s_%s' % (mode, tag))
+        shutil.copytree(ROOT, tree, ignore=shutil.ignore_patterns('.git', 'logs', '__pycache__'))
+        mark = os.path.join(tree, '_p2mark')
+        os.makedirs(mark)
+        pid, kind, stubbed, vals = sabotage_case('m7')
+        with open(os.path.join(tree, 'tools', stubbed), 'w', encoding='utf-8') as fh:
+            fh.write(AM5_REG_STUB_END % dict(vals, mode=mode, mark=mark))
+        p2_patch_evkit(tree)
+        return tree, pid, mark
+
+    def test_sabotage_m7_both_signals_during_the_end_control(self):
+        for sig in (_p2sig.SIGINT, _p2sig.SIGTERM):
+            with self.subTest(sig=sig.name):
+                tree, pid, mark = self.m7_tree('end_hang', sig.name)
+                code, out, seen, sent = p2_run(tree, 'sabotage_m7_s1.py', ['--ids', pid], when=p2_in('control_end'), sig=sig)
+                p2_identity_record(self, seen, out)
+                self.assertEqual(code, 3, out[-2000:])
+                self.assertRegex(out, r'(?m)^CONTROL end CONTROL_NOT_RUN cause=interrupted$')
+                self.assertEqual(out.strip().splitlines()[-2], 'INTERRUPTED signal=%s at=control_end received=1' % sig.name)
+                self.assertRegex(out, r'(?m)^PLANT %s (DETECTED|NOT_DETECTED) ' % _re.escape(pid))     # fixed before the signal: kept
+                self.assertEqual(E.check_output(out, code, selected=[pid]), [], out[-3000:])
+                p2_gone(self, seen)
+
+    def test_sabotage_m7_both_signals_during_the_end_controls_cleanup(self):
+        for sig in (_p2sig.SIGINT, _p2sig.SIGTERM):
+            with self.subTest(sig=sig.name):
+                tree, pid, mark = self.m7_tree('end_leak_last', sig.name)
+                code, out, seen, sent = p2_run(tree, 'sabotage_m7_s1.py', ['--ids', pid], sig=sig,
+                                               when=lambda d: os.path.exists(os.path.join(mark, 'leaked')), delay=1.5)
+                p2_identity_record(self, seen, out)
+                self.assertTrue(sent)
+                self.assertRegex(out, r'(?m)^CONTROL end CONTROL_FAIL cause=processes_left ')
+                self.assertRegex(out, r'(?m)^SIGNAL_AFTER_COMPLETION signal=%s$' % sig.name)
+                self.assertNotIn('INTERRUPTED', out)
+                self.assertEqual(E.check_output(out, code, selected=[pid]), [], out[-3000:])
+                p2_gone(self, seen)
+
+
+class AM5SabotageControls(unittest.TestCase):
+    """Row 41 (B.4; S17 (a), owner 12:47, option A): a sabotage tool's start or end control that crashes is CONTROL_FAIL
+    cause=CRASH_NO_RESULT, and one whose output the checker rejects is CONTROL_FAIL cause=CHILD_EVIDENCE_ERROR, on sabotage_m8_s1 and
+    sabotage_mie1_s1."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_am5c_')
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def run_case(self, tool, where, mode, want):
+        tree = os.path.join(self.tmp, '%s_%s_%s' % (tool, where, mode))
+        pid = sabotage_tree(tree, tool, 'failed')
+        _, kind, stubbed, vals = sabotage_case(tool)
+        with open(os.path.join(tree, 'tools', stubbed), 'w', encoding='utf-8') as fh:
+            fh.write(AM5_SAB_CTL_STUB % {'mode': mode, 'where': where, 'ok': vals['ok'], 'failed': vals['failed']})
+        p2_patch_evkit(tree)
+        code, out, seen, sent = p2_run(tree, 'sabotage_%s_s1.py' % tool, ['--ids', pid])
+        p2_identity_record(self, seen, out)
+        shutil.rmtree(tree, ignore_errors=True)
+        self.assertEqual(code, 2, out[-2000:])
+        self.assertRegex(out, r'(?m)^CONTROL %s CONTROL_FAIL cause=%s ' % (where, want))
+        last = out.strip().splitlines()[-1]
+        self.assertIn(' control_%s=FAIL ' % where, last)
+        if where == 'start':
+            self.assertRegex(out, r'(?m)^PLANT %s NOT_RUN ' % _re.escape(pid))
+            self.assertNotRegex(out, r'(?m)^CONTROL end ')
+        else:
+            self.assertRegex(out, r'(?m)^PLANT %s DETECTED ' % _re.escape(pid))
+        self.assertEqual(E.check_output(out, code, selected=[pid]), [], out[-3000:])
+        p2_gone(self, seen)
+
+
+def _add_am5_control_cases():
+    for tool in ('m8', 'mie1'):
+        for where in ('start', 'end'):
+            for mode, want in (('crash', 'CRASH_NO_RESULT'), ('bad', 'CHILD_EVIDENCE_ERROR')):
+                def t(self, tool=tool, where=where, mode=mode, want=want):
+                    self.run_case(tool, where, mode, want)
+                setattr(AM5SabotageControls, 'test_row41_%s_%s_control_%s' % (tool, where, mode), t)
+
+
+_add_am5_control_cases()
+
+
 if __name__ == '__main__':
     unittest.main()
