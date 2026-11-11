@@ -3539,6 +3539,433 @@
    "date": "2026-11-01T09:01:05Z",
    "reason": "the successor mutation tools f67, f671 to f674, m73_store, mie and mie11 now end a refused --batch with a RESULT line (section 2.7; rec/ISSUE_RECORD_2026-11-01_STAGE1_MISSING_TOOL_LEVEL_TESTS.md): their files changed, so the B groups' pinned tool hashes are rewritten; W-1, W-1A and W-1B unchanged",
    "version": 86
+  },
+  {
+   "cause": "wrapper_groups_v3.csv f559ec57a50a045c36e8faedb9d1574315fb45c023046287264568fbe2fbb7c9; W1_EXCLUSION_LIST_v3.csv 266eea0dd870452921a19b52bff2c64eb9aa0b42a5f579ecffba33da9a28e479",
+   "changes": [
+    {
+     "entry": "wrapper_inventories/run_f67_all_s1",
+     "new": {
+      "checks": 4,
+      "checks_sha256": "3f1d4b7cb2afe23615f9e70bb0af32f62e03b4590968539577899abd93e304e4",
+      "excluded": 1,
+      "exclusions_sha256": "8de3cd6ac09ecf0e72e861171bec3c43cff67df200061dba33244e4e18dc1984",
+      "files": 16,
+      "groups": 21,
+      "inventory_sha256": "89cd84ea37e19a90da0a9ade8da98b103de7a954ffc3d0a59c449238a47983cb"
+     },
+     "old": {
+      "groups": 21
+     }
+    }
+   ],
+   "content_sha256": "1486c6c254a5c7c2e94f4f69a20b8682cbab5dd0492edf774d7b72522d01054d",
+   "date": "2026-11-11T05:38:05Z",
+   "reason": "recovery after the workspace loss of 2026-11-11 (corrective pass 2): the tool files of the B and N groups were rebuilt, rewritten where their bytes were lost; their pinned tool hashes are rewritten; W-1, W-1A and W-1B unchanged",
+   "version": 87
+  },
+  {
+   "cause": "wrapper_groups_v3.csv f559ec57a50a045c36e8faedb9d1574315fb45c023046287264568fbe2fbb7c9; W1_EXCLUSION_LIST_v3.csv 266eea0dd870452921a19b52bff2c64eb9aa0b42a5f579ecffba33da9a28e479",
+   "changes": [
+    {
+     "entry": "wrapper_inventories/run_f671_all_s1",
+     "new": {
+      "checks": 4,
+      "checks_sha256": "2c959edd7656902067d268b122c1ff6e9f543211b81ef326ad69ed156b0e94a8",
+      "excluded": 2,
+      "exclusions_sha256": "9cab7b13e1e556ae93a074ab853f52f38e4fbc36a8c4a251c463041b178737d6",
+      "files": 17,
+      "groups": 23,
+      "inventory_sha256": "11754556fccc1f73b78a93cb43649db2e7a22cdfa514029a0d12dfe23240f018"
+     },
+     "old": {
+      "groups": 23
+     }
+    }
+   ],
+   "content_sha256": "e88c984318bb5ed7982358fb50e73b9bb754f6195e96713b3c0b341a59749c4a",
+   "date": "2026-11-11T05:38:12Z",
+   "reason": "recovery after the workspace loss of 2026-11-11 (corrective pass 2): the tool files of the B and N groups were rebuilt, rewritten where their bytes were lost; their pinned tool hashes are rewritten; W-1, W-1A and W-1B unchanged",
+   "version": 88
+  },
+  {
+   "cause": "wrapper_groups_v3.csv f559ec57a50a045c36e8faedb9d1574315fb45c023046287264568fbe2fbb7c9; W1_EXCLUSION_LIST_v3.csv 266eea0dd870452921a19b52bff2c64eb9aa0b42a5f579ecffba33da9a28e479",
+   "changes": [
+    {
+     "entry": "wrapper_inventories/run_f672_all_s1",
+     "new": {
+      "checks": 4,
+      "checks_sha256": "758de26f290b8d1824962d9da15d521b9edd3fef5b60a4530559b88d9d73e678",
+      "excluded": 2,
+      "exclusions_sha256": "fa4440b4b8bfaa8de333b70888e9be89b40cd2e7e3edd713919ee3d5719a6166",
+      "files": 17,
+      "groups": 23,
+      "inventory_sha256": "48c2dcfc81d378bb4875ddb22f86d9e383507c00ef68e595120d33abdc6ac555"
+     },
+     "old": {
+      "groups": 23
+     }
+    }
+   ],
+   "content_sha256": "0af8d9be8614cfc11a1c8ae4045117c96c5e96d95073705de27d11fb012796ea",
+   "date": "2026-11-11T05:38:12Z",
+   "reason": "recovery after the workspace loss of 2026-11-11 (corrective pass 2): the tool files of the B and N groups were rebuilt, rewritten where their bytes were lost; their pinned tool hashes are rewritten; W-1, W-1A and W-1B unchanged",
+   "version": 89
+  },
+  {
+   "cause": "wrapper_groups_v3.csv f559ec57a50a045c36e8faedb9d1574315fb45c023046287264568fbe2fbb7c9; W1_EXCLUSION_LIST_v3.csv 266eea0dd870452921a19b52bff2c64eb9aa0b42a5f579ecffba33da9a28e479",
+   "changes": [
+    {
+     "entry": "wrapper_inventories/run_f673_all_s1",
+     "new": {
+      "checks": 4,
+      "checks_sha256": "12c9340c34e68de38ad4dcdf467729308665476025a4134df65e617a5ca30df7",
+      "excluded": 2,
+      "exclusions_sha256": "c1b885905940a16023008dffd910e61019932824a2a2679e84529595e759d5b9",
+      "files": 17,
+      "groups": 23,
+      "inventory_sha256": "a9b012be876527789eaaf8655e868290f3ef9197e3d6c8031138b8f2e333de9f"
+     },
+     "old": {
+      "groups": 23
+     }
+    }
+   ],
+   "content_sha256": "1fbf04ad8220473da5f6e55df72f3d30e48d7027b15a949881db043e8acad5cc",
+   "date": "2026-11-11T05:38:12Z",
+   "reason": "recovery after the workspace loss of 2026-11-11 (corrective pass 2): the tool files of the B and N groups were rebuilt, rewritten where their bytes were lost; their pinned tool hashes are rewritten; W-1, W-1A and W-1B unchanged",
+   "version": 90
+  },
+  {
+   "cause": "wrapper_groups_v3.csv f559ec57a50a045c36e8faedb9d1574315fb45c023046287264568fbe2fbb7c9; W1_EXCLUSION_LIST_v3.csv 266eea0dd870452921a19b52bff2c64eb9aa0b42a5f579ecffba33da9a28e479",
+   "changes": [
+    {
+     "entry": "wrapper_inventories/run_f674_all_s1",
+     "new": {
+      "checks": 5,
+      "checks_sha256": "99a74fc2aefbfed933669bc20ac83652dae0618a79327c523c05cfacc1f5fb6a",
+      "excluded": 1,
+      "exclusions_sha256": "de7f8b110bc07a5d77776e90e917dd3cebe3e4f094f26e75d220451a97a36433",
+      "files": 17,
+      "groups": 23,
+      "inventory_sha256": "5801199167553d5c48a02df2b336044d4b186643ce7e680d20e024fd742eb956"
+     },
+     "old": {
+      "groups": 23
+     }
+    }
+   ],
+   "content_sha256": "74619bcb7507872e9ea536e85143f47e954103f47066c7ea6391f58f6029fcd3",
+   "date": "2026-11-11T05:38:12Z",
+   "reason": "recovery after the workspace loss of 2026-11-11 (corrective pass 2): the tool files of the B and N groups were rebuilt, rewritten where their bytes were lost; their pinned tool hashes are rewritten; W-1, W-1A and W-1B unchanged",
+   "version": 91
+  },
+  {
+   "cause": "wrapper_groups_v3.csv f559ec57a50a045c36e8faedb9d1574315fb45c023046287264568fbe2fbb7c9; W1_EXCLUSION_LIST_v3.csv 266eea0dd870452921a19b52bff2c64eb9aa0b42a5f579ecffba33da9a28e479",
+   "changes": [
+    {
+     "entry": "wrapper_inventories/run_m3_all_s1",
+     "new": {
+      "checks": 3,
+      "checks_sha256": "eb004ff39d3606280918a5f2552f9f812240ff1ca39d899b76cd9c90ada8f75e",
+      "excluded": 4,
+      "exclusions_sha256": "c2f5dffa363adbee4fd3f2a6e7f5f6cca5a4e2a8af7f755d7cd00bef84644a9c",
+      "files": 6,
+      "groups": 13,
+      "inventory_sha256": "776fb77fc963f28fcd56e858220cb3cc3f834751cf431e7b4bfe7ae6c4e0ab2f"
+     },
+     "old": {
+      "groups": 13
+     }
+    }
+   ],
+   "content_sha256": "c7c102d05eef4ff75832f38f9cfe5e3f7f8d2f432d9f4400be8a8614eb335521",
+   "date": "2026-11-11T05:38:13Z",
+   "reason": "recovery after the workspace loss of 2026-11-11 (corrective pass 2): the tool files of the B and N groups were rebuilt, rewritten where their bytes were lost; their pinned tool hashes are rewritten; W-1, W-1A and W-1B unchanged",
+   "version": 92
+  },
+  {
+   "cause": "wrapper_groups_v3.csv f559ec57a50a045c36e8faedb9d1574315fb45c023046287264568fbe2fbb7c9; W1_EXCLUSION_LIST_v3.csv 266eea0dd870452921a19b52bff2c64eb9aa0b42a5f579ecffba33da9a28e479",
+   "changes": [
+    {
+     "entry": "wrapper_inventories/run_m71_all_s1",
+     "new": {
+      "checks": 3,
+      "checks_sha256": "e6a361edf21f783ea997adc7bea065ed9d5b7f990eaa897f7f2673842072fecc",
+      "excluded": 1,
+      "exclusions_sha256": "ecb08c305f34289199f89b2c670a542007f4cc63fd78a3eab535d783a22595d0",
+      "files": 12,
+      "groups": 16,
+      "inventory_sha256": "64f5c88c2cafb0a3ec5fa75ab371b631002fde39ee56396bf94185e35acf54b8"
+     },
+     "old": {
+      "groups": 16
+     }
+    }
+   ],
+   "content_sha256": "e57ac55265d8870e60645f3f3e6e44229d3cb4f0c8f995078ab400978455c534",
+   "date": "2026-11-11T05:38:13Z",
+   "reason": "recovery after the workspace loss of 2026-11-11 (corrective pass 2): the tool files of the B and N groups were rebuilt, rewritten where their bytes were lost; their pinned tool hashes are rewritten; W-1, W-1A and W-1B unchanged",
+   "version": 93
+  },
+  {
+   "cause": "wrapper_groups_v3.csv f559ec57a50a045c36e8faedb9d1574315fb45c023046287264568fbe2fbb7c9; W1_EXCLUSION_LIST_v3.csv 266eea0dd870452921a19b52bff2c64eb9aa0b42a5f579ecffba33da9a28e479",
+   "changes": [
+    {
+     "entry": "wrapper_inventories/run_m72_all_s1",
+     "new": {
+      "checks": 4,
+      "checks_sha256": "351f27cf6f1ae54f860e54cbe69bc80ca1f641eddb4a168fc07191530fd8b9ef",
+      "excluded": 1,
+      "exclusions_sha256": "3a89fa77a18dc649ac8095702526b41b91ee4cc7e33952cead1626ef43594355",
+      "files": 13,
+      "groups": 18,
+      "inventory_sha256": "712001c22edb8679350b251fa6c62d6e8f6d1f98a3735a3d66cbcdbcff36acad"
+     },
+     "old": {
+      "groups": 18
+     }
+    }
+   ],
+   "content_sha256": "7af63d09603e51448d594eac92be0898c36d68f63537a58014be741a8c91f7d4",
+   "date": "2026-11-11T05:38:13Z",
+   "reason": "recovery after the workspace loss of 2026-11-11 (corrective pass 2): the tool files of the B and N groups were rebuilt, rewritten where their bytes were lost; their pinned tool hashes are rewritten; W-1, W-1A and W-1B unchanged",
+   "version": 94
+  },
+  {
+   "cause": "wrapper_groups_v3.csv f559ec57a50a045c36e8faedb9d1574315fb45c023046287264568fbe2fbb7c9; W1_EXCLUSION_LIST_v3.csv 266eea0dd870452921a19b52bff2c64eb9aa0b42a5f579ecffba33da9a28e479",
+   "changes": [
+    {
+     "entry": "wrapper_inventories/run_m73_all_s1",
+     "new": {
+      "checks": 6,
+      "checks_sha256": "5fdd83f11a25b9232a0cc31dbb786ce704a5a4b3ba461b85e0b312ee6f31d6f9",
+      "excluded": 1,
+      "exclusions_sha256": "8571a2af181051eb6b7e12b1345109e53bd009a7ecb5c81edd96b7b3a24dfc04",
+      "files": 17,
+      "groups": 24,
+      "inventory_sha256": "16233365fcc52e8320c4b61de0d73776e4ca1161e1d303e5956ed1ef831f95da"
+     },
+     "old": {
+      "groups": 24
+     }
+    }
+   ],
+   "content_sha256": "d5479bc29e8c319c7cbe69997a4cfdb71514b4c31e37dd5ff935acb0c428eaca",
+   "date": "2026-11-11T05:38:13Z",
+   "reason": "recovery after the workspace loss of 2026-11-11 (corrective pass 2): the tool files of the B and N groups were rebuilt, rewritten where their bytes were lost; their pinned tool hashes are rewritten; W-1, W-1A and W-1B unchanged",
+   "version": 95
+  },
+  {
+   "cause": "wrapper_groups_v3.csv f559ec57a50a045c36e8faedb9d1574315fb45c023046287264568fbe2fbb7c9; W1_EXCLUSION_LIST_v3.csv 266eea0dd870452921a19b52bff2c64eb9aa0b42a5f579ecffba33da9a28e479",
+   "changes": [
+    {
+     "entry": "wrapper_inventories/run_m7_all_s1",
+     "new": {
+      "checks": 2,
+      "checks_sha256": "64ea84addaba7a6e8ae1508d5e30352af573fc103a2fba4fac88f43da0ced291",
+      "excluded": 1,
+      "exclusions_sha256": "f5c82ef5c43ea27f1a089a981c8a73269495021969f063c07126c9deddb3afa9",
+      "files": 12,
+      "groups": 15,
+      "inventory_sha256": "49bc80cf3ae8f05bc16b1c4de2ec4fe58abc4acdd7cbd51fa652ffb012cba91f"
+     },
+     "old": {
+      "groups": 15
+     }
+    }
+   ],
+   "content_sha256": "3397bf33895dc62e554dba5b5b8e27afe2e63c923d2641d11538ac939a65c1cd",
+   "date": "2026-11-11T05:38:13Z",
+   "reason": "recovery after the workspace loss of 2026-11-11 (corrective pass 2): the tool files of the B and N groups were rebuilt, rewritten where their bytes were lost; their pinned tool hashes are rewritten; W-1, W-1A and W-1B unchanged",
+   "version": 96
+  },
+  {
+   "cause": "wrapper_groups_v3.csv f559ec57a50a045c36e8faedb9d1574315fb45c023046287264568fbe2fbb7c9; W1_EXCLUSION_LIST_v3.csv 266eea0dd870452921a19b52bff2c64eb9aa0b42a5f579ecffba33da9a28e479",
+   "changes": [
+    {
+     "entry": "wrapper_inventories/run_mie1_1_all_s1",
+     "new": {
+      "checks": 4,
+      "checks_sha256": "24f9bdada58f25fb3beb738eb140b7d76e0e851d63086c55384cdd270bb993bd",
+      "excluded": 1,
+      "exclusions_sha256": "96c5b7fcbcde2f93b73a24298be554971fafc4ddd0ace47ab32589b52a351dae",
+      "files": 14,
+      "groups": 19,
+      "inventory_sha256": "53f1cb9fb97007bc03368a14ad307d8b014276671468293e26cf71facc299365"
+     },
+     "old": {
+      "groups": 19
+     }
+    }
+   ],
+   "content_sha256": "dee8f69b95d9e3ba70ca9e6637b68ed30dcd43c23de6688fd8619a10ba5b797d",
+   "date": "2026-11-11T05:38:14Z",
+   "reason": "recovery after the workspace loss of 2026-11-11 (corrective pass 2): the tool files of the B and N groups were rebuilt, rewritten where their bytes were lost; their pinned tool hashes are rewritten; W-1, W-1A and W-1B unchanged",
+   "version": 97
+  },
+  {
+   "cause": "wrapper_groups_v3.csv f559ec57a50a045c36e8faedb9d1574315fb45c023046287264568fbe2fbb7c9; W1_EXCLUSION_LIST_v3.csv 266eea0dd870452921a19b52bff2c64eb9aa0b42a5f579ecffba33da9a28e479",
+   "changes": [
+    {
+     "entry": "wrapper_inventories/run_mie1_all_s1",
+     "new": {
+      "checks": 4,
+      "checks_sha256": "ffed67cba5f1d76d6f14114e6665882d7c04356d0df802d94ed41c35e40416e0",
+      "excluded": 1,
+      "exclusions_sha256": "90c496b5d4f5faa6355c35cd02543cb3040cd79b8525d43d3e868ffd63345248",
+      "files": 14,
+      "groups": 19,
+      "inventory_sha256": "53f1cb9fb97007bc03368a14ad307d8b014276671468293e26cf71facc299365"
+     },
+     "old": {
+      "groups": 19
+     }
+    }
+   ],
+   "content_sha256": "a547e8fc833e2ec6a5ddddad97ecf1965c978047c80314bba873893370006dbc",
+   "date": "2026-11-11T05:38:14Z",
+   "reason": "recovery after the workspace loss of 2026-11-11 (corrective pass 2): the tool files of the B and N groups were rebuilt, rewritten where their bytes were lost; their pinned tool hashes are rewritten; W-1, W-1A and W-1B unchanged",
+   "version": 98
+  },
+  {
+   "cause": "tests_tools files byte-identical to freeze c9b324eb (static/frozen_compare.csv s1_sha256)",
+   "changes": [
+    {
+     "entry": "test_files/tests_tools/test_apg_root.py",
+     "new": {
+      "ids_sha256": "81c9a46aa11b3dd01fcebe011ddd0e006c4bfe042cb371d9893096ae212ad73c",
+      "sha256": "e974afc2a6d248b9737dd9f7ebf140e511a7686e8054093b44c3b23c0d29bb98",
+      "tests": 51
+     },
+     "old": {
+      "ids_sha256": "d34719238be3fac27d71c5fc4ff5756eaaff16cd9006488ae7f8acde9420525b",
+      "sha256": "4352e71dd9110ac9605af8861d59efe580f9f65777cdb774c6ebdd0727d01bd6",
+      "tests": 40
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_consumer_exit_codes.py",
+     "new": {
+      "ids_sha256": "d750fb9709d2b32f75bcb2baeb1a0eab4b45213ab9944a242bfae48fb28bfbd9",
+      "sha256": "f10bc724c7bd4dfe6f66c801cd90467f78cd22a7f614e445a7049ad9f50d58d4",
+      "tests": 86
+     },
+     "old": {
+      "ids_sha256": "78093b4112dd6049dc0d502b94fa2818340624cc96f689f6b1727cc10b364f4c",
+      "sha256": "ce8ec9f1d4375ce0836a1cdd17f6162822623bc33ccdc489f7bc841bb2afc0c1",
+      "tests": 33
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_exec_env.py",
+     "new": {
+      "ids_sha256": "c9786913dada46d5a470f8f156ffd2eb7b35894b90e26eaa3a64fe11927947df",
+      "sha256": "d27892108342df949c1ac6a44ae283353c880c40190b656d77a324abafe47b0f",
+      "tests": 39
+     },
+     "old": {
+      "ids_sha256": "c110f70bde3b1ceecd6c26ff2e257eabb3c429542111de6a5fe37243192f0438",
+      "sha256": "2c23c69b22efcdb7723f95779d362b4152209244508f064eaf10d30b9f8ba351",
+      "tests": 20
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_harness_isolation.py",
+     "new": {
+      "ids_sha256": "837d6f80a468808d1722ee49af7fab80a838f116e32113351b9df8c3faebad0f",
+      "sha256": "28806ee0a63e2f2a0094df3daa94af076595af54ef03eff5a5c5d44be81d7a3d",
+      "tests": 16
+     },
+     "old": {
+      "ids_sha256": "2bb610ecb86494741bae2f3e100c4db49aa0590fffd084f212424bf5d8a47afc",
+      "sha256": "2c4b6f909c39faecdb862868ec1d664a6be9ac796c81668f133b907b12bd5355",
+      "tests": 12
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_mut_runner_output.py",
+     "new": {
+      "ids_sha256": "86c37f5b1e5b89fada69aedfbed67ca809de9d01db3bc66a38b630737310a330",
+      "sha256": "85593c93d40dee043e0174271725e40fe1c21a18f144ceaefd3ec2da56a7853d",
+      "tests": 12
+     },
+     "old": {
+      "ids_sha256": "c9cca73d5871d90868063db074e3c9a4ece5b220084e572ea2beeeb25006b587",
+      "sha256": "287f0442ace4a778df4706b522123143ea445fbf981fcf0b54c3b24ae33df071",
+      "tests": 5
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_mutant_targets.py",
+     "new": {
+      "ids_sha256": "8ec7819a5cfa299c550f87d8b59be35d98e71c9882ba5ee15a594a6dbf08d35b",
+      "sha256": "b3857cb696eb6a96d3230328aec99b9526393d1bc62c86ddd7de832e43d69e4d",
+      "tests": 66
+     },
+     "old": {
+      "ids_sha256": "4eeb4f868dae4cb7dd54d0beb54a3049457a32a071bbc9336991f7be9541abb4",
+      "sha256": "ece1ad8bcd7042645ef471500b209237c6713261bb85ec737833ca880ecba35a",
+      "tests": 7
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_mutation_error_shape.py",
+     "new": {
+      "ids_sha256": "00a95f30ed31ab6c19420e431da14e724f4e7b5aedb486fbd99fc6e1939b5195",
+      "sha256": "d7ecee71d26ef41a0bbbce9d96ea7aebbb9f4f47468dda0dbc40294f2fd1d692",
+      "tests": 4
+     },
+     "old": {
+      "ids_sha256": "febb9e0881d8b5e3ccf481b3cf044f4adc4d78a864d42b2dba5d5b1abcda1ebc",
+      "sha256": "4b115d4cd47555a9ead89841b404b22b9d126dad28acf7a597703bc525523f7f",
+      "tests": 3
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_mutation_timeout.py",
+     "new": {
+      "ids_sha256": "622df01ce1d0b4c1598c179eab62b27a122a01b4c02f48e94774743ec107de5a",
+      "sha256": "33a6807919cfb138a4018defcff6200f3cdff7573d325d49be375ed14b737b4c",
+      "tests": 180
+     },
+     "old": {
+      "ids_sha256": "7b9b0d71b250e51e3886c808c7e4f9c35178bab58d4b4d701cd057b4fca773d3",
+      "sha256": "93e00a2fcd8e85021fad5b6017997694c6f6562490df7c9b4329fbaa4d4a236f",
+      "tests": 8
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_no_timeout_kill.py",
+     "new": {
+      "ids_sha256": "1fcf30bb6bce9813086c8dbd3b29cab304f0b725eca761164f4f8b2a6a14d790",
+      "sha256": "de6ed9fdf397297a8eec197e77348ed0882bf0c562a52c7bf77d19c5db31df7b",
+      "tests": 34
+     },
+     "old": {
+      "ids_sha256": "4bd891a69c5d7156e2408da99da15f384f08f0945c3553f8c8bd63914052132c",
+      "sha256": "5587c04a0bf288cd18896acf6cc813ea5c685ddecd9d23f77515ee74996d7dc9",
+      "tests": 6
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_runner_zero_work.py",
+     "new": {
+      "ids_sha256": "2ed3f12d9af5eac5f14a8ae3c5ed1cddbf0b6b84aa60611aecd5c3c32fc5e6e3",
+      "sha256": "72fa22da49eef23f81fe433cf0c79c58aecc32d44d16911828a85feb47204014",
+      "tests": 125
+     },
+     "old": {
+      "ids_sha256": "2e287fd61eae5345874af7a0fcb050e2f25f6c079950c0b342b853fda6421c36",
+      "sha256": "afa1c0ee58a1d88b63676a2c0899df26aa5e3ce3f91b6d0bef0ed36155e2b7ff",
+      "tests": 24
+     }
+    }
+   ],
+   "content_sha256": "00e6c994178c6e65f3e190a7e17f27b341129cc715d2f0ba1e7ffc1c489954b7",
+   "date": "2026-11-11T05:38:25Z",
+   "reason": "recovery after the workspace loss of 2026-11-11 (corrective pass 2): the test_files entries of the tests_tools files, which hold the pass 2 tests, re-pinned on the rebuilt tree (c9b324eb pins v110 and v111, whose bytes were lost)",
+   "version": 99
   }
  ],
  "check_lists": {
@@ -3546,35 +3973,35 @@
    "G02": "G02 child f55ec3fdcc4855258e84f023997e4f37eb5b53bc71d05f646b15d3bdc808994d 52ac8af9e04aa94f8b955674da774b9624aad3734217b32c9d967f66b77fd434 bd5fd7e312d9d404809613a9ce1e18ecd658fee95d1f5c2e15224777982dabfe",
    "G04": "G04 child 789329e2fcc04f197364efc9bbd10e5d53eea531b56d3f326f2a95d058df0c7f a54590a72bfc56d5dc100c437b20386d8f2f18c51e95460ae56ad1a39a6f6165 194b48f94438176d7fd014a5e35d94a63fecb3d39f40fe56f9158c496beeb585",
    "G05": "G05 child 55cc9bbc3cc9a8feac0ef8dffdd223d1aef961ef3dc5d2b219022f3fa435611f a54590a72bfc56d5dc100c437b20386d8f2f18c51e95460ae56ad1a39a6f6165 194b48f94438176d7fd014a5e35d94a63fecb3d39f40fe56f9158c496beeb585",
-   "G09": "G09 child f5cc316f11674af399483402e3a3a15254f9e94a96ee4015aad0d4292b34ea15 b862ab4f00827d2bcffcd1458b0566ab170f388bb625708a17d9688c87f04e16 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
+   "G09": "G09 child f5cc316f11674af399483402e3a3a15254f9e94a96ee4015aad0d4292b34ea15 7eaaa6d3b132da88d6f1993a90928036bed5088b94ea992bc584807eb61ad31f 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
   },
   "run_f672_all_s1": {
    "G02": "G02 child c51d2bd2454bcc44a95bd941cdb63aad5e85c6ea8de1accd24f3b5e9fe1e2a81 a630730db9f4f8ec090cc2f930f1d0f17cf34b6072c840bcc25882a066ff6adf 590178c53e855b346b32eb0afee4e59d5c63cdbcdf137f15c5d6048da334a4f3",
    "G04": "G04 child 7ac52386e41f78e77fe12a4be3562f91cd1e353fc0789d939cccaa6608da8bf1 78ff28502ab12a3235dfe2023a358278b14b4a4c8adbce540c23fc01737a92f1 194b48f94438176d7fd014a5e35d94a63fecb3d39f40fe56f9158c496beeb585",
    "G05": "G05 child f75609445e426f19742926dc9b29fb8791ae30ad098cdcc6f9cff1060db0c92e 78ff28502ab12a3235dfe2023a358278b14b4a4c8adbce540c23fc01737a92f1 194b48f94438176d7fd014a5e35d94a63fecb3d39f40fe56f9158c496beeb585",
-   "G09": "G09 child 7389810735634a313f7ebd730a0d8f2a92f2516a349af0003bba703b5027c31f 9c53f53b6708c25558a38a098dfd5a4f23b2f369f9a591ed1f69eda13524f2d1 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
+   "G09": "G09 child 7389810735634a313f7ebd730a0d8f2a92f2516a349af0003bba703b5027c31f efa50a39d7779f4c99fb7cdb507a67b296e35c6bfeaceac6705ccd8b2df97fb2 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
   },
   "run_f673_all_s1": {
    "G02": "G02 child 35e4a627cdfab2850fa33e22ac2da8fb9914c196b800ae1188d708fbec807306 ac91dc7a92fc1723ba307e5a96fad5cc50babfb6f0b65a498251120cbc30ca22 69644897d38e345241990358323f0e23000129111be41aba2d2ea313e93a827c",
    "G04": "G04 child 311e2e8aba301db521c53097f544a0df8171d5498571474f335ced68a45edd9d 7595e8c5b0f75c9024d1ac037b36e9470eb2239298a830d4ce6c839a4e191d60 194b48f94438176d7fd014a5e35d94a63fecb3d39f40fe56f9158c496beeb585",
    "G05": "G05 child d07158ab6515a26ff3a20247ca6b95481433b7c9c9c556b5bfbddcb7775ab3f8 7595e8c5b0f75c9024d1ac037b36e9470eb2239298a830d4ce6c839a4e191d60 194b48f94438176d7fd014a5e35d94a63fecb3d39f40fe56f9158c496beeb585",
-   "G09": "G09 child f214bf13054f2f321c65373ba21d2b4d7272f40b76d02f59e1c204f4b3a1045d 999109e4ea4553e0fb05386aeceabf710766056a26f5e3807a65f2c760db0ae7 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
+   "G09": "G09 child f214bf13054f2f321c65373ba21d2b4d7272f40b76d02f59e1c204f4b3a1045d 7ea78e26916d29d8a3f88dffb67411fb6a0bf481dd0729d644890603c74b0032 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
   },
   "run_f674_all_s1": {
    "G02": "G02 child 37d3bd0adffbe5ce2ca0441a7b555213698079f3edad6a04d56d946eb5f5a941 86358907124c89a03f47d26483b206920a1e89a9414fe66d674be44a2714f97a 3d0720b05fb5c2f5832cc1a8950a7dd144cd9d8440bf27149396f48f644d877e",
    "G04": "G04 child e9e5817952a61357aef4aa9832b9ce6b7398de9420526143c8bf7c3d7aa17c22 693fe1302448cc2305af218e4acc53a6bdfc38f10b092d419c2182605cb982fc 194b48f94438176d7fd014a5e35d94a63fecb3d39f40fe56f9158c496beeb585",
    "G05": "G05 child 2c6f83e79195839a353844b683bfc26fe8222f078d19bc4b73b075f35f5a6f20 693fe1302448cc2305af218e4acc53a6bdfc38f10b092d419c2182605cb982fc 194b48f94438176d7fd014a5e35d94a63fecb3d39f40fe56f9158c496beeb585",
-   "G09": "G09 child 0899a3ef71e7bbe2b743b0b740e562dae2ae38e4dbd3f6dc09da3ce1be8eaab5 60487c797d51c5028f845bbe9ffd00839a4249f6019906bc1a013b5939437a0f 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef",
+   "G09": "G09 child 0899a3ef71e7bbe2b743b0b740e562dae2ae38e4dbd3f6dc09da3ce1be8eaab5 0b7edee8e5f25662819fcf56a9bac06432ec105eb61dcb1601ba3234d28c5fc9 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef",
    "G10": "G10 wrapper e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 53bd7ce1248e218d5abece4dc1eb3fb671dbd32b8fefa17410b3ee33d69740b7 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "run_f67_all_s1": {
    "G02": "G02 child 1c6ac934b23a1e5dc4773495dd8f8c1611baace6c9e69c6aa0a6f11fda746df2 8708565bf0ed910336cbac1f7f573957b38788e6af1f7efa6e597e7482c43233 7908afa2e1c4bc88c9674f2b4ef22736cdac22e2b217a228f906a0431e56e0c9",
    "G04": "G04 child fc6a7dfb3e772d1a55ad8b8a5a568d799bd08f9217bbcb494162c2178a888dad 2d5dfc49569c77265e6aa03ce86bb71b55c821faf636f1c224a559f36c384dfe 194b48f94438176d7fd014a5e35d94a63fecb3d39f40fe56f9158c496beeb585",
    "G05": "G05 child 3524a41bb8dcc2288e398d61b5d85a9e6d3d905398c4f6997a2c7fb7ede8a2f0 2d5dfc49569c77265e6aa03ce86bb71b55c821faf636f1c224a559f36c384dfe 194b48f94438176d7fd014a5e35d94a63fecb3d39f40fe56f9158c496beeb585",
-   "G09": "G09 child 9f018e3fc9f4d19ef4242e0c2d50f05500856f897e3f9e1f50001b4794057f59 9275b051bc2f86ca518ad74d0ca16073807ab13079929d419d11dbc0012c93cb 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
+   "G09": "G09 child 9f018e3fc9f4d19ef4242e0c2d50f05500856f897e3f9e1f50001b4794057f59 279407f8063f98c877f82ade5f9013c52cf1ddd9005cd8bd4ed4531594bd9bb2 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
   },
   "run_m3_all_s1": {
-   "G08": "G08 child e1657076fbfd0a1a653520be189d8494666604c88f27262c5c4ecaea5f0ac960 299326c8f556a1e118ce8888e9125896a221a308f03035e209b6d947315f2990 e9c10cfb9491a211a5c32bea422bccebe0c0fb4470ca7521755f11c7b7a3b081",
+   "G08": "G08 child e1657076fbfd0a1a653520be189d8494666604c88f27262c5c4ecaea5f0ac960 65be79d3996a185a3a378b53687b11c69ccb190b56ba00edb02ae4369aa67e89 e9c10cfb9491a211a5c32bea422bccebe0c0fb4470ca7521755f11c7b7a3b081",
    "G09": "G09 child ef9b2a28b8a3f5d853713b0503292ae4a63b0a9ec0e9be6f6f600bb9f3abac12 24c06ca9a2789f13fadd07eb8c8a7268d111d33f524552a6365d82909c51c408 de70c6395f10701a1194ef2c64d840b09501450eecc34df26d17511c1883e02f",
    "G10": "G10 child 4d662d2ba2ea73ac3fa3859f342e6101454d8943ad1cfb843fae17ae51236443 851ec5a76285948165c0a33ecb584da72940f15176a84a07710758db17431aea de70c6395f10701a1194ef2c64d840b09501450eecc34df26d17511c1883e02f"
   },
@@ -3588,25 +4015,25 @@
   "run_m71_all_s1": {
    "G01": "G01 child 765ceafb17955c3773fcbf94fcef6442f68adcb08492118c37677605631fe0ba 19ed647242c8d923859868e21629bcd15d2d77be31ca601791e4cb7da506eb09 43a7bb7bf66869c133403ac340fde520a2aea2c5bb5900e0deaa59195adff19b",
    "G02": "G02 child d47d2ac52c42111ecd9797f310690e54c04c7351396cfb2f262343af0962f739 64f4044d4d132f93cec31aeeb0b9cc3665daa308e30bce220c8897c4dc3543e6 1b47ebc76d34ffd2fa78d8ab1e86a035697dca34c5a4b24cf718d81e3bfb7095",
-   "G16": "G16 child a106a77f4214e8fe47fd8954a5f805fcb9ac6a86b13b320bf29ddfb01aa41d96 46085421d0f514cddff9c0f574e4023b9b1766833cdc2ad778c01d46eaabee67 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
+   "G16": "G16 child a106a77f4214e8fe47fd8954a5f805fcb9ac6a86b13b320bf29ddfb01aa41d96 07a1c00c7907623e511e4338df1c34c0f722ee7e91dc65ca049b7d575db1bad9 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
   },
   "run_m72_all_s1": {
    "G01": "G01 child 3180abff4f05b21aae07042e42dbbf3ab03cb254996b026453fdd6b0cc24265e 93f58d7c3386a8da6a856a8a698e32ff51f0b8fcb65b3f00459c6f0001659536 07bbd2dbd1ef17ce23c8613130dcf5b3300f696ef88dcf5a703f5209ebb947d3",
    "G02": "G02 child 765ceafb17955c3773fcbf94fcef6442f68adcb08492118c37677605631fe0ba 19ed647242c8d923859868e21629bcd15d2d77be31ca601791e4cb7da506eb09 43a7bb7bf66869c133403ac340fde520a2aea2c5bb5900e0deaa59195adff19b",
    "G03": "G03 child d47d2ac52c42111ecd9797f310690e54c04c7351396cfb2f262343af0962f739 64f4044d4d132f93cec31aeeb0b9cc3665daa308e30bce220c8897c4dc3543e6 1b47ebc76d34ffd2fa78d8ab1e86a035697dca34c5a4b24cf718d81e3bfb7095",
-   "G18": "G18 child a106a77f4214e8fe47fd8954a5f805fcb9ac6a86b13b320bf29ddfb01aa41d96 46085421d0f514cddff9c0f574e4023b9b1766833cdc2ad778c01d46eaabee67 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
+   "G18": "G18 child a106a77f4214e8fe47fd8954a5f805fcb9ac6a86b13b320bf29ddfb01aa41d96 07a1c00c7907623e511e4338df1c34c0f722ee7e91dc65ca049b7d575db1bad9 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
   },
   "run_m73_all_s1": {
    "G01": "G01 child 1e3193b0ee441fa60830e115ef19df5352860b18035311ba8f4c0bd788578aee d26111ffc644b4d043fb1992341e23f7e31c1c12bd8e8be3a0c1d04f16caae47 789ae55989fb93b7525e83480e1583d2e1992736fa762b93eac571ecbe03934b",
    "G02": "G02 child 3180abff4f05b21aae07042e42dbbf3ab03cb254996b026453fdd6b0cc24265e 93f58d7c3386a8da6a856a8a698e32ff51f0b8fcb65b3f00459c6f0001659536 07bbd2dbd1ef17ce23c8613130dcf5b3300f696ef88dcf5a703f5209ebb947d3",
    "G03": "G03 child 765ceafb17955c3773fcbf94fcef6442f68adcb08492118c37677605631fe0ba 19ed647242c8d923859868e21629bcd15d2d77be31ca601791e4cb7da506eb09 43a7bb7bf66869c133403ac340fde520a2aea2c5bb5900e0deaa59195adff19b",
    "G04": "G04 child d47d2ac52c42111ecd9797f310690e54c04c7351396cfb2f262343af0962f739 64f4044d4d132f93cec31aeeb0b9cc3665daa308e30bce220c8897c4dc3543e6 1b47ebc76d34ffd2fa78d8ab1e86a035697dca34c5a4b24cf718d81e3bfb7095",
-   "G23": "G23 child a106a77f4214e8fe47fd8954a5f805fcb9ac6a86b13b320bf29ddfb01aa41d96 46085421d0f514cddff9c0f574e4023b9b1766833cdc2ad778c01d46eaabee67 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef",
-   "G24": "G24 child 3018b5112d93f6db7c86c4095bdc8ff8b196bd61652e1d7c11194ef547b1d372 c457dff21938c849cade9407ec346e1318fd99685e1824881a8dfad447b62eb5 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
+   "G23": "G23 child a106a77f4214e8fe47fd8954a5f805fcb9ac6a86b13b320bf29ddfb01aa41d96 07a1c00c7907623e511e4338df1c34c0f722ee7e91dc65ca049b7d575db1bad9 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef",
+   "G24": "G24 child 3018b5112d93f6db7c86c4095bdc8ff8b196bd61652e1d7c11194ef547b1d372 26d09770c60e9298e8eb5b59af9b51157f2323a6f53657071935da0525d5e0db 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
   },
   "run_m7_all_s1": {
    "G01": "G01 child d47d2ac52c42111ecd9797f310690e54c04c7351396cfb2f262343af0962f739 64f4044d4d132f93cec31aeeb0b9cc3665daa308e30bce220c8897c4dc3543e6 1b47ebc76d34ffd2fa78d8ab1e86a035697dca34c5a4b24cf718d81e3bfb7095",
-   "G15": "G15 child a106a77f4214e8fe47fd8954a5f805fcb9ac6a86b13b320bf29ddfb01aa41d96 46085421d0f514cddff9c0f574e4023b9b1766833cdc2ad778c01d46eaabee67 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
+   "G15": "G15 child a106a77f4214e8fe47fd8954a5f805fcb9ac6a86b13b320bf29ddfb01aa41d96 07a1c00c7907623e511e4338df1c34c0f722ee7e91dc65ca049b7d575db1bad9 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
   },
   "run_m8_all_s1": {
    "G01": "G01 child 59af1ec409f34a61e80b00204be84bb0ebfc880b84f835a055c22269b91544c0 7483b1d3834ce38288df29998cf2ec367c59899e89c0ae6aaefbaf84ec7c35bf 9f32813eca85abc2d001cb6212e75b30277d91d58b40daf0ca776eb5d74ada11",
@@ -3675,13 +4102,13 @@
    "G02": "G02 child c21444ba5b2e4af4bcf603fe37680b0a6aa6b231821dc04e4260acee22d15d4f d4dd391adb4fc5ab15c7e6dcc9700ffbf4fa09c29c79eb18860957be60bc3718 e82ecc71a627d033d070031646a21c77b88c8674b2deb0bf3f0641636d6c83b6",
    "G03": "G03 child 704de5352bf585443f47ecf368445843e065abbfc42ebd83af69b40138523c47 3581f41a64db7882e9c1d902b0124d1f3b26f6d8e85c2921f0f5bf32a0131f8d e0eac92b59a4a1ae1396dd1a992e91e1d31bcf7c2298307c29eadc2cbe4c81ae",
    "G07": "G07 child 6932b57730a69995c6403cbfe071aaedf50a986301122c5c5385c4904db6afdd 92ab30a76636d64e9f7ed7f000b9d9e80f2e034544e4aaa1eb04b9d5a9e9b183 206003c072510fce00f4bb1e93b5f35bb8ea368b65921a49c293e6655b579e11",
-   "G08": "G08 child f0098bd61f810beddc1f2c07daff00e357619d2c55227eab9b96a92873aafd1d 49c00add340de5a60fb032b242d23014a66023f3db80ff23d967e49ee5463c00 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
+   "G08": "G08 child f0098bd61f810beddc1f2c07daff00e357619d2c55227eab9b96a92873aafd1d 34b90f2d12991a55d94dd81cd02a1b546d340a7c0c56d2a08e967ad19440aaff 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
   },
   "run_mie1_all_s1": {
    "G02": "G02 child c21444ba5b2e4af4bcf603fe37680b0a6aa6b231821dc04e4260acee22d15d4f d4dd391adb4fc5ab15c7e6dcc9700ffbf4fa09c29c79eb18860957be60bc3718 e82ecc71a627d033d070031646a21c77b88c8674b2deb0bf3f0641636d6c83b6",
    "G03": "G03 child 704de5352bf585443f47ecf368445843e065abbfc42ebd83af69b40138523c47 3581f41a64db7882e9c1d902b0124d1f3b26f6d8e85c2921f0f5bf32a0131f8d e0eac92b59a4a1ae1396dd1a992e91e1d31bcf7c2298307c29eadc2cbe4c81ae",
    "G07": "G07 child 6932b57730a69995c6403cbfe071aaedf50a986301122c5c5385c4904db6afdd 92ab30a76636d64e9f7ed7f000b9d9e80f2e034544e4aaa1eb04b9d5a9e9b183 206003c072510fce00f4bb1e93b5f35bb8ea368b65921a49c293e6655b579e11",
-   "G08": "G08 child 30249fa5d0a50a5473316fb82ec21b0b9213324c3463a299b4c6068febd3bf25 82d8a92070c8c80134e047786c0472aa76d5af61e6573d4aa1524d8ed6ee6741 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
+   "G08": "G08 child 30249fa5d0a50a5473316fb82ec21b0b9213324c3463a299b4c6068febd3bf25 e4601539c80eed94a9ff50edf2d7b9413fc39ae25243659320d694bb5d48f767 73ac259bf85d5702dcdcfbffe2681d1b7149cbe3620f926c277b3c9395b7b4ef"
   }
  },
  "exclusion_lists": {
@@ -38201,11 +38628,14 @@
   },
   "tests_tools/test_apg_root.py": {
    "ids": [
+    "tests_tools.test_apg_root.ApgRootRedirect.test_e17_the_p7_b2_run_imports_the_real_apg_in_its_child",
     "tests_tools.test_apg_root.ApgRootRedirect.test_m10_auif_helper_reads_apg_root",
     "tests_tools.test_apg_root.ApgRootRedirect.test_m10_run_m2_tests_imports_the_decoy",
+    "tests_tools.test_apg_root.ApgRootRedirect.test_m10_run_m8_tests_imports_the_decoy",
     "tests_tools.test_apg_root.ApgRootRedirect.test_successor_early_guard_refuses_an_apg_from_elsewhere",
     "tests_tools.test_apg_root.ApgRootRedirect.test_successor_never_imports_the_decoy",
     "tests_tools.test_apg_root.ApgRootRedirect.test_successor_path_helpers_ignore_apg_root",
+    "tests_tools.test_apg_root.ApgRootRedirect.test_successor_run_m8_tests_ignores_apg_root",
     "tests_tools.test_apg_root.BoundaryManifest.test_a_backslash_path",
     "tests_tools.test_apg_root.BoundaryManifest.test_a_changed_path_that_nothing_accounts_for",
     "tests_tools.test_apg_root.BoundaryManifest.test_a_copy_of_the_manifest_elsewhere_is_not_exempted",
@@ -38240,13 +38670,26 @@
     "tests_tools.test_apg_root.BoundaryManifest.test_the_manifest_as_a_symbolic_link",
     "tests_tools.test_apg_root.BoundaryManifest.test_the_manifest_declaring_itself",
     "tests_tools.test_apg_root.BoundaryManifest.test_the_manifest_removed",
-    "tests_tools.test_apg_root.BoundaryManifest.test_the_same_path_declared_both_modified_and_new"
+    "tests_tools.test_apg_root.BoundaryManifest.test_the_same_path_declared_both_modified_and_new",
+    "tests_tools.test_apg_root.E4DecoyWorkingDirectory.test_m10_from_a_decoy_working_directory_imports_its_own_apg",
+    "tests_tools.test_apg_root.E4DecoyWorkingDirectory.test_successor_runners_refuse_a_working_directory_other_than_the_root",
+    "tests_tools.test_apg_root.RegressionManifestW1A.test_a_declared_file_with_other_contents_fails",
+    "tests_tools.test_apg_root.RegressionManifestW1A.test_a_malformed_manifest_fails",
+    "tests_tools.test_apg_root.RegressionManifestW1A.test_a_missing_manifest_fails",
+    "tests_tools.test_apg_root.RegressionManifestW1A.test_an_undeclared_added_file_fails",
+    "tests_tools.test_apg_root.RegressionManifestW1A.test_an_undeclared_changed_file_fails",
+    "tests_tools.test_apg_root.RegressionManifestW1A.test_the_frozen_manifest_passes_the_five_steps"
    ],
-   "ids_sha256": "d34719238be3fac27d71c5fc4ff5756eaaff16cd9006488ae7f8acde9420525b",
-   "sha256": "4352e71dd9110ac9605af8861d59efe580f9f65777cdb774c6ebdd0727d01bd6"
+   "ids_sha256": "81c9a46aa11b3dd01fcebe011ddd0e006c4bfe042cb371d9893096ae212ad73c",
+   "sha256": "e974afc2a6d248b9737dd9f7ebf140e511a7686e8054093b44c3b23c0d29bb98"
   },
   "tests_tools/test_consumer_exit_codes.py": {
    "ids": [
+    "tests_tools.test_consumer_exit_codes.AChildInTheWrongModeIsAnItemError.test_mutation_tool",
+    "tests_tools.test_consumer_exit_codes.AChildInTheWrongModeIsAnItemError.test_sabotage_tool",
+    "tests_tools.test_consumer_exit_codes.AChildInTheWrongModeIsAnItemError.test_wrapper_group",
+    "tests_tools.test_consumer_exit_codes.CaseInventoryHash.test_a_case_suite_that_is_not_pinned",
+    "tests_tools.test_consumer_exit_codes.CaseInventoryHash.test_each_form_with_and_without_the_pins",
     "tests_tools.test_consumer_exit_codes.CheckerRejectsBadOutput.test_a_survivor_hidden_behind_ok",
     "tests_tools.test_consumer_exit_codes.CheckerRejectsBadOutput.test_classify_child",
     "tests_tools.test_consumer_exit_codes.CheckerRejectsBadOutput.test_counts_contradict_the_item_lines",
@@ -38258,6 +38701,47 @@
     "tests_tools.test_consumer_exit_codes.CheckerRejectsBadOutput.test_status_or_exit_contradicting",
     "tests_tools.test_consumer_exit_codes.CheckerRejectsBadOutput.test_tests_kind_tampering",
     "tests_tools.test_consumer_exit_codes.CheckerRejectsBadOutput.test_two_result_lines",
+    "tests_tools.test_consumer_exit_codes.CheckerRejectsBadSabotageAndCases.test_counts_contradict_the_item_lines",
+    "tests_tools.test_consumer_exit_codes.CheckerRejectsBadSabotageAndCases.test_forged_status_or_exit",
+    "tests_tools.test_consumer_exit_codes.CheckerRejectsBadSabotageAndCases.test_item_lines_missing_duplicated_or_changed",
+    "tests_tools.test_consumer_exit_codes.CheckerRejectsBadSabotageAndCases.test_no_mode_field_on_a_kind_without_one",
+    "tests_tools.test_consumer_exit_codes.CheckerRejectsBadSabotageAndCases.test_result_line_missing_duplicated_reordered_or_tampered",
+    "tests_tools.test_consumer_exit_codes.ConsumersOfAChildEvidenceError.test_child_error_f67",
+    "tests_tools.test_consumer_exit_codes.ConsumersOfAChildEvidenceError.test_child_error_f671",
+    "tests_tools.test_consumer_exit_codes.ConsumersOfAChildEvidenceError.test_child_error_f672",
+    "tests_tools.test_consumer_exit_codes.ConsumersOfAChildEvidenceError.test_child_error_f673",
+    "tests_tools.test_consumer_exit_codes.ConsumersOfAChildEvidenceError.test_child_error_f674",
+    "tests_tools.test_consumer_exit_codes.ConsumersOfAChildEvidenceError.test_child_error_m2",
+    "tests_tools.test_consumer_exit_codes.ConsumersOfAChildEvidenceError.test_child_error_m3",
+    "tests_tools.test_consumer_exit_codes.ConsumersOfAChildEvidenceError.test_child_error_m4",
+    "tests_tools.test_consumer_exit_codes.ConsumersOfAChildEvidenceError.test_child_error_m5",
+    "tests_tools.test_consumer_exit_codes.ConsumersOfAChildEvidenceError.test_child_error_m6",
+    "tests_tools.test_consumer_exit_codes.ConsumersOfAChildEvidenceError.test_child_error_m7",
+    "tests_tools.test_consumer_exit_codes.ConsumersOfAChildEvidenceError.test_child_error_m73_store",
+    "tests_tools.test_consumer_exit_codes.ConsumersOfAChildEvidenceError.test_child_error_m91",
+    "tests_tools.test_consumer_exit_codes.ConsumersOfAChildEvidenceError.test_child_error_mie",
+    "tests_tools.test_consumer_exit_codes.ConsumersOfAChildEvidenceError.test_child_error_mie11",
+    "tests_tools.test_consumer_exit_codes.Pass2CasesV3.test_full_and_partial_runs_are_accepted_and_the_hash_is_verified",
+    "tests_tools.test_consumer_exit_codes.Pass2CasesV3.test_no_resolved_selection",
+    "tests_tools.test_consumer_exit_codes.Pass2CasesV3.test_rejected_forms",
+    "tests_tools.test_consumer_exit_codes.Pass2CasesV3.test_tests_and_wrapper_stay_v2",
+    "tests_tools.test_consumer_exit_codes.Pass2CasesV3.test_the_hash_is_canonical_whatever_order_the_suites_were_requested_in",
+    "tests_tools.test_consumer_exit_codes.Pass2CasesV3.test_the_v2_reader_is_kept_and_never_reads_v3_rules",
+    "tests_tools.test_consumer_exit_codes.Pass2ControlsV3.test_child_interrupted_is_a_completed_failure_not_a_stop",
+    "tests_tools.test_consumer_exit_codes.Pass2ControlsV3.test_completed_runs",
+    "tests_tools.test_consumer_exit_codes.Pass2ControlsV3.test_control_line_value_must_equal_its_field",
+    "tests_tools.test_consumer_exit_codes.Pass2ControlsV3.test_interrupted_placement_and_counts",
+    "tests_tools.test_consumer_exit_codes.Pass2ControlsV3.test_not_run_with_no_stop_record_is_rejected",
+    "tests_tools.test_consumer_exit_codes.Pass2ControlsV3.test_start_control_interrupted",
+    "tests_tools.test_consumer_exit_codes.Pass2ControlsV3.test_stopped_after_the_last_item",
+    "tests_tools.test_consumer_exit_codes.Pass2ControlsV3.test_stopped_before_the_last_item",
+    "tests_tools.test_consumer_exit_codes.Pass2ControlsV3.test_v2_mutation_line_keeps_the_frozen_rule",
+    "tests_tools.test_consumer_exit_codes.Pass2ForkedMessage.test_validation_steps",
+    "tests_tools.test_consumer_exit_codes.Pass2InterruptedNoKindChild.test_consumers",
+    "tests_tools.test_consumer_exit_codes.Pass2InterruptedNoKindChild.test_record_recognised_only_with_exit_3_and_as_the_last_line",
+    "tests_tools.test_consumer_exit_codes.Pass2ProcStat.test_command_name_with_spaces_and_parentheses",
+    "tests_tools.test_consumer_exit_codes.Pass2ProcStat.test_limit_line",
+    "tests_tools.test_consumer_exit_codes.Pass2ProcStat.test_supervisor_list",
     "tests_tools.test_consumer_exit_codes.PrecedenceAndDerivation.test_precedence_two_then_three_then_one_then_zero",
     "tests_tools.test_consumer_exit_codes.PrecedenceAndDerivation.test_sabotage_and_cases",
     "tests_tools.test_consumer_exit_codes.SuccessMarkerPosition.test_marker_before_result_on_exit_0_only",
@@ -38279,24 +38763,50 @@
     "tests_tools.test_consumer_exit_codes.WorkedCasesTests.test_import_error_inside_code_under_test_is_failed",
     "tests_tools.test_consumer_exit_codes.WorkedCasesTests.test_inventory_mismatch_is_an_evidence_error",
     "tests_tools.test_consumer_exit_codes.WorkedCasesTests.test_skipped_after_failure_is_refused_in_full_mode",
-    "tests_tools.test_consumer_exit_codes.WorkedCasesTests.test_zero_files_selected_is_an_evidence_error"
+    "tests_tools.test_consumer_exit_codes.WorkedCasesTests.test_zero_files_selected_is_an_evidence_error",
+    "tests_tools.test_consumer_exit_codes.WrapperResultW1.test_canonical_hashing",
+    "tests_tools.test_consumer_exit_codes.WrapperResultW1.test_check_outcome_table",
+    "tests_tools.test_consumer_exit_codes.WrapperResultW1.test_checker_rejects_bad_wrapper_lines",
+    "tests_tools.test_consumer_exit_codes.WrapperResultW1.test_consumer_rule",
+    "tests_tools.test_consumer_exit_codes.WrapperResultW1.test_forged_and_misplaced_statuses_are_rejected",
+    "tests_tools.test_consumer_exit_codes.WrapperResultW1.test_status_and_exit",
+    "tests_tools.test_consumer_exit_codes.WrapperResultW1.test_zero_work_is_an_evidence_error"
    ],
-   "ids_sha256": "78093b4112dd6049dc0d502b94fa2818340624cc96f689f6b1727cc10b364f4c",
-   "sha256": "ce8ec9f1d4375ce0836a1cdd17f6162822623bc33ccdc489f7bc841bb2afc0c1"
+   "ids_sha256": "d750fb9709d2b32f75bcb2baeb1a0eab4b45213ab9944a242bfae48fb28bfbd9",
+   "sha256": "f10bc724c7bd4dfe6f66c801cd90467f78cd22a7f614e445a7049ad9f50d58d4"
   },
   "tests_tools/test_exec_env.py": {
    "ids": [
+    "tests_tools.test_exec_env.AuifRootAtRunnerLevel.test_an_inherited_value_that_is_not_a_verified_copy_is_refused",
+    "tests_tools.test_exec_env.AuifRootAtRunnerLevel.test_children_get_only_the_copy_the_runner_verified",
+    "tests_tools.test_exec_env.AuifRootAtRunnerLevel.test_the_child_accepts_the_copy_its_runner_verified",
+    "tests_tools.test_exec_env.AuifRootAtRunnerLevel.test_the_child_never_imports_from_a_tampered_copy",
+    "tests_tools.test_exec_env.AuifRootAtRunnerLevel.test_the_child_refuses_a_bad_path_before_any_test",
+    "tests_tools.test_exec_env.ChildrenStartIsolated.test_m8_mutants_controls_and_a_known_kill",
+    "tests_tools.test_exec_env.ChildrenStartIsolated.test_run_m8_tests",
+    "tests_tools.test_exec_env.ChildrenStartIsolated.test_run_regression_m10_step_r07",
+    "tests_tools.test_exec_env.ChildrenStartIsolated.test_sabotage_m10_one_plant",
     "tests_tools.test_exec_env.CleanEnvAndCommands.test_auif_root_child_side_check",
     "tests_tools.test_exec_env.CleanEnvAndCommands.test_child_commands_start_isolated_without_site",
     "tests_tools.test_exec_env.CleanEnvAndCommands.test_clean_env_auif_root_is_the_only_exception",
     "tests_tools.test_exec_env.CleanEnvAndCommands.test_clean_env_is_the_allowlist_only",
     "tests_tools.test_exec_env.CleanEnvAndCommands.test_clean_env_refuses_a_missing_tmpdir",
     "tests_tools.test_exec_env.CleanEnvAndCommands.test_run_error_codes_are_tokens_and_details_one_line",
+    "tests_tools.test_exec_env.E7ChildIsolationM10Halves.test_m8_mutants_controls_and_a_known_kill",
+    "tests_tools.test_exec_env.E7ChildIsolationM10Halves.test_run_m8_tests",
+    "tests_tools.test_exec_env.E7ChildIsolationM10Halves.test_run_regression_m10_step_r07",
+    "tests_tools.test_exec_env.E7ChildIsolationM10Halves.test_sabotage_m10_one_plant",
     "tests_tools.test_exec_env.ImportIdentity.test_preloaded_trusted_module",
     "tests_tools.test_exec_env.ImportIdentity.test_real_packages_pass",
     "tests_tools.test_exec_env.ImportIdentity.test_tools_namespace_shadowed",
     "tests_tools.test_exec_env.ImportIdentity.test_trusted_package_from_outside_the_extraction",
     "tests_tools.test_exec_env.ImportIdentity.test_untrusted_module_outside_stdlib_by_file",
+    "tests_tools.test_exec_env.RunnerLevelStartChecks.test_a_decoy_pth_file_in_the_user_site_directory",
+    "tests_tools.test_exec_env.RunnerLevelStartChecks.test_a_decoy_sitecustomize_on_pythonpath",
+    "tests_tools.test_exec_env.RunnerLevelStartChecks.test_a_working_directory_with_a_decoy_apg",
+    "tests_tools.test_exec_env.RunnerLevelStartChecks.test_free_disk_below_the_floor_stops_a_runner_and_a_mutation_tool_before_any_work",
+    "tests_tools.test_exec_env.RunnerLevelStartChecks.test_with_the_site_module",
+    "tests_tools.test_exec_env.RunnerLevelStartChecks.test_without_isolation",
     "tests_tools.test_exec_env.StartChecksInAChild.test_a_decoy_in_the_working_directory_is_not_imported",
     "tests_tools.test_exec_env.StartChecksInAChild.test_apg_root_is_removed_unconditionally",
     "tests_tools.test_exec_env.StartChecksInAChild.test_clean_start_passes",
@@ -38307,8 +38817,8 @@
     "tests_tools.test_exec_env.StartChecksInAChild.test_started_with_site_is_a_run_error",
     "tests_tools.test_exec_env.StartChecksInAChild.test_started_without_isolation_is_a_run_error"
    ],
-   "ids_sha256": "c110f70bde3b1ceecd6c26ff2e257eabb3c429542111de6a5fe37243192f0438",
-   "sha256": "2c23c69b22efcdb7723f95779d362b4152209244508f064eaf10d30b9f8ba351"
+   "ids_sha256": "c9786913dada46d5a470f8f156ffd2eb7b35894b90e26eaa3a64fe11927947df",
+   "sha256": "d27892108342df949c1ac6a44ae283353c880c40190b656d77a324abafe47b0f"
   },
   "tests_tools/test_harness_isolation.py": {
    "ids": [
@@ -38319,73 +38829,344 @@
     "tests_tools.test_harness_isolation.CandidateLoading.test_fake_harness_in_the_candidate_directory_is_refused",
     "tests_tools.test_harness_isolation.CandidateLoading.test_the_candidate_path_is_appended_not_inserted_first",
     "tests_tools.test_harness_isolation.CandidateLoading.test_tools_evkit_file_in_the_candidate_is_refused",
+    "tests_tools.test_harness_isolation.E15FakeHarnessAndTrustedNames.test_a_factory_spec_naming_a_trusted_package_on_each_runner",
+    "tests_tools.test_harness_isolation.E15FakeHarnessAndTrustedNames.test_each_trusted_name_as_a_package_and_as_a_module_on_each_runner",
+    "tests_tools.test_harness_isolation.E15FakeHarnessAndTrustedNames.test_the_fake_harness_m10_runs_it_and_the_successor_refuses_it",
     "tests_tools.test_harness_isolation.RunnerLevel.test_m10_runners_run_the_fake_harness_and_report_success",
     "tests_tools.test_harness_isolation.RunnerLevel.test_path_without_a_factory_and_a_factory_without_path",
     "tests_tools.test_harness_isolation.RunnerLevel.test_successor_reports_a_failing_candidate_as_failed",
+    "tests_tools.test_harness_isolation.RunnerLevel.test_successor_runners_refuse_every_trusted_name_in_the_candidate",
     "tests_tools.test_harness_isolation.RunnerLevel.test_successor_runs_a_clean_candidate_from_its_own_package",
     "tests_tools.test_harness_isolation.RunnerLevel.test_successors_refuse_the_fake_harness"
    ],
-   "ids_sha256": "2bb610ecb86494741bae2f3e100c4db49aa0590fffd084f212424bf5d8a47afc",
-   "sha256": "2c4b6f909c39faecdb862868ec1d664a6be9ac796c81668f133b907b12bd5355"
+   "ids_sha256": "837d6f80a468808d1722ee49af7fab80a838f116e32113351b9df8c3faebad0f",
+   "sha256": "28806ee0a63e2f2a0094df3daa94af076595af54ef03eff5a5c5d44be81d7a3d"
   },
   "tests_tools/test_mut_runner_output.py": {
    "ids": [
+    "tests_tools.test_mut_runner_output.MutRunnerOutput.test_a_known_and_an_unpinned_name",
+    "tests_tools.test_mut_runner_output.MutRunnerOutput.test_e20_the_c8_kill_attribution_matches_m10",
+    "tests_tools.test_mut_runner_output.MutRunnerOutput.test_e22_the_standalone_pin_and_f11_on_the_failing_file",
+    "tests_tools.test_mut_runner_output.MutRunnerOutput.test_failfast_and_full_on_the_three_named_files",
     "tests_tools.test_mut_runner_output.MutRunnerOutput.test_m10_failure_prints_only_the_short_name",
     "tests_tools.test_mut_runner_output.MutRunnerOutput.test_m10_prints_nothing_on_success",
+    "tests_tools.test_mut_runner_output.MutRunnerOutput.test_no_names",
+    "tests_tools.test_mut_runner_output.MutRunnerOutput.test_run_m2_tests_s1_in_each_of_its_pinned_modes",
     "tests_tools.test_mut_runner_output.MutRunnerOutput.test_successor_failure_attribution_and_skipped_files",
     "tests_tools.test_mut_runner_output.MutRunnerOutput.test_successor_prints_the_pinned_counts_and_reconciles",
+    "tests_tools.test_mut_runner_output.MutRunnerOutput.test_the_eight_c8_files",
     "tests_tools.test_mut_runner_output.MutRunnerOutput.test_unpinned_name_and_no_names"
    ],
-   "ids_sha256": "c9cca73d5871d90868063db074e3c9a4ece5b220084e572ea2beeeb25006b587",
-   "sha256": "287f0442ace4a778df4706b522123143ea445fbf981fcf0b54c3b24ae33df071"
+   "ids_sha256": "86c37f5b1e5b89fada69aedfbed67ca809de9d01db3bc66a38b630737310a330",
+   "sha256": "85593c93d40dee043e0174271725e40fe1c21a18f144ceaefd3ec2da56a7853d"
   },
   "tests_tools/test_mutant_targets.py": {
    "ids": [
+    "tests_tools.test_mutant_targets.EveryTextListOnTheSource.test_m10_m2_list_from_the_source_fails_only_on_ri10",
+    "tests_tools.test_mutant_targets.EveryTextListOnTheSource.test_m8_mutants_and_the_sabotage_plants",
+    "tests_tools.test_mutant_targets.EveryTextListOnTheSource.test_the_successor_m2_list_has_every_target_exactly_once",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_f67",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_f671",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_f672",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_f673",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_f674",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_file_missing_f67",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_file_missing_f671",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_file_missing_f672",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_file_missing_f673",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_file_missing_f674",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_file_missing_m2",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_file_missing_m3",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_file_missing_m4",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_file_missing_m5",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_file_missing_m6",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_file_missing_m7",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_file_missing_m73_store",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_file_missing_m8",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_file_missing_m91",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_file_missing_mie",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_file_missing_mie11",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_m2",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_m3",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_m4",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_m5",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_m6",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_m7",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_m73_store",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_m8",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_m91",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_mie",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_mutation_mie11",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_not_exactly_once_in_this_tree_sabotage_f67",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_not_exactly_once_in_this_tree_sabotage_f671",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_not_exactly_once_in_this_tree_sabotage_f672",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_not_exactly_once_in_this_tree_sabotage_f673",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_not_exactly_once_in_this_tree_sabotage_f674",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_not_exactly_once_in_this_tree_sabotage_m7",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_not_exactly_once_in_this_tree_sabotage_m71",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_not_exactly_once_in_this_tree_sabotage_m72",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_not_exactly_once_in_this_tree_sabotage_m73",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_sabotage_f67",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_sabotage_f671",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_sabotage_f672",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_sabotage_f673",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_sabotage_f674",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_sabotage_m10",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_sabotage_m7",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_sabotage_m71",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_sabotage_m72",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_sabotage_m73",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_sabotage_mie1",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_sabotage_mie1_1",
+    "tests_tools.test_mutant_targets.MissingTargetAtToolLevel.test_sabotage_tool_whose_added_file_already_exists",
     "tests_tools.test_mutant_targets.Preflight.test_a_preflight_failure_stops_every_mutant",
     "tests_tools.test_mutant_targets.Preflight.test_exactly_once_passes",
     "tests_tools.test_mutant_targets.Preflight.test_missing_file_fails",
     "tests_tools.test_mutant_targets.Preflight.test_more_than_once_fails_unless_declared",
     "tests_tools.test_mutant_targets.Preflight.test_zero_occurrences_fails",
+    "tests_tools.test_mutant_targets.PreflightFailClosedAtToolLevel.test_m10_starts_the_workers_and_reports_the_error_afterwards",
+    "tests_tools.test_mutant_targets.PreflightFailClosedAtToolLevel.test_successor_stops_in_the_preflight",
     "tests_tools.test_mutant_targets.TheRI10CaseOnTheRealMutantList.test_m10_tool_only_finds_it_per_mutant",
     "tests_tools.test_mutant_targets.TheRI10CaseOnTheRealMutantList.test_successor_preflight_finds_exactly_ri10_before_any_mutant"
    ],
-   "ids_sha256": "4eeb4f868dae4cb7dd54d0beb54a3049457a32a071bbc9336991f7be9541abb4",
-   "sha256": "ece1ad8bcd7042645ef471500b209237c6713261bb85ec737833ca880ecba35a"
+   "ids_sha256": "8ec7819a5cfa299c550f87d8b59be35d98e71c9882ba5ee15a594a6dbf08d35b",
+   "sha256": "b3857cb696eb6a96d3230328aec99b9526393d1bc62c86ddd7de832e43d69e4d"
   },
   "tests_tools/test_mutation_error_shape.py": {
    "ids": [
+    "tests_tools.test_mutation_error_shape.MutateRaises.test_every_tool_reports_a_worker_exception_as_that_mutants_item_error",
     "tests_tools.test_mutation_error_shape.MutateRaises.test_m10_crashes_with_a_traceback",
     "tests_tools.test_mutation_error_shape.MutateRaises.test_successor_reports_a_worker_exception_as_that_mutants_item_error",
     "tests_tools.test_mutation_error_shape.MutateRaises.test_successor_stops_in_the_preflight"
    ],
-   "ids_sha256": "febb9e0881d8b5e3ccf481b3cf044f4adc4d78a864d42b2dba5d5b1abcda1ebc",
-   "sha256": "4b115d4cd47555a9ead89841b404b22b9d126dad28acf7a597703bc525523f7f"
+   "ids_sha256": "00a95f30ed31ab6c19420e431da14e724f4e7b5aedb486fbd99fc6e1939b5195",
+   "sha256": "d7ecee71d26ef41a0bbbce9d96ea7aebbb9f4f47468dda0dbc40294f2fd1d692"
   },
   "tests_tools/test_mutation_timeout.py": {
    "ids": [
+    "tests_tools.test_mutation_timeout.BaselineOptionW1A.test_control_failure",
+    "tests_tools.test_mutation_timeout.BaselineOptionW1A.test_only_the_nine_tools_take_the_option",
+    "tests_tools.test_mutation_timeout.BaselineOptionW1A.test_pass",
+    "tests_tools.test_mutation_timeout.BaselineOptionW1A.test_timeout",
+    "tests_tools.test_mutation_timeout.BaselineOptionW1A.test_tool_error",
     "tests_tools.test_mutation_timeout.Controls.test_a_control_copy_that_cannot_be_made_is_a_tool_error",
     "tests_tools.test_mutation_timeout.Controls.test_a_failed_start_control_stops_every_item_and_the_end_control",
     "tests_tools.test_mutation_timeout.Controls.test_each_control_runs_in_a_fresh_copy_of_the_tree",
     "tests_tools.test_mutation_timeout.Controls.test_fail_and_timeout",
     "tests_tools.test_mutation_timeout.Controls.test_pass",
     "tests_tools.test_mutation_timeout.Controls.test_the_disk_floor_is_checked_before_each_copy",
+    "tests_tools.test_mutation_timeout.E12M3NonMatchingPattern.test_m10_runner_passes_a_pattern_that_selects_no_file",
+    "tests_tools.test_mutation_timeout.E12M3NonMatchingPattern.test_successor_reports_the_mutant_item_error",
+    "tests_tools.test_mutation_timeout.E1KillOracleNamesAMissingTestFile.test_m10_counts_it_as_a_kill",
+    "tests_tools.test_mutation_timeout.E1KillOracleNamesAMissingTestFile.test_successor_reports_item_error_never_killed",
+    "tests_tools.test_mutation_timeout.E26RealFailFast.test_e17_ml01_kill_attribution_matches_m10",
+    "tests_tools.test_mutation_timeout.E26RealFailFast.test_f1_mut_runner_s1_inside_m4_mutants_s1",
+    "tests_tools.test_mutation_timeout.E26RealFailFast.test_f7_an_m8_tier_inside_m8_mutants_s1",
+    "tests_tools.test_mutation_timeout.E26RealFailFast.test_f8_child_unittest_runner_inside_sabotage_m10_s1",
+    "tests_tools.test_mutation_timeout.P2MutationFamily.test_f1_the_floor_at_the_end_controls_copy",
+    "tests_tools.test_mutation_timeout.P2MutationFamily.test_f1_the_floor_at_the_start_controls_copy",
+    "tests_tools.test_mutation_timeout.P2MutationFamily.test_f1_the_floor_during_the_items_with_jobs_2",
+    "tests_tools.test_mutation_timeout.P2MutationFamily.test_f2_a_second_signal_is_counted_without_cutting_the_output",
+    "tests_tools.test_mutation_timeout.P2MutationFamily.test_f2_and_k1_during_the_end_controls_cleanup",
+    "tests_tools.test_mutation_timeout.P2MutationFamily.test_f2_between_items",
+    "tests_tools.test_mutation_timeout.P2MutationFamily.test_f2_during_the_end_control",
+    "tests_tools.test_mutation_timeout.P2MutationFamily.test_f2_sigint_while_a_child_runs",
+    "tests_tools.test_mutation_timeout.P2MutationFamily.test_reading_7_an_interrupt_during_an_earlier_commands_cleanup",
+    "tests_tools.test_mutation_timeout.P2MutationFamily.test_sabotage_m7_f1_the_floor_at_the_end_controls_copy",
+    "tests_tools.test_mutation_timeout.P2MutationFamily.test_sabotage_m7_f1_the_floor_at_the_start_controls_copy",
+    "tests_tools.test_mutation_timeout.P2MutationFamily.test_sabotage_m7_f2_sigint_and_sigterm_while_a_child_runs",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_f671_mutants_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_f672_mutants_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_f673_mutants_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_f674_mutants_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_f67_mutants_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_m2_mutants_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_m3_mutants_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_m4_mutants_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_m5_mutants_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_m6_mutants_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_m73_store_mutants_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_m7_mutants_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_m8_mutants_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_m91_mutants_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_mie11_mutants_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_mie_mutants_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_sabotage_f671_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_sabotage_f672_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_sabotage_f673_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_sabotage_f674_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_sabotage_f67_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_sabotage_m10_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_sabotage_m71_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_sabotage_m72_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_sabotage_m73_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_sabotage_m7_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_sabotage_m8_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_sabotage_mie1_1_s1",
+    "tests_tools.test_mutation_timeout.PreflightBeforeAnyItem.test_preflight_sabotage_mie1_s1",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_m10_sabotage_m10_counts_a_crash_as_caught",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_caught_f67",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_caught_f671",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_caught_f672",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_caught_f673",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_caught_f674",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_caught_m10",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_caught_m7",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_caught_m71",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_caught_m72",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_caught_m73",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_caught_m8",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_caught_mie1",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_caught_mie1_1",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_crash_f67",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_crash_f671",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_crash_f672",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_crash_f673",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_crash_f674",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_crash_m10",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_crash_m7",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_crash_m71",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_crash_m72",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_crash_m73",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_crash_m8",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_crash_mie1",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_crash_mie1_1",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_failed_start_control_f67",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_failed_start_control_f671",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_failed_start_control_f672",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_failed_start_control_f673",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_failed_start_control_f674",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_failed_start_control_m10",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_failed_start_control_m7",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_failed_start_control_m71",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_failed_start_control_m72",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_failed_start_control_m73",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_failed_start_control_m8",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_failed_start_control_mie1",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_failed_start_control_mie1_1",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_timeout_f67",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_timeout_f671",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_timeout_f672",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_timeout_f673",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_timeout_f674",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_timeout_m10",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_timeout_m7",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_timeout_m71",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_timeout_m72",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_timeout_m73",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_timeout_m8",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_timeout_mie1",
+    "tests_tools.test_mutation_timeout.SabotageToolLevel.test_sabotage_timeout_mie1_1",
     "tests_tools.test_mutation_timeout.TimeoutStaysIndeterminate.test_a_run_with_one_timeout_is_indeterminate_not_ok",
-    "tests_tools.test_mutation_timeout.TimeoutStaysIndeterminate.test_even_far_beyond_the_controls"
+    "tests_tools.test_mutation_timeout.TimeoutStaysIndeterminate.test_even_far_beyond_the_controls",
+    "tests_tools.test_mutation_timeout.ToolLevelM8.test_crash_m8",
+    "tests_tools.test_mutation_timeout.ToolLevelM8.test_failed_start_control_m8",
+    "tests_tools.test_mutation_timeout.ToolLevelM8.test_failing_end_control_m8",
+    "tests_tools.test_mutation_timeout.ToolLevelM8.test_genuine_kill_m8",
+    "tests_tools.test_mutation_timeout.ToolLevelM8.test_timeout_m8",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_crash_f67",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_crash_f671",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_crash_f672",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_crash_f673",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_crash_f674",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_crash_m2",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_crash_m3",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_crash_m4",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_crash_m5",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_crash_m6",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_crash_m7",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_crash_m73_store",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_crash_m91",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_crash_mie",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_crash_mie11",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_failed_start_control_f67",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_failed_start_control_f671",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_failed_start_control_f672",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_failed_start_control_f673",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_failed_start_control_f674",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_failed_start_control_m2",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_failed_start_control_m3",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_failed_start_control_m4",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_failed_start_control_m5",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_failed_start_control_m6",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_failed_start_control_m7",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_failed_start_control_m73_store",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_failed_start_control_m91",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_failed_start_control_mie",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_failed_start_control_mie11",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_genuine_kill_f67",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_genuine_kill_f671",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_genuine_kill_f672",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_genuine_kill_f673",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_genuine_kill_f674",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_genuine_kill_m2",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_genuine_kill_m3",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_genuine_kill_m4",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_genuine_kill_m5",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_genuine_kill_m6",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_genuine_kill_m7",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_genuine_kill_m73_store",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_genuine_kill_m91",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_genuine_kill_mie",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_genuine_kill_mie11",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_f67",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_f671",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_f672",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_f673",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_f674",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_m2",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_m3",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_m4",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_m5",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_m6",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_m7",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_m73_store",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_m91",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_mie",
+    "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_mie11"
    ],
-   "ids_sha256": "7b9b0d71b250e51e3886c808c7e4f9c35178bab58d4b4d701cd057b4fca773d3",
-   "sha256": "93e00a2fcd8e85021fad5b6017997694c6f6562490df7c9b4329fbaa4d4a236f"
+   "ids_sha256": "622df01ce1d0b4c1598c179eab62b27a122a01b4c02f48e94774743ec107de5a",
+   "sha256": "33a6807919cfb138a4018defcff6200f3cdff7573d325d49be375ed14b737b4c"
   },
   "tests_tools/test_no_timeout_kill.py": {
    "ids": [
+    "tests_tools.test_no_timeout_kill.Census.test_every_m10_mutation_tool_has_a_successor_and_the_successors_are_clean",
+    "tests_tools.test_no_timeout_kill.Census.test_the_census_finds_the_m10_pattern",
+    "tests_tools.test_no_timeout_kill.Census.test_the_census_of_tools_evkit",
+    "tests_tools.test_no_timeout_kill.Census.test_the_census_would_catch_a_successor_that_kept_the_pattern",
     "tests_tools.test_no_timeout_kill.M10CountsATimeoutAsAKill.test_m10_crash_is_killed",
     "tests_tools.test_no_timeout_kill.M10CountsATimeoutAsAKill.test_m10_timeout_is_killed",
+    "tests_tools.test_no_timeout_kill.P2ForkedUnits.test_forking_needs_a_single_thread",
+    "tests_tools.test_no_timeout_kill.P2ForkedUnits.test_framing_limit",
+    "tests_tools.test_no_timeout_kill.P2ForkedUnits.test_message_forms_and_classification",
+    "tests_tools.test_no_timeout_kill.P2ForkedUnits.test_valid_result_then_hangs",
+    "tests_tools.test_no_timeout_kill.P2ForkedUnits.test_valid_result_then_hangs_ignoring_sigterm_is_killed",
+    "tests_tools.test_no_timeout_kill.P2ForkedUnits.test_what_a_forked_child_inherits",
+    "tests_tools.test_no_timeout_kill.P2Identity.test_a_reused_parent_pid_with_a_child_of_its_own_is_not_a_member",
+    "tests_tools.test_no_timeout_kill.P2Identity.test_a_reused_pid_is_never_signalled",
+    "tests_tools.test_no_timeout_kill.P2Identity.test_equal_start_times_are_ambiguous_and_recorded",
+    "tests_tools.test_no_timeout_kill.P2NestedAndRefusals.test_a_nested_indeterminate_result_is_not_a_pass",
+    "tests_tools.test_no_timeout_kill.P2NestedAndRefusals.test_nested_supervisor_cancelled_by_its_parent_finishes_and_a_hung_one_is_killed_at_t_escalate",
+    "tests_tools.test_no_timeout_kill.P2NestedAndRefusals.test_refusals_when_containment_cannot_be_set_up",
+    "tests_tools.test_no_timeout_kill.P2NestedAndRefusals.test_sigchld_ignored_is_set_back_or_refused",
+    "tests_tools.test_no_timeout_kill.P2NestedAndRefusals.test_the_hook_registers_children_created_by_in_process_code_and_a_phase_owns_them",
+    "tests_tools.test_no_timeout_kill.P2SubprocessUnits.test_a_member_that_cannot_be_killed_is_cleanup_incomplete",
+    "tests_tools.test_no_timeout_kill.P2SubprocessUnits.test_a_member_that_ignores_sigterm_is_killed",
+    "tests_tools.test_no_timeout_kill.P2SubprocessUnits.test_concurrent_orphan_attribution_and_an_unrelated_process_survives",
+    "tests_tools.test_no_timeout_kill.P2SubprocessUnits.test_hang_timeout_and_setsid_double_fork_are_contained",
+    "tests_tools.test_no_timeout_kill.P2SubprocessUnits.test_normal_path_background_grandchild_after_a_passing_result_is_a_leak",
+    "tests_tools.test_no_timeout_kill.P2SubprocessUnits.test_the_registration_race_child_exits_immediately",
+    "tests_tools.test_no_timeout_kill.P2SubprocessUnits.test_the_registration_race_with_the_window_widened",
+    "tests_tools.test_no_timeout_kill.P2SubprocessUnits.test_the_supervisor_is_a_subreaper_and_supervision_is_available",
+    "tests_tools.test_no_timeout_kill.P2SubprocessUnits.test_wait_ownership_two_concurrent_units_and_an_adopted_zombie",
+    "tests_tools.test_no_timeout_kill.P2SubprocessUnits.test_what_a_unit_child_inherits",
     "tests_tools.test_no_timeout_kill.SuccessorNeverCountsATimeoutOrCrash.test_killed_by_a_signal_after_printing_a_result_is_still_a_crash",
     "tests_tools.test_no_timeout_kill.SuccessorNeverCountsATimeoutOrCrash.test_mapping",
     "tests_tools.test_no_timeout_kill.SuccessorNeverCountsATimeoutOrCrash.test_run_child_timeout_and_crash",
     "tests_tools.test_no_timeout_kill.SuccessorNeverCountsATimeoutOrCrash.test_timeout_is_indeterminate_in_every_kind"
    ],
-   "ids_sha256": "4bd891a69c5d7156e2408da99da15f384f08f0945c3553f8c8bd63914052132c",
-   "sha256": "5587c04a0bf288cd18896acf6cc813ea5c685ddecd9d23f77515ee74996d7dc9"
+   "ids_sha256": "1fcf30bb6bce9813086c8dbd3b29cab304f0b725eca761164f4f8b2a6a14d790",
+   "sha256": "de6ed9fdf397297a8eec197e77348ed0882bf0c562a52c7bf77d19c5db31df7b"
   },
   "tests_tools/test_runner_zero_work.py": {
    "ids": [
@@ -38393,6 +39174,48 @@
     "tests_tools.test_runner_zero_work.CasesRunners.test_every_successor_runs_its_whole_pinned_inventory_and_the_checker_accepts_it",
     "tests_tools.test_runner_zero_work.CasesRunners.test_m10_det_corpus_with_an_unknown_only_reports_zero_cases_as_a_pass",
     "tests_tools.test_runner_zero_work.CasesRunners.test_successor_unknown_only_or_suite_is_a_selection_error",
+    "tests_tools.test_runner_zero_work.E25StubbedChildGroups.test_a_stubbed_child_group_of_each",
+    "tests_tools.test_runner_zero_work.EveryFaultRunnerAtToolLevel.test_failed_reference_control_run_faults_s1",
+    "tests_tools.test_runner_zero_work.EveryFaultRunnerAtToolLevel.test_failed_reference_control_run_history_contract_s1",
+    "tests_tools.test_runner_zero_work.EveryFaultRunnerAtToolLevel.test_failed_reference_control_run_m3_faults_s1",
+    "tests_tools.test_runner_zero_work.EveryFaultRunnerAtToolLevel.test_failed_reference_control_run_m5_faults_s1",
+    "tests_tools.test_runner_zero_work.EveryFaultRunnerAtToolLevel.test_failed_reference_control_run_m6_faults_s1",
+    "tests_tools.test_runner_zero_work.EveryFaultRunnerAtToolLevel.test_preflight_run_faults_s1",
+    "tests_tools.test_runner_zero_work.EveryFaultRunnerAtToolLevel.test_preflight_run_history_contract_s1",
+    "tests_tools.test_runner_zero_work.EveryFaultRunnerAtToolLevel.test_preflight_run_m3_faults_s1",
+    "tests_tools.test_runner_zero_work.EveryFaultRunnerAtToolLevel.test_preflight_run_m5_faults_s1",
+    "tests_tools.test_runner_zero_work.EveryFaultRunnerAtToolLevel.test_preflight_run_m6_faults_s1",
+    "tests_tools.test_runner_zero_work.M8CallerModeAndTiers.test_m1_full_run_goes_on_after_a_failing_test",
+    "tests_tools.test_runner_zero_work.M8CallerModeAndTiers.test_m1_profile_is_full_for_the_sabotage_caller_only",
+    "tests_tools.test_runner_zero_work.M8CallerModeAndTiers.test_m8t_a_different_pinned_oracle_stops_the_run",
+    "tests_tools.test_runner_zero_work.M8CallerModeAndTiers.test_m8t_tiers_omit_only_the_boundary_test_and_are_pinned",
+    "tests_tools.test_runner_zero_work.P2Amendment3.test_am3_1_a_a_decoy_harness_is_refused_before_any_item",
+    "tests_tools.test_runner_zero_work.P2Amendment3.test_am3_1_b_no_load_after_a_failed_start_check",
+    "tests_tools.test_runner_zero_work.P2Amendment3.test_am3_1_c_a_case_runners_pin_is_guarded",
+    "tests_tools.test_runner_zero_work.P2Amendment3.test_am3_2_e_point_3",
+    "tests_tools.test_runner_zero_work.P2Amendment3.test_am3_4_class_b_a_real_baseline_that_exits_3",
+    "tests_tools.test_runner_zero_work.P2Amendment3.test_am3_4_class_n_an_interrupted_regression_child",
+    "tests_tools.test_runner_zero_work.P2CaseRunners.test_a4_the_v3_contract_on_the_real_runners",
+    "tests_tools.test_runner_zero_work.P2CaseRunners.test_am2_1_the_batch_unit",
+    "tests_tools.test_runner_zero_work.P2CaseRunners.test_k2_per_case_on_run_fin_corpus_s1",
+    "tests_tools.test_runner_zero_work.P2CaseRunners.test_k2_the_hang_on_the_other_three_corpus_runners",
+    "tests_tools.test_runner_zero_work.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners",
+    "tests_tools.test_runner_zero_work.P2FaultRunners.test_controls",
+    "tests_tools.test_runner_zero_work.P2FaultRunners.test_f2_sigterm_while_a_plant_runs",
+    "tests_tools.test_runner_zero_work.P2FaultRunners.test_plants",
+    "tests_tools.test_runner_zero_work.P2FaultRunners.test_the_hang_on_each_of_the_other_four_runners",
+    "tests_tools.test_runner_zero_work.P2GuardedImports.test_c2_the_15_runners",
+    "tests_tools.test_runner_zero_work.P2GuardedImports.test_c2_the_18_mutation_and_sabotage_successors",
+    "tests_tools.test_runner_zero_work.P2GuardedImports.test_c3_the_wrapper_consumer_paths",
+    "tests_tools.test_runner_zero_work.P2NoResultSupervisors.test_a_child_step_interrupted_by_sigint",
+    "tests_tools.test_runner_zero_work.P2NoResultSupervisors.test_between_steps_and_after_the_last_step",
+    "tests_tools.test_runner_zero_work.P2NoResultSupervisors.test_consumer_a_redirected_regression_successor",
+    "tests_tools.test_runner_zero_work.P2NoResultSupervisors.test_consumer_a_wrappers_class_n_check",
+    "tests_tools.test_runner_zero_work.P2NoResultSupervisors.test_consumer_sabotage_m8_s1_at_a_plant_and_at_each_control",
+    "tests_tools.test_runner_zero_work.P2NoResultSupervisors.test_cr02_sigterm_during_its_first_child",
+    "tests_tools.test_runner_zero_work.P2NoResultSupervisors.test_r03_blocked_in_process_is_stopped_by_the_watcher",
+    "tests_tools.test_runner_zero_work.P2NoResultSupervisors.test_r04_of_run_regression_m81_blocked_in_the_auif_verification",
+    "tests_tools.test_runner_zero_work.P2NoResultSupervisors.test_r06_of_run_regression_m8_blocked_in_the_auif_verification",
     "tests_tools.test_runner_zero_work.PinnedCounts.test_a_recorded_change_loads",
     "tests_tools.test_runner_zero_work.PinnedCounts.test_a_version_that_does_not_match_its_records_fails_closed",
     "tests_tools.test_runner_zero_work.PinnedCounts.test_an_edit_without_a_change_record_fails_closed",
@@ -38402,24 +39225,83 @@
     "tests_tools.test_runner_zero_work.PinnedCounts.test_test_file_pins_omit_unpinned_names",
     "tests_tools.test_runner_zero_work.PinnedCounts.test_the_real_pins_load_and_match_m10s_whole_suite",
     "tests_tools.test_runner_zero_work.PinnedCounts.test_the_run_instructions_hash_must_match",
+    "tests_tools.test_runner_zero_work.RefusalsEndWithAResultLine.test_each_refusal",
     "tests_tools.test_runner_zero_work.SabotageAndFaultRunners.test_a_broken_reference_m10_still_catches_everything_the_successor_stops",
     "tests_tools.test_runner_zero_work.SabotageAndFaultRunners.test_a_plant_on_a_test_step_is_caught_with_both_controls",
     "tests_tools.test_runner_zero_work.SabotageAndFaultRunners.test_a_step_that_fails_on_the_clean_tree_is_no_catch",
     "tests_tools.test_runner_zero_work.SabotageAndFaultRunners.test_a_target_that_is_not_there_exactly_once_fails_the_preflight",
     "tests_tools.test_runner_zero_work.SabotageAndFaultRunners.test_an_empty_fault_list_m10_passes_the_successor_refuses",
+    "tests_tools.test_runner_zero_work.SabotageAndFaultRunners.test_an_empty_m3_fault_list_and_an_empty_ingest_corpus",
     "tests_tools.test_runner_zero_work.SabotageAndFaultRunners.test_every_fault_runner_reconciles_against_its_pins",
     "tests_tools.test_runner_zero_work.SabotageAndFaultRunners.test_sabotage_unknown_id_m10_zero_work_successor_exit_2",
     "tests_tools.test_runner_zero_work.SabotageAndFaultRunners.test_the_history_contract_cases_mode_with_a_candidate",
+    "tests_tools.test_runner_zero_work.SelectionDetails.test_a_duplicate_id_through_a_real_tool",
+    "tests_tools.test_runner_zero_work.SelectionDetails.test_no_file_matches_and_selected_zero",
+    "tests_tools.test_runner_zero_work.SelectionDetails.test_the_selection_helper",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_01_P1_F5_run_m2_tests",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_02_P1_F5_mut_runner",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_03_P1_F5_run_contracts",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_04_P2_B8_run_fin_corpus",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_05_P2_B8_run_m3_contracts",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_06_P2_B8_m3_mutants",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_07_P2_B8_m4_mutants",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_08_P3_B03_m5_mutants",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_09_P3_B03_m5_mutants",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_10_P3_B03_m5_mutants",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_11_P4_B15_m6_mutants",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_12_P4_B15_m6_mutants",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_13_P4_B15_run_mkt_corpus",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_14_P3_B03_run_det_corpus",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_15_P5_B06_run_m7_all",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_16_P5_B06_run_m7_all",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_17_P5_B06_m7_mutants",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_18_P7_B3_run_m8_tests",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_19_P7_B3_sabotage_m8",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_20_P7_B3_sabotage_m10",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_21_P7_B3_m8_mutants",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_22_P7_B3_run_m8_all",
+    "tests_tools.test_runner_zero_work.SelectorsThatDoNoWorkExitTwo.test_23_P7_B3_run_m8_all",
+    "tests_tools.test_runner_zero_work.TheOtherCaseRunners.test_each_runs_its_whole_pinned_inventory",
+    "tests_tools.test_runner_zero_work.TheOtherCaseRunners.test_the_history_contract_candidate_mode_is_reconciled",
+    "tests_tools.test_runner_zero_work.TheTwelveWrappersWithAStubTestRunner.test_m10_run_m3_all_passes_its_zero_work_test_group",
+    "tests_tools.test_runner_zero_work.TheTwelveWrappersWithAStubTestRunner.test_run_f673_all_s1",
+    "tests_tools.test_runner_zero_work.TheTwelveWrappersWithAStubTestRunner.test_run_f67_all_s1",
+    "tests_tools.test_runner_zero_work.TheTwelveWrappersWithAStubTestRunner.test_run_m3_all_s1",
+    "tests_tools.test_runner_zero_work.TheTwelveWrappersWithAStubTestRunner.test_run_m71_all_s1",
+    "tests_tools.test_runner_zero_work.TheTwelveWrappersWithAStubTestRunner.test_run_m72_all_s1",
+    "tests_tools.test_runner_zero_work.TheTwelveWrappersWithAStubTestRunner.test_run_m73_all_s1",
+    "tests_tools.test_runner_zero_work.TheTwelveWrappersWithAStubTestRunner.test_run_m91_all_s1",
+    "tests_tools.test_runner_zero_work.TheTwelveWrappersWithAStubTestRunner.test_run_m92_all_s1",
+    "tests_tools.test_runner_zero_work.TheTwelveWrappersWithAStubTestRunner.test_run_m93_all_s1",
+    "tests_tools.test_runner_zero_work.TheTwelveWrappersWithAStubTestRunner.test_run_m94_all_s1",
+    "tests_tools.test_runner_zero_work.TheTwelveWrappersWithAStubTestRunner.test_run_mie1_1_all_s1",
+    "tests_tools.test_runner_zero_work.TheTwelveWrappersWithAStubTestRunner.test_run_mie1_all_s1",
+    "tests_tools.test_runner_zero_work.TheTwelveWrappersWithAStubTestRunner.test_wrapper_full_mode_runs_the_next_group_after_a_failing_one",
+    "tests_tools.test_runner_zero_work.WrapperWithAStubTestRunner.test_m10_wrapper_passes_every_zero_work_group",
+    "tests_tools.test_runner_zero_work.WrapperWithAStubTestRunner.test_successor_wrapper_a_child_killed_by_a_signal_is_indeterminate",
+    "tests_tools.test_runner_zero_work.WrapperWithAStubTestRunner.test_successor_wrapper_further_stubs",
+    "tests_tools.test_runner_zero_work.WrapperWithAStubTestRunner.test_successor_wrapper_refuses_the_zero_work_stub",
+    "tests_tools.test_runner_zero_work.WrappersW1A.test_a_changed_exclusion_or_check_list_is_refused",
+    "tests_tools.test_runner_zero_work.WrappersW1A.test_a_check_whose_tool_differs_from_its_pin_is_an_item_error",
+    "tests_tools.test_runner_zero_work.WrappersW1A.test_a_wrapper_check_and_status_ok_with_the_m10_marker",
+    "tests_tools.test_runner_zero_work.WrappersW1A.test_check_outcomes_through_a_real_wrapper",
+    "tests_tools.test_runner_zero_work.WrappersW1A.test_every_plan_matches_the_adopted_inventory",
+    "tests_tools.test_runner_zero_work.WrappersW1A.test_no_historical_command_is_ever_started_and_zero_work_is_refused",
+    "tests_tools.test_runner_zero_work.WrappersW1A.test_run_m8_all_per_file_groups_map_one_to_one",
+    "tests_tools.test_runner_zero_work.WrappersW1B.test_a_built_in_h_group_missing_from_the_exclusion_list_is_refused",
+    "tests_tools.test_runner_zero_work.WrappersW1B.test_an_excluded_built_in_check_is_never_evaluated_and_never_a_pass",
+    "tests_tools.test_runner_zero_work.WrappersW1B.test_pin_accepts_only_the_adopted_v3_files",
+    "tests_tools.test_runner_zero_work.WrappersW1B.test_the_three_built_in_checks_are_h_and_the_fourth_stays_w",
     "tests_tools.test_runner_zero_work.ZeroAndPartialWork.test_a_file_with_zero_tests_against_a_non_empty_pin",
     "tests_tools.test_runner_zero_work.ZeroAndPartialWork.test_partial_work_is_never_ok",
     "tests_tools.test_runner_zero_work.ZeroAndPartialWork.test_zero_selected_never_succeeds_in_any_kind"
    ],
-   "ids_sha256": "2e287fd61eae5345874af7a0fcb050e2f25f6c079950c0b342b853fda6421c36",
-   "sha256": "afa1c0ee58a1d88b63676a2c0899df26aa5e3ce3f91b6d0bef0ed36155e2b7ff"
+   "ids_sha256": "2ed3f12d9af5eac5f14a8ae3c5ed1cddbf0b6b84aa60611aecd5c3c32fc5e6e3",
+   "sha256": "72fa22da49eef23f81fe433cf0c79c58aecc32d44d16911828a85feb47204014"
   }
  },
  "timeout_kill_factor": null,
- "version": 86,
+ "version": 99,
  "wrapper_inventories": {
   "run_f671_all_s1": {
    "files": {
