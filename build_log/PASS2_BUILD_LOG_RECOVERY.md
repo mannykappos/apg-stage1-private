@@ -39,3 +39,27 @@ review pack); everything after that is restated here from the conversation recor
   so the builder called the repository attach a second time instead of checking the repository first. The tool replied that the
   repository was already attached; nothing was pushed, changed or duplicated. Owner: "What is going on here we already did this".
   Corrected: the repository's branches are checked first at every resume.
+
+### Step 2 (2026-11-11, from 16:33): the last 17 files of c9b324eb
+
+- Finding: the stop 3 work-in-progress diff was taken against the corrective pass 1 freeze, not e4531a35. In the 14 AST successor
+  mutation tools (m3 to m7, m73_store, m91, f67, f671 to f674, mie, mie11) it applied by context, so their corrective pass 1 change
+  (decision (c), owner 2026-11-02 14:24: `evkit.list_mutants`) was missing; child_unittest_runner lacked decision (f) (`verify_auif`).
+- Exact recovery tried and abandoned: about 25,000 likely forms of the decision (c) lines in m7 were checked against the pass 1 git
+  blob id (e412676, from the diff header) and against c9b324eb's SHA-256; none matched.
+- Rewritten after the loss, not recovered (recovery authorisation, rebuild rule), from the change record and evkit (c9b324eb-exact):
+  - the 14 tools: `ms, rc = E.list_mutants(TOOL, mutants)`, refusal returned before any work; the --batch refusal now names the
+    listed mutants (`ms`) instead of listing them a second time (same ids);
+  - child_unittest_runner: passes the checked APG_AUIF_ROOT copy as `verify_auif` to `evkit.tests_runner_main`.
+  - Commit cba5c5d on main.
+- Pins rebuilt on the rebuilt tree (commit 82b82f1): v87 to v98, the 19 wrappers re-pinned with the adopted W-1B files (12 changed:
+  f67, f671 to f674, m3, m7, m71, m72, m73, mie1, mie1_1, the same 12 as c9b324eb's v98 to v109; 7 unchanged); v99, the test_files
+  entries of the 10 tests_tools files (613 tests, as c9b324eb). Not byte-identical to c9b324eb's v111: the version numbers, dates and
+  reasons differ.
+- Manifest regenerated with make_s1_manifest.py (D1 input rebuilt from the e4531a35 manifest's d1 rows; M10 list from the verified M10
+  archive): the same 184 rows in the same order; only 63 s1_sha256 values changed.
+- Result: 1538 of 1555 files byte-identical to c9b324eb; 17 rewritten or regenerated (the 14 tools, child_unittest_runner, the pins,
+  the manifest), each to be disclosed.
+- 16:39 full suite started on 3.13 then 3.12 (resumable driver, one job per file).
+- 51. The builder committed two __pycache__ folders in 82b82f1 (`git add -A` after a pin run that wrote bytecode). Removed in 42305fb;
+  `__pycache__/` added to the clone's local exclude.
