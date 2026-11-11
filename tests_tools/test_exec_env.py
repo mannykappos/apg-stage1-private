@@ -697,9 +697,10 @@ class AM5SecondChain(unittest.TestCase):
                                          when=self.Z.p2b_mark('chain'), delay=0.5)
         self.record(seen, out)
         self.assertEqual(code, 3, out[-2000:])
-        self.assertRegex(out.strip().splitlines()[-1], r'^INTERRUPTED signal=SIGINT at=\S+ received=1$')
+        self.assertRegex(out.strip().splitlines()[-2], r'^INTERRUPTED signal=SIGINT at=\S+ received=1$')   # before the RESULT line
+        self.assertTrue(out.strip().splitlines()[-1].startswith('RESULT v=2 kind=tests '))
         self.assertRegex(out, r'(?m)^FILE test_m8_dependency\.py state=INDETERMINATE ')
-        self.assertTrue(self.E.is_interrupted_child(code, out))
+        self.assertEqual(self.E.check_output(out, code), [], out[-3000:])
         self.Z.p2b_gone(self, seen)
 
 

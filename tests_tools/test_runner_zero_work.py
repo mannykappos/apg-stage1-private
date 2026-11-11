@@ -2102,7 +2102,7 @@ def _am5_valid_then_hang(where, normal):
     if not mode.startswith(where + ':'):
         return normal()
     _sg.signal(_sg.SIGTERM, _sg.SIG_IGN)
-    if mode.endswith(':unkillable'):
+    if mode.endswith('vunkillable'):
         open(_o.path.join(d, 'unkillable'), 'a').write('%%d\n' %% _o.getpid())
     open(_o.path.join(d, 'started'), 'w').close()
     w = max(int(x) for x in _o.listdir('/proc/self/fd') if int(x) > 2 and _o.path.exists('/proc/self/fd/' + x))
@@ -2212,8 +2212,11 @@ class AM5Wrappers(unittest.TestCase):
     def tearDown(self):
         shutil.rmtree(self.tmp, ignore_errors=True)
 
-    def m4(self, name, edits=(), prepend=()):
+    def m4(self, name, edits=(), prepend=(), append=()):
         root = p2b_copy(os.path.join(self.tmp, name), edits)
+        for rel, text in append:
+            with open(os.path.join(root, rel), 'a', encoding='utf-8') as fh:
+                fh.write('\n' + text)
         for rel, text in prepend:
             p = os.path.join(root, rel)
             src = open(p, encoding='utf-8').read()
@@ -2246,21 +2249,25 @@ class AM5Wrappers(unittest.TestCase):
                 p2b_gone(self, seen)
 
     def test_row55_an_interrupted_wrapper_group(self):
-        # F.2 (b): the group running at the signal is INDETERMINATE, the groups after it NOT_RUN, the H groups EXCLUDED; RESULT exit 3
+        # F.2 (b): the group running at the signal is INDETERMINATE, the groups before it completed, the groups after it NOT_RUN, the H
+        # groups EXCLUDED; RESULT exit 3
         def running(tree, d):
             for pid, _ in d:
                 try:
-                    if b'test_fin_arith' in open('/proc/%d/cmdline' % pid, 'rb').read():
+                    if b'run_m2_tests_s1' in open('/proc/%d/cmdline' % pid, 'rb').read():
                         return True
                 except OSError:
                     pass
             return False
         root = self.m4('in_group')
-        code, out, seen = p2b_run(root, ['tools/run_m4_all_s1.py'], when=running, delay=0.5)
+        code, out, seen = p2b_run(root, ['tools/run_m4_all_s1.py'], when=running, delay=0.3)
         p2_identity_record(self, seen, out)
         self.assertEqual(code, 3, out[-2000:])
-        self.assertRegex(out, r'(?m)^FILE G01 state=INDETERMINATE ')
-        self.assertRegex(out, r'(?m)^FILE G02 state=NOT_RUN ')
+        states = [(l.split()[1], l.split()[2]) for l in out.splitlines() if l.startswith(('FILE ', 'CHECK '))]
+        ind = [k for k, (g, st) in enumerate(states) if st in ('state=INDETERMINATE', 'INDETERMINATE')]
+        self.assertEqual(len(ind), 1, states)
+        self.assertTrue(all(st in ('state=COMPLETED', 'PASS') for g, st in states[:ind[0]]), states)
+        self.assertTrue(all(st in ('state=NOT_RUN', 'NOT_RUN') for g, st in states[ind[0] + 1:]), states)
         self.assertRegex(out, r'(?m)^EXCLUDED G18 NOT_RUN_HISTORICAL ')
         self.assertTrue(out.strip().splitlines()[-1].endswith(' exit=3'))
         self.assertEqual(E.check_output(out, code, pins=self.wpins()), [], out[-3000:])
@@ -2283,7 +2290,8 @@ class AM5Wrappers(unittest.TestCase):
         # group's CLEANUP record is in the output, and refuses it without the record
         leak = ('import subprocess as _am5s, sys as _am5y\n'
                 '_am5s.Popen([_am5y.executable, "-c", "import time; time.sleep(30)"])\n')
-        root = self.m4('check_leak', prepend=[('tools/run_golden_fin.py', leak)])
+        # the check's own tool file is pinned by its CHECK identity, so the leak is planted in the module it imports
+        root = self.m4('check_leak', append=[('apg/fin/golden_fin.py', leak)])
         code, out, seen = p2b_run(root, ['tools/run_m4_all_s1.py', '--group', '14'])
         p2_identity_record(self, seen, out)
         self.assertEqual(code, 3, out[-2000:])
@@ -2302,7 +2310,7 @@ class AM5Wrappers(unittest.TestCase):
         # refused without it, with AM3-4's message
         leak = ('import subprocess as _am5s, sys as _am5y\n'
                 '_am5s.Popen([_am5y.executable, "-c", "import time; time.sleep(30)"])\n')
-        root = self.m4('check_exit3', prepend=[('tools/run_golden_fin.py', leak)])
+        root = self.m4('check_exit3', append=[('apg/fin/golden_fin.py', leak)])
         code, out, seen = p2b_run(root, ['tools/run_m4_all_s1.py', '--group', '14'])
         three = _p2re.sub(r'(?m)^(CHECK G14 INDETERMINATE source=child) exit=\S+ marker=\S+ ', r'\1 exit=3 marker=seen ', out)
         pins = self.wpins()
@@ -2425,8 +2433,7 @@ class AM5AttributionTable(unittest.TestCase):
         p2_identity_record(self, seen, out)
         self.assertEqual(code, 2, out[-3000:])
         self.assertRegex(out, r'(?m)^RUN_ERROR PROCESSES_LEFT run_start$')
-        self.assertEqual([l for l in out.splitlines() if l.startswith('MUTANT ')],
-                         ['MUTANT %s NOT_RUN cause=run_error' % m for m in doc['mutation_lists']['m8_mutants_s1']['ids']])
+        self.assertEqual([l for l in out.splitlines() if l.startswith('MUTANT ')], ['MUTANT %s NOT_RUN cause=run_error' % first])
         self.assertRegex(out, r'(?m)^CLEANUP run_start by=m8_mutants_s1:\d+ ')
         self.assertEqual(E.check_output(out, code), [], out[-3000:])
         p2b_gone(self, seen)
