@@ -1,0 +1,40 @@
+rule or figure,record kinds named,fields carried by a template today,other items and what supplies them,reads records
+every M4 figure,-,-,-,yes
+every M4 figure,project,project_ref,-,yes
+M4 actual cost,ap_invoice,cost_code_ref invoice_date,-,yes
+M4 actual cost,ap_invoice,cost_code_ref,-,yes
+M4 actual cost,-,-,duplicate_of: intake state,yes
+M4 actual cost,credit_note,against_invoice_ref credit_date,-,yes
+M4 commitments,purchase_order,cost_code_ref order_date source_status,-,yes
+M4 commitments,po_amendment,amendment_date approved_change_ref purchase_order_ref,-,yes
+M4 commitments,ap_invoice,purchase_order_ref,invoice_lines: calculation output,yes
+M4 budget,budget_line,budget_cents cost_code_ref revision_date source_revision_label,-,yes
+M4 cost to complete,ctc_line,cost_code_ref cost_to_complete_cents estimate_basis_text forecast_date forecast_version movement_reason_text,-,yes
+M4 forecast final margin,-,-,-,yes
+M4 revenue,contract project,approved_variations_cents original_contract_cents,-,yes
+M4 revenue,variation,raised_date source_status value_cents,-,yes
+M4 recognised margin,-,-,-,yes
+M4 retention position,project retention,hold_reason_text release_due_date released_date retention_held_cents,-,yes
+M4 retention position,-,-,retention_event: person-entered record,yes
+M4 retention position,bank_txn,-,-,yes
+M4 security,security,expiry_date face_value_cents kind_text,-,yes
+M4 retention carrying cost,facility retention,rate_bps release_due_date statement_date,-,yes
+M4 security carrying cost,-,-,-,no
+M4 overdue receivables cost,-,-,-,no
+M4 cash-position-adjusted margin,-,-,overdue_receivables: calculation output; retention_carrying: calculation output; security_carrying: calculation output,yes
+R01 actual cost over budget,-,-,-,yes
+R02 amendment without approved change,purchase_order variation,-,-,yes
+R03 invoiced above order,ap_invoice,purchase_order_ref,-,yes
+R09 unexplained forecast movement,ctc_line,cost_code_ref cost_to_complete_cents forecast_date forecast_version movement_reason_text,-,yes
+AGG split orders,purchase_order supplier,cost_code_ref material_ref order_date project_ref,-,yes
+D01 held cost records,-,-,-,yes
+R04 variation unresolved,variation,description_text raised_date source_status value_cents,-,yes
+R04B instruction without variation,notice,description_text linked_variation_ref notice_date notice_type_text,instruction_types: setting (N01),yes
+R05 retention release overdue,retention,release_due_date,-,yes
+R06 compliance expired or expiring,compliance supplier,evidence_type_text expiry_date supplier_name supplier_ref,-,yes
+R07 quote above reference,purchase_order supplier_quote,currency_code delivery_basis freight_per_unit_cents material_ref unit_rate_cents unit_rate_minor_units valid_until,-,yes
+R08 hire beyond need,plant_hire,equipment_text needed_until off_hire_date on_hire_date rate_cents_per_day,-,yes
+DLY overlapping delays,delay_event,activity_ref end_date holding_rate_cents_per_day recorded_cause_text start_date,-,yes
+LAB output per hour falling,timesheet work_output,ordinary_hours overtime_hours rate_cents_per_hour unit_text week_start work_date work_package_ref,-,yes
+DEF repeat defects,defect,raised_date rework_cost_cents subcontractor_text trade_text,-,yes
+D02 held detection inputs,-,-,-,yes

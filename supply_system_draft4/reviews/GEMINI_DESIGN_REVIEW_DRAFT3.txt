@@ -1,0 +1,43 @@
+Here is my expert architectural review of the proposed design for the APG Data Supply System (Draft 3), evaluated from the perspective of Australian commercial construction operations.
+1. Retrofitting 24 Financial Record Kinds into the Section 04 Reference Intake
+ * Class: BLOCKING
+ * Cost: Large
+ * Quote: "Bringing the 24 kinds of the second delivery loop and the three direct writes under the Section 04 intake: reconciliation, authority and resolution beyond suppliers. This is not neutral for the rules: today they use those 24 kinds whenever the record's own checks pass, so reconciling them changes which records the rules and figures may use. It is therefore done under its own change request..."
+ * Fix & Judgment: In my professional judgment, attempting to retrofit 24 financial record kinds and direct writes into the Section 04 reference intake after rule code has already been written against a separate delivery loop introduces severe regression risks. It will invalidate existing rule test harnesses and cause unexpected failures in historical rule evaluations. Gate any merging of the delivery loops behind a dedicated, isolated technical refactoring sprint with comprehensive regression test suites before permitting rule code to rely on the unified intake.
+2. Manual Keying Bottleneck in Release A Due to Unbuilt Extraction Vendor (EDR-22)
+ * Class: BLOCKING
+ * Cost: Large
+ * Quote: "Real extraction (which needs the Engine and a vendor, EDR-22), the verification screen and the link into the intake... Without it a person keys every value."
+ * Fix & Judgment: I assess that recommending finished document capture for Release A while acknowledging that real extraction requires an uncontracted or unbuilt third-party vendor (EDR-22) creates an unviable operational dependency. Forcing contract administrators to manually key every quote, invoice, and claim defeats the core automation value proposition of APG and will lead to immediate staff rejection. Decouple document capture extraction from Release A core delivery, keeping document intake strictly as a manual file attachment and metadata tagging flow until EDR-22 is fully integrated, or defer document capture to Release B.
+3. High Onboarding Friction from Manual Synthetic Templates
+ * Class: SHOULD FIX
+ * Cost: Medium
+ * Quote: "The other 5 (specification requirements, quote tiers, quote terms, landed-cost components, import checks) were written as synthetic supplements because no builder file carries them; with the minimum build, builders would fill them by hand."
+ * Fix & Judgment: In my view, expecting busy commercial builders or estimators to manually fill out five complex, synthetic template spreadsheets (such as quote tiers and landed-cost components) by hand during onboarding is unrealistic and will cause immediate abandonment of those modules. Provide pre-built industry benchmark defaults or smart estimation prompts for these five synthetic templates so builders can override them iteratively rather than blocking onboarding with manual data entry.
+4. Onboarding Burden of Granular Detection-Rule Settings (N01)
+ * Class: SHOULD FIX
+ * Cost: Medium
+ * Quote: "The detection-rule settings (N01) hold each rule's thresholds and windows, R04B's instruction types and R07's pairs of comparable items, which a person declares... you approve default values and allowed ranges; the builder's approver sets values within them."
+ * Fix & Judgment: I assess that requiring a builder's senior management or quantity surveyor to manually configure technical rule thresholds and instruction categories (N01) during initial setup will create friction and configuration paralysis. Builders expect an out-of-the-box product pre-tuned to Victorian commercial building standards. Ship APG with pre-configured, locked-down default templates for N01 tailored to standard Victorian commercial subcontracts (e.g., standard AS4000 or Master Builders Victoria frameworks), allowing customization only as an advanced setting.
+5. Risk of Scope Creep and Delivery Paralysis in Recommended Release A Option
+ * Class: SHOULD FIX
+ * Cost: Large
+ * Quote: "Claude recommends the second [minimum plus entry feature for every small fact and finished document capture]."
+ * Fix & Judgment: In my professional judgment, bundling the general entry screen for every small transaction type plus full document capture into Release A massively over-scopes the initial release, directly contradicting the stated principle of staged delivery. Adopt the minimum Release A scope (entry screens restricted strictly to setup and retention events) as the mandatory baseline, and treat general entry screens and document capture as phased fast-follow epics.
+6. Ambiguity in Handling Missing Chart of Accounts Mappings During Intake
+ * Class: SHOULD FIX
+ * Cost: Medium
+ * Quote: "The cost-code map is mandatory. APG suggests matches and the builder confirms each one."
+ * Fix & Judgment: I assess that making the cost-code map an absolute mandatory gate without specifying how transactions arriving before mapping completion are quarantined or processed will cause ingestion pipelines to stall indefinitely when unmapped supplier accounts are encountered. Explicitly define an interim quarantine sub-status for unmapped cost codes ("Pending Cost Code Crosswalk") that allows intake completion while flagging the specific transaction for immediate administrative resolution.
+7. Omission of Subcontractor Progress Claim vs. Certified vs. Paid Reconciliations
+ * Class: MINOR
+ * Cost: Small
+ * Quote: "Release B (22 entities). Client claims, certificates and receivables; subcontracts... aged payables, statutory liabilities and payroll outflows."
+ * Fix & Judgment: In my view, deferring subcontractor progress claims and payment schedules to Release B leaves a major blind spot, as subcontractor over-certification and unapproved variation leakage represent primary profit-drain vectors in commercial construction. Ensure Release B development prioritizes subcontractor claims and certificates immediately following foundational client billing setup.
+Overall Verdict
+APG Data Supply System (blueprint amendment, draft 3) provides a thorough and principled architectural roadmap for unifying disparate data sources under a single Section 04 intake without altering insight logic. However, by proposing to bundle complex document extraction (dependent on unbuilt vendor EDR-22), extensive manual synthetic templates, and broad entry screens into Release A while requiring complex manual configuration of detection thresholds, the design significantly underestimates onboarding friction and implementation complexity. In my professional judgment, the architecture is sound and well-governed, but Release A scope must be rigorously trimmed to the minimum baseline and extraction dependencies decoupled to ensure successful real-world adoption by Victorian commercial builders.
+Totals
+ * Blocking: 2
+ * Should Fix: 4
+ * Minor: 1
+ * Optional: 0

@@ -1,0 +1,275 @@
+Worked for 1m 2s
+
+### APG Data Supply System — Draft 3 review
+
+Overall assessment: the architecture is directionally sound, and I agree with the central idea of one controlled intake with multiple ways to supply information. However, I would not approve draft 3 unchanged. It has two important gaps in the way it guarantees data coverage, and several areas where the proposed workflow is technically sensible but may be difficult for actual builders and site staff to use.
+
+I have separated statements made by the document from my own architectural and construction-industry judgement. Where I say my judgement, that is an assessment of likely product behaviour and adoption, not evidence from a pilot.
+
+### 1\. Architecture and intake
+
+1\. Cost: Medium — Entity coverage is not the same as field coverage.
+
+Quote: “Each entity … has at least one designed Level 1 way in.” (Page 1, Purpose and the rule.)
+
+Problem: The promise is that APG can obtain every piece of data its insights need. But the supply plan chooses a minimum way in per entity, not demonstrably per required field. A template, for example, might cover the invoice number and supplier but not the approval state, tax basis, source evidence or effective date needed by a particular insight. An entity having a way in does not prove every required input field has one.
+
+Fix: Make the coverage test field-level: every required field in every rule/figure input contract must have at least one valid supply route, including its verification and authority requirements. This is the most important test of the central design promise.
+
+2\. Cost: Medium — Release A does not yet establish complete coverage of every current insight.
+
+Quote: “For the M6 market figures this holds only as far as their inputs can be inferred” and “they cannot have a readiness record until those are written.” (Pages 5–6.)
+
+Problem: The design says Release A is what current insights need to run, but M6's exact contracts are not yet written. The document acknowledges that its coverage is inferred and that M6 readiness cannot be established yet. That means Release A's completeness is not demonstrated.
+
+Fix: Make completion and approval of the M6 contracts an explicit prerequisite to declaring Release A complete. Then check their exact fields against the supply plan and readiness design. Do not present the inferred M6 coverage as established coverage.
+
+3\. Cost: Medium — The common intake risks becoming a bottleneck and a single large migration.
+
+Quote: “One delivery loop for every kind” and “bring every kind under one intake.” (Page 2.)
+
+Problem: I agree with one common intake contract and common controls. My judgement is that forcing every record type through one identical processing sequence could become cumbersome. A bank transaction, a photograph of a defect, a contract, a forecast line and a derived assessment have very different processing needs. They should share the control framework without necessarily sharing identical processing logic.
+
+Fix: Specify a common intake envelope and control checkpoints, with record-specific processing and validation stages. Keep the existing record-specific checks where they are necessary.
+
+4\. Cost: Medium — The intake consolidation can change existing insight results.
+
+Quote: “Reconciling them changes which records the rules and figures may use.” (Page 7.)
+
+Problem: This is a significant migration, not simply a new way of entering data. The document correctly recognises that the current 24 kinds may become eligible or ineligible differently after central reconciliation. The separate change request is the right governance response, but the dependency needs to be a hard release gate.
+
+Fix: Explicitly state that Release A cannot be accepted until the separate migration change request has been approved, tested, reconciled against existing outcomes and signed off. No silent changes to existing rule results.
+
+5\. Cost: Small — The authority register needs a clear conflict-resolution outcome.
+
+Quote: “The authority register decides which system governs which field.” (Page 5.)
+
+Problem: My judgement is that a real builder will often have overlapping sources. For example, an invoice may appear in Xero, a project system, an email attachment and an import file. The document says authority wins over most recent arrival, which is correct, but it does not explain what happens when two sources are both marked authoritative, or when authority changes partway through a project.
+
+Fix: State that unresolved authority conflicts are held for resolution rather than silently selecting a source. Define the scope of authority by organisation, project, record type or field, and effective period.
+
+6\. Cost: Small — The equivalence acceptance criterion is too broad.
+
+Quote: “The same fact supplied through any two ways in gives the same field values and the same rule outcome.” (Page 8, PG-DS-AC-02.)
+
+Problem: The principle is good, but two different channels may provide different representations of the same fact: date formats, units, rounding, tax-inclusive versus tax-exclusive amounts, or different evidence quality. “Same fact” needs a precise test definition.
+
+Fix: Define canonicalised equivalent inputs, including units, currency, date/time, tax basis, authority and verification state. Test identical outcomes only after those conditions are genuinely equivalent.
+
+7\. Cost: Small — The terminology for APG-derived records is inconsistent.
+
+Quote: “Records APG derives” includes “root-cause hypotheses, quality cost, outcomes and prevention opportunities” where “a person records the fact.” (Page 4.)
+
+Problem: Some of these are APG calculations, while others are human-supplied or human-confirmed records. They should not all be described as derived records. The distinction matters for provenance, approvals and the rule that supplied facts enter through the intake.
+
+Fix: Separate calculated outputs from human-entered or human-confirmed APG records. Both can be APG-owned records, but their creation and approval paths differ.
+
+8\. Cost: Medium — Entity resolution is a large dependency.
+
+Quote: “Resolution of projects, contracts, variations, activities and defects.” (Page 2.)
+
+Problem: I agree this is needed. My judgement is that it will be one of the more difficult parts of the system. Builders use inconsistent project names, job numbers, supplier names, contract references and cost codes across systems. Incorrectly matching two projects or contracts could contaminate several insights.
+
+Fix: Make unresolved matches a held state. Require confidence thresholds and human confirmation for material matches; do not allow a low-confidence match to become an authoritative relationship automatically.
+
+### 2\. Real-world builder and site adoption
+
+9\. Cost: Medium — Entry screens are being treated as a more universal solution than they are.
+
+Quote: “One general entry feature, not 47 screens. Each form is generated from the entity's field definitions.” (Page 4.)
+
+Problem: I like the single form-generation engine. But my judgement is that a generic field-generated form will not automatically be a good construction workflow. A variation, a delay, a forecast line and a defect have different questions, relationships, evidence and approval steps. A form that merely exposes entity fields could feel like filling out a database.
+
+Fix: Keep one reusable form engine, but require task-specific form layouts and workflows for each record type. The user should see the questions relevant to the job they are doing, not a generic data-entry screen.
+
+10\. Cost: Medium — The recommended Release A may ask too much of builders before proving value.
+
+Quote: “The entry feature opened to every small, frequent fact” and “Document and email capture, finished.” (Pages 7–8.)
+
+Problem: I agree that these two additions address real gaps. However, the combination of a new intake, 32 templates, setup, readiness, a form generator, a document inbox, extraction vendor and verification screen is a substantial first release. My judgement is that a builder will not tolerate a long setup and data-entry exercise before APG demonstrates useful profit insight.
+
+Fix: Keep the recommended scope as the target, but make rollout progressive. Start with the data required to deliver a small number of valuable current insights for a pilot project, then expand the forms and document types. Do not make the builder populate all 100 entities as an onboarding exercise.
+
+11\. Cost: Medium — The design assumes builders can produce files for the remaining facts.
+
+Quote: “The minimum assumes the builder can produce a file for everything else.” (Page 7.)
+
+Problem: This is the biggest adoption weakness in the minimum Release A. A builder without a suitable system may not have a ready export for purchase orders, credit notes, timesheets, bank transactions or deliveries. They may have PDFs, paper records, emails or information held by a subcontractor. A blank template does not make that information easy to collect.
+
+Fix: For every file-dependent input, confirm that the builder can realistically obtain or populate the file. Where they cannot, the design should identify the fallback route and say whether it is available in Release A or deferred. A manually completed template is a fallback, but it should not be mistaken for effortless capture.
+
+12\. Cost: Medium — Phone capture is probably too late for some site facts.
+
+Quote: “Phone site capture (14 entities; none built)” and “Whether capture must work offline is a question for discovery.” (Pages 4–5.)
+
+Problem: I agree that phone capture should not be a prerequisite for every APG insight. But my judgement is that delays, defects, deliveries, work allocation and site instructions are often best recorded when they happen. Asking site staff to remember them later and enter them through a general form or spreadsheet risks incomplete or retrospective records.
+
+Fix: Keep phone capture at Level 2 as a staged capability, but make the discovery gate early and explicit. Test actual site workflows, connectivity and the need for offline capture before finalising Release A's manual fallback for those records.
+
+13\. Cost: Small — The phone evidence model does not explain location and shared-device handling.
+
+Quote: “The person, time, place and any photo are kept as evidence.” (Page 5.)
+
+Problem: The document mentions enrolled phones and server-checked time, but not how place is established, whether it is manually entered or device-derived, how shared site devices identify the actual user, or what happens when a user disputes the recorded location. This is particularly relevant where labour information is involved.
+
+Fix: Make identity, location provenance, user visibility and correction/dispute handling explicit design requirements. Do not assume a phone's location is automatically reliable evidence.
+
+14\. Cost: Small — Reduce the number of setup questions builders must answer upfront.
+
+Quote: “A guided onboarding covers the cost-code map, the financial policy, the source registry and authority register, users and roles, labour rates, holding-cost rates, work packages and the detection-rule settings.” (Page 4.)
+
+Problem: My judgement is that this is a lot to ask a small or medium commercial builder to configure before seeing results. Some settings may be unknown to the person onboarding the system.
+
+Fix: Ask only what is required to start the first useful insight. Let APG identify and request further settings when a specific insight needs them. Preserve approval requirements for settings that affect financial calculations.
+
+15\. Cost: Small — Provide a clear correction route for document extraction errors.
+
+Quote: “A person with the verifier role confirms or corrects every material value.” (Page 4.)
+
+Problem: This is the right control. My judgement is that bookkeepers will want to correct a batch of extracted invoice values efficiently, rather than open and verify every field in a slow one-by-one process.
+
+Fix: Design verification to support efficient review of multiple extracted values while retaining individual field provenance and confirmation. Do not weaken the human-verification rule to achieve speed.
+
+### 3\. Release A, phone capture and integrations
+
+16\. Cost: Medium — Release A is a large technical migration, not just a data-capture release.
+
+Quote: “Bring the 24 kinds of the second delivery loop and the directly written records under the Section 04 intake.” (Page 7.)
+
+Problem: This work is necessary for the architecture, but it is substantial foundational engineering. It includes changing reconciliation, authority and entity resolution, and it may change which records are eligible for existing insights. Combining this with new user-facing features increases delivery risk.
+
+Fix: Treat the intake consolidation as a separately gated technical milestone within the overall Release A programme. Do not make the document inbox or form generator dependent on an unproven migration.
+
+17\. Cost: Medium — Import handling is under-specified for real construction files.
+
+Quote: “CSV and Excel” and “programme files (XER, MS Project XML).” (Pages 2–3.)
+
+Problem: My judgement is that real builder exports will contain multiple worksheets, inconsistent headers, formulas, merged cells, unusual date formats, subtotals, duplicate lines and sometimes large volumes. Programme files can also contain relationships and calendars that cannot safely be treated as a flat table. The document recognises real layouts need checking, but its proposed import description understates the difficulty.
+
+Fix: Require real pilot files to prove the import approach for each supported file family. State that programme files need their relationships and dependencies preserved, not merely their columns mapped. Keep unsupported layouts visibly unsupported rather than accepting incomplete imports.
+
+18\. Cost: Small — File scanning is necessary but not a complete file-security control.
+
+Quote: “Scanning of every upload, email attachment and photo before it is read, on every path.” (Page 2.)
+
+Problem: The scan requirement is good. My technical judgement is that malware scanning alone does not address malformed documents, oversized files, archive expansion, parser vulnerabilities or unsafe spreadsheet content.
+
+Fix: Make safe parsing, file-size and resource limits, isolated processing and rejection of unsupported or malformed files part of the file-handling acceptance design. This is not a request for a new feature; it is necessary to make the proposed file intake safe.
+
+19\. Cost: Small — Email sender verification needs to be distinguished from evidence authenticity.
+
+Quote: “The sender is verified and the organisation is never taken from the address alone.” (Page 4.)
+
+Problem: Sender verification helps establish who sent an email, but it does not prove that the attached invoice, instruction or claim is genuine, current or authorised. Forwarded emails also complicate attribution.
+
+Fix: Preserve the original message and attachment, distinguish sender identity from document authority, and require the relevant human verification and source-authority controls before material values become decision-eligible.
+
+20\. Cost: Small — Keep integrations as Level 3, but define a pilot-based selection gate.
+
+Quote: “The first ones built follow the systems the pilot builders actually use.” (Page 5.)
+
+Problem: I agree with placing integrations later. My judgement is that building Procore, Xero, MYOB or Jobpac connections before knowing which systems the paying pilot builders use is likely to waste money. The export-file fallback is sensible.
+
+Fix: Keep the placement, and make actual pilot demand, available API/export capability, data quality and reduction in manual effort the decision criteria. Do not build integrations simply because a system is popular.
+
+21\. Cost: Small — The design should not imply that all site facts can wait for phone capture.
+
+Quote: “Every one of its 14 entities also has a Level 1 way in, so it is never the only way in.” (Page 5.)
+
+Problem: A Level 1 fallback is good for coverage, but a fallback is not necessarily operationally equivalent. A spreadsheet or desktop form entered days later may preserve the data eventually, but lose the timing and context needed to investigate a delay, instruction or defect.
+
+Fix: Distinguish “can eventually be supplied” from “can be captured at the time the event occurs”. Where timing is material, readiness should disclose that the available route is retrospective and qualify the insight accordingly.
+
+### 4\. Data readiness, nudges and adoption risks
+
+22\. Cost: Medium — Readiness is assessed per insight and project, but some data is not project-specific.
+
+Quote: “A readiness record per insight” and “for every insight and project.” (Pages 2 and 6.)
+
+Problem: Some information is organisation-wide, supplier-wide or market-wide: financial policies, source authority, labour rates, supplier compliance and market/FX data. If readiness is only project-scoped, APG risks repeating the same missing-data warning for every project or failing to show that a shared setting is missing.
+
+Fix: Define the scope of each readiness item as project, organisation, supplier, portfolio or external data, as applicable. A shared missing setting should be identified once and its effect on affected projects shown.
+
+23\. Cost: Small — Reassessing after every intake could create unnecessary processing and noise.
+
+Quote: “At setup, after every intake, on a schedule.” (Page 6; PG-DS-AC-09.)
+
+Problem: My technical judgement is that a busy builder may send hundreds or thousands of records in a batch. Recalculating every insight's readiness and producing notifications after each individual intake could create unnecessary load and repeated alerts.
+
+Fix: Define the trigger as after an intake batch or material state change, with queued/coalesced reassessment where appropriate. Keep the guarantee that readiness is updated promptly, without requiring a separate full reassessment for every row.
+
+24\. Cost: Small — A nudge needs an actionable owner, not just a likely data holder.
+
+Quote: “The likely holder” and “Add the code on each invoice (bookkeeper).” (Page 6.)
+
+Problem: The likely holder is useful for explaining where information may be found. But in a construction business, the person who holds the information may not be the person authorised to correct or approve it. A bookkeeper might see an invoice but not have authority to change the cost code or approve the underlying transaction.
+
+Fix: Distinguish the likely information holder from the assigned action owner and the required approver. Let the builder assign or confirm those roles.
+
+25\. Cost: Small — The design does not sufficiently define when a gap is closed or reopened.
+
+Quote: “Each gap has a stable identity, so a gap found again updates its existing nudge.” (Page 6.)
+
+Problem: Stable identity and suppression are good. But a gap may be corrected, recur in a later period, be superseded by another record, or be disputed. Without a clear lifecycle, the same nudge may stay closed when it should reopen, or keep appearing when it has been resolved.
+
+Fix: Define the gap lifecycle: open, assigned, awaiting evidence, resolved, suppressed, reopened and superseded. Tie identity to the relevant entity, field, period and source context.
+
+26\. Cost: Small — The readiness record must distinguish an unavailable input from a missing input.
+
+Quote: “Eligible, qualified, blocked or unavailable.” (Page 6.)
+
+Problem: These states are a good start. My judgement is that builders need to know whether an input is missing because nobody supplied it, because the system cannot capture it yet, because a source is not authoritative, or because the underlying record does not exist. Those cases require different actions.
+
+Fix: Preserve the four insight states, but show the specific reason and responsible party for each gap. Do not make a builder interpret “blocked” as a single generic problem.
+
+27\. Cost: Small — The example nudge should not imply that every missing cost code is a bookkeeper correction.
+
+Quote: “3 May invoices from Acme Electrical have no cost code. Add the code on each invoice (bookkeeper).” (Page 6.)
+
+Problem: The cost code might need to be assigned by a project manager or commercial manager, not the bookkeeper. This is an illustrative example, but it could encourage the wrong responsibility assignment.
+
+Fix: Use “assigned project cost-code owner” or make the responsible role configurable.
+
+### 5\. Blueprint and evidence limitations
+
+28\. Cost: Small — Some acceptance criteria rely on documents not included in this review pack.
+
+Quote: “Every way in meets PG-DI-AC-01 to 18.” (Page 8, PG-DS-AC-06.)
+
+Problem: I cannot verify the exact content or applicability of PG-DI-AC-01 to 18 from this document alone. The design also refers to EDR-22, AUIF and Section 18. It states that these are dependencies, but the detailed contracts and impact assessment are not included here.
+
+Fix: Keep the references, but make the final amendment pack include the exact controlled versions of the dependent acceptance criteria and the relevant interface/change-control references. Not verifiable from this pack: the detailed PG-DI criteria and EDR-22 vendor requirements.
+
+29\. Cost: Small — The phase mapping should be checked against the controlled Section 18 text.
+
+Quote: “Release A's work spans phases 1 to 3 … and no release reaches production use without the phase 4 to 6 evidence.” (Page 9.)
+
+Problem: The document makes a specific claim about how its new Release A/B terminology maps to Section 18. The Section 18 source itself is not attached as a separate file in this review, so I cannot independently confirm that mapping.
+
+Fix: Verify the phase mapping against the controlled Section 18 version before the amendment is approved. The document already recognises that the release labels must not override the existing build phases.
+
+30\. Cost: Small — Include a simple pilot adoption measure.
+
+Quote: “The first ones built follow the systems the pilot builders actually use.” (Page 5.)
+
+Problem: The design measures data coverage, but does not explicitly say how APG will tell whether builders are actually using the capture methods. My judgement is that a technically complete supply path may still fail if it takes too long or staff avoid it.
+
+Fix: During pilot evaluation, measure completion rates, correction effort, time to supply, and the proportion of material inputs that remain missing. This is an evaluation measure, not a new insight.
+
+### Verdict
+
+The fundamental architecture is right: one controlled APG intake, multiple supply methods, one authority and validation framework, and no dependency on a particular builder's software. I agree with keeping integrations at Level 3 and phone capture at Level 2 as the default staging decision, provided discovery tests the real need for timely site capture early. I also agree with the general entry feature and document capture being part of the recommended Release A, but I would not promise a fully usable first release until field-level coverage is proven, the M6 contracts are complete and the intake migration has its own accepted gate. My biggest practical concern is adoption: builders will not want to become data-entry clerks for APG, so the product must make the easy path genuinely easy, ask for only the information needed to deliver value, and avoid treating a template as a substitute for a workable capture process. These are my architectural and construction-adoption judgements, not findings from a live builder pilot.
+
+### Totals
+
+I have counted each consolidated issue once.
+
+| Class | Count |
+| ----- | ----- |
+|       | 2     |
+|       | 23    |
+|       | 3     |
+| Minor | 1     |
+| Total | 29    |
+
+Decision: do not approve draft 3 unchanged. Fix the two blocking coverage issues first. The remaining should-fix items should be consolidated into the same correction, rather than creating a long series of separate review rounds.

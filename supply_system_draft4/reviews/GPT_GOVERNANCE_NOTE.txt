@@ -1,0 +1,125 @@
+Yes. Having reviewed the design, I think the main architecture is there, but there are several important things I would add before calling the APG Data Supply System design complete.
+
+I wouldn't add more ways to collect data just for the sake of it. I'd strengthen how APG manages information from the moment it arrives until it is trusted and used by an insight.
+
+### 1\. Important things I think are missing
+
+1\. Data ownership and responsibility across the construction business
+
+The design identifies likely information holders, but it needs a clearer responsibility model:
+
+* Who supplies the information?
+
+* Who checks it?
+
+* Who can correct it?
+
+* Who approves it?
+
+* Who is accountable if it remains missing?
+
+For example, a subcontractor claim might be entered by an administrator, checked by a contract administrator and approved by a commercial manager. Those are different responsibilities.
+
+2\. Subcontractor and supplier information collection
+
+Builders don't always hold all the information APG needs. Some information sits with subcontractors, suppliers, consultants and project managers.
+
+I would explicitly address how information originating outside the builder's own office reaches APG. It could still be supplied by the builder through documents, emails or manual entry; I am not saying APG needs a separate external portal in the first release.
+
+3\. Corrections, disputes and changing information
+
+Construction records change constantly. A variation may be submitted, revised, assessed, rejected and later approved. An invoice may be disputed or credited.
+
+APG needs to preserve:
+
+* What was originally received.
+
+* What changed.
+
+* Who changed it.
+
+* Why it changed.
+
+* Which version an insight used.
+
+* Whether the change requires an earlier insight to be reassessed.
+
+This is especially important when someone challenges an APG recommendation months later.
+
+4\. Data retention and project close-out
+
+The design should explain what happens to information after a project finishes.
+
+Construction businesses may need to refer back to variations, claims, defects, warranties, final accounts and financial records well after practical completion.
+
+APG needs a defined retention, archival and retrieval policy, including what happens when a customer leaves APG.
+
+5\. Data access between projects and organisations
+
+A builder might have multiple companies, divisions, projects and joint ventures. Some staff can see one project but not another. Some information may be commercially sensitive.
+
+The data supply design should explicitly preserve organisation, project and role boundaries, including when information is shared between related entities.
+
+6\. Failed or incomplete data supply
+
+What happens when:
+
+* An import only partially succeeds?
+
+* A document cannot be read?
+
+* An integration stops working?
+
+* A record cannot be matched to a project?
+
+* A builder supplies the wrong version?
+
+* A batch contains duplicates?
+
+The design needs a consistent exception and recovery process. A failed upload must not silently become a successful-looking intake.
+
+7\. The builder's actual effort
+
+The design needs to consider the ongoing work APG creates for the builder.
+
+For example, if APG asks someone to enter 30 missing records, that could undermine adoption. It should prioritise the most valuable gaps, allow bulk correction where appropriate and avoid repeatedly requesting information APG already has.
+
+### 2\. One thing I would particularly protect
+
+The evidence history
+
+Every important APG conclusion should be traceable back through:
+
+APG insight or recommendation
+
+Calculation and rule version
+
+Approved, verified and reconciled records
+
+Original documents, imports, emails and source records
+
+This is more than an audit log. It allows APG to explain why it reached a conclusion using the information available at that time, even if the underlying records later change.
+
+### 3\. What I would not add yet
+
+I would not introduce:
+
+* More integration types before pilot discovery.
+
+* A separate portal for every subcontractor.
+
+* A complicated AI agent for every intake method.
+
+* Separate data-entry applications for each insight.
+
+* More dashboards just to display missing information.
+
+Those would add complexity before we know they are necessary.
+
+### 4\. My recommendation
+
+I would add a short section to the blueprint called Data Supply Governance and Lifecycle, covering the seven points above.
+
+My judgement is that the six supply methods and APG-derived records are enough as the basic architecture. The bigger risk is not that APG lacks another way to collect data. It is that APG receives information but cannot reliably establish who supplied it, whether it is trustworthy, which version is authoritative, who must resolve a problem, or which conclusions are affected when it changes.
+
+That is what I would close before approving the design. It would make the Data Supply System a complete operating model, not just a collection of intake features.
