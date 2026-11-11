@@ -4,6 +4,7 @@ of every mutation tool's source (Census).
 Run from the package root:  python3 -I -S tests_tools/test_no_timeout_kill.py      BUILDER-EXECUTED: NOT INDEPENDENT."""
 import importlib.util
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -212,16 +213,31 @@ def p2_read_idents(path):
         with open(path) as fh:
             for l in fh:
                 if l.strip():
-                    pid, start = l.split()
+                    pid, start = l.split()[:2]       # amendment 5, row 121: the line also holds the pgid
                     out.append((int(pid), int(start)))
     return out
 
 
-# a child script fragment: record this process's identity (pid and start time) in a file
+# a child script fragment: record this process's identity (pid and start time) and its process group in a file
 P2_REC = ('import os\n'
           'def rec(path):\n'
           '    d = open("/proc/self/stat").read(); s = d[d.rindex(")") + 2:].split()[19]\n'
-          '    open(path, "a").write("%d %s\\n" % (os.getpid(), s))\n')
+          '    open(path, "a").write("%d %s %d\\n" % (os.getpid(), s, os.getpgid(0)))\n')
+
+
+def p2_identity_lines(test_id, path, cleanup_lines=()):
+    """Amendment 5, row 121 (I.3, B.5; discrepancy 1): the per-test evidence record, written to the test log (stderr): each recorded
+    descendant's pid, start time and process group, and the CLEANUP lines of the supervisor that cleaned it up."""
+    ds = []
+    if os.path.exists(path):
+        with open(path) as fh:
+            for l in fh:
+                f = l.split()
+                if len(f) >= 3:
+                    ds.append('%s:%s:%s' % (f[0], f[1], f[2]))
+    out = ['P_IDENTITY test=%s descendants=%s' % (test_id, ','.join(ds) or '-')]
+    out += ['P_IDENTITY test=%s %s' % (test_id, l) for l in cleanup_lines if l.startswith('CLEANUP')]
+    return out
 
 
 class P2Base(unittest.TestCase):
@@ -237,6 +253,10 @@ class P2Base(unittest.TestCase):
         E._SUP.tool = 'p2test'
 
     def tearDown(self):
+        try:
+            sys.stderr.write('\n'.join(p2_identity_lines(self.id(), self.rec, E._SUP.final_lines())) + '\n')
+        except Exception:
+            pass
         E.T_GRACE, E.T_GRACE_CANCELLED, E.T_ESCALATE, E.T_KILL_VERIFY, E.T_EXIT_AFTER_RESULT = self.saved
         E._SUP.send = None
         E._SUP.table = E.proc_table
@@ -653,6 +673,379 @@ class P2NestedAndRefusals(P2Base):
         with E.owning('run_end') as o2:
             subprocess.run(['true'])
         self.assertFalse(o2.leaked)
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Amendment 5 (owner, 2026-11-08 11:26, AM5-4 option A; S15 at 12:47): the tests of Appendix A part 1 for the P rows.
+# Rewritten after the workspace loss of 2026-11-11 from the amendment and the rulings (recovery authorisation, rebuild rule).
+# ---------------------------------------------------------------------------------------------------------------------------------------
+class AM5Supervision(P2Base):
+    def recording_send(self):
+        sent = []
+        real = E._send_pidfd
+
+        def send(ident, sig):
+            sent.append((ident, sig))
+            return real(ident, sig)
+        E._SUP.send = send
+        return sent
+
+    def test_row4_each_failing_setup_step_is_a_refusal(self):
+        # P.2 / P.10: every step of the containment set-up that fails is a refusal at the supervisor's start, with its own reason
+        for old, new, want in (("        if not os.path.isfile('/proc/self/stat'):\n", "        if True:\n", 'proc_unavailable'),
+                               ("_pidfd_send_signal = getattr(_signal, 'pidfd_send_signal', None)", '_pidfd_send_signal = None',
+                                'pidfd_unavailable'),
+                               ('            os.close(_pidfd_open(os.getpid()))\n', '            raise PermissionError(1, "x")\n',
+                                'pidfd_open_failed_PermissionError'),
+                               ('_PR_SET_CHILD_SUBREAPER = 36', '_PR_SET_CHILD_SUBREAPER = 9999', 'prctl_set_failed_errno_22')):
+            with self.subTest(want=want):
+                out = P2NestedAndRefusals.refusal_in_a_copy(self, old, new)
+                self.assertIn('RUN_ERROR ENV_NO_PROCESS_SUPERVISION %s' % want, out)
+
+    def test_row6_a_secret_in_the_parent_never_reaches_a_unit_or_a_record(self):
+        # P.2: the unit's environment is the allowlist; a secret-bearing name planted in the supervisor's own environment is not in
+        # it, and its value is in no output and no record (the work that would carry it cannot start)
+        value = 'am5-secret-value-%d' % os.getpid()
+        os.environ['APG_AM5_API_TOKEN'] = value
+        try:
+            s = self.script('env.py', 'import os, json, subprocess, sys\nrec(%r)\n'
+                                      'print(json.dumps(sorted(os.environ)))\n'
+                                      'subprocess.Popen([sys.executable, "-c", "import os; print(sorted(os.environ))"]).wait()\n'
+                            % self.rec)
+            r = E.run_unit('u1', [PY, '-I', '-S', s], 30, self.env(), self.d)
+            fr = E.run_forked('f1', lambda: {'failed': sorted(os.environ)}, 30, self.env())
+            names = _json.loads(r.stdout.splitlines()[0])
+            self.assertNotIn('APG_AM5_API_TOKEN', names)
+            self.assertNotIn('APG_AM5_API_TOKEN', _json.loads(fr['message'])['failed'])
+            text = r.stdout + r.stderr + fr['message'].decode() + '\n'.join(E._SUP.final_lines())
+            self.assertNotIn(value, text)
+            self.assertNotIn('TOKEN', text)
+        finally:
+            del os.environ['APG_AM5_API_TOKEN']
+
+    def test_row11_equal_start_times_are_recorded_and_never_signalled(self):
+        # P.3: a process whose only link is an equal-start-time parent that is not a direct child is ambiguous: recorded, never signalled
+        sent = []
+        E._SUP.send = lambda ident, sig: sent.append((ident, sig)) or False
+        E._SUP.table = lambda: {200: ('S', 1, 60), 201: ('S', 200, 60)}
+        o = E._SUP.new_owner('amb1', 'unit')
+        o.members[(200, 60)] = (os.getpid(), None)
+        self.assertTrue(E._SUP.cleanup(o))
+        self.assertEqual({i for i, _ in sent}, {(200, 60)})         # the ambiguous 201 never receives a signal
+        self.assertIn(' ambiguous=201:60 ', o.record)
+        self.assertIn(' remaining=200:60', o.record)
+        # an owner with no live member and an ambiguous process: a CLEANUP_AMBIGUOUS line, and no leak
+        E._SUP.table = lambda: {300: ('Z', 1, 70), 301: ('S', 300, 70)}
+        o2 = E._SUP.new_owner('amb2', 'unit')
+        o2.members[(300, 70)] = (os.getpid(), None)
+        self.assertFalse(E._SUP.cleanup(o2))
+        E._SUP.table = E.proc_table
+        E._SUP.send = None
+        self.assertIn('CLEANUP_AMBIGUOUS 301:70 parent=300:70', E._SUP.final_lines())
+        E._SUP.errors = []
+
+    def test_s15_each_units_record_names_the_conservatively_attributed_orphan(self):
+        # amendment 5, S15 (owner, 12:47, option A); row 12: an orphan created and orphaned between two scans is attributed to every
+        # unit in flight; EACH of them records the leak (P.6) and names it in its CLEANUP record, whichever one killed it
+        g = self.script('g.py', 'import time\nrec(%r)\ntime.sleep(60)\n' % self.rec)
+        m = self.script('m.py', 'import subprocess, sys\nsubprocess.Popen([sys.executable, %r])\n' % g)
+        a = self.script('a.py', 'import subprocess, sys, time\np = subprocess.Popen([sys.executable, %r])\np.wait()\ntime.sleep(1)\n' % m)
+        b = self.script('b.py', 'import time\ntime.sleep(2.5)\n')
+        res = {}
+
+        def go(k, s):
+            res[k] = E.run_unit(k, [PY, '-I', '-S', s], 30, self.env(), self.d)
+        ths = [_thr.Thread(target=go, args=('ua', a)), _thr.Thread(target=go, args=('ub', b))]
+        [t.start() for t in ths]
+        [t.join() for t in ths]
+        self.assert_all_gone(p2_read_idents(self.rec))
+        g_ident = p2_read_idents(self.rec)[0]
+        self.assertEqual(sorted(o.id for o in E._SUP.adopted[g_ident]), ['ua', 'ub'])
+        self.assertTrue(res['ua'].leaked)
+        self.assertTrue(res['ub'].leaked)
+        lines = E._SUP.final_lines()
+        for uid in ('ua', 'ub'):
+            rec = [l for l in lines if l.startswith('CLEANUP %s ' % uid)]
+            self.assertEqual(len(rec), 1, lines)
+            self.assertRegex(rec[0], r' left=[^ ]*\b%d:%d\b' % g_ident)
+        self.assertIn('CLEANUP_SUMMARY units=2 leaked=2 remaining=0', lines)
+
+    def test_s15_a_phase_in_flight_is_a_leak_for_an_unrecorded_orphan(self):
+        # S15: a phase (AM-5 (c)) in flight when an unrecorded orphan is found is a leak, and its record names the orphan
+        import time as _time5
+        g = self.script('g.py', 'import time\nrec(%r)\ntime.sleep(60)\n' % self.rec)
+        m = self.script('m.py', 'import subprocess, sys\nsubprocess.Popen([sys.executable, %r])\n' % g)
+        with E.owning('run_start') as o:
+            p = subprocess.Popen([PY, '-I', '-S', m])
+            p.wait()                              # m has exited: g's only link is gone before any scan
+            _time5.sleep(0.5)
+        self.assertTrue(o.leaked)
+        g_ident = p2_read_idents(self.rec)[0]
+        self.assertIn(g_ident, o.conservative)
+        self.assertRegex(o.record, r'^CLEANUP run_start .* left=[^ ]*\b%d:%d\b' % g_ident)
+        self.assert_all_gone([g_ident])
+
+    def test_row15_every_wait_is_on_one_pid_with_wnohang(self):
+        # P.4: the reaper never waits on -1 or a process group, and never blocks: every waitpid in evkit is on a single pid, WNOHANG
+        import ast
+        tree = ast.parse(open(os.path.join(ROOT, 'tools', 'evkit.py'), encoding='utf-8').read())
+        calls = [n for n in ast.walk(tree) if isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute)
+                 and isinstance(n.func.value, ast.Name) and n.func.value.id == 'os']
+        waits = [c for c in calls if c.func.attr == 'waitpid']
+        self.assertTrue(waits)
+        for c in waits:
+            self.assertEqual(len(c.args), 2, ast.dump(c))
+            self.assertIsInstance(c.args[0], ast.Name, ast.dump(c))           # a variable pid, never a constant -1 or 0
+            self.assertEqual(ast.dump(c.args[1]), ast.dump(ast.parse('os.WNOHANG', mode='eval').body))
+        self.assertEqual([c.func.attr for c in calls if c.func.attr in ('wait', 'wait3', 'wait4', 'waitid')], [])
+
+    def test_row19_a_unit_that_forks_repeatedly_during_cleanup(self):
+        # P.5 / P.10: members created during the cleanup are found by the re-scans and killed; the scans and the deadline are recorded
+        s = self.script('forker.py', 'import os, signal, time\nsignal.signal(signal.SIGTERM, signal.SIG_IGN)\nrec(%r)\n'
+                                     'while True:\n    if os.fork() == 0:\n        signal.signal(signal.SIGTERM, signal.SIG_IGN)\n'
+                                     '        rec(%r)\n        time.sleep(60)\n        os._exit(0)\n    time.sleep(0.05)\n'
+                        % (self.rec, self.rec))
+        t0 = _t.monotonic()
+        r = E.run_unit('fk', [PY, '-I', '-S', s], 1, self.env(), self.d)
+        self.assertEqual(r.how, 'timeout')
+        self.assertLess(_t.monotonic() - t0, 1 + E.T_GRACE + E.T_KILL_VERIFY + 3 * E.T_KILL_VERIFY + 3)
+        ids = p2_read_idents(self.rec)
+        self.assertGreater(len(ids), 5, ids)
+        self.assert_all_gone(ids)
+        rec = [l for l in E._SUP.final_lines() if l.startswith('CLEANUP fk ')][0]
+        m = re.search(r' sigterm=(\d+) sigkill=(\d+) scans=(\d+) deadline=(\S+) ', rec)
+        self.assertTrue(m, rec)
+        self.assertEqual(m.group(4), 'grace')
+        self.assertGreater(int(m.group(1)), 1)
+        self.assertGreater(int(m.group(2)), 1)
+        self.assertGreaterEqual(int(m.group(3)), int(E.T_GRACE / E.SCAN_INTERVAL_S) // 2)
+
+    def test_row21_the_cleanup_records_their_fields_and_order(self):
+        # P.5 steps 8 and 9: every field of a CLEANUP record; the records in the order of the unit ids; CLEANUP_SUMMARY last; every
+        # recorded member already gone when the lines that precede the RESULT line are made (discrepancy 12)
+        for uid in ('u1', 'u2', 'u3'):
+            s = self.script(uid + '.py', 'import subprocess, sys\nrec(%r)\nsubprocess.Popen([sys.executable, "-c", %r])\n'
+                            % (self.rec, P2_REC + 'rec(%r)\nimport time\ntime.sleep(60)\n' % self.rec))
+            self.assertTrue(E.run_unit(uid, [PY, '-I', '-S', s], 30, self.env(), self.d).leaked)
+        lines = E._SUP.final_lines()
+        for i in p2_read_idents(self.rec):
+            self.assertFalse(p2_exists(i))
+        self.assertEqual([l.split()[1] for l in lines[:-1]], ['u1', 'u2', 'u3'])
+        field = (r'^CLEANUP (u\d) by=p2test:%d child=(\d+):(\d+) pgid=(\d+) scan=(\d+)-(\d+) left=(\S+) exited_in_grace=(\S+) '
+                 r'killed=(\S+) sigterm=(\d+) sigkill=(\d+) scans=(\d+) deadline=(none|grace|kill_verify) escalated_after=- '
+                 r'ambiguous=- remaining=-$' % os.getpid())
+        last = 0
+        for l in lines[:-1]:
+            m = re.match(field, l)
+            self.assertTrue(m, l)
+            self.assertEqual(m.group(2), m.group(4))                   # the unit's own process group is its child's pid
+            self.assertLessEqual(int(m.group(5)), int(m.group(6)))
+            self.assertGreater(int(m.group(5)), last)                  # scan ids increase from unit to unit
+            last = int(m.group(6))
+        self.assertEqual(lines[-1], 'CLEANUP_SUMMARY units=3 leaked=3 remaining=0')
+
+    def test_row23_a_real_nested_supervisor_escalated_and_its_orphans_adopted(self):
+        # P.7: the unit's child is a real nested supervisor (evkit itself, with a unit of its own); it ignores SIGTERM, so at T_ESCALATE
+        # its whole remaining tree is killed; its unit's child and grandchild, re-parented to this supervisor when it dies, are adopted
+        # (attributed to the unit) and reaped here
+        inner = P2_REC + 'import os, time\nrec(%r)\nif os.fork() == 0:\n    rec(%r)\n    time.sleep(60)\n    os._exit(0)\ntime.sleep(60)\n' % (
+            self.rec, self.rec)
+        sup = os.path.join(self.d, 'run_faults_s1.py')
+        with open(sup, 'w') as fh:
+            fh.write(P2_REC + 'import signal, sys, time\nsys.path.insert(0, %r)\nimport tools.evkit as E\nrec(%r)\n'
+                     'E.declare_supervisor("run_faults_s1")\nsignal.signal(signal.SIGTERM, signal.SIG_IGN)\n'
+                     'E.run_unit("inner", [sys.executable, "-I", "-S", "-c", %r], 60, E.clean_env(%r), %r)\n'
+                     % (ROOT, self.rec, inner, self.d, self.d))
+        self.assertTrue(E.is_supervisor_cmd([PY, '-I', '-S', sup]))
+        t0 = _t.monotonic()
+        r = E.run_unit('n1', [PY, '-I', '-S', sup], 3, self.env(), self.d)
+        el = _t.monotonic() - t0
+        self.assertEqual(r.how, 'timeout')
+        self.assertTrue(r.leaked)
+        self.assertGreaterEqual(el, 3 + E.T_ESCALATE - 0.5)
+        ids = p2_read_idents(self.rec)
+        self.assertEqual(len(ids), 3, ids)      # the nested supervisor, its unit's child and that child's own child
+        self.assert_all_gone(ids)
+        for i in ids[1:]:
+            self.assertIn(i, E._SUP.reaped_orphans)
+            self.assertEqual([o.id for o in E._SUP.adopted[i]], ['n1'])
+        rec = [l for l in E._SUP.final_lines() if l.startswith('CLEANUP n1 ')][0]
+        self.assertRegex(rec, r' escalated_after=\d+\.\ds ')
+        self.assertRegex(rec, r' sigkill=[1-9]')
+
+    def test_row71_the_hook_registers_each_child_once(self):
+        # AM-5 (a): run_child (through run_unit) and the hook register a child once only, with the unit as its owner
+        s = self.script('one.py', 'rec(%r)\n' % self.rec)
+        seen = []
+        real = E._SUP.register
+
+        def register(pid, popen=None, owner=None):
+            seen.append(pid)
+            return real(pid, popen=popen, owner=owner)
+        E._SUP.register = register
+        try:
+            E.run_child([PY, '-I', '-S', s], 30, self.env(), self.d, unit='h1')
+            with E.owning('run_start') as o:
+                subprocess.run(['true'])
+        finally:
+            del E._SUP.register
+        pid = p2_read_idents(self.rec)[0][0]
+        self.assertEqual(seen.count(pid), 1, seen)
+        self.assertEqual(len(seen), 2, seen)
+        self.assertEqual(len(o.direct), 1)
+
+    def test_row71_row101_a_leaf_reaps_its_exited_orphans_before_its_result(self):
+        # AM-5 (a), reading 15: a leaf (not a supervisor) reaps, by WNOHANG on each pid, the adopted orphans that have exited, before
+        # its RESULT line; the tool itself then finds no zombie child of its own
+        E._SUP.supervisor = False
+        m = self.script('m.py', 'import subprocess, sys\nsubprocess.Popen([sys.executable, "-c", %r])\n'
+                        % (P2_REC + 'rec(%r)\n' % self.rec))
+        subprocess.run([PY, '-I', '-S', m])
+        g = None
+        for _ in range(50):
+            ids = p2_read_idents(self.rec)
+            if ids and E.proc_stat(ids[0][0]) and E.proc_stat(ids[0][0])[0] == 'Z':
+                g = ids[0]
+                break
+            _t.sleep(0.1)
+        self.assertIsNotNone(g, 'the orphan did not become this process\'s zombie')
+        self.assertEqual(E._SUP.close_run(), [])
+        self.assertFalse(p2_exists(g))
+        me = os.getpid()
+        self.assertEqual([p for p, (st, pp, _) in E.proc_table().items() if pp == me and st == 'Z'], [])
+
+    def test_row72_immutable_codes_children_keep_their_command_environment_and_limit(self):
+        # AM-5 (b): the children AUIF's own code starts (apg_auif/dependency.verify_tree) keep their command, their environment and
+        # their limit; under a phase they are only registered and attributed (a probe in an extracted copy records what it got)
+        import importlib
+        sys.path.insert(0, ROOT)
+        D = importlib.import_module('apg_auif.dependency')
+        root = D.extract(os.path.join(self.d, 'auif'))
+        probe = os.path.join(self.d, 'probe.json')
+        with open(os.path.join(root, 'tools', 'verify_package.py'), 'w') as fh:
+            fh.write('import json, os, sys\njson.dump({"argv": sys.argv, "flags": [sys.flags.isolated, sys.flags.no_site, '
+                     'sys.flags.dont_write_bytecode], "x": os.environ.get("APG_AM5_X"), "b": os.environ.get("PYTHONDONTWRITEBYTECODE")}, '
+                     'open(%r, "w"))\nprint("{}")\n' % probe)
+        os.environ['APG_AM5_X'] = 'kept'
+        try:
+            with E.owning('run_start') as o:
+                with self.assertRaises(D.AuifDependencyError):
+                    D.verify_tree(root)
+        finally:
+            del os.environ['APG_AM5_X']
+        got = _json.load(open(probe))
+        self.assertEqual(got['flags'], [1, 0, 1])                       # -I -B, as AUIF's code starts it
+        self.assertEqual(got['argv'][1:], [root])
+        self.assertEqual((got['x'], got['b']), ('kept', '1'))           # its own environment: the parent's, plus its own setting
+        self.assertEqual(len(o.direct), 1)                              # registered, attributed to the phase
+        self.assertFalse(o.leaked)
+        src = open(os.path.join(ROOT, 'apg_auif', 'dependency.py'), encoding='utf-8').read()
+        self.assertEqual(src.count('capture_output=True, text=True, env=env, timeout=600)'), 2)     # its own limit, unchanged
+
+    def test_row77_a_grandchild_holding_the_message_pipe(self):
+        # AM-6 (b): the drain; a grandchild that holds the write end and adds one byte makes the message bad_result and is a leak; one
+        # that holds it and stays silent is a leak (processes_left), the message itself valid
+        rec = self.rec
+        forms = {'failed': lambda v: isinstance(v, list)}
+
+        def child(write_one):
+            def fn():
+                exec(P2_REC, globals())
+                w = max(int(x) for x in os.listdir('/proc/self/fd') if int(x) > 2 and os.path.exists('/proc/self/fd/%s' % x))
+                if os.fork() == 0:
+                    globals()['rec'](rec)
+                    _t.sleep(0.3)
+                    if write_one:
+                        os.write(w, b'x')
+                    _t.sleep(60)
+                    os._exit(0)
+                return {'failed': []}
+            return fn
+        res = E.run_forked('d1', child(True), 10, self.env())
+        self.assertTrue(res['trailing'])
+        self.assertTrue(res['leaked'])
+        self.assertEqual(E.parse_forked_message(res, forms)[0], 'bad_result')
+        res = E.run_forked('d2', child(False), 10, self.env())
+        self.assertFalse(res['trailing'])
+        self.assertTrue(res['leaked'])
+        self.assertEqual(E.parse_forked_message(res, forms)[0], 'ok')
+        self.assert_all_gone(p2_read_idents(self.rec))
+
+    def test_row90_the_pipe_drain_is_bounded(self):
+        # reading 3: the child has exited but a member holds its stdout open; the drain stops after T_EXIT_AFTER_RESULT, the member is
+        # a leak, and the unit's output is what was written before
+        s = self.script('hold.py', 'import subprocess, sys\nrec(%r)\nprint("before", flush=True)\n'
+                                   'subprocess.Popen([sys.executable, "-c", %r])\n'
+                        % (self.rec, P2_REC + 'rec(%r)\nimport time\ntime.sleep(60)\n' % self.rec))
+        t0 = _t.monotonic()
+        r = E.run_unit('dr', [PY, '-I', '-S', s], 30, self.env(), self.d)
+        el = _t.monotonic() - t0
+        self.assertEqual((r.how, r.returncode, r.stdout.strip()), ('exit', 0, 'before'))
+        self.assertTrue(r.leaked)
+        self.assertLess(el, E.T_EXIT_AFTER_RESULT + E.T_GRACE + 2 * E.T_KILL_VERIFY + 3)
+        self.assert_all_gone(p2_read_idents(self.rec))
+
+    def test_row91_sigterm_goes_to_the_nested_supervisor_alone(self):
+        # reading 4: with other members present, the cleanup of a nested supervisor's unit signals its direct child only, while it lives
+        sent = self.recording_send()
+        sup = os.path.join(self.d, 'run_faults_s1.py')
+        with open(sup, 'w') as fh:
+            fh.write(P2_REC + 'import signal, subprocess, sys, time\nrec(%r)\n'
+                     'subprocess.Popen([sys.executable, "-c", %r])\n'
+                     'signal.signal(signal.SIGTERM, lambda *a: (time.sleep(0.5), sys.exit(3)))\ntime.sleep(60)\n'
+                     % (self.rec, P2_REC + 'rec(%r)\nimport time\ntime.sleep(60)\n' % self.rec))
+        r = E.run_unit('ns', [PY, '-I', '-S', sup], 1, self.env(), self.d)
+        self.assertEqual(r.how, 'timeout')
+        ids = p2_read_idents(self.rec)
+        self.assertEqual(len(ids), 2, ids)
+        direct, other = ids[0], ids[1]
+        terms = [i for i, sig in sent if sig == _sig.SIGTERM]
+        self.assertEqual(terms[0], direct)
+        self.assertNotIn(other, terms[:1])
+        self.assert_all_gone(ids)
+
+    def test_row92_the_grace_ends_early_after_two_empty_scans(self):
+        # reading 5: a member that exits at once on SIGTERM ends the grace after two empty scans, long before T_GRACE
+        E.T_GRACE = 10
+        s = self.script('bg.py', 'import subprocess, sys\nrec(%r)\nsubprocess.Popen([sys.executable, "-c", %r])\n'
+                        % (self.rec, P2_REC + 'rec(%r)\nimport time\ntime.sleep(60)\n' % self.rec))
+        t0 = _t.monotonic()
+        r = E.run_unit('gr', [PY, '-I', '-S', s], 30, self.env(), self.d)
+        self.assertTrue(r.leaked)
+        self.assertLess(_t.monotonic() - t0, 4)
+        rec = [l for l in E._SUP.final_lines() if l.startswith('CLEANUP gr ')][0]
+        self.assertIn(' sigkill=0 ', rec)
+        self.assertIn(' deadline=none ', rec)
+        self.assertLess(int(re.search(r' scans=(\d+) ', rec).group(1)), 20)
+        self.assert_all_gone(p2_read_idents(self.rec))
+
+    def test_row96_an_unowned_child_is_attributed_to_run_end(self):
+        # reading 9: a child started outside every unit and phase is the run end's; left running, the run's close is PROCESSES_LEFT
+        s = self.script('lone.py', 'rec(%r)\nimport time\ntime.sleep(60)\n' % self.rec)
+        p = subprocess.Popen([PY, '-I', '-S', s])
+        self.assertEqual(E._SUP.regs[p.pid].owner.id, 'run_end')
+        for _ in range(50):
+            if p2_read_idents(self.rec):
+                break
+            _t.sleep(0.1)
+        errs = E._SUP.close_run()
+        self.assertIn('RUN_ERROR PROCESSES_LEFT run_end', [e.line() for e in errs])
+        self.assertTrue(any(l.startswith('CLEANUP run_end ') for l in E._SUP.final_lines()))
+        self.assertIsNotNone(p.poll())
+        self.assert_all_gone(p2_read_idents(self.rec))
+
+    def test_row99_the_summary_counts_the_units_started(self):
+        # reading 13: CLEANUP_SUMMARY units= is the number of units started (subprocess and forked), leaked= the units that leaked
+        clean = self.script('c.py', 'rec(%r)\n' % self.rec)
+        leak = self.script('l.py', 'import subprocess, sys\nrec(%r)\nsubprocess.Popen([sys.executable, "-c", %r])\n'
+                           % (self.rec, P2_REC + 'rec(%r)\nimport time\ntime.sleep(60)\n' % self.rec))
+        E.run_unit('s1', [PY, '-I', '-S', clean], 30, self.env(), self.d)
+        E.run_unit('s2', [PY, '-I', '-S', leak], 30, self.env(), self.d)
+        E.run_unit('s3', [PY, '-I', '-S', clean], 30, self.env(), self.d)
+        E.run_forked('s4', lambda: {'failed': []}, 30, self.env())
+        lines = E._SUP.final_lines()
+        self.assertEqual(lines[-1], 'CLEANUP_SUMMARY units=4 leaked=1 remaining=0')
+        self.assertEqual([l.split()[1] for l in lines if l.startswith('CLEANUP ')], ['s2'])
 
 
 if __name__ == '__main__':
