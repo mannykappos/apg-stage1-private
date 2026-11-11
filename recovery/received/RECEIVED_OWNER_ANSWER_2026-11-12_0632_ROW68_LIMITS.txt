@@ -1,0 +1,4 @@
+Owner's answer (AskUserQuestion), received 2026-11-12 06:32 AEDT (asked about 22:58 on 2026-11-11), verbatim:
+Q: "Row 68 (AM-2: \"all process starts in tests_tools set a time limit\"): on the new freeze, 10 of 83 process starts in the tests have no explicit time limit. All 10 are helper processes a test plants itself (sleep 30, true, a script that exits at once). 5 were already in c9b324eb; 5 came from my step 3 test rewrite. Every start of a tool under test has a limit. What should I do?"
+A: "Add limits, then refreeze (Recommended)"
+   (option text: Add a timeout to the 10 helper starts (a test-only change, no logic), run focused checks on both Pythons, build a new freeze twice, then restart step 5.1 on it. About 5 to 6 hours added; row 68 then holds literally.)

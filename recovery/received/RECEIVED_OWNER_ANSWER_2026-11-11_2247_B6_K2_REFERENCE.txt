@@ -1,0 +1,6 @@
+Owner's answers (AskUserQuestion), received 2026-11-11 22:47 AEDT, verbatim:
+Q: "Step 5 is stopped: B.6 and K.2 must compare the new freeze's 111 plant verdicts and 386 case verdicts, item by item, with freeze d5f87d6b. That freeze was lost in the wipe and can't be rebuilt. Only per-runner totals survive (counts, status, exit, controls). How should rows 43 and 61 be evidenced?"
+A: "e4531a35 + recorded totals (Recommended)"
+   (option text: Compare item by item against the gated freeze e4531a35, which survives byte-exact, and check the totals against d5f87d6b's records. Rows 43 and 61 would be reworded to say so. Any per-item difference stops me again.)
+Q: "AM5-6 step 1 (the T, W and M sets on both Pythons, about 4 to 6 hours) doesn't depend on the B.6/K.2 answer. Should I start it now?"
+A: "Yes, start step 1 now (Recommended)"

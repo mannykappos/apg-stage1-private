@@ -130,3 +130,15 @@ review pack); everything after that is restated here from the conversation recor
   and 61 can claim. Reported to the owner with options; nothing in step 5 runs until the owner answers. The other step 5 tools
   (AM5-3 allowance in compare_pass2_s1, discrepancies 7 and 21, the row 68 check, the names check) are specified in amendment 5 and
   will be rewritten from it, disclosed as rewritten. Spot check: discrepancies 10, 14, 17 are in the step 3 tests.
+- 22:48 (11-11) Step 5.1 started on be0c27b (driver ev5/driver51.sh). Before it, builder-tool work for step 5 (outside the tree):
+  compare_pass2_s1.py gained the AM5-3 A1 allowance (rewritten from AM5-4's paragraph; the 303b6414-era change was lost); the
+  discrepancy 21 docstrings of run_index_s1.py and check_m8_log_s1.py; audit_outside_services_s1.py rewritten for discrepancy 7 (children
+  through run_unit and run_forked, docstring); new recorded_totals_s1.py (the owner's B.6/K.2 answer of 22:47) and tset_start_scan_s1.py
+  (row 68). Owner's answer filed: B.6/K.2 "e4531a35 + recorded totals"; step 5.1 to start.
+- About 22:58 (11-11) Finding while writing the row 68 scan (a dry run on the work tree, low priority, during T01-T03): 83 process
+  starts in tests_tools; 10 with no explicit time limit, all helper processes the tests plant (5 already in c9b324eb's tests, 5 from the
+  step 3 rewrite); e4531a35's 28 starts all have one. Asked the owner. The question waited until 06:31 on 11-12.
+- Container restart: boot 2026-11-12 06:31:32 (uptime -s); the disk survived (unlike 11-11). The step 5.1 run had stopped writing at
+  23:21 during T08 (cause not determined: no log line after that). Nothing was evidence yet.
+- 2026-11-12 06:32 Owner's answer: "Add limits, then refreeze". The be0c27b step 5.1 run is abandoned (kept as ev5/run_sets/py313_T, not evidence).
+  Next: limits on the 10 helper starts (tests only), focused checks on both Pythons, a new freeze built twice, step 5.1 restarted.
