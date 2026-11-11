@@ -1,0 +1,6 @@
+The owner's answers given through the question tool (verbatim choice labels; the questions were lost with the workspace and are
+summarised from the builder's notes):
+- 2026-11-09, on the gaps found by the independent pre-gate audit of freeze 04e9f2f2: "A: fix all, re-freeze (Recommended)".
+- 2026-11-11, on the re-mapping v4 result (56 closed, 8 partly addressed, 0 open): "Package now, disclose (Recommended)".
+- 2026-11-11, on the package-level privacy check (the session id inside immutable and already-sent ZIPs): "Mask loose, accept in
+  ZIPs (Recommended)".

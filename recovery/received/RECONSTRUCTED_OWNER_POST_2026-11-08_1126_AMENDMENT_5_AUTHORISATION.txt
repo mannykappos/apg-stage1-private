@@ -1,0 +1,13 @@
+RECONSTRUCTED, NOT VERBATIM. The owner's post of 11:26 on 2026-11-08 (Melbourne) was filed in the workspace lost on 2026-11-11.
+The owner does not hold a copy ("I dont have the nov 8 approval", 2026-11-11 15:48). This record is rebuilt from the builder's
+working notes of the conversation; its wording is not the owner's.
+
+What the post authorised (as recorded in the builder's notes):
+- Amendment 5 = draft v4, SHA-256 3649fa742164c98a957e91f0604669390973c974782e4a600fb5e0525fdc295b
+  (authority/APG_D14_STAGE1_CORRECTIVE_PASS_2_AMENDMENT_5_DRAFT_v4.md).
+- AM5-1: option A.
+- AM5-2: as drafted.
+- AM5-3: A1 and B.
+- AM5-4: option A.
+- AM5-5: (a), (b) and (c) as drafted.
+- AM5-6: as drafted.

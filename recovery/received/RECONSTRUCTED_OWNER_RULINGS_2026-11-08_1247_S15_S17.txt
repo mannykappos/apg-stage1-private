@@ -1,0 +1,11 @@
+RECONSTRUCTED, NOT VERBATIM. The owner's rulings of 12:47 on 2026-11-08 (Melbourne), on the builder's stop under H during the
+amendment 5 work (issues S15, S16, S17), were filed in the workspace lost on 2026-11-11, together with the issue record. This record
+is rebuilt from the builder's working notes; its wording is not the owner's.
+
+- S15: option A (an orphan with no unit in flight is attributed conservatively to every unit in flight, or to the current owner; each
+  such owner records it as a leak, and its cleanup record names it).
+- S16: option A (a wrapper CHECK INDETERMINATE whose group has a CLEANUP record is accepted by the checker when the source is the
+  child, or when exit and marker are both '-').
+- S17 (a): option A (no code change; row 41's test asserts CRASH_NO_RESULT and CHILD_EVIDENCE_ERROR).
+- S17 (b): option A (cases_main step 3 refuses a factory spec that is not module:attr, SELECTION_INVALID).
+- Corrections to the Appendix A plan for rows 6 and 17, as the builder proposed.
