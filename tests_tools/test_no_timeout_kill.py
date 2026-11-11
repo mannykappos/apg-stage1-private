@@ -709,7 +709,7 @@ class AM5Supervision(P2Base):
         os.environ['APG_AM5_API_TOKEN'] = value
         try:
             s = self.script('env.py', 'import os, json, subprocess, sys\nrec(%r)\n'
-                                      'print(json.dumps(sorted(os.environ)))\n'
+                                      'print(json.dumps(sorted(os.environ)), flush=True)\n'
                                       'subprocess.Popen([sys.executable, "-c", "import os; print(sorted(os.environ))"]).wait()\n'
                             % self.rec)
             r = E.run_unit('u1', [PY, '-I', '-S', s], 30, self.env(), self.d)
