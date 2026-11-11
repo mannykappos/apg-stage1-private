@@ -2774,7 +2774,7 @@ class AM5NoResultSupervisors(unittest.TestCase):
         self.assertEqual(code, 3, out[-2000:])
         self.assertRegex(out.strip().splitlines()[-1], r'^RESULT v=2 kind=tests ')
         self.assertRegex(out, r'(?m)^INTERRUPTED signal=SIGINT at=\S+ received=1$')
-        pins = E.load_pins(os.path.join(root, 'tools', 'expected_counts.json'))[0]
+        pins = E.test_file_pins(E.load_pins(os.path.join(root, 'tools', 'expected_counts.json'))[0], ['tests_m8/test_m8_dependency.py'])
         self.assertEqual(E.check_output(out, code, pins=pins), [], out[-3000:])
         p2b_gone(self, seen)
 
@@ -2785,7 +2785,7 @@ class AM5NoResultSupervisors(unittest.TestCase):
         p2_identity_record(self, seen, out)
         self.assertFalse(os.path.exists(os.path.join(root, '_p2', 'b_started')), 'a test started after the signal')
         self.assertEqual(code, 3, out[-2000:])
-        pins = E.load_pins(os.path.join(root, 'tools', 'expected_counts.json'))[0]
+        pins = E.test_file_pins(E.load_pins(os.path.join(root, 'tools', 'expected_counts.json'))[0], ['tests_m8/test_m8_dependency.py'])
         self.assertEqual(E.check_output(out, code, pins=pins), [], out[-3000:])
         p2b_gone(self, seen)
 
