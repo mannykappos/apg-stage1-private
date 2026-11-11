@@ -1,0 +1,40 @@
+rule or figure,code,entities it reads or is configured by,their minimum ways in,fed in phase 1 without phone or integration
+every M4 figure,fin/*.py FigureBuilder,E90,E90 setup question (partly),yes
+every M4 figure,"fin/costs.py, commitments.py, forecast.py, revenue.py, cashview.py",E07,E07 import template (exists),yes
+M4 actual cost,"fin/costs.py build_actual, invoice_lines, _disposition",E23,E23 import template (exists),yes
+M4 actual cost,fin/costs.py invoice_lines,E04 E23,E04 setup question (proposed); E23 import template (exists),yes
+M4 actual cost,fin/costs.py _disposition,E03 E23,E03 setup question (proposed); E23 import template (exists),yes
+M4 actual cost,fin/costs.py invoice_lines,E24,E24 import template (exists),yes
+M4 commitments,fin/commitments.py build_commitments,E21,E21 import template (exists),yes
+M4 commitments,fin/commitments.py,E22,E22 import template (exists),yes
+M4 commitments,fin/commitments.py,E23,E23 import template (exists),yes
+M4 budget,fin/forecast.py budget_by_code,E38,E38 import template (exists),yes
+M4 cost to complete,"fin/forecast.py select_version, build_ctc",E41,E41 import template (exists),yes
+M4 forecast final margin,fin/forecast.py build_forecast,-,-,yes
+M4 revenue,fin/revenue.py build_revenue,E08,E08 import template (exists),yes
+M4 revenue,fin/revenue.py,E09,E09 import template (exists),yes
+M4 recognised margin,fin/margins.py build_recognised,-,-,yes
+M4 retention position,fin/cashview.py build_retention,E75,E75 import template (exists),yes
+M4 retention position,"fin/cashview.py, cash_states.py",E77,E77 APG creates (partly),yes
+M4 retention position,fin/cashview.py,E73,E73 import template (exists),yes
+M4 security,fin/cashview.py build_security,E78,E78 import template (exists),yes
+M4 retention carrying cost,fin/cashview.py build_carrying,E74,E74 import template (exists),yes
+M4 security carrying cost,fin/cashview.py build_carrying,E78,E78 import template (exists),yes
+M4 overdue receivables cost,fin/cashview.py build_overdue_receivables,E15,E15 import template (proposed),yes
+M4 cash-position-adjusted margin,fin/cashview.py build_cash_adjusted,-,-,yes
+R01 actual cost over budget,det/rules_cost.py r01_budget,-,-,yes
+R02 amendment without approved change,det/rules_cost.py r02_amendment,E22,E22 import template (exists),yes
+R03 invoiced above order,det/rules_cost.py r03_invoice_vs_order,E21,E21 import template (exists),yes
+R09 unexplained forecast movement,det/rules_cost.py r09_forecast_movement,E41,E41 import template (exists),yes
+AGG split orders,det/rules_cost.py agg_split_orders,E21,E21 import template (exists),yes
+D01 held cost records,det/rules_cost.py d01_held_cost_records,-,-,yes
+R04 variation unresolved,det/rules_commercial.py r04_variation,E09,E09 import template (exists),yes
+R04B instruction without variation,det/rules_commercial.py r04b_instruction,E10,E10 import template (exists),yes
+R05 retention release overdue,det/rules_commercial.py r05_retention,E75,E75 import template (exists),yes
+R06 compliance expired or expiring,det/rules_commercial.py r06_compliance,E82,E82 import template (exists),yes
+R07 quote above reference,det/rules_commercial.py r07_quote_vs_reference,E30,E30 import template (exists),yes
+R08 hire beyond need,det/rules_ops.py r08_hire,E64,E64 import template (exists),yes
+DLY overlapping delays,det/rules_ops.py dly_overlap,E52,E52 import template (exists),yes
+LAB output per hour falling,det/rules_ops.py lab_productivity,E57 E61,E57 import template (exists); E61 import template (exists),yes
+DEF repeat defects,det/rules_ops.py def_recurrence,E66,E66 import template (exists),yes
+D02 held detection inputs,det/rules_ops.py d02_held_records,-,-,yes

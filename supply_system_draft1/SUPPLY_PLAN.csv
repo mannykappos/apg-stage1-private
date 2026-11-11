@@ -1,0 +1,100 @@
+id,entity,class,status today,phase,why this phase,minimum way in (Level 1),its build state,other Level 1 ways in,Level 2 and 3
+E01,Record provenance and lifecycle fields (on every record),I,partial,1,the intake or readiness itself,APG creates,partly,,
+E02,Source registry entry (one per source system),C,missing,1,the intake or readiness itself,setup question,proposed,APG creates (proposed),
+E03,Source Authority Register entry (field level),C,partial,1,configuration a current contract names,setup question,proposed,,
+E04,Cost-code map (builder codes to the APG cost structure),C,missing,1,configuration a current contract names,setup question,proposed,import template (proposed),
+E05,Organisation (tenant),B,partial,later,needed by insights not yet built,setup question,proposed,,
+E06,Legal entity,B,missing,later,needed by insights not yet built,setup question,proposed,,
+E07,Project,B,partial,1,read by a current rule or figure,import template,exists,entry screen (proposed),integration (proposed)
+E08,Head contract,B,partial,1,read by a current rule or figure,import template,exists,document capture (partly); entry screen (proposed),
+E09,Variation (client side),B,partial,1,read by a current rule or figure,import template,exists,document capture (partly); entry screen (proposed),integration (proposed)
+E10,Site instruction / direction,B,partial,1,read by a current rule or figure,import template,exists,document capture (partly); entry screen (proposed),phone site capture (proposed)
+E11,"Contract notice (delay, variation, claim notices)",B,partial,later,needed by insights not yet built,import template,exists,document capture (partly); entry screen (proposed),
+E12,Deadline / time bar,I,missing,later,needed by insights not yet built,APG creates,proposed,setup question (proposed),
+E13,Client progress claim,B,missing,2,closes a known limit of a current rule or figure,import template,proposed,document capture (proposed); entry screen (proposed),integration (proposed)
+E14,Client payment schedule / certificate,B,missing,2,closes a known limit of a current rule or figure,import template,proposed,document capture (proposed); entry screen (proposed),
+E15,Receivable and receipt,B,missing,1,read by a current rule or figure,import template,proposed,,integration (proposed)
+E16,Subcontract,B,partial,2,closes a known limit of a current rule or figure,document capture,partly,import template (proposed); entry screen (proposed),
+E17,Subcontractor progress claim,B,missing,later,needed by insights not yet built,import template,proposed,document capture (proposed),integration (proposed)
+E18,Subcontractor assessment / payment schedule,B,missing,later,needed by insights not yet built,import template,proposed,entry screen (proposed),
+E19,Subcontractor payment,B,missing,later,needed by insights not yet built,import template,proposed,,integration (proposed)
+E20,Supplier / subcontractor,B,partial,later,needed by insights not yet built,import template,exists,entry screen (proposed),
+E21,Purchase order,B,partial,1,read by a current rule or figure,import template,exists,,integration (proposed)
+E22,Purchase-order amendment,B,partial,1,read by a current rule or figure,import template,exists,entry screen (proposed),
+E23,Supplier invoice,B,partial,1,read by a current rule or figure,import template,exists,document capture (partly),integration (proposed)
+E24,Credit note,B,partial,1,read by a current rule or figure,import template,exists,,integration (proposed)
+E25,Supplier payment,B,covered,later,needed by insights not yet built,import template,exists,,integration (proposed)
+E26,Material,B,partial,later,needed by insights not yet built,import template,exists,entry screen (proposed),
+E27,Specification requirement,B,covered,later,needed by insights not yet built,import template,exists,document capture (partly),
+E28,Material demand,B,covered,later,needed by insights not yet built,import template,exists,entry screen (proposed),
+E29,Delivery,B,covered,2,closes a known limit of a current rule or figure,import template,exists,,phone site capture (proposed)
+E30,Supplier quote,B,partial,1,read by a current rule or figure,import template,exists,document capture (partly),
+E31,Quote price tier,B,covered,later,needed by insights not yet built,import template,exists,document capture (partly),
+E32,Quote term,B,covered,later,needed by insights not yet built,import template,exists,document capture (partly),
+E33,Landed-cost component,B,covered,later,needed by insights not yet built,import template,exists,entry screen (proposed),
+E34,Import compliance check,B,covered,later,needed by insights not yet built,import template,exists,entry screen (proposed),
+E35,Quote reading (extracted value and its verification),D,covered,later,needed by insights not yet built,import template,exists,document capture (partly),
+E36,Market observation,X,partial,later,needed by insights not yet built,import template,exists,,integration (proposed)
+E37,FX rate,X,partial,later,needed by insights not yet built,import template,exists,,integration (proposed)
+E38,Budget line,B,covered,1,read by a current rule or figure,import template,exists,entry screen (proposed),
+E39,Budget revision approval,B,missing,2,closes a known limit of a current rule or figure,import template,proposed,entry screen (proposed),
+E40,Estimate line,B,missing,later,needed by insights not yet built,import template,proposed,,integration (proposed)
+E41,Cost-to-complete line (the builder forecast),B,partial,1,read by a current rule or figure,import template,exists,entry screen (proposed),
+E42,Accrual,C,missing,2,closes a known limit of a current rule or figure,import template,proposed,entry screen (proposed),
+E43,Overhead allocation rule,C,missing,2,closes a known limit of a current rule or figure,setup question,proposed,,
+E44,Baseline,I,partial,later,needed by insights not yet built,APG creates,partly,,
+E45,Assessment (calculation run),I,partial,later,needed by insights not yet built,APG creates,partly,,
+E46,Scenario,I,partial,later,needed by insights not yet built,APG creates,partly,,
+E47,Programme version,B,missing,2,closes a known limit of a current rule or figure,import template,proposed,entry screen (proposed),integration (proposed)
+E48,Programme activity,B,missing,later,needed by insights not yet built,import template,proposed,entry screen (proposed),integration (proposed)
+E49,Activity dependency,B,missing,later,needed by insights not yet built,import template,proposed,entry screen (proposed),integration (proposed)
+E50,Work calendar,B,missing,2,closes a known limit of a current rule or figure,import template,proposed,setup question (proposed),
+E51,Progress record,B,missing,2,closes a known limit of a current rule or figure,import template,proposed,entry screen (proposed),phone site capture (proposed)
+E52,Delay event,B,partial,1,read by a current rule or figure,import template,exists,entry screen (proposed),phone site capture (proposed)
+E53,Holding-cost rate,C,partial,later,needed by insights not yet built,setup question,proposed,,
+E54,Worker (pseudonymous),B,partial,later,needed by insights not yet built,import template,exists,,integration (proposed)
+E55,Employer (direct or labour hire),B,missing,later,needed by insights not yet built,import template,proposed,entry screen (proposed),
+E56,Crew,B,missing,later,needed by insights not yet built,import template,proposed,entry screen (proposed),
+E57,Timesheet entry,B,partial,1,read by a current rule or figure,import template,exists,,integration (proposed); phone site capture (proposed)
+E58,Work allocation,B,missing,later,needed by insights not yet built,entry screen,proposed,,phone site capture (proposed)
+E59,Labour rate and classification,C,missing,later,needed by insights not yet built,setup question,proposed,import template (proposed),integration (proposed)
+E60,On-cost and allowance rule,C,missing,later,needed by insights not yet built,setup question,proposed,,
+E61,Accepted work output,B,partial,1,read by a current rule or figure,import template,exists,entry screen (proposed),phone site capture (proposed)
+E62,Productivity baseline,I,partial,later,needed by insights not yet built,APG creates,partly,,
+E63,Work conditions record,B,missing,2,closes a known limit of a current rule or figure,entry screen,proposed,,phone site capture (proposed)
+E64,Plant hire,B,partial,1,read by a current rule or figure,import template,exists,document capture (partly),phone site capture (proposed)
+E65,Quality observation,B,missing,later,needed by insights not yet built,entry screen,proposed,,phone site capture (proposed)
+E66,Defect,B,partial,1,read by a current rule or figure,import template,exists,entry screen (proposed),phone site capture (proposed)
+E67,Rework event,B,missing,later,needed by insights not yet built,entry screen,proposed,,phone site capture (proposed)
+E68,Root-cause hypothesis,I,missing,2,closes a known limit of a current rule or figure,APG creates,proposed,entry screen (proposed),
+E69,Confirmed cause,I,missing,later,needed by insights not yet built,entry screen,proposed,,
+E70,Rectification action,I,missing,later,needed by insights not yet built,entry screen,proposed,,phone site capture (proposed)
+E71,Quality cost,I,missing,later,needed by insights not yet built,APG creates,proposed,entry screen (proposed),
+E72,Closure verification,I,missing,2,closes a known limit of a current rule or figure,entry screen,proposed,,phone site capture (proposed)
+E73,Bank transaction,B,partial,1,read by a current rule or figure,import template,exists,,integration (proposed)
+E74,Funding facility,B,partial,1,read by a current rule or figure,import template,exists,document capture (partly),
+E75,Retention held by the client,B,partial,1,read by a current rule or figure,import template,exists,document capture (partly),
+E76,Retention held from trades,B,missing,2,closes a known limit of a current rule or figure,import template,proposed,entry screen (proposed),
+E77,Retention event,I,partial,1,read by a current rule or figure,APG creates,partly,entry screen (proposed),
+E78,Security instrument,B,partial,1,read by a current rule or figure,import template,exists,document capture (partly),
+E79,Payable (aged),B,partial,2,closes a known limit of a current rule or figure,import template,exists,,integration (proposed)
+E80,"Statutory liability (GST, PAYG, super)",B,missing,2,closes a known limit of a current rule or figure,import template,proposed,,integration (proposed)
+E81,Payroll outflow,B,missing,2,closes a known limit of a current rule or figure,import template,proposed,,integration (proposed)
+E82,Supplier / subcontractor compliance evidence,D,partial,1,read by a current rule or figure,import template,exists,document capture (partly),integration (proposed)
+E83,Document,D,partial,later,needed by insights not yet built,document capture,partly,,
+E84,Finding,I,covered,later,needed by insights not yet built,APG creates,exists,,
+E85,Alert,I,missing,later,needed by insights not yet built,APG creates,proposed,,
+E86,Recommendation,I,missing,later,needed by insights not yet built,APG creates,proposed,,
+E87,Decision / approval,I,missing,later,needed by insights not yet built,entry screen,proposed,,
+E88,Outcome,I,missing,later,needed by insights not yet built,APG creates,proposed,entry screen (proposed),
+E89,Readiness record (per insight),I,missing,1,the intake or readiness itself,APG creates,proposed,,
+E90,Financial policy (the ten foundation decisions),C,partial,1,configuration a current contract names,setup question,partly,,
+E91,Sales contract (lot or unit),V,missing,optional,developer extension,import template,proposed,document capture (proposed); entry screen (proposed),
+E92,Settlement,V,missing,optional,developer extension,import template,proposed,entry screen (proposed),
+E93,Development finance draw and interest,V,missing,optional,developer extension,import template,proposed,document capture (proposed),
+E94,"Land and development cost (acquisition, statutory, holding)",V,missing,optional,developer extension,import template,proposed,entry screen (proposed),
+E95,Development feasibility version,V,missing,optional,developer extension,import template,proposed,,
+E96,Financial record and its value status,I,partial,later,needed by insights not yet built,APG creates,partly,,
+E97,Prevention opportunity,I,missing,later,needed by insights not yet built,APG creates,proposed,entry screen (proposed),
+E98,Work package,B,partial,later,needed by insights not yet built,import template,proposed,entry screen (proposed); setup question (proposed),
+E99,Schedule milestone and contractual date,B,missing,later,needed by insights not yet built,import template,proposed,entry screen (proposed); document capture (proposed),
