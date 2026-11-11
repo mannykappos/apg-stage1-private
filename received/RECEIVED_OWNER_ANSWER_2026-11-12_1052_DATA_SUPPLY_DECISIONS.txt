@@ -1,0 +1,9 @@
+Owner answer received 2026-11-12, question asked at 10:52 AEDT (Australia/Melbourne), through the chat question tool.
+Question: GPT and Gemini both agree with all 12 recommendations; GPT adds small conditions (field-level wording, freshness per insight,
+keep 'conflicting' distinct, run revision 3's GPT check before formal approval). How do you want to decide the 12 data-supply decisions?
+Answer selected: "Approve all 12 with the conditions (Recommended)" — option text: "Approval in principle only; Claude folds the conditions into
+draft 6. No build."
+Decisions document: APG_Data_Supply_Decisions.docx (decisions 1 to 12 with Claude's recommendations). Reviews: GPT and Gemini opinions of
+2026-11-12 (both agree with all 12).
+Boundary: approval in principle; formal approval follows revision 3's GPT check and the Section 18 cascade impact assessment; no build is
+authorised (S04 §20; stage 2 not authorised).

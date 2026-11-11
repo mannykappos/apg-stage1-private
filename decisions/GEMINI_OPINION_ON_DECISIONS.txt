@@ -1,0 +1,42 @@
+Here is my expert architectural review of the twelve proposed decisions for the APG Data Supply System, evaluated against the operational realities of Victorian commercial builders ($5M–$50M turnover).
+Review of Decisions
+1. The Design Principle and the Two Guarantees
+ * Recommendation: Approve.
+ * Evaluation: Agree. Establishing testable definitions for "fail-proof on our end" and ensuring no result is displayed beyond its underlying evidence prevents overconfident AI outputs and protects builders from acting on incomplete data.
+2. The Data Scope (99 Entities Plus N01)
+ * Recommendation: Approve; developer entities optional.
+ * Evaluation: Agree. Keeping the core locked blueprint scope tightly focused on commercial builders while parking residential/developer entities as optional extensions prevents unnecessary scope bloat during the initial rollout.
+3. The Architecture: One Intake, Many Ways In
+ * Recommendation: Approve.
+ * Evaluation: Agree. Unifying all data channels through a single Section 04 intake ensures consistent validation, audit trails, and tenant isolation regardless of whether data arrives via CSV import, document capture, or manual screen entry.
+4. The Release Rule
+ * Recommendation: Approve.
+ * Evaluation: Agree. Tying release milestones strictly to what current detection rules and figures actually consume is mechanically sound and prevents building unproven data pipelines prematurely.
+5. Release A Scope
+ * Recommendation: The middle path.
+ * Evaluation: Agree. The minimum option assumes pristine file exports that many mid-tier builders cannot consistently produce, while the full option relies on unbuilt third-party extraction (EDR-22). The middle path provides pragmatic flexibility for pilot projects without stalling delivery.
+6. Phone Site Capture
+ * Recommendation: Level 2, with an early discovery gate.
+ * Evaluation: Agree. Since every site fact has a corresponding entry form or template, treating phone capture as an operational accelerator rather than a hard blocking requirement prevents site rollout friction.
+7. Subcontractor Claims
+ * Recommendation: Promote, together with decision 12's back-to-back check.
+ * Evaluation: Strongly Agree. Subcontractor over-certification and unbacked pass-through variations represent the single largest profit leakage vector in commercial construction. Pulling this forward into Release B is critical.
+8. The Cost-Code Map
+ * Recommendation: Mandatory before cost-code figures; AI suggestion decided later.
+ * Evaluation: Agree. Without a mandatory chart-of-accounts crosswalk, financial grouping reports are useless. Quarantining only unmapped transactions rather than blocking the entire intake pipeline ensures administrative workflows aren't unnecessarily paralyzed.
+9. Default Rule Settings
+ * Recommendation: Approve defaults and ranges at build time.
+ * Evaluation: Agree. Pre-tuned defaults aligned with standard Victorian commercial frameworks (such as AS4000 subcontracts) prevent configuration paralysis for busy contract administrators during onboarding.
+10. Freshness Values
+ * Recommendation: Approve the proposed table as a starting point.
+ * Evaluation: Agree. The proposed thresholds (e.g., 30-day variation windows and monthly claim cycles) align well with commercial accounting rhythms, subject to validation during pilot execution.
+11. Acceptance Criteria and the Route Through Change Control
+ * Recommendation: Approve PG-DS-AC-01 to 13; one change request.
+ * Evaluation: Agree. Bundling both the data readiness requirements and the data supply blueprint amendment into a single cohesive change request with rigorous criteria streamlines governance.
+12. Reviewers' Further Ideas
+ * Recommendation: Take two forward, one later, one after a legal check, decline one.
+ * Evaluation: Agree. Prioritizing back-to-back claims and adjudication-ready evidence packs while correctly rejecting unauthenticated one-tap approvals (a severe security risk) and subjecting statutory declarations to state-based legal review demonstrates sound risk management.
+What Is Missing From the List?
+ * Retrospective Data Entry & Backdating Governance: The decisions omit explicit handling for when site staff log delays, instructions, or site conditions weeks after the fact. APG needs explicit validation rules and qualification labeling for backdated entries to prevent historical distortion of active cash-flow and margin analytics.
+Overall Verdict
+The twelve decisions provide a pragmatic, well-governed, and commercially astute roadmap for closing the data supply design. By balancing architectural purity with the messy administrative realities of mid-tier builders—particularly by prioritizing subcontractor back-to-back claims and adopting the middle-path scope for Release A—this framework positions APG for successful real-world adoption.

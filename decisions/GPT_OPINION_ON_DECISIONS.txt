@@ -1,0 +1,338 @@
+I've reviewed all 12 decisions. My overall view is that Claude's recommendations are mostly right, and I would approve the direction of the design. However, I would make a few changes before you give approval in principle.
+
+The important distinction is that you are approving the design direction, not accepting that the design is complete or authorising development. The document itself makes that distinction on page 1, and I agree with it.
+
+Here is my position on every decision.
+
+### My recommendation on the 12 decisions
+
+### 1\. The design principle and the two guarantees
+
+Approve with changes
+
+I agree with the principle: APG must not depend on a builder having particular software. Integrations should reduce the effort of supplying information, not determine whether APG can operate.
+
+I also agree with both guarantees:
+
+* No result is shown beyond what its evidence supports.
+
+* Every data gap has a named way to fill it.
+
+The change I would make: make it explicit that every required field in every insight's input contract must have a viable supply route, not merely that every entity has a way to be supplied.
+
+This matters because an entity can technically have an intake method while several important fields within it remain impossible to obtain or verify.
+
+That was one of the central problems in the earlier design review. I would not leave that distinction implicit.
+
+### 2\. The data scope: 99 entities plus N01
+
+Approve with a condition
+
+I agree with the 99 entities plus N01. I also agree that the five developer entities should remain optional rather than being added to the locked scope without their own change.
+
+However, there is an important qualification in the document: revision 3's own GPT check is still outstanding.
+
+My recommendation is:
+
+* Approve the proposed scope in principle.
+
+* Keep the developer entities outside the mandatory scope.
+
+* Make the independent check of the 99-entity register a prerequisite to formal approval.
+
+I would not casually narrow the 99 entities. They represent the data scope APG has already identified as necessary.
+
+### 3\. The architecture: one intake, many ways in
+
+Agree
+
+I agree with Claude.
+
+The architecture is right:
+
+* One common intake and control framework.
+
+* Multiple ways to supply information.
+
+* Import templates, document/email capture, entry screens and setup questions at Level 1.
+
+* Phone capture at Level 2.
+
+* Integrations through AUIF at Level 3.
+
+* APG-generated records where APG calculates the information itself.
+
+The most important part is that changing the way data arrives must not silently change the detection rules or the resulting figures.
+
+My qualification: one intake should mean common governance and controls, not forcing every type of information through an identical processing sequence.
+
+I would also retain the two important gates already identified in the earlier review: field-level coverage and the separately tested intake migration. A new intake system must not alter existing insight results without an approved change.
+
+### 4\. The release rule
+
+Agree
+
+I agree with the release rule.
+
+Release A should supply the information today's insights actually need. Release B should supply additional information that lifts known limitations in those insights. Everything else should wait for builder discovery.
+
+That is a sensible way to prevent the project from becoming an enormous data-capture exercise before APG has demonstrated value.
+
+One important condition: the rule must be applied against written, exact input contracts. It cannot rely on somebody's interpretation of what an insight probably needs.
+
+### 5\. Release A scope
+
+Agree — middle path
+
+This is the decision I particularly agree with.
+
+I would choose the middle path, not the minimum and not the full option.
+
+The minimum risks assuming builders can provide files for everything. In real commercial construction, that assumption is too optimistic.
+
+The full option risks building a large document-extraction capability before the extraction vendor and requirements are settled.
+
+The middle path gives you:
+
+* A functioning intake foundation.
+
+* Real CSV and Excel imports.
+
+* Entry forms for facts needed by the first pilot's insights.
+
+* Document upload and person-confirmed extracted values.
+
+* Market-insight supplements when those insights are actually used.
+
+* Readiness checks, data checklists and nudges.
+
+I also agree with the three gates on page 2:
+
+* Written M6 input contracts.
+
+* Intake migration tested as a separate milestone against today's results.
+
+* A passing field-coverage report.
+
+I would not relax any of those gates. Release A is not complete just because the screens and upload mechanisms exist.
+
+### 6\. Phone site capture
+
+Agree, with the early discovery gate
+
+I agree with Level 2 rather than making phone capture a mandatory Release A feature.
+
+However, this needs to be tested early, not left until the end of development.
+
+There is a real difference between entering a fact later and recording it when it happens.
+
+For example:
+
+* A delay may be observed on site today.
+
+* A defect may be discovered during an inspection.
+
+* An instruction may be given verbally.
+
+* Plant or labour conditions may change during a shift.
+
+If the information is only entered days or weeks later, APG must know that it is retrospective.
+
+I agree with qualifying insights that rely on retrospective information. I would also insist that early discovery establishes whether any first-pilot insight genuinely depends on timely site capture.
+
+If it does, that particular capture requirement needs to be brought forward.
+
+### 7\. Subcontractor claims
+
+Agree — promote with the back-to-back check
+
+I agree with Claude's recommendation.
+
+This is commercially important in construction.
+
+A builder may receive a claim from a subcontractor that does not match the corresponding claim or payment position with the client.
+
+The comparison could expose:
+
+* Subcontractor claims that exceed the corresponding client claim.
+
+* Work claimed by a subcontractor that has not been recognised in the client claim.
+
+* Differences in quantities, values or claimed progress.
+
+* Potential exposure between what the builder owes and what the builder can recover.
+
+I would promote the subcontractor claim capability into the front of Release B, together with the back-to-back check.
+
+However, I would keep the distinction clear: collecting the claims is not itself an intelligence result. The matching, comparison rules, evidence requirements and qualification conditions need to be defined before APG makes a meaningful finding.
+
+I would not move it into Release A unless a current insight actually requires it.
+
+### 8\. The cost-code map
+
+Agree
+
+I agree that a builder-confirmed cost-code map should be mandatory before APG produces figures that group information by cost code.
+
+This is an important control.
+
+If APG incorrectly maps a supplier transaction, labour cost or commitment to a cost code, the resulting cost analysis can be misleading.
+
+I also agree with allowing APG to suggest possible matches while requiring the builder to confirm them.
+
+Unmapped records should still be accepted into the system, but figures that depend on the missing mapping must remain appropriately qualified or blocked.
+
+I would leave AI-assisted suggestions as a later design decision. Getting the authority and confirmation process right is more important than how the suggestions are generated.
+
+### 9\. Default rule settings
+
+Agree, with a condition
+
+I agree with shipping approved defaults rather than making every builder configure every detection rule before receiving value.
+
+That makes onboarding much easier.
+
+But I would insist on three controls:
+
+* The defaults and permitted ranges are approved by the product owner before release.
+
+* The builder's authorised approver accepts the settings during onboarding.
+
+* Any subsequent change is recorded, including who changed it and when.
+
+I agree that R04B instruction types and R07 comparable pairs should come from the builder rather than being guessed by APG.
+
+The defaults should be sensible starting points, not a substitute for the builder's commercial judgement.
+
+### 10\. Freshness values
+
+Approve as starting values, not fixed universal rules
+
+I agree with approving the proposed table as the starting point.
+
+I would not treat every value as permanently correct for every builder, project or insight.
+
+The proposed values on page 4 are generally sensible starting positions, but I would pay particular attention to:
+
+| Data                            | Proposed qualification point | My opinion                                                          |
+| ------------------------------- | ---------------------------- | ------------------------------------------------------------------- |
+| Variations and order amendments | 60 days                      | Reasonable starting point                                           |
+| Cost-to-complete forecast       | One month-end missed         | Reasonable, but high-value forecasts may need more frequent updates |
+| Budget revision                 | Two month-ends               | Reasonable                                                          |
+| Supplier invoices and credits   | Two month-ends               | Reasonable starting point                                           |
+| Bank transactions               | 31 days                      | Potentially too old for cash-related insights                       |
+| Facility statement              | Two months                   | Reasonable starting point                                           |
+| Claims and payment schedules    | One claim period missed      | Agree                                                               |
+| Programme                       | One monthly update missed    | Reasonable, subject to project reporting frequency                  |
+| Timesheets                      | Two weeks                    | Could be too old for labour-related insights                        |
+| Delays, defects and plant hire  | Monthly                      | Could be too old for some active project insights                   |
+| Compliance evidence             | At expiry                    | Agree                                                               |
+| Market and quote data           | Section 08 §7.1              | Agree, assuming that section provides the applicable rules          |
+
+My concern is not that the proposed values are wrong. It is that freshness is partly dependent on what APG is trying to tell the builder.
+
+A bank transaction might be acceptable for a historical financial report but too old for an insight about current cash exposure.
+
+I would approve the table as initial defaults, with the requirement that the applicable insight determines whether stale data needs qualification.
+
+I would not allow a fresh-looking overall data status to hide an old critical input.
+
+### 11\. Acceptance criteria and change control
+
+Agree, subject to the formal change process
+
+I agree with approving PG-DS-AC-01 to 13 in principle and taking the Data Readiness Change Request and Data Supply System through one change request.
+
+They are two parts of the same design:
+
+* One establishes what information APG needs.
+
+* The other establishes how APG obtains it.
+
+I also agree that CR-07 should remain separate for the builder integrations. The data supply design defines the integration architecture and controls; CR-07 addresses the actual connector work.
+
+The formal sequence matters:
+
+* Owner approval in principle.
+
+* Cascade impact assessment under Section 18.
+
+* Formal change approval and numbering.
+
+* Section 01 Discovery Exit Report.
+
+* Separate owner authorisation before any build begins.
+
+I would also ensure the acceptance criteria are traceable to all six supply methods and APG-generated records, not just the import process.
+
+### 12\. Reviewers' further ideas
+
+Here is my decision on each one.
+
+| Proposal                               | My decision | Reason                                                                                                    |
+| -------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------- |
+| Back-to-back subcontractor claim check |             | Strong commercial value and pairs with Decision 7                                                         |
+| Adjudication evidence packs            |             | Valuable for disputes and supports the evidence trail                                                     |
+| Learning cost-code map                 |             | Builder-specific learning is sensible, but confirmation and mapping controls come first                   |
+| Statutory declaration checks           |             | Requirements differ across Australian states; APG should flag requirements, not make legal determinations |
+| One-tap approvals without signing in   |             | I agree. Approval must be attributable to an authenticated authorised person                              |
+| Data retention and archiving           |             | Confirm what is already covered before creating another change request                                    |
+
+I agree with all six positions Claude recommends.
+
+### What I think is missing from the decision list
+
+There are two things I would make explicit before final approval.
+
+1\. The data governance and lifecycle decisions.
+
+In our previous review, we identified that the design needs to account for responsibility for data, corrections, disputes, changing records, retention, access boundaries and failed or incomplete data supply.
+
+I would not turn all of those into new features or expand the release scope now. But the owner should decide whether these controls are already adequately covered by the locked blueprint or need to be included in the change request.
+
+In particular, I would not leave the handling of corrected or disputed data ambiguous. APG must be able to establish what information it originally received, what changed, who changed it, and whether an existing insight needs reassessment.
+
+2\. The consequence of incomplete evidence.
+
+The design needs a clear distinction between:
+
+* Information that is missing.
+
+* Information that is present but unverified.
+
+* Information that conflicts with another source.
+
+* Information that is stale.
+
+* Information that is verified and eligible for an insight.
+
+This is central to the promise that APG never shows a result beyond its evidence. I would make sure the final design and acceptance criteria enforce that distinction consistently.
+
+These are not reasons to invent another intake channel. They are governance decisions about whether APG can trust and use the information it receives.
+
+### My final recommendation
+
+Approve the direction, with conditions
+
+| Decision                          | My position                                     |
+| --------------------------------- | ----------------------------------------------- |
+| 1. Design principle               | Approve with field-level coverage clarification |
+| 2. Data scope                     | Approve subject to independent register check   |
+| 3. Architecture                   | Approve                                         |
+| 4. Release rule                   | Approve                                         |
+| 5. Release A                      | Approve middle path                             |
+| 6. Phone capture                  | Level 2, early discovery gate                   |
+| 7. Subcontractor claims           | Promote with back-to-back check                 |
+| 8. Cost-code map                  | Mandatory before dependent figures              |
+| 9. Default settings               | Approve with owner-approved defaults            |
+| 10. Freshness                     | Approve as starting values                      |
+| 11. Acceptance and change control | Approve one change request                      |
+| 12. Further ideas                 | Agree with Claude's recommendations             |
+
+My overall opinion: Claude has made sensible decisions. I would not redesign the architecture, expand Release A to the full option, or add more intake methods.
+
+The most important thing now is to get the foundations right: field-level coverage, exact input contracts, evidence authority, freshness, and the effect of changes to existing data.
+
+I would give Claude the 12 decisions with the conditions above and ask for them to be incorporated into the next controlled draft. Then complete the cascade impact assessment and formal approval process.
+
+And to be absolutely clear: this approval in principle must not be treated as permission to start building. The document correctly preserves that boundary.
