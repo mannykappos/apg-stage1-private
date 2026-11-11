@@ -937,7 +937,7 @@ class Pass2ProcStat(unittest.TestCase):
                 self.assertEqual(start, int(raw[raw.rindex(')') + 2:].split()[19]))
             finally:
                 p.kill()
-                p.wait()
+                p.wait(timeout=60)                # row 68 (AM-2): every process start in tests_tools has a time limit
         finally:
             shutil.rmtree(d, ignore_errors=True)
 

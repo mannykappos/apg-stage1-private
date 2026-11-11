@@ -459,7 +459,7 @@ class P2SubprocessUnits(P2Base):
             self.assertTrue(any(('%d:%d' % g_ident) in l for l in recs), recs)
         finally:
             unrelated.kill()
-            unrelated.wait()
+            unrelated.wait(timeout=60)            # row 68 (AM-2): every process start in tests_tools has a time limit
 
 
 class P2Identity(P2Base):
@@ -471,7 +471,7 @@ class P2Identity(P2Base):
             self.assertTrue(p2_alive((p.pid, st[2])))
         finally:
             p.kill()
-            p.wait()
+            p.wait(timeout=60)                    # row 68 (AM-2)
 
     def test_a_reused_parent_pid_with_a_child_of_its_own_is_not_a_member(self):
         o = E._Owner(E._SUP, 'sim', 'unit')
@@ -664,15 +664,21 @@ class P2NestedAndRefusals(P2Base):
 
     def test_the_hook_registers_children_created_by_in_process_code_and_a_phase_owns_them(self):
         # AM-5 (a) and (c): a child started by in-process code is registered at creation; a phase that leaves it running leaks
-        with E.owning('run_start') as o:
-            p = subprocess.Popen(['sleep', '30'])
-            self.assertIn(p.pid, E._SUP.regs)
-            self.assertIs(E._SUP.regs[p.pid].owner, o)
-        self.assertTrue(o.leaked)
-        self.assertIsNotNone(p.poll())        # its own handle collected the status
-        with E.owning('run_end') as o2:
-            subprocess.run(['true'])
-        self.assertFalse(o2.leaked)
+        p = None
+        try:
+            with E.owning('run_start') as o:
+                p = subprocess.Popen(['sleep', '30'])
+                self.assertIn(p.pid, E._SUP.regs)
+                self.assertIs(E._SUP.regs[p.pid].owner, o)
+            self.assertTrue(o.leaked)
+            self.assertIsNotNone(p.poll())        # its own handle collected the status
+            with E.owning('run_end') as o2:
+                subprocess.run(['true'], timeout=60)      # row 68 (AM-2)
+            self.assertFalse(o2.leaked)
+        finally:
+            if p is not None and p.poll() is None:    # row 68 (AM-2): a bounded wait if the phase did not end it
+                p.kill()
+                p.wait(timeout=60)
 
 
 # ---------------------------------------------------------------------------------------------------------------------------------------
@@ -777,7 +783,7 @@ class AM5Supervision(P2Base):
         m = self.script('m.py', 'import subprocess, sys\nsubprocess.Popen([sys.executable, %r])\n' % g)
         with E.owning('run_start') as o:
             p = subprocess.Popen([PY, '-I', '-S', m])
-            p.wait()                              # m has exited: g's only link is gone before any scan
+            p.wait(timeout=60)                    # m has exited: g's only link is gone before any scan (row 68: bounded)
             _time5.sleep(0.5)
         self.assertTrue(o.leaked)
         g_ident = p2_read_idents(self.rec)[0]
@@ -886,7 +892,7 @@ class AM5Supervision(P2Base):
         try:
             E.run_child([PY, '-I', '-S', s], 30, self.env(), self.d, unit='h1')
             with E.owning('run_start') as o:
-                subprocess.run(['true'])
+                subprocess.run(['true'], timeout=60)      # row 68 (AM-2)
         finally:
             del E._SUP.register
         pid = p2_read_idents(self.rec)[0][0]
@@ -900,7 +906,7 @@ class AM5Supervision(P2Base):
         E._SUP.supervisor = False
         m = self.script('m.py', 'import subprocess, sys\nsubprocess.Popen([sys.executable, "-c", %r])\n'
                         % (P2_REC + 'rec(%r)\n' % self.rec))
-        subprocess.run([PY, '-I', '-S', m])
+        subprocess.run([PY, '-I', '-S', m], timeout=60)      # row 68 (AM-2)
         g = None
         for _ in range(50):
             ids = p2_read_idents(self.rec)
@@ -953,6 +959,7 @@ class AM5Supervision(P2Base):
                 exec(P2_REC, globals())
                 w = max(int(x) for x in os.listdir('/proc/self/fd') if int(x) > 2 and os.path.exists('/proc/self/fd/%s' % x))
                 if os.fork() == 0:
+                    _sig.alarm(120)               # row 68 (AM-2): the planted grandchild's own time limit (it is killed long before)
                     globals()['rec'](rec)
                     _t.sleep(0.3)
                     if write_one:
@@ -1023,16 +1030,21 @@ class AM5Supervision(P2Base):
         # reading 9: a child started outside every unit and phase is the run end's; left running, the run's close is PROCESSES_LEFT
         s = self.script('lone.py', 'rec(%r)\nimport time\ntime.sleep(60)\n' % self.rec)
         p = subprocess.Popen([PY, '-I', '-S', s])
-        self.assertEqual(E._SUP.regs[p.pid].owner.id, 'run_end')
-        for _ in range(50):
-            if p2_read_idents(self.rec):
-                break
-            _t.sleep(0.1)
-        errs = E._SUP.close_run()
-        self.assertIn('RUN_ERROR PROCESSES_LEFT run_end', [e.line() for e in errs])
-        self.assertTrue(any(l.startswith('CLEANUP run_end ') for l in E._SUP.final_lines()))
-        self.assertIsNotNone(p.poll())
-        self.assert_all_gone(p2_read_idents(self.rec))
+        try:
+            self.assertEqual(E._SUP.regs[p.pid].owner.id, 'run_end')
+            for _ in range(50):
+                if p2_read_idents(self.rec):
+                    break
+                _t.sleep(0.1)
+            errs = E._SUP.close_run()
+            self.assertIn('RUN_ERROR PROCESSES_LEFT run_end', [e.line() for e in errs])
+            self.assertTrue(any(l.startswith('CLEANUP run_end ') for l in E._SUP.final_lines()))
+            self.assertIsNotNone(p.poll())
+            self.assert_all_gone(p2_read_idents(self.rec))
+        finally:
+            if p.poll() is None:                  # row 68 (AM-2): a bounded wait if the run's close did not end it
+                p.kill()
+                p.wait(timeout=60)
 
     def test_row99_the_summary_counts_the_units_started(self):
         # reading 13: CLEANUP_SUMMARY units= is the number of units started (subprocess and forked), leaked= the units that leaked
