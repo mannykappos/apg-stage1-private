@@ -987,17 +987,24 @@ class AM5Checker(unittest.TestCase):
         self.assertIn('CONTROL end CONTROL_NOT_RUN needs control_end=NOT_RUN and the matching stop record', probs)
 
     def test_row62_cross_kind_v3_dispatch(self):
-        # K.3: each v=3 RESULT line is read by its own kind's rules; the lines of another kind are refused, and tests and wrapper have
-        # no v=3 form
+        # K.3: dispatch by kind and version: a v=3 mutation, sabotage or cases line is read by that kind's v=3 rules (K.1 for the two
+        # control kinds, A.3 for cases); the same body as v=2 by the frozen rules; tests and wrapper have no v=3 form
+        ctl = ['CONTROL start CONTROL_PASS cause=ok']
+        for kind, outcome in (('mutation', ('KILLED', 'c')), ('sabotage', ('CAUGHT', 'c'))):
+            with self.subTest(kind=kind):
+                out, code = E.finish_items(kind, 'probe', 'r', ['m1'], {'m1': outcome}, control_start='PASS', control_end='NOT_RUN')
+                k = next(i for i, l in enumerate(out) if l.startswith('RESULT'))
+                text = '\n'.join(out[:k] + ctl + out[k:])
+                self.assertTrue(out[-1].startswith('RESULT v=3 kind=%s ' % kind))
+                self.assertTrue(any('(K.1)' in p for p in E.check_output(text, actual_exit=code)), kind)      # read by K.1
+                v2 = text.replace('RESULT v=3 kind=%s' % kind, 'RESULT v=2 kind=%s' % kind)
+                self.assertFalse(any('(K.1)' in p for p in E.check_output(v2, actual_exit=code)), kind)       # the frozen reader
+        cases, ccode = p2_cases_out(['audit_log/AL-01'], {'audit_log/AL-01': ('PASS', 'ok')}, ['audit_log'])
+        self.assertEqual(E.check_output('\n'.join(cases), actual_exit=ccode, pins=P2_PINS), [])
+        no_suites = '\n'.join(cases).replace(' suites=audit_log', '', 1)
+        self.assertNotEqual(E.check_output(no_suites, actual_exit=ccode), [])                        # A.3's field, v=3 only
         mut, mcode = p2_mut_out({'m1': ('KILLED', 'c'), 'm2': ('KILLED', 'c')},
                                 extra=['CONTROL start CONTROL_PASS cause=ok', 'CONTROL end CONTROL_PASS cause=ok'])
-        cases, ccode = p2_cases_out(['audit_log/AL-01'], {'audit_log/AL-01': ('PASS', 'ok')}, ['audit_log'])
-        self.assertEqual(E.check_output('\n'.join(mut), actual_exit=mcode), [])
-        self.assertEqual(E.check_output('\n'.join(cases), actual_exit=ccode, pins=P2_PINS), [])
-        self.assertNotEqual(E.check_output('\n'.join(['CASE audit_log/AL-01 PASS cause=ok'] + mut), actual_exit=mcode), [])
-        self.assertNotEqual(E.check_output('\n'.join(['MUTANT m1 KILLED cause=c'] + cases), actual_exit=ccode, pins=P2_PINS), [])
-        sab = '\n'.join(mut).replace('MUTANT ', 'PLANT ').replace('kind=mutation', 'kind=sabotage')
-        self.assertNotEqual(E.check_output(sab, actual_exit=mcode), [])          # KILLED is not a sabotage outcome
         for kind in ('tests', 'wrapper'):
             self.assertNotEqual(E.check_output(mut[-1].replace('kind=mutation', 'kind=%s' % kind), actual_exit=mcode), [])
 
