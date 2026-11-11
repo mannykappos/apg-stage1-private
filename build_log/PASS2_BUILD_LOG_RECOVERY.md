@@ -89,3 +89,10 @@ review pack); everything after that is restated here from the conversation recor
   lost ones, to be disclosed). Manifest regenerated (cefafbae…621c); the first attempt, on the worktree, refused because a worktree's
   .git is a file; regenerated on an export of the branch.
 - 18:50 Step 3 full suite started on both Pythons (branch step3, e1b79ac).
+- 19:43 Step 3 full suite, 3.13: 9 files OK; test_runner_zero_work 165 of 166 OK, 1 FAIL: test_row55_an_interrupted_wrapper_group.
+  The signal landed between G01 and G02 (G01 finished within the test's 0.3 s delay), so no group was INDETERMINATE: correct
+  behaviour, a timing race in the new test (not a defect, no logic change). Fixed: the copy holds G01's child (marker, then sleep), so
+  the signal always lands inside G01 (58b3f81; pins v101; manifest 8809e511...67b6, be0c27b). Rerun on 3.13: OK. The 3.12 suite
+  continues on e1b79ac; test_runner_zero_work is then rerun on both Pythons on be0c27b.
+- 19:36 Separate work for the owner (not stage 1): the APG Data Readiness change request draft (a Claude doc) and its GPT/Gemini
+  review pack were sent.
