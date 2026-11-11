@@ -1,0 +1,46 @@
+Independent Review Report: APG Data Readiness Change Request (Draft)
+Reviewer Role: Independent Reviewer
+Subject: APG Data Readiness Change Request (Draft) (01_CHANGE_READINESS_CR_DRAFT.md)
+Evaluation Scope: One-pass comprehensive review against locked APG Construction Blueprint v1.0 (Sections 03–13), Master Requirements Traceability Matrix (MRTM), Shared Financial Foundation, Data Contracts (11_DATA_CONTRACTS_AND_INTERFACES.md), and the Code Inventory (03_CODE_INVENTORY.txt).
+Detailed Findings
+Finding 1: Unverified Rule Mapping and Operational Dependency for Variations Not Claimed (R04/R04b)
+ * Class: Blocking
+ * Where: Data contract table, row "Variations not claimed (R04, R04b)"
+ * What is Wrong, with Evidence: The draft explicitly notes that certain data contract rows were drafted directly from rule names (R04 and R04b) without confirming against locked blueprint specifications. In APG Blueprint Section 06 (Detection Rules), R04/R04b govern unapproved variation leakage and site instructions. However, specifying "Instructions logged within 2 days" as a good freshness level assumes a real-time site-instruction intake process that is neither part of standard accounting records nor currently supported by existing import templates or site-capture screens (as admitted in the Coverage Matrix). This creates an unverified operational dependency.
+ * Fix Recommended: Validate the exact data requirements of rules R04 and R04b against Section 06 locked specifications before finalizing the data contract. If site instructions are mandatory for these rules, explicitly gate the rule activation behind the planned site-capture feature (CR-05) rather than listing it as a general software prerequisite.
+ * Rough Cost: Small.
+Finding 2: Absolute Software Guarantee Claim ("Never Gives a Wrong or Overconfident Answer")
+ * Class: Should Fix
+ * Where: Section "The requirement", paragraph 3 ("Fail-proof on our end")
+ * What is Wrong, with Evidence: The draft asserts: "APG never gives a wrong or overconfident answer because data was missing." While locked blueprint S04 §10 and §14 mandate suppression, qualification, and degradation of outputs when inputs are stale or missing, claiming APG never gives an overconfident answer is an absolute software guarantee that cannot be mathematically proven in practice—especially when operating on OCR-extracted material values (S04 §12) or heuristic estimation methods.
+ * Fix Recommended: Rephrase the guarantee to align with S04 §14 operational standards: "APG actively suppresses, qualifies, or downgrades recommendations and never silently defaults when data is missing, ensuring complete transparency of uncertainty in every output."
+ * Rough Cost: Small.
+Finding 3: Introduction of Core Structural Record Kinds Without Blueprint Amendment Reference
+ * Class: Should Fix
+ * Where: Coverage matrix, subsection "Data not yet specified / missing record kinds" (Programme activities, client claims, labour rates, estimate lines)
+ * What is Wrong, with Evidence: The coverage matrix correctly identifies four missing record kinds required to support Sections 07 (delay/holding costs), 11 (claims), 12 (cash timing), and Estimation Intelligence. However, introducing core financial and operational data structures alters the Shared Financial Foundation (02_SHARED_FINANCIAL_FOUNDATION.md) and Data Contracts (11_DATA_CONTRACTS_AND_INTERFACES.md), which requires a formal blueprint amendment process rather than being treated as a routine change request addition.
+ * Fix Recommended: Formally designate the addition of these four record kinds as a formal blueprint amendment package (e.g., Amendment CR-06) and link their schema definitions to the respective blueprint sections.
+ * Rough Cost: Medium.
+Finding 4: Insensitivity of Freshness Thresholds to $5M–$50M Builder Commercial Cadences
+ * Class: Optional Improvement
+ * Where: Data contract table, rows for Revenue, Committed Cost, and Cash-Adjusted Margin (e.g., "Variations current within 7 days", "Amendments within 7 days")
+ * What is Wrong, with Evidence: For Victorian commercial builders in the $5M–$50M turnover bracket, administrative workflows (such as sub-contractor variation agreement sign-offs and supplier billing cycles) typically operate on monthly or fortnightly accounting rhythms rather than strict 7-day rolling windows. Insisting on 7-day variation updates as a "good level" will result in routine operational cadence being flagged as degraded.
+ * Fix Recommended: Adjust the "good level" freshness threshold for variation registers and purchase order amendments to align with standard monthly or fortnightly commercial claim cycles (e.g., 14–30 days), retaining 7 days as an accelerated/elite tier.
+ * Rough Cost: Small.
+Finding 5: Cross-Reference Precision in Locked Blueprint Summary Table
+ * Class: Minor
+ * Where: Section "What the locked blueprint already guarantees", row on cost-to-complete inputs
+ * What is Wrong, with Evidence: Cites S05 §5.2 and MRTM alphanumeric tag PG-PC-AC-04. While S05 §5.2 governs cost-to-complete qualifications, ensuring exact alphanumeric alignment with the Master Requirements Traceability Matrix (MRTM) maintains audit trail integrity.
+ * Fix Recommended: Cross-check the MRTM table to confirm that PG-PC-AC-04 maps precisely to cost-to-complete qualification rules.
+ * Rough Cost: Small.
+Review Summary
+ * One-Line Verdict: Ready after the blocking fixes.
+ * Total Findings by Class:
+   * Blocking: 1
+   * Should Fix: 2
+   * Optional Improvement: 1
+   * Minor: 1
+   * Total: 5
+ * What Could Not Be Checked (and Why):
+   * Field-by-field schema validation across all 35 record kinds: Could not be audited at the database column level because 03_CODE_INVENTORY.txt provides high-level module summaries and record-kind names rather than full DDL schemas or line-by-line field mappings.
+   * Document capture execution (apg/ingest/documents.py): Could not be fully verified for edge-case accuracy without live execution environments or test fixtures against sample OCR outputs.

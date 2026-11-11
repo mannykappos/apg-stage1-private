@@ -1,0 +1,79 @@
+APG code inventory for the data readiness review. BUILDER-EXECUTED: NOT INDEPENDENT.
+Generated from the APG stage 1 tree (APG-M10 code, unchanged by stage 1 in apg/ and apg_ui/), 2026-11-11.
+Reviewers cannot see the code; this lists what the change request's coverage claims rest on.
+
+1. Record kinds each intake path accepts (each has an import template and the Section 04 pipeline)
+  apg.ingest.specs (11): supplier, ap_invoice, credit_note, payment, purchase_order, po_amendment, supplier_quote, pm_invoice, budget_line, fx_rate, market_observation
+      supplier             material fields: -
+      ap_invoice           material fields: amount_ex_gst_cents
+      credit_note          material fields: amount_ex_gst_cents
+      payment              material fields: amount_cents
+      purchase_order       material fields: amount_ex_gst_cents
+      po_amendment         material fields: delta_cents
+      supplier_quote       material fields: unit_rate_minor_units
+      pm_invoice           material fields: amount_ex_gst_cents
+      budget_line          material fields: budget_cents
+      fx_rate              material fields: -
+      market_observation   material fields: -
+  apg.fin.intake (8): project, contract, variation, ctc_line, retention, security, facility, bank_txn
+      project              material fields: -
+      contract             material fields: original_contract_cents
+      variation            material fields: -
+      ctc_line             material fields: cost_to_complete_cents
+      retention            material fields: retention_held_cents
+      security             material fields: face_value_cents
+      facility             material fields: limit_cents, drawn_cents, rate_bps
+      bank_txn             material fields: amount_cents
+  apg.det.intake (7): compliance, notice, delay_event, plant_hire, timesheet, work_output, defect
+      compliance           material fields: expiry_date
+      notice               material fields: notice_date
+      delay_event          material fields: start_date
+      plant_hire           material fields: rate_cents_per_day, on_hire_date
+      timesheet            material fields: ordinary_hours, work_date
+      work_output          material fields: quantity, week_start
+      defect               material fields: raised_date
+  apg.mkt.intake (9): material, material_demand, delivery, spec_requirement, quote_reading, quote_tier, quote_term, landed_assumption, import_check
+      material             material fields: unit_text
+      material_demand      material fields: quantity, required_date
+      delivery             material fields: qty_delivered, delivery_date
+      spec_requirement     material fields: material_ref
+      quote_reading        material fields: value_text
+      quote_tier           material fields: unit_rate_minor_units, min_quantity
+      quote_term           material fields: value_text
+      landed_assumption    material fields: -
+      import_check         material fields: status_text
+  apg.det.intake templates: TPL-BZ-COMPLIANCE, TPL-BZ-NOTICES, TPL-BZ-DELAY-EVENTS, TPL-BZ-PLANT-HIRE, TPL-BZ-TIMESHEETS, TPL-BZ-WORK-OUTPUT, TPL-BZ-DEFECTS
+  apg.mkt.intake templates: TPL-BZ-MATERIALS, TPL-BZ-MATERIAL-DEMAND, TPL-BZ-DELIVERIES, TPL-MKT-SPEC-REQUIREMENTS, TPL-MKT-QUOTE-READINGS, TPL-MKT-QUOTE-TIERS, TPL-MKT-QUOTE-TERMS, TPL-MKT-LANDED-ASSUMPTIONS, TPL-MKT-IMPORT-CHECKS
+
+2. Record kinds each calculation or detection module reads (string search of the module source)
+  apg/fin/margins.py         reads: project
+  apg/fin/revenue.py         reads: contract, project, variation
+  apg/fin/forecast.py        reads: budget_line, ctc_line, project
+  apg/fin/costs.py           reads: ap_invoice, credit_note, project
+  apg/fin/commitments.py     reads: po_amendment, project, purchase_order, variation
+  apg/fin/cashview.py        reads: bank_txn, facility, project, retention, retention_event, security
+  apg/fin/bridge.py          reads: project
+  apg/det/rules_cost.py      reads: ap_invoice, budget_line, ctc_line, material, po_amendment, project, purchase_order, supplier, variation
+      rules: r01_budget, r02_amendment, r03_invoice_vs_order, r09_forecast_movement, agg_split_orders, d01_held_cost_records
+  apg/det/rules_commercial.py reads: compliance, material, notice, project, purchase_order, retention, supplier, supplier_quote, variation
+      rules: r04_variation, r04b_instruction, r05_retention, r06_compliance, r07_quote_vs_reference
+  apg/det/rules_ops.py       reads: defect, delay_event, plant_hire, project, timesheet, work_output
+      rules: r08_hire, dly_overlap, lab_productivity, def_recurrence, d02_held_records
+  apg/mkt/opportunity.py     reads: material, project, supplier
+  apg/mkt/purchasing.py      reads: material, project
+  apg/mkt/landed.py          reads: landed_assumption, purchase_order, quote_term, quote_tier, supplier_quote
+  apg/mkt/detect.py          reads: material, project
+
+3. Supporting modules named in the request
+  apg/source_authority.py      Source authority, quarantine and the authoritative / provisional split.  Blueprint: Section 04 sections 5, 8, 9, 13; acceptance PG-DI-AC-01 to 07.
+  apg/ingest/freshness.py      Freshness, completeness and decision eligibility.  Blueprint: Section 04 section 14 (and Section 08 sections 7.1 and 14 for quote and market freshness
+  apg/ingest/documents.py      Documents and AI/OCR extraction.  Blueprint: Section 04 section 12 ("non-negotiable"), PG-DI-AC-07; Section 08 (quotes).
+  apg/ingest/review.py         People's decisions on held records.  Blueprint: Section 04 sections 9 (promotion needs resolution, approvals and a recorded disposition), 11, 12.
+  apg/ingest/mapping.py        Mapping templates applied to a file.  Blueprint: Section 04 sections 8 (structural and semantic validation), 10 (normalisation), 18 (spreadsheet impor
+  apg/fin/figure.py            The figure: one financial number together with everything a reviewer needs to trust it or distrust it.  Blueprint: Section 05 sections 5.4 (view metad
+  apg/values.py                Values that know when they are not known.
+  apg/status_model.py          The evidence ladder as enforced code.  Blueprint: Section 17 sections 2 and 3.
+
+4. User interface: apg_ui/ holds __init__.py, plain.py, viewmodel.py; it builds read-only views (no entry forms).
+5. No record kind exists for: programme activities or percent complete; client progress claims, payment schedules or receipts;
+   labour rates or award costs; estimate lines. (Search of the four intake paths above.)

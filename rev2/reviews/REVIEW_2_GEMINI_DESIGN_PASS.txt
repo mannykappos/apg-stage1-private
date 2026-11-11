@@ -1,0 +1,44 @@
+Based on an expert review of the draft change request for Anchor Profit Guardian (APG) tailored to Victorian commercial builders ($5M–$50M turnover), here is a structured evaluation addressing all seven areas requested.
+1. Will this design get APG the data it needs from real builders? Where will it fail in practice?
+ * Where in document: Coverage Matrix and Gap Filling.
+ * What the problem is: The draft relies heavily on manual CSV/spreadsheet import templates for daily operational realities (variations, site logs, purchase orders) or assumes software integrations magically exist. Busy contract administrators (CAs) and project managers (PMs) at $5M–$50M builders are chronically time-poor; they detest manual CSV formatting and data wrangling. If APG requires manual uploads of 10 different spreadsheet types to clear data gates, adoption will stall immediately.
+ * Recommended change: Shift the primary ingestion model away from manual CSV templates toward direct email ingestion (parsing subcontractor PDF claims and variations straight from CA email inboxes via secure OCR) and frictionless mobile web-capture.
+ * Severity: Critical.
+2. What missing data does a profit-leakage product need that the draft misses?
+ * Where in document: The Data Contract and Coverage Matrix.
+ * What the problem is: The draft misses critical construction-specific leak pathways:
+   * Subcontractor Claims vs. Certified vs. Paid: Tracking payment schedules, back-to-back claims, and over-certification of subbies is where 80% of construction profit leakage happens.
+   * Cost-Code Mapping / Chart of Accounts Crosswalk: Every builder structures their Xero, MYOB, or job-costing chart of accounts differently. Without an automated or AI-assisted cost-code normalization layer, ingested data will fail to match APG’s internal financial model.
+   * Data Ownership / Accountability: The draft doesn't specify who in the builder's business owns the data fix (e.g., assigning specific data readiness alerts to the CA vs. the Bookkeeper).
+ * Recommended change: Add explicit record kinds for Subcontractor Progress Claims & Payment Schedules, incorporate a mandatory Cost-Code Mapping crosswalk step during onboarding, and assign clear role-based data ownership in the readiness report.
+ * Severity: Critical.
+3. Is it simple enough for a busy builder or contract administrator? What should be simpler, or automatic?
+ * Where in document: The readiness check and the builder’s report.
+ * What the problem is: Asking a busy CA to log into a configuration dashboard and interpret a multi-insight "Readiness Report" with traffic lights across 14 categories creates cognitive overload. They will ignore it until it blocks them.
+ * Recommended change: Automate the readiness checks entirely in the background and move notifications out of a dashboard into contextual, action-oriented nudges (e.g., an automated weekly email or Slack/Teams ping: "3 subbie invoices from Acme Plumbing are missing cost-code allocations—click here to fix in 10 seconds").
+ * Severity: Important.
+4. Are the freshness levels in the data contract realistic for that segment? Propose better ones.
+ * Where in document: The Data Contract table.
+ * What the problem is: Insisting on 7-day rolling windows for purchase order amendments or variation logs (listed under "Good level") is unrealistic for $5M–$50M commercial builders. Subcontractor variations and PO amendments frequently take 2 to 4 weeks to price, negotiate, and formally execute due to subcontract terms (e.g., AS4000 or MBV domestic/commercial contracts). Forcing a 7-day rule will permanently flag normal commercial operational cadence as "degraded" or "stale."
+ * Recommended change: Align "Good level" freshness thresholds with standard monthly commercial claim and accounting cycles. Propose:
+   * Variations & PO Amendments: Good = ≤30 days (aligned with monthly claims); Minimum = ≤60 days.
+   * Bank Feeds & Cash: Good = Daily; Minimum = Weekly.
+   * Cost-to-Complete Forecasts: Good = Monthly (post-claim cycle); Minimum = Quarterly.
+ * Severity: Important.
+5. Which missing values, if any, should APG be allowed to estimate, and how should estimates be shown?
+ * Where in document: Estimates and confidence.
+ * What the problem is: While the draft correctly bars estimates for material contractual facts (contract sum, statutory deadlines), it leaves cost-to-complete (CTC) forecasting ambiguous. In practice, builders frequently lag on updating CTCs. If APG simply blocks insights due to a missing CTC update, it becomes useless when builders need it most.
+ * Recommended change: Allow APG to calculate statistical trend-based CTC estimates (e.g., applying historical productivity burn rates or historical cost-code run-rates) only if flagged with a distinct visual amber badge: [Estimated: Historical Run-Rate Projection — Overridable]. Never blend estimates invisibly into final margin calculations, and require a 1-click prompt for the CA to accept or override the estimate.
+ * Severity: Important.
+6. Are the five owner decisions for the owner the right ones? What is missing?
+ * Where in document: Decisions for the owner, and the review.
+ * What the problem is: The five proposed decisions cover broad architectural and feature adoption choices, but omit a critical operational gating decision: Cost-Code Normalization Policy. Without deciding how APG forces or assists mapping disparate accounting codes into APG’s structure, software deployment will fail at the data ingestion stage.
+ * Recommended change: Add a 6th decision for the owner: "Approve the AI-assisted Chart of Accounts crosswalking engine as the mandatory onboarding gate to normalize disparate builder accounting systems into APG standard cost codes."
+ * Severity: Important.
+7. Anything else that would make this design stronger or more foolproof?
+ * Where in document: Overall design framework and Gap Filling.
+ * What the problem is: Data readiness is currently framed as a compliance hurdle or a software restriction ("APG won't work until you fix this"). For builders, compliance hurdles are ignored.
+ * Recommended change: Reframing data gaps as financial risk alerts. For example, instead of telling the CA "Variation register incomplete", phrase it as a profit-protection warning: "Potential unbilled variation leakage detected: 4 site instructions logged without corresponding subcontractor claim entries ($45,000 estimated exposure). Click to reconcile." Turning data hygiene into an immediate financial recovery tool ensures builders will rush to fill the data gaps.
+ * Severity: Nice to have / Strategic.
+Overall Judgement
+The draft change request correctly prioritizes transparency and establishes a rigorous architectural baseline to prevent APG from generating false or overconfident outputs. However, by relying heavily on manual spreadsheet imports and rigid 7-day freshness rules, it underestimates the administrative friction typical of $5M–$50M commercial builders. Incorporating automated email parsing, flexible commercial-cadence freshness thresholds, and risk-framed data nudges will make this design truly foolproof in the field.

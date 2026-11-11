@@ -1,0 +1,584 @@
+Worked for 3m 9s
+
+### APG Data Readiness Change Request — independent review
+
+NOT READY FOR OWNER DECISIONS
+
+I reviewed the complete seven-page change request against the supplied review pack:
+
+* The full change-request draft in Markdown and the matching Word document.
+
+* The builder-generated `03_CODE_INVENTORY.txt`.
+
+* Locked Construction Blueprint Sections 03–13.
+
+* The Master Requirements Traceability Matrix.
+
+* The 8 Intelligence Layers shared financial foundation and data contracts.
+
+I have treated the code inventory as builder evidence, not independently verified code behaviour. It tells us which record kinds and modules the builder says exist, but it does not establish that a module correctly calculates an insight, that an intake path works end to end, or that a record contains all the required fields.
+
+Overall: the direction is right, and the two guarantees are a useful starting point. But the current draft makes some claims stronger than the evidence supports, under-specifies several critical data contracts, and identifies only four missing record kinds when the locked blueprint requires a broader set of distinct data and lifecycle records.
+
+I would not put this draft to the owner for decisions yet. The findings below are intended to let Claude make one consolidated correction.
+
+### 1\. Blocking findings
+
+### B1 — The two guarantees do not yet fully capture the owner's requirement
+
+Where: The requirement, paragraphs 1–2.
+
+Evidence: The owner's requirement is that APG identifies exactly what it needs, checks what the builder's software supplies, and uses APG's own features to supply the remainder. The draft's second guarantee says APG knows and tells the builder what is missing and how to supply it, but it does not guarantee that a workable APG-side supply path actually exists for every required input.
+
+The first guarantee also says APG never gives a wrong or overconfident answer because data was missing. That is not fully testable as written. A system cannot guarantee that every answer is correct; it can guarantee that missing, stale, conflicting, unverified or insufficient evidence cannot produce an unqualified result.
+
+The phrase "every result shows whether it rests on evidenced, estimated, stale or missing inputs" is also incomplete. The blueprints require provisional and quarantined records, conflicting sources, assumptions, source authority, reconciliation state, and distinct financial states such as actual, committed, forecast, claimed, disputed, potential and scenario.
+
+Recommended fix: Define the guarantee as an evidence and decision-eligibility guarantee, not a general correctness guarantee. Require APG to:
+
+* identify required inputs and their fields, status, authority and freshness;
+
+* identify which inputs are present, absent, stale, conflicting, quarantined, provisional, unverified or estimated;
+
+* state which insight is eligible, qualified, blocked or unavailable under its own blueprint rules;
+
+* identify a practical supply path for each missing input, or explicitly say that no supported path currently exists;
+
+* never silently treat a gap as satisfied.
+
+The second guarantee should include the obligation to provide a viable way to supply the missing data, not just explain what is missing.
+
+Cost: Medium.
+
+### B2 — The draft overstates what the locked blueprint already guarantees
+
+Where: "What the locked blueprint already guarantees", all rows.
+
+Evidence: Section 04 specifies mandatory controls, but it does not establish that those controls are implemented or that a complete builder-facing readiness system already exists. The draft partly acknowledges this later, but the table's opening sentence says the blueprint "already makes the fail-safe behaviour mandatory" and could be read as saying the behaviour is already delivered.
+
+There are also differences between the listed controls and the draft's broad summary:
+
+* S04 §14 requires freshness and completeness to be tracked by source, project, domain and decision use, with decision-aware thresholds. It does not itself guarantee a fully implemented, per-insight readiness report.
+
+* S04 §9 requires quarantine and controlled provisional use. It does not mean all conflicts can be safely represented merely by labelling a figure provisional.
+
+* S05 §5.2 permits provisional/qualified forecasts and requires missing components, stale sources, conflicts, assumptions and uncertainty to be exposed. It does not prescribe one universal response for all insights.
+
+* S07 requires a capability gate for critical-path analysis and qualified simpler assessments where the schedule is insufficient.
+
+* S09 requires like-for-like productivity comparison and prevents unsupported attribution of poor performance.
+
+* S11 requires commercial entitlement, claim lifecycle and deadline controls.
+
+* S12 separates actual cash, scheduled receipts/payments, forecasts, disputed/conditional amounts and scenarios.
+
+* S13 distinguishes observed defects, suspected causes, supported causes and verified financial consequences.
+
+Recommended fix: Rename the table to something like "Requirements already specified in the locked blueprint". Add a separate column distinguishing:
+
+* what is required by the specification;
+
+* what the code inventory says exists;
+
+* what remains unverified or missing.
+
+Do not describe a locked requirement as an implemented guarantee.
+
+Cost: Small.
+
+### B3 — The insight contracts are not yet complete enough to protect the calculations
+
+Where: "The data contract", entire table.
+
+Evidence: The table lists some record kinds, but it does not consistently identify the fields, relationships, approval states, source authority or calculation inputs needed by the locked blueprint.
+
+The shared financial foundation requires, as applicable, project/legal entity, amount, currency, tax basis, financial status, source reference, effective date, recorded timestamp, supplier/trade/package, approval status, baseline/scenario version, confidence/data quality and calculation method/version. The draft's record lists do not cover those dimensions.
+
+Section 03 also requires explicit separation of actual, committed, forecast, claimed, disputed, potential and scenario values. The 8-layer data contract requires versioned baselines and assessments, with input snapshots, assumptions, warnings and calculation versions.
+
+Recommended fix: Do not treat a record-kind list as a complete data contract. For each insight, specify its required fields, relationships, status distinctions, authority, freshness, validation, minimum evidence, good evidence, and blueprint-defined response when the data is insufficient. Trace each field to its source requirement and calculation.
+
+Cost: Large.
+
+### B4 — The four "missing record kinds" are not a complete account of the missing data model
+
+Where: "The coverage matrix", rows for programme activities, client claims, labour rates and EstimateLine; "Decisions for the owner", decision 2.
+
+Evidence: The locked blueprint requires more than four broad categories:
+
+* Section 07: programme identity/version, approved baseline and revisions, activities, dates, dependencies, calendars, progress, actual performance, criticality/float where supported, and schedule data quality.
+
+* Section 11: contract and variation evidence, claim cycles, progress claims, payment applications, submitted/certified/paid states, deadline triggers and supporting evidence.
+
+* Section 12: accounts receivable/payable, claims, certification records, payment schedules, contract payment terms, collection evidence, retention lifecycle, security lifecycle and financing evidence.
+
+* Section 09: worker or pseudonymous identity, employer, trade, crew, work allocation, time, labour rates, allowances, overtime premiums, on-costs, accepted output, productivity baseline and work conditions.
+
+* Section 13: quality observations, defects, rework events, root-cause hypotheses, confirmed causes, rectification actions, quality costs and closure verification.
+
+* 8-layer data contracts: EstimateLine, Baseline, Assessment, Variation, Alert, Scenario and Decision/Approval are distinct logical entities.
+
+Some of these may be internal APG records rather than builder-supplied records, but the draft does not distinguish that. Nor does it establish whether some should be separate record kinds, related records, or structured fields.
+
+Recommended fix: Replace the four-item conclusion with a full canonical data-model gap analysis. Separate:
+
+* builder-source records;
+
+* APG's internal derived/lifecycle records;
+
+* configuration and policy data;
+
+* external reference data;
+
+* evidence/document records.
+
+Then identify the precise missing entity or field and the required ingestion or creation path.
+
+Cost: Large.
+
+### B5 — The coverage claim about all 35 import templates is not established by the inventory
+
+Where: Coverage matrix opening paragraph; first row of "Gap filling".
+
+Evidence: `03_CODE_INVENTORY.txt`, section 1, lists the four intake paths and their accepted record kinds. It explicitly lists template identifiers for the seven detection kinds and nine market kinds. It does not list corresponding template identifiers for the 11 `apg.ingest.specs` kinds or the eight `apg.fin.intake` kinds.
+
+The inventory says each kind has an import template in its introductory description, but it does not provide the same template-level evidence for all 35. The claim that every one can already be filled through an import template is therefore not independently established by the evidence supplied.
+
+Recommended fix: Have the builder provide a generated, complete template register: one row per record kind, exact template identifier, accepted schema/version, required fields, validation route and test evidence. Until then, say that the inventory identifies 35 accepted record kinds, with template coverage requiring confirmation.
+
+Cost: Medium.
+
+### B6 — The design does not adequately protect the Section 04 controls when data is entered or estimated
+
+Where: "Gap filling", "Estimates and confidence", and the entry-screen/document-capture rows.
+
+Evidence: S04 §§5–14 and §§18–19 require field-level source authority, tenant-scoped access, validation, reconciliation, quarantine, provisional isolation, human verification of material AI-extracted values, provenance, revision history and freshness controls. S04 §18 explicitly says manual entry must not bypass approval or audit requirements.
+
+The draft says all paths feed the same pipeline, but does not specify the control contract for each path. Entry screens, site capture, setup questions, document capture and estimates could introduce values that look authoritative despite lacking source evidence or approval.
+
+Recommended fix: Make a single mandatory ingestion contract for every path. Each path must preserve source/evidence, identity, project and tenant scope, field authority, validation, reconciliation, status, reviewer/approval state, audit history and freshness. AI-extracted material values must remain provisional or quarantined until authorised human verification. No screen or setup answer may bypass the Section 04 pipeline.
+
+Cost: Large.
+
+### 2\. Should-fix findings
+
+### S1 — Revenue and recognised margin: the required inputs are incomplete and the minimum is misleading
+
+Where: Data contract, "Revenue and recognised margin".
+
+Evidence: The row lists project, contract, approved variations, supplier invoices and credits. The inventory identifies `ap_invoice` and `credit_note`, but the calculation modules are separated: `revenue.py` reads contract/project/variation, `costs.py` reads ap_invoice/credit_note/project, and `margins.py` is listed as reading project only (`03_CODE_INVENTORY.txt`, section 2).
+
+The row's minimum says contract value and all posted invoices for the period. It does not specify the approved revenue basis, cost taxonomy, accounting treatment, tax basis, or distinction between recognised revenue and claimed/approved/invoiced/collected amounts.
+
+The shared financial foundation §2.4 says revenue basis and gross/net margin definitions require owner approval. Section 03 also distinguishes recognised margin from forecast final margin and cash-position-adjusted margin.
+
+Recommended fix: Define the measure and accounting basis first. Include all required cost and revenue components and their statuses. Do not imply that contract value plus posted invoices alone establishes recognised margin.
+
+Cost: Large.
+
+### S2 — Committed cost: "every open order" is not a sufficient commitment rule
+
+Where: Data contract, "Committed cost".
+
+Evidence: Section 03 and the shared financial foundation require a defined commitment policy, including treatment of contingencies, unapproved changes and cancellable orders. The inventory's commitment module reads purchase orders, amendments, project and variation, but does not establish the commitment-status rules.
+
+"Amendments within 7 days" is not a substitute for checking approval, effective date, cancellation, scope, duplicate/replacement orders or source authority.
+
+Recommended fix: Define which order states count as commitments, how amendments and variations affect them, and what happens with disputed, unapproved, cancelled or superseded records. Set freshness by decision and source cadence, not a universal seven-day threshold.
+
+Cost: Medium.
+
+### S3 — Forecast final margin and cost to complete: the row omits important forecast components and governance
+
+Where: Data contract, "Forecast final margin and cost to complete".
+
+Evidence: S05 §§5.1–5.3 requires one authoritative forecast, isolated scenarios, a forecast movement bridge and qualified results where material inputs are missing or stale. It also identifies schedule-related holding costs and other cost components. The shared financial foundation §2.4 requires an approved EAC/CTC methodology.
+
+The row lists budget lines, CTC lines, actuals and commitments, but omits the approved forecast/baseline version, assumptions, forecast ownership, tax/currency basis, schedule/holding cost inputs and overlap controls.
+
+Recommended fix: Include the approved forecast version, all cost components required by the approved model, and the status/authority/assumption metadata. Define how actuals, commitments and CTC are reconciled without double-counting.
+
+Cost: Large.
+
+### S4 — Budget and forecast movement: two versions do not satisfy all three rule references
+
+Where: Data contract, "Budget and forecast movement (R01, R02, R09)".
+
+Evidence: The inventory identifies R01 as `r01_budget`, R02 as `r02_amendment` and R09 as `r09_forecast_movement` (`03_CODE_INVENTORY.txt`, section 2). The row's minimum of two forecast versions appears relevant to movement comparison, but it does not establish the inputs needed to detect budget variance or amendment changes.
+
+Recommended fix: Map each rule separately to its actual inputs, required fields and calculation. Do not assume one common minimum applies to R01, R02 and R09. The rule implementation and tests must be independently inspected before the draft claims these contracts are accurate.
+
+Cost: Medium.
+
+### S5 — Invoice against order: same-day posting is not a meaningful "good level"
+
+Where: Data contract, "Invoice against order (R03)".
+
+Evidence: S04 §11 requires invoice-to-PO reconciliation including partial invoices, multiple deliveries, price/quantity variance and unapproved changes, and says invoices arriving before their PO must be held and reconciled rather than discarded or force-matched. S04 §§7–9 also require duplicate/revision handling and quarantine of material ambiguity.
+
+"Same-day posting" measures processing timeliness, not whether the invoice data is complete or reconciled.
+
+Recommended fix: Define minimum as the ability to link and reconcile each invoice line to the relevant PO/order line and project, including partial deliveries, credits, amendments, duplicate candidates and exceptions. Treat timeliness as a separate source freshness/service measure.
+
+Cost: Medium.
+
+### S6 — R04 and R04b cannot be validated from the rule names and inventory
+
+Where: Data contract, "Variations not claimed (R04, R04b)".
+
+Evidence: The inventory says `rules_commercial.py` reads compliance, material, notice, project, purchase_order, retention, supplier, supplier_quote and variation, and names R04 as `r04_variation` and R04b as `r04b_instruction`. It does not describe the actual conditions, fields or calculation logic.
+
+Section 11 §§4–6 requires more than a variation register, site instruction and notice: contract scope/clauses, written instruction, drawings/revisions, site diaries, quantities/valuation evidence, delivery records and relevant labour/material evidence may be needed. Operational evidence alone does not establish entitlement.
+
+Recommended fix: Mark both rows provisional until the actual rule code and tests are reviewed. Specify separately what R04 and R04b detect, what evidence each requires, and when a finding must be qualified or withheld. Do not infer rule behaviour from names.
+
+Cost: Medium.
+
+### S7 — Retention, security and carrying cost: minimum data is insufficient
+
+Where: Data contract, "Retention, security and carrying cost (R05)".
+
+Evidence: S03 §§10.1–10.4 and S12 §§7–9 require distinct retention and security lifecycles, release conditions, supporting clauses, fees, collateral, cash margin, facility utilisation, eligible balance, rate, period and financing method. S12 prohibits treating security face value as cash or assuming the whole retention/security value incurred financing cost.
+
+The proposed minimum of "retention held and facility rate" cannot support a defensible carrying-cost calculation. It omits eligible balance, period, facility utilisation, fees, day-count basis and overlap controls.
+
+The inventory also lists `retention_event` as read by `cashview.py`, but does not list it among the 35 accepted intake kinds. That discrepancy needs resolving.
+
+Recommended fix: Separate retention intelligence, security lifecycle and carrying-cost calculations into distinct contracts. Identify all required fields and the ingestion mechanism for `retention_event`. Do not calculate a carrying cost unless the S12 evidence gate is met.
+
+Cost: Large.
+
+### S8 — Supplier compliance: the proposed contract does not establish compliance coverage
+
+Where: Data contract, "Supplier compliance (R06)".
+
+Evidence: The inventory lists `compliance` with `expiry_date` as a material field. Section 09 and Section 13 require competence, quality and relevant compliance constraints to be respected; Section 08 also requires unresolved critical import/compliance checks to block definitive recommendations where applicable.
+
+A licence and insurance expiry date alone does not establish the document type, holder, applicable trade, project/jurisdiction relevance, coverage, limits, verification status or whether the evidence is valid for the work being performed.
+
+Recommended fix: Specify evidence type, holder/entity, applicable trade/work, jurisdiction, coverage/limit where relevant, issue/expiry dates, source and verification status. The system must say "unknown" where it cannot establish applicable coverage.
+
+Cost: Medium.
+
+### S9 — Quote against reference and landed cost: missing the comparability and freshness gates
+
+Where: Data contract, "Quote against reference (R07), landed cost, buy timing".
+
+Evidence: S08 §§4–7 requires specification comparability, quote validity, quantities, units, commercial terms, lead time, delivery, FX, freight, duties, storage/handling and source methodology. S08 §7.1 requires decision-specific freshness thresholds. S08 also distinguishes asking prices, quotes, indices and completed transactions.
+
+The row's minimum "quote and the material it prices" is too weak to establish a comparable quote. "Market data within its freshness window" is not a defined good level unless the decision-specific threshold and quote validity are recorded.
+
+Recommended fix: Require specification, quantity/unit, quote date/expiry, supplier, delivery basis, inclusions/exclusions, currency/tax, terms and source evidence. Keep market observations distinct by source type and date. Block definitive ranking when critical comparability checks are unresolved.
+
+Cost: Medium.
+
+### S10 — Plant hire idle cost: dates alone cannot establish idle cost
+
+Where: Data contract, "Plant hire idle cost (R08)".
+
+Evidence: The inventory lists `plant_hire` with `rate_cents_per_day` and `on_hire_date` as material fields, while the draft requires on-hire and off-hire dates. S09 and S07 require resource allocation, work readiness, utilisation, constraints and defensible incremental cost. The draft does not identify usage, off-hire request/confirmation, minimum hire periods, delivery/collection charges or evidence that the plant was idle.
+
+Recommended fix: Define the evidence needed to distinguish on-hire duration from actual idle time and avoidable cost. Include off-hire evidence, usage/availability, project/activity allocation, rate basis and relevant contractual terms. Treat a date-based calculation as qualified unless idle status is supported.
+
+Cost: Medium.
+
+### S11 — Delay and holding cost: the minimum could produce an unsupported estimate
+
+Where: Data contract, "Delay and holding cost".
+
+Evidence: S07 §§3–6 requires approved programme version, activity/dependency data, actual progress, attribution states, counterfactual baseline, evidenced rates, eligible duration and overlap controls. S07 §4.1 only permits full critical-path/concurrency analysis when the schedule has sufficient validated logic.
+
+"Delay events with dates" alone cannot establish a defensible holding-cost figure. The phrase "qualified estimate" does not itself make a missing rate or unsupported duration safe.
+
+Recommended fix: Separate the minimum for identifying a dated event from the higher evidence threshold for quantifying an incremental holding cost. If the rate, eligible duration, attribution or overlap cannot be established, report an unquantified or qualified finding as permitted by S07; do not produce a precise financial estimate.
+
+Cost: Medium.
+
+### S12 — Labour productivity: the contract omits core labour and fairness inputs
+
+Where: Data contract, "Labour productivity".
+
+Evidence: S09 §3 requires identity or approved pseudonymous identifier, employer, trade, crew, work allocation, hours, labour cost/rates, accepted output, productivity baseline, working conditions and provenance. §§5–6 require a comparable baseline and distinction between observed interruption and suspected cause. §14 imposes worker privacy and fairness controls.
+
+The row only lists timesheets and work output. A baseline in the good level is not enough without work package/activity, task comparability, crew context, quality acceptance and constraints.
+
+Recommended fix: Expand the contract to include the S09 inputs and its mandatory comparison gate. Include worker privacy and role-based access as part of readiness, not as an unrelated security feature.
+
+Cost: Large.
+
+### S13 — Defect recurrence and rework: one defect record is not the required quality model
+
+Where: Data contract, "Defect recurrence and rework".
+
+Evidence: S13 §3 defines separate quality observation, defect, rework event, root-cause hypothesis, confirmed cause, rectification action, quality cost and closure verification records. S13 §§5–8 distinguish actual cost, estimated rectification cost, potential recovery and verified financial impact.
+
+The inventory lists only `defect` for this domain. The proposed contract therefore cannot establish that the other required quality lifecycle data is available.
+
+Recommended fix: Add the distinct quality/rework lifecycle inputs or explain which are internal APG records and how they are created and linked. Do not claim cost intelligence from defect recurrence alone.
+
+Cost: Large.
+
+### S14 — Cash-adjusted margin is materially under-specified
+
+Where: Data contract, "Cash-adjusted margin".
+
+Evidence: S03 §5.3 and S12 §§3–5, 10–13 distinguish accounting margin, forecast margin and cash-position-adjusted margin. S12 requires actual bank cash, scheduled receipts/payments, forecast movements, claims awaiting certification, certified receivables, disputed amounts, retention, security and financing costs to remain separate.
+
+The inventory says `cashview.py` reads `bank_txn`, `facility`, `project`, `retention`, `retention_event` and `security`. It does not list claim, certification, accounts-receivable or payment-schedule record kinds as intake inputs. It lists `payment`, but the inventory does not show `cashview.py` reading it.
+
+Recommended fix: Define the cash-position-adjusted measure and all its input states. Add the missing claim/receivable/certification/payment-schedule data paths or explicitly state which cash components cannot yet be assessed. Do not label a result as cash-adjusted margin merely because a bank feed and facility rate exist.
+
+Cost: Large.
+
+### S15 — The matrix omits important data groups and their likely source systems
+
+Where: Coverage matrix, all rows.
+
+Evidence: The matrix is not a complete coverage map for the locked blueprint. Among the omitted or insufficiently represented groups are:
+
+* contract clauses, payment terms, notice triggers and valuation rules (S11);
+
+* programme versions, calendars, dependencies, approved revisions and actual activity dates (S07);
+
+* claim/certification/dispute/collection lifecycle records (S11–S12);
+
+* labour crew, work allocation, rates, allowances, accepted output and conditions (S09);
+
+* quality observations, rework events, root-cause and rectification lifecycle (S13);
+
+* receivables/payables, remittances, deductions, taxes/statutory liabilities, facility fees and security collateral (S12);
+
+* source authority, mapping, reconciliation, provenance and approval metadata (S04).
+
+"Where builders usually hold it" is also too general. For Victorian commercial builders, these records may be split between job-costing, accounting, contract administration, scheduling, payroll, procurement, quality systems, site diaries, spreadsheets and source documents. A single category such as "accounting" or "site diaries" does not identify the source of authority for each field.
+
+Recommended fix: Expand the matrix by data domain and field group. For each item, record likely system(s), authoritative source to be confirmed, alternative source, evidence format, expected cadence, APG intake path and verification requirements. Confirm actual systems with pilot builders rather than generalising.
+
+Cost: Large.
+
+### S16 — The "where builders usually hold it" assumptions need validation with the target segment
+
+Where: Coverage matrix, "Where builders usually hold it".
+
+Evidence: The draft itself says the initial segment is Victorian commercial builders with $5–50m turnover, and that products will be confirmed with pilot builders. The current locations are broad assumptions, not findings from actual builder exports or system discovery.
+
+In particular, labour award rates, subcontractor rates, programme progress, claims and payment schedules may be held across different systems or documents. The data may also be manually maintained in spreadsheets.
+
+Recommended fix: Mark the column as "likely locations — validate with pilot builders". Do not use it to make a coverage promise or connector roadmap until real sample exports have been mapped.
+
+Cost: Small.
+
+### S17 — Readiness states are too generic and could conflict with blueprint-specific gates
+
+Where: "The readiness check and the builder's report", first bullet.
+
+Evidence: The draft defines only "on", "qualified" and "off". But the locked blueprint has different capability gates:
+
+* S05 allows a qualified/provisional forecast when material inputs are missing or stale.
+
+* S07 allows a qualified simpler schedule assessment when full critical-path analysis is unsupported.
+
+* S08 permits indicative comparisons but blocks definitive price ranking where comparability is insufficient.
+
+* S09 allows qualified indicative productivity comparisons where the baseline is not sufficiently comparable.
+
+* S11 may require a contractual interpretation to be referred for human review.
+
+* S04 has accepted, warning, pending reconciliation, quarantined and rejected ingestion outcomes.
+
+A single generic status could hide those different consequences.
+
+Recommended fix: Keep a simple builder-facing summary, but define each insight's status and action eligibility from its own locked requirements. Distinguish data-ingestion state from insight-readiness state and from recommendation/action eligibility.
+
+Cost: Medium.
+
+### S18 — Readiness cannot be limited to setup and after each data refresh
+
+Where: "The readiness check and the builder's report", opening paragraph.
+
+Evidence: S04 §14 requires freshness to be tracked against source cadence and decision use. S06 requires scheduled reassessment and detection of stale/unavailable sources. A source can become stale even when no new refresh occurs.
+
+Recommended fix: Include scheduled freshness reassessment and event-triggered reassessment when records are corrected, quarantined, superseded, revoked or become stale. Make last successful receipt, processing and reconciliation distinct.
+
+Cost: Medium.
+
+### S19 — Integration mapping is not yet a complete source/connector contract
+
+Where: "Integration mapping per builder software".
+
+Evidence: S04 §4 requires more than field mapping: authentication and permissions, secret handling, transport, cadence, pagination/batch behaviour, rate limits, schema/version, idempotency, retries, error handling, known limitations, field-level source authority, last successful receipt/reconciliation and operational health. It also prohibits assuming a connector or endpoint exists without repository/environment evidence.
+
+The draft's map covers fields, cadence and limits but does not explicitly cover the rest.
+
+Recommended fix: Make the integration map a versioned source/connector profile linked to the Source Authority Register, including all S04 §4 requirements. Treat a sample export as a mapping exercise, not proof of a live connector or full product coverage.
+
+Cost: Medium.
+
+### S20 — The estimating section blurs estimation of an input with estimation of an output
+
+Where: "Estimates and confidence", opening paragraph and examples.
+
+Evidence: S04 §10 prohibits inventing missing values or silently substituting defaults. S05 §5.2 permits qualified forecasts when material inputs are missing, while S07, S08, S09 and S12 define their own estimation and evidence gates. The shared financial foundation distinguishes assumptions, forecasts, scenarios and unknown/unavailable values.
+
+The draft's example "progress inferred from claims" is especially risky. S11 §5 says completed work is not automatically claimable, and claims may be affected by valuation rules and contract terms. A claim amount is not reliable proof of physical progress.
+
+Recommended fix: Separate:
+
+* estimates of missing source facts;
+
+* builder-supplied forecasts/assumptions;
+
+* APG-derived qualified calculations;
+
+* scenario-only values.
+
+Do not allow APG to manufacture missing contractual or operational facts. Progress inferred from claims should not be authoritative progress. At most, it could be a separately labelled investigative indicator if the relevant blueprint gate permits it.
+
+Cost: Medium.
+
+### S21 — The owner decision list is incomplete
+
+Where: "Decisions for the owner", items 1–5.
+
+Evidence: The shared financial foundation §2.11 identifies ten decisions required before production, including margin measures, revenue basis, cost taxonomy, contingencies, tax basis, CTC/EAC, variation treatment, approval roles, freshness rules, and rounding/currency/reporting conventions.
+
+The 8-layer data contract also requires decisions on financial state semantics, baseline/assessment governance and approval. S04 requires approval of the field-level Source Authority Register. S09 and S13 include privacy/fairness and consequential-action controls.
+
+The current five decisions cover the broad direction, record gaps, UI features, thresholds and estimating methods, but not the policy decisions needed to make the contracts executable.
+
+Recommended fix: Keep the five strategic decisions, but add a separate "required before production" decision register. Include the shared financial foundation decisions, source authority, baseline approval, labour/privacy and role permissions, retention/security state handling and the relevant accounting/contractual policies.
+
+Cost: Large.
+
+### S22 — The draft does not make the Section 01 discovery gate explicit
+
+Where: "Gap filling", "Integration mapping", and "Decisions for the owner".
+
+Evidence: S04 §20 says production feature code or core integration logic must not begin until Section 01's Discovery Exit Report is signed off. S04 also requires actual Anchor Engine, Governor and AUIF contracts to be inspected before implementation choices are made.
+
+The draft says integrations will be through AUIF "at the end" and that several new features are required, but it does not explicitly preserve the discovery gate.
+
+Recommended fix: State that this change request is design direction only. It does not authorise production feature code or core integration work before the Section 01 Discovery Exit Report is signed off and the relevant owner decisions are made.
+
+Cost: Small.
+
+### 3\. Optional improvements
+
+### O1 — Make the builder report more actionable for a busy site/commercial team
+
+Where: "The readiness check and the builder's report".
+
+The example is clear, but the report should prioritise the most important missing inputs and show the actual project/cost code, affected period, required field, why it matters, who can supply it and the simplest next action. Otherwise the builder may receive a technically accurate but overwhelming list.
+
+Recommended fix: Group gaps by insight and priority, with a short "fix these first" list and expandable detail.
+
+Cost: Medium.
+
+### O2 — Distinguish "APG can accept it" from "APG can verify it"
+
+Where: Coverage matrix and gap filling.
+
+An import template or entry screen can accept a value. That does not mean APG can establish that it is correct, authoritative or approved. The draft sometimes treats intake availability as coverage.
+
+Recommended fix: Add separate coverage states: capture available, validation available, authority established, reconciliation available, and decision-eligible.
+
+Cost: Small.
+
+### O3 — Add a data ownership and responsibility column
+
+Where: Coverage matrix.
+
+A builder may need to obtain information from a subcontractor, accountant, scheduler, supplier or contract administrator. The draft says APG should tell the builder how to supply it, but does not distinguish who normally owns the source fact.
+
+Recommended fix: Add "likely data owner" and "builder role responsible for supplying/confirming" fields. Keep this configurable per builder.
+
+Cost: Small.
+
+### 4\. Minor findings
+
+### M1 — "Good level" and freshness need separate meanings
+
+Where: Data contract, all "Good level" cells.
+
+Some cells describe completeness, others timeliness, coverage or comparability. For example, "monthly versions or better", "daily usage" and "all trades covered" are not comparable measures.
+
+Recommended fix: Split good level into completeness, freshness, verification and coverage dimensions. Avoid one mixed-quality label.
+
+Cost: Small.
+
+### M2 — The document should distinguish data-readiness status from product capability status
+
+Where: Coverage matrix and gap-filling table.
+
+A record kind may exist, but a user-facing screen may not. A document extraction module may exist, but may not be production-ready. A connector may be absent while a manual import is available.
+
+Recommended fix: Use explicit states such as specified, present in code inventory, independently verified, usable by builder, and production validated.
+
+Cost: Small.
+
+### 5\. Estimating methods I would permit
+
+The draft asks which estimating methods should be allowed. I would not give blanket approval to "estimates" as a category. I would permit only methods with a defined evidence basis, an explicit purpose, a reproducible calculation and a status that prevents the estimate being mistaken for a source fact.
+
+| Method                                                                           | My position                   | Conditions                                                                                                                                 |
+| -------------------------------------------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Builder-entered CTC/forecast                                                     | Allow                         | Must be labelled forecast/assumption, versioned, dated and attributed to the responsible person                                            |
+| Deterministic calculation from evidenced inputs                                  | Allow                         | Formula, inputs, source authority, tax/currency basis and calculation version retained                                                     |
+| Holding-cost calculation                                                         | Allow conditionally           | S07/S12 evidence gates: eligible balance/rate/duration, method, source and overlap checks                                                  |
+| Landed-cost calculation                                                          | Allow conditionally           | S08 inputs complete enough; FX, freight, duties, tax and assumptions disclosed                                                             |
+| Indicative market comparison                                                     | Allow conditionally           | Comparable enough for indicative use, source and date visible, stale evidence qualified                                                    |
+| Scenario analysis                                                                | Allow                         | Isolated from authoritative forecast and clearly labelled scenario                                                                         |
+| Progress inferred from claims                                                    | Not as authoritative progress | A claim is not proof of physical progress; at most a qualified investigative indicator where the relevant gate permits                     |
+| Labour cost inferred from generic award rates                                    | Not as authoritative cost     | Must use the applicable, current and verified classification, rates, allowances and on-costs; otherwise disclose as an assumption/scenario |
+| Contract value, claimed amount, approval, deadline or entitlement inferred by AI | Do not allow                  | These are material contractual/financial facts; require source evidence and authorised verification                                        |
+| Retention/security carrying cost based on face value alone                       | Do not allow                  | S12 expressly requires eligible balance and period, not instrument face value                                                              |
+
+The central rule should be: APG may estimate a derived result from disclosed assumptions; it must not invent a missing authoritative fact.
+
+### 6\. What I could not independently verify
+
+These are evidence limitations, not necessarily defects in the design itself.
+
+1\. Actual code behaviour: I cannot inspect the APG source code from this pack. The inventory is explicitly marked builder-executed and not independently verified. In particular, the calculation modules' actual field use, rule conditions, validation paths and end-to-end behaviour remain unverified.
+
+2\. R04 and R04b: The inventory provides rule names and module-level record reads, not the rule implementations. I cannot confirm their precise detection conditions or whether the draft's proposed records are sufficient.
+
+3\. Field-level coverage of the 35 record kinds: The inventory provides only selected material fields. It does not provide the full schemas, validation rules, required/optional status or relationships. The draft correctly acknowledges this limitation, but the owner cannot approve final data contracts on that evidence alone.
+
+4\. Actual import-template coverage: The inventory does not enumerate all 35 template identifiers or provide template test results. This needs builder evidence.
+
+5\. CR-05: The draft relies on CR-05 for site capture, but that change request/specification is not included in the review pack. I cannot confirm that the proposed site-capture scope is consistent with it.
+
+6\. Real builder software and exports: No pilot builder export or list of actual software products is included. I cannot validate the source-location assumptions, field mappings, integration coverage or freshness expectations for Victorian commercial builders in the $5–50m segment.
+
+7\. Production capability: The inventory describes code and read-only UI modules, not independently tested production workflows. I cannot verify that the existing import, document extraction, freshness, authority and qualification components operate together as described.
+
+### 7\. Finding totals
+
+| Class                | Count |
+| -------------------- | ----- |
+| Blocking             | 6     |
+| Should fix           | 22    |
+| Optional improvement | 3     |
+| Minor                | 2     |
+| Total                | 33    |
+
+### Final verdict
+
+### NOT READY
+
+The direction is sound, but the owner should not yet decide the proposed data contracts, four-record gap, or estimation policy. The data model and blueprint traceability need to be made complete first.
+
+I would keep the overall structure of the draft. I would not discard the two guarantees or the readiness-report concept.
+
+The next revision should do four things in one pass:
+
+* Correct the guarantee wording and distinguish specification requirements from implemented capability.
+
+* Rebuild the data contracts against the actual requirements in Sections 03–13, including fields and lifecycle states rather than just record names.
+
+* Replace the four-record conclusion with a complete source-data and APG-internal data-model gap analysis.
+
+* Add the missing controls, owner decisions and evidence requirements, particularly around estimates, source authority, reconciliation and the Section 01 discovery gate.
+
+My strongest recommendation: do not ask the owner to approve four new record kinds yet. First give him the complete list of missing data entities and fields, distinguishing what the builder must supply from what APG itself must create and maintain. That is the decision he actually needs to make to ensure APG can handle a builder whose existing systems provide only part of the required data.
