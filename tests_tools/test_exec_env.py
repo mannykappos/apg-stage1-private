@@ -589,5 +589,114 @@ class E7ChildIsolationM10Halves(unittest.TestCase):
         self.assertRegex(out, r'(?m)^PASS R07 ')
 
 
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Amendment 5 (owner, 2026-11-08 11:26, AM5-4 option A): Appendix A part 1, row 29 (P.10, two-level nesting) and row 22 (a tests-kind
+# FILE leak).  Rewritten after the workspace loss of 2026-11-11 from the amendment (recovery authorisation, rebuild rule).
+# ---------------------------------------------------------------------------------------------------------------------------------------
+import re as _am5re
+
+AM5_TEE = ('import sys as _am5s\n'
+           'class _AM5Tee:\n'
+           '    def __init__(self, a, f):\n        self.a, self.f = a, open(f, "a")\n'
+           '    def write(self, x):\n        self.f.write(x); self.f.flush(); return self.a.write(x)\n'
+           '    def flush(self):\n        self.f.flush(); self.a.flush()\n'
+           '    def __getattr__(self, k):\n        return getattr(self.a, k)\n'
+           '_am5s.stdout = _AM5Tee(_am5s.stdout, %r)\n')
+
+AM5_CHAIN = r'''
+
+
+def _am5_chain():
+    """amendment 5, row 29 (test only, in a copy): a test file's run starts a process that starts a child (test -> process -> child);
+    in mode hang the leaf then blocks, so its parent's limit or a signal ends it."""
+    import os as _o, subprocess as _sp, sys as _s, time as _tm
+    mode = open(_o.path.join(%(root)r, '_p2', 'mode')).read().strip()
+    _sp.Popen([_s.executable, '-c', 'import subprocess, sys, time; subprocess.Popen([sys.executable, "-c", "import time; '
+               'time.sleep(60)"]); open(sys.argv[1], "w").close(); time.sleep(60)', _o.path.join(%(root)r, '_p2', 'chain')],
+              stdin=_sp.DEVNULL, stdout=_sp.DEVNULL, stderr=_sp.DEVNULL)
+    if mode == 'hang':
+        _tm.sleep(60)
+'''
+
+
+class AM5SecondChain(unittest.TestCase):
+    """Row 29: tool -> leaf -> test -> process -> child, through run_m8_tests_s1 and child_unittest_runner (a supervisor, since it
+    verifies its AUIF copy), on the normal, timeout and interrupt paths; the CLEANUP attribution of each level."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_am5sc_')
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import test_runner_zero_work as Z
+        self.Z = Z
+        self.E = Z.E
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def tree(self, mode, edits=()):
+        root = os.path.join(self.tmp, mode)
+        self.Z.p2b_copy(root, [('tools/evkit.py', '            with owning(name) as o_file:\n                suite.run(res)\n',
+                                '            with owning(name) as o_file:\n                _am5_chain()\n                suite.run(res)\n')]
+                        + list(edits))
+        with open(os.path.join(root, 'tools', 'evkit.py'), 'a', encoding='utf-8') as fh:
+            fh.write(AM5_CHAIN % {'root': root})
+        p = os.path.join(root, 'tools', 'child_unittest_runner.py')
+        src = open(p, encoding='utf-8').read()
+        head, rest = src.split('\n', 1)
+        open(p, 'w', encoding='utf-8').write(head + '\n' + AM5_TEE % os.path.join(root, '_p2', 'leaf.txt') + rest)
+        os.makedirs(os.path.join(root, '_p2'))
+        open(os.path.join(root, '_p2', 'mode'), 'w').write(mode)
+        return root
+
+    def leaf(self, root):
+        p = os.path.join(root, '_p2', 'leaf.txt')
+        return open(p).read() if os.path.exists(p) else ''
+
+    def record(self, seen, out):
+        import test_runner_zero_work as Z
+        Z.p2_identity_record(self, seen, out)
+
+    def test_row29_the_second_chain_through_run_m8_tests_s1(self):
+        # normal path; row 22: the leaf's test file leaked, so its FILE is INDETERMINATE cause=processes_left, and its CLEANUP record
+        # (by the leaf) names the process and its child; the parent reads the leaf's exit 3 as an INDETERMINATE file
+        root = self.tree('normal')
+        code, out, seen = self.Z.p2b_run(root, ['tools/run_m8_tests_s1.py', '--file', 'test_m8_dependency.py'])
+        leaf = self.leaf(root)
+        self.record(seen, out + '\n' + leaf)
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertRegex(leaf, r'(?m)^FILE test_m8_dependency\.py state=INDETERMINATE ')
+        rec = _am5re.search(r'(?m)^CLEANUP test_m8_dependency\.py by=child_unittest_runner:\d+ .* left=(\S+) ', leaf)
+        self.assertTrue(rec, leaf[-2000:])
+        self.assertEqual(len(rec.group(1).split(',')), 2)        # the process and its child
+        self.assertRegex(out, r'(?m)^FILE test_m8_dependency\.py state=INDETERMINATE ')
+        self.assertEqual(self.E.check_output(out, code), [], out[-3000:])
+        self.Z.p2b_gone(self, seen)
+
+    def test_row29_the_second_chain_through_run_m8_tests_s1_timeout(self):
+        # the leaf blocks after starting the chain: the parent's limit (8 s here) ends the unit; the parent's cleanup kills the leaf,
+        # the process and its child, and its CLEANUP record (by run_m8_tests_s1) names them
+        root = self.tree('hang', [('tools/run_m8_tests_s1.py', 'E.run_child(cmd, 3600,', 'E.run_child(cmd, 8,')])
+        code, out, seen = self.Z.p2b_run(root, ['tools/run_m8_tests_s1.py', '--file', 'test_m8_dependency.py'])
+        self.record(seen, out)
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertRegex(out, r'(?m)^FILE test_m8_dependency\.py state=INDETERMINATE ')
+        rec = _am5re.search(r'(?m)^CLEANUP test_m8_dependency\.py by=run_m8_tests_s1:\d+ .* left=(\S+) ', out)
+        self.assertTrue(rec, out[-2000:])
+        self.assertGreaterEqual(len(rec.group(1).split(',')), 3)  # the leaf, the process and its child
+        self.assertEqual(self.E.check_output(out, code), [], out[-3000:])
+        self.Z.p2b_gone(self, seen)
+
+    def test_row29_the_second_chain_through_run_m8_tests_s1_interrupt(self):
+        root = self.tree('hang')
+        code, out, seen = self.Z.p2b_run(root, ['tools/run_m8_tests_s1.py', '--file', 'test_m8_dependency.py'],
+                                         when=self.Z.p2b_mark('chain'), delay=0.5)
+        self.record(seen, out)
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertRegex(out.strip().splitlines()[-1], r'^INTERRUPTED signal=SIGINT at=\S+ received=1$')
+        self.assertRegex(out, r'(?m)^FILE test_m8_dependency\.py state=INDETERMINATE ')
+        self.assertTrue(self.E.is_interrupted_child(code, out))
+        self.Z.p2b_gone(self, seen)
+
+
 if __name__ == '__main__':
     unittest.main()

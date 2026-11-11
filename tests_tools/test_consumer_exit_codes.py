@@ -955,5 +955,76 @@ class Pass2ProcStat(unittest.TestCase):
         self.assertEqual(set(E.SUPERVISOR_STEMS) | set(E.LEAF_STEMS), on_disk)
 
 
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Amendment 5 (owner, 2026-11-08 11:26, AM5-4 option A): Appendix A part 1, the checker rows 34, 57, 62 and 63.
+# Rewritten after the workspace loss of 2026-11-11 from the amendment (recovery authorisation, rebuild rule).
+# ---------------------------------------------------------------------------------------------------------------------------------------
+class AM5Checker(unittest.TestCase):
+    def test_row34_no_resolved_selection_with_a_non_zero_selected(self):
+        # A.3: suites=- holds only with suites_selected=0, selected=0 and the empty-selection hash
+        out, code = p2_cases_out([], {}, None, errs=[E.RunError('SELECTION_INVALID', 'unknown suite x')], ci=E.sha256_lines([]))
+        good = '\n'.join(out)
+        self.assertEqual(E.check_output(good, actual_exit=code, pins=P2_PINS), [])
+        for bad in (good.replace(' suites=- selected=0 ', ' suites=- selected=1 '),
+                    good.replace(' suites=- selected=0 ', ' suites=- selected=2 ')):
+            self.assertIn(' suites=- selected=', bad)
+            self.assertNotEqual(E.check_output(bad, actual_exit=code, pins=P2_PINS), [])
+            self.assertNotEqual(E.check_output(bad, actual_exit=code), [])
+
+    def test_row57_a_completed_end_control_beside_not_run(self):
+        # K.1: a completed CONTROL end line beside control_end=NOT_RUN is refused, with both K.1 messages
+        out, code = p2_mut_out({'m1': ('KILLED', 'c'), 'm2': ('KILLED', 'c')}, ce='NOT_RUN',
+                               extra=['CONTROL start CONTROL_PASS cause=ok', 'CONTROL end CONTROL_FAIL cause=x'])
+        probs = E.check_output('\n'.join(out), actual_exit=code)
+        self.assertIn('CONTROL end CONTROL_FAIL but control_end=NOT_RUN', probs)
+        self.assertTrue(any('(K.1)' in p for p in probs), probs)
+
+    def test_row57_a_completed_end_control_reported_as_not_run(self):
+        # K.1: an end control whose outcome was fixed is never reported as CONTROL_NOT_RUN without the stop record
+        out, code = p2_mut_out({'m1': ('KILLED', 'c'), 'm2': ('KILLED', 'c')}, ce='NOT_RUN',
+                               extra=['CONTROL start CONTROL_PASS cause=ok', 'CONTROL end CONTROL_NOT_RUN cause=interrupted'])
+        probs = E.check_output('\n'.join(out), actual_exit=code)
+        self.assertIn('CONTROL end CONTROL_NOT_RUN needs control_end=NOT_RUN and the matching stop record', probs)
+
+    def test_row62_cross_kind_v3_dispatch(self):
+        # K.3: each v=3 RESULT line is read by its own kind's rules; the lines of another kind are refused, and tests and wrapper have
+        # no v=3 form
+        mut, mcode = p2_mut_out({'m1': ('KILLED', 'c'), 'm2': ('KILLED', 'c')},
+                                extra=['CONTROL start CONTROL_PASS cause=ok', 'CONTROL end CONTROL_PASS cause=ok'])
+        cases, ccode = p2_cases_out(['audit_log/AL-01'], {'audit_log/AL-01': ('PASS', 'ok')}, ['audit_log'])
+        self.assertEqual(E.check_output('\n'.join(mut), actual_exit=mcode), [])
+        self.assertEqual(E.check_output('\n'.join(cases), actual_exit=ccode, pins=P2_PINS), [])
+        self.assertNotEqual(E.check_output('\n'.join(['CASE audit_log/AL-01 PASS cause=ok'] + mut), actual_exit=mcode), [])
+        self.assertNotEqual(E.check_output('\n'.join(['MUTANT m1 KILLED cause=c'] + cases), actual_exit=ccode, pins=P2_PINS), [])
+        sab = '\n'.join(mut).replace('MUTANT ', 'PLANT ').replace('kind=mutation', 'kind=sabotage')
+        self.assertNotEqual(E.check_output(sab, actual_exit=mcode), [])          # KILLED is not a sabotage outcome
+        for kind in ('tests', 'wrapper'):
+            self.assertNotEqual(E.check_output(mut[-1].replace('kind=mutation', 'kind=%s' % kind), actual_exit=mcode), [])
+
+    def test_row63_tests_and_wrapper_outputs_twice_through_the_checker(self):
+        # K.3: a tests or wrapper output is read the same way twice, with and without P's records before its RESULT line
+        pins = {'test_a.py': {'sha256': '0' * 64, 'ids': ['tests.test_a.T.t1']}}
+        res = {'test_a.py': E.FileResult('test_a.py', 'COMPLETED', [('tests.test_a.T.t1', 'PASS')], '0' * 64)}
+        tl, tc = E.finish_tests('probe', 'full', 'r', ['test_a.py'], res, pins)
+        recs = ['CLEANUP x by=probe:1 child=2:3 pgid=2 scan=1-2 left=4:5 exited_in_grace=4:5 killed=- sigterm=1 sigkill=0 scans=2 '
+                'deadline=none escalated_after=- ambiguous=- remaining=-', 'CLEANUP_SUMMARY units=1 leaked=1 remaining=0']
+        for lines, code, kw in ((tl, tc, {'pins': pins, 'selected': ['test_a.py']}),):
+            plain = '\n'.join(lines)
+            withp = '\n'.join(lines[:-1] + recs + lines[-1:])
+            first = E.check_output(plain, actual_exit=code, **kw)
+            self.assertEqual(first, [])
+            self.assertEqual(E.check_output(plain, actual_exit=code, **kw), first)
+            self.assertEqual(E.check_output(withp, actual_exit=code, **kw), [])
+            self.assertEqual(E.check_output(withp, actual_exit=code, **kw), [])
+        wl, wc = E.finish_wrapper('probe', 'r', [('check', ('G01', 'PASS', 'child', 0, 'seen', H, H, H))])
+        plain = '\n'.join(wl)
+        a = E.check_output(plain, actual_exit=wc)
+        self.assertEqual(a, [], plain)
+        self.assertEqual(E.check_output(plain, actual_exit=wc), a)
+        withp = '\n'.join(wl[:-1] + recs + wl[-1:])
+        self.assertEqual(E.check_output(withp, actual_exit=wc), a)
+        self.assertEqual(E.check_output(withp, actual_exit=wc), a)
+
+
 if __name__ == '__main__':
     unittest.main()
