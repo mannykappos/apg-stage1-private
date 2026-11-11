@@ -573,10 +573,15 @@ class E7ChildIsolationM10Halves(unittest.TestCase):
         self.assertIn('M8 tests 7 in 1 files, failed files 0', out)
 
     def test_m8_mutants_controls_and_a_known_kill(self):
+        # amendment 5, discrepancy 17: the known kill on the M10 view is the control's own: M10's unmutated copy is KILLED at tier 1 by
+        # the stage 1 boundary test (decision M8-T), and M10 then stops (its main returns 2 after a failed control), so ML-01 itself
+        # never runs here; the successor half (ChildrenStartIsolated) asserts ML-01 KILLED
         code, out, err = self.go('m8_mutants.py', '--only', 'ML-01', '--jobs', '1')
         self.assertEqual(code, 2, out[-2000:] + err[-1500:])
         self.assertRegex(out, r'(?m)^CONTROL \(unmutated copy\): KILLED tier 1: FAIL: test_every_added_file_is_declared '
                               r'\(tests_m8\.test_m8_boundary\.TestNoOtherChange\.test_every_added_file_is_declared\)')
+        self.assertNotRegex(out, r'(?m)^ML-01\b')
+        self.assertNotIn('mutants 1:', out)
 
     def test_sabotage_m10_one_plant(self):
         code, out, err = self.go('sabotage_m10.py', '--only', 'V01')
