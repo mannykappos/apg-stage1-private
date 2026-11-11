@@ -76,3 +76,4 @@ review pack); everything after that is restated here from the conversation recor
 - Row 6: the 12:47 plan correction for rows 6 and 17 was lost with the issue record; row 6 is written as "the secret never reaches a
   unit or a record", row 17 has no new test. Both are disclosed.
 - Still to write: rows 66 and 83, discrepancy 17, the change record, then the focused runs on both Pythons.
+- 17:24 Step 2 suite on Python 3.13.18: all 10 tests_tools files OK, 613 tests (51+86+39+16+12+66+4+180+34+125), as c9b324eb. 3.12 started.
