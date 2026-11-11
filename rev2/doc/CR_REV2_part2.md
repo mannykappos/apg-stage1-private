@@ -1,0 +1,40 @@
+## The insight contracts
+
+Each insight's contract names the fields it needs, the status distinctions it must keep, its blueprint gate, and four separate quality measures: completeness, freshness, verification and coverage. A contract starts as provisional and becomes final only when the insight's rule code and tests have been inspected against it (the open item for every row marked "provisional").
+
+| Insight | Blueprint gate | Required inputs (field groups) | Completeness | Freshness (good / minimum, proposed) | Verification | Below the gate |
+| --- | --- | --- | --- | --- | --- | --- |
+| Recognised margin | S03 §5.1, §6; 8-layer 02 §2.4 | recognised revenue by the owner-approved basis (contract, approved variations, certified claims), recognised cost (invoices, credits, accruals), tax basis, period | every cost and revenue component for the period under the approved policy | monthly / quarterly | invoices and claims reconciled to source | not assessable; names the missing component or policy |
+| Forecast final margin and cost to complete | S05 §5.1–5.3; S03 §5.2, §6.3 | the adopted forecast version (owner, date, approval), cost to complete by cost code, actuals and commitments without overlap, forecast revenue, assumptions, holding-cost inputs where used | every budgeted cost code mapped and forecast | monthly / quarterly | forecast approved by its owner | qualified provisional forecast listing missing or stale codes (S05 §5.2); never the authoritative forecast |
+| Committed cost | S03 §7; S05 §6 | orders with revision, approval, status (approved, cancelled, superseded), cost code; amendments with approved change; subcontract variations | every order in an approved state, under the commitment policy | 30 days / 60 days | approval state from the authoritative source | commitment total qualified as incomplete |
+| Budget variance (R01), order amendment (R02), forecast movement (R09) | S05 §5.3; S06 §5.2 | R01: budget revisions with approval; R02: amendments with reason and approval; R09: two adopted forecast versions | per rule, inspected from its code | per rule | per rule | finding withheld; data gap reported (provisional until the rule code is inspected) |
+| Invoice against order (R03) | S04 §11 | invoice lines linked to order lines and project; partial deliveries; credits and amendments; duplicate candidates | each invoice reconciled or held as an exception | timeliness reported separately as a source service measure | reconciliation outcome recorded | unmatched invoices held, never force-matched |
+| Unclaimed variations (R04) and instructions without a variation (R04b) | S11 §4–6 | per rule, inspected from its code; S11 evidence: instruction, scope, drawings/revisions, quantities, valuation evidence | per rule | per rule | entitlement never inferred | provisional until the rule code and tests are inspected; operational evidence never shown as entitlement |
+| Retention intelligence | S03 §10.1; S12 §7 | clause and basis; withheld, claimed for release, approved, released, outstanding; due/review date; conditions, disputes, linked defects (held by the client and from trades) | each retention with its clause | monthly / quarterly | clause verified | release timing not inferred without terms |
+| Security instruments | S03 §10.2; S12 §8–9 | type, issuer, beneficiary, face value, issue and expiry dates, release conditions, fees, facility usage | each instrument with its conditions | monthly / quarterly | document verified | face value never treated as cost |
+| Carrying cost of retention and security | S03 §10.4; S12 | eligible tied-up balance, period, annual rate and its source, day-count convention, method, facility fees, overlap checks | the full S12 evidence set | facility statement monthly / quarterly | rate source recorded | not calculated; never from face value alone |
+| Supplier and subcontractor compliance (R06) | S04 §2; S09; S13 | evidence type, holder, trade/work, jurisdiction, coverage/limit, issue/expiry dates, source, verification status | every active trade | before expiry / at expiry | document verified | status "unknown", never "compliant" |
+| Quote comparison, landed cost, buy timing (R07) | S08 §4–7; S03 §8.3–8.4 | specification, quantity/unit, quote date and expiry, supplier, delivery basis, inclusions/exclusions, currency/tax, terms, freight, duty, insurance, storage, lead time; market data by source type | the comparability set for the decision | quote valid / S08 §7.1 thresholds per decision | extracted quote values human-verified (S04 §12) | indicative comparison only; definitive ranking blocked |
+| Plant hire idle cost (R08) | S09; S07 §5 | on/off-hire dates, off-hire request and confirmation, minimum hire, usage or idle evidence, rate basis, project/activity allocation | idle status evidenced | weekly / monthly | supplier docket | qualified date-based exposure only |
+| Delay events and holding cost | S07 §3–6; S03 §9 | dated event first; to quantify: approved programme version, activities and dependencies, actual progress, attribution state, counterfactual, evidenced rates, eligible duration, overlap | two levels: event identified / cost quantified | weekly / monthly | rate and duration evidenced | event shown; cost unquantified or qualified (S07); critical-path analysis only past S07 §4.1's gate |
+| Labour productivity | S09 §3, §5–6, §14 | pseudonymous worker, employer, trade, crew, work allocation, hours, rates and on-costs, accepted output, comparable baseline, conditions | the S09 comparison gate | weekly / monthly | output accepted | qualified indicative comparison; never a conclusion about a person or crew |
+| Defects, rework and quality cost | S13 §3, §5–8 | observation, defect, rework event, cause (hypothesis vs confirmed), rectification, closure verification, actual vs estimated cost | each defect with location and trade | weekly / monthly | closure verified | recurrence only; no cost or fault without evidence |
+| Cash-position-adjusted margin | S03 §5.3; S12 §3–5, §10–13 | actual bank cash, scheduled receipts and payments, claims awaiting certification, certified receivables, disputed amounts, retention, security, facility costs, each kept separate | each cash component named or stated as not assessable | bank daily / weekly; claims monthly / quarterly | reconciled to bank | not assessable until the claim, receivable and payment-schedule records exist |
+
+The freshness levels are proposals from the Gemini design review, aligned to monthly claim and accounting cycles; the owner sets them.
+
+## Readiness: three separate states
+
+APG keeps three states apart, so one simple label never hides a blueprint gate:
+
+1. **Ingestion state of each record:** accepted, accepted with warnings, pending reconciliation, quarantined or rejected (S04 §8).
+2. **Readiness of each insight:** eligible, qualified, blocked or unavailable, decided by that insight's own gate (S05 §5.2, S07 §4.1, S08, S09, S11 human review).
+3. **Action eligibility:** whether a finding may drive a recommendation; consequential actions stay reserved for evidenced inputs and human approval.
+
+How the builder sees it:
+
+- **Nudges, not a dashboard:** short, specific messages to the person who can fix the gap, for example "3 subcontractor invoices from one trade have no cost code: fix them here". A full readiness view stays for setup and review.
+- **Each gap names its owner by role:** contract administrator, bookkeeper, project manager, site manager or estimator, configurable per builder.
+- **Fix-first list:** gaps ranked by the money they put at risk.
+- **Framed as profit risk, honestly:** "possible unbilled variations: 4 instructions with no claim entry, up to $45,000 at risk". A data gap is never called confirmed leakage (S06 §4).
+- **When it runs:** at setup, after every intake, on a schedule (a source can go stale with no new data), and whenever a record is corrected, quarantined, superseded or revoked (S04 §14, S06). Last receipt, last processing and last reconciliation are kept distinct.
