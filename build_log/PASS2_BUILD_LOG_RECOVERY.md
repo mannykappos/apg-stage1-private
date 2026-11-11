@@ -35,3 +35,7 @@ review pack); everything after that is restated here from the conversation recor
 - 49. The builder kept the whole pass 2 workspace on one disk with no off-box copy, although the session had already restarted four
   times. The wipe destroyed it. Corrected: every commit and every finished evidence step now goes to this repository, and checkpoint
   zips go to the owner at the end of steps 3, 5 and 7.
+- 50. At 16:32 the owner wrote "Done" again. The builder's condensed working notes had left out the 15:51–15:58 attach and pushes,
+  so the builder called the repository attach a second time instead of checking the repository first. The tool replied that the
+  repository was already attached; nothing was pushed, changed or duplicated. Owner: "What is going on here we already did this".
+  Corrected: the repository's branches are checked first at every resume.
