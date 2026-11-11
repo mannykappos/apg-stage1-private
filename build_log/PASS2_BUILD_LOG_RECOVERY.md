@@ -123,3 +123,10 @@ review pack); everything after that is restated here from the conversation recor
   Sanity check, frozen_compare_s1.py against APG_M10_CODE_AND_DATA.zip (bd5c592a...): changed 3, identical 1463, new 89, problems 0;
   73 successor tools, every M10 original byte-identical. The ZIP is in freezes/be0c27b; the two hashes and the comparison CSV are in
   evidence_recovery/step4_freeze. Step 5 (the full evidence, AM5-6 order) next.
+- 21:41 STOP before step 5 (recovery authorisation: stop if anything would need a changed claim). B.6 and K.2 (rows 43 and 61) compare the
+  new freeze's 111 plant verdicts and 386 case verdicts, item by item, with the runs of freeze d5f87d6b. d5f87d6b was lost with the
+  workspace and cannot be rebuilt (only e4531a35 survives byte-exact); its per-item verdicts were never kept outside it: the review
+  pack's b6.txt and k2.txt hold only per-runner counts, status, exit, controls and CONTROL lines. Any b6/k2 run now changes what rows 43
+  and 61 can claim. Reported to the owner with options; nothing in step 5 runs until the owner answers. The other step 5 tools
+  (AM5-3 allowance in compare_pass2_s1, discrepancies 7 and 21, the row 68 check, the names check) are specified in amendment 5 and
+  will be rewritten from it, disclosed as rewritten. Spot check: discrepancies 10, 14, 17 are in the step 3 tests.
