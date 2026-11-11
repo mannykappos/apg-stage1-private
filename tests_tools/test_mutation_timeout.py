@@ -1533,5 +1533,69 @@ def _add_am5_control_cases():
 _add_am5_control_cases()
 
 
+class AM5MoreMutationFamily(unittest.TestCase):
+    """Row 50 (F.1 on sabotage_m7_s1 at --jobs 2), discrepancy 10 (E.2's fixed values) and discrepancy 14 (the 1 MiB boundary at tool
+    level)."""
+
+    setUp = P2MutationFamily.setUp
+    tearDown = P2MutationFamily.tearDown
+    disk_at = P2MutationFamily.disk_at
+
+    def test_row50_sabotage_m7_the_floor_during_the_items_with_jobs_2(self):
+        doc, _ = E.load_pins()
+        ids = doc['plant_lists']['sabotage_m7_s1']['ids'][:3]
+        self.assertEqual(len(ids), 3)
+        tree = os.path.join(self.tmp, 'm7_floor')
+        sabotage_tree(tree, 'm7', 'sleep', sleep=3)
+        p2_patch_evkit(tree, self.disk_at(3))
+        code, out, seen, sent = p2_run(tree, 'sabotage_m7_s1.py', ['--ids', ','.join(ids), '--jobs', '2'])
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, 2, out[-2000:])
+        self.assertRegex(out, r'(?m)^RUN_ERROR ENV_DISK_BELOW_FLOOR items free=1 floor=2$')
+        self.assertRegex(out, r'(?m)^PLANT %s NOT_RUN cause=run_stopped$' % _re.escape(ids[2]))
+        self.assertIn(' control_end=NOT_RUN ', out.strip().splitlines()[-1])
+        self.assertEqual(E.check_output(out, code, selected=ids), [], out[-3000:])
+        p2_gone(self, seen)
+
+    def test_d10_the_fixed_values_of_e2(self):
+        # amendment 4 AM4-1 / E.2: 199 ids; RI10 at position 51; 198 common ids with this sha256_lines; the successor's ids_sha256
+        doc, _ = E.load_pins()
+        m = doc['mutation_lists']['m2_mutants_s1']
+        ids = m['ids']
+        self.assertEqual(len(ids), 199)
+        self.assertEqual(ids.index('RI10-query-crosses-tenants') + 1, 51)
+        common = [i for i in ids if i != 'RI10-query-crosses-tenants']
+        self.assertEqual(E.sha256_lines(common), 'd5da4f9a3e083a30952c46b65491f907df832f7183710be088df08b15016694c')
+        self.assertEqual(m['ids_sha256'], '649e0e48d843bf4e792727b5b7789ff9a9a0d3ddb346f36dc51693d652f3384e')
+        self.assertEqual(E.sha256_lines(ids), m['ids_sha256'])
+        p = _sp.run([sys.executable, '-I', '-S', 'tools/m2_mutants_s1.py', '--list'], cwd=ROOT, capture_output=True, text=True,
+                    timeout=600, stdin=_sp.DEVNULL)
+        self.assertEqual(p.returncode, 0, p.stdout[-2000:])
+        self.assertEqual([l for l in p.stdout.splitlines() if l.strip()], ids)
+
+    def test_d14_the_1_mib_boundary_at_tool_level(self):
+        # P.8: a message of exactly FORK_MESSAGE_MAX bytes is read; one byte more is too_long (bad_result), on run_faults_s1
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import test_runner_zero_work as Z
+        doc, _ = E.load_pins()
+        pid0 = doc['plant_lists']['run_faults_s1']['ids'][0]
+        n = E.FORK_MESSAGE_MAX - len('{"child_error": ""}')
+        for extra, state, cause in ((0, 'ITEM_ERROR', 'child_error'), (1, 'INDETERMINATE', 'bad_result')):
+            with self.subTest(size=E.FORK_MESSAGE_MAX + extra):
+                root = os.path.join(self.tmp, 'mib_%d' % extra)
+                body = ('    import os, json\n    w = max(int(x) for x in os.listdir("/proc/self/fd") if int(x) > 2 and '
+                        'os.path.exists("/proc/self/fd/" + x))\n    data = json.dumps({"child_error": "x" * %d}).encode()\n'
+                        '    assert len(data) == %d\n    os.write(w, len(data).to_bytes(4, "big") + data)\n    os._exit(0)\n'
+                        % (n + extra, E.FORK_MESSAGE_MAX + extra))
+                Z.p2b_copy(root, [('tools/run_faults_s1.py', 'def failed(factory):\n',
+                                   'def failed(factory):\n    if factory is not reference:\n' +
+                                   ''.join('    ' + l + '\n' for l in body.splitlines()))])
+                code, out, seen = Z.p2b_run(root, ['tools/run_faults_s1.py', '--ids', pid0])
+                p2_identity_record(self, seen, out)
+                self.assertRegex(out, r'(?m)^PLANT %s %s cause=%s$' % (_re.escape(pid0), state, cause), out[-2000:])
+                self.assertEqual(E.check_output(out, code, selected=[pid0]), [], out[-3000:])
+                shutil.rmtree(root, ignore_errors=True)
+
+
 if __name__ == '__main__':
     unittest.main()
