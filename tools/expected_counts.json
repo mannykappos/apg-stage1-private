@@ -4040,6 +4040,28 @@
    "date": "2026-11-11T07:48:10Z",
    "reason": "amendment 5 (owner 2026-11-08 11:26; S15 to S17 at 12:47; option A of 2026-11-09): the test_files entries of the tests_tools files that hold the amendment 5 tests, rewritten after the workspace loss of 2026-11-11",
    "version": 100
+  },
+  {
+   "cause": "tests_tools/test_runner_zero_work.py changed on branch step3",
+   "changes": [
+    {
+     "entry": "test_files/tests_tools/test_runner_zero_work.py",
+     "new": {
+      "ids_sha256": "050ea34f42bad2dc154eb2dd76e45fba6c1e716e73c9e42c8ba24a37a0109b90",
+      "sha256": "0d480af2790f0ebf00257d65ae867dc63819d841411193f675534ace9260d987",
+      "tests": 166
+     },
+     "old": {
+      "ids_sha256": "050ea34f42bad2dc154eb2dd76e45fba6c1e716e73c9e42c8ba24a37a0109b90",
+      "sha256": "ee7c50a4124bf7c19cf8a0f5451e45ae20dbf8f73d1cf99caacb36cb1e3864fa",
+      "tests": 166
+     }
+    }
+   ],
+   "content_sha256": "da0aa34ec110892d341575e0226a1576e9e51b93ea64b07a82c66e346fa979a2",
+   "date": "2026-11-11T08:43:47Z",
+   "reason": "amendment 5, row 55: the test made deterministic (a held group) after the full suite showed a timing race in the test itself",
+   "version": 101
   }
  ],
  "check_lists": {
@@ -39458,11 +39480,11 @@
     "tests_tools.test_runner_zero_work.ZeroAndPartialWork.test_zero_selected_never_succeeds_in_any_kind"
    ],
    "ids_sha256": "050ea34f42bad2dc154eb2dd76e45fba6c1e716e73c9e42c8ba24a37a0109b90",
-   "sha256": "ee7c50a4124bf7c19cf8a0f5451e45ae20dbf8f73d1cf99caacb36cb1e3864fa"
+   "sha256": "0d480af2790f0ebf00257d65ae867dc63819d841411193f675534ace9260d987"
   }
  },
  "timeout_kill_factor": null,
- "version": 100,
+ "version": 101,
  "wrapper_inventories": {
   "run_f671_all_s1": {
    "files": {

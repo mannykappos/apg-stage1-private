@@ -2253,25 +2253,20 @@ class AM5Wrappers(unittest.TestCase):
                 p2b_gone(self, seen)
 
     def test_row55_an_interrupted_wrapper_group(self):
-        # F.2 (b): the group running at the signal is INDETERMINATE, the groups before it completed, the groups after it NOT_RUN, the H
-        # groups EXCLUDED; RESULT exit 3
-        def running(tree, d):
-            for pid, _ in d:
-                try:
-                    if b'run_m2_tests_s1' in open('/proc/%d/cmdline' % pid, 'rb').read():
-                        return True
-                except OSError:
-                    pass
-            return False
-        root = self.m4('in_group')
-        code, out, seen = p2b_run(root, ['tools/run_m4_all_s1.py'], when=running, delay=0.3)
+        # F.2 (b): the group running at the signal is INDETERMINATE, the groups after it NOT_RUN, the H groups EXCLUDED; RESULT exit 3.
+        # G01's child is held in the copy (a marker, then a sleep), so the signal lands while it runs, never between groups
+        hold = ('import os as _am5o, sys as _am5y, time as _am5t\n'
+                'if "test_fin_arith.py" in _am5y.argv:\n'
+                '    open(_am5o.path.join(%r, "_p2", "in_g01"), "w").close()\n    _am5t.sleep(30)\n')
+        root = os.path.join(self.tmp, 'in_group')
+        root = self.m4('in_group', prepend=[('tools/run_m2_tests_s1.py', hold % root)])
+        code, out, seen = p2b_run(root, ['tools/run_m4_all_s1.py'], when=p2b_mark('in_g01'))
         p2_identity_record(self, seen, out)
         self.assertEqual(code, 3, out[-2000:])
-        states = [(l.split()[1], l.split()[2]) for l in out.splitlines() if l.startswith(('FILE ', 'CHECK '))]
-        ind = [k for k, (g, st) in enumerate(states) if st in ('state=INDETERMINATE', 'INDETERMINATE')]
-        self.assertEqual(len(ind), 1, states)
-        self.assertTrue(all(st in ('state=COMPLETED', 'PASS') for g, st in states[:ind[0]]), states)
-        self.assertTrue(all(st in ('state=NOT_RUN', 'NOT_RUN') for g, st in states[ind[0] + 1:]), states)
+        self.assertRegex(out, r'(?m)^FILE G01 state=INDETERMINATE ')
+        for g in ('G02', 'G13'):
+            self.assertRegex(out, r'(?m)^FILE %s state=NOT_RUN ' % g)
+        self.assertRegex(out, r'(?m)^CHECK G14 NOT_RUN ')
         self.assertRegex(out, r'(?m)^EXCLUDED G18 NOT_RUN_HISTORICAL ')
         self.assertTrue(out.strip().splitlines()[-1].endswith(' exit=3'))
         self.assertEqual(E.check_output(out, code, pins=self.wpins()), [], out[-3000:])
