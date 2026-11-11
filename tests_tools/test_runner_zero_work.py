@@ -2465,5 +2465,265 @@ class AM5AttributionTable(unittest.TestCase):
         self.assertNotIn('ENV_NO_PROCESS_SUPERVISION', out)
 
 
+AM5_BATCH_OLD = ('def batch(cand):\n    return [[s, cid, bool(ok), str(d)] for s, cid, text, ok, d in R.run(cand.get("--factory") or reference)]\n')
+
+
+class AM5CaseRunnerOrder(unittest.TestCase):
+    """Rows 31 (A.1 steps 5, 6 and 8 keep the resolved selection), 36 and 46 (A.4 / C.2: the import failure keeps the selection and its
+    hash, history case mode included), 79 (AM2-1 (a)), 81 (AM2-1 (d) rows 7 and 3 with a leak), 59 and 60 (K.2), in copies."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_am5o_')
+        self.doc, _ = E.load_pins()
+        self.pins = self.doc['case_inventories']['run_contracts_s1']
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def batch_tree(self, name, body):
+        root = os.path.join(self.tmp, name)
+        p2b_copy(root, [('tools/run_contracts_s1.py', AM5_BATCH_OLD, AM5_BATCH_OLD.replace('def batch(', 'def _batch(') +
+                         '\n\ndef batch(cand):\n    rows = _batch(cand)\n' + body + '    return rows\n')])
+        os.makedirs(os.path.join(root, '_p2'), exist_ok=True)
+        return root
+
+    def kept(self, out, suites, cause='run_error'):
+        f = E.parse_result_line(out.strip().splitlines()[-1])[1]
+        self.assertEqual(f['suites'], ','.join(sorted(suites)))
+        want = ['%s/%s' % (s, c) for s in suites for c in self.pins[s]['ids']]
+        self.assertEqual(f['selected'], len(want))
+        self.assertEqual(f['case_inventory_sha256'], E.sha256_lines(['%s/%s' % (s, c) for s in sorted(suites) for c in self.pins[s]['ids']]))
+        self.assertEqual([l for l in out.splitlines() if l.startswith('CASE ')], ['CASE %s NOT_RUN cause=%s' % (w, cause) for w in want])
+
+    def test_row31_step_5_a_candidate_that_cannot_be_loaded(self):
+        code, out, seen = p2b_run(ROOT, ['tools/run_contracts_s1.py', '--suite', 'record_store', '--path', self.tmp, '--factory',
+                                         'am5_no_such_module:Store'])
+        self.assertEqual(code, 2, out[-2000:])
+        self.assertRegex(out, r'(?m)^RUN_ERROR CANDIDATE_IMPORT_FAILED ')
+        self.kept(out, ['record_store'])
+        self.assertEqual(E.check_output(out, code, pins=self.pins), [], out[-3000:])
+
+    def test_row31_step_6_an_inventory_that_differs(self):
+        root = self.batch_tree('step6', '    rows = [r for r in rows if r[1] != "RS-01"]\n')
+        code, out, seen = p2b_run(root, ['tools/run_contracts_s1.py', '--suite', 'record_store'])
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, 2, out[-2000:])
+        self.assertRegex(out, r'(?m)^RUN_ERROR CASE_INVENTORY_MISMATCH record_store ')
+        self.kept(out, ['record_store'])
+        self.assertEqual(E.check_output(out, code, pins=self.pins), [], out[-3000:])
+        p2b_gone(self, seen)
+
+    def test_row31_step_8_the_end_check_keeps_the_selection(self):
+        # the end identity check (IMPORT_END) refuses after the cases: the selection and its case lines are kept
+        root = self.batch_tree('step8', '')
+        p = os.path.join(root, 'tools', 'evkit.py')
+        src = open(p, encoding='utf-8').read()
+        old = 'def import_identity(root=ROOT, preloaded=(), candidate_paths=()):\n'
+        self.assertEqual(src.count(old), 1)
+        src = src.replace(old, old + '    if [f.function for f in __import__("inspect").stack()][1] == "cases_main":\n'
+                          '        if _AM5_END[0]:\n            return [RunError("IMPORT_OUTSIDE_EXTRACTION", "am5 planted")], []\n'
+                          '        _AM5_END[0] = True\n')
+        open(p, 'w', encoding='utf-8').write(src + '\n_AM5_END = [False]\n')
+        code, out, seen = p2b_run(root, ['tools/run_contracts_s1.py', '--suite', 'record_store'])
+        self.assertEqual(code, 2, out[-2000:])
+        self.assertRegex(out, r'(?m)^RUN_ERROR IMPORT_OUTSIDE_EXTRACTION am5 planted$')
+        f = E.parse_result_line(out.strip().splitlines()[-1])[1]
+        self.assertEqual((f['suites'], f['selected']), ('record_store', len(self.pins['record_store']['ids'])))
+        self.assertEqual(E.check_output(out, code, pins=self.pins), [], out[-3000:])
+
+    def test_row36_row46_an_import_failure_keeps_the_selection_and_its_hash(self):
+        for tool, args, pkey, suites in (('run_contracts_s1', ['--suite', 'record_store'], 'run_contracts_s1', ['record_store']),
+                                         ('run_history_contract_s1', ['--path', self.tmp, '--factory', 'am5cand:Store'],
+                                          'run_history_contract_s1', None)):
+            with self.subTest(tool=tool):
+                rel = P2GuardedImports.BREAK[tool]
+                root = p2b_copy(os.path.join(self.tmp, 'imp_' + tool))
+                p = os.path.join(root, rel)
+                src = open(p, encoding='utf-8').read()
+                open(p, 'w', encoding='utf-8').write('raise ImportError("planted by test_runner_zero_work (C.2)")\n' + src)
+                code, out, seen = p2b_run(root, ['tools/%s.py' % tool] + args)
+                self.assertEqual(code, 2, out[-2000:])
+                self.assertRegex(out, r'(?m)^RUN_ERROR IMPORT_FAILED ')
+                pins = self.doc['case_inventories'][pkey]
+                f = E.parse_result_line(out.strip().splitlines()[-1])[1]
+                ss = suites or sorted(pins)
+                self.assertEqual(f['suites'], ','.join(sorted(ss)))
+                self.assertEqual(f['case_inventory_sha256'], E.sha256_lines(['%s/%s' % (s, c) for s in sorted(ss) for c in pins[s]['ids']]))
+                cases = [l for l in out.splitlines() if l.startswith('CASE ')]
+                self.assertEqual(len(cases), sum(len(pins[s]['ids']) for s in ss))
+                self.assertTrue(all(l.endswith(' NOT_RUN cause=run_error') for l in cases))
+                self.assertEqual(E.check_output(out, code, pins=pins), [], out[-3000:])
+
+    def test_row79_no_batch_after_a_start_refusal_and_pin_uses_the_batch_unit(self):
+        mark = os.path.join(self.tmp, 'batch_ran')
+        root = self.batch_tree('pin', '    import os\n    open(%r, "a").write("%%d %%d\\n" %% (os.getpid(), os.getpgid(0)))\n' % mark)
+        p = _p2sp.run([sys.executable, '-I', '-S', os.path.join(root, 'tools', 'run_contracts_s1.py')], cwd=self.tmp, capture_output=True,
+                      text=True, timeout=600, stdin=_p2sp.DEVNULL)
+        self.assertEqual(p.returncode, 2, p.stdout[-2000:])
+        self.assertRegex(p.stdout, r'(?m)^RUN_ERROR ENV_CWD ')
+        self.assertFalse(os.path.exists(mark), 'the batch ran after a start refusal')
+        p = _p2sp.run([sys.executable, '-I', '-S', 'tools/run_contracts_s1.py', '--pin', '--reason', 'am5 test', '--cause', 'am5 test'],
+                      cwd=root, capture_output=True, text=True, timeout=600, stdin=_p2sp.DEVNULL)
+        self.assertEqual(p.returncode, 0, p.stdout[-2000:])
+        pid, pgid = open(mark).read().split()[:2]
+        self.assertEqual(pid, pgid)                  # it ran in a forked unit: its own process group
+
+    def test_row81_precedence_rows_7_and_3_with_a_leak(self):
+        leak = '    import subprocess, sys\n    subprocess.Popen([sys.executable, "-c", "import time; time.sleep(30)"])\n'
+        root = self.batch_tree('row7', leak + '    rows = [r for r in rows if r[1] != "RS-01"]\n')
+        code, out, seen = p2b_run(root, ['tools/run_contracts_s1.py', '--suite', 'record_store'])
+        p2_identity_record(self, seen, out)
+        self.assertRegex(out, r'(?m)^RUN_ERROR CASE_INVENTORY_MISMATCH record_store ')     # row 7: the mismatch wins over the leak
+        self.assertNotRegex(out, r'(?m)^CASE \S+ INDETERMINATE cause=processes_left$')
+        self.assertRegex(out, r'(?m)^CLEANUP \S+ by=run_contracts_s1:\d+ ')                # the leak is still recorded
+        self.assertEqual(E.check_output(out, code, pins=self.pins), [], out[-3000:])
+        p2b_gone(self, seen)
+        root = self.batch_tree('row3', leak + '    raise KeyError("planted")\n')
+        code, out, seen = p2b_run(root, ['tools/run_contracts_s1.py', '--suite', 'record_store'])
+        p2_identity_record(self, seen, out)
+        self.assertRegex(out, r'(?m)^RUN_ERROR CASES_ENUMERATION_FAILED KeyError$')        # row 3 keeps its result with a leak
+        self.kept(out, ['record_store'])
+        self.assertRegex(out, r'(?m)^CLEANUP \S+ by=run_contracts_s1:\d+ ')
+        self.assertEqual(E.check_output(out, code, pins=self.pins), [], out[-3000:])
+        p2b_gone(self, seen)
+
+    def test_row59_per_case_message_forms(self):
+        ids = self.doc['case_inventories']['run_fin_corpus_s1']['fin_corpus']['ids']
+        c0 = ids[0]
+        pins = self.doc['case_inventories']['run_fin_corpus_s1']
+        wr = ('        import os, json, subprocess, sys, time\n'
+              '        w = max(int(x) for x in os.listdir("/proc/self/fd") if int(x) > 2 and os.path.exists("/proc/self/fd/" + x))\n'
+              '        def frame(b):\n            os.write(w, len(b).to_bytes(4, "big") + b)\n')
+        for name, body, state, cause, code in (
+                ('descendant_hang', '        subprocess.Popen([sys.executable, "-c", "import time; time.sleep(60)"]); time.sleep(60)\n',
+                 'INDETERMINATE', 'timeout', 3),
+                ('incomplete', '        os.write(w, b"\\x00\\x00\\x01\\x00{\\"ok"); os._exit(0)\n', 'INDETERMINATE', 'crash', 3),
+                ('malformed', '        frame(b"{]"); os._exit(0)\n', 'INDETERMINATE', 'bad_result', 3),
+                ('ok_false', '        frame(json.dumps({"ok": False, "detail": "planted"}).encode()); os._exit(0)\n', 'FAIL', None, 1),
+                ('child_error', '        frame(json.dumps({"child_error": "X"}).encode()); os._exit(0)\n', 'ITEM_ERROR', 'child_error', 2),
+                ('kill_writing', '        os.write(w, b"\\x00\\x00\\x01\\x00{"); os.kill(os.getpid(), 9)\n', 'INDETERMINATE', 'crash', 3),
+                ('wrong_keys', '        frame(json.dumps({"ok": True}).encode()); os._exit(0)\n', 'INDETERMINATE', 'bad_result', 3),
+                ('wrong_types', '        frame(json.dumps({"ok": "yes", "detail": ""}).encode()); os._exit(0)\n', 'INDETERMINATE',
+                 'bad_result', 3),
+                ('looks_like_ok_false', '        frame(b"ok=false detail=planted"); os._exit(0)\n', 'INDETERMINATE', 'bad_result', 3),
+                ('valid_then_hang', '        frame(json.dumps({"ok": True, "detail": ""}).encode()); os.close(w); time.sleep(60)\n',
+                 'INDETERMINATE', 'processes_left', 3)):
+            with self.subTest(form=name):
+                old = "def run_case(cand, suite, cid):\n"
+                root = p2b_copy(os.path.join(self.tmp, 'k2_' + name),
+                                [('tools/run_fin_corpus_s1.py', old, old + '    if cid == %r:\n' % c0 + wr + body)])
+                code_, out, seen = p2b_run(root, ['tools/run_fin_corpus_s1.py', '--only', ','.join(ids[:2])])
+                p2_identity_record(self, seen, out)
+                self.assertEqual(code_, code, out[-2000:])
+                self.assertRegex(out, r'(?m)^CASE fin_corpus/%s %s cause=%s$' % (_p2re.escape(c0), state, cause or r'\S+'))
+                self.assertRegex(out, r'(?m)^CASE fin_corpus/%s PASS cause=ok$' % _p2re.escape(ids[1]))
+                self.assertEqual(E.check_output(out, code_, pins=pins), [], out[-3000:])
+                p2b_gone(self, seen)
+                shutil.rmtree(root, ignore_errors=True)
+
+    def test_row60_the_hang_on_run_history_contract_s1_and_run_mkt_corpus_s1(self):
+        hpins = self.doc['case_inventories']['run_history_contract_s1']
+        s, inv = next(iter(hpins.items()))
+        old = 'def batch(cand):\n'
+        root = p2b_copy(os.path.join(self.tmp, 'hist'), [('tools/run_history_contract_s1.py', old,
+                                                          old + '    import time\n    time.sleep(60)\n')])
+        code, out, seen = p2b_run(root, ['tools/run_history_contract_s1.py', '--path', self.tmp, '--factory', 'am5cand:Store'])
+        p2_identity_record(self, seen, out)
+        self.assertEqual(E.check_output(out, code, pins=hpins), [], out[-3000:])
+        p2b_gone(self, seen)
+        mpins = self.doc['case_inventories']['run_mkt_corpus_s1']
+        s, ids = next(iter(mpins.items()))
+        ids = ids['ids']
+        root = p2b_copy(os.path.join(self.tmp, 'mkt'), [('tools/run_mkt_corpus_s1.py', "'run_case': lambda cand, s, c: K.check_case(CASES[c])}",
+                                                         "'run_case': lambda cand, s, c: __import__('time').sleep(60) if c == %r else "
+                                                         "K.check_case(CASES[c])}" % ids[0])])
+        code, out, seen = p2b_run(root, ['tools/run_mkt_corpus_s1.py', '--only', ','.join(ids[:2])])
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertEqual(E.check_output(out, code, pins=mpins), [], out[-3000:])
+        p2b_gone(self, seen)
+
+
+AM5_CR02_STUB = r'''import os, subprocess, sys, time
+# planted by tests_tools/test_runner_zero_work.py (amendment 5, rows 69 and 85): run in place of M10's run_cr02_reference.py in a copy
+MODE, MARK = %(mode)r, %(mark)r
+def show(r):
+    print('FIELDS %%r %%r %%s %%r' %% (r.args[:1] == [sys.executable], r.returncode, type(r.stdout).__name__, r.stdout))
+if MODE == 'leak':
+    show(subprocess.run([sys.executable, '-I', '-c', 'import subprocess, sys; subprocess.Popen([sys.executable, "-c", '
+                         '"import time; time.sleep(30)"]); print("child ok")'], capture_output=True, text=True, timeout=60))
+if MODE == 'interrupt':
+    show(subprocess.run([sys.executable, '-I', '-c', 'import sys, time; open(sys.argv[1], "w").close(); time.sleep(60)',
+                         os.path.join(MARK, 'first')], capture_output=True, text=True, timeout=120))
+    show(subprocess.run([sys.executable, '-I', '-c', 'open(%%r, "w").close()' %% os.path.join(MARK, 'second_started')],
+                        capture_output=True, timeout=120))
+if MODE == 'normal':
+    show(subprocess.run([sys.executable, '-I', '-c', 'print("child ok")'], capture_output=True, text=True, timeout=60))
+print('CR-02 stub done')
+sys.exit(0)
+'''
+
+
+class AM5CR02(unittest.TestCase):
+    """Rows 69 (AM-3: CR-02 under P: a leak, and the cleanup on the SystemExit path) and 85 (AM2-2 (c): the synthetic
+    CompletedProcess fields), with M10's script replaced by a stub in a copy (the successor's own M10 hash check pointed at it)."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_am5cr_')
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def tree(self, mode):
+        root = p2b_copy(os.path.join(self.tmp, mode))
+        mark = os.path.join(root, '_p2')
+        os.makedirs(mark)
+        stub = os.path.join(root, 'tools', 'am5_cr02_stub.py')
+        with open(stub, 'w', encoding='utf-8') as fh:
+            fh.write(AM5_CR02_STUB % {'mode': mode, 'mark': mark})
+        import hashlib
+        h = hashlib.sha256(open(stub, 'rb').read()).hexdigest()
+        p = os.path.join(root, 'tools', 'run_cr02_reference_s1.py')
+        src = open(p, encoding='utf-8').read()
+        for old, new in (("os.path.join(ROOT, 'tools', 'run_cr02_reference.py')", "os.path.join(ROOT, 'tools', 'am5_cr02_stub.py')"),
+                         ("M10_SHA256 = '59eecd583f8147dabb967fc7afdbb632cc0c520442456cb9d1631c1036ab55cb'", "M10_SHA256 = %r" % h)):
+            self.assertEqual(src.count(old), 1, old)
+            src = src.replace(old, new)
+        open(p, 'w', encoding='utf-8').write(src)
+        return root, mark
+
+    def test_row69_a_leak_is_never_a_pass(self):
+        root, mark = self.tree('leak')
+        code, out, seen = p2b_run(root, ['tools/run_cr02_reference_s1.py'])
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, 2, out[-2000:])
+        self.assertIn('FIELDS True 0 str ', out)
+        self.assertRegex(out, r'(?m)^CLEANUP cr02:1 by=run_cr02_reference_s1:\d+ ')
+        self.assertNotIn('CR-02 REFERENCE RERUN OK', out)
+        p2b_gone(self, seen)
+
+    def test_row69_the_systemexit_path_is_cleaned_up(self):
+        root, mark = self.tree('normal')
+        code, out, seen = p2b_run(root, ['tools/run_cr02_reference_s1.py'])
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, 0, out[-2000:])
+        self.assertIn("FIELDS True 0 str 'child ok\\n'", out)
+        self.assertRegex(out, r'(?m)^CLEANUP_SUMMARY units=1 leaked=0 remaining=0$')
+        p2b_gone(self, seen)
+
+    def test_row85_the_synthetic_completed_process_fields(self):
+        # a child in flight at the signal is stopped under P.5 and reported as -15 with empty output of the asked type; a child not
+        # yet started is not started, and reported the same way
+        root, mark = self.tree('interrupt')
+        code, out, seen = p2b_run(root, ['tools/run_cr02_reference_s1.py'], when=p2b_mark('first'), sig=_p2sig.SIGTERM)
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertIn("FIELDS True -15 str ''", out)
+        self.assertIn("FIELDS True -15 bytes b''", out)
+        self.assertFalse(os.path.exists(os.path.join(mark, 'second_started')))
+        self.assertRegex(out.strip().splitlines()[-1], r'^INTERRUPTED signal=SIGTERM at=\S+ received=1$')
+        p2b_gone(self, seen)
+
+
 if __name__ == '__main__':
     unittest.main()
