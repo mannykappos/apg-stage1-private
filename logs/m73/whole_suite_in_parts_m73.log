@@ -1,0 +1,13 @@
+$ python3 -I tools/run_m73_all.py --range 13-22
+PASS group 13: whole suite, part 1 of 10: the API boundary tests (M9) | tests 149
+PASS group 14: whole suite, part 2 of 10: detection and findings (M5, M6.1 to M6.5) | tests 605
+PASS group 15: whole suite, part 3 of 10: the financial core (M4) | tests 340
+PASS group 16: whole suite, part 4 of 10: ingestion (M3) | tests 224
+PASS group 17: whole suite, part 5 of 10: materials and market (M6) | tests 544
+PASS group 18: whole suite, part 6 of 10: recommendations (M7 to M7.3, all fourteen files) | tests 216
+PASS group 19: whole suite, part 7 of 10: the materiality engine (M2) | tests 45
+PASS group 20: whole suite, part 8 of 10: golden, source authority, status model, tenancy, values (M2) | tests 105
+PASS group 21: whole suite, part 9 of 10: the Builder Zero adversarial tests (M1) | tests 33
+PASS group 22: whole suite, part 10 of 10: reproducibility (M2) | tests 23
+whole suite: 2284 tests in groups 13 to 22 (expected 2284)
+groups 10  failed 0

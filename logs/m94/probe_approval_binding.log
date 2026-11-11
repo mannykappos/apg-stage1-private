@@ -1,0 +1,6 @@
+BEFORE action_approved version 1 evidence 67a504082f14 approved by abby
+AFTER  action_proposed version 2 evidence 619f1afb69a4 approved by None updated ['FND-3b24102724f9e17d839d']
+approval still in force: False | status: action_proposed | ended approvals kept: 1
+APPROVAL IS BOUND TO THE EVIDENCE
+
+[exit code 0; 0s]

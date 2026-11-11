@@ -1,0 +1,80 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "hire_id",
+   "target_field": "source_record_id",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "project_id",
+   "target_field": "project_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "equipment",
+   "target_field": "equipment_text",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "required": true,
+   "source_column": "on_hire_date",
+   "target_field": "on_hire_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "off_hire_date",
+   "target_field": "off_hire_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "needed_until",
+   "target_field": "needed_until",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "required": true,
+   "source_column": "rate_cents_per_day",
+   "target_field": "rate_cents_per_day",
+   "transform": "none",
+   "type": "money_cents"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "hire_id"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-13",
+ "source_label": "Builder Zero plant hire (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "plant_hire",
+ "template_id": "TPL-BZ-PLANT-HIRE",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

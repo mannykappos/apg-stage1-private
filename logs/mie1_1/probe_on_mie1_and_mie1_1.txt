@@ -1,0 +1,47 @@
+== On the delivered MIE-1 package (ZIP 26fe3517d0d4f64981bad3cc2f28e1d748e0c25062f98c22209359435dd4206d), with tools/probe_mie1_audit_findings.py copied in:
+DEFECT PRESENT  F-70 register_pack: registry.put raises RuntimeError                   -> raw RuntimeError escaped; last events [('activate_pack', 'ACCEPTED', None), ('register_pack', 'ACCEPTED', None)]; nothing stored: True
+DEFECT PRESENT  F-70 activate_pack: registry.activate raises RuntimeError              -> raw RuntimeError escaped; last events [('activate_pack', 'ACCEPTED', None)]; nothing stored: True
+DEFECT PRESENT  F-70 withdraw_pack: registry.withdraw raises RuntimeError              -> raw RuntimeError escaped; last events [('activate_pack', 'ACCEPTED', None), ('withdraw_pack', 'ACCEPTED', None)]; nothing stored: True
+DEFECT PRESENT  F-70 submit_observations: the observation store raises RuntimeError    -> raw RuntimeError escaped; last events [('activate_pack', 'ACCEPTED', None), ('submit_observations', 'ACCEPTED', None)]; nothing stored: True
+DEFECT PRESENT  F-70 assess_timing: results.put raises RuntimeError                    -> raw RuntimeError escaped; last events [('submit_observations', 'ACCEPTED', None), ('assess_timing', 'ACCEPTED', None)]; nothing stored: True
+DEFECT PRESENT  F-70 the audit sink raises RuntimeError at submit_observations         -> raw RuntimeError escaped; observations stored: 0
+DEFECT PRESENT  F-70 the store fails while writing the 2nd of 3 observations           -> STORE_UNAVAILABLE; observations left stored: 1
+DEFECT PRESENT  F-71 a correction naming an observation of another subject (SYN-ITEM-B) -> ACCEPTED; the original is now current
+DEFECT PRESENT  F-71 a correction naming an observation of another subject that is in scope (the conversion series SYN-RATE-1) -> ACCEPTED; the original is now history
+DEFECT PRESENT  F-71 a correction naming an observation of another unit                -> ACCEPTED; the original is now history
+DEFECT PRESENT  F-71 a correction naming an observation of another market              -> ACCEPTED; the original is now history
+DEFECT PRESENT  F-71 a correction naming an observation of another value basis         -> ACCEPTED; the original is now history
+DEFECT PRESENT  F-71 a correction naming an observation of another observation class and value basis -> ACCEPTED; the original is now history
+DEFECT PRESENT  F-71 a correction naming an observation of another observation class only -> ACCEPTED; the original is now history
+DEFECT PRESENT  F-71 a correction naming an observation of another source and value basis -> ACCEPTED; the original is now history
+DEFECT PRESENT  F-71 a correction naming an observation of another source only         -> ACCEPTED; the original is now history
+DEFECT PRESENT  F-71 a correction naming an observation of another date                -> ACCEPTED; the original is now history
+CORRECTED       F-71 control: a true correction (same series, source and date)         -> ACCEPTED; the original is now history
+
+cases 18  defects present 17
+THE MIE-1 AUDIT FINDINGS ARE NOT CORRECTED
+exit 1
+
+== On MIE-1.1:
+CORRECTED       F-70 register_pack: registry.put raises RuntimeError                   -> INTERNAL_ERROR_FAIL_CLOSED; last events [('register_pack', 'ACCEPTED', None), ('register_pack', 'FAILED', 'INTERNAL_ERROR_FAIL_CLOSED')]; nothing stored: True
+CORRECTED       F-70 activate_pack: registry.activate raises RuntimeError              -> INTERNAL_ERROR_FAIL_CLOSED; last events [('activate_pack', 'ACCEPTED', None), ('activate_pack', 'FAILED', 'INTERNAL_ERROR_FAIL_CLOSED')]; nothing stored: True
+CORRECTED       F-70 withdraw_pack: registry.withdraw raises RuntimeError              -> INTERNAL_ERROR_FAIL_CLOSED; last events [('withdraw_pack', 'ACCEPTED', None), ('withdraw_pack', 'FAILED', 'INTERNAL_ERROR_FAIL_CLOSED')]; nothing stored: True
+CORRECTED       F-70 submit_observations: the observation store raises RuntimeError    -> INTERNAL_ERROR_FAIL_CLOSED; last events [('submit_observations', 'ACCEPTED', None), ('submit_observations', 'FAILED', 'INTERNAL_ERROR_FAIL_CLOSED')]; nothing stored: True
+CORRECTED       F-70 assess_timing: results.put raises RuntimeError                    -> INTERNAL_ERROR_FAIL_CLOSED; last events [('assess_timing', 'ACCEPTED', None), ('assess_timing', 'FAILED', 'INTERNAL_ERROR_FAIL_CLOSED')]; nothing stored: True
+CORRECTED       F-70 the audit sink raises RuntimeError at submit_observations         -> AUDIT_UNAVAILABLE; observations stored: 0
+CORRECTED       F-70 the store fails while writing the 2nd of 3 observations           -> STORE_UNAVAILABLE; observations left stored: 0
+CORRECTED       F-71 a correction naming an observation of another subject (SYN-ITEM-B) -> REJECTED; the original is now current
+CORRECTED       F-71 a correction naming an observation of another subject that is in scope (the conversion series SYN-RATE-1) -> REJECTED; the original is now current
+CORRECTED       F-71 a correction naming an observation of another unit                -> REJECTED; the original is now current
+CORRECTED       F-71 a correction naming an observation of another market              -> REJECTED; the original is now current
+CORRECTED       F-71 a correction naming an observation of another value basis         -> REJECTED; the original is now current
+CORRECTED       F-71 a correction naming an observation of another observation class and value basis -> REJECTED; the original is now current
+CORRECTED       F-71 a correction naming an observation of another observation class only -> REJECTED; the original is now current
+CORRECTED       F-71 a correction naming an observation of another source and value basis -> REJECTED; the original is now current
+CORRECTED       F-71 a correction naming an observation of another source only         -> REJECTED; the original is now current
+CORRECTED       F-71 a correction naming an observation of another date                -> REJECTED; the original is now current
+CORRECTED       F-71 control: a true correction (same series, source and date)         -> ACCEPTED; the original is now history
+
+cases 18  defects present 0
+THE MIE-1 AUDIT FINDINGS ARE CORRECTED
+exit 0

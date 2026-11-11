@@ -1,0 +1,7 @@
+SYNTHETIC SUPPLIER QUOTE
+Supplier: SYN Plasterboard Direct Pty Ltd (synthetic)
+Item: Plasterboard 13mm sheet
+Quantity: 2000 sheets
+Unit price: $17.40 per sheet ex GST
+Valid until: 15 November 2026
+Delivery: delivered to site within 7 days

@@ -1,0 +1,12 @@
+PASS R01 every one of the 1,390 APG-M8.1-R1 files is byte-identical except README.md, RUN_COMMANDS.txt, four programme tables and the three declared-file lists; no APG application code, existing test, data or specification changed 
+PASS R02 every added file is declared (apg_ui/, ui/, ui_tests/, tests_m10/, four tools, the change record, regression/m10/, logs/m10/) 
+PASS R03 the tables are the M8.1-R1 tables plus exactly SR-128, I-145 to I-151 (retained for review) and CF-56, CF-57 (open); in the milestones table only the status of M10 changed; M11 and M12 are not started 
+PASS R04 the three list files changed only to declare M10's files and rows (no other new entry, no entry removed, every other changed line names M10) 
+PASS R05 the M10 text states the authorisation, that it is a prototype over synthetic data that sends nothing, and what stays open, and makes no acceptance, readiness or gate-closing claim 
+PASS R06 ui/data/views.js is exactly what the view model builds from the APG code now ['views.js matches a fresh build (1209831 bytes)']
+PASS R07 the 19 view-model tests pass ['OK']
+FAIL R08 the M8.1 regression R01 to R09 still passes with M10 declared (its R08 reruns the M8 regression, its R09 the M8 boundary tests) ["FAILED: ['R08']"]
+
+checks 8  failed 1
+FAILED: ['R08']
+exit 1

@@ -1,0 +1,24 @@
+CAUGHT S01 a retry by the listed approver is refused again (the F-72 defect restored) -> R06 
+CAUGHT S02 a retry writes a second confirming event even when one exists (double counting) -> R07 
+CAUGHT S03 an entry in the approver's name that approve did not write can be completed -> R07 
+CAUGHT S04 a failed audit write is reported as success -> R06 
+CAUGHT S05 a failed audit write surfaces as the raw exception again -> R06 
+CAUGHT S06 the error is no longer an ApprovalNotConfirmed -> R07 
+CAUGHT S07 after a failed write, the approval is treated as confirmed without reading the log -> R06 
+CAUGHT S08 a failed re-read of the log counts as confirmed (fail open) -> R07 
+CAUGHT S09 the completing path rewrites the record (a new revision) -> R07 
+CAUGHT S10 the status reports a recorded approval as confirmed -> R07 
+CAUGHT S11 the recommendation policy refuses the retry again (F-72 restored there) -> R06 
+CAUGHT S12 the recommendation policy reports a failed audit write as success -> R06 
+CAUGHT S13 the recommendation policy lets an entry approve did not write be completed -> R07 
+CAUGHT S14 the completing path no longer checks the approver's role -> R07 
+CAUGHT S15 the F-67 correction is undone (a version may be stored with caller approvals) -> R08 
+CAUGHT S16 CF-41 is changed to read ratified -> R03 
+CAUGHT S17 the F-72 row is changed to read verified -> R03 
+CAUGHT S18 the readme says the original start was ratified -> R05 
+CAUGHT S19 an existing test file is edited -> R10 
+CAUGHT S20 an unchanged application file changes by one character -> R01 
+CAUGHT S21 an undeclared file is added -> R02 
+CAUGHT S22 the stored F67 original of a changed file is edited -> R02 
+CAUGHT S23 the confirming event is written directly again, bypassing _confirm -> R11 
+sabotage cases 23  missed 0

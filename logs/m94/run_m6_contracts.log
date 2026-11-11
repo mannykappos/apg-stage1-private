@@ -1,0 +1,29 @@
+PASS MF-01 a licensed series returns its observations in date order, each with every required attribute, none after the as-of day, as integers
+PASS MF-02 freshness is judged against the limit the caller supplies: exactly at the limit is fresh, one day past it is stale, and stale data is still returned as history
+PASS MF-03 a series with nothing on or before the as-of day is unavailable: no observation is invented, none is borrowed from the future
+PASS MF-04 an unlicensed series is refused by fetch and by freshness, and its licence status says so
+PASS MF-05 an unknown licence status is treated as refused, never as licensed
+PASS MF-06 tenants are separate: another tenant's series looks missing, and a licence granted to one tenant is not a licence for another
+PASS MF-07 an unknown series is not found, not empty and not unavailable
+PASS MF-08 an observation missing its source, geography, unit, kind or date, or whose value is not an integer, is never returned and is counted as rejected
+PASS MF-09 two different values for one date are both reported and the date is listed as conflicting; an exact repeat is one observation
+PASS MF-10 there is no default limit: a missing, None, boolean, float or negative max_age_days is refused, and so is a date that is not an ISO date
+PASS MF-11 no context, a forged context and an expired session are refused for every method
+PASS MF-12 results returned to a caller are independent copies, and the same call twice gives the same answer
+PASS MF-13 an observation dated after the as-of day is never returned, however recent its retrieval time
+PASS EX-01 an unambiguous quote gives its fields as read, each unverified, with a single resolved value, the tool and version, and the document hash
+PASS EX-02 an unclear reading is reported ambiguous with its candidates and NO resolved value
+PASS EX-03 the result never marks a field verified or authoritative, whatever the document says
+PASS EX-04 a field absent from the document is absent from the result: nothing is invented
+PASS EX-05 text inside a document is data: an instruction written in it changes no value and adds no field
+PASS EX-06 the hash is checked: a document whose hash does not match its bytes is refused, as are non-bytes, over-size content, an unsupported media type and a wrong shape
+PASS EX-07 the same document gives the same result every time
+PASS EX-08 a document naming another tenant is refused; the tenant comes only from the verified context
+PASS EX-09 no context, a forged context and an expired session are refused
+PASS EX-10 confidence is an integer from 0 to 10000 or None (not provided); it is never a float
+PASS EX-11 results returned to a caller are independent copies
+
+contract cases 24  failed 0
+ALL CONTRACT CASES PASS
+
+[exit code 0; 0s]

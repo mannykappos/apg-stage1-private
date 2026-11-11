@@ -1,0 +1,8 @@
+F-58 a viewer who may not approve is shown the screen              -> corrected
+F-59 a conflict on opening the request record is answered          -> corrected
+F-60 a request id ending in a newline                              -> corrected
+audit consistency: approval recorded, success audit entry failed   -> corrected
+F-61 the executor check refuses a malformed call                   -> corrected
+THE AUDIT FINDINGS ARE CORRECTED (builder test world; no independent review)
+
+[exit code 0; 0s]

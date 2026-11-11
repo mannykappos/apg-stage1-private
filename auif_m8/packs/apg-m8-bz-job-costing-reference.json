@@ -1,0 +1,199 @@
+{
+ "artifact_hash": "64be39e0e016e7db68ac023fc029c7c7e43320cd22e021294dd46376f86b021d",
+ "auif_contract_compat": {
+  "max": "1.0.99",
+  "min": "1.0.0"
+ },
+ "canonical_model_compat": {
+  "max": "0.1.99",
+  "min": "0.1.0"
+ },
+ "classification_mappings": [],
+ "contains_governance_logic": false,
+ "contains_secrets": false,
+ "contract_kind": "TranslationPack",
+ "immutable": true,
+ "mappings": [
+  {
+   "canonical_ref": "module.apg.Project",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "module.apg.Project",
+    "source_type": "entity",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "ENTITY",
+   "mapping_id": "m8-project-entity",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "project",
+   "validation_ref": {
+    "evidence_hash": "9ad4ff3d9b8515942f91707dd5f84aa687031b40a756fe32341da7efec97756f",
+    "evidence_id": "val-apg-m8-project",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Project.project_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-project-project-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "project.project_id",
+   "validation_ref": {
+    "evidence_hash": "244716b36d01a2feceb8fec6c8c00ed4436f0c7198edb25a125cb2ac2e207674",
+    "evidence_id": "val-apg-m8-project-project-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Project.project_name",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-project-project-name",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "project.name",
+   "validation_ref": {
+    "evidence_hash": "f8c2919f906a938ae4a4e2ca6c47d7cffafc51c33d47843adbb5f1019938ec79",
+    "evidence_id": "val-apg-m8-project-project-name",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Project.contract_value_cents",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-project-contract-value-cents",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "project.contract_value_cents",
+   "validation_ref": {
+    "evidence_hash": "dbeeedf3e7dab9e3ac9420fcc1fe4bb17f1e3415cff3be1f2fb7864d0a6fd68b",
+    "evidence_id": "val-apg-m8-project-contract-value-cents",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Project.start_date",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-project-start-date",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "project.start_date",
+   "validation_ref": {
+    "evidence_hash": "087e7dfd1014d99b5bbee49e8f658521954e09721b12b8c23c75162c1885206b",
+    "evidence_id": "val-apg-m8-project-start-date",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Project.planned_finish",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-project-planned-finish",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "project.planned_finish",
+   "validation_ref": {
+    "evidence_hash": "c5eac2e0ac7c3dfa467e81e065cb33c4f11ecef0742f3a8d2b77fc2fb7ef7c66",
+    "evidence_id": "val-apg-m8-project-planned-finish",
+    "kind": "mapping-validation"
+   }
+  }
+ ],
+ "pack_id": "apg-m8-bz-job-costing-reference",
+ "pack_state": "CANDIDATE",
+ "pack_version": "0.1.0",
+ "provenance_rules": {
+  "preserve_pack_identity": true,
+  "preserve_source_field": true,
+  "preserve_source_object": true
+ },
+ "schema_expectations": {
+  "compatible_fingerprints": [
+   "2b0650469b4c995ad6a37d4d2c046d7e38ffd88aec20f2172d7733ee9b1ae4b5"
+  ]
+ },
+ "target_system_kind": "synthetic-builder-zero-csv-export",
+ "unmapped_field_policy": {
+  "default_outcome": "REJECTED",
+  "ignored_by_rule": [],
+  "optional_and_unused": []
+ }
+}

@@ -1,0 +1,98 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "quote_id",
+   "target_field": "quote_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "component",
+   "target_field": "component_name",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "per_unit_cents",
+   "target_field": "per_unit_minor_units",
+   "transform": "none",
+   "type": "money_cents"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "rate_bps",
+   "target_field": "rate_bps",
+   "transform": "none",
+   "type": "integer"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "currency",
+   "target_field": "currency_code",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "basis",
+   "target_field": "basis_text",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "source_ref",
+   "target_field": "source_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "set_by",
+   "target_field": "set_by",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "set_on",
+   "target_field": "set_on",
+   "transform": "parse_date",
+   "type": "date"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "quote_id",
+  "component"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-03",
+ "source_label": "M6 synthetic supplement: landed-cost component assumptions a person set",
+ "status": "draft - unverified against any real export",
+ "target_entity": "landed_assumption",
+ "template_id": "TPL-MKT-LANDED-ASSUMPTIONS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

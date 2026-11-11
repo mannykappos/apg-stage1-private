@@ -1,0 +1,35 @@
+trace_id,mie_requirement,existing_item,relation,evidence,v02_change,v03_change
+MF-01,MIE-R-10,"MarketFeedPort case MF-01: ordered, attributes present, none after the as-of day, integers",ANALOGUE,apg/mkt/contracts_m6.py:40,UNCHANGED,UNCHANGED
+MF-02,MIE-R-14,MF-02: freshness judged against the caller-supplied limit; at the limit fresh; stale still returned as history,ANALOGUE,apg/mkt/contracts_m6.py:51,UNCHANGED,UNCHANGED
+MF-03,MIE-R-11,MF-03: nothing on or before the as-of day is unavailable; nothing invented or borrowed from the future,ANALOGUE,apg/mkt/contracts_m6.py:63,UNCHANGED,UNCHANGED
+MF-04,MIE-R-09,MF-04: unlicensed series refused,ANALOGUE,apg/mkt/contracts_m6.py:73,UNCHANGED,UNCHANGED
+MF-05,MIE-R-09,MF-05: unknown licence status is refused,ANALOGUE,apg/mkt/contracts_m6.py:82,UNCHANGED,UNCHANGED
+MF-06,MIE-R-39,MF-06: tenants separate; licence for one is not a licence for another,ANALOGUE,apg/mkt/contracts_m6.py:91,UNCHANGED,UNCHANGED
+MF-07,MIE-R-39,MF-07: unknown series is not found,ANALOGUE,apg/mkt/contracts_m6.py:102,UNCHANGED,UNCHANGED
+MF-08,MIE-R-06,"MF-08: observation missing source, geography, unit, kind, date or non-integer is rejected and counted",ANALOGUE,apg/mkt/contracts_m6.py:109,UNCHANGED,UNCHANGED
+MF-09,MIE-R-12,MF-09: conflicting values both reported; exact repeat is one,ANALOGUE,apg/mkt/contracts_m6.py:120,UNCHANGED,UNCHANGED
+MF-10,MIE-R-14,"MF-10: no default limit; missing, None, boolean, float or negative refused",ANALOGUE,apg/mkt/contracts_m6.py:130,UNCHANGED,UNCHANGED
+MF-11,MIE-R-38,"MF-11: no, forged or expired context refused for every method",ANALOGUE,apg/mkt/contracts_m6.py:141,UNCHANGED,UNCHANGED
+MF-12,MIE-R-39,"MF-12: independent copies; same call twice, same answer",ANALOGUE,apg/mkt/contracts_m6.py:154,UNCHANGED,UNCHANGED
+MF-13,MIE-R-10,MF-13: observation dated after the as-of day never returned,ANALOGUE,apg/mkt/contracts_m6.py:171,UNCHANGED,UNCHANGED
+PORT,MIE-R-47,"MarketFeedPort definition (licence_status, fetch, freshness): an adapter-side port invoked by the feed adapter, never by the core","MAPPED, NOT CHANGED",apg/mkt/ports_m6.py:52,REVISED (MIE-A4),UNCHANGED
+REPRO-1,MIE-R-36,apg.repro.run / replay,"MIRRORED, NOT IMPORTED",apg/repro.py:101; apg/repro.py:127,UNCHANGED,UNCHANGED
+REPRO-2,MIE-R-37,apg.repro.drift_report,"MIRRORED, NOT IMPORTED",apg/repro.py:157,UNCHANGED,UNCHANGED
+REPRO-3,MIE-R-35,apg.repro.InputRef pinned inputs,"MIRRORED, NOT IMPORTED",apg/repro.py:23,UNCHANGED,UNCHANGED
+SCN-1,MIE-R-25,scenarios use only configured paths; no universal rise/fall rule,CONSTRAINS,apg/mkt/scenarios.py:2,UNCHANGED,UNCHANGED
+SCN-2,MIE-R-34,market index history shown beside scenarios as history only; it feeds no calculation,CONSTRAINS (the point the change request addresses),apg/mkt/scenarios.py:11,UNCHANGED,UNCHANGED
+POL-1,MIE-R-18,M6 thresholds are configuration with no default (MP01-MP10),PATTERN REUSED,apg/mkt/policy.py:99-118,UNCHANGED,UNCHANGED
+S08-2,MIE-R-25,Section 08 s2: Forecasts remain separate,CONSTRAINS,Section 08 s2,UNCHANGED,UNCHANGED
+S08-7,MIE-R-19,"Section 08 s7: historical movement, current reference, supplier quote movement and forward scenarios remain distinct",CONSTRAINS,Section 08 s7,UNCHANGED,UNCHANGED
+S08-71,MIE-R-27,Section 08 s7.1: decision-specific freshness; qualify when stale,CONSTRAINS,Section 08 s7.1,UNCHANGED,UNCHANGED
+S08-8,MIE-R-20,Section 08 s8: Wait assesses explicit future-price scenarios; no universal rule that prices rise or fall,CONSTRAINS (conflict),Section 08 s8,UNCHANGED,UNCHANGED
+S08-14,MIE-R-17,"Section 08 s14: source, dates, validity, scope, limitations, verified/indicative/scenario-only",CONSTRAINS,Section 08 s14,UNCHANGED,UNCHANGED
+S08-18,MIE-R-27,Section 08 s18 decision (3): freshness thresholds; downgrade/qualify when stale,CONSTRAINS,Section 08 s18,UNCHANGED,UNCHANGED
+AC-07,MIE-R-17,"PG-MP-AC-07: Market references retain provenance, freshness and limitations",CONSTRAINS,RTM PG-MP-AC-07,UNCHANGED,UNCHANGED
+AC-08,MIE-R-19,"PG-MP-AC-08: Asking prices, quotes, indices and completed transaction prices remain distinguishable",CONSTRAINS,RTM PG-MP-AC-08,UNCHANGED,UNCHANGED
+AC-09,MIE-R-23,"PG-MP-AC-09: scenarios disclose costs, schedule implications and uncertainty",CONSTRAINS,RTM PG-MP-AC-09,UNCHANGED,UNCHANGED
+AC-16,MIE-R-25,PG-MP-AC-16: Scenarios cannot silently change the authoritative forecast,CONSTRAINS,RTM PG-MP-AC-16,UNCHANGED,UNCHANGED
+AC-17,MIE-R-26,PG-MP-AC-17: human approval before purchase commitments,CONSTRAINS,RTM PG-MP-AC-17,UNCHANGED,UNCHANGED
+AUD-1,MIE-R-60,"AuditLogPort.read and verify (EDR-03): tenant-separated chains, from_seq and limit, chain verification (AL-03, AL-09)","MIRRORED, NOT IMPORTED",apg/ports.py:146-150; apg/contracts/audit_log_contract.py:33; apg/contracts/audit_log_contract.py:104,NEW (MIE-A1),UNCHANGED
+AUD-2,MIE-R-61,"AuditLogPort.append (EDR-03): secrets redacted, append-only, no change or removal of events (AL-05, AL-10)","MIRRORED, NOT IMPORTED",apg/ports.py:143; apg/contracts/audit_log_contract.py:60; apg/contracts/audit_log_contract.py:114,NEW (MIE-A1),UNCHANGED
+AUD-3,MIE-R-60,"AuditLogPort tamper detection (AL-04, AL-13, AL-14): altered or rewritten events are detected by verify","MIRRORED, NOT IMPORTED",apg/contracts/audit_log_contract.py:46; apg/contracts/audit_log_contract.py:134; apg/contracts/audit_log_contract.py:146,NEW (MIE-A1),UNCHANGED

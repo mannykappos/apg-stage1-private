@@ -1,0 +1,18 @@
+PASS L01 M6 is the milestone in this delivery and covers CAP-18 to CAP-26; M0 to M5 are delivered; nothing after M6 has started (M7 is untouched)
+PASS L02 EDR-29 and EDR-30 are fully described, open and listed under M6; EDR-08 and EDR-09 have their contract tests written in M6 and are still open
+PASS L03 M6 status rows sit at Local-tested at most and each has evidence and a claim limit
+PASS L04 M6 findings are recorded, four carry the auditor M5 review points, and none is shown as closed
+PASS L05 M6 interpretations are retained for review, not approved, with no reviewer decision filled in
+PASS L06 no register text claims approval, independent review, readiness, compliance, a guarantee or closure []
+PASS L07 the open decisions the procurement layer waits on are named in the M6 rows and none is settled
+PASS L08 the four auditor M5 review points (portfolio display, grouping key, scalability, invoice-only scope / synthetic data / unreproduced runs) are carried in the findings register
+PASS L09 every handoff entry cited by an M6 finding exists []
+PASS L10 the RFC register holds RFC-01 as PROPOSED and not approved, with scope, affected components, dependencies, acceptance criteria, unresolved decisions, required approvals and conflicts all filled in
+PASS L11 the RFC record states that the locked baseline is unchanged (with its hash), reports the M7 conflict, keeps independent verification unclaimed, calls 72 hours and $2,000 / $10,000 test targets and says no approval has happened
+PASS L12 the RFC document keeps the five evidence levels apart, cites the baseline hash, and gives a row for each of the six capabilities
+PASS L13 the existing M7 row (Recommendations) is byte-for-byte the delivered one; RFC-01 does not edit it
+
+checks 13  failed 0
+ALL M6 REGISTER CHECKS PASS
+
+[exit code 0; 0s]

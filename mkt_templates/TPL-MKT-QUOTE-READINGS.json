@@ -1,0 +1,79 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "quote_id",
+   "target_field": "quote_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "attribute",
+   "target_field": "attribute_name",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "value",
+   "target_field": "value_text",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "extracted_by",
+   "target_field": "extracted_by",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "extractor_kind",
+   "target_field": "extractor_kind",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "verified_by",
+   "target_field": "verified_by",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "verified_on",
+   "target_field": "verified_on",
+   "transform": "parse_date",
+   "type": "date"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "quote_id",
+  "attribute"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-03",
+ "source_label": "M6 synthetic supplement: readings of quote text (extraction and its human verification)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "quote_reading",
+ "template_id": "TPL-MKT-QUOTE-READINGS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

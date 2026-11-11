@@ -1,0 +1,23 @@
+PASS group 1: Static regression against the delivered MIE-1.1-R1 package (R01 to R05, R10, R11) | checks 7  failed 0
+PASS group 2: The F-67 probe: every forged, appended, direct and swapped-proposer approval is refused or not counted; the owner's own approval is counted | F-67 IS CORRECTED
+PASS group 3: unit tests: the F-67 correction tests | tests 12
+PASS group 4: The earlier audit-findings probes still corrected (M7, M7.1, M7.2, MIE-1) (regression step R08) | checks 1  failed 0
+PASS group 5: The golden Builder Zero runs are unchanged (financial, detection, procurement, recommendations, MIE-1) (regression step R09) | checks 1  failed 0
+PASS group 6: The M2 store contracts | ALL CONTRACT CASES PASS
+PASS group 7: The M2 faulty implementations: each caught by the contract suite | ALL FAULTS CAUGHT
+PASS group 8: The record-store guard contract (M7.3) | ALL GUARD CASES PASS
+PASS group 9: Mutation baseline (the unparsed modules pass every test the F-67 mutation run uses) | BASELINE OK
+PASS group 10: whole suite, part 1 of 12: the API boundary tests (M9) | tests 149
+PASS group 11: whole suite, part 2 of 12: detection and findings (M5, M6.1 to M6.5; three files edited for F-67) | tests 605
+PASS group 12: whole suite, part 3 of 12: the financial core (M4; four files edited for F-67) | tests 340
+PASS group 13: whole suite, part 4 of 12: ingestion (M3) | tests 224
+PASS group 14: whole suite, part 5 of 12: materials and market (M6; three files edited for F-67) | tests 544
+PASS group 15: whole suite, part 6 of 12: recommendations (M7 to M7.3) | tests 216
+PASS group 16: whole suite, part 7 of 12: the materiality engine (M2) | tests 45
+PASS group 17: whole suite, part 8 of 12: golden, source authority, status model, tenancy, values (M2) | tests 105
+PASS group 18: whole suite, part 9 of 12: the Builder Zero adversarial tests (M1) | tests 33
+PASS group 19: whole suite, part 10 of 12: reproducibility (M2) | tests 23
+PASS group 20: whole suite, part 11 of 12: MIE-1 and MIE-1.1 (one file edited for F-67) | tests 244
+PASS group 21: whole suite, part 12 of 12: the F-67 correction tests (group 3) | tests 12
+whole suite: 2540 tests in groups 10 to 21 (expected 2540)
+groups 21  failed 0

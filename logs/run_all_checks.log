@@ -1,0 +1,8 @@
+PASS Builder Zero data (checks 43  failed 0)
+PASS Mapping templates (checks 5  failed 0)
+PASS Programme, catalogue, translation drafts (checks 23  failed 0)
+PASS Derived files regenerate byte for byte from their inputs (catalogue, programme tables, translation drafts, templates)
+
+ALL CHECKS PASS
+
+[exit code 0; 1s]

@@ -1,0 +1,63 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "project_id",
+   "target_field": "project_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "cost_code",
+   "target_field": "cost_code_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "budget_cents",
+   "target_field": "budget_cents",
+   "transform": "none",
+   "type": "money_cents"
+  },
+  {
+   "required": true,
+   "source_column": "revision",
+   "target_field": "source_revision_label",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "required": true,
+   "source_column": "revision_date",
+   "target_field": "revision_date",
+   "transform": "parse_date",
+   "type": "date"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "project_id",
+  "cost_code"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-02",
+ "source_label": "Builder Zero job-costing budget lines (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "budget_line",
+ "template_id": "TPL-BZ-BUDGET-LINES",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

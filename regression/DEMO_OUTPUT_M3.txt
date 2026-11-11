@@ -1,0 +1,42 @@
+APG M3 DEMONSTRATION: messy source files in, validated traceable records or explicit quarantine out.  Builder Zero is synthetic; the register is SYNTHETIC.
+
+1. INGEST.  11 files, 611 rows for zero_one.  Invoices: 187 rows -> 187 stored, 0 rejected.  Purchase orders: 101 stored, 1 held at intake.
+   After reconciliation against the approved synthetic register: {'accepted': 596, 'accepted_with_warnings': 9, 'duplicate_delivery': 1, 'pending_reconciliation': 4, 'quarantined': 1}.
+
+2. DUPLICATE DELIVERY (PS-11).  INV-0183 repeats INV-0001 (same supplier, number, amount) in a replay batch.
+   INV-0183 -> ['duplicate_delivery', 'duplicate_of', 'INV-0001']; counted once: True.  Re-delivering all 11 files: 11 recognised as replays, 0 records added.
+
+3. CREDITED AND REISSUED (PS-12).
+   INV-0184 $60,000.00 is netted by CRN-0001; INV-0185 is shown as a reissue CANDIDATE ({'reissue_of_candidate': 'INV-0184'}) for lineage only, never merged by software.  Net of the three events: $58,000.00.
+
+4. TWO SYSTEMS DISAGREE (PS-13).
+   INV-0121 accounting $72,801.25 vs PM system $81,801.25 -> ['quarantined', 'current', ['SECONDARY_DISAGREES:pm_system']].  In the authoritative total: False; in the GST view: False.
+
+5. MISSING CRITICAL VALUES (PS-21).
+   PO-0099 (no cost code) -> ['pending_reconciliation', ['CRITICAL_VALUE_MISSING:cost_code_ref']].  INV-0186 (no GST) -> accepted_with_warnings, GST unknown: {'gst_cents': 'no_data'}.  GST total $2,165,781.73; complete: False; left out: ['INV-0186'].
+
+6. AMBIGUOUS SUPPLIER (PS-22).
+   INV-0187 text 'SYN Metro Steel (synthetic)' resembles two suppliers -> ['pending_reconciliation', None, None, ['SUPPLIER_AMBIGUOUS:SUP-004,SUP-009']].  Resembling is never choosing.  In the authoritative total: False.
+
+7. IDENTICAL ORDERS (PS-17, ingestion side).
+   PO-0100 and PO-0101 are identical: {'PO-0100': ['pending_reconciliation', 'current', ['DUPLICATE_CANDIDATE:PO-0101']], 'PO-0101': ['pending_reconciliation', 'current', ['DUPLICATE_CANDIDATE:PO-0100']]}.  A person decides whether one is a duplicate; detection of the surplus is M5.
+
+8. FRESHNESS AND CURRENCY (PS-14, PS-23).  Freshness limits below are ILLUSTRATIVE.
+   Q-0004 is expired; Q-0001 is valid; MAT-CU series ends 2026-04-15 -> buy-timing assessment ['qualified', ['MAT-CU']].  With no limit configured the answer is 'cannot_assess', never 'fresh'.
+   Q-0005: 6900 USD minor units at 0.6612 (2026-05-02) = 10436 AUD cents; at today's rate 0.6540 it would be 10550.  Assessment: ['qualified', [['Q-0005 rate date', 'stale'], ['latest AUD/USD', 'fresh']]].
+
+9. DOCUMENTS (PS-26).
+   DOC-002 quantity candidates [40] (ambiguous: True), rate candidates [265, 265000] (ambiguous: True); authoritative before a person verifies: False.
+
+10. SECOND TENANT (PS-24).
+   zero_two repeats INV-0001 with different content -> ['quarantined', 'current', ['CONFLICT_SAME_KEY']] with 2 contenders kept; its authoritative total is $3,121,305.48 excluding ['INV-0001'].
+   3 files naming another tenant were refused whole; spoofed record stored: False; zero_one's total unchanged: True.
+
+11. A PERSON DECIDES.
+   A reconciler corrects INV-0121 with a recorded reason: total moves by $72,801.25 to $21,747,518.22; the original evidence keeps 1 revision.
+
+12. SCAN GATE.
+   unscanned file -> SCAN_REQUIRED; after a clean verdict the same bytes ingest, and a second ingest is a replay: True.
+
+Authoritative invoice total before any decision: $21,674,716.97 over 184 invoices; complete: False; left out: ['INV-0121', 'INV-0183', 'INV-0187'].
+Audit chains verify: [True, True].  Open decisions are untouched: DEC-A1-1..8, DEC-MIE-01.

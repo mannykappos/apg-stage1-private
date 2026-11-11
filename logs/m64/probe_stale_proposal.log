@@ -1,0 +1,8 @@
+PROPOSED  action_proposed version 1 evidence 67a504082f14 action written against version 1
+CHANGED   action_proposed version 2 evidence 619f1afb69a4 action still written against version 1 | stale proposals reported by the run: ['FND-3b24102724f9e17d839d']
+APPROVE   no version named -> REFUSED STALE_PROPOSAL 
+APPROVE   current version named -> REFUSED STALE_PROPOSAL 
+REPROPOSE action_approved version 2 | approved version 2 | the replaced proposal is kept: [('renegotiate based on the original figure', 1, 'stale')]
+PROPOSAL IS BOUND TO THE EVIDENCE
+
+[exit code 0; 0s]

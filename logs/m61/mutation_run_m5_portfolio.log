@@ -1,0 +1,3 @@
+source-hash a144d347f654b79071e97474db606462da9374bfe481cb8341c0a2b1b5a09d99
+mutants 13  killed 13 (first failing test file: {'portfolio': 13})  documented-equivalent 0  unexplained survivors 0
+MUTATION RUN OK

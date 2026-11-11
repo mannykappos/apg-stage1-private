@@ -1,0 +1,22 @@
+limitation_id,limitation,applies_to,v02_change,v03_change
+MIE-L-01,"This is a specification. Nothing is implemented, run or tested beyond the consistency checks of the registers themselves.",All requirements,UNCHANGED,UNCHANGED
+MIE-L-02,Every result in this package is builder-run. Nothing is independently verified.,All,UNCHANGED,UNCHANGED
+MIE-L-03,A deny-list can show that listed terms are absent; it cannot prove that no domain concept is present.,MIE-R-01,UNCHANGED,UNCHANGED
+MIE-L-04,The core evaluates licence status and window only. It cannot know what a licence permits.,MIE-R-09,UNCHANGED,UNCHANGED
+MIE-L-05,The core records an owner approval reference; it cannot establish that the approval is genuine. That is the host's verifier (MIE-OQ-17).,MIE-R-33,UNCHANGED,UNCHANGED
+MIE-L-06,"Signals report observed movement. Observed movement is not a forecast, and nothing here claims any signal predicts a price.",MIE-R-16,UNCHANGED,UNCHANGED
+MIE-L-07,The decision-table language is deliberately small. Some real decision logic may not be expressible and would need a later vocabulary or predicate change.,MIE-R-22,UNCHANGED,UNCHANGED
+MIE-L-08,The synthetic pack proves structural portability only. It says nothing about any real market.,MIE-R-53,UNCHANGED,UNCHANGED
+MIE-L-09,"No real feed, licence, vendor or live system is involved; feed behaviour is covered only through contract analogues.",MIE-R-47,UNCHANGED,UNCHANGED
+MIE-L-10,Same-code-and-shape isolation does not remove timing side channels; none are claimed to be closed.,MIE-R-39,UNCHANGED,UNCHANGED
+MIE-L-11,Date granularity only; intraday movement cannot be represented (MIE-OQ-06).,MIE-R-10,UNCHANGED,UNCHANGED
+MIE-L-12,"The Section 08 change request is a draft. Until approved, no APG finding may use a market signal, and the APG pack is incomplete and unconnected.",MIE-R-51,UNCHANGED,UNCHANGED
+MIE-L-13,"No performance, capacity, durability or availability claim is made.",MIE-R-46,UNCHANGED,UNCHANGED
+MIE-L-14,This revision has had no independent review. The delivered v0.1 package passed the auditor's integrity and consistency checks only and was not approved for implementation.,All,REVISED (MIE-A6),UNCHANGED
+MIE-L-15,"Licence records live inside immutable packs, so any change of a licence status or window needs a new pack version; the core cannot learn of a licence change by itself.",MIE-R-09; MIE-R-30,UNCHANGED,UNCHANGED
+MIE-L-16,"The mapping from M6 observation attributes and kind values to the core's attributes, class and basis has not been derived; it will be derived from M6 source at implementation start. This is blocker BLK-02: implementation cannot be authorised until the mapping is derived and independently reviewed (MIE-R-70).",MIE-R-49,UNCHANGED,REVISED (MIE-B3)
+MIE-L-17,The core orders an audit append before a state commit and attempts a FAILED event after a later store failure. It cannot make the two atomic; a crash between them can leave an ACCEPTED event for a change that did not happen (MIE-OQ-23). This is blocker BLK-01: implementation cannot be authorised until an explicit design decision on atomicity is recorded; the builder makes none (MIE-R-70).,MIE-R-61,NEW (MIE-A1),REVISED (MIE-B3)
+MIE-L-18,retrieved_at is asserted by the feed adapter. The core has no clock and checks only that it is not earlier than as_of; a wrong adapter clock is not detectable by the core.,MIE-R-66,NEW (MIE-A4),UNCHANGED
+MIE-L-19,"Signal influence is structural (rule position), so a result can be labelled DIRECT or PRECEDENCE when the signal did not in fact change the outcome. The label can over-state influence and cannot under-state it (MIE-OQ-26).",MIE-R-63,NEW (MIE-A2),UNCHANGED
+MIE-L-20,"The core cannot judge whether a relative or absolute movement measure is meaningful for a series, nor whether a negative value is economically sensible; the pack owner chooses the value domain, basis and threshold, and crosses_zero only warns.",MIE-R-64; MIE-R-65,NEW (MIE-A3),UNCHANGED
+MIE-L-21,"The Section 08 cascade impact assessment has not been performed; the draft change request records only the builder's keyword scan of Section 08, the RTM and the terminology register. This is blocker BLK-03 (MIE-R-70). The Section 08 change itself also stays undecided (MIE-OQ-12).",MIE-R-59; MIE-R-70,ABSENT (added in v0.3),NEW (MIE-B3)

@@ -1,0 +1,50 @@
+APG M4 DEMONSTRATION: every figure says which records made it, what was left out and why, and whether it can be relied on.  Builder Zero is synthetic; the policy is SYNTHETIC and ILLUSTRATIVE.
+
+1. INGEST.  The financial files (projects, contracts, variations, cost-to-complete lines, retention, security, facility, bank) go through the same decisions as M3: 31 new records of 31 rows; rejected 0; held 0.
+
+2. A CLEAN PROJECT (PRJ-001).  Actual cost counts the 60 usable invoices and names the repeated delivery it did not count.
+   actual cost: $3,229,001.08  [authoritative]  from 60 records; left out: INV-0183 (duplicate_delivery)
+   secured revenue: $4,800,000.00  [authoritative]  from 1 record
+   forecast final margin: $602,833.18  [authoritative]  built from its component figures (each lists its own records)
+   The forecast uses the cost to complete declared at 2026-08-31; invoices dated later are shown apart and never added: ['ACTUALS_AFTER_FORECAST_DATE_NOT_ADDED'].
+   recognised margin (cost-to-cost): $463,776.89  [authoritative]  built from its component figures (each lists its own records)
+
+3. A PROJECT WITH A HELD INVOICE AND A DISAGREEING CONTRACT SUMMARY (PRJ-002).  Nothing is hidden and nothing is called final.
+   actual cost: $12,480,513.16  [provisional]  from 65 records; left out: INV-0187 (held)
+   One credit note is netted (1 credit applied).
+   secured revenue: $18,512,000.00  [provisional]  from 2 records
+   Reason: CONTRACT_SUMMARY_DISAGREES_WITH_REGISTER; the variation register value is used and the disagreement is listed.
+   forecast final margin: $2,849,321.20  [provisional]  built from its component figures (each lists its own records)
+   It is provisional because its parts are: ['COMPONENT_PROVISIONAL:actual_cost', 'COMPONENT_PROVISIONAL:cost_to_complete', 'COMPONENT_PROVISIONAL:forecast_revenue'].  The value covers the known cost codes only.
+   Cost code CC-04 has no usable cost to complete (BUDGET_EXCEEDED_BY:21983257); the cost-to-complete component reports it as unknown, never negative and never replaced by a budget figure.
+   open commitments: $554,640.04  [authoritative]  from 39 records
+   Overruns are listed, not netted away: ['INVOICED_EXCEEDS_COMMITMENT:PO-0091', 'INVOICED_EXCEEDS_COMMITMENT:PO-0092'].
+
+4. A PROJECT WITH A DISPUTED INVOICE AND NO DECLARED FORECAST (PRJ-003).
+   actual cost: $5,965,202.73  [provisional]  from 60 records; left out: INV-0121 (disputed)
+   forecast final margin: $920,000.00  [provisional]  built from its component figures (each lists its own records)
+   ['COMPONENT_PROVISIONAL:actual_cost', 'FORECAST_DERIVED_FROM_BUDGET_NO_DECLARED_VERSION'].
+   open commitments: $72,801.29  [provisional]  from 30 records; left out: PO-0099 (unknown_value); unknown inputs: 1
+
+5. CASH VIEW, KEPT APART FROM PROFIT.  Retention is money held, not margin; the carrying cost uses the facility rate and the SYNTHETIC funded share.
+   PRJ-001: retention held $120,000.00 [authoritative]; security $250,000.00; carrying cost cannot be assessed [cannot_assess]
+   PRJ-002: retention held $462,500.00 [authoritative]; security $250,000.00; carrying cost $7,363.25 [authoritative] over 149 days at 780 bps on $231,250.00
+   PRJ-003: retention held $230,000.00 [authoritative]; security $250,000.00; carrying cost $1,941.45 [authoritative] over 79 days at 780 bps on $115,000.00
+   PRJ-001's release date has passed with the money still held: RELEASE_REVIEW_DUE: due 2026-07-31, not released; entitlement is not asserted.  The carrying cost is therefore: cannot be assessed.
+   Cash-position-adjusted margin PRJ-002: $2,841,957.95 [provisional]; PRJ-001: cannot be assessed [cannot_assess] because COMPONENT_CANNOT_ASSESS:retention_carrying.
+
+6. MOVEMENT BRIDGE (PRJ-002, August forecast to September forecast).
+   Forecast margin moved by -$310,000.00; explained $0.00; unexplained -$310,000.00; the items add up exactly: True.
+   - cost_to_complete CC-09: -$310,000.00; explained: False; COST_TO_COMPLETE_CHANGED_WITH_BLANK_MOVEMENT_REASON
+
+7. REPRODUCIBLE.  Every figure above was stored as an immutable calculation record with its pinned inputs.
+   27 stored calculations were replayed from their stored inputs: all reproduce True.  Replay also detects an altered result, altered parameters, an altered input, a changed formula, or a missing record.
+
+8. AGREES WITH AN INDEPENDENT CALCULATION.
+   A separate program that uses only the CSV files, dates and fractions gives the same actual cost, secured revenue, forecast margin, recognised margin, retention and security for all three projects.
+   The three project actual costs add up to $21,674,716.97, equal to the M3 authoritative invoice total $21,674,716.97; M3 left out ['INV-0121', 'INV-0183', 'INV-0187'].
+
+9. SECOND TENANT.
+   zero_two PRJ-001 actual cost $3,121,305.48 [provisional] from its own records only; zero_one's stored run is visible to zero_two: False.
+
+Audit chains verify: [True, True].  Open decisions are untouched: DEC-A1-1..8, DEC-MIE-01, and CR-02 A2 to A13 remain open product decisions.

@@ -1,0 +1,39 @@
+APG M6 DEMONSTRATION: comparable quotes, landed cost, freshness, buy-or-wait scenarios and purchasing signals on Builder Zero.  The data is synthetic; every threshold, limit and specification is SYNTHETIC and ILLUSTRATIVE.
+No market-data provider is connected or named, and no price is forecast: a "wait" scenario applies only the price paths written in the procurement policy.
+
+1. DETECT.  Four procurement runs (three projects and the tenant) at 2026-09-30 produce 14 findings: PRJ-001 3, PRJ-002 3, PRJ-003 0, tenant 8.
+   The oracle, a separate program that uses only the CSV files, dates and fractions, expects 14 conditions; every one is found and nothing else is reported. The supplier-performance rule looked at nine suppliers and stayed silent, as the oracle expects.
+
+2. THE PLANTED CASES.
+   PS-14 stale market series, copper (168 days old): not quantified, and it says why; severity unrated; 1 source record
+   PS-14 only quote for reinforcing bar has expired: not quantified, and it says why; severity unrated; 1 source record
+   PS-15 a cheaper quote at the wrong specification: not quantified, and it says why; severity unrated; 5 source records
+   It is named as not comparable and is not offered as a saving: the cheaper rate is 27,000 cents a unit against 28,730 for the like-for-like offer, and the signal says it must not be recommended.
+   PS-16 uncovered demand whose offers lapse inside the decision window: not quantified, and it says why; severity unrated; 19 source records
+   PS-17 orders above the demand: $11,100.00 (estimate); severity low; 5 source records
+   PS-17 identical purchase orders (a suspicion, not proof): $24,050.00 (record); severity low; 2 source records
+   PS-23 stated exchange rate 151 days old, 109 bps from the reference: not quantified, and it says why; severity unrated; 2 source records
+   PS-23 import checks not resolved (customs classification, duty rate, import permit): not quantified, and it says why; severity unrated; 3 source records
+   PS-25 a cheaper current quote for plasterboard: not quantified, and it says why; severity unrated; 7 source records
+   PS-25 is reported with no amount: everything needed is already ordered, so there is nothing left to buy at the lower rate. It is never counted as a saving.
+
+3. NO WINNER IS CHOSEN.
+   Six rankings were built (three requirements, each in a project run and in the tenant run). None is definitive: 2 indicative (the foreign offer is only partly comparable and its import checks are unresolved) and 4 with fewer than two rankable offers. Every one requires a human approval: True.
+   A gate that fails never lets a definitive ranking through: True.
+
+4. BUY NOW, WAIT, STAGE: SCENARIOS, NOT ADVICE.
+   For 40 tonnes of steel at quote Q-0001 the total cost (landed price plus storage and financing, with the policy's rates) is $107,772.55 to buy now, $106,302.63 to wait with a flat price, $107,424.05 to stage the order in two.
+   The 'wait' figures are modelled values: the quote lapses before the later order date, so they are labelled as not an offer. The paths down 5% and up 5% give $100,994.50 and $111,610.76. Scenarios never change the official forecast and are not ranked against each other.
+
+5. WHAT IS NOT PUT IN MONEY.
+   Procurement signals that cannot be quantified say why. Of the 7 findings in the portfolio view, 2 are not quantified and are listed apart from the range. When nothing at all is quantified the view says 'no quantified amount available' instead of printing a range of zero (the M5 display issue the auditor raised; tested in test_det_portfolio.py).
+   Forecast exposure: 24050.00 to 35150.00; 1 further finding(s) are unquantified and not included.  Potential opportunity: 712902.80; 1 further finding(s) are unquantified and not included.
+   The three portfolio rate-gap signals come from random synthetic order rates (the copper gap is thousands of percent); they exercise the information boundary and say nothing about any real price.
+
+6. REPRODUCIBLE.
+   4 stored procurement runs were replayed from their pinned inputs: all reproduce True.  Ingesting a run twice changes nothing: True.  Event hooks for the later cross-domain engine (apg-event-1: observation time, effective time, source, project, material, supplier) are written as 14 event records; nothing is chained or inferred in M6.
+
+7. SECOND TENANT.
+   zero_two reuses identifiers and has no procurement supplements; it gets its own answer (2 market-series warnings, nothing on PRJ-001). zero_one's findings visible to zero_two: False; zero_two findings before its own ingest: 0.
+
+Audit chains verify: [True, True].  Open decisions are untouched: DEC-A1-1..8, DEC-MIE-01, CR-02 A1 to A13.  RFC-01 is a proposal under change control; nothing here claims it is approved, and the cross-domain engine (M7 in RFC-01) is not started.

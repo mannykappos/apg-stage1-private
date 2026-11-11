@@ -1,0 +1,145 @@
+{
+ "artifact_hash": "ae5d99a5f0d4571b31b6090b9825b0d3566e03d5b9914e7dbcfb1f1d52feadcf",
+ "auif_contract_compat": {
+  "max": "1.0.99",
+  "min": "1.0.0"
+ },
+ "canonical_model_compat": {
+  "max": "0.1.99",
+  "min": "0.1.0"
+ },
+ "classification_mappings": [],
+ "contains_governance_logic": false,
+ "contains_secrets": false,
+ "contract_kind": "TranslationPack",
+ "immutable": true,
+ "mappings": [
+  {
+   "canonical_ref": "module.apg.Supplier",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "module.apg.Supplier",
+    "source_type": "entity",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "ENTITY",
+   "mapping_id": "m8-supplier-entity",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "supplier",
+   "validation_ref": {
+    "evidence_hash": "944cafef29d4d0c0a209504b7bd1919f94202ca16a9d755eff8e431b3b0658a8",
+    "evidence_id": "val-apg-m8-supplier",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Supplier.source_record_id",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-supplier-source-record-id",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "supplier.supplier_id",
+   "validation_ref": {
+    "evidence_hash": "cb12f9641a75203fbb36df6e7ffb3d4dc7994db556fd870af7367806310ac58b",
+    "evidence_id": "val-apg-m8-supplier-source-record-id",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Supplier.supplier_name",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-supplier-supplier-name",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "supplier.name",
+   "validation_ref": {
+    "evidence_hash": "67c7471c18c9656840aa5b971a32623f41d75efd319e4701ce2f34ce9d3952f3",
+    "evidence_id": "val-apg-m8-supplier-supplier-name",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Supplier.abn_text",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-supplier-abn-text",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "supplier.abn_synthetic",
+   "validation_ref": {
+    "evidence_hash": "b86bfa58d3d91728ebc7d1e39881a7d569241130cdd7cccf6b47c902942cc81d",
+    "evidence_id": "val-apg-m8-supplier-abn-text",
+    "kind": "mapping-validation"
+   }
+  }
+ ],
+ "pack_id": "apg-m8-bz-master",
+ "pack_state": "CANDIDATE",
+ "pack_version": "0.1.0",
+ "provenance_rules": {
+  "preserve_pack_identity": true,
+  "preserve_source_field": true,
+  "preserve_source_object": true
+ },
+ "schema_expectations": {
+  "compatible_fingerprints": [
+   "927273e8987c09a8a38fcefd3564c02748b49eb6d5837fce3b9aa4ef503ccf5b"
+  ]
+ },
+ "target_system_kind": "synthetic-builder-zero-csv-export",
+ "unmapped_field_policy": {
+  "default_outcome": "REJECTED",
+  "ignored_by_rule": [],
+  "optional_and_unused": []
+ }
+}

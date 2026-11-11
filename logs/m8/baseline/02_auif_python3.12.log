@@ -1,0 +1,36 @@
+== interpreter
+Python 3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]
+== environment
+Linux 6.18.44-fc-v139
+Linux-6.18.44-fc-v139-x86_64-with-glibc2.39
+stdlib only; sys.path[0..2]: ['', '/usr/lib/python312.zip']
+== verify_package
+{
+ "files_checked": 248,
+ "mismatches": [],
+ "ok": true,
+ "tree_sha256": "9fbc5de7041c4cba0b177b1cb3b7fb4c7da6290a69a96ab2a939140bdf11652e"
+}
+exit 0
+== static_checks
+{'core_import_violations': [], 'forbidden_token_hits': [], 'authority_api_hits': [], 'core_tree_sha256': '74cec87afd167601fd4f260ec02b6f3c16121355b2d5c29767b5f1d3273bf93d'}
+exit 0
+== core tests
+----------------------------------------------------------------------
+Ran 410 tests in 18.993s
+
+OK
+== extension tests
+----------------------------------------------------------------------
+Ran 343 tests in 42.726s
+
+OK (skipped=20)
+== accelerator tests
+----------------------------------------------------------------------
+Ran 418 tests in 28.638s
+
+OK
+== verify_package after tests (3.12)
+ "mismatches": [],
+ "ok": true,
+ "tree_sha256": "9fbc5de7041c4cba0b177b1cb3b7fb4c7da6290a69a96ab2a939140bdf11652e"

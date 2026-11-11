@@ -1,0 +1,19 @@
+PASS L01 324 M5 files are byte-identical to the delivered M5 package []
+PASS L01b the M5 code files M6 changed are exactly: detect.py (adds the two M6 formula ids), findings.py (accepts them), relations.py (two policy prefixes), portfolio.py (unquantified display fix), test_det_portfolio.py (2 tests), run_demo_m5.py (prints the fixed display)
+PASS L01c the M5 tools M6 changed are exactly: make_m0.py (runs the M6 register step), programme_check_m4.py and programme_check_m5.py (tolerant of M6 rows), run_regression_m5.py (reads the stored M5 tables)
+PASS L02 the stored M5 snapshots of the programme tables and of the M5 demonstration output equal the delivered M5 hashes
+PASS L02b every listed M5 code, tool and demonstration file differs from its delivered M5 version, as recorded
+PASS L03 milestone rows: only status and the M6 handoff list changed; M6 only added entries; M0-M5 delivered, M6 in this delivery, nothing later started (M7 not started)
+PASS L04 handoff register: every M5 entry is unchanged except EDR-08 and EDR-09 (contract tests written, still open); new entries ['EDR-29', 'EDR-30'] appended and listed under M6
+PASS L05 status register: the M5 rows are unchanged and M6 rows (Local-tested at most) were appended
+PASS L06 findings register: the M5 findings are unchanged, M6 findings appended, none shown as closed
+PASS L07 interpretations: the M5 ones are unchanged; the new ones are retained for review, not approved, no reviewer decision filled in
+PASS L07b RFC-01 is recorded as PROPOSED, not approved
+PASS L08 the M5 regression tool (M4, M3, M2 and M0/M1 protection, M5 golden cases and demonstration) still passes
+PASS L09 the M6 golden cases still give the recorded answers and agree with the independent oracle
+PASS L10 the M6 narrated demonstration still prints exactly the recorded output
+
+regression checks failed 0
+REGRESSION OK
+
+[exit code 0; 32s]

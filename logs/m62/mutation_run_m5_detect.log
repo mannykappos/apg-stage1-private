@@ -1,0 +1,3 @@
+source-hash 91b67ced7de34d85cf0561168bae5ef72977df62fcc4490531f71dbe5384a0a9
+mutants 28  killed 28 (first failing test file: {'detect': 3, 'run_edges': 25})  documented-equivalent 0  unexplained survivors 0
+MUTATION RUN OK

@@ -1,0 +1,41 @@
+PASS every condition the oracle expects is raised, and nothing else is raised by the ten procurement rules (planted positives found, negative controls silent)
+PASS MP01|tenant|MAT-CU|index: the raised facts equal the oracle's ({'state': 'stale', 'age_days': 168})
+PASS MP01|tenant|MAT-PBOARD|index: the raised facts equal the oracle's ({'state': 'unavailable', 'age_days': None})
+PASS MP01|tenant|MAT-REO|quote: the raised facts equal the oracle's ({'states': [['supplier_quote/Q-0004', 'expired']]})
+PASS MP02|PRJ-002|demand/DEM-0001>Q-0005: the raised facts equal the oracle's ({'cls': 'partially_comparable', 'unit_cents': 12002, 'baseline_unit_cents': 245000})
+PASS MP02|PRJ-002|spec_requirement/SPEC-0001>Q-0003: the raised facts equal the oracle's ({'cls': 'not_comparable', 'unit_cents': 27000, 'baseline_unit_cents': 28730})
+PASS MP03|PRJ-002|demand/DEM-0001: the raised facts equal the oracle's ({'uncovered_micro': 40000000, 'due_date': '2026-10-27', 'days_left': 27, 'offers': ['supplier_quote/Q-0001', 'supplier_quote/Q-0002', 'supplier_quote/Q-0005']})
+PASS MP04|PRJ-001|demand/DEM-0002: the raised facts equal the oracle's ({'surplus_micro': 600000000, 'gross_cents': 1110000})
+PASS MP05|PRJ-001|PO-0100|PO-0101: the raised facts equal the oracle's ({'orders': ['purchase_order/PO-0100', 'purchase_order/PO-0101'], 'gross_cents': 2405000})
+PASS MP06|tenant|Q-0005: the raised facts equal the oracle's ({'reference_aud_cents': 10550, 'stated_aud_cents': 10436, 'divergence_bps': 109, 'stated_rate_age_days': 151})
+PASS MP07|tenant|Q-0005: the raised facts equal the oracle's ({'unresolved_critical': ['customs_classification', 'duty_rate_confirmed', 'import_permit']})
+PASS MP09|PRJ-001|OPP-DEM-0002-Q-0006: the raised facts equal the oracle's ({'unit_gap_cents': 110, 'gap_bps': 595, 'gross_cents': None})
+PASS MP10|tenant|PORT-MAT-CU: the raised facts equal the oracle's ({'gap_bps': 465778, 'estimate_cents': 50578576, 'lowest': 'PRJ-002', 'highest': 'PRJ-003'})
+PASS MP10|tenant|PORT-MAT-PBOARD: the raised facts equal the oracle's ({'gap_bps': 3306, 'estimate_cents': 17870944, 'lowest': 'PRJ-003', 'highest': 'PRJ-002'})
+PASS MP10|tenant|PORT-MAT-STEEL: the raised facts equal the oracle's ({'gap_bps': 636, 'estimate_cents': 2840760, 'lowest': 'PRJ-002', 'highest': 'PRJ-003'})
+PASS PS-14 is found by MP01
+PASS PS-15 is found by MP02
+PASS PS-16 is found by MP03
+PASS PS-17 is found by MP04
+PASS PS-17 is found by MP05
+PASS PS-23 is found by MP06
+PASS PS-23 is found by MP07
+PASS PS-25 is found by MP09
+PASS negative controls: no supplier is below a performance level (MP08 silent), and the declared comparable pair Q-0001/Q-0002 raises no comparability warning
+PASS the buy-now, wait and stage totals of the declared steel offer equal the oracle's hand-checkable arithmetic
+PASS no definitive ranking is produced while the declared steel offers include a partly comparable, stale offer (acceptance: no definitive recommendation passes a gate it should not)
+PASS every ranking says a person must approve
+PASS no signal is a financial figure without a label, and none is called realised
+PASS every saving opportunity and portfolio gap is an estimate
+PASS every stored procurement run replays, has a valid result and consistent pins
+PASS each signal became exactly one finding on the first ingestion; ingesting a run again is a no-op
+PASS the portfolio view no longer prints a zero range for unquantified exposure (M5 review issue 1)
+PASS the second builder sees none of the first builder's runs, its pins resolve in its own tenant, and no finding crosses
+PASS the second builder's own signals equal its own oracle
+PASS audit chains verify
+PASS computed golden cases equal regression/GOLDEN_MKT.json
+
+golden checks 0 failed
+GOLDEN OK
+
+[exit code 0; 4s]

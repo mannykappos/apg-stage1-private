@@ -1,0 +1,18 @@
+$ python3 -I tools/run_regression_m73.py --step R09
+PASS R09 the M7 unit tests and the M7.1, M7.2 and M7.3 correction tests pass ['OK']
+$ python3 -I tools/run_regression_m73.py --step R10
+PASS R10 the M7 guarantees probe passes ['THE M7 GUARANTEES HOLD (12 of 12)']
+$ python3 -I tools/run_regression_m73.py --step R10B
+PASS R10B the M7 audit findings probe reports every finding corrected ['THE AUDIT FINDINGS ARE CORRECTED (0 of 4 present)']
+$ python3 -I tools/run_regression_m73.py --step R10C
+PASS R10C the M7.1 audit race probe reports the race closed at every boundary ['THE RACE IS CLOSED (0 of 8 present)']
+$ python3 -I tools/run_regression_m73.py --step R10D
+PASS R10D the M7.2 audit insert-race probe reports no act committed on changed sources ['THE INSERT RACE IS CLOSED (0 of 6 present)']
+$ python3 -I tools/run_regression_m73.py --step R11
+PASS R11 the golden Builder Zero run equals regression/m7/golden_rec.json and the independent oracle agrees ['OK']
+$ python3 -I tools/run_regression_m73.py --step R13
+PASS R13 the M2 port contracts still pass on the changed reference store (38 cases) ['ALL CONTRACT CASES PASS']
+$ python3 -I tools/run_regression_m73.py --step R13B
+PASS R13B every M2 faulty implementation is still caught (39) ['ALL FAULTS CAUGHT']
+$ python3 -I tools/run_regression_m73.py --step R14
+PASS R14 the reference store passes the guard contract (RG-01 to RG-08) ['ALL GUARD CASES PASS']

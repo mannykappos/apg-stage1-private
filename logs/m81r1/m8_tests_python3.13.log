@@ -1,0 +1,20 @@
+interpreter: 3.13.16 | Linux-6.18.44-fc-v140-x86_64-with-glibc2.39
+AUIF verified before the run: zip d534a6e6541b6d1a | tree 4918c2a6eb9480e5 | core 923de5100f95debb | 253 files | /tmp/apg_m8_auif_xzvih_8i/AUIF_Independent_Build_v1.0
+PASS test_m8_boundary.py              tests   8 (expected   8)    0.5s
+PASS test_m8_conformance.py           tests   7 (expected   7)    0.5s
+PASS test_m8_corpus.py                tests   5 (expected   5)    2.4s
+PASS test_m8_definitions.py           tests  29 (expected  29)    9.6s
+PASS test_m8_delivery_rules.py        tests   5 (expected   5)    2.0s
+PASS test_m8_dependency.py            tests   7 (expected   7)    0.6s
+PASS test_m8_dev01.py                 tests  10 (expected  10)    0.4s
+PASS test_m8_events.py                tests  13 (expected  13)    0.8s
+PASS test_m8_findings.py              tests  10 (expected  10)    0.9s
+PASS test_m8_integrity.py             tests  21 (expected  21)    1.2s
+PASS test_m8_layout_config.py         tests   5 (expected   5)    0.4s
+PASS test_m8_lineage.py               tests   7 (expected   7)   10.3s
+PASS test_m8_no_fallback.py           tests  24 (expected  24)   10.9s
+PASS test_m8_path_equivalence.py      tests  11 (expected  11)   42.4s
+PASS test_m8r1_empty_source.py        tests  10 (expected  10)    8.4s
+AUIF verified after the run: unchanged (tree 4918c2a6eb9480e5, core 923de5100f95debb)
+M8 tests 172 in 15 files, failed files 0
+exit 0

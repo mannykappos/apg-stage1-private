@@ -1,0 +1,20 @@
+CORRECTED       F-67 fin_policy A: stored with a caller-written approval                       -> refused (PolicyError); the run reports approved=False
+CORRECTED       F-67 fin_policy B: caller-written approval appended to the stored proposal     -> refused (PolicyError); the run reports approved=False
+CORRECTED       F-67 fin_policy C: caller-written approval written straight into the store     -> stored; the run reports approved=False
+CORRECTED       F-67 fin_policy D: another person named as proposer, the storer as approver    -> refused (PolicyError); the run reports approved=False
+CORRECTED       F-67 det_policy A: stored with a caller-written approval                       -> refused (DetPolicyError); the run reports approved=False
+CORRECTED       F-67 det_policy B: caller-written approval appended to the stored proposal     -> refused (DetPolicyError); the run reports approved=False
+CORRECTED       F-67 det_policy C: caller-written approval written straight into the store     -> stored; the run reports approved=False
+CORRECTED       F-67 det_policy D: another person named as proposer, the storer as approver    -> refused (DetPolicyError); the run reports approved=False
+CORRECTED       F-67 mkt_policy A: stored with a caller-written approval                       -> refused (MktPolicyError); the run reports approved=False
+CORRECTED       F-67 mkt_policy B: caller-written approval appended to the stored proposal     -> refused (MktPolicyError); the run reports approved=False
+CORRECTED       F-67 mkt_policy C: caller-written approval written straight into the store     -> stored; the run reports approved=False
+CORRECTED       F-67 mkt_policy D: another person named as proposer, the storer as approver    -> refused (MktPolicyError); the run reports approved=False
+CORRECTED       F-67 mkt_spec A: stored with a caller-written approval                         -> refused (MktPolicyError); the run reports approved=False
+CORRECTED       F-67 mkt_spec B: caller-written approval appended to the stored proposal       -> refused (MktPolicyError); the run reports approved=False
+CORRECTED       F-67 mkt_spec C: caller-written approval written straight into the store       -> stored; the run reports approved=False
+CORRECTED       F-67 mkt_spec D: another person named as proposer, the storer as approver      -> refused (MktPolicyError); the run reports approved=False
+CORRECTED       control: each record approved by its owner in person through approve_policy/approve_spec -> {'fin': True, 'det': True, 'mkt': True, 'spec': True}
+
+cases 17  defects present 0
+F-67 IS CORRECTED

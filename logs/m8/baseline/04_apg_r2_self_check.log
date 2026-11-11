@@ -1,0 +1,7 @@
+PASS R01 every one of the 1,215 APG-F67.4-R1 files is byte-identical except README.md, RUN_COMMANDS.txt, the audit disposition register and the interpretations register; no code, test, tool or specification changed 
+PASS R02 every file beyond APG-F67.4-R1 is a declared R2 addition (two R2 verification tools, the change record, regression and logs) 
+PASS R03 the two registers are exactly what tools/make_f674r2_registers.py makes from the R1 registers: AD-09 to AD-12 and I-134 appended; AD-01 to AD-08 and every other row unchanged 
+PASS R04 AD-09 to AD-12 are identical to AD-05 to AD-08 except the corrected field (the agreed sentence followed by the unchanged qualifications), their id and recorded_in, which names the row superseded; the latest row per finding is AD-04 and AD-09 to AD-12; I-134 records the reading rule; dispositions, findings rows, CF-41 and every open gate are unchanged 
+PASS R05 the R2 text makes no acceptance, readiness, integration or ratification claim, keeps M8 unauthorised and uses the agreed wording 
+
+checks 5  failed 0

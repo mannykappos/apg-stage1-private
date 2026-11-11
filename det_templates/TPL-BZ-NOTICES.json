@@ -1,0 +1,71 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "notice_id",
+   "target_field": "source_record_id",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "project_id",
+   "target_field": "project_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "required": true,
+   "source_column": "notice_date",
+   "target_field": "notice_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "required": true,
+   "source_column": "notice_type",
+   "target_field": "notice_type_text",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "linked_variation_id",
+   "target_field": "linked_variation_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "description",
+   "target_field": "description_text",
+   "transform": "trim",
+   "type": "string"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "notice_id"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-07",
+ "source_label": "Builder Zero commercial notices (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "notice",
+ "template_id": "TPL-BZ-NOTICES",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

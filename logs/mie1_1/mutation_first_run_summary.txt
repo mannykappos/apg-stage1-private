@@ -1,0 +1,9 @@
+First full run of tools/mie11_mutants.py --jobs 2 on MIE-1.1, before TestEdgesOfTheNewCode was added to tests/test_mie_core_m11_corrections.py:
+mutants 624  killed 620  documented-equivalent 3  unexplained survivors 1
+UNEXPLAINED: ['OB-BOL-009']
+OB-BOL-009: in observations.check, "not isinstance(supersedes, str) or not supersedes.startswith('OB-')" with 'or' turned into 'and': a supersedes value that is not text
+then reached .startswith and raised, which the operation turned into INTERNAL_ERROR_FAIL_CLOSED instead of a REJECTED receipt.  No test sent a non-text supersedes value.
+Closed by test_a_supersedes_value_that_is_not_text_is_rejected_not_an_internal_error (re-run of that mutant alone: killed).
+
+A second full run (624 mutants, 621 killed, 3 documented equivalents, 0 survivors) preceded the sabotage run, which then showed that the 'another source' case also changed
+the value basis (sabotage C-09 missed).  The cases were split so that each attribute is changed on its own; the run in logs/mie1_1/mutation_run.txt is fresh after that.

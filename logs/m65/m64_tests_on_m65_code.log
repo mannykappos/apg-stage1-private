@@ -1,0 +1,759 @@
+tests 605  failures 19  errors 37
+======================================================================
+ERROR: test_an_action_already_in_progress_goes_back_for_fresh_approval_too (tests.test_det_approval_binding.TestApprovalIsBoundToWhatWasApproved.test_an_action_already_in_progress_goes_back_for_fresh_approval_too)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 86, in test_an_action_already_in_progress_goes_back_for_fresh_approval_too
+    approved(m, self.fid, to_progress=True)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_an_approval_records_the_finding_version_and_the_evidence_digest_it_approved (tests.test_det_approval_binding.TestApprovalIsBoundToWhatWasApproved.test_an_approval_records_the_finding_version_and_the_evidence_digest_it_approved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 42, in test_an_approval_records_the_finding_version_and_the_evidence_digest_it_approved
+    f = approved(self.m, self.fid)
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_an_older_run_cannot_invalidate_or_restore_an_approval (tests.test_det_approval_binding.TestApprovalIsBoundToWhatWasApproved.test_an_older_run_cannot_invalidate_or_restore_an_approval)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 119, in test_an_older_run_cannot_invalidate_or_restore_an_approval
+    approved(m, self.fid)
+    ~~~~~~~~^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_replaying_the_run_that_invalidated_the_approval_changes_nothing (tests.test_det_approval_binding.TestApprovalIsBoundToWhatWasApproved.test_replaying_the_run_that_invalidated_the_approval_changes_nothing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 103, in test_replaying_the_run_that_invalidated_the_approval_changes_nothing
+    approved(m, self.fid)
+    ~~~~~~~~^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_the_invalidated_approval_stays_in_the_record_with_who_approved_what_and_why_it_ended (tests.test_det_approval_binding.TestApprovalIsBoundToWhatWasApproved.test_the_invalidated_approval_stays_in_the_record_with_who_approved_what_and_why_it_ended)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 74, in test_the_invalidated_approval_stays_in_the_record_with_who_approved_what_and_why_it_ended
+    f1 = approved(m, self.fid)
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_the_version_one_to_version_two_case_invalidates_the_approval_and_returns_the_finding_for_fresh_approval (tests.test_det_approval_binding.TestApprovalIsBoundToWhatWasApproved.test_the_version_one_to_version_two_case_invalidates_the_approval_and_returns_the_finding_for_fresh_approval)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 60, in test_the_version_one_to_version_two_case_invalidates_the_approval_and_returns_the_finding_for_fresh_approval
+    f1 = approved(m, self.fid)
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_unchanged_evidence_in_a_later_run_leaves_the_approval_standing (tests.test_det_approval_binding.TestApprovalIsBoundToWhatWasApproved.test_unchanged_evidence_in_a_later_run_leaves_the_approval_standing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 94, in test_unchanged_evidence_in_a_later_run_leaves_the_approval_standing
+    f1 = approved(m, self.fid)
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_a_second_change_while_the_finding_awaits_approval_adds_no_second_invalidation (tests.test_det_approval_binding.TestOldApprovalCannotBeReused.test_a_second_change_while_the_finding_awaits_approval_adds_no_second_invalidation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 132, in setUp
+    approved(self.m, self.fid)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_an_approval_that_names_a_version_other_than_the_current_one_is_refused (tests.test_det_approval_binding.TestOldApprovalCannotBeReused.test_an_approval_that_names_a_version_other_than_the_current_one_is_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 132, in setUp
+    approved(self.m, self.fid)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_the_proposer_still_cannot_approve_and_a_new_approval_binds_the_new_version_and_digest (tests.test_det_approval_binding.TestOldApprovalCannotBeReused.test_the_proposer_still_cannot_approve_and_a_new_approval_binds_the_new_version_and_digest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 132, in setUp
+    approved(self.m, self.fid)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_work_cannot_start_on_the_strength_of_the_invalidated_approval (tests.test_det_approval_binding.TestOldApprovalCannotBeReused.test_work_cannot_start_on_the_strength_of_the_invalidated_approval)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 132, in setUp
+    approved(self.m, self.fid)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_a_new_proposal_after_an_invalidation_keeps_the_earlier_approval_in_the_record (tests.test_det_approval_binding.TestRunSummaryAndReopening.test_a_new_proposal_after_an_invalidation_keeps_the_earlier_approval_in_the_record)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 260, in test_a_new_proposal_after_an_invalidation_keeps_the_earlier_approval_in_the_record
+    approved(m, self.fid)
+    ~~~~~~~~^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_resolving_and_then_reopening_on_new_evidence_ends_the_approval_it_rested_on (tests.test_det_approval_binding.TestRunSummaryAndReopening.test_resolving_and_then_reopening_on_new_evidence_ends_the_approval_it_rested_on)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 228, in test_resolving_and_then_reopening_on_new_evidence_ends_the_approval_it_rested_on
+    approved(m, self.fid, to_progress=True)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_the_owner_is_told_that_the_approval_no_longer_stands (tests.test_det_approval_binding.TestRunSummaryAndReopening.test_the_owner_is_told_that_the_approval_no_longer_stands)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 218, in test_the_owner_is_told_that_the_approval_no_longer_stands
+    approved(m, self.fid)
+    ~~~~~~~~^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_the_run_summary_names_the_findings_whose_approval_it_ended_and_only_those (tests.test_det_approval_binding.TestRunSummaryAndReopening.test_the_run_summary_names_the_findings_whose_approval_it_ended_and_only_those)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 203, in test_the_run_summary_names_the_findings_whose_approval_it_ended_and_only_those
+    approved(m, self.fid)
+    ~~~~~~~~^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_two_endings_leave_two_entries_in_order_in_the_approval_history (tests.test_det_approval_binding.TestRunSummaryAndReopening.test_two_endings_leave_two_entries_in_order_in_the_approval_history)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 246, in test_two_endings_leave_two_entries_in_order_in_the_approval_history
+    approved(m, self.fid)
+    ~~~~~~~~^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_dismiss_confirm_and_resolve_need_a_reason_and_resolve_needs_evidence (tests.test_det_findings.TestLifecycle.test_dismiss_confirm_and_resolve_need_a_reason_and_resolve_needs_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_findings.py", line 240, in test_dismiss_confirm_and_resolve_need_a_reason_and_resolve_needs_evidence
+    self.t(m.approver, 'action_approved', rationale='ok')
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_findings.py", line 191, in t
+    return FD.transition(who, self.clock, self.fid, to, **kw)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_nobody_approves_their_own_action (tests.test_det_findings.TestLifecycle.test_nobody_approves_their_own_action)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_findings.py", line 262, in test_nobody_approves_their_own_action
+    self.assertEqual(self.t(m.approver, 'action_approved', rationale='independent')['action']['approved_by'], 'abby')
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_findings.py", line 191, in t
+    return FD.transition(who, self.clock, self.fid, to, **kw)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_the_full_path_from_detected_to_resolved_with_role_and_evidence_gates (tests.test_det_findings.TestLifecycle.test_the_full_path_from_detected_to_resolved_with_role_and_evidence_gates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_findings.py", line 199, in test_the_full_path_from_detected_to_resolved_with_role_and_evidence_gates
+    f = self.t(m.approver, 'action_approved', rationale='agreed')
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_findings.py", line 191, in t
+    return FD.transition(who, self.clock, self.fid, to, **kw)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_a_resolved_finding_reappearing_is_reopened_by_the_system_for_a_person_to_judge (tests.test_det_findings.TestReopening.test_a_resolved_finding_reappearing_is_reopened_by_the_system_for_a_person_to_judge)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_findings.py", line 386, in test_a_resolved_finding_reappearing_is_reopened_by_the_system_for_a_person_to_judge
+    FD.transition(m.approver, m.clock, self.fid, 'action_approved', rationale='ok')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_the_reason_recorded_for_a_reopening_depends_on_what_it_was_reopened_from (tests.test_det_findings_edges.TestSameDayAndOrdering.test_the_reason_recorded_for_a_reopening_depends_on_what_it_was_reopened_from)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_findings_edges.py", line 98, in test_the_reason_recorded_for_a_reopening_depends_on_what_it_was_reopened_from
+    FD.transition(m.approver, m.clock, FID, 'action_approved', rationale='ok')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_an_approved_finding_is_not_approvable_again (tests.test_det_proposal_binding.TestApprovalEntryPointFailsClosed.test_an_approved_finding_is_not_approvable_again)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 416, in test_an_approved_finding_is_not_approvable_again
+    approved(self.m, self.fid)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_a_replaced_proposal_that_had_been_approved_keeps_its_approval_in_the_history_too (tests.test_det_proposal_binding.TestExactTextAndContextAreKept.test_a_replaced_proposal_that_had_been_approved_keeps_its_approval_in_the_history_too)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 320, in test_a_replaced_proposal_that_had_been_approved_keeps_its_approval_in_the_history_too
+    approved(self.m, self.fid)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_an_ended_approval_keeps_the_exact_text_the_proposer_and_the_approval_rationale (tests.test_det_proposal_binding.TestExactTextAndContextAreKept.test_an_ended_approval_keeps_the_exact_text_the_proposer_and_the_approval_rationale)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 301, in test_an_ended_approval_keeps_the_exact_text_the_proposer_and_the_approval_rationale
+    f1 = approved(self.m, self.fid)
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_the_approval_event_carries_the_text_the_proposal_version_and_the_version_approved (tests.test_det_proposal_binding.TestExactTextAndContextAreKept.test_the_approval_event_carries_the_text_the_proposal_version_and_the_version_approved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 287, in test_the_approval_event_carries_the_text_the_proposal_version_and_the_version_approved
+    f = FD.transition(self.m.approver, self.m.clock, self.fid, 'action_approved', rationale='looks right', approving_version=1)
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_a_proposal_and_approval_with_no_change_in_between_still_work_with_and_without_the_version (tests.test_det_proposal_binding.TestFreshProposalIsApprovable.test_a_proposal_and_approval_with_no_change_in_between_still_work_with_and_without_the_version)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 137, in test_a_proposal_and_approval_with_no_change_in_between_still_work_with_and_without_the_version
+    f = FD.transition(self.m.approver, self.m.clock, self.fid, 'action_approved', rationale='ok')
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_after_a_change_a_reviewer_and_owner_can_propose_again_and_the_new_proposal_is_approvable (tests.test_det_proposal_binding.TestFreshProposalIsApprovable.test_after_a_change_a_reviewer_and_owner_can_propose_again_and_the_new_proposal_is_approvable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 150, in test_after_a_change_a_reviewer_and_owner_can_propose_again_and_the_new_proposal_is_approvable
+    g = FD.transition(self.m.approver, self.m.clock, self.fid, 'action_approved', rationale='ok on the larger overrun', approving_version=2)
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_after_an_ended_approval_a_fresh_proposal_and_a_fresh_approval_work_and_work_can_start (tests.test_det_proposal_binding.TestFreshProposalIsApprovable.test_after_an_ended_approval_a_fresh_proposal_and_a_fresh_approval_work_and_work_can_start)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 155, in test_after_an_ended_approval_a_fresh_proposal_and_a_fresh_approval_work_and_work_can_start
+    approved(self.m, self.fid)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_the_same_with_the_version_and_digest_named (tests.test_det_proposal_binding.TestFreshProposalIsApprovable.test_the_same_with_the_version_and_digest_named)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 142, in test_the_same_with_the_version_and_digest_named
+    f = FD.transition(self.m.approver, self.m.clock, self.fid, 'action_approved', rationale='ok', approving_version=1, approving_digest=f1['signal']['state_digest'])
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_an_approval_ended_by_changed_evidence_cannot_be_given_again_on_the_old_proposal (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_an_approval_ended_by_changed_evidence_cannot_be_given_again_on_the_old_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 84, in test_an_approval_ended_by_changed_evidence_cannot_be_given_again_on_the_old_proposal
+    approved(self.m, self.fid)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_evidence_that_changes_again_after_a_fresh_proposal_makes_that_proposal_stale_too (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_evidence_that_changes_again_after_a_fresh_proposal_makes_that_proposal_stale_too)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 90, in test_evidence_that_changes_again_after_a_fresh_proposal_makes_that_proposal_stale_too
+    approved(self.m, self.fid)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_the_current_digest_alone_approves_a_fresh_proposal (tests.test_det_proposal_binding.TestTheEvidenceDigestAloneCanBeNamed.test_the_current_digest_alone_approves_a_fresh_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 117, in test_the_current_digest_alone_approves_a_fresh_proposal
+    f = FD.transition(self.m.approver, self.m.clock, self.fid, 'action_approved', rationale='ok', approving_digest=f1['signal']['state_digest'])
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_a_proposal_made_stale_by_an_ended_approval_is_marked_stale_in_the_same_step (tests.test_det_proposal_binding.TestTheRecordSaysWhenAProposalWentStale.test_a_proposal_made_stale_by_an_ended_approval_is_marked_stale_in_the_same_step)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 239, in test_a_proposal_made_stale_by_an_ended_approval_is_marked_stale_in_the_same_step
+    approved(self.m, self.fid)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_a_resolved_finding_reopened_on_new_evidence_has_its_old_proposal_marked_stale (tests.test_det_proposal_binding.TestTheRecordSaysWhenAProposalWentStale.test_a_resolved_finding_reopened_on_new_evidence_has_its_old_proposal_marked_stale)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 245, in test_a_resolved_finding_reopened_on_new_evidence_has_its_old_proposal_marked_stale
+    approved(self.m, self.fid, to_progress=True)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_approval_binding.py", line 17, in approved
+    FD.transition(m.approver, m.clock, fid, 'action_approved', rationale='approved on the original figure')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_the_lower_level_transition_still_works_for_a_caller_that_names_nothing (tests.test_det_proposal_identity.TestNothingElseMoved.test_the_lower_level_transition_still_works_for_a_caller_that_names_nothing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_identity.py", line 230, in test_the_lower_level_transition_still_works_for_a_caller_that_names_nothing
+    g = FD.transition(self.m.approver, self.m.clock, self.fid, 'action_approved', rationale='ok')
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_a_damaged_proposal_can_be_replaced_by_the_normal_route_and_the_new_one_is_approvable (tests.test_det_version_types.TestDamagedStoredRecordsFailClosed.test_a_damaged_proposal_can_be_replaced_by_the_normal_route_and_the_new_one_is_approvable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_version_types.py", line 233, in test_a_damaged_proposal_can_be_replaced_by_the_normal_route_and_the_new_one_is_approvable
+    g = FD.transition(self.m.approver, self.m.clock, self.fid, 'action_approved', rationale='ok')
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+ERROR: test_naming_nothing_through_the_lower_level_transition_still_works_for_a_fresh_proposal (tests.test_det_version_types.TestNamedVersionAndDigestAreValidated.test_naming_nothing_through_the_lower_level_transition_still_works_for_a_fresh_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_version_types.py", line 186, in test_naming_nothing_through_the_lower_level_transition_still_works_for_a_fresh_proposal
+    f = FD.transition(self.m.approver, self.m.clock, self.fid, 'action_approved', rationale='ok')
+  File "/tmp/m65cur_albrzvpv/p/apg/det/findings.py", line 440, in transition
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action; a version is a whole number of at least 1 and a digest and a proposal reference are non-empty texts
+
+======================================================================
+FAIL: test_a_refused_stale_approval_adds_nothing_to_the_history (tests.test_det_proposal_binding.TestExactTextAndContextAreKept.test_a_refused_stale_approval_adds_nothing_to_the_history)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 297, in test_a_refused_stale_approval_adds_nothing_to_the_history
+    self.refused('STALE_PROPOSAL')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 36, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+======================================================================
+FAIL: test_a_later_run_with_the_same_evidence_does_not_make_a_stale_proposal_current (tests.test_det_proposal_binding.TestReplayAndOlderRuns.test_a_later_run_with_the_same_evidence_does_not_make_a_stale_proposal_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 206, in test_a_later_run_with_the_same_evidence_does_not_make_a_stale_proposal_current
+    self.refused('STALE_PROPOSAL')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 36, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+======================================================================
+FAIL: test_an_older_run_arriving_late_neither_refreshes_nor_restores_the_proposal (tests.test_det_proposal_binding.TestReplayAndOlderRuns.test_an_older_run_arriving_late_neither_refreshes_nor_restores_the_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 199, in test_an_older_run_arriving_late_neither_refreshes_nor_restores_the_proposal
+    self.refused('STALE_PROPOSAL')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 36, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+======================================================================
+FAIL: test_replaying_the_run_that_made_the_proposal_stale_changes_nothing_and_the_proposal_stays_stale (tests.test_det_proposal_binding.TestReplayAndOlderRuns.test_replaying_the_run_that_made_the_proposal_stale_changes_nothing_and_the_proposal_stays_stale)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 190, in test_replaying_the_run_that_made_the_proposal_stale_changes_nothing_and_the_proposal_stays_stale
+    self.refused('STALE_PROPOSAL')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 36, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+======================================================================
+FAIL: test_a_refused_approval_leaves_the_record_exactly_as_it_was (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_a_refused_approval_leaves_the_record_exactly_as_it_was)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 110, in test_a_refused_approval_leaves_the_record_exactly_as_it_was
+    self.refused('STALE_PROPOSAL')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 36, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+======================================================================
+FAIL: test_naming_an_older_digest_is_refused_as_a_stale_approval (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_naming_an_older_digest_is_refused_as_a_stale_approval)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 72, in test_naming_an_older_digest_is_refused_as_a_stale_approval
+    self.refused('STALE_APPROVAL', approving_version=2, approving_digest=f1['signal']['state_digest'])
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 36, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_APPROVAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_APPROVAL
+
+
+======================================================================
+FAIL: test_naming_an_older_version_is_refused_as_a_stale_approval (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_naming_an_older_version_is_refused_as_a_stale_approval)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 61, in test_naming_an_older_version_is_refused_as_a_stale_approval
+    self.refused('STALE_APPROVAL', approving_version=1)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 36, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_APPROVAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_APPROVAL
+
+
+======================================================================
+FAIL: test_naming_the_current_evidence_digest_does_not_make_a_stale_proposal_approvable (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_naming_the_current_evidence_digest_does_not_make_a_stale_proposal_approvable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 67, in test_naming_the_current_evidence_digest_does_not_make_a_stale_proposal_approvable
+    self.refused('STALE_PROPOSAL', approving_version=2, approving_digest=f['signal']['state_digest'])
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 36, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+======================================================================
+FAIL: test_naming_the_current_version_does_not_make_a_stale_proposal_approvable (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_naming_the_current_version_does_not_make_a_stale_proposal_approvable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 56, in test_naming_the_current_version_does_not_make_a_stale_proposal_approvable
+    self.refused('STALE_PROPOSAL', approving_version=2)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 36, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+======================================================================
+FAIL: test_the_audit_reproduction_a_proposal_for_version_1_cannot_be_approved_once_the_finding_is_at_version_2 (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_the_audit_reproduction_a_proposal_for_version_1_cannot_be_approved_once_the_finding_is_at_version_2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 49, in test_the_audit_reproduction_a_proposal_for_version_1_cannot_be_approved_once_the_finding_is_at_version_2
+    f = self.refused('STALE_PROPOSAL')
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 36, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+======================================================================
+FAIL: test_the_refusal_is_audited_with_the_reason (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_the_refusal_is_audited_with_the_reason)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 77, in test_the_refusal_is_audited_with_the_reason
+    self.refused('STALE_PROPOSAL')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 36, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+======================================================================
+FAIL: test_an_older_digest_alone_is_refused_as_a_stale_approval_and_the_current_digest_alone_cannot_approve_a_stale_proposal (tests.test_det_proposal_binding.TestTheEvidenceDigestAloneCanBeNamed.test_an_older_digest_alone_is_refused_as_a_stale_approval_and_the_current_digest_alone_cannot_approve_a_stale_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 123, in test_an_older_digest_alone_is_refused_as_a_stale_approval_and_the_current_digest_alone_cannot_approve_a_stale_proposal
+    self.refused('STALE_APPROVAL', approving_digest=f1['signal']['state_digest'])
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_binding.py", line 36, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_APPROVAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_APPROVAL
+
+
+======================================================================
+FAIL: test_the_lower_level_transition_refuses_a_proposal_that_has_no_usable_reference_even_when_nothing_is_named (tests.test_det_proposal_identity.TestAStoredProposalThatIsEditedIsNotTheOneThatWasShown.test_the_lower_level_transition_refuses_a_proposal_that_has_no_usable_reference_even_when_nothing_is_named)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_identity.py", line 286, in test_the_lower_level_transition_refuses_a_proposal_that_has_no_usable_reference_even_when_nothing_is_named
+    self.assertEqual(c.exception.code, 'PROPOSAL_CHANGED')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'PROPOSAL_CHANGED'
+- APPROVAL_TOKEN_REQUIRED
++ PROPOSAL_CHANGED
+
+
+======================================================================
+FAIL: test_the_lower_level_transition_checks_a_proposal_reference_when_one_is_named (tests.test_det_proposal_identity.TestNothingElseMoved.test_the_lower_level_transition_checks_a_proposal_reference_when_one_is_named)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_proposal_identity.py", line 238, in test_the_lower_level_transition_checks_a_proposal_reference_when_one_is_named
+    self.assertEqual(c.exception.code, 'PROPOSAL_CHANGED')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'PROPOSAL_CHANGED'
+- APPROVAL_TOKEN_REQUIRED
++ PROPOSAL_CHANGED
+
+
+======================================================================
+FAIL: test_a_malformed_stored_digest_blocks_approval (tests.test_det_version_types.TestDamagedStoredRecordsFailClosed.test_a_malformed_stored_digest_blocks_approval)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_version_types.py", line 217, in test_a_malformed_stored_digest_blocks_approval
+    self.refused_by_transition('STALE_PROPOSAL')
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_version_types.py", line 50, in refused_by_transition
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+======================================================================
+FAIL: test_a_malformed_stored_finding_version_blocks_approval_and_cannot_even_make_a_token (tests.test_det_version_types.TestDamagedStoredRecordsFailClosed.test_a_malformed_stored_finding_version_blocks_approval_and_cannot_even_make_a_token)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_version_types.py", line 209, in test_a_malformed_stored_finding_version_blocks_approval_and_cannot_even_make_a_token
+    self.refused_by_transition('STALE_PROPOSAL')
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_version_types.py", line 50, in refused_by_transition
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+======================================================================
+FAIL: test_an_older_whole_number_is_still_a_stale_approval_not_a_malformed_token (tests.test_det_version_types.TestNamedVersionAndDigestAreValidated.test_an_older_whole_number_is_still_a_stale_approval_not_a_malformed_token)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_version_types.py", line 176, in test_an_older_whole_number_is_still_a_stale_approval_not_a_malformed_token
+    self.refused_by_transition('STALE_APPROVAL', approving_version=1)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_version_types.py", line 50, in refused_by_transition
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_APPROVAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_APPROVAL
+
+
+======================================================================
+FAIL: test_a_normal_stale_proposal_is_still_refused_as_before (tests.test_det_version_types.TestNothingElseMoved.test_a_normal_stale_proposal_is_still_refused_as_before)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_version_types.py", line 269, in test_a_normal_stale_proposal_is_still_refused_as_before
+    self.refused_by_transition('STALE_PROPOSAL')
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_version_types.py", line 50, in refused_by_transition
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+======================================================================
+FAIL: test_the_same_through_the_lower_level_transition_with_and_without_a_version_named (tests.test_det_version_types.TestTheAuditReproduction.test_the_same_through_the_lower_level_transition_with_and_without_a_version_named)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_version_types.py", line 78, in test_the_same_through_the_lower_level_transition_with_and_without_a_version_named
+    self.refused_by_transition('STALE_PROPOSAL')
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65cur_albrzvpv/p/tests/test_det_version_types.py", line 50, in refused_by_transition
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+----------------------------------------------------------------------
+Ran 605 tests in 38.172s
+
+FAILED (failures=19, errors=37)
+
+[exit code 1]

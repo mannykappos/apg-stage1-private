@@ -1,0 +1,64 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "project_id",
+   "target_field": "project_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "work_package",
+   "target_field": "work_package_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "required": true,
+   "source_column": "week_start",
+   "target_field": "week_start",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "required": true,
+   "source_column": "quantity",
+   "target_field": "quantity",
+   "transform": "none",
+   "type": "decimal"
+  },
+  {
+   "required": true,
+   "source_column": "unit",
+   "target_field": "unit_text",
+   "transform": "trim",
+   "type": "string"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "project_id",
+  "work_package",
+  "week_start"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-12",
+ "source_label": "Builder Zero completed quantities by week (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "work_output",
+ "template_id": "TPL-BZ-WORK-OUTPUT",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

@@ -1,0 +1,21 @@
+AUIF verified: zip 61748ddeba21e8c1 core 74cec87afd167601
+CONTROL (unmutated copy): passes 107s
+MI-01  KILLED      16s tier 1: FAIL: test_an_object_naming_another_tenant_is_refused (tests_m8.test_m8_no_fallback.TestWrongTenant.test_an_object_naming_another_tenant_is_refused)
+MI-05  KILLED       2s tier 1: FAIL: test_a_provenance_chain_out_of_order (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_a_provenance_chain_out_of_order)
+MI-09  KILLED       3s tier 1: FAIL: test_deliveries_under_another_manifest_than_the_one_the_integration_is_active_with (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone
+MI-13  KILLED       2s tier 1: FAIL: test_values_that_are_not_what_auif_observed (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_values_that_are_not_what_auif_obs
+MI-17  KILLED       3s tier 1: FAIL: test_translation_invalid_counted_only_in_the_report (tests_m8.test_m8_integrity.TestTheTransportReportStandsAlone.test_translation_invalid_count
+MI-21  KILLED      15s tier 1: FAIL: test_a_file_removed_after_activation (tests_m8.test_m8_no_fallback.TestPartial.test_a_file_removed_after_activation)
+MI-25  KILLED       3s tier 1: FAIL: test_a_failure_inside_the_adapter_is_never_silent (tests_m8.test_m8_no_fallback.TestAlertsAndAdapterFailures.test_a_failure_inside_the_adapter_i
+MI-29  KILLED      16s tier 1: ERROR: test_a_value_naming_another_tenant_is_refused_by_the_apg_tenant_screen (tests_m8.test_m8_no_fallback.TestWrongTenant.test_a_value_naming_anothe
+MI-33  KILLED       3s tier 1: FAIL: test_an_auif_error_outside_an_import_blocks_until_the_integration_is_imported_again (tests_m8.test_m8_no_fallback.TestAlertsAndAdapterFailures.t
+MI-37  KILLED      17s tier 1: FAIL: test_a_stale_delivery_is_recorded_not_applied_and_stops_the_assessment (tests_m8.test_m8_no_fallback.TestStaleDriftedAndDegraded.test_a_stale_de
+MI-41  KILLED      57s tier 1: FAIL: test_a_read_whose_records_were_all_invalid_or_ambiguous_keeps_its_own_reason (tests_m8.test_m8r1_empty_source.TestTheBatchCheckItself.test_a_rea
+MM-03  KILLED       3s tier 1: FAIL: test_a_failure_inside_the_adapter_is_never_silent (tests_m8.test_m8_no_fallback.TestAlertsAndAdapterFailures.test_a_failure_inside_the_adapter_i
+MG-01  KILLED      10s tier 1: FAIL: test_a_change_while_the_figures_are_computed_withdraws_the_result (tests_m8.test_m8_no_fallback.TestNoOldValueShownAsCurrent.test_a_change_while
+MG-05  KILLED       3s tier 1: FAIL: test_an_object_outside_any_import_whose_observation_never_comes (tests_m8.test_m8_integrity.TestTheTransportReportStandsAlone.test_an_object_out
+MA-01  KILLED      16s tier 1: FAIL: test_a_degraded_integration_withdraws_the_assessment_and_returns_no_earlier_figure (tests_m8.test_m8_no_fallback.TestNoOldValueShownAsCurrent.te
+MP-03  KILLED       1s tier 1: FAIL: test_an_entity_mapping_without_the_full_module_name_is_refused (tests_m8.test_m8_dev01.TestDeviationForm.test_an_entity_mapping_without_the_full
+MC-04  KILLED       3s tier 1: FAIL: test_an_auif_tenant_cannot_be_bound_to_another_tenants_store (tests_m8.test_m8_integrity.TestGateAndBinding.test_an_auif_tenant_cannot_be_bound_
+ML-01  KILLED      34s tier 1: FAIL: test_each_missing_or_broken_part_is_found (tests_m8.test_m8_lineage.TestTheLineageCheckerItself.test_each_missing_or_broken_part_is_found)
+mutants 18: killed 18, documented equivalent 0, survived 0, timeout 0 | AUIF after: unchanged

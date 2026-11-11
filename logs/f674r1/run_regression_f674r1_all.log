@@ -1,0 +1,9 @@
+PASS R01 every one of the 1,209 APG-F67.4 files is byte-identical except README.md, RUN_COMMANDS.txt and the audit disposition register; no existing application code, tests, tools or specifications were modified 
+PASS R02 every file beyond APG-F67.4 is a declared R1 addition (two R1 verification tools, the change record, regression and logs) 
+PASS R03 the audit disposition register is exactly what tools/make_f674r1_registers.py makes from the F67.4 register: AD-04 to AD-08 appended (F-75, F-74, F-73, F-72, F-67); AD-01 to AD-03 unchanged 
+PASS R04 AD-04 to AD-08 record F-75 to F-72 and F-67 as independently verified corrected in APG-F67.4, each with the execution-limit qualifications and as a finding-level disposition only; F-67 keeps CF-41; the findings rows are untouched; CF-36 to CF-45 (CF-41 as recorded) and EDR-34, EDR-36 to EDR-41 stay open; M8 is not authorised 
+PASS R05 the R1 text makes no acceptance, readiness, integration or ratification claim, keeps M8 unauthorised and uses the agreed wording 
+PASS R06 the F-75 probe still reports every case corrected (the code is unchanged) ['F-75 IS CORRECTED']
+PASS R07 the F-67.4 tests still pass (9) ['OK']
+
+checks 7  failed 0

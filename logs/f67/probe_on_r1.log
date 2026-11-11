@@ -1,0 +1,21 @@
+DEFECT PRESENT  F-67 fin_policy A: stored with a caller-written approval                       -> stored; the run reports approved=True
+DEFECT PRESENT  F-67 fin_policy B: caller-written approval appended to the stored proposal     -> stored; the run reports approved=True
+DEFECT PRESENT  F-67 fin_policy C: caller-written approval written straight into the store     -> stored; the run reports approved=True
+DEFECT PRESENT  F-67 fin_policy D: another person named as proposer, the storer as approver    -> stored; the run reports approved=True
+DEFECT PRESENT  F-67 det_policy A: stored with a caller-written approval                       -> stored; the run reports approved=True
+DEFECT PRESENT  F-67 det_policy B: caller-written approval appended to the stored proposal     -> stored; the run reports approved=True
+DEFECT PRESENT  F-67 det_policy C: caller-written approval written straight into the store     -> stored; the run reports approved=True
+DEFECT PRESENT  F-67 det_policy D: another person named as proposer, the storer as approver    -> stored; the run reports approved=True
+DEFECT PRESENT  F-67 mkt_policy A: stored with a caller-written approval                       -> stored; the run reports approved=True
+DEFECT PRESENT  F-67 mkt_policy B: caller-written approval appended to the stored proposal     -> stored; the run reports approved=True
+DEFECT PRESENT  F-67 mkt_policy C: caller-written approval written straight into the store     -> stored; the run reports approved=True
+DEFECT PRESENT  F-67 mkt_policy D: another person named as proposer, the storer as approver    -> stored; the run reports approved=True
+DEFECT PRESENT  F-67 mkt_spec A: stored with a caller-written approval                         -> stored; the run reports approved=True
+DEFECT PRESENT  F-67 mkt_spec B: caller-written approval appended to the stored proposal       -> stored; the run reports approved=True
+DEFECT PRESENT  F-67 mkt_spec C: caller-written approval written straight into the store       -> stored; the run reports approved=True
+DEFECT PRESENT  F-67 mkt_spec D: another person named as proposer, the storer as approver      -> stored; the run reports approved=True
+DEFECT PRESENT  control: each record approved by its owner in person through approve_policy/approve_spec -> {'fin': False, 'det': False, 'mkt': False, 'spec': False}
+
+cases 17  defects present 17
+F-67 IS NOT CORRECTED
+exit 1

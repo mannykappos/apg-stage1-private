@@ -1,0 +1,9 @@
+class_id,system_class,source_ids,builder_system_name,access_tier_T1_T2_T3,vendor_api_or_export_confirmed_how,readiness_ladder_level,evidence,owner,notes (ladder: C0 identified | C1 access agreed | C2 sample data received | C3 mapping (translation pack) drafted | C4 proven in a sandbox | C5 reconciled on real builder data | C6 running with freshness monitoring)
+Q1,Project management and document control,SRC-04; SRC-07; SRC-08; SRC-03,,,,C0 not started,Nothing seen; no system named,,
+Q2,"Accounting, job costing and ERP",SRC-01; SRC-02; SRC-09; SRC-14,,,,C0 not started,Nothing seen; no system named,,
+Q3,Estimating and cost data,SRC-02; SRC-05,,,,C0 not started,Nothing seen; no system named,,
+Q4,"Procurement, supplier quotes and deliveries",SRC-03; SRC-05; SRC-06; SRC-11,,,,C0 not started,Nothing seen; no system named,,
+Q5,Programme and scheduling,SRC-04,,,,C0 not started,Nothing seen; no system named,,
+S1,"Supplementary: labour, timesheets and payroll",SRC-12,,,,C0 not started,Nothing seen; no system named,,
+S2,Supplementary: plant and equipment hire,SRC-13,,,,C0 not started,Nothing seen; no system named,,
+S3,"Supplementary: bank, cash and funding facilities",SRC-14,,,,C0 not started,Nothing seen; no system named,,

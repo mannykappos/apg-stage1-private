@@ -1,0 +1,6 @@
+interpreter: 3.13.16 | Linux-6.18.44-fc-v139-x86_64-with-glibc2.39
+AUIF verified before the run: zip d534a6e6541b6d1a | tree 4918c2a6eb9480e5 | core 923de5100f95debb | 253 files | /tmp/apg_m8_auif_6yslucd5/AUIF_Independent_Build_v1.0
+PASS test_m8_path_equivalence.py      tests  11 (expected  11)   45.6s
+PASS test_m8_corpus.py                tests   5 (expected   5)    2.5s
+AUIF verified after the run: unchanged (tree 4918c2a6eb9480e5, core 923de5100f95debb)
+M8 tests 16 in 2 files, failed files 0

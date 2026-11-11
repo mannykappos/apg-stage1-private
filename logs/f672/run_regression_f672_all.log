@@ -1,0 +1,13 @@
+PASS R01 every one of the 1,132 APG-F67.1 files is byte-identical except the declared changes (2 code files, 1 test file, 6 records) 
+PASS R02 every file beyond APG-F67.1 is a declared F-67.2 addition, and regression/f672/f671_originals holds the exact F67.1 text of every changed code and test file 
+PASS R03 the four tables are exactly what tools/make_f672_registers.py makes from the F67.1 tables: F-73, SR-115, SR-116, I-131 and CF-43 appended; no existing row changed 
+PASS R04 F-67 keeps its row; F-72 and F-73 stay open until verified; SR-115 and SR-116 are Local-tested only; CF-41 is unchanged; CF-36 to CF-40, CF-42, CF-43 and EDR-34, EDR-36 to EDR-40 stay open; M8 is not authorised 
+PASS R05 the F-67.2 text makes no acceptance, verification or readiness claim; keeps F-72 and F-73 open; quotes the F-67.2 authorisation; M8 not authorised 
+PASS R06 the F-73 probe reports every case corrected and the control counted and bound ['F-73 IS CORRECTED']
+PASS R07 the F-67.2 tests pass (11) ['OK']
+PASS R08 the F-72 and F-67 probes and tests and the M7 audit-findings probe still report every case corrected 
+PASS R09 the golden Builder Zero runs (financial, detection, procurement, recommendations) are unchanged 
+PASS R10 every APG-F67.1 test file is unchanged except tests/test_f671_approval_recovery.py, where two tests are changed (and renamed) to the new behaviour and no test is removed or added 
+PASS R11 static: neither approve function has a completing path; each confirms once, naming the revision it wrote; confirmed and verified_approvers check the binding 
+
+checks 11  failed 0

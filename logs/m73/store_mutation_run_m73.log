@@ -1,0 +1,6 @@
+mutants 28  killed 28 (first failing test file: {'test_rec_m73_insert_race': 28})  documented-equivalent 0  unexplained survivors 0
+MUTATION RUN OK
+
+real	0m45.715s
+user	1m19.584s
+sys	0m1.139s

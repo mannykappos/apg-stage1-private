@@ -1,0 +1,7 @@
+2026-10-20T11:35:48Z
+ce45571f69a1fcefae8f96973530248ab128cc3751372ef6e4f5545456f6845d  auif_m8/PATH_EQUIVALENCE_DECLARED_DIFFERENCES.json
+M8-R1: recorded before tests_m8/test_m8_corpus.py and tests_m8/test_m8_path_equivalence.py were run on M8-R1. Change: F11 moved from 'same' to 'differs' (empty source refused, finding M8-F7). The APG-M8 hashes are in logs/m8/00_declared_differences_before_comparison.txt.
+
+2026-10-20T13:01:54Z
+4799c8044069e4715009ad8717efb6281760c304f2a2d9902fb53777684cb169  auif_m8/PATH_EQUIVALENCE_DECLARED_DIFFERENCES.json
+M8-R1 correction AFTER a comparison: the first M8-R1 run of tests_m8/test_m8_path_equivalence.py failed (zero_two's eight header-only record types are refused). The 'source_empty' section and 24 GOLDEN_M3 entries were added after that run; see the file's 'corrections' and logs/m8r1/m8_tests_first_run_*_FAILED.log.

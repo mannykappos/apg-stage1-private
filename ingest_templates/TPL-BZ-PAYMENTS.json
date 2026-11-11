@@ -1,0 +1,55 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "payment_id",
+   "target_field": "source_record_id",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "invoice_id",
+   "target_field": "invoice_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "required": true,
+   "source_column": "payment_date",
+   "target_field": "payment_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "required": true,
+   "source_column": "amount_cents",
+   "target_field": "amount_cents",
+   "transform": "none",
+   "type": "money_cents"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "payment_id"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-01",
+ "source_label": "Builder Zero accounting payments (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "payment",
+ "template_id": "TPL-BZ-PAYMENTS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

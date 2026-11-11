@@ -1,0 +1,17 @@
+PASS N01 F-55 records the audit reproduction, the equality rule behind it, the second path found by the builder, the files, both refusals, that it is builder-implemented with no independent review and still open, with F-52, F-53 and F-54 also open; the earlier archives stay unchanged
+PASS N02 F-52, F-53 and F-54 are unchanged (earlier rows are not rewritten) and not shown as closed
+PASS N03 I-71 to I-74 are retained for review, not approved, with no reviewer decision, and state the version and digest test, the stale mark, the float rule and that damage is kept as found
+PASS N04 SR-70 and SR-71 sit at Local-tested, each has evidence and a claim limit; the limits say no independent review and that incomplete runs are not passes
+PASS N05 the carried-forward register holds CF-01 to CF-24 in order, every cell filled
+PASS N06 CF-24 records the M6.2 audit's verification limits as open for the auditor
+PASS N07 no carried-forward item is shown as closed, resolved, accepted or approved
+PASS N08 the governance register is unchanged: RFC-01 unnumbered, the four baseline rules PROPOSED, no finance assumption configured, foundations not started
+PASS N09 RFC-01 is still PROPOSED, not approved and not numbered; M7 is not started
+PASS N10 no new register text claims approval, independent review, readiness, compliance, adoption or closure []
+PASS N11 no finding in the register is shown as closed, resolved, accepted or approved
+PASS N12 the change record has the defect, impact, exact files changed, behaviour, tests, classified results, carried-forward and limits sections, and names every changed or added file []
+
+checks 12  failed 0
+ALL M6.3 REGISTER CHECKS PASS
+
+[exit code 0; 0s]

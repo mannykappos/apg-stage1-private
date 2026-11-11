@@ -1,0 +1,9 @@
+the approver is shown: P1: renegotiate with the supplier   token {'finding_id': 'FND-3b24102724f9e17d839d', 'version': 1, 'digest': '67a504082f147af50344d0ba'}
+the proposal on record is now: P2: terminate the supplier contract   (version 1, evidence digest 67a504082f147af50344d0ba: unchanged)
+SUBMIT the token of proposal 1 -> ACCEPTED action_approved | approved text: P2: terminate the supplier contract
+record afterwards: action_approved | approver recorded: abby
+SUBMIT the token of the proposal that is on record -> action_approved | approved text: P1: renegotiate with the supplier | approval current: True
+SUBMIT the same approval again -> REFUSED TRANSITION_NOT_ALLOWED | history events unchanged: True
+DEFECT PRESENT: an approval was recorded against a proposal the approver was not shown, or a check failed
+
+[exit code 1]

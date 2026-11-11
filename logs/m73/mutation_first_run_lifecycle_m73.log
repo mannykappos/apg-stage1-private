@@ -1,0 +1,7 @@
+EQUIVALENT LC-BOL-017  -- proved: approve() is the entry point and transition() repeats the same whole-token check (F-57 style, killed as LC-BOL-026); with the entry check weakened a partial token reaches transition(), which refuses it with the same code APPROVAL_TOKEN_REQUIRED, the same message and the same audit entry, before anything is read or written.
+mutants 135  killed 134 (first failing test file: {'test_rec_edges': 15, 'test_rec_lifecycle': 105, 'test_rec_m71_corrections': 5, 'test_rec_m72_race': 3, 'test_rec_repro': 5, 'test_rec_verify': 1})  documented-equivalent 1  unexplained survivors 0
+MUTATION RUN OK
+
+real	2m35.177s
+user	4m55.724s
+sys	0m3.116s

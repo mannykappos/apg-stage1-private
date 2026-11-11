@@ -1,0 +1,48 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "quote_id",
+   "target_field": "quote_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "min_qty",
+   "target_field": "min_quantity",
+   "transform": "none",
+   "type": "decimal"
+  },
+  {
+   "required": true,
+   "source_column": "unit_rate_cents",
+   "target_field": "unit_rate_minor_units",
+   "transform": "none",
+   "type": "money_cents"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "quote_id",
+  "min_qty"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-03",
+ "source_label": "M6 synthetic supplement: quote quantity tiers",
+ "status": "draft - unverified against any real export",
+ "target_entity": "quote_tier",
+ "template_id": "TPL-MKT-QUOTE-TIERS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

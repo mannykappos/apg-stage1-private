@@ -1,0 +1,20 @@
+M8-F7 reproduction (the audit's case): import ap_invoices, cut the file to its header, import again, ask the gate. Script: the builder's repro_f7.py (shown below). 2026-10-20T12:00:57Z, Python 3.13.16
+== on the delivered APG-M8 (extracted from f1b634d3...):
+first import: applied 187 | second import: applied [] 187 | gate: can_assess []
+== on APG-M8-R1:
+first import: applied 187 | second import: blocked ['SOURCE_EMPTY'] 187 | gate: cannot_assess ['SOURCE_EMPTY']
+== repro_f7.py
+"""Reproduction of finding M8-F7 (the auditor's case): import the AP invoices, empty the file to its header, import again, ask the gate."""
+import os, shutil, sys
+sys.path.insert(0, sys.argv[1]); os.chdir(sys.argv[1])
+from tests_m8._auif import copy_folder, single, status, records, codes
+d = copy_folder('zero_one', 'SRC-01_accounting')
+try:
+    w = single('bz-accounting', base_dir=d); env = w['env']
+    s1 = env.import_entity('zero_one', 'bz-accounting', 'ap_invoice'); n1 = len(records(w['s'], 'ap_invoice'))
+    p = os.path.join(d, 'ap_invoices.csv'); head = open(p, encoding='utf-8').readline(); open(p, 'w', encoding='utf-8').write(head)
+    s2 = env.import_entity('zero_one', 'bz-accounting', 'ap_invoice'); n2 = len(records(w['s'], 'ap_invoice'))
+    st = status(w['s'], env, expected=[('bz-accounting', 'ap_invoice')])
+    print('first import:', s1['status'], n1, '| second import:', s2['status'], [c for c, _ in s2['reasons']], n2, '| gate:', st['status'], sorted(codes(st)))
+finally:
+    shutil.rmtree(d)

@@ -1,0 +1,17 @@
+CAUGHT S01 holds compares the approved content with Python equality again (the F-75 defect restored) -> R06 
+CAUGHT S02 the re-store check compares with Python equality again -> R06 
+CAUGHT S03 the recommendation re-store check compares with Python equality again -> R06 
+CAUGHT S04 the fingerprint folds booleans into numbers at the top level -> R06 
+CAUGHT S05 a value that cannot be fingerprinted counts as the same -> R07 
+CAUGHT S06 content that cannot be fingerprinted holds -> R07 
+CAUGHT S07 holds checks only the confirmed revision again (the F-74 defect restored) -> R08 
+CAUGHT S08 the F-75 row is changed to read verified -> R03 
+CAUGHT S09 the readme says M8 is authorised -> R05 
+CAUGHT S10 an F-74 test is edited -> R10 
+CAUGHT S11 an unchanged application file changes by one character -> R01 
+CAUGHT S12 an undeclared file is added -> R02 
+CAUGHT S13 the stored F67.3 original of a changed file is edited -> R02 
+CAUGHT S14 a test file is dropped from the per-file list -> R13 
+CAUGHT S15 a per-file test count is wrong -> R13 
+CAUGHT S16 the history contract loses its out-of-range case -> R12 
+sabotage cases 16  missed 0

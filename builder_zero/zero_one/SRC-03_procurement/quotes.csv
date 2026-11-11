@@ -1,0 +1,7 @@
+quote_id,supplier_id,material_id,specification,issue_date,valid_until,unit_rate_cents,currency,fx_rate_used,fx_rate_date,freight_cents_per_unit,incoterm_delivery_basis,lead_time_days,price_kind
+Q-0001,SUP-004,MAT-STEEL,"Grade 300PLUS, 250UB, delivered site",2026-09-10,2026-10-31,265000,AUD,,,0,delivered,21,quote
+Q-0002,SUP-009,MAT-STEEL,"Grade 300PLUS, 250UB, ex-works",2026-09-12,2026-10-31,247000,AUD,,,9500,ex-works,28,quote
+Q-0003,SUP-001,MAT-CONC32,Concrete 32 MPa,2026-09-05,2026-10-31,27000,AUD,,,0,delivered,3,quote
+Q-0004,SUP-003,MAT-REO,N16 bar,2026-03-01,2026-06-30,238000,AUD,,,0,delivered,14,quote
+Q-0005,SUP-011,MAT-STEEL,Imported structural fixings kit,2026-05-02,2026-11-30,6900,USD,0.6612,2026-05-02,800,FOB,56,quote
+Q-0006,SUP-006,MAT-PBOARD,"Plasterboard 13mm, delivered",2026-09-08,2026-11-15,1740,AUD,,,0,delivered,7,quote

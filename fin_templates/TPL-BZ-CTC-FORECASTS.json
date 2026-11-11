@@ -1,0 +1,80 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "project_id",
+   "target_field": "project_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "cost_code",
+   "target_field": "cost_code_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "forecast_version",
+   "target_field": "forecast_version",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "required": true,
+   "source_column": "forecast_date",
+   "target_field": "forecast_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "required": true,
+   "source_column": "cost_to_complete_cents",
+   "target_field": "cost_to_complete_cents",
+   "transform": "none",
+   "type": "money_cents"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "estimate_basis",
+   "target_field": "estimate_basis_text",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "movement_reason",
+   "target_field": "movement_reason_text",
+   "transform": "trim",
+   "type": "string"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "project_id",
+  "cost_code",
+  "forecast_version"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-02",
+ "source_label": "Builder Zero cost-to-complete forecast lines (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "ctc_line",
+ "template_id": "TPL-BZ-CTC-FORECASTS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

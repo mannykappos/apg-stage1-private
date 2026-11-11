@@ -1,0 +1,334 @@
+{
+ "artifact_hash": "42363081ee09d7b6b9963a666f1bb05c60ce6f23fc238141ca491e0343355354",
+ "auif_contract_compat": {
+  "max": "1.0.99",
+  "min": "1.0.0"
+ },
+ "canonical_model_compat": {
+  "max": "0.1.99",
+  "min": "0.1.0"
+ },
+ "classification_mappings": [],
+ "contains_governance_logic": false,
+ "contains_secrets": false,
+ "contract_kind": "TranslationPack",
+ "immutable": true,
+ "mappings": [
+  {
+   "canonical_ref": "module.apg.Facility",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "module.apg.Facility",
+    "source_type": "entity",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "ENTITY",
+   "mapping_id": "m8-facility-entity",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "facility",
+   "validation_ref": {
+    "evidence_hash": "ebaf7be3809a8f7acc910828d0e62a02fb51f9860282bae347dba014590fd189",
+    "evidence_id": "val-apg-m8-facility",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Facility.source_record_id",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-facility-source-record-id",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "facility.facility_id",
+   "validation_ref": {
+    "evidence_hash": "289f1abcd06fceb2a8fb0865a13cbdb2955667fc9744ea433fa60bcb28f4ecd5",
+    "evidence_id": "val-apg-m8-facility-source-record-id",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Facility.limit_cents",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-facility-limit-cents",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "facility.limit_cents",
+   "validation_ref": {
+    "evidence_hash": "6da785179d28c02d288e23d602849d6a41fbf6129721b1db8de1d6fa8b0c4fb9",
+    "evidence_id": "val-apg-m8-facility-limit-cents",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Facility.drawn_cents",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-facility-drawn-cents",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "facility.drawn_cents",
+   "validation_ref": {
+    "evidence_hash": "c65f5b809436a35756f114540aabe074a72de59619749ce4a4c4b59b6c202a83",
+    "evidence_id": "val-apg-m8-facility-drawn-cents",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Facility.rate_bps",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-facility-rate-bps",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "facility.rate_bps",
+   "validation_ref": {
+    "evidence_hash": "15fb8a05c5cf4122db060f309bed1b0a87e9e0ba9c616bdc29083db8cc311466",
+    "evidence_id": "val-apg-m8-facility-rate-bps",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Facility.statement_date",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-facility-statement-date",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "facility.as_of",
+   "validation_ref": {
+    "evidence_hash": "ba81e8627b0afee37a0a3bb58f364b4110568710be7139f04e04247d7af0fa2a",
+    "evidence_id": "val-apg-m8-facility-statement-date",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.BankTxn",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "module.apg.BankTxn",
+    "source_type": "entity",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "ENTITY",
+   "mapping_id": "m8-bank-txn-entity",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "bank_txn",
+   "validation_ref": {
+    "evidence_hash": "67f9df59b384a561c16272ae241506405593fd3fca05d41ac70f6eb213d84d06",
+    "evidence_id": "val-apg-m8-bank-txn",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.BankTxn.source_record_id",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-bank-txn-source-record-id",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "bank_txn.txn_id",
+   "validation_ref": {
+    "evidence_hash": "99e91ede6014d14826badefd0b3ed0c4126aa0efb8144b75dc9134f7782168f4",
+    "evidence_id": "val-apg-m8-bank-txn-source-record-id",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.BankTxn.txn_date",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-bank-txn-txn-date",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "bank_txn.txn_date",
+   "validation_ref": {
+    "evidence_hash": "121bc177be85d9eede1af85339bef8c6c52cc53791d49844b27e8002dc198e94",
+    "evidence_id": "val-apg-m8-bank-txn-txn-date",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.BankTxn.amount_cents",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-bank-txn-amount-cents",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "bank_txn.amount_cents",
+   "validation_ref": {
+    "evidence_hash": "3a5a4199102c6874bb5e5998e7b63241e7e5e1d666939ee4ffc621ccf4f3359b",
+    "evidence_id": "val-apg-m8-bank-txn-amount-cents",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.BankTxn.description_text",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-bank-txn-description-text",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "bank_txn.description",
+   "validation_ref": {
+    "evidence_hash": "9e774024a813b88e573eb4e82e4986a73418f3f8e0466ad4aa0b557cbf1723d2",
+    "evidence_id": "val-apg-m8-bank-txn-description-text",
+    "kind": "mapping-validation"
+   }
+  }
+ ],
+ "pack_id": "apg-m8-bz-bank",
+ "pack_state": "CANDIDATE",
+ "pack_version": "0.1.0",
+ "provenance_rules": {
+  "preserve_pack_identity": true,
+  "preserve_source_field": true,
+  "preserve_source_object": true
+ },
+ "schema_expectations": {
+  "compatible_fingerprints": [
+   "74a267eab27a83b336b2d6688c52da90386bd85d1c2a4c57468b22e730e25aa9"
+  ]
+ },
+ "target_system_kind": "synthetic-builder-zero-csv-export",
+ "unmapped_field_policy": {
+  "default_outcome": "REJECTED",
+  "ignored_by_rule": [],
+  "optional_and_unused": []
+ }
+}

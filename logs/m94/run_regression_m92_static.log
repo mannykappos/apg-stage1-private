@@ -1,0 +1,21 @@
+PASS R01 the baseline names the delivered M9.1 ZIP and documents by hash and accounts for every one of its files
+PASS R02 647 files of the delivered M9.1 package are byte-identical to it []
+PASS R03 the 20 changed and 15 added files equal their recorded hashes, and every changed file differs from M9.1 []
+PASS R04 no file exists in the package beyond the M9.1 files and the declared additions []
+PASS R05 the only application code that changed is apg/api/approval_boundary.py; no application file was added (apg/det, apg/mkt and the rest, and the other four files of apg/api, are byte-identical to M9.1)
+PASS R06 no existing test file changed (the M9.1 boundary tests are untouched); the only test file added is tests/test_api_m92_corrections.py
+PASS R07 tools changed: m91_mutants.py (runs the correction tests; one equivalent-mutant id moved), make_m0.py (runs the M9.2 register step), programme_check_m91.py and run_regression_m6.py to run_regression_m91.py (accept the M9.2 rows, tables and declared files; every other check is unchanged); tools added: the register step, the audit-findings probe, the M9.2 register check, the wrapper and this tool
+PASS R08 of the non-code files only the readme, the run commands, the contract document and six programme tables changed; no golden file, baseline, demonstration output, snapshot, earlier log, research file or Builder Zero case changed []
+PASS R09 the RFC and governance tables are byte-identical to the delivered M9.1 ones (RFC-01 still PROPOSED and unnumbered; the proposed baseline rules unchanged)
+PASS R09b the milestones table differs from the delivered M9.1 one in the handoff list of the M9 row only (EDR-32 added); M9 is still "In this delivery"; M7, M8 and M10 to M12 are not started
+PASS R09c the handoff register: every delivered row is unchanged; EDR-32 (atomic persistence of a state change and its audit record) is appended, described only, no Engine code seen
+PASS R10-STAT STATUS_REGISTER.csv: every delivered M9.1 row is unchanged; rows SR-81 to SR-83 are appended with milestone M9.2
+PASS R10-INTE INTERPRETATIONS_REGISTER.csv: every delivered M9.1 row is unchanged; rows I-88 to I-92 are appended with milestone M9.2
+PASS R10-FIND FINDINGS_REGISTER.csv: every delivered M9.1 row is unchanged; rows F-58 to F-61 are appended with milestone M9.2
+PASS R10-CARR CARRIED_FORWARD_REGISTER.csv: every delivered M9.1 row is unchanged (CF-22 and CF-25 are not edited and stay open); CF-28 and CF-29 are appended
+PASS R11 no finding and no carried-forward item is shown as closed; F-52 to F-61, CF-22 and CF-25 stay open; the new interpretations are retained for review, not approved, with no reviewer decision
+
+checks 16  failed 0
+STATIC CHECKS OK (R12 to R32 skipped)
+
+[exit code 0; 0s]

@@ -1,0 +1,43 @@
+id,kind,code,meaning,v02_change,v03_change
+ERR-01,ERROR,TENANT_CONTEXT_MISSING,No tenant context supplied,UNCHANGED,UNCHANGED
+ERR-02,ERROR,TENANT_CONTEXT_INVALID,"Forged, expired or unverifiable tenant context",UNCHANGED,UNCHANGED
+ERR-03,ERROR,NOT_FOUND,Record does not exist for the calling tenant (also used for another tenant's record),UNCHANGED,UNCHANGED
+ERR-04,ERROR,PACK_MALFORMED,Pack bytes do not satisfy the closed schema,UNCHANGED,UNCHANGED
+ERR-05,ERROR,PACK_SCHEMA_UNSUPPORTED,Pack schema version not supported by this core,UNCHANGED,UNCHANGED
+ERR-06,ERROR,PACK_CORE_INCOMPATIBLE,Pack names no core version this core supports,UNCHANGED,UNCHANGED
+ERR-07,ERROR,PACK_INVARIANT_OVERRIDE,Pack tries to override a core invariant,UNCHANGED,UNCHANGED
+ERR-08,ERROR,PACK_HASH_MISMATCH,Pinned hash does not match the pack,UNCHANGED,UNCHANGED
+ERR-09,ERROR,PACK_VERSION_CONFLICT,Same pack id and version already bound to a different hash,UNCHANGED,UNCHANGED
+ERR-10,ERROR,PACK_NOT_ACTIVE,Pack is not active for the calling tenant,UNCHANGED,UNCHANGED
+ERR-11,ERROR,PACK_WITHDRAWN,Pack version is withdrawn,UNCHANGED,UNCHANGED
+ERR-12,ERROR,PACK_INCOMPLETE,Pack lacks items required for the requested operation,UNCHANGED,UNCHANGED
+ERR-13,ERROR,PACK_APPROVAL_MISSING,Owner approval reference missing or rejected,UNCHANGED,UNCHANGED
+ERR-14,ERROR,INTENTION_NOT_ALLOWED,The pack does not allow the requested intention,UNCHANGED,UNCHANGED
+ERR-15,ERROR,OBSERVATION_INVALID,Observation rejected; names the fields at fault,UNCHANGED,UNCHANGED
+ERR-16,ERROR,LICENCE_NOT_PERMITTED,Licence not LICENSED at ingestion,UNCHANGED,UNCHANGED
+ERR-17,ERROR,SCENARIO_INVALID,Scenario input malformed or forecast-shaped,UNCHANGED,UNCHANGED
+ERR-18,ERROR,REQUEST_MALFORMED,Request does not satisfy the message schema (includes a payload tenant field and a missing or non-ISO evaluation date),UNCHANGED,UNCHANGED
+ERR-19,ERROR,LIMIT_NOT_CONFIGURED,The host supplied no limits,UNCHANGED,UNCHANGED
+ERR-20,ERROR,LIMIT_EXCEEDED,A configured limit was exceeded,UNCHANGED,UNCHANGED
+ERR-21,ERROR,AUDIT_UNAVAILABLE,Audit sink unavailable; operation failed closed,UNCHANGED,UNCHANGED
+ERR-22,ERROR,STORE_UNAVAILABLE,A store port failed; operation failed closed,UNCHANGED,UNCHANGED
+ERR-23,ERROR,REPLAY_EVIDENCE_UNAVAILABLE,Stored evidence needed for replay is missing,UNCHANGED,UNCHANGED
+ERR-24,ERROR,REPLAY_PACK_UNAVAILABLE,Pack needed for replay is missing,UNCHANGED,UNCHANGED
+ERR-25,ERROR,HOOK_UNAVAILABLE,Declared hook has no registered implementation,UNCHANGED,UNCHANGED
+ERR-26,ERROR,INTERNAL_ERROR_FAIL_CLOSED,Unexpected failure; no outcome returned,UNCHANGED,UNCHANGED
+RSN-01,REASON,PARAMETER_MISSING,A signal parameter is absent,UNCHANGED,UNCHANGED
+RSN-02,REASON,FRESHNESS_LIMIT_MISSING,No freshness limit supplied for this evidence,UNCHANGED,UNCHANGED
+RSN-03,REASON,NO_EVIDENCE,No usable observation,UNCHANGED,UNCHANGED
+RSN-04,REASON,INSUFFICIENT_POINTS,Fewer points than the minimum in the window,UNCHANGED,UNCHANGED
+RSN-05,REASON,CONFLICT_IN_EVIDENCE,A needed point is conflicting,UNCHANGED,UNCHANGED
+RSN-06,REASON,STALE_EVIDENCE,Needed evidence is older than the limit,UNCHANGED,UNCHANGED
+RSN-07,REASON,LICENCE_EXCLUDED,Needed evidence is excluded by licence status or window,UNCHANGED,UNCHANGED
+RSN-08,REASON,ZERO_BASE,RELATIVE movement base (the start value) is zero,REVISED (MIE-A3),UNCHANGED
+RSN-09,REASON,UNIT_MISMATCH,"Evidence differs in unit, market or comparison group",UNCHANGED,UNCHANGED
+RSN-10,REASON,NO_TABLE,The pack has no decision table,UNCHANGED,UNCHANGED
+RSN-11,REASON,NO_RULE_MATCHED,No decision rule matched,UNCHANGED,UNCHANGED
+RSN-12,REASON,CONSTRAINT_MISSING,A rule needs a constraint the request did not supply,UNCHANGED,UNCHANGED
+RSN-13,REASON,EXPIRED_EVIDENCE,Needed evidence is past its validity,UNCHANGED,UNCHANGED
+RSN-14,REASON,OBSERVATION_AFTER_EVALUATION_DATE,Evidence dated after the evaluation date was excluded,UNCHANGED,UNCHANGED
+ERR-27,ERROR,PACK_RULE_POLICY_VIOLATION,"A decision rule breaks the signal-influence policy (MIE-R-63): a signal-influenced rule, or a rule placed after one (a downstream rule), whatever its outcome, without OWNER_ASSUMPTION basis, owner reference and assumption statement",NEW (MIE-A2),REVISED (MIE-B1)
+RSN-15,REASON,VALUE_OUT_OF_DOMAIN,Observation value is outside the unit's declared value domain,NEW (MIE-A3),UNCHANGED

@@ -1,0 +1,19 @@
+CORRECTED       F-75 fin A: credit_reopens_commitment changed from False to 0 (revision 3) -> confirmed []; run approved=False
+CORRECTED       F-75 fin B: the owner approves the changed content afresh                  -> done; confirmed ['olive']
+CORRECTED       F-75 fin C: the version stored again with 0 for False                      -> refused (RuntimeError: fin version PF-1 already exists with different content; a change is; revision 2 -> 2
+CORRECTED       F-75 det A: rules/DLY/min_overlap_days changed from 1 to True (revision 3) -> confirmed []; run approved=False
+CORRECTED       F-75 det B: the owner approves the changed content afresh                  -> done; confirmed ['olive']
+CORRECTED       F-75 det C: the version stored again with True for 1                       -> refused (RuntimeError: det version PD-1 already exists with different content; a change is; revision 2 -> 2
+CORRECTED       F-75 mkt A: demand/duplicate_window_days changed from 0 to False (revision 3) -> confirmed []; run approved=False
+CORRECTED       F-75 mkt B: the owner approves the changed content afresh                  -> done; confirmed ['olive']
+CORRECTED       F-75 mkt C: the version stored again with False for 0                      -> refused (RuntimeError: mkt version PM-1 already exists with different content; a change is; revision 2 -> 2
+CORRECTED       F-75 spec A: unit_conversions/0/factor_micro changed from 1 to True (revision 3) -> confirmed []; run approved=False
+CORRECTED       F-75 spec B: the owner approves the changed content afresh                 -> done; confirmed ['olive']
+CORRECTED       F-75 spec C: the version stored again with True for 1                      -> refused (RuntimeError: spec version PS-2 already exists with different content; a change i; revision 2 -> 2
+CORRECTED       F-75 rec A: approval_bands/0/min_cents changed from 0 to False (revision 3) -> confirmed []; run approved=run refused
+CORRECTED       F-75 rec B: the owner approves the changed content afresh                  -> done; confirmed ['olive']
+CORRECTED       F-75 rec C: the version stored again with False for 0                      -> refused (RecPolicyError: recommendation policy version PR-1 already exists with different ; revision 2 -> 2
+CORRECTED       control: an ordinary approval of each record is confirmed                  -> {'fin': True, 'det': True, 'mkt': True, 'spec': True, 'rec': True}
+
+cases 16  defects present 0
+F-75 IS CORRECTED

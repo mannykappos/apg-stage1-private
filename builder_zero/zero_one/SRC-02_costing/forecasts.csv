@@ -1,0 +1,4 @@
+project_id,cost_code,forecast_version,forecast_date,cost_to_complete_cents,estimate_basis,movement_reason
+PRJ-001,CC-09,F-2026-08,2026-08-31,5000000,builder estimate,initial
+PRJ-002,CC-09,F-2026-09,2026-09-30,36000000,builder estimate,
+PRJ-002,CC-09,F-2026-08,2026-08-31,5000000,builder estimate,initial

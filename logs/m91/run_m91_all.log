@@ -1,0 +1,28 @@
+PASS M9.1 unit tests: the approval request boundary  (4s)  [OK]
+PASS M9.1 unit tests: the ProjectActionPort contract (EDR-31)  (0s)  [OK]
+PASS M9.1 unit tests: static rules for apg/api  (0s)  [OK]
+PASS The ProjectActionPort contract suite and its faulty ports  (0s)  [ALL CONTRACT CASES PASS]
+PASS The approval-boundary probe  (1s)  [THE BOUNDARY BEHAVES AS THE CONTRACT SAYS in these six situations (builder test world; no independen]
+PASS M9.1 unit tests: every M5 detection and finding test  (40s)  [OK]
+PASS The transition-bypass probe  (1s)  [OK: every incomplete approval is refused at transition and the complete one is accepted]
+PASS The proposal-swap probe  (0s)  [APPROVAL IS BOUND TO THE EXACT PROPOSAL]
+PASS The malformed-version probe  (1s)  [MALFORMED VERSIONS ARE REFUSED]
+PASS The stale-proposal probe  (0s)  [PROPOSAL IS BOUND TO THE EVIDENCE]
+PASS The approval-binding probe  (0s)  [APPROVAL IS BOUND TO THE EVIDENCE]
+PASS The M5 wrapper  (69s)  [ALL M5 CHECKS PASS]
+PASS The M6 wrapper (includes the M6 regression against M5)  (85s)  [ALL M6 CHECKS PASS]
+PASS M6.2 register checks  (0s)  [ALL M6.2 REGISTER CHECKS PASS]
+PASS M6.2 regression against the delivered M6 package  (89s)  [REGRESSION OK]
+PASS M6.3 register checks  (0s)  [ALL M6.3 REGISTER CHECKS PASS]
+PASS M6.3 regression against the delivered M6.2 package  (86s)  [REGRESSION OK]
+PASS M6.4 register checks  (0s)  [ALL M6.4 REGISTER CHECKS PASS]
+PASS M6.4 regression against the delivered M6.3 package  (89s)  [REGRESSION OK]
+PASS M6.5 register checks  (0s)  [ALL M6.5 REGISTER CHECKS PASS]
+PASS M6.5 regression against the delivered M6.4 package  (87s)  [REGRESSION OK]
+PASS M9.1 register checks  (0s)  [ALL M9.1 REGISTER CHECKS PASS]
+PASS M9.1 regression against the delivered M6.5 package  (91s)  [REGRESSION OK]
+
+644s in total
+ALL M9.1 CHECKS PASS
+
+[exit code 0; 644s]

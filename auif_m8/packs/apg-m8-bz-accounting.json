@@ -1,0 +1,685 @@
+{
+ "artifact_hash": "3b1ef35e8f9c5f6289aa314c815abf78917412505e63de968ef02e5a416ef7ca",
+ "auif_contract_compat": {
+  "max": "1.0.99",
+  "min": "1.0.0"
+ },
+ "canonical_model_compat": {
+  "max": "0.1.99",
+  "min": "0.1.0"
+ },
+ "classification_mappings": [],
+ "contains_governance_logic": false,
+ "contains_secrets": false,
+ "contract_kind": "TranslationPack",
+ "immutable": true,
+ "mappings": [
+  {
+   "canonical_ref": "module.apg.ApInvoice",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "module.apg.ApInvoice",
+    "source_type": "entity",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "ENTITY",
+   "mapping_id": "m8-ap-invoice-entity",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ap_invoice",
+   "validation_ref": {
+    "evidence_hash": "e5951e76c38388a4a0434aa0409270da7b8d5065ac8ef3824e100746ef2066d1",
+    "evidence_id": "val-apg-m8-ap-invoice",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.ApInvoice.source_record_id",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ap-invoice-source-record-id",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ap_invoice.invoice_id",
+   "validation_ref": {
+    "evidence_hash": "c011315f5cc9e7850c56e01d00da7d2554c38b269f8193d25e747268033e05e2",
+    "evidence_id": "val-apg-m8-ap-invoice-source-record-id",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.ApInvoice.supplier_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ap-invoice-supplier-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ap_invoice.supplier_id",
+   "validation_ref": {
+    "evidence_hash": "dc28c253c6139f1a034720f6c9efcb1332db52b6870d00a397d9246a6e19f89d",
+    "evidence_id": "val-apg-m8-ap-invoice-supplier-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.ApInvoice.supplier_invoice_number",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ap-invoice-supplier-invoice-number",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ap_invoice.supplier_invoice_no",
+   "validation_ref": {
+    "evidence_hash": "2f133a5e92b97d3ed562fb37f367433d710f3afceffaca0c3bdaa34a6d22833a",
+    "evidence_id": "val-apg-m8-ap-invoice-supplier-invoice-number",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.ApInvoice.project_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ap-invoice-project-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ap_invoice.project_id",
+   "validation_ref": {
+    "evidence_hash": "992fc3b072bc02320222fd290698352667db2d5ea14e4d0141b7e6e4df00b9a8",
+    "evidence_id": "val-apg-m8-ap-invoice-project-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.ApInvoice.cost_code_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ap-invoice-cost-code-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ap_invoice.cost_code",
+   "validation_ref": {
+    "evidence_hash": "5c10b83c3ccc79a8fe888352b778434dc342bca075b064d76ade1415be042739",
+    "evidence_id": "val-apg-m8-ap-invoice-cost-code-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.ApInvoice.purchase_order_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ap-invoice-purchase-order-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ap_invoice.po_id",
+   "validation_ref": {
+    "evidence_hash": "ffc5fca5ba4506ceddb3e2f77c17baee04cd519c229c78c0cf3d4ecc1ef1d163",
+    "evidence_id": "val-apg-m8-ap-invoice-purchase-order-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.ApInvoice.invoice_date",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ap-invoice-invoice-date",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ap_invoice.invoice_date",
+   "validation_ref": {
+    "evidence_hash": "eba267fa03013243186467c4b95b6196f5e0cda84341a2b889b628995d903c3e",
+    "evidence_id": "val-apg-m8-ap-invoice-invoice-date",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.ApInvoice.amount_ex_gst_cents",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ap-invoice-amount-ex-gst-cents",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ap_invoice.ex_gst_cents",
+   "validation_ref": {
+    "evidence_hash": "a3e574d08fae5427d4495f1a380a97f0461756be83ff2e72ceea2ba35fdc1f1a",
+    "evidence_id": "val-apg-m8-ap-invoice-amount-ex-gst-cents",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.ApInvoice.gst_cents",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ap-invoice-gst-cents",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ap_invoice.gst_cents",
+   "validation_ref": {
+    "evidence_hash": "eb89cd4e6cf66ce01126058e0053d0ce6ca7946aed389d16606dec69ea5ff5db",
+    "evidence_id": "val-apg-m8-ap-invoice-gst-cents",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.ApInvoice.source_status",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ap-invoice-source-status",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ap_invoice.status",
+   "validation_ref": {
+    "evidence_hash": "b71500984e1657ff9e482efbdade44416bef738781502ed802e0930516d2ee28",
+    "evidence_id": "val-apg-m8-ap-invoice-source-status",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.ApInvoice.source_batch_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ap-invoice-source-batch-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ap_invoice.source_batch",
+   "validation_ref": {
+    "evidence_hash": "f896f030ff9c9921120b2a80a90471c13ff5d725144a5c5b87b2ea6b5cf85454",
+    "evidence_id": "val-apg-m8-ap-invoice-source-batch-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.CreditNote",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "module.apg.CreditNote",
+    "source_type": "entity",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "ENTITY",
+   "mapping_id": "m8-credit-note-entity",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "credit_note",
+   "validation_ref": {
+    "evidence_hash": "3c31a7206300b6ef88cc0dcc4c3a05e443a21a7a6a3c97dbbd8eb17a30252c2b",
+    "evidence_id": "val-apg-m8-credit-note",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.CreditNote.source_record_id",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-credit-note-source-record-id",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "credit_note.credit_id",
+   "validation_ref": {
+    "evidence_hash": "7cb1172538d625abb1bc1d64d5e38f74f98843d6cc9e268953ab70a24fc953db",
+    "evidence_id": "val-apg-m8-credit-note-source-record-id",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.CreditNote.supplier_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-credit-note-supplier-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "credit_note.supplier_id",
+   "validation_ref": {
+    "evidence_hash": "efa6e30351aa28dd7ea3e21a018c8079af242bb12f61c52e414a0efd5fdb6a50",
+    "evidence_id": "val-apg-m8-credit-note-supplier-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.CreditNote.against_invoice_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-credit-note-against-invoice-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "credit_note.against_invoice_id",
+   "validation_ref": {
+    "evidence_hash": "a5d05abbf07eb66c90ba4c5f157bd4bf9f25aceb0d400c6675aa88e84fd4080a",
+    "evidence_id": "val-apg-m8-credit-note-against-invoice-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.CreditNote.credit_date",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-credit-note-credit-date",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "credit_note.credit_date",
+   "validation_ref": {
+    "evidence_hash": "c299d6103e6dbbb23a48a206fc4592fa2f599c6ccfb5aeee6600a992fddf6170",
+    "evidence_id": "val-apg-m8-credit-note-credit-date",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.CreditNote.amount_ex_gst_cents",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-credit-note-amount-ex-gst-cents",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "credit_note.ex_gst_cents",
+   "validation_ref": {
+    "evidence_hash": "cd0cc68aaaac46075fd8af26dd6120cb020592c1dd02ca59507ade589ac6ac61",
+    "evidence_id": "val-apg-m8-credit-note-amount-ex-gst-cents",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.CreditNote.gst_cents",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-credit-note-gst-cents",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "credit_note.gst_cents",
+   "validation_ref": {
+    "evidence_hash": "89962f44d0f4a93ce1942ab0f335b83191465c202f99e97d359a2fec2678fb5b",
+    "evidence_id": "val-apg-m8-credit-note-gst-cents",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Payment",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "module.apg.Payment",
+    "source_type": "entity",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "ENTITY",
+   "mapping_id": "m8-payment-entity",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "payment",
+   "validation_ref": {
+    "evidence_hash": "e9f1891592daf9b5c206d17c3e422817cbcc591474520ac0ed961babe40ff69a",
+    "evidence_id": "val-apg-m8-payment",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Payment.source_record_id",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-payment-source-record-id",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "payment.payment_id",
+   "validation_ref": {
+    "evidence_hash": "9421b1048c6f955d0626185525e7ec0609a3cc581fc4fcd902a2b7c30c6ea70d",
+    "evidence_id": "val-apg-m8-payment-source-record-id",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Payment.invoice_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-payment-invoice-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "payment.invoice_id",
+   "validation_ref": {
+    "evidence_hash": "02afafa1463245f36a8ceda8ba927bcc9b60f0f19f8d87cf2eb45dbcff3c3a79",
+    "evidence_id": "val-apg-m8-payment-invoice-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Payment.payment_date",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-payment-payment-date",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "payment.payment_date",
+   "validation_ref": {
+    "evidence_hash": "2b4d8e890cc96a0cfefb88dbd3173e5d40a3f660f94bafbb3d465fe27a17b10d",
+    "evidence_id": "val-apg-m8-payment-payment-date",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Payment.amount_cents",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-payment-amount-cents",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "payment.amount_cents",
+   "validation_ref": {
+    "evidence_hash": "b3bc89871bacae3e247c28b988ea053d649e6c14dfcf93cd5d508b16e1bc7f3e",
+    "evidence_id": "val-apg-m8-payment-amount-cents",
+    "kind": "mapping-validation"
+   }
+  }
+ ],
+ "pack_id": "apg-m8-bz-accounting",
+ "pack_state": "CANDIDATE",
+ "pack_version": "0.1.0",
+ "provenance_rules": {
+  "preserve_pack_identity": true,
+  "preserve_source_field": true,
+  "preserve_source_object": true
+ },
+ "schema_expectations": {
+  "compatible_fingerprints": [
+   "e7005e01531b61401c8bad81b175858afbd3dea5a2e88883aac06916343ca51f"
+  ]
+ },
+ "target_system_kind": "synthetic-builder-zero-csv-export",
+ "unmapped_field_policy": {
+  "default_outcome": "REJECTED",
+  "ignored_by_rule": [],
+  "optional_and_unused": []
+ }
+}

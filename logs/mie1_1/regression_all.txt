@@ -1,0 +1,18 @@
+PASS R01 every one of the 1007 MIE-1 files except the 14 declared changed ones is byte-identical here, and each declared one did change 
+PASS R02 every file beyond MIE-1 is a declared MIE-1.1 addition, and every declared single addition exists 
+PASS R03 IG-04: no APG application file differs from MIE-1 or M7.3; no M2 to M7.3 test changed; the only MIE files changed are the five declared core files and tests/test_mie_core_audit.py 
+PASS R04 the programme tables are append-only (F-70, F-71, SR-109, SR-110, I-125, I-126, EDR-38, CF-38, CF-39); the MIE-1 rows are unchanged; milestones, RFC and Engine #17 tables are byte-identical 
+PASS R05 F-69 to F-71 stay open until independently verified; the release gates (CF-36), the blockers BLK-01 to BLK-03 (CF-37), the development deviation (CF-38) and the incomplete audit runs (CF-39) are recorded open; EDR-36 to EDR-38 are open; every MIE interpretation is retained for review 
+PASS R06 the programme tables are exactly what tools/make_mie1_1_registers.py makes from the MIE-1 tables 
+PASS R07 NE-01 to NE-06, FL-01, IG-01, IG-05: the static checks of the core and the isolation gate pass ['static checks 8  failed 0']
+PASS R08 QA-04: the MIE-1.1 release text makes no readiness, acceptance, predictive or coverage claim, and states the development deviation (DEV-MIE-01) 
+PASS R09 the MIE core tests pass (synthetic pack only) ['OK']
+PASS R09B the feed-flow and portability tests pass ['OK']
+PASS R10 the construction pack, M6 mapping, M6 feed and isolation tests pass on Builder Zero ['OK']
+PASS R11 the golden Builder Zero MIE-1 run equals regression/mie1/golden_mie1.json ['THE GOLDEN MIE-1 RUN EQUALS THE RECORDED ANSWER']
+PASS R12 IG-03: the whole unit suite passes (every M2 to M7.3 test unchanged, plus the MIE-1 and MIE-1.1 tests) ['OK']
+PASS R14 the MIE-1 audit findings probe reports every case corrected ['THE MIE-1 AUDIT FINDINGS ARE CORRECTED']
+PASS R15 the MIE-1.1 correction tests pass ['OK']
+PASS R13 QA-02: every one of the 175 planned cases is accounted for, and programme/MIE1_CASE_COVERAGE.csv is what the tool makes ['EVERY PLANNED CASE IS ACCOUNTED FOR']
+
+checks 16  failed 0

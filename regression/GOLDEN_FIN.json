@@ -1,0 +1,823 @@
+{
+ "golden": {
+  "all_runs_reproduce": true,
+  "audit_chain_ok": [
+   true,
+   true
+  ],
+  "bridge_PRJ-002": {
+   "actual_cost_items": 0,
+   "delta_cents": -31000000,
+   "explained_cents": 0,
+   "items": [
+    [
+     "cost_to_complete",
+     "CC-09",
+     -31000000,
+     false,
+     "COST_TO_COMPLETE_CHANGED_WITH_BLANK_MOVEMENT_REASON"
+    ]
+   ],
+   "reconciles": true,
+   "state": "provisional",
+   "unexplained_cents": -31000000
+  },
+  "carrying_inputs": {
+   "PRJ-001": null,
+   "PRJ-002": {
+    "balance_cents": 46250000,
+    "day_count_basis": 365,
+    "eligibility": "as_of_to_release_due_date",
+    "eligible_days": 149,
+    "from": "2026-09-30",
+    "funded_balance_cents": 23125000,
+    "funded_share_bps": 5000,
+    "rate_bps": 780,
+    "rate_source": "facility/FAC-001",
+    "to": "2027-02-26"
+   },
+   "PRJ-003": {
+    "balance_cents": 23000000,
+    "day_count_basis": 365,
+    "eligibility": "as_of_to_release_due_date",
+    "eligible_days": 79,
+    "from": "2026-09-30",
+    "funded_balance_cents": 11500000,
+    "funded_share_bps": 5000,
+    "rate_bps": 780,
+    "rate_source": "facility/FAC-001",
+    "to": "2026-12-18"
+   }
+  },
+  "ctc_by_code_PRJ-002": {
+   "CC-04": [
+    "declared_else_budget_less_actual",
+    null,
+    "BUDGET_EXCEEDED_BY:21983257"
+   ],
+   "CC-09": [
+    "declared",
+    36000000,
+    null
+   ]
+  },
+  "figures": {
+   "PRJ-001": {
+    "actual_cost": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 1,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 322900108,
+     "contributed": 60,
+     "disputed": [],
+     "excluded": [
+      [
+       "ap_invoice/INV-0183",
+       "duplicate_delivery"
+      ]
+     ],
+     "policy_approved": true,
+     "reasons": [],
+     "state": "authoritative",
+     "unknown": []
+    },
+    "cash_adjusted": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": null,
+     "contributed": 0,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [
+      "A_DEFINED_COMPONENT_CANNOT_BE_ASSESSED",
+      "COMPONENT_CANNOT_ASSESS:retention_carrying"
+     ],
+     "state": "cannot_assess",
+     "unknown": []
+    },
+    "commitments": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 2,
+     "contributed": 30,
+     "disputed": [
+      "purchase_order/PO-0100",
+      "purchase_order/PO-0101"
+     ],
+     "excluded": [
+      [
+       "purchase_order/PO-0100",
+       "disputed"
+      ],
+      [
+       "purchase_order/PO-0101",
+       "disputed"
+      ]
+     ],
+     "policy_approved": true,
+     "reasons": [],
+     "state": "provisional",
+     "unknown": []
+    },
+    "forecast": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 60283318,
+     "contributed": 0,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [
+      "ACTUALS_AFTER_FORECAST_DATE_NOT_ADDED"
+     ],
+     "state": "authoritative",
+     "unknown": []
+    },
+    "recognised_margin": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 46377689,
+     "contributed": 0,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [
+      "PERCENT_COMPLETE_IS_COST_TO_COST_ON_THE_FORECAST_FINAL_COST"
+     ],
+     "state": "authoritative",
+     "unknown": []
+    },
+    "retention": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 12000000,
+     "contributed": 1,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [
+      "RELEASE_REVIEW_DUE: due 2026-07-31, not released; entitlement is not asserted"
+     ],
+     "state": "authoritative",
+     "unknown": []
+    },
+    "retention_carrying": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": null,
+     "contributed": 0,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [
+      "EXPECTED_RELEASE_DATE_PASSED_AND_NOT_RELEASED: the date passing does not show when the money will be released, so a forward cost cannot be estimated"
+     ],
+     "state": "cannot_assess",
+     "unknown": []
+    },
+    "revenue": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 480000000,
+     "contributed": 1,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [],
+     "state": "authoritative",
+     "unknown": []
+    },
+    "security": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 25000000,
+     "contributed": 1,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [],
+     "state": "authoritative",
+     "unknown": []
+    }
+   },
+   "PRJ-002": {
+    "actual_cost": {
+     "applied": {
+      "credits": 1,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 1248051316,
+     "contributed": 65,
+     "disputed": [],
+     "excluded": [
+      [
+       "ap_invoice/INV-0187",
+       "held"
+      ]
+     ],
+     "policy_approved": true,
+     "reasons": [],
+     "state": "provisional",
+     "unknown": []
+    },
+    "cash_adjusted": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 284195795,
+     "contributed": 0,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [
+      "COMPONENT_PROVISIONAL:base_margin_forecast_final"
+     ],
+     "state": "provisional",
+     "unknown": []
+    },
+    "commitments": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 55464004,
+     "contributed": 39,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [
+      "INVOICED_EXCEEDS_COMMITMENT:PO-0091",
+      "INVOICED_EXCEEDS_COMMITMENT:PO-0092"
+     ],
+     "state": "authoritative",
+     "unknown": []
+    },
+    "forecast": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 284932120,
+     "contributed": 0,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [
+      "COMPONENT_PROVISIONAL:actual_cost",
+      "COMPONENT_PROVISIONAL:cost_to_complete",
+      "COMPONENT_PROVISIONAL:forecast_revenue"
+     ],
+     "state": "provisional",
+     "unknown": []
+    },
+    "recognised_margin": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 227042840,
+     "contributed": 0,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [
+      "COMPONENT_PROVISIONAL:forecast_basis",
+      "PERCENT_COMPLETE_IS_COST_TO_COST_ON_THE_FORECAST_FINAL_COST",
+      "PERCENT_COMPLETE_RESTS_ON_A_FORECAST_THAT_IS_PROVISIONAL"
+     ],
+     "state": "provisional",
+     "unknown": []
+    },
+    "retention": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 46250000,
+     "contributed": 1,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [],
+     "state": "authoritative",
+     "unknown": []
+    },
+    "retention_carrying": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 736325,
+     "contributed": 1,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [],
+     "state": "authoritative",
+     "unknown": []
+    },
+    "revenue": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 1851200000,
+     "contributed": 2,
+     "disputed": [
+      "contract/PRJ-002",
+      "variation/*"
+     ],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [
+      "CONTRACT_SUMMARY_DISAGREES_WITH_REGISTER"
+     ],
+     "state": "provisional",
+     "unknown": []
+    },
+    "security": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 25000000,
+     "contributed": 1,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [],
+     "state": "authoritative",
+     "unknown": []
+    }
+   },
+   "PRJ-003": {
+    "actual_cost": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 596520273,
+     "contributed": 60,
+     "disputed": [
+      "ap_invoice/INV-0121"
+     ],
+     "excluded": [
+      [
+       "ap_invoice/INV-0121",
+       "disputed"
+      ]
+     ],
+     "policy_approved": true,
+     "reasons": [],
+     "state": "provisional",
+     "unknown": []
+    },
+    "cash_adjusted": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 91805855,
+     "contributed": 0,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [
+      "COMPONENT_PROVISIONAL:base_margin_forecast_final"
+     ],
+     "state": "provisional",
+     "unknown": []
+    },
+    "commitments": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 7280129,
+     "contributed": 30,
+     "disputed": [],
+     "excluded": [
+      [
+       "purchase_order/PO-0099",
+       "unknown_value"
+      ]
+     ],
+     "policy_approved": true,
+     "reasons": [],
+     "state": "provisional",
+     "unknown": [
+      "ap_invoice/INV-0121 (invoice for purchase_order/PO-0061) is not resolved, so how much of the commitment it uses is unknown"
+     ]
+    },
+    "forecast": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 92000000,
+     "contributed": 0,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [
+      "COMPONENT_PROVISIONAL:actual_cost",
+      "FORECAST_DERIVED_FROM_BUDGET_NO_DECLARED_VERSION"
+     ],
+     "state": "provisional",
+     "unknown": []
+    },
+    "recognised_margin": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 66280030,
+     "contributed": 0,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [
+      "COMPONENT_PROVISIONAL:forecast_basis",
+      "PERCENT_COMPLETE_IS_COST_TO_COST_ON_THE_FORECAST_FINAL_COST",
+      "PERCENT_COMPLETE_RESTS_ON_A_FORECAST_THAT_IS_PROVISIONAL"
+     ],
+     "state": "provisional",
+     "unknown": []
+    },
+    "retention": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 23000000,
+     "contributed": 1,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [],
+     "state": "authoritative",
+     "unknown": []
+    },
+    "retention_carrying": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 194145,
+     "contributed": 1,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [],
+     "state": "authoritative",
+     "unknown": []
+    },
+    "revenue": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 920000000,
+     "contributed": 1,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [],
+     "state": "authoritative",
+     "unknown": []
+    },
+    "security": {
+     "applied": {
+      "credits": 0,
+      "duplicates": 0,
+      "revisions": 0
+     },
+     "bps": null,
+     "cents": 25000000,
+     "contributed": 1,
+     "disputed": [],
+     "excluded": [],
+     "policy_approved": true,
+     "reasons": [],
+     "state": "authoritative",
+     "unknown": []
+    }
+   }
+  },
+  "fin_ingest_counts_zero_one": {
+   "bank_transactions.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 12,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 12,
+    "stale": 0
+   },
+   "contracts.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 3,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 3,
+    "stale": 0
+   },
+   "forecasts.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 3,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 3,
+    "stale": 0
+   },
+   "funding_facility.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 1,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 1,
+    "stale": 0
+   },
+   "projects.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 3,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 3,
+    "stale": 0
+   },
+   "retention_ledger.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 3,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 3,
+    "stale": 0
+   },
+   "security_instruments.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 3,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 3,
+    "stale": 0
+   },
+   "variations.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 3,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 3,
+    "stale": 0
+   }
+  },
+  "forecast_classified": {
+   "PRJ-001": {
+    "actual_cents": 322900108,
+    "ctc_cents": 96816574,
+    "ffc_cents": 419716682,
+    "ffr_cents": 480000000,
+    "forecast_date": "2026-08-31",
+    "forecast_version": "F-2026-08",
+    "since_forecast_actual_cents": 0
+   },
+   "PRJ-002": {
+    "actual_cents": 1248051316,
+    "ctc_cents": 318216564,
+    "ffc_cents": 1566267880,
+    "ffr_cents": 1851200000,
+    "forecast_date": "2026-09-30",
+    "forecast_version": "F-2026-09",
+    "since_forecast_actual_cents": null
+   },
+   "PRJ-003": {
+    "actual_cents": 596520273,
+    "ctc_cents": 231479727,
+    "ffc_cents": 828000000,
+    "ffr_cents": 920000000,
+    "forecast_date": "2026-09-30",
+    "forecast_version": "(derived from budget)",
+    "since_forecast_actual_cents": null
+   }
+  },
+  "m3_cross_check": {
+   "m3_authoritative_cents": 2167471697,
+   "m3_excluded": [
+    "INV-0121",
+    "INV-0183",
+    "INV-0187"
+   ],
+   "sum_of_m4_project_actuals_cents": 2167471697
+  },
+  "recognised_classified": {
+   "PRJ-001": {
+    "percent_complete_bps": 7693,
+    "recognised_cost_cents": 322900108,
+    "recognised_revenue_cents": 369277797
+   },
+   "PRJ-002": {
+    "percent_complete_bps": 7968,
+    "recognised_cost_cents": 1248051316,
+    "recognised_revenue_cents": 1475094156
+   },
+   "PRJ-003": {
+    "percent_complete_bps": 7204,
+    "recognised_cost_cents": 596520273,
+    "recognised_revenue_cents": 662800303
+   }
+  },
+  "runs_checked": 27,
+  "tenant_isolation": {
+   "every_zero_two_pin_resolves_in_its_own_tenant": true,
+   "zero_one_PRJ-001_actual": 322900108,
+   "zero_one_run_visible_to_zero_two": false,
+   "zero_two_PRJ-001_actual": 312130548,
+   "zero_two_state": "provisional"
+  }
+ },
+ "oracle": {
+  "duplicate_delivery_ids": [
+   "INV-0183"
+  ],
+  "held_invoice_ids": [
+   "INV-0121",
+   "INV-0187"
+  ],
+  "projects": {
+   "PRJ-001": {
+    "actual_cents": 322900108,
+    "actual_provisional": false,
+    "carrying_cents": null,
+    "cash_adjusted_on_known": null,
+    "forecast": {
+     "actual_to_forecast_date_cents": 322900108,
+     "complete": true,
+     "ctc_known_cents": 96816574,
+     "ctc_unknown_codes": [],
+     "date": "2026-08-31",
+     "ffc_known_cents": 419716682,
+     "margin_on_known_cents": 60283318,
+     "version": "F-2026-08"
+    },
+    "held_for_project": [],
+    "recognised_on_known": {
+     "cost_cents": 322900108,
+     "margin_cents": 46377689,
+     "revenue_cents": 369277797
+    },
+    "retention_cents": 12000000,
+    "retention_due": "2026-07-31",
+    "revenue_cents": 480000000,
+    "revenue_summary_agrees": true,
+    "security_cents": 25000000
+   },
+   "PRJ-002": {
+    "actual_cents": 1248051316,
+    "actual_provisional": true,
+    "carrying_cents": 736325,
+    "cash_adjusted_on_known": 284195795,
+    "forecast": {
+     "actual_to_forecast_date_cents": 1248051316,
+     "complete": false,
+     "ctc_known_cents": 318216564,
+     "ctc_unknown_codes": [
+      "CC-04"
+     ],
+     "date": "2026-09-30",
+     "ffc_known_cents": 1566267880,
+     "margin_on_known_cents": 284932120,
+     "version": "F-2026-09"
+    },
+    "held_for_project": [
+     "INV-0187"
+    ],
+    "recognised_on_known": {
+     "cost_cents": 1248051316,
+     "margin_cents": 227042840,
+     "revenue_cents": 1475094156
+    },
+    "retention_cents": 46250000,
+    "retention_due": "2027-02-26",
+    "revenue_cents": 1851200000,
+    "revenue_summary_agrees": false,
+    "security_cents": 25000000
+   },
+   "PRJ-003": {
+    "actual_cents": 596520273,
+    "actual_provisional": true,
+    "carrying_cents": 194145,
+    "cash_adjusted_on_known": 91805855,
+    "forecast": {
+     "actual_to_forecast_date_cents": 596520273,
+     "complete": true,
+     "ctc_known_cents": 231479727,
+     "ctc_unknown_codes": [],
+     "date": "2026-09-30",
+     "ffc_known_cents": 828000000,
+     "margin_on_known_cents": 92000000,
+     "version": null
+    },
+    "held_for_project": [
+     "INV-0121"
+    ],
+    "recognised_on_known": {
+     "cost_cents": 596520273,
+     "margin_cents": 66280030,
+     "revenue_cents": 662800303
+    },
+    "retention_cents": 23000000,
+    "retention_due": "2026-12-18",
+    "revenue_cents": 920000000,
+    "revenue_summary_agrees": true,
+    "security_cents": 25000000
+   }
+  },
+  "sum_of_project_actuals_cents": 2167471697
+ }
+}

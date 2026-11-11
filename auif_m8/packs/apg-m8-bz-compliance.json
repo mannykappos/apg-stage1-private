@@ -1,0 +1,145 @@
+{
+ "artifact_hash": "d71615c1ba0e2e0498dab444979324fab70d41874e0121fedd529502b80c64b0",
+ "auif_contract_compat": {
+  "max": "1.0.99",
+  "min": "1.0.0"
+ },
+ "canonical_model_compat": {
+  "max": "0.1.99",
+  "min": "0.1.0"
+ },
+ "classification_mappings": [],
+ "contains_governance_logic": false,
+ "contains_secrets": false,
+ "contract_kind": "TranslationPack",
+ "immutable": true,
+ "mappings": [
+  {
+   "canonical_ref": "module.apg.Compliance",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "module.apg.Compliance",
+    "source_type": "entity",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "ENTITY",
+   "mapping_id": "m8-compliance-entity",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "compliance",
+   "validation_ref": {
+    "evidence_hash": "6cc2fa3d669e49d583a59daa103097784e89aff2f2570e10dcd552004fa08ffc",
+    "evidence_id": "val-apg-m8-compliance",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Compliance.supplier_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-compliance-supplier-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "compliance.supplier_id",
+   "validation_ref": {
+    "evidence_hash": "c2c0f2f3db76e1e963e069dabe2f181b306a37b583a83bc4311f9319bb7d94b9",
+    "evidence_id": "val-apg-m8-compliance-supplier-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Compliance.evidence_type_text",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-compliance-evidence-type-text",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "compliance.evidence_type",
+   "validation_ref": {
+    "evidence_hash": "dc78497d3f506a6203204ab686d81fdf1ad1c656f6b80448d0160bb456466cb0",
+    "evidence_id": "val-apg-m8-compliance-evidence-type-text",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Compliance.expiry_date",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-compliance-expiry-date",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "compliance.expiry_date",
+   "validation_ref": {
+    "evidence_hash": "99671a9f517bd592f165f02e1d6d63abcd6978788252cddd6cc26681ab272a3d",
+    "evidence_id": "val-apg-m8-compliance-expiry-date",
+    "kind": "mapping-validation"
+   }
+  }
+ ],
+ "pack_id": "apg-m8-bz-compliance",
+ "pack_state": "CANDIDATE",
+ "pack_version": "0.1.0",
+ "provenance_rules": {
+  "preserve_pack_identity": true,
+  "preserve_source_field": true,
+  "preserve_source_object": true
+ },
+ "schema_expectations": {
+  "compatible_fingerprints": [
+   "31e8f0a99fc349ea4ed7e0eeea973b63c53984ca2a852cbb5b2b01a0d464cb4c"
+  ]
+ },
+ "target_system_kind": "synthetic-builder-zero-csv-export",
+ "unmapped_field_policy": {
+  "default_outcome": "REJECTED",
+  "ignored_by_rule": [],
+  "optional_and_unused": []
+ }
+}

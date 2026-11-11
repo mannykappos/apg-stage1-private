@@ -1,0 +1,17 @@
+PASS N01 F-56 records the swap scenario, that the builder found it, that the earlier audits did not report it, the files, both refusals, that it is builder-implemented with no independent review and still open, with F-52 to F-55 also open; the earlier archives stay unchanged
+PASS N02 F-52 to F-55 are unchanged (earlier rows are not rewritten) and not shown as closed
+PASS N03 I-75 to I-78 are retained for review, not approved, with no reviewer decision, and state what makes a proposal the same one, the entry point rule, approvals made before M6.4 and the order of refusals
+PASS N04 SR-72 and SR-73 sit at Local-tested, each has evidence and a claim limit; the limits say no independent review and that incomplete runs are not passes
+PASS N05 the carried-forward register holds CF-01 to CF-25 in order, every cell filled
+PASS N06 CF-25 records that the approval request boundary (replay-safe requests, project authorisation, boundary audit) is not built and that CF-22 stays open
+PASS N07 no carried-forward item is shown as closed, resolved, accepted or approved
+PASS N08 the governance register is unchanged: RFC-01 unnumbered, the four baseline rules PROPOSED, no finance assumption configured, foundations not started
+PASS N09 RFC-01 is still PROPOSED, not approved and not numbered; M7 is not started
+PASS N10 no new register text claims approval, independent review, readiness, compliance, adoption or closure []
+PASS N11 no finding in the register is shown as closed, resolved, accepted or approved
+PASS N12 the change record has the defect, impact, exact files changed, behaviour, tests, classified results, carried-forward and limits sections, and names every changed or added file []
+
+checks 12  failed 0
+ALL M6.4 REGISTER CHECKS PASS
+
+[exit code 0; 0s]

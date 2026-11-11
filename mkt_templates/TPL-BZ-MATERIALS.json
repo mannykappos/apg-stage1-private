@@ -1,0 +1,48 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "material_id",
+   "target_field": "source_record_id",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "description",
+   "target_field": "description_text",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "unit",
+   "target_field": "unit_text",
+   "transform": "trim",
+   "type": "string"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "material_id"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-05",
+ "source_label": "Builder Zero material master (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "material",
+ "template_id": "TPL-BZ-MATERIALS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

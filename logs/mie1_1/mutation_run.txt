@@ -1,0 +1,6 @@
+EQUIVALENT VA-CMP-010  -- proved: exact() with exponent 0 computes Fraction(m * 10 ** 0) on one branch and Fraction(m, 10 ** 0) on the other; both are Fraction(m), so moving the 0 case from one branch to the other changes nothing.
+EQUIVALENT TM-CMP-028  -- proved: first is the smallest index whose rule is signal-influenced, so at i == first the rule is signal-influenced and the DIRECT branch above is taken before this comparison is reached; i > first and i >= first therefore select the same rules.
+EQUIVALENT TM-RSE-001  -- proved unreachable: evaluate() already raises FailClosed for a fired rule whose outcome is outside the vocabulary of the intention, and every other decision build() can receive is NOT_ASSESSED, which is in the vocabulary of both intentions; this second check can never see an outside outcome.
+mutants 624  killed 621 (first failing test file: {'test_mie_core_audit': 98, 'test_mie_core_boundaries': 58, 'test_mie_core_canon': 20, 'test_mie_core_m11_corrections': 17, 'test_mie_core_observations': 74, 'test_mie_core_pack': 167, 'test_mie_core_replay': 13, 'test_mie_core_signals': 94, 'test_mie_core_tenancy': 5, 'test_mie_core_timing': 74, 'test_mie_flow': 1})  documented-equivalent 3  unexplained survivors 0
+MUTATION RUN OK
+exit 0

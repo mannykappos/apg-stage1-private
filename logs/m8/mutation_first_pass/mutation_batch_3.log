@@ -1,0 +1,20 @@
+AUIF verified: zip 61748ddeba21e8c1 core 74cec87afd167601
+CONTROL (unmutated copy): passes 96s
+MI-03  KILLED       2s tier 1: FAIL: test_an_object_of_another_concept (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_an_object_of_another_concept)
+MI-07  KILLED       2s tier 1: FAIL: test_a_schema_fingerprint_the_pinned_pack_does_not_accept (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_a_schema_fingerprin
+MI-11  KILLED       3s tier 1: ERROR: test_an_optional_key_missing_from_one_object_is_a_missing_field (tests_m8.test_m8_no_fallback.TestInvalidAmbiguousAndTypeMismatched.test_an_opt
+MI-15  SURVIVED   104s 
+MI-19  KILLED      17s tier 1: FAIL: test_a_read_that_stops_at_the_page_limit_is_incomplete (tests_m8.test_m8_no_fallback.TestPartial.test_a_read_that_stops_at_the_page_limit_is_inc
+MI-23  KILLED       2s tier 1: FAIL: test_a_pack_with_an_ambiguous_mapping_never_activates (tests_m8.test_m8_no_fallback.TestInvalidAmbiguousAndTypeMismatched.test_a_pack_with_an_am
+MI-27  KILLED      18s tier 1: FAIL: test_an_event_ahead_of_its_predecessor_waits_and_the_assessment_waits_with_it (tests_m8.test_m8_events.TestEvents.test_an_event_ahead_of_its_pre
+MI-31  KILLED      16s tier 1: FAIL: test_a_stale_delivery_is_recorded_not_applied_and_stops_the_assessment (tests_m8.test_m8_no_fallback.TestStaleDriftedAndDegraded.test_a_stale_de
+MI-35  KILLED       4s tier 1: FAIL: test_an_unparseable_optional_value_is_held_as_m3_holds_it_and_stops_the_assessment (tests_m8.test_m8_no_fallback.TestInvalidAmbiguousAndTypeMism
+MM-02  KILLED      17s tier 1: FAIL: test_an_event_object_whose_observation_never_arrives_is_refused (tests_m8.test_m8_events.TestEventLineage.test_an_event_object_whose_observation
+MM-06  SURVIVED    99s 
+MG-04  KILLED      15s tier 1: FAIL: test_a_revalidated_integration_makes_earlier_imports_stale_until_reimported (tests_m8.test_m8_no_fallback.TestStaleDriftedAndDegraded.test_a_rev
+MG-08  KILLED      15s tier 1: ERROR: test_an_integration_that_never_reported_a_state (tests_m8.test_m8_no_fallback.TestStaleDriftedAndDegraded.test_an_integration_that_never_report
+MP-02  KILLED       1s tier 1: FAIL: test_this_code_generates_exactly_the_stored_packs (tests_m8.test_m8_dev01.TestDeviationForm.test_this_code_generates_exactly_the_stored_packs)
+MC-03  KILLED      19s tier 1: FAIL: test_sync_raises_for_an_integration_that_drifted_before_its_first_validation (tests_m8.test_m8_findings.TestM8F6SyncRaises.test_sync_raises_for_
+MD-03  SURVIVED    98s 
+ML-04  KILLED      36s tier 1: FAIL: test_each_missing_or_broken_part_is_found (tests_m8.test_m8_lineage.TestTheLineageCheckerItself.test_each_missing_or_broken_part_is_found)
+mutants 17: killed 14, survived 3, timeout 0 | AUIF after: unchanged

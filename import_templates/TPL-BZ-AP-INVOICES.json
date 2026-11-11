@@ -1,0 +1,105 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "invoice_id",
+   "target_field": "source_record_id",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "supplier_id",
+   "target_field": "supplier_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "supplier_invoice_no",
+   "target_field": "supplier_invoice_number",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "project_id",
+   "target_field": "project_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": false,
+   "source_column": "cost_code",
+   "target_field": "cost_code_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": false,
+   "source_column": "po_id",
+   "target_field": "purchase_order_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "required": true,
+   "source_column": "invoice_date",
+   "target_field": "invoice_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "required": true,
+   "source_column": "ex_gst_cents",
+   "target_field": "amount_ex_gst_cents",
+   "transform": "none",
+   "type": "money_cents"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "gst_cents",
+   "target_field": "gst_cents",
+   "transform": "none",
+   "type": "money_cents"
+  },
+  {
+   "required": false,
+   "source_column": "status",
+   "target_field": "source_status",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": false,
+   "source_column": "source_batch",
+   "target_field": "source_batch_ref",
+   "transform": "trim",
+   "type": "string"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "separate_column",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "invoice_id"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-01",
+ "source_label": "Builder Zero accounting export (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "ap_invoice",
+ "template_id": "TPL-BZ-AP-INVOICES",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

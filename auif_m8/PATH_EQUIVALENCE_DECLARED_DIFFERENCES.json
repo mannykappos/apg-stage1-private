@@ -1,0 +1,284 @@
+{
+ "status": "Builder-declared, for review. Written before the path-equivalence tests were run. The one golden difference below was already known from the diagnostic run reported in the M8 stop report (2026-10-20); every other entry is declared from reading the code, before any comparison ran.",
+ "rule": "tests_m8/test_m8_path_equivalence.py and tests_m8/test_m8_corpus.py read this file. A difference that is not declared here fails the test; a declared difference that does not occur also fails the test (so this list cannot be padded).",
+ "golden": {
+  "M3": [
+   {
+    "path": "/PS-11/whole_files_replayed",
+    "m3_value": [
+     11,
+     11
+    ],
+    "auif_value": [
+     11,
+     0
+    ],
+    "why": "The golden run re-sends the 11 M3 FILES through the M3 file path (apg.ingest.pipeline.ingest_file). A file counts as a replay only if an M3 receipt for that exact file exists. The AUIF path writes AUIF batch receipts, never M3 file receipts, so none of the 11 files is a replay; every row is then judged a duplicate delivery and no record is added (PS-11 redelivery_of_all_files_adds_records stays 0 on both paths)."
+   },
+   {
+    "path": "/ingest_counts_zero_two/credit_notes.csv/conflict",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): credit_notes.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/credit_notes.csv/duplicate",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): credit_notes.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/credit_notes.csv/held_at_intake",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): credit_notes.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/credit_notes.csv/new",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): credit_notes.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/credit_notes.csv/rejected",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): credit_notes.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/credit_notes.csv/revision",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): credit_notes.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/credit_notes.csv/rows",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): credit_notes.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/credit_notes.csv/stale",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): credit_notes.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/po_amendments.csv/conflict",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): po_amendments.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/po_amendments.csv/duplicate",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): po_amendments.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/po_amendments.csv/held_at_intake",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): po_amendments.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/po_amendments.csv/new",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): po_amendments.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/po_amendments.csv/rejected",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): po_amendments.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/po_amendments.csv/revision",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): po_amendments.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/po_amendments.csv/rows",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): po_amendments.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/po_amendments.csv/stale",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): po_amendments.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/quotes.csv/conflict",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): quotes.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/quotes.csv/duplicate",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): quotes.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/quotes.csv/held_at_intake",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): quotes.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/quotes.csv/new",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): quotes.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/quotes.csv/rejected",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): quotes.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/quotes.csv/revision",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): quotes.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/quotes.csv/rows",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): quotes.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   },
+   {
+    "path": "/ingest_counts_zero_two/quotes.csv/stale",
+    "m3_value": 0,
+    "auif_value": "<absent>",
+    "why": "M8-R1 (finding M8-F7): quotes.csv is header only in Builder Zero tenant zero_two. M3 records it as an empty delivery (all counts 0); the AUIF path refuses an empty source (SOURCE_EMPTY), so no receipt and no counts exist for it."
+   }
+  ],
+  "FIN": [],
+  "DET": []
+ },
+ "records": {
+  "provenance": "Every source record's provenance is the AUIF lineage (integration, source system, source record id, translation pack id, version and hash, canonical id, observation, observed and effective time, validation state, manifest, schema fingerprint, provenance chain, batch) instead of the M3 file provenance (file hash, file name, row in file). The APG fields M3 also records (template_id, mapping_version, ingest_version, received_at, uploaded_by, uploader_kind, source, file_name, row_no) are present on both paths with the same meaning; file_sha256 exists only on the M3 path. Compared: everything else in the payload, byte for byte.",
+  "ingest_receipt": "Keyed 'auif:<delivery digest>:<mapping>:<source>' instead of '<file hash>:<mapping>:<source>'; file_sha256 and size are null (AUIF never hands APG the file); an 'auif' block names the integration, batch, pack, manifest and delivery digest. Compared: status, entity, template_id, mapping_version, ingest_version, source, file_name, received_at, uploaded_by, counts, blank_rows, unmapped_columns, stripped_scope_columns, results.",
+  "evidence_keys": "ingest_reject, ingest_duplicate and ingest_stale entries are keyed '<batch>:<row>' instead of '<file hash>:<row>'; their content is compared apart from provenance.",
+  "auif_only_collections": [
+   "auif_integration_state",
+   "auif_latest",
+   "auif_batch",
+   "auif_counter",
+   "auif_alert"
+  ],
+  "audit_log": "The AUIF path writes its own audit events (auif.*, ingest.auif_batch_applied) in place of ingest.file_ingested. Audit chains are compared for validity only."
+ },
+ "corpus": {
+  "about": "The M3 fault corpus (apg/ingest/corpus.py, 44 cases on the AP-invoice layout) sent through AUIF's own file importer. 'same' = the same stored records, row results and assessment status as M3. 'refused' = nothing is stored and the assessment cannot proceed (M3 refuses the whole file in these cases too, or the AUIF path is stricter). 'differs' = a stated difference.",
+  "same": [
+   "R04",
+   "R05",
+   "R06",
+   "R07",
+   "R08",
+   "R09",
+   "R10",
+   "R11",
+   "R12",
+   "R14",
+   "R15",
+   "R16",
+   "R17",
+   "R18",
+   "H01",
+   "H02",
+   "H03",
+   "H04",
+   "H05",
+   "H06",
+   "H07",
+   "H08",
+   "H09"
+  ],
+  "refused_on_both_paths": {
+   "F01": "empty file: AUIF's importer cannot read a header, so discovery fails and the integration never becomes ACTIVE (M3: EMPTY_FILE)",
+   "F02": "NUL byte: AUIF's importer refuses the file (M3: NUL_BYTE)",
+   "F03": "not UTF-8: AUIF's importer refuses the file (M3: ENCODING)",
+   "F04": "a mapped column missing: the schema fingerprint no longer matches the pack, the integration is not ACTIVE (M3: MISSING_COLUMNS)",
+   "F05": "a repeated column name: AUIF's importer refuses the header (M3: DUPLICATE_HEADER)",
+   "F06": "an unclosed quote: AUIF's importer refuses the file (M3: MALFORMED_CSV)",
+   "F07": "over the size limit: the APG mapping rules refuse it (FILE_TOO_LARGE). On the AUIF path the limit is measured on the delivered rows written back in the template layout, not on the source file's bytes (M3: FILE_TOO_LARGE)",
+   "F08": "over the row limit: the APG mapping rules refuse it (TOO_MANY_ROWS) (M3: TOO_MANY_ROWS)",
+   "F10": "semicolon-separated: one column, schema fingerprint mismatch (M3: MISSING_COLUMNS)",
+   "T02": "an extra 'Tenant ID' column: schema fingerprint mismatch (M3: refused as a foreign tenant claim)",
+   "T03": "a cell holding JSON text that names another tenant: the APG tenant screen refuses the delivery; nothing stored (M3: refused as a foreign tenant claim)",
+   "T04": "an extra 'org_id' column: schema fingerprint mismatch (M3: refused as a foreign tenant claim)",
+   "T05": "an extra tenant column: schema fingerprint mismatch (M3: refused as a foreign tenant claim)"
+  },
+  "differs": {
+   "F09": {
+    "m3": "file_rejected MISSING_COLUMNS (the byte-order mark becomes part of the first column name)",
+    "auif": "AUIF's importer decodes utf-8-sig, so the byte-order mark is dropped and the file is read normally: same records as the good file; the assessment can proceed",
+    "why": "A byte-order mark is an encoding marker, not data: nothing is lost and nothing is guessed. AUIF is more lenient than M3 here."
+   },
+   "F11": {
+    "m3": "a valid empty delivery: the receipt is recorded with 0 rows, nothing is stored, and the receipt does not stop the assessment",
+    "auif": "refused: AUIF reports NO_DATA and the adapter refuses the import with SOURCE_EMPTY (M8-R1, finding M8-F7); nothing stored, cannot assess",
+    "why": "AUIF path stricter, as the independent audit of APG-M8 requires: an empty source cannot stand for current data. M3 itself is not changed (outside M8-R1)."
+   },
+   "H10": {
+    "m3": "row stored; the blank lines are skipped and counted",
+    "auif": "refused: AUIF's importer treats an empty line as a row that does not match the header; nothing stored, cannot assess",
+    "why": "AUIF is stricter. A truly blank line has no data, so nothing is lost by refusing, but the file cannot be used until it is cleaned."
+   },
+   "R01": {
+    "m3": "row 2 rejected (RAGGED_ROW), row 1 stored",
+    "auif": "refused: AUIF's importer refuses the whole page when a row does not match the header; nothing stored, cannot assess",
+    "why": "AUIF is stricter (page, not row)."
+   },
+   "R02": {
+    "m3": "row 2 rejected (RAGGED_ROW), row 1 stored",
+    "auif": "refused, as R01",
+    "why": "AUIF is stricter (page, not row)."
+   },
+   "R03": {
+    "m3": "row 2 rejected (REQUIRED_MISSING), row 1 stored",
+    "auif": "refused: the blank value is AUIF's source identity (the invoice_id column); on AUIF rev14 that record is refused (IDENTITY_MISSING) and the batch is refused whole; nothing stored, cannot assess. (APG-M8 to M8-R2, on rev13: AUIF's observation contract refused the empty object_id and sync raised, finding M8-F6.)",
+    "why": "AUIF is stricter (batch, not row)."
+   },
+   "R13": {
+    "m3": "row 2 rejected (HIDDEN_CHARACTER: a control character)",
+    "auif": "refused: AUIF's input guard refuses a page holding a control character; nothing stored, cannot assess",
+    "why": "AUIF is stricter (page, not row)."
+   },
+   "T01": {
+    "m3": "an extra 'tenant_id' column naming the SAME tenant is stripped and the row stored",
+    "auif": "refused: the extra column changes the schema fingerprint; the integration is not ACTIVE; cannot assess",
+    "why": "Any column change is schema drift for AUIF. AUIF is stricter."
+   }
+  }
+ },
+ "corrections": [
+  "2026-10-20, before tests_m8/test_m8_corpus.py existed: R03 moved from 'same' to 'differs'. Found by the definitions demonstration (a blank single-field identity makes AUIF's sync raise), not by the corpus comparison.",
+  "2026-10-20, M8-R1, before tests_m8/test_m8_corpus.py was run on M8-R1: F11 (header only, no data rows) moved from 'same' to 'differs'. The empty-source refusal (finding M8-F7, from the independent audit) makes the AUIF path refuse it.",
+  "2026-10-20 (UTC), M8-R1: NOT declared before the comparison. The first run of tests_m8/test_m8_path_equivalence.py on M8-R1 (logs/m8r1/m8_tests_first_run_python3.13_FAILED.log and _python3.12_FAILED.log) failed because Builder Zero tenant zero_two has eight header-only record types that the AUIF path now refuses (SOURCE_EMPTY). Added after that run: the 'source_empty' section and 24 GOLDEN_M3 entries (ingest_counts_zero_two for credit_notes.csv, po_amendments.csv, quotes.csv). The builder did not foresee this; it is recorded, not hidden.",
+  "2026-10-20 (UTC), APG-M8.1 on AUIF rev14: the first comparison on rev14 (tests_m8/test_m8_path_equivalence.py and tests_m8/test_m8_corpus.py; logs/m81/01_first_comparison_on_rev14_no_declaration_change.log) passed with this file unchanged: no new difference occurred. Afterwards the 'auif' text of corpus case R03 was updated (wording only; the outcome, refused on the AUIF path, is unchanged). It read: \"refused: the blank value is AUIF's source identity (the invoice_id column), AUIF's observation contract refuses an empty object_id and its sync raises (finding M8-F6); nothing stored, cannot assess\""
+ ],
+ "source_empty": {
+  "about": "M8-R1: Builder Zero tenant zero_two has header-only files. M3 records each as a valid empty delivery and can assess. The AUIF path refuses each one with SOURCE_EMPTY (no approved contract says an empty delivery of any record type is valid), so zero_two CANNOT be assessed through AUIF, while its stored records, figures and detection results are the same as on the M3 path. tests_m8/test_m8_path_equivalence.py checks exactly these scopes.",
+  "zero_two": [
+   "bz-accounting/credit_note",
+   "bz-commercial/notice",
+   "bz-commercial/variation",
+   "bz-plant/plant_hire",
+   "bz-procurement/po_amendment",
+   "bz-procurement/supplier_quote",
+   "bz-programme/delay_event",
+   "bz-quality/defect"
+  ],
+  "zero_one": []
+ }
+}

@@ -1,0 +1,9 @@
+seeded edit 1 (sed: s/'logs\/m8\/', 'regression\/m8r1\/'/'logs\/m8\/', 'apg\/', 'regression\/m8r1\/'/), applied to a private copy of both list files:
+FAIL R04 the two M8 checks changed only by adding M8-R2's own files and the disposition register to their declared lists (no other new entry; no entry is removed) ["tests_m8/test_m8_boundary.py: new entries ['apg/']", "tools/run_regression_m8.py: new entries ['apg/']"]
+
+seeded edit 2 (sed: s/'logs\/m8\/', 'regression\/m8r1\/'/'regression\/m8r1\/'/), applied to a private copy of both list files:
+FAIL R04 the two M8 checks changed only by adding M8-R2's own files and the disposition register to their declared lists (no other new entry; no entry is removed) ["tests_m8/test_m8_boundary.py: removed entries ['logs/m8/']", "tools/run_regression_m8.py: removed entries ['logs/m8/']"]
+
+seeded edit 3 (sed: s/^CHANGED = {'README.md', 'RUN_COMMANDS.txt',/CHANGED = set() | {'README.md', 'RUN_COMMANDS.txt',/), applied to a private copy of both list files:
+FAIL R04 the two M8 checks changed only by adding M8-R2's own files and the disposition register to their declared lists (no other new entry; no entry is removed) ["tests_m8/test_m8_boundary.py: changed code CHANGED = set() | {'README.md', 'RUN_COMMANDS.txt', 'programme/FINDINGS_REGISTER.csv', 'programme/ST"]
+

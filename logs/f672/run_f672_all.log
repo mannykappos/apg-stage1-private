@@ -1,0 +1,25 @@
+PASS group 1: Static regression against the delivered APG-F67.1 package (R01 to R05, R10, R11) | checks 7  failed 0
+PASS group 2: The F-73 probe: a planted entry never counts; the owner's approval replaces it; each confirmation names the revision approve wrote | F-73 IS CORRECTED
+PASS group 3: unit tests: the F-67.2 forged-entry and binding tests | tests 11
+PASS group 4: The F-72 and F-67 probes and tests and the M7 audit-findings probe still corrected (regression step R08) | checks 1  failed 0
+PASS group 5: The golden Builder Zero runs are unchanged (regression step R09) | checks 1  failed 0
+PASS group 6: The M2 store contracts | ALL CONTRACT CASES PASS
+PASS group 7: The M2 faulty implementations: each caught by the contract suite | ALL FAULTS CAUGHT
+PASS group 8: The record-store guard contract (M7.3) | ALL GUARD CASES PASS
+PASS group 9: Mutation baseline (the unparsed modules pass every test the F-67.2 mutation run uses) | BASELINE OK
+PASS group 10: The suite groups below cover every test file in tests/ exactly once | test files 115, listed once each
+PASS group 11: whole suite, part 1 of 13: test_adversarial_builder_zero.py to test_det_detect.py (12 files) | tests 245
+PASS group 12: whole suite, part 2 of 13: test_det_findings.py to test_det_policy_bounds.py (8 files) | tests 151
+PASS group 13: whole suite, part 3 of 13: test_det_portfolio.py to test_det_static.py (12 files) | tests 321
+PASS group 14: whole suite, part 4 of 13: test_det_transition_gate.py to test_fin_forecast.py (13 files) | tests 362
+PASS group 15: whole suite, part 5 of 13: test_fin_golden.py to test_golden.py (6 files) | tests 84
+PASS group 16: whole suite, part 6 of 13: test_ingest_adversarial.py to test_ingest_contracts.py (3 files) | tests 87
+PASS group 17: whole suite, part 7 of 13: test_ingest_golden.py to test_materiality_engine.py (6 files) | tests 182
+PASS group 18: whole suite, part 8 of 13: test_mie_construction.py to test_mie_construction.py (1 files) | tests 23
+PASS group 19: whole suite, part 9 of 13: test_mie_core_adversarial.py to test_mkt_demand.py (19 files) | tests 273
+PASS group 20: whole suite, part 10 of 13: test_mkt_detect.py to test_mkt_fx_fresh.py (7 files) | tests 259
+PASS group 21: whole suite, part 11 of 13: test_mkt_golden.py to test_mkt_spec.py (8 files) | tests 214
+PASS group 22: whole suite, part 12 of 13: test_mkt_static.py to test_rec_m71_corrections.py (8 files) | tests 153
+PASS group 23: whole suite, part 13 of 13: test_rec_m72_race.py to test_values.py (12 files) | tests 208
+whole suite: 2562 tests in groups 11 to 23 (expected 2562)
+groups 23  failed 0

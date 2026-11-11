@@ -1,0 +1,19 @@
+PASS R01 the baseline names the delivered M9.3 ZIP and documents by hash and accounts for every one of its files
+PASS R02 726 files of the delivered M9.3 package are byte-identical to it []
+PASS R03 the 20 changed and 15 added files equal their recorded hashes, and every changed file differs from M9.3 []
+PASS R04 no file exists in the package beyond the M9.3 files and the declared additions []
+PASS R05 the only application code that changed is apg/api/approval_boundary.py; no application file was added (apg/det, apg/mkt and the rest, and the other four files of apg/api, are byte-identical to M9.3)
+PASS R06 no existing test file changed (the M9.1, M9.2 and M9.3 tests are untouched); the only test file added is tests/test_api_m94_corrections.py
+PASS R07 tools changed: m91_mutants.py (runs the M9.4 tests; the equivalent-mutant id moved again), make_m0.py (runs the M9.4 register step), programme_check_m93.py and run_regression_m6.py to run_regression_m93.py (accept the M9.4 rows, tables and declared files; every other check is unchanged); tools added: the register step, the clock-failure probe, the M9.4 register check, the wrapper and this tool
+PASS R08 of the non-code files only the readme, the run commands, the contract document and four programme tables changed; no golden file, baseline, demonstration output, snapshot, earlier log, research file or Builder Zero case changed []
+PASS R09 the RFC, governance, milestones and handoff tables are byte-identical to the delivered M9.3 ones (RFC-01 still PROPOSED and unnumbered; M7 not started; no new Engine entry)
+PASS R10-STAT STATUS_REGISTER.csv: every delivered M9.3 row is unchanged; rows SR-87 to SR-89 are appended with milestone M9.4
+PASS R10-INTE INTERPRETATIONS_REGISTER.csv: every delivered M9.3 row is unchanged; rows I-96 to I-98 are appended with milestone M9.4
+PASS R10-FIND FINDINGS_REGISTER.csv: every delivered M9.3 row is unchanged; rows F-63 to F-63 are appended with milestone M9.4
+PASS R10-CARR CARRIED_FORWARD_REGISTER.csv: every delivered M9.3 row is unchanged (CF-22, CF-25 and CF-29 are not edited and stay open); CF-31 is appended
+PASS R11 no finding and no carried-forward item is shown as closed; F-52 to F-63, CF-22, CF-25 and CF-29 stay open; the new interpretations are retained for review, not approved, with no reviewer decision
+
+checks 14  failed 0
+STATIC CHECKS OK (R12 to R32 skipped)
+
+[exit code 0; 0s]

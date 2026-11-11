@@ -1,0 +1,523 @@
+{
+ "artifact_hash": "f1aa8f0dd10a9adfe1e793c71784a1d99341b32e24134dc385edbc9dd6bf6df6",
+ "auif_contract_compat": {
+  "max": "1.0.99",
+  "min": "1.0.0"
+ },
+ "canonical_model_compat": {
+  "max": "0.1.99",
+  "min": "0.1.0"
+ },
+ "classification_mappings": [],
+ "contains_governance_logic": false,
+ "contains_secrets": false,
+ "contract_kind": "TranslationPack",
+ "immutable": true,
+ "mappings": [
+  {
+   "canonical_ref": "module.apg.Contract",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "module.apg.Contract",
+    "source_type": "entity",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "ENTITY",
+   "mapping_id": "m8-contract-entity",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "contract",
+   "validation_ref": {
+    "evidence_hash": "054c3b853c7239d0f717faf431cc547d17fefb20f768e7c1000fb8a7d07e0911",
+    "evidence_id": "val-apg-m8-contract",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Contract.project_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-contract-project-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "contract.project_id",
+   "validation_ref": {
+    "evidence_hash": "137bb24001b74e410f0fcaf80d8fa61969d2b350d30d48fc93de783f7b83d13e",
+    "evidence_id": "val-apg-m8-contract-project-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Contract.original_contract_cents",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-contract-original-contract-cents",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "contract.original_contract_cents",
+   "validation_ref": {
+    "evidence_hash": "5afbb41a03aad26af0ac78895d76e377b81146cb9c16a202a82eb597ff0901c3",
+    "evidence_id": "val-apg-m8-contract-original-contract-cents",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Contract.approved_variations_cents",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-contract-approved-variations-cents",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "contract.approved_variations_cents",
+   "validation_ref": {
+    "evidence_hash": "e54b389643888bd4a5745e17b0aba45722cd7111af51303e83ebdd76c735d2be",
+    "evidence_id": "val-apg-m8-contract-approved-variations-cents",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Variation",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "module.apg.Variation",
+    "source_type": "entity",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "ENTITY",
+   "mapping_id": "m8-variation-entity",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "variation",
+   "validation_ref": {
+    "evidence_hash": "dbf1cd170438770dedcc78ae87681fa3452b11ae76dbcd2eb73c9bb85f18ac98",
+    "evidence_id": "val-apg-m8-variation",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Variation.source_record_id",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-variation-source-record-id",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "variation.variation_id",
+   "validation_ref": {
+    "evidence_hash": "8d844502667382f0ec607d6d7abb3210179306cea7c1865126549862067c5ca2",
+    "evidence_id": "val-apg-m8-variation-source-record-id",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Variation.project_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-variation-project-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "variation.project_id",
+   "validation_ref": {
+    "evidence_hash": "6b5f5ab9a7407661e39777caf75239981ff4ccd7313cb1290a2f215e289d5074",
+    "evidence_id": "val-apg-m8-variation-project-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Variation.raised_date",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-variation-raised-date",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "variation.raised_date",
+   "validation_ref": {
+    "evidence_hash": "c5e7b52d9ddbf8b3eb74bafc6cc2fe6d3fbcf6a4d6a93ecc9b53cf70fb56ba5c",
+    "evidence_id": "val-apg-m8-variation-raised-date",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Variation.source_status",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-variation-source-status",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "variation.status",
+   "validation_ref": {
+    "evidence_hash": "3a756a14c8e1a2f1a721d58f8c86697425c7d88404f1beef5c6bd378f63c383a",
+    "evidence_id": "val-apg-m8-variation-source-status",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Variation.value_cents",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-variation-value-cents",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "variation.value_cents",
+   "validation_ref": {
+    "evidence_hash": "5869343eb37c3570a0b8c1d0239a54bc6edd08f8c43e35506869280c89eadc7d",
+    "evidence_id": "val-apg-m8-variation-value-cents",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Variation.description_text",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-variation-description-text",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "variation.description",
+   "validation_ref": {
+    "evidence_hash": "5d09ac9b4a6ab9d55a66ba4fa1941dcbd38416e03070ea047656aa3fcb4db03b",
+    "evidence_id": "val-apg-m8-variation-description-text",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Notice",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "module.apg.Notice",
+    "source_type": "entity",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "ENTITY",
+   "mapping_id": "m8-notice-entity",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "notice",
+   "validation_ref": {
+    "evidence_hash": "eaeb9facea9cba90a0dba09c0a6045cfb9d709b2c27e6e3e72a06d2c88a85157",
+    "evidence_id": "val-apg-m8-notice",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Notice.source_record_id",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-notice-source-record-id",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "notice.notice_id",
+   "validation_ref": {
+    "evidence_hash": "7e2ae1fbf9b1996f5ff5f4d292cbd7601ddb5bca5949cd75fd15043b28a5da55",
+    "evidence_id": "val-apg-m8-notice-source-record-id",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Notice.project_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-notice-project-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "notice.project_id",
+   "validation_ref": {
+    "evidence_hash": "e817ba742719e8145579bcadd655eb369f38f851da0ecce8769fe8655c32dbac",
+    "evidence_id": "val-apg-m8-notice-project-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Notice.notice_date",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-notice-notice-date",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "notice.notice_date",
+   "validation_ref": {
+    "evidence_hash": "477ce99ed6949516a3833d6ece8443e2f464e90898f9da8383943dbd5bc3fb91",
+    "evidence_id": "val-apg-m8-notice-notice-date",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Notice.notice_type_text",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-notice-notice-type-text",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "notice.notice_type",
+   "validation_ref": {
+    "evidence_hash": "23fb7818a904fac81577dd21538a4085d284c79a6c6c112991fc31d0bf02767b",
+    "evidence_id": "val-apg-m8-notice-notice-type-text",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Notice.linked_variation_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-notice-linked-variation-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "notice.linked_variation_id",
+   "validation_ref": {
+    "evidence_hash": "6f1ab41f31987e87205c5e19e9dc1ed11e4f70d2f7b688a48198973bd14ac2a7",
+    "evidence_id": "val-apg-m8-notice-linked-variation-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.Notice.description_text",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-notice-description-text",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "notice.description",
+   "validation_ref": {
+    "evidence_hash": "8c682613cd36d50609b3b746b13591f8879bdfc8fb783fc6e8099125fed92aa7",
+    "evidence_id": "val-apg-m8-notice-description-text",
+    "kind": "mapping-validation"
+   }
+  }
+ ],
+ "pack_id": "apg-m8-bz-commercial",
+ "pack_state": "CANDIDATE",
+ "pack_version": "0.1.0",
+ "provenance_rules": {
+  "preserve_pack_identity": true,
+  "preserve_source_field": true,
+  "preserve_source_object": true
+ },
+ "schema_expectations": {
+  "compatible_fingerprints": [
+   "a95bac9f7d3a975544325c43589983e07c5d81d416e7af3a9fcf832ef315567e"
+  ]
+ },
+ "target_system_kind": "synthetic-builder-zero-csv-export",
+ "unmapped_field_policy": {
+  "default_outcome": "REJECTED",
+  "ignored_by_rule": [],
+  "optional_and_unused": []
+ }
+}

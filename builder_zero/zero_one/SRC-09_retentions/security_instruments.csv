@@ -1,0 +1,4 @@
+instrument_id,project_id,kind,face_value_cents,expiry_date
+BG-001,PRJ-001,bank_guarantee,25000000,2027-04-28
+BG-002,PRJ-002,bank_guarantee,25000000,2027-04-28
+BG-003,PRJ-003,bank_guarantee,25000000,2027-04-28

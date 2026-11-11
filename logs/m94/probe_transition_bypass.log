@@ -1,0 +1,11 @@
+no token at all                                            -> REFUSED APPROVAL_TOKEN_REQUIRED
+version only                                               -> REFUSED APPROVAL_TOKEN_REQUIRED
+digest only                                                -> REFUSED APPROVAL_TOKEN_REQUIRED
+proposal reference only                                    -> REFUSED APPROVAL_TOKEN_REQUIRED
+version and digest, no proposal reference                  -> REFUSED APPROVAL_TOKEN_REQUIRED
+version and proposal reference, no digest                  -> REFUSED APPROVAL_TOKEN_REQUIRED
+digest and proposal reference, no version                  -> REFUSED APPROVAL_TOKEN_REQUIRED
+all three, as shown (legitimate)                           -> ACCEPTED action_approved
+OK: every incomplete approval is refused at transition and the complete one is accepted
+
+[exit code 0; 0s]

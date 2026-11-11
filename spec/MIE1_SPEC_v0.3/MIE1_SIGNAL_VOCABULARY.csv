@@ -1,0 +1,9 @@
+id,signal_type,meaning,pack_supplied_parameters,nature
+SIG-01,LEVEL_MOVEMENT,"Observed movement of a level between two endpoint observations in a window: direction (UP, DOWN, UNCHANGED), exact ratio, endpoints, window, class and basis",window length; minimum points; movement threshold (integer ratio); freshness limit,Observed fact only; not a forecast
+SIG-02,CONVERSION_MOVEMENT,Observed movement of a pack-declared conversion series between two units,window length; minimum points; movement threshold; freshness limit,Observed fact only
+SIG-03,AVAILABILITY_CHANGE,"A pack-mapped event observation reporting a change in availability (INCREASED, DECREASED, UNAVAILABLE, RESTORED)",event lookback length; freshness limit,Observed fact only
+SIG-04,VARIANT_INTRODUCED,A pack-mapped event observation reporting that a new variant of a subject was announced or introduced,event lookback length; freshness limit,Observed fact only
+SIG-05,VARIANT_WITHDRAWN,A pack-mapped event observation reporting that a variant was withdrawn or discontinued,event lookback length; freshness limit,Observed fact only
+SIG-06,DATA_STALE,Evidence older than the freshness limit; reports the age and the limit,freshness limit,Data-quality signal
+SIG-07,DATA_MISSING,"Evidence the pack requires is absent, unlicensed, unavailable or unmatched; lists each gap",required evidence declaration,Data-quality signal
+SIG-08,DATA_CONFLICT,"Two different values for one series and date, or disagreement inside a pack-declared comparison group; lists both",comparison group declaration,Data-quality signal

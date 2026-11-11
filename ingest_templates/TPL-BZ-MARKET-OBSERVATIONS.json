@@ -1,0 +1,83 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "obs_id",
+   "target_field": "source_record_id",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "material_id",
+   "target_field": "material_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "required": true,
+   "source_column": "obs_date",
+   "target_field": "obs_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "required": true,
+   "source_column": "value",
+   "target_field": "value_scaled",
+   "transform": "none",
+   "type": "integer"
+  },
+  {
+   "required": true,
+   "source_column": "unit",
+   "target_field": "unit_text",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "kind",
+   "target_field": "kind_text",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "source_label",
+   "target_field": "source_label_text",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "geography",
+   "target_field": "geography_text",
+   "transform": "trim",
+   "type": "string"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "obs_id"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-10",
+ "source_label": "Builder Zero market observations (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "market_observation",
+ "template_id": "TPL-BZ-MARKET-OBSERVATIONS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

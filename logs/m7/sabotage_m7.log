@@ -1,0 +1,17 @@
+CAUGHT S01 the submission gate is switched off -> R09 
+CAUGHT S02 the verification gate stops checking the offsetting costs -> R09 
+CAUGHT S03 the ranking is reversed -> R09 
+CAUGHT S04 every member of an overlap component is counted -> R09 
+CAUGHT S05 execute stops refusing -> R10 
+CAUGHT S06 an M9.4 application file changes by one character -> R01 
+CAUGHT S07 an earlier status row is edited -> R05 
+CAUGHT S08 the golden file is edited -> R11 
+CAUGHT S09 RFC-01 is shown as approved -> R06 
+CAUGHT S10 an undeclared file is added -> R02 
+CAUGHT S11 a recommendation module reaches the operating system -> R08 
+CAUGHT S12 an existing test is edited -> R04 
+CAUGHT S13 weak evidence stops routing to investigation -> R09 
+CAUGHT S14 the approval stops checking the submission reference -> R09 
+CAUGHT S15 a register row stops being what the register tool makes -> R07 
+sabotage cases 15  missed 0
+exit 0

@@ -1,0 +1,11 @@
+no token at all                                            -> ACCEPTED action_approved
+version only                                               -> ACCEPTED action_approved
+digest only                                                -> ACCEPTED action_approved
+proposal reference only                                    -> ACCEPTED action_approved
+version and digest, no proposal reference                  -> ACCEPTED action_approved
+version and proposal reference, no digest                  -> ACCEPTED action_approved
+digest and proposal reference, no version                  -> ACCEPTED action_approved
+all three, as shown (legitimate)                           -> ACCEPTED action_approved
+DEFECT PRESENT: accepted without a full token: ['no token at all', 'version only', 'digest only', 'proposal reference only', 'version and digest, no proposal reference', 'version and proposal reference, no digest', 'digest and proposal reference, no version']
+
+[exit code 1]

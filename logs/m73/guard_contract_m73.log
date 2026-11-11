@@ -1,0 +1,12 @@
+$ python3 -I tools/run_guard_contract.py
+PASS RG-01 a revision guard holds at the exact latest revision, and 0 holds only for an absent record
+PASS RG-02 a query guard holds only for exactly the same set: an added, changed or missing record fails it
+PASS RG-03 a query guard with a filter covers exactly the records the filter returns
+PASS RG-04 if any guard fails, none of the batch's writes is applied
+PASS RG-05 guards see the state before the batch's own writes
+PASS RG-06 guards are tenant-scoped: records of another tenant are invisible to them
+PASS RG-07 a malformed guard is refused and nothing is applied
+PASS RG-08 concurrent callers: "add a record only if the query is unchanged" never lets two callers both succeed on the same state
+
+guard cases 8  failed 0
+ALL GUARD CASES PASS

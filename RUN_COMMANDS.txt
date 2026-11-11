@@ -1,0 +1,1033 @@
+APG-M10 -- the UX/UI prototype (Python 3 standard library for the view model; Node 18+ with the npm package playwright and its Chromium for the browser tests; no network)
+  sha256sum APG_M10_CODE_AND_DATA.zip
+  mkdir m10 && cd m10 && unzip -q ../APG_M10_CODE_AND_DATA.zip && cd APG_M10
+  open ui/index.html                                 # in any current browser; no server; nothing is sent
+  python3 -I tools/build_m10_views.py --check        # ui/data/views.js equals a fresh build from the APG code (about 16 s)
+  python3 -B -m unittest tests_m10.test_m10_viewmodel   # 19 view-model tests
+  node ui_tests/run_ui_tests.js --shots /tmp/m10_shots   # browser and accessibility checks (set PLAYWRIGHT_MODULE if playwright is not found by require)
+  python3 -I tools/sabotage_m10.py                   # 19 seeded breakages, each must be caught (about 6 minutes)
+  python3 -I tools/run_regression_m10.py --all       # R01 to R08 against the delivered APG-M8.1-R1 (R08 reruns the M8.1 regression)
+  python3 -I tools/run_m8_tests.py                   # the 172 M8 tests, unchanged
+  # the APG-M8.1-R1 commands below still apply
+
+---- the APG-M8.1-R1 run commands follow, unchanged ----
+
+APG-M8.1-R1 -- records only (Python 3 standard library only; no network; writes only to temporary folders)
+  sha256sum APG_M81R1_CODE_AND_DATA.zip
+  mkdir m81r1 && cd m81r1 && unzip -q ../APG_M81R1_CODE_AND_DATA.zip && cd APG_M81R1
+  python3 -I tools/run_regression_m81r1.py --all     # R01 to R07: only the records, README, RUN_COMMANDS and the three declared-file lists changed; AD-21 appended; the M8 milestone status set
+  # the APG-M8.1 commands below still apply to the code, which is unchanged
+
+---- the APG-M8.1 run commands follow, unchanged ----
+
+APG-M8.1 -- how to re-check (Python 3 standard library only; run on 3.12 and 3.13; no network; writes only to temporary folders)
+  sha256sum APG_M81_CODE_AND_DATA.zip
+  mkdir m81 && cd m81 && unzip -q ../APG_M81_CODE_AND_DATA.zip && cd APG_M81
+  sha256sum third_party/auif_rev14/AUIF_Independent_Build_v1.0_rev14.zip   # d534a6e6541b6d1a58e0389161d08698a1d7ac92ee9ad880a51fcee36497c649 (AUIF rev14 as delivered)
+  python3 -I tools/run_regression_m81.py --all      # R01 to R09 against the delivered APG-M8-R2 (R08 and R09 rerun the M8 regression and boundary tests)
+  python3 -I tools/run_m8_tests.py                  # all 15 M8 test files, one at a time
+  python3 -I tools/run_m8_all.py --list             # every group (M8 tests, M3 import tests, the 117 existing APG test files, regression)
+  python3 -I tools/m8_mutants.py --batch K/4 --jobs 2   # K = 1..4
+  python3 -I tools/sabotage_m8.py                   # S01 to S17
+  # the APG-M8-R2 commands below still apply
+
+---- the APG-M8-R2 run commands follow, unchanged ----
+
+APG-M8-R2 -- records only (Python 3 standard library only; no network)
+  sha256sum APG_M8R2_CODE_AND_DATA.zip
+  mkdir m8r2 && cd m8r2 && unzip -q ../APG_M8R2_CODE_AND_DATA.zip && cd APG_M8R2
+  python3 -I tools/run_regression_m8r2.py --all      # R01 to R08: only the records, README, RUN_COMMANDS and the two declared-file lists changed; AD-13 to AD-20 appended
+  # the APG-M8-R1 commands below still apply to the code, which is unchanged
+
+---- the APG-M8-R1 run commands follow, unchanged ----
+
+APG-M8-R1 -- how to re-check the empty-source correction (Python 3 standard library only; run on 3.12 and 3.13; no network; writes only to temporary folders)
+Run every command with -I from the folder that contains this file. A command cut off by a time limit is INCOMPLETE: neither a pass nor a failure.
+  sha256sum APG_M8R1_CODE_AND_DATA.zip
+  mkdir m8r1 && cd m8r1 && unzip -q ../APG_M8R1_CODE_AND_DATA.zip && cd APG_M8R1
+  python3 -I tools/run_m8_tests.py --file test_m8r1_empty_source.py   # the M8-R1 tests (9)
+  python3 -I tools/run_m8_tests.py                  # all 15 M8 test files, one at a time (163 tests)
+  python3 -I tools/run_m8_all.py --list             # 143 groups (141 from APG-M8, the M8-R1 test file and regression R10)
+  python3 -I tools/run_regression_m8.py --step R10  # against the delivered APG-M8 ZIP (f1b634d3...): only the declared M8-R1 files differ
+  python3 -I tools/m8_mutants.py --only MI-38,MI-39,MI-40,MI-41,MI-42 --jobs 2   # the M8-R1 mutants (MI-39 is a documented equivalent)
+  python3 -I tools/sabotage_m8.py --only S15        # the empty-source refusal removed: must be caught
+  # the APG-M8 commands below still apply
+
+---- the APG-M8 run commands follow, unchanged ----
+
+APG-M8 -- how to re-check (Python 3 standard library only; AUIF's stated version is Python 3.12, APG's is 3.13: run on both; no network; writes only to temporary folders)
+Run every command with -I from the folder that contains this file. A command cut off by a time limit is INCOMPLETE: neither a pass nor a failure.
+  sha256sum APG_M8_CODE_AND_DATA.zip
+  mkdir m8 && cd m8 && unzip -q ../APG_M8_CODE_AND_DATA.zip && cd APG_M8
+  sha256sum third_party/auif_rev13/AUIF_Independent_Build_v1.0_rev13.zip   # 61748ddeba21e8c1d71b56bd0d3ad7a376ea051f4ae6fbe56c6464c0de76e070 (the frozen rev13)
+  python3.12 -I tools/run_m8_tests.py               # 14 M8 test files, one at a time, 154 tests; AUIF verified by hash before and after
+  python3.13 -I tools/run_m8_tests.py               # the same on 3.13
+  python3 -I tools/run_m8_all.py --list             # 141 small groups, one test file per group (M8 files, the M3 import tests, each of the 117 existing APG test files, regression)
+  python3 -I tools/run_m8_all.py --group N          # one group;  --range A-B for several
+  python3 -I tools/run_regression_m8.py --all       # R01 to R09 against APG-F67.4-R2 (or --step Rnn, one at a time)
+  python3 -I tools/m8_mutants.py --batch K/4 --jobs 2   # K = 1..4: 67 mutants over the adapter; a control run on the unmutated copy comes first
+  python3 -I tools/sabotage_m8.py --only S01         # 14 sabotage cases, one at a time (S01 to S14); --list to see them
+  python3 -I tools/make_m8_config.py --check        # the stored definitions, model and packs equal the generator
+  # One M8 test class or test, from the package folder (AUIF is verified on import):  python3 -B -m unittest tests_m8.test_m8_no_fallback.TestPartial
+  # The AUIF baselines themselves: unzip the rev13 ZIP elsewhere and run its own commands (README_START_HERE.md of the handover); logs/m8/ holds the baseline logs.
+  # the APG-F67.4-R2 run commands below still apply to the R2 code, which is unchanged
+
+---- the APG-F67.4-R2 run commands follow, unchanged ----
+
+APG F-67.4-R2 -- records-only correction (Python 3 standard library only; no network)
+  sha256sum APG_F67_4_R2_CODE_AND_DATA.zip
+  mkdir f674r2 && cd f674r2 && unzip -q ../APG_F67_4_R2_CODE_AND_DATA.zip && cd APG_F67_4_R2
+  python3 -I tools/run_regression_f674r2.py --all        # R01 to R05; checks 5  failed 0   (or --step Rnn, one at a time)
+  # to compare the stored manifest with the delivered APG-F67.4-R1 ZIP (33a149796293622398d0c1fae7fbf4d41b0dcb4649c4bae388f00cd737e9c407):
+  #   unzip -q APG_F67_4_R1_CODE_AND_DATA.zip && (cd APG_F67_4_R1 && find . -type f | sed 's|^./||' | LC_ALL=C sort | xargs sha256sum) | diff - regression/f674r2/F674R1_MANIFEST.sha256
+  # the APG-F67.4 run commands below still apply to the code, which is unchanged
+
+---- the APG-F67.4-R1 run commands follow, unchanged ----
+
+APG F-67.4-R1 -- records-only (Python 3 standard library only; no network)
+  sha256sum APG_F67_4_R1_CODE_AND_DATA.zip
+  mkdir f674r1 && cd f674r1 && unzip -q ../APG_F67_4_R1_CODE_AND_DATA.zip && cd APG_F67_4_R1
+  python3 -I tools/run_regression_f674r1.py --all        # R01 to R07; checks 7  failed 0   (or --step Rnn, one at a time)
+  # to compare the stored manifest with the delivered APG-F67.4 ZIP (4abaa349e201ae2ffccb589b248b2e5d255a92340acdf2bfed17b1194b56c4cd):
+  #   unzip -q APG_F67_4_CODE_AND_DATA.zip && (cd APG_F67_4 && find . -type f | sed 's|^./||' | LC_ALL=C sort | xargs sha256sum) | diff - regression/f674r1/F674_MANIFEST.sha256
+  # the APG-F67.4 run commands below still apply to the code, which is unchanged
+
+---- the APG-F67.4 run commands follow, unchanged ----
+
+APG F-67.4 -- how to re-check the correction (Python 3 standard library only; built and run with Python 3.13 on Linux; no network; writes only to temporary folders)
+Run every command with -I from the folder that contains this file. Every command below is short. If a time limit cuts one off, that is an incomplete run, not a pass: run it
+again alone, and report it as incomplete.
+
+0. Clean extraction
+  sha256sum APG_F67_4_CODE_AND_DATA.zip                        # compare with the hash in the delivery message and the documents file
+  mkdir f674 && cd f674 && unzip -q ../APG_F67_4_CODE_AND_DATA.zip && cd APG_F67_4
+  # to compare the stored manifest with the delivered APG-F67.3 ZIP (bd58c8652c45c008d663b6b9ec6fbae3acaa77882233c54ba101549b46a5d490):
+  #   unzip -q APG_F67_3_CODE_AND_DATA.zip && (cd APG_F67_3 && find . -type f | sed 's|^./||' | LC_ALL=C sort | xargs sha256sum) | diff - regression/f674/F673_MANIFEST.sha256
+  # to review a changed file:  diff regression/f674/f673_originals/apg/policy_approval.py apg/policy_approval.py
+
+A. The reproduction first (on the delivered APG-F67.3 package, then here)
+  1. Extract the APG-F67.3 ZIP into an empty folder; copy tools/probe_f674.py from this package into its tools/ folder.
+  2. There:  python3 -I tools/probe_f674.py                                 -> DEFECT PRESENT 15 times, F-75 IS NOT CORRECTED, exit 1
+  3. Here:   python3 -I tools/probe_f674.py                                 -> CORRECTED 16 times; F-75 IS CORRECTED, exit 0
+             python3 -I tools/run_m2_tests.py -q test_f674_type_strict.py   -> tests 9  failures 0  errors 0
+  4. Optional: copy tests/test_f674_type_strict.py into the APG-F67.3 tests/ folder and run it there: 7 of the 9 fail or error (2 guard behaviour it already had).
+
+B. The whole suite, one test file per group (python3 -I tools/run_f674_all.py --files-list)
+  python3 -I tools/run_f674_all.py --file 1          # ... one file at a time, 1 to 117; or --files 1-20 for a range
+  python3 -B -m unittest tests.test_mie_construction.TestBasePack   # one class (or one test), if even a single file does not fit the time limit
+                                                     # (from this folder, without -I: unittest needs this folder on its import path)
+  # the earlier small groups still work: python3 -I tools/run_f674_all.py --group N (1 to 23); group 10 checks the groups and the per-file list cover every file once
+  python3 -I tools/run_m2_tests.py -q                # the whole suite as one command, if the time limit allows (about 3 minutes on the build machine)
+
+C. Regression steps, one at a time (python3 -I tools/run_regression_f674.py --list)
+  python3 -I tools/run_regression_f674.py --static   # R01 to R05, R10 to R13
+  python3 -I tools/run_regression_f674.py --step R06  # and R07, R08, R09
+
+D. Mutation run in ten fixed batches (131 mutants; about 14 per batch)
+  python3 -I tools/f674_mutants.py --list
+  python3 -I tools/f674_mutants.py --batch 1/10 --jobs 2 --timeout 30   # ... to --batch 10/10; a timeout is rerun under 300 s and never counted as a kill
+
+E. Package sabotage, one case or a few at a time
+  python3 -I tools/sabotage_f674.py --list
+  python3 -I tools/sabotage_f674.py --only S01,S04 # S01 to S16
+
+---- the APG-F67.3 run commands follow, unchanged ----
+
+APG F-67.3 -- how to re-check the correction (Python 3 standard library only; built and run with Python 3.13 on Linux; no network; writes only to temporary folders)
+Run every command with -I from the folder that contains this file. Every command below is short. If a time limit cuts one off, that is an incomplete run, not a pass: run it
+again alone, and report it as incomplete.
+
+0. Clean extraction
+  sha256sum APG_F67_3_CODE_AND_DATA.zip                        # compare with the hash in the delivery message and the documents file
+  mkdir f673 && cd f673 && unzip -q ../APG_F67_3_CODE_AND_DATA.zip && cd APG_F67_3
+  # to compare the stored manifest with the delivered APG-F67.2 ZIP (8f2cbf538cd979e102be3872d55ad5fc2dc41a20775e0b400b306ca95d32c706):
+  #   unzip -q APG_F67_2_CODE_AND_DATA.zip && (cd APG_F67_2 && find . -type f | sed 's|^./||' | LC_ALL=C sort | xargs sha256sum) | diff - regression/f673/F672_MANIFEST.sha256
+  # to review a changed file:  diff regression/f673/f672_originals/apg/policy_approval.py apg/policy_approval.py
+
+A. The reproduction first (on the delivered APG-F67.2 package, then here)
+  1. Extract the APG-F67.2 ZIP into an empty folder; copy tools/probe_f673.py from this package into its tools/ folder.
+  2. There:  python3 -I tools/probe_f673.py                                       -> DEFECT PRESENT 25 times, F-74 IS NOT CORRECTED, exit 1
+  3. Here:   python3 -I tools/probe_f673.py                                       -> CORRECTED 41 times; F-74 IS CORRECTED, exit 0
+             python3 -I tools/run_m2_tests.py -q test_f673_approval_integrity.py  -> tests 12  failures 0  errors 0
+             python3 -I tools/run_history_contract.py                             -> ALL HISTORY CASES PASS AND EVERY FAULTY STORE IS CAUGHT
+  4. Optional: copy tests/test_f673_approval_integrity.py into the APG-F67.2 tests/ folder and run it there: 10 of the 12 fail or error (2 guard properties F-67.2 already had).
+
+B. Short numbered groups (python3 -I tools/run_f673_all.py --list)
+  python3 -I tools/run_f673_all.py --group 1        # ... one group at a time, 1 to 23; or --range 1-10
+  # groups 11 to 23: the whole suite in 13 parts of about 15 seconds each (2,574 tests); group 10 checks they cover every test file exactly once
+  python3 -I tools/run_m2_tests.py -q              # the whole suite as one command, if the time limit allows (about 3 minutes on the build machine)
+
+C. Regression steps, one at a time (python3 -I tools/run_regression_f673.py --list)
+  python3 -I tools/run_regression_f673.py --static # R01 to R05, R10 to R12
+  python3 -I tools/run_regression_f673.py --step R06   # and R07, R08, R09
+
+D. Mutation run in nine fixed batches (120 mutants; about 14 per batch)
+  python3 -I tools/f673_mutants.py --list
+  python3 -I tools/f673_mutants.py --batch 1/9 --jobs 2 --timeout 30   # ... to --batch 9/9; a timeout is rerun under 300 s and never counted as a kill
+
+E. Package sabotage, one case or a few at a time
+  python3 -I tools/sabotage_f673.py --list
+  python3 -I tools/sabotage_f673.py --only S01,S02 # S01 to S20
+
+---- the APG-F67.2 run commands follow, unchanged ----
+
+APG F-67.2 -- how to re-check the correction (Python 3 standard library only; built and run with Python 3.13 on Linux; no network; writes only to temporary folders)
+Run every command with -I from the folder that contains this file. Every command below is short. If a time limit cuts one off, that is an incomplete run, not a pass: run it
+again alone, and report it as incomplete.
+
+0. Clean extraction
+  sha256sum APG_F67_2_CODE_AND_DATA.zip                        # compare with the hash in the delivery message and the documents file
+  mkdir f672 && cd f672 && unzip -q ../APG_F67_2_CODE_AND_DATA.zip && cd APG_F67_2
+  # to compare the stored manifest with the delivered APG-F67.1 ZIP (e815ca3dd2f66808b9e14dc97cd13aae656f10997029b1b17a15cb9bbcfe0884):
+  #   unzip -q APG_F67_1_CODE_AND_DATA.zip && (cd APG_F67_1 && find . -type f | sed 's|^./||' | LC_ALL=C sort | xargs sha256sum) | diff - regression/f672/F671_MANIFEST.sha256
+  # to review a changed file:  diff regression/f672/f671_originals/apg/policy_approval.py apg/policy_approval.py
+
+A. The reproduction first (on the delivered APG-F67.1 package, then here)
+  1. Extract the APG-F67.1 ZIP into an empty folder; copy tools/probe_f672.py from this package into its tools/ folder.
+  2. There:  python3 -I tools/probe_f672.py                                     -> DEFECT PRESENT 11 times, F-73 IS NOT CORRECTED, exit 1
+  3. Here:   python3 -I tools/probe_f672.py                                     -> CORRECTED 16 times; F-73 IS CORRECTED, exit 0
+             python3 -I tools/run_m2_tests.py -q test_f672_forged_entry.py      -> tests 11  failures 0  errors 0
+  4. Optional: copy tests/test_f672_forged_entry.py into the APG-F67.1 tests/ folder and run it there: 8 of the 11 fail or error (3 guard properties F-67.1 already had).
+
+B. Short numbered groups (python3 -I tools/run_f672_all.py --list)
+  python3 -I tools/run_f672_all.py --group 1        # ... one group at a time, 1 to 23; or --range 1-10
+  # groups 11 to 23: the whole suite in 13 parts of about 15 seconds each (2,562 tests); group 10 checks they cover every test file exactly once
+  python3 -I tools/run_m2_tests.py -q              # the whole suite as one command, if the time limit allows (about 3 minutes on the build machine)
+
+C. Regression steps, one at a time (python3 -I tools/run_regression_f672.py --list)
+  python3 -I tools/run_regression_f672.py --static # R01 to R05, R10, R11
+  python3 -I tools/run_regression_f672.py --step R06   # and R07, R08, R09
+
+D. Mutation run in eight fixed batches (106 mutants; about 14 per batch)
+  python3 -I tools/f672_mutants.py --list
+  python3 -I tools/f672_mutants.py --batch 1/8 --jobs 2 --timeout 30   # ... to --batch 8/8; a mutant that times out is rerun under 300 s before it is classified
+
+E. Package sabotage, one case or a few at a time
+  python3 -I tools/sabotage_f672.py --list
+  python3 -I tools/sabotage_f672.py --only S01,S04 # S01 to S20
+
+---- the APG-F67.1 run commands follow, unchanged ----
+
+APG F-67.1 -- how to re-check the correction (Python 3 standard library only; built and run with Python 3.13 on Linux; no network; writes only to temporary folders)
+Run every command with -I from the folder that contains this file. Every command below is short (most well under a minute). If a time limit cuts one off, that is an incomplete
+run, not a pass: run it again alone, and report it as incomplete.
+
+0. Clean extraction
+  sha256sum APG_F67_1_CODE_AND_DATA.zip                        # compare with the hash in the delivery message and the documents file
+  mkdir f671 && cd f671 && unzip -q ../APG_F67_1_CODE_AND_DATA.zip && cd APG_F67_1
+  # to compare the stored manifest with the delivered APG-F67 ZIP (17badf419b26753caaa7a20592322738d6eee9b4e1be5b940f4453629bbaa958):
+  #   unzip -q APG_F67_CODE_AND_DATA.zip && (cd APG_F67 && find . -type f | sed 's|^./||' | LC_ALL=C sort | xargs sha256sum) | diff - regression/f671/F67_MANIFEST.sha256
+  # to review a changed file:  diff regression/f671/f67_originals/apg/policy_approval.py apg/policy_approval.py
+
+A. The reproduction first (on the delivered APG-F67 package, then here)
+  1. Extract the APG-F67 ZIP into an empty folder; copy tools/probe_f671.py from this package into its tools/ folder.
+  2. There:  python3 -I tools/probe_f671.py                                        -> DEFECT PRESENT 10 times, F-72 IS NOT CORRECTED, exit 1
+  3. Here:   python3 -I tools/probe_f671.py                                        -> CORRECTED 21 times; F-72 IS CORRECTED, exit 0
+             python3 -I tools/run_m2_tests.py -q test_f671_approval_recovery.py    -> tests 11  failures 0  errors 0
+  4. Optional: copy tests/test_f671_approval_recovery.py into the APG-F67 tests/ folder and run it there: all 11 fail or error.
+
+B. Short numbered groups (python3 -I tools/run_f671_all.py --list)
+  python3 -I tools/run_f671_all.py --group 1        # ... one group at a time, 1 to 23; or --range 1-10
+  # groups 11 to 23: the whole suite in 13 parts of about 15 seconds each (2,551 tests); group 10 checks they cover every test file exactly once
+  python3 -I tools/run_m2_tests.py -q              # the whole suite as one command, if the time limit allows (about 3 minutes on the build machine)
+
+C. Regression steps, one at a time (python3 -I tools/run_regression_f671.py --list)
+  python3 -I tools/run_regression_f671.py --static # R01 to R05, R10, R11
+  python3 -I tools/run_regression_f671.py --step R06   # and R07, R08, R09
+
+D. Mutation run in six fixed batches (88 mutants; about 15 per batch)
+  python3 -I tools/f671_mutants.py --list
+  python3 -I tools/f671_mutants.py --batch 1/6 --jobs 2 --timeout 30   # ... to --batch 6/6; or --ids A,B for single mutants
+
+E. Package sabotage, one case or a few at a time
+  python3 -I tools/sabotage_f671.py --list
+  python3 -I tools/sabotage_f671.py --only S01,S04 # S01 to S23
+
+---- the APG-F67 run commands follow, unchanged ----
+
+APG F-67 -- how to re-check the correction (Python 3 standard library only; built and run with Python 3.13 on Linux; no network; writes only to temporary folders)
+Run every command with -I from the folder that contains this file. If a time limit cuts a command off, that is an incomplete run, not a pass: run it again alone, and report it as incomplete.
+
+0. Clean extraction
+  sha256sum APG_F67_CODE_AND_DATA.zip                          # compare with the hash in the delivery message and the documents file
+  mkdir f67 && cd f67 && unzip -q ../APG_F67_CODE_AND_DATA.zip && cd APG_F67
+  # to compare the stored manifest with the delivered MIE-1.1-R1 ZIP (6afe8b6116cc46cd1db3161a80bc91bf4bb97b847fcdfa1fa4c2967bf17f1185):
+  #   unzip -q APG_MIE1_1_R1_CODE_AND_DATA.zip && (cd APG_MIE1_1_R1 && find . -type f | sed 's|^./||' | LC_ALL=C sort | xargs sha256sum) | diff - regression/f67/R1_MANIFEST.sha256
+  # to review a changed file:  diff regression/f67/r1_originals/apg/fin/policy.py apg/fin/policy.py
+
+A. The reproduction first (on the delivered MIE-1.1-R1 package, then here)
+  1. Extract the delivered MIE-1.1-R1 ZIP into an empty folder; copy tools/probe_f67.py from this package into its tools/ folder.
+  2. There:  python3 -I tools/probe_f67.py                                     -> DEFECT PRESENT 17 times (16 cases and the control), F-67 IS NOT CORRECTED, exit 1
+  3. Here:   python3 -I tools/probe_f67.py                                     -> CORRECTED 17 times; F-67 IS CORRECTED, exit 0
+             python3 -I tools/run_m2_tests.py -q test_f67_policy_approval.py   -> tests 12  failures 0  errors 0
+  4. Optional: copy tests/test_f67_policy_approval.py into the R1 tests/ folder and run it there: all 12 fail (6) or error (6).
+
+B. Short numbered groups (python3 -I tools/run_f67_all.py --list)
+  python3 -I tools/run_f67_all.py --range 1-9      # static regression, probe, F-67 tests, earlier probes, goldens, contracts, faults, guard contract, mutation baseline
+  python3 -I tools/run_f67_all.py --group 10       # ... to --group 21, one part of the whole suite at a time (149, 605, 340, 224, 544, 216, 45, 105, 33, 23, 244, 12 = 2,540)
+
+C. Regression steps (python3 -I tools/run_regression_f67.py --list)
+  python3 -I tools/run_regression_f67.py --static  # R01 to R05, R10, R11 against the delivered MIE-1.1-R1
+  python3 -I tools/run_regression_f67.py --step R08  # and R06, R07, R09 one at a time
+
+D. Mutation run (under two minutes with two jobs)
+  python3 -I tools/f67_mutants.py --jobs 2         # or --only PA, FP, DP, MP
+
+E. Package sabotage, one case or a few at a time
+  python3 -I tools/sabotage_f67.py --list
+  python3 -I tools/sabotage_f67.py --only S01,S11  # S01 to S27
+
+---- the MIE-1.1-R1 run commands follow, unchanged ----
+
+APG MIE-1.1-R1 -- records only (Python 3 standard library only; no network)
+  sha256sum APG_MIE1_1_R1_CODE_AND_DATA.zip
+  mkdir r1 && cd r1 && unzip -q ../APG_MIE1_1_R1_CODE_AND_DATA.zip && cd APG_MIE1_1_R1
+  python3 -I tools/run_regression_mie1_1r1.py --all        # R01 to R07; checks 7  failed 0
+  # the MIE-1.1 commands below still apply to the code, which is unchanged
+
+---- the MIE-1.1 run commands follow, unchanged ----
+
+APG MIE-1.1 -- how to re-check the correction (Python 3 standard library only; built and run with Python 3.13 on Linux; no network; writes only to temporary folders)
+Run every command with -I from the folder that contains this file. If a time limit cuts a command off, that is an incomplete run, not a pass: run it again alone, and report it as incomplete.
+
+0. Clean extraction
+  sha256sum APG_MIE1_1_CODE_AND_DATA.zip                       # compare with the hash in the delivery message and the documents file
+  mkdir mie11 && cd mie11 && unzip -q ../APG_MIE1_1_CODE_AND_DATA.zip && cd APG_MIE1_1
+  # to compare the stored manifest with the delivered MIE-1 ZIP (26fe3517d0d4f64981bad3cc2f28e1d748e0c25062f98c22209359435dd4206d):
+  #   unzip -q APG_MIE1_CODE_AND_DATA.zip && (cd APG_MIE1 && find . -type f | sed 's|^./||' | LC_ALL=C sort | xargs sha256sum) | diff - regression/mie1_1/MIE1_MANIFEST.sha256
+
+A. The reproduction first (on the delivered MIE-1 package, then here)
+  1. Extract the delivered MIE-1 ZIP into an empty folder; copy tools/probe_mie1_audit_findings.py from this package into its tools/ folder.
+  2. There:  python3 -I tools/probe_mie1_audit_findings.py                    -> DEFECT PRESENT 17 times, exit 1
+  3. Here:   python3 -I tools/probe_mie1_audit_findings.py                    -> CORRECTED 18 times; THE MIE-1 AUDIT FINDINGS ARE CORRECTED, exit 0
+             python3 -I tools/run_m2_tests.py -q test_mie_core_m11_corrections.py  -> tests 10  failures 0  errors 0
+  4. Optional: copy tests/test_mie_core_m11_corrections.py into the MIE-1 tests/ folder and run it there: 9 of the 10 tests fail or error (the tenth guards an edge of the new code).
+
+B. Short numbered groups (python3 -I tools/run_mie1_1_all.py --list)
+  python3 -I tools/run_mie1_1_all.py --range 1-8     # static regression with the probe, static checks, coverage, the MIE tests in three parts, golden, mutation baseline
+  python3 -I tools/run_mie1_1_all.py --group 9       # ... to --group 19, one part of the whole suite at a time (149, 605, 340, 224, 544, 216, 45, 105, 33, 23, 244)
+
+C. Regression steps (python3 -I tools/run_regression_mie1_1.py --list)
+  python3 -I tools/run_regression_mie1_1.py --static  # R01 to R08, R13, R14 against the delivered MIE-1
+  python3 -I tools/run_regression_mie1_1.py --step R15  # the correction tests (and R09 to R12 one at a time)
+
+D. Mutation run (each slice is short)
+  python3 -I tools/mie11_mutants.py --only EN --jobs 2   # engine.py; then CA, VA, PK, OB, SG, TM
+
+E. Package sabotage, one case or a few at a time
+  python3 -I tools/sabotage_mie1_1.py --list
+  python3 -I tools/sabotage_mie1_1.py --only C-01,C-06   # the correction cases C-01 to C-10; the catalogue cases SB-01 to SB-60
+
+---- the MIE-1 run commands follow, unchanged ----
+
+APG MIE-1 -- how to re-check the build (Python 3 standard library only; built and run with Python 3.13 on Linux; no network; writes only to temporary folders)
+Run every command with -I from the folder that contains this file. If a time limit cuts a command off, that is an incomplete run, not a pass: run it again alone, and report it as incomplete.
+
+0. Clean extraction
+  sha256sum APG_MIE1_CODE_AND_DATA.zip                         # compare with the hash in the delivery message and the documents file
+  mkdir mie1 && cd mie1 && unzip -q ../APG_MIE1_CODE_AND_DATA.zip && cd APG_MIE1
+  # the delivered M7.3 ZIP (f14b6818000cb1ac76482d5d2b5246f82030aa84216eb44dc6b0ee1fac7f6307) is not needed to run anything; to compare the stored manifest with it:
+  #   unzip -q APG_M7_3_CODE_AND_DATA.zip && (cd APG_M7_3 && find . -type f | sed 's|^./||' | LC_ALL=C sort | xargs sha256sum) | diff - regression/mie1/M7_3_MANIFEST.sha256
+
+A. Short numbered groups (python3 -I tools/run_mie1_all.py --list)
+  python3 -I tools/run_mie1_all.py --range 1-8       # static regression, static checks, coverage, the MIE-1 tests (core, flow and portability, construction), golden, mutation baseline
+  python3 -I tools/run_mie1_all.py --range 9-19      # the whole unit suite in eleven counted parts and the total check
+  python3 -I tools/run_m2_tests.py -q 'test_mie_core_*.py'   # one part on its own
+
+B. Regression steps (python3 -I tools/run_regression_mie1.py --list)
+  python3 -I tools/run_regression_mie1.py --static   # R01 to R08 and R13 against the delivered M7.3
+  python3 -I tools/run_regression_mie1.py --step R10 # the construction tests (and R09, R09B, R11, R12 one at a time)
+
+C. The Builder Zero run and the coverage map
+  python3 -I tools/run_golden_mie1.py                # prints the run; THE GOLDEN MIE-1 RUN EQUALS THE RECORDED ANSWER
+  python3 -I tools/mie_coverage.py                   # 175 planned cases; EVERY PLANNED CASE IS ACCOUNTED FOR
+  python3 -I tools/mie_static.py                     # static checks 8  failed 0
+
+D. Mutation run over the core logic (608 mutants; each slice is short)
+  python3 -I tools/mie_mutants.py --only CA --jobs 2   # canon.py; then VA (values), PK (pack), OB (observations), SG (signals), TM (timing), EN (engine)
+
+E. Package sabotage (the catalogue SB-01 to SB-60), one case or a few at a time
+  python3 -I tools/sabotage_mie1.py --list
+  python3 -I tools/sabotage_mie1.py --only SB-25     # or --only SB-01,SB-02,SB-03
+
+---- the M7.3 run commands follow, unchanged ----
+
+APG M7.3 -- how to re-check the correction (Python 3 standard library only; built and run with Python 3.13.16 on Linux; no network; writes only to temporary folders)
+Run every command with -I from the folder that contains this file. If a time limit cuts a command off, that is an incomplete run, not a pass: run it again alone, and report it as incomplete.
+
+0. Clean extraction
+  sha256sum APG_M7_3_CODE_AND_DATA.zip                       # compare with the hash in the delivery message and the documents file
+  mkdir m73 && cd m73 && unzip -q ../APG_M7_3_CODE_AND_DATA.zip && cd APG_M7_3
+  # the delivered M7.2 ZIP (d2f900490f9a0d88c76c390aac3e7d2169f30ccf770ccb8f9dbc779f1d08a476) is not needed to run anything; to compare the stored manifest with it:
+  #   unzip -q APG_M7_2_CODE_AND_DATA.zip && (cd APG_M7_2 && find . -type f | sed 's|^./||' | LC_ALL=C sort | xargs sha256sum) | diff - regression/m73/M7_2_MANIFEST.sha256
+
+A. The insert-race reproduction first (on the delivered M7.2 package, then here)
+  1. Extract the delivered M7.2 ZIP into an empty folder; copy tools/probe_m72_insert_race.py from this package into its tools/ folder.
+  2. There:  python3 -I tools/probe_m72_insert_race.py                     -> DEFECT PRESENT six times (points 1A and 1B: the act committed, then reversed), exit 1
+  3. Here:   python3 -I tools/probe_m72_insert_race.py                     -> closed six times ("nothing was committed"), and for points 2 and 3 the store commit order and the next step; THE INSERT RACE IS CLOSED, exit 0
+             python3 -I tools/run_m2_tests.py -q test_rec_m73_insert_race.py -> tests 12  failures 0  errors 0
+  4. Then the earlier reproductions:  python3 -I tools/probe_m71_race.py   -> THE RACE IS CLOSED;   python3 -I tools/probe_m7_audit_findings.py   -> THE AUDIT FINDINGS ARE CORRECTED
+
+B. Short numbered groups (python3 -I tools/run_m73_all.py --list)
+  python3 -I tools/run_m73_all.py --range 1-12     # the probes, static regression, the M2 port contracts and faults, the guard contract, the M7.3 (12), M7.2 (18) and M7.1 (23) tests, golden (4)
+  python3 -I tools/run_m73_all.py --group 13       # ... to --group 22: the whole unit suite in ten parts (149, 605, 340, 224, 544, 216, 45, and the last three), 2,284 tests in all
+  python3 -I tools/run_m73_all.py --range 13-22    # all ten parts and the total check
+  python3 -I tools/run_m73_all.py --range 23-24    # the two mutation baselines
+
+C. Regression steps (python3 -I tools/run_regression_m73.py --list)
+  python3 -I tools/run_regression_m73.py --static  # R01 to R08 against the delivered M7.2
+  python3 -I tools/run_regression_m73.py --step R10D  # the insert-race probe (and R09, R10, R10B, R10C, R11, R13, R13B, R14 one at a time)
+
+D. Mutation runs (each slice is short)
+  python3 -I tools/m73_store_mutants.py --jobs 2            # the new store code: guards, lock, scoped-store guard branch (under a minute)
+  python3 -I tools/m7_mutants.py --only LC --jobs 2          # lifecycle.py; then EN, PO, IN, VF
+
+E. Package sabotage, one case at a time
+  python3 -I tools/sabotage_m73.py --list
+  python3 -I tools/sabotage_m73.py --only S22                # and so on, S01 to S29 (S20 to S22 adapted to M7.3; S25 to S29 new)
+
+---- the M7.2 run commands follow, unchanged ----
+
+APG M7.2 -- how to re-check the correction (Python 3 standard library only; built and run with Python 3.13.16 on Linux; no network; writes only to temporary folders)
+Run every command with -I from the folder that contains this file. If a time limit cuts a command off, that is an incomplete run, not a pass: run it again alone, and report it as incomplete.
+
+0. Clean extraction
+  sha256sum APG_M7_2_CODE_AND_DATA.zip                       # compare with the hash in the delivery message and the documents file
+  mkdir m72 && cd m72 && unzip -q ../APG_M7_2_CODE_AND_DATA.zip && cd APG_M7_2
+  # the delivered M7.1 ZIP (6fd3bac49f16a9b954dba79d70ea8d673b8756cdc92ab44e100ffaaea35abe89) is not needed to run anything; to compare the stored manifest with it:
+  #   unzip -q APG_M7_1_CODE_AND_DATA.zip && (cd APG_M7_1 && find . -type f | sed 's|^./||' | LC_ALL=C sort | xargs sha256sum) | diff - regression/m72/M7_1_MANIFEST.sha256
+
+A. The race reproduction first (on the delivered M7.1 package, then here)
+  1. Extract the delivered M7.1 ZIP into an empty folder; copy tools/probe_m71_race.py from this package into its tools/ folder.
+  2. There:  python3 -I tools/probe_m71_race.py                            -> DEFECT PRESENT eight times, exit 1
+  3. Here:   python3 -I tools/probe_m71_race.py                            -> closed eight times, each "nothing was recorded", and THE RACE IS CLOSED, exit 0
+             python3 -I tools/run_m2_tests.py -q test_rec_m72_race.py      -> tests 18  failures 0  errors 0
+  4. Then the M7.1 reproductions:  python3 -I tools/probe_m7_audit_findings.py   -> THE AUDIT FINDINGS ARE CORRECTED
+
+B. Short numbered groups (python3 -I tools/run_m72_all.py --list)
+  python3 -I tools/run_m72_all.py --range 1-7      # the race probe, the M7 findings probe, the guarantees probe, static regression, race tests (18), M7.1 correction tests (23), golden (4)
+  python3 -I tools/run_m72_all.py --group 8        # ... to --group 17: the whole unit suite in ten parts (149, 605, 340, 224, 544, 204, 45, and the last three), 2,272 tests in all
+  python3 -I tools/run_m72_all.py --range 8-17     # all ten parts and the total check
+  python3 -I tools/run_m72_all.py --group 18       # mutation baseline
+
+C. Regression steps (python3 -I tools/run_regression_m72.py --list)
+  python3 -I tools/run_regression_m72.py --static  # R01 to R08 against the delivered M7.1
+  python3 -I tools/run_regression_m72.py --step R09   # the M7, M7.1 and M7.2 unit tests
+  python3 -I tools/run_regression_m72.py --step R10C  # the race probe
+  python3 -I tools/run_regression_m72.py --step R10B  # the M7 audit findings probe
+  python3 -I tools/run_regression_m72.py --step R11   # the golden run
+
+D. Mutation run over apg/rec, by module (each slice is short)
+  python3 -I tools/m7_mutants.py --baseline
+  python3 -I tools/m7_mutants.py --only LC --jobs 2          # lifecycle.py (the check, the guarded commit, the reversal)
+  python3 -I tools/m7_mutants.py --only EN --jobs 2          # engine.py (or by kind: EN-CMP, EN-BOL, EN-NOT, EN-RSE, EN-ARI)
+  python3 -I tools/m7_mutants.py --only PO --jobs 2
+  python3 -I tools/m7_mutants.py --only IN --jobs 2
+  python3 -I tools/m7_mutants.py --only VF --jobs 2
+
+E. Package sabotage, one case at a time
+  python3 -I tools/sabotage_m72.py --list
+  python3 -I tools/sabotage_m72.py --only S20                # and so on, S01 to S24 (S20 to S24 are new)
+
+---- the M7.1 run commands follow, unchanged ----
+
+APG M7.1 -- how to re-check the correction (Python 3 standard library only; built and run with Python 3.13.16 on Linux; no network; writes only to temporary folders)
+Run every command with -I from the folder that contains this file. If a time limit cuts a command off, that is an incomplete run, not a pass: run it again alone, and report it as incomplete.
+
+0. Clean extraction
+  sha256sum APG_M7_1_CODE_AND_DATA.zip                       # compare with the hash in the delivery message and the documents file
+  mkdir m71 && cd m71 && unzip -q ../APG_M7_1_CODE_AND_DATA.zip && cd APG_M7_1
+  # the delivered M7 ZIP (a58b2294a95cb8901dec0154b41e89bd2e987c7eb461672b5e6cf175fba0f934) and M9.4 ZIP (31c05bf715b0df3e37424347fddd80a795eaaf30bc2940704688eabbcf9b44d3) are
+  # not needed to run anything; to compare the stored manifests with them:  unzip -q APG_M7_CODE_AND_DATA.zip && (cd APG_M7 && find . -type f | sed 's|^./||' | sort | xargs sha256sum) | diff - regression/m71/M7_MANIFEST.sha256
+
+A. The audit reproductions first (on the delivered M7 package, then here)
+  1. Extract the delivered M7 ZIP into an empty folder; copy tools/probe_m7_audit_findings.py from this package into its tools/ folder.
+  2. There:  python3 -I tools/probe_m7_audit_findings.py                     -> DEFECT PRESENT four times, exit 1
+  3. Here:   python3 -I tools/probe_m7_audit_findings.py                     -> corrected four times and THE AUDIT FINDINGS ARE CORRECTED, exit 0
+             python3 -I tools/run_m2_tests.py -q test_rec_m71_corrections.py -> tests 23  failures 0  errors 0
+
+B. Short numbered groups (python3 -I tools/run_m71_all.py --list)
+  python3 -I tools/run_m71_all.py --group 1        # the audit findings probe
+  python3 -I tools/run_m71_all.py --group 2        # the M7 guarantees probe
+  python3 -I tools/run_m71_all.py --group 3        # static regression against M7 (R01 to R08)
+  python3 -I tools/run_m71_all.py --group 4        # the correction tests (23)
+  python3 -I tools/run_m71_all.py --group 5        # the golden Builder Zero run and the independent oracle (4)
+  python3 -I tools/run_m71_all.py --group 6        # ... to --group 15: the whole unit suite in ten parts (149, 605, 340, 224, 544, 186, 45, and the last three), 2,254 tests in all
+  python3 -I tools/run_m71_all.py --range 6-15     # all ten parts and the total check
+  python3 -I tools/run_m71_all.py --group 16       # mutation baseline
+
+C. Regression steps (python3 -I tools/run_regression_m71.py --list)
+  python3 -I tools/run_regression_m71.py --static  # R01 to R08
+  python3 -I tools/run_regression_m71.py --step R09   # the M7 and M7.1 unit tests
+  python3 -I tools/run_regression_m71.py --step R10   # the M7 guarantees probe
+  python3 -I tools/run_regression_m71.py --step R10B  # the audit findings probe
+  python3 -I tools/run_regression_m71.py --step R11   # the golden run
+  python3 -I tools/run_regression_m71.py --step R12   # the whole unit suite in one run (use groups 6 to 15 instead if a time limit applies)
+
+D. Mutation run over the corrected apg/rec, by module and kind (each slice is short)
+  python3 -I tools/m7_mutants.py --baseline
+  python3 -I tools/m7_mutants.py --only LC --jobs 2          # lifecycle.py (the source check)
+  python3 -I tools/m7_mutants.py --only PO --jobs 2          # policy.py (the approval boundary)
+  python3 -I tools/m7_mutants.py --only EN-CMP --jobs 2      # engine.py in five kinds: EN-CMP, EN-BOL, EN-NOT, EN-RSE, EN-ARI
+  python3 -I tools/m7_mutants.py --only IN --jobs 2
+  python3 -I tools/m7_mutants.py --only VF --jobs 2
+
+E. Package sabotage, one case at a time
+  python3 -I tools/sabotage_m71.py --list
+  python3 -I tools/sabotage_m71.py --only S16                # and so on, S01 to S19
+
+---- the M7 run commands follow, unchanged ----
+
+APG M7 -- how to re-check the recommendation, prioritisation and scenario engine (Python 3 standard library only; built and run with Python 3.13.16 on Linux; no network; writes only to temporary folders)
+Run every command with -I from the folder that contains this file. Every command below is short. If a time limit cuts a command off, that is an incomplete run, not a pass: run it again alone, and report it as incomplete if it still does not finish.
+
+0. Clean extraction (do this first, in an empty folder)
+  sha256sum APG_M7_CODE_AND_DATA.zip                         # compare with the hash in the delivery message and the documents file
+  mkdir m7 && cd m7 && unzip -q ../APG_M7_CODE_AND_DATA.zip && cd APG_M7                 # every entry is under APG_M7/
+  # the delivered M9.4 ZIP is not needed to run anything here; its hash is 31c05bf715b0df3e37424347fddd80a795eaaf30bc2940704688eabbcf9b44d3
+
+A. The guarantees, in one short run
+  python3 -I tools/probe_rec_m7.py                            -> twelve PASS lines and THE M7 GUARANTEES HOLD, exit 0
+
+B. The checks, one at a time (python3 -I tools/run_m7_all.py --list prints this list)
+  python3 -I tools/run_m7_all.py --group 1        # the guarantees probe
+  python3 -I tools/run_m7_all.py --group 2        # static regression against the delivered M9.4 package (R01 to R08)
+  python3 -I tools/run_m7_all.py --group 3        # ... to --group 13: the eleven M7 test files, one per group
+  python3 -I tools/run_m7_all.py --group 14       # the whole unit suite: every earlier test unchanged plus M7 (about two minutes)
+  python3 -I tools/run_m7_all.py --group 15       # mutation baseline
+  python3 -I tools/run_m7_all.py --range 1-13     # everything except the whole suite and the mutation baseline
+
+C. Regression steps (python3 -I tools/run_regression_m7.py --list)
+  python3 -I tools/run_regression_m7.py --static              # R01 to R08: files, tables, boundaries
+  python3 -I tools/run_regression_m7.py --step R09            # the M7 unit tests
+  python3 -I tools/run_regression_m7.py --step R10            # the guarantees probe
+  python3 -I tools/run_regression_m7.py --step R11            # the golden Builder Zero run and the independent oracle
+  python3 -I tools/run_regression_m7.py --step R12            # the whole unit suite
+
+D. Mutation run over apg/rec (each mutant is a one-place change to a copy; every site is a mutant)
+  python3 -I tools/m7_mutants.py --list | wc -l               # the number of mutants
+  python3 -I tools/m7_mutants.py --baseline                   # the unmutated, re-parsed modules pass every M7 test
+  python3 -I tools/m7_mutants.py --only EN --jobs 2           # engine.py      (also: --only EN-CMP, EN-BOL, EN-NOT, EN-RSE, EN-ARI for shorter runs)
+  python3 -I tools/m7_mutants.py --only LC --jobs 2           # lifecycle.py
+  python3 -I tools/m7_mutants.py --only IN --jobs 2           # inputs.py
+  python3 -I tools/m7_mutants.py --only PO --jobs 2           # policy.py
+  python3 -I tools/m7_mutants.py --only VF --jobs 2           # verify.py
+  python3 -I tools/m7_mutants.py --ids EN-CMP-001,LC-BOL-002  # chosen mutants only
+
+E. Package sabotage (each corruption is made in a temporary copy; the named check must fail)
+  python3 -I tools/sabotage_m7.py --list
+  python3 -I tools/sabotage_m7.py                             # every case; or --only Sxx
+
+The earlier per-release tools (run_regression_m6.py to run_regression_m94.py, run_m94_all.py) describe their own releases: run on this package they report the M7 files as undeclared
+additions. Run them on their own delivered ZIPs (CF-32).
+
+---- the M9.4 run commands follow, unchanged ----
+
+APG M9.4 -- how to re-check the corrected clock and session failure handling (Python 3 standard library only; built and run with Python 3.13.16 on Linux; no network; writes only to temporary folders)
+Environment: Python 3.13.16 was used for every run reported with this package (no other Python version was tried), the standard library only, no third-party package, no network. Run every command with -I from the folder that contains this file. Every command below is short; none needs the whole wrapper.
+If a time limit cuts a command off, that is an incomplete run, not a pass -- run it again alone, and report it as incomplete if it still does not finish.
+
+0. Clean extraction (do this first, in an empty folder)
+  sha256sum APG_M9_4_CODE_AND_DATA.zip                       # compare with the hash given in the delivery message and in the documents file
+  mkdir m94 && cd m94 && unzip -q ../APG_M9_4_CODE_AND_DATA.zip && cd APG_M9_4          # every entry is under APG_M9_4/
+  # the delivered M9.1, M9.2 and M9.3 ZIPs are separate files and are not needed to run anything here; to confirm they are unchanged compare their hashes:
+  #   M9.1 12326469a951238f674013918f279b89a75f3ea471fa6c5cbcefd1df0496cb9f
+  #   M9.2 ad889d545a5ad91a100ff89425353b425a908fe23f50c44d0a11dd128247f1d8
+  #   M9.3 4dae205ca53e6b47ca794e0515a7b679fa52b9d803ade257f169748e963d8882
+
+A. See the defect on the DELIVERED M9.3 package, then the correction here
+  1. Extract the delivered APG_M9_3_CODE_AND_DATA.zip into an empty folder (check its SHA-256 first: 4dae205ca53e6b47ca794e0515a7b679fa52b9d803ade257f169748e963d8882).
+  2. Copy tests/test_api_m94_corrections.py and tools/probe_m93_clock_failure.py from this package into that folder's tests/ and tools/.
+  3. In that folder:  python3 -I tools/probe_m93_clock_failure.py                         -> expect DEFECT PRESENT five times, exit 1
+                      python3 -I tools/run_m2_tests.py -q test_api_m94_corrections.py      -> expect 18 of the 29 tests to fail or error
+  4. In this package:  python3 -I tools/probe_m93_clock_failure.py                         -> expect THE CLOCK FAILURE IS HANDLED SAFELY, exit 0
+                      python3 -I tools/run_m2_tests.py -q test_api_m94_corrections.py      -> expect failures 0  errors 0
+                      python3 -I tools/run_m2_tests.py -q                                  -> the whole unit suite; expect failures 0  errors 0 (the test count is printed)
+
+B. The checks, one at a time (python3 -I tools/run_m94_all.py --list prints this list)
+  python3 -I tools/run_m94_all.py --group 1      # The clock-failure probe (F-63)
+  python3 -I tools/run_m94_all.py --group 2      # The session-expiry probe (F-62)
+  python3 -I tools/run_m94_all.py --group 3      # unit tests: the M9.4 correction tests
+  python3 -I tools/run_m94_all.py --group 4      # unit tests: the M9.3 correction tests
+  python3 -I tools/run_m94_all.py --group 5      # unit tests: the M9.2 correction tests
+  python3 -I tools/run_m94_all.py --group 6      # unit tests: the approval request boundary (M9.1 tests, unchanged)
+  python3 -I tools/run_m94_all.py --group 7      # unit tests: the ProjectActionPort contract (EDR-31)
+  python3 -I tools/run_m94_all.py --group 8      # unit tests: static rules for apg/api
+  python3 -I tools/run_m94_all.py --group 9      # The M9.2 audit-findings probe
+  python3 -I tools/run_m94_all.py --group 10      # The ProjectActionPort contract suite and its faulty ports
+  python3 -I tools/run_m94_all.py --group 11      # The approval-boundary probe
+  python3 -I tools/run_m94_all.py --group 12      # unit tests: every M5 detection and finding test
+  python3 -I tools/run_m94_all.py --group 13      # The transition-bypass probe
+  python3 -I tools/run_m94_all.py --group 14      # The proposal-swap probe
+  python3 -I tools/run_m94_all.py --group 15      # The malformed-version probe
+  python3 -I tools/run_m94_all.py --group 16      # The stale-proposal probe
+  python3 -I tools/run_m94_all.py --group 17      # The approval-binding probe
+  python3 -I tools/run_m94_all.py --group 18      # M5 wrapper, one group: M5 unit tests: signal contract
+  python3 -I tools/run_m94_all.py --group 19      # M5 wrapper, one group: M5 unit tests: shared helpers
+  python3 -I tools/run_m94_all.py --group 20      # M5 wrapper, one group: M5 unit tests: detection policy and its bounds
+  python3 -I tools/run_m94_all.py --group 21      # M5 wrapper, one group: M5 unit tests: detection intake
+  python3 -I tools/run_m94_all.py --group 22      # M5 wrapper, one group: M5 unit tests: cost rules and their edge cases
+  python3 -I tools/run_m94_all.py --group 23      # M5 wrapper, one group: M5 unit tests: commercial rules and their edge cases
+  python3 -I tools/run_m94_all.py --group 24      # M5 wrapper, one group: M5 unit tests: operations rules and their edge cases
+  python3 -I tools/run_m94_all.py --group 25      # M5 wrapper, one group: M5 unit tests: signals, runs and the two reproducible formulas
+  python3 -I tools/run_m94_all.py --group 26      # M5 wrapper, one group: M5 unit tests: run pins, malformed results and the check of a stored run
+  python3 -I tools/run_m94_all.py --group 27      # M5 wrapper, one group: M5 unit tests: finding lifecycle, monitor and link edge cases
+  python3 -I tools/run_m94_all.py --group 28      # M5 wrapper, one group: M5 unit tests: noise control
+  python3 -I tools/run_m94_all.py --group 29      # M5 wrapper, one group: M5 unit tests: monitor
+  python3 -I tools/run_m94_all.py --group 30      # M5 wrapper, one group: M5 unit tests: overlap and portfolio
+  python3 -I tools/run_m94_all.py --group 31      # M5 wrapper, one group: M5 unit tests: notification contract suite and faulty notifiers
+  python3 -I tools/run_m94_all.py --group 32      # M5 wrapper, one group: M5 unit tests: static source rules
+  python3 -I tools/run_m94_all.py --group 33      # M5 wrapper, one group: M5 unit tests: faulty-input corpus
+  python3 -I tools/run_m94_all.py --group 34      # M5 wrapper, one group: M5 unit tests: golden cases
+  python3 -I tools/run_m94_all.py --group 35      # M5 wrapper, one group: M5 golden Builder Zero cases with the independent oracle
+  python3 -I tools/run_m94_all.py --group 36      # M5 wrapper, one group: M5 faulty-input corpus through intake and the detection rules
+  python3 -I tools/run_m94_all.py --group 37      # M5 wrapper, one group: M5 NotificationPort contract suite against the in-memory reference
+  python3 -I tools/run_m94_all.py --group 38      # M5 wrapper, one group: M5 faulty notifiers (the contract suite must catch each)
+  python3 -I tools/run_m94_all.py --group 39      # M5 wrapper, one group: M5 register checks
+  python3 -I tools/run_m94_all.py --group 40      # M5 wrapper, one group: M4 register checks on the extended tables
+  python3 -I tools/run_m94_all.py --group 41      # M5 wrapper, one group: M3 register checks on the extended tables
+  python3 -I tools/run_m94_all.py --group 42      # M5 wrapper, one group: M5 regression against the delivered M4 package (includes the M4, M3 and M2 regression tools)
+  python3 -I tools/run_m94_all.py --group 43      # M6 wrapper, one group: M6 unit tests: policy and specification register (versioned, two-person, no defaults)
+  python3 -I tools/run_m94_all.py --group 44      # M6 wrapper, one group: M6 unit tests: specification register
+  python3 -I tools/run_m94_all.py --group 45      # M6 wrapper, one group: M6 unit tests: intake (quotes, orders, deliveries, materials, readings, FX and index series)
+  python3 -I tools/run_m94_all.py --group 46      # M6 wrapper, one group: M6 unit tests: foreign exchange and freshness gates
+  python3 -I tools/run_m94_all.py --group 47      # M6 wrapper, one group: M6 unit tests: landed cost
+  python3 -I tools/run_m94_all.py --group 48      # M6 wrapper, one group: M6 unit tests: comparability and ranking
+  python3 -I tools/run_m94_all.py --group 49      # M6 wrapper, one group: M6 unit tests: demand coverage, over-ordering, duplicates
+  python3 -I tools/run_m94_all.py --group 50      # M6 wrapper, one group: M6 unit tests: scenarios (buy now, wait, stage, negotiate)
+  python3 -I tools/run_m94_all.py --group 51      # M6 wrapper, one group: M6 unit tests: opportunities, supplier performance, portfolio purchasing
+  python3 -I tools/run_m94_all.py --group 52      # M6 wrapper, one group: M6 unit tests: rules MP01 to MP10 and MPD1
+  python3 -I tools/run_m94_all.py --group 53      # M6 wrapper, one group: M6 unit tests: signals, runs, events and the reproducible formulas
+  python3 -I tools/run_m94_all.py --group 54      # M6 wrapper, one group: M6 unit tests: edge cases: shared views, gathering, FX, freshness, import checks (written to kill mutation survivors)
+  python3 -I tools/run_m94_all.py --group 55      # M6 wrapper, one group: M6 unit tests: edge cases: policy validators, specification gate
+  python3 -I tools/run_m94_all.py --group 56      # M6 wrapper, one group: M6 unit tests: edge cases: landed cost, comparability application, scenarios
+  python3 -I tools/run_m94_all.py --group 57      # M6 wrapper, one group: M6 unit tests: edge cases: demand, opportunities, portfolio, supplier performance
+  python3 -I tools/run_m94_all.py --group 58      # M6 wrapper, one group: M6 unit tests: edge cases: rules, analysis, runs, events
+  python3 -I tools/run_m94_all.py --group 59      # M6 wrapper, one group: M6 unit tests: port contract suites and faulty implementations
+  python3 -I tools/run_m94_all.py --group 60      # M6 wrapper, one group: M6 unit tests: static source rules
+  python3 -I tools/run_m94_all.py --group 61      # M6 wrapper, one group: M6 unit tests: faulty-input corpus
+  python3 -I tools/run_m94_all.py --group 62      # M6 wrapper, one group: M6 unit tests: golden cases
+  python3 -I tools/run_m94_all.py --group 63      # M6 wrapper, one group: M6 golden Builder Zero cases with the independent oracle
+  python3 -I tools/run_m94_all.py --group 64      # M6 wrapper, one group: M6 faulty-input corpus through intake and the procurement rules
+  python3 -I tools/run_m94_all.py --group 65      # M6 wrapper, one group: M6 ExtractionRuntimePort and MarketFeedPort contract suites against the in-memory references
+  python3 -I tools/run_m94_all.py --group 66      # M6 wrapper, one group: M6 faulty feeds and extractors (the contract suites must catch each)
+  python3 -I tools/run_m94_all.py --group 67      # M6 wrapper, one group: M6 narrated demonstration (compared with the saved output)
+  python3 -I tools/run_m94_all.py --group 68      # M6 wrapper, one group: M6 register checks
+  python3 -I tools/run_m94_all.py --group 69      # M6 wrapper, one group: M5 register checks on the extended tables
+  python3 -I tools/run_m94_all.py --group 70      # M6 wrapper, one group: M4 register checks on the extended tables
+  python3 -I tools/run_m94_all.py --group 71      # M6 wrapper, one group: M3 register checks on the extended tables
+  python3 -I tools/run_m94_all.py --group 72      # M6 wrapper, one group: M6 regression against the delivered M5 package (includes the M5, M4, M3 and M2 regression tools)
+  python3 -I tools/run_m94_all.py --group 73      # M6.2 register checks
+  python3 -I tools/run_m94_all.py --group 74      # M6.2 regression against the delivered M6 package
+  python3 -I tools/run_m94_all.py --group 75      # M6.3 register checks
+  python3 -I tools/run_m94_all.py --group 76      # M6.3 regression against the delivered M6.2 package
+  python3 -I tools/run_m94_all.py --group 77      # M6.4 register checks
+  python3 -I tools/run_m94_all.py --group 78      # M6.4 regression against the delivered M6.3 package
+  python3 -I tools/run_m94_all.py --group 79      # M6.5 register checks
+  python3 -I tools/run_m94_all.py --group 80      # M6.5 regression against the delivered M6.4 package
+  python3 -I tools/run_m94_all.py --group 81      # M9.1 register checks
+  python3 -I tools/run_m94_all.py --group 82      # M9.1 regression against the delivered M6.5 package
+  python3 -I tools/run_m94_all.py --group 83      # M9.2 register checks
+  python3 -I tools/run_m94_all.py --group 84      # M9.2 regression against the delivered M9.1 package (file and table checks)
+  python3 -I tools/run_m94_all.py --group 85      # M9.3 register checks
+  python3 -I tools/run_m94_all.py --group 86      # M9.3 regression against the delivered M9.2 package (file and table checks)
+  python3 -I tools/run_m94_all.py --group 87      # M9.4 register checks
+  python3 -I tools/run_m94_all.py --group 88      # M9.4 regression against the delivered M9.3 package (file and table checks; the other steps of that tool are the groups above, or run it whole: python3 -I tools/run_regression_m94.py)
+  The groups together are everything except the mutation run.  The groups for the M5 lifecycle tests and for the M5 and M6 wrappers are the slow ones; the wrappers are split into their components so that no single command is long.
+
+C. The regression tool, one step at a time (the first two commands are the quick ones)
+  python3 -I tools/run_regression_m94.py --static     # the file and table checks only
+  python3 -I tools/run_regression_m94.py --step R12
+  python3 -I tools/run_regression_m94.py --step R13
+  python3 -I tools/run_regression_m94.py --step R14
+  python3 -I tools/run_regression_m94.py --step R14a
+  python3 -I tools/run_regression_m94.py --step R14b
+  python3 -I tools/run_regression_m94.py --step R15
+  python3 -I tools/run_regression_m94.py --step R16
+  python3 -I tools/run_regression_m94.py --step R17
+  python3 -I tools/run_regression_m94.py --step R18
+  python3 -I tools/run_regression_m94.py --step R19
+  python3 -I tools/run_regression_m94.py --step R20
+  python3 -I tools/run_regression_m94.py --step R21
+  python3 -I tools/run_regression_m94.py --step R22
+  python3 -I tools/run_regression_m94.py --step R22b
+  python3 -I tools/run_regression_m94.py --step R22c
+  python3 -I tools/run_regression_m94.py --step R23
+  python3 -I tools/run_regression_m94.py --step R24
+  python3 -I tools/run_regression_m94.py --step R25
+  python3 -I tools/run_regression_m94.py --step R26
+  python3 -I tools/run_regression_m94.py --step R27
+  python3 -I tools/run_regression_m94.py --step R28
+  python3 -I tools/run_regression_m94.py --step R29
+  python3 -I tools/run_regression_m94.py --step R30
+  python3 -I tools/run_regression_m94.py --step R31
+  python3 -I tools/run_regression_m94.py --step R32
+  python3 -I tools/run_regression_m94.py              # everything (several minutes)
+
+D. The mutation run over apg/api/approval_boundary.py, in chunks of at most ten (each a few seconds to a minute; `--list` prints the ids; `--baseline` first checks that the unmutated module passes everything)
+  python3 -I tools/m91_mutants.py --baseline
+  python3 -I tools/m91_mutants.py --ids AB-CMP-001,AB-CMP-002,AB-CMP-003,AB-CMP-004,AB-CMP-005,AB-CMP-006,AB-CMP-007,AB-CMP-008,AB-CMP-009,AB-CMP-010
+  python3 -I tools/m91_mutants.py --ids AB-CMP-011,AB-CMP-012,AB-CMP-013,AB-CMP-014,AB-CMP-015,AB-CMP-016,AB-CMP-017,AB-CMP-018,AB-CMP-019,AB-CMP-020
+  python3 -I tools/m91_mutants.py --ids AB-CMP-021,AB-CMP-022,AB-CMP-023,AB-CMP-024,AB-CMP-025,AB-CMP-026,AB-CMP-027,AB-CMP-028,AB-CMP-029,AB-CMP-030
+  python3 -I tools/m91_mutants.py --ids AB-CMP-031,AB-CMP-032,AB-CMP-033,AB-CMP-034,AB-CMP-035,AB-CMP-036,AB-CMP-037,AB-CMP-038,AB-CMP-039,AB-CMP-040
+  python3 -I tools/m91_mutants.py --ids AB-CMP-041,AB-CMP-042,AB-CMP-043,AB-CMP-044,AB-CMP-045,AB-CMP-046,AB-CMP-047,AB-CMP-048,AB-CMP-049,AB-CMP-050
+  python3 -I tools/m91_mutants.py --ids AB-CMP-051,AB-CMP-052,AB-CMP-053,AB-CMP-054,AB-CMP-055,AB-CMP-056,AB-CMP-057,AB-CMP-058,AB-CMP-059,AB-CMP-060
+  python3 -I tools/m91_mutants.py --ids AB-CMP-061,AB-CMP-062,AB-CMP-063,AB-CMP-064,AB-CMP-065,AB-CMP-066,AB-BOL-001,AB-BOL-002,AB-BOL-003,AB-BOL-004
+  python3 -I tools/m91_mutants.py --ids AB-BOL-005,AB-BOL-006,AB-BOL-007,AB-BOL-008,AB-BOL-009,AB-BOL-010,AB-BOL-011,AB-BOL-012,AB-BOL-013,AB-BOL-014
+  python3 -I tools/m91_mutants.py --ids AB-BOL-015,AB-BOL-016,AB-BOL-017,AB-BOL-018,AB-BOL-019,AB-BOL-020,AB-BOL-021,AB-BOL-022,AB-BOL-023,AB-BOL-024
+  python3 -I tools/m91_mutants.py --ids AB-BOL-025,AB-BOL-026,AB-BOL-027,AB-NOT-001,AB-NOT-002,AB-NOT-003,AB-NOT-004,AB-NOT-005,AB-NOT-006,AB-NOT-007
+  python3 -I tools/m91_mutants.py --ids AB-NOT-008,AB-NOT-009,AB-NOT-010,AB-NOT-011,AB-NOT-012,AB-NOT-013,AB-NOT-014,AB-NOT-015,AB-NOT-016,AB-NOT-017
+  python3 -I tools/m91_mutants.py --ids AB-NOT-018,AB-NOT-019,AB-RSE-001,AB-ARI-001
+  python3 -I tools/m91_mutants.py --jobs 2            # the same, whole
+
+Everything in the M9.3, M9.2 and M9.1 instructions below still applies.
+
+APG M9.3 -- how to re-check the corrected session expiry check (Python 3 standard library only; built and run with Python 3.13.16; no network; writes only to temporary folders)
+Run from the folder that contains this file.  Every command below is short; none needs the whole wrapper.  If a time limit cuts a command off, that is an incomplete run, not a pass -- run it again alone.
+
+A. See the defect on the DELIVERED M9.2 package, then the correction here
+  1. Extract the delivered APG_M9_2_CODE_AND_DATA.zip into an empty folder (check its SHA-256 first: ad889d545a5ad91a100ff89425353b425a908fe23f50c44d0a11dd128247f1d8).
+  2. Copy tests/test_api_m93_corrections.py and tools/probe_m92_session_expiry.py from this package into that folder's tests/ and tools/.
+  3. In that folder:  python3 -I tools/probe_m92_session_expiry.py                       -> expect DEFECT PRESENT for impossible expiries, exit 1
+                      python3 -I tools/run_m2_tests.py -q test_api_m93_corrections.py      -> expect 12 of the 18 tests to fail or error
+  4. In this package:  python3 -I tools/probe_m92_session_expiry.py                       -> expect THE SESSION EXPIRY CHECK IS CORRECTED, exit 0
+                      python3 -I tools/run_m2_tests.py -q test_api_m93_corrections.py      -> expect failures 0  errors 0
+
+B. The checks, one at a time (python3 -I tools/run_m93_all.py --list prints this list)
+  python3 -I tools/run_m93_all.py --group 1      # The session-expiry probe (F-62)
+  python3 -I tools/run_m93_all.py --group 2      # unit tests: the M9.3 correction tests
+  python3 -I tools/run_m93_all.py --group 3      # unit tests: the M9.2 correction tests
+  python3 -I tools/run_m93_all.py --group 4      # unit tests: the approval request boundary (M9.1 tests, unchanged)
+  python3 -I tools/run_m93_all.py --group 5      # unit tests: the ProjectActionPort contract (EDR-31)
+  python3 -I tools/run_m93_all.py --group 6      # unit tests: static rules for apg/api
+  python3 -I tools/run_m93_all.py --group 7      # The M9.2 audit-findings probe
+  python3 -I tools/run_m93_all.py --group 8      # The ProjectActionPort contract suite and its faulty ports
+  python3 -I tools/run_m93_all.py --group 9      # The approval-boundary probe
+  python3 -I tools/run_m93_all.py --group 10      # unit tests: every M5 detection and finding test
+  python3 -I tools/run_m93_all.py --group 11      # The transition-bypass probe
+  python3 -I tools/run_m93_all.py --group 12      # The proposal-swap probe
+  python3 -I tools/run_m93_all.py --group 13      # The malformed-version probe
+  python3 -I tools/run_m93_all.py --group 14      # The stale-proposal probe
+  python3 -I tools/run_m93_all.py --group 15      # The approval-binding probe
+  python3 -I tools/run_m93_all.py --group 16      # M5 wrapper, one group: M5 unit tests: signal contract
+  python3 -I tools/run_m93_all.py --group 17      # M5 wrapper, one group: M5 unit tests: shared helpers
+  python3 -I tools/run_m93_all.py --group 18      # M5 wrapper, one group: M5 unit tests: detection policy and its bounds
+  python3 -I tools/run_m93_all.py --group 19      # M5 wrapper, one group: M5 unit tests: detection intake
+  python3 -I tools/run_m93_all.py --group 20      # M5 wrapper, one group: M5 unit tests: cost rules and their edge cases
+  python3 -I tools/run_m93_all.py --group 21      # M5 wrapper, one group: M5 unit tests: commercial rules and their edge cases
+  python3 -I tools/run_m93_all.py --group 22      # M5 wrapper, one group: M5 unit tests: operations rules and their edge cases
+  python3 -I tools/run_m93_all.py --group 23      # M5 wrapper, one group: M5 unit tests: signals, runs and the two reproducible formulas
+  python3 -I tools/run_m93_all.py --group 24      # M5 wrapper, one group: M5 unit tests: run pins, malformed results and the check of a stored run
+  python3 -I tools/run_m93_all.py --group 25      # M5 wrapper, one group: M5 unit tests: finding lifecycle, monitor and link edge cases
+  python3 -I tools/run_m93_all.py --group 26      # M5 wrapper, one group: M5 unit tests: noise control
+  python3 -I tools/run_m93_all.py --group 27      # M5 wrapper, one group: M5 unit tests: monitor
+  python3 -I tools/run_m93_all.py --group 28      # M5 wrapper, one group: M5 unit tests: overlap and portfolio
+  python3 -I tools/run_m93_all.py --group 29      # M5 wrapper, one group: M5 unit tests: notification contract suite and faulty notifiers
+  python3 -I tools/run_m93_all.py --group 30      # M5 wrapper, one group: M5 unit tests: static source rules
+  python3 -I tools/run_m93_all.py --group 31      # M5 wrapper, one group: M5 unit tests: faulty-input corpus
+  python3 -I tools/run_m93_all.py --group 32      # M5 wrapper, one group: M5 unit tests: golden cases
+  python3 -I tools/run_m93_all.py --group 33      # M5 wrapper, one group: M5 golden Builder Zero cases with the independent oracle
+  python3 -I tools/run_m93_all.py --group 34      # M5 wrapper, one group: M5 faulty-input corpus through intake and the detection rules
+  python3 -I tools/run_m93_all.py --group 35      # M5 wrapper, one group: M5 NotificationPort contract suite against the in-memory reference
+  python3 -I tools/run_m93_all.py --group 36      # M5 wrapper, one group: M5 faulty notifiers (the contract suite must catch each)
+  python3 -I tools/run_m93_all.py --group 37      # M5 wrapper, one group: M5 register checks
+  python3 -I tools/run_m93_all.py --group 38      # M5 wrapper, one group: M4 register checks on the extended tables
+  python3 -I tools/run_m93_all.py --group 39      # M5 wrapper, one group: M3 register checks on the extended tables
+  python3 -I tools/run_m93_all.py --group 40      # M5 wrapper, one group: M5 regression against the delivered M4 package (includes the M4, M3 and M2 regression tools)
+  python3 -I tools/run_m93_all.py --group 41      # M6 wrapper, one group: M6 unit tests: policy and specification register (versioned, two-person, no defaults)
+  python3 -I tools/run_m93_all.py --group 42      # M6 wrapper, one group: M6 unit tests: specification register
+  python3 -I tools/run_m93_all.py --group 43      # M6 wrapper, one group: M6 unit tests: intake (quotes, orders, deliveries, materials, readings, FX and index series)
+  python3 -I tools/run_m93_all.py --group 44      # M6 wrapper, one group: M6 unit tests: foreign exchange and freshness gates
+  python3 -I tools/run_m93_all.py --group 45      # M6 wrapper, one group: M6 unit tests: landed cost
+  python3 -I tools/run_m93_all.py --group 46      # M6 wrapper, one group: M6 unit tests: comparability and ranking
+  python3 -I tools/run_m93_all.py --group 47      # M6 wrapper, one group: M6 unit tests: demand coverage, over-ordering, duplicates
+  python3 -I tools/run_m93_all.py --group 48      # M6 wrapper, one group: M6 unit tests: scenarios (buy now, wait, stage, negotiate)
+  python3 -I tools/run_m93_all.py --group 49      # M6 wrapper, one group: M6 unit tests: opportunities, supplier performance, portfolio purchasing
+  python3 -I tools/run_m93_all.py --group 50      # M6 wrapper, one group: M6 unit tests: rules MP01 to MP10 and MPD1
+  python3 -I tools/run_m93_all.py --group 51      # M6 wrapper, one group: M6 unit tests: signals, runs, events and the reproducible formulas
+  python3 -I tools/run_m93_all.py --group 52      # M6 wrapper, one group: M6 unit tests: edge cases: shared views, gathering, FX, freshness, import checks (written to kill mutation survivors)
+  python3 -I tools/run_m93_all.py --group 53      # M6 wrapper, one group: M6 unit tests: edge cases: policy validators, specification gate
+  python3 -I tools/run_m93_all.py --group 54      # M6 wrapper, one group: M6 unit tests: edge cases: landed cost, comparability application, scenarios
+  python3 -I tools/run_m93_all.py --group 55      # M6 wrapper, one group: M6 unit tests: edge cases: demand, opportunities, portfolio, supplier performance
+  python3 -I tools/run_m93_all.py --group 56      # M6 wrapper, one group: M6 unit tests: edge cases: rules, analysis, runs, events
+  python3 -I tools/run_m93_all.py --group 57      # M6 wrapper, one group: M6 unit tests: port contract suites and faulty implementations
+  python3 -I tools/run_m93_all.py --group 58      # M6 wrapper, one group: M6 unit tests: static source rules
+  python3 -I tools/run_m93_all.py --group 59      # M6 wrapper, one group: M6 unit tests: faulty-input corpus
+  python3 -I tools/run_m93_all.py --group 60      # M6 wrapper, one group: M6 unit tests: golden cases
+  python3 -I tools/run_m93_all.py --group 61      # M6 wrapper, one group: M6 golden Builder Zero cases with the independent oracle
+  python3 -I tools/run_m93_all.py --group 62      # M6 wrapper, one group: M6 faulty-input corpus through intake and the procurement rules
+  python3 -I tools/run_m93_all.py --group 63      # M6 wrapper, one group: M6 ExtractionRuntimePort and MarketFeedPort contract suites against the in-memory references
+  python3 -I tools/run_m93_all.py --group 64      # M6 wrapper, one group: M6 faulty feeds and extractors (the contract suites must catch each)
+  python3 -I tools/run_m93_all.py --group 65      # M6 wrapper, one group: M6 narrated demonstration (compared with the saved output)
+  python3 -I tools/run_m93_all.py --group 66      # M6 wrapper, one group: M6 register checks
+  python3 -I tools/run_m93_all.py --group 67      # M6 wrapper, one group: M5 register checks on the extended tables
+  python3 -I tools/run_m93_all.py --group 68      # M6 wrapper, one group: M4 register checks on the extended tables
+  python3 -I tools/run_m93_all.py --group 69      # M6 wrapper, one group: M3 register checks on the extended tables
+  python3 -I tools/run_m93_all.py --group 70      # M6 wrapper, one group: M6 regression against the delivered M5 package (includes the M5, M4, M3 and M2 regression tools)
+  python3 -I tools/run_m93_all.py --group 71      # M6.2 register checks
+  python3 -I tools/run_m93_all.py --group 72      # M6.2 regression against the delivered M6 package
+  python3 -I tools/run_m93_all.py --group 73      # M6.3 register checks
+  python3 -I tools/run_m93_all.py --group 74      # M6.3 regression against the delivered M6.2 package
+  python3 -I tools/run_m93_all.py --group 75      # M6.4 register checks
+  python3 -I tools/run_m93_all.py --group 76      # M6.4 regression against the delivered M6.3 package
+  python3 -I tools/run_m93_all.py --group 77      # M6.5 register checks
+  python3 -I tools/run_m93_all.py --group 78      # M6.5 regression against the delivered M6.4 package
+  python3 -I tools/run_m93_all.py --group 79      # M9.1 register checks
+  python3 -I tools/run_m93_all.py --group 80      # M9.1 regression against the delivered M6.5 package
+  python3 -I tools/run_m93_all.py --group 81      # M9.2 register checks
+  python3 -I tools/run_m93_all.py --group 82      # M9.2 regression against the delivered M9.1 package (file and table checks)
+  python3 -I tools/run_m93_all.py --group 83      # M9.3 register checks
+  python3 -I tools/run_m93_all.py --group 84      # M9.3 regression against the delivered M9.2 package (file and table checks; the other steps of that tool are the groups above, or run it whole: python3 -I tools/run_regression_m93.py)
+  The groups together are everything except the mutation run.  The groups for the M5 lifecycle tests and for the M5 and M6 wrappers are the slow ones; the wrappers are split into their components so that no single command is long.
+
+C. The regression tool, one step at a time (the first two commands are the quick ones)
+  python3 -I tools/run_regression_m93.py --static     # the file and table checks only
+  python3 -I tools/run_regression_m93.py --step R12
+  python3 -I tools/run_regression_m93.py --step R13
+  python3 -I tools/run_regression_m93.py --step R14
+  python3 -I tools/run_regression_m93.py --step R14b
+  python3 -I tools/run_regression_m93.py --step R15
+  python3 -I tools/run_regression_m93.py --step R16
+  python3 -I tools/run_regression_m93.py --step R17
+  python3 -I tools/run_regression_m93.py --step R18
+  python3 -I tools/run_regression_m93.py --step R19
+  python3 -I tools/run_regression_m93.py --step R20
+  python3 -I tools/run_regression_m93.py --step R21
+  python3 -I tools/run_regression_m93.py --step R22
+  python3 -I tools/run_regression_m93.py --step R22b
+  python3 -I tools/run_regression_m93.py --step R23
+  python3 -I tools/run_regression_m93.py --step R24
+  python3 -I tools/run_regression_m93.py --step R25
+  python3 -I tools/run_regression_m93.py --step R26
+  python3 -I tools/run_regression_m93.py --step R27
+  python3 -I tools/run_regression_m93.py --step R28
+  python3 -I tools/run_regression_m93.py --step R29
+  python3 -I tools/run_regression_m93.py --step R30
+  python3 -I tools/run_regression_m93.py --step R31
+  python3 -I tools/run_regression_m93.py --step R32
+  python3 -I tools/run_regression_m93.py              # everything (several minutes)
+
+D. The mutation run over apg/api/approval_boundary.py, in chunks of at most ten (each a few seconds to a minute; `--list` prints the ids; `--baseline` first checks that the unmutated module passes everything)
+  python3 -I tools/m91_mutants.py --baseline
+  python3 -I tools/m91_mutants.py --ids AB-CMP-001,AB-CMP-002,AB-CMP-003,AB-CMP-004,AB-CMP-005,AB-CMP-006,AB-CMP-007,AB-CMP-008,AB-CMP-009,AB-CMP-010
+  python3 -I tools/m91_mutants.py --ids AB-CMP-011,AB-CMP-012,AB-CMP-013,AB-CMP-014,AB-CMP-015,AB-CMP-016,AB-CMP-017,AB-CMP-018,AB-CMP-019,AB-CMP-020
+  python3 -I tools/m91_mutants.py --ids AB-CMP-021,AB-CMP-022,AB-CMP-023,AB-CMP-024,AB-CMP-025,AB-CMP-026,AB-CMP-027,AB-CMP-028,AB-CMP-029,AB-CMP-030
+  python3 -I tools/m91_mutants.py --ids AB-CMP-031,AB-CMP-032,AB-CMP-033,AB-CMP-034,AB-CMP-035,AB-CMP-036,AB-CMP-037,AB-CMP-038,AB-CMP-039,AB-CMP-040
+  python3 -I tools/m91_mutants.py --ids AB-CMP-041,AB-CMP-042,AB-CMP-043,AB-CMP-044,AB-CMP-045,AB-CMP-046,AB-CMP-047,AB-CMP-048,AB-CMP-049,AB-CMP-050
+  python3 -I tools/m91_mutants.py --ids AB-CMP-051,AB-CMP-052,AB-CMP-053,AB-CMP-054,AB-CMP-055,AB-CMP-056,AB-CMP-057,AB-CMP-058,AB-CMP-059,AB-CMP-060
+  python3 -I tools/m91_mutants.py --ids AB-BOL-001,AB-BOL-002,AB-BOL-003,AB-BOL-004,AB-BOL-005,AB-BOL-006,AB-BOL-007,AB-BOL-008,AB-BOL-009,AB-BOL-010
+  python3 -I tools/m91_mutants.py --ids AB-BOL-011,AB-BOL-012,AB-BOL-013,AB-BOL-014,AB-BOL-015,AB-BOL-016,AB-BOL-017,AB-BOL-018,AB-BOL-019,AB-BOL-020
+  python3 -I tools/m91_mutants.py --ids AB-BOL-021,AB-BOL-022,AB-BOL-023,AB-BOL-024,AB-BOL-025,AB-BOL-026,AB-BOL-027,AB-BOL-028,AB-BOL-029,AB-BOL-030
+  python3 -I tools/m91_mutants.py --ids AB-NOT-001,AB-NOT-002,AB-NOT-003,AB-NOT-004,AB-NOT-005,AB-NOT-006,AB-NOT-007,AB-NOT-008,AB-NOT-009,AB-NOT-010
+  python3 -I tools/m91_mutants.py --ids AB-NOT-011,AB-NOT-012,AB-NOT-013,AB-NOT-014,AB-NOT-015,AB-NOT-016,AB-NOT-017,AB-NOT-018,AB-NOT-019,AB-RSE-001
+  python3 -I tools/m91_mutants.py --ids AB-ARI-001
+  python3 -I tools/m91_mutants.py --jobs 2            # the same, whole
+
+Everything in the M9.2 and M9.1 instructions below still applies.
+
+APG M9.2 -- how to re-check the corrected approval request boundary (Python 3 standard library only; built and run with Python 3.13.16; no network; writes only to temporary folders)
+Run from the folder that contains this file.  Every command below is short; none needs the whole wrapper.  If a time limit cuts a command off, that is an incomplete run, not a pass -- run it again alone.
+
+A. See the defects on the DELIVERED M9.1 package, then the corrections here
+  1. Extract the delivered APG_M9_1_CODE_AND_DATA.zip into an empty folder (check its SHA-256 first: 12326469a951238f674013918f279b89a75f3ea471fa6c5cbcefd1df0496cb9f).
+  2. Copy tests/test_api_m92_corrections.py and tools/probe_m91_audit_findings.py from this package into that folder's tests/ and tools/.
+  3. In that folder:  python3 -I tools/probe_m91_audit_findings.py                       -> expect DEFECT PRESENT on each of the five items, exit 1
+                      python3 -I tools/run_m2_tests.py -q test_api_m92_corrections.py      -> expect 16 of the 24 tests to fail or error
+  4. In this package:  python3 -I tools/probe_m91_audit_findings.py                       -> expect THE AUDIT FINDINGS ARE CORRECTED, exit 0
+                      python3 -I tools/run_m2_tests.py -q test_api_m92_corrections.py      -> expect failures 0  errors 0
+
+B. The checks, one at a time (python3 -I tools/run_m92_all.py --list prints this list)
+  python3 -I tools/run_m92_all.py --group 1      # The audit-findings probe (F-58 to F-61 and the audit consistency)
+  python3 -I tools/run_m92_all.py --group 2      # unit tests: the M9.2 correction tests
+  python3 -I tools/run_m92_all.py --group 3      # unit tests: the approval request boundary (M9.1 tests, unchanged)
+  python3 -I tools/run_m92_all.py --group 4      # unit tests: the ProjectActionPort contract (EDR-31)
+  python3 -I tools/run_m92_all.py --group 5      # unit tests: static rules for apg/api
+  python3 -I tools/run_m92_all.py --group 6      # The ProjectActionPort contract suite and its faulty ports
+  python3 -I tools/run_m92_all.py --group 7      # The approval-boundary probe
+  python3 -I tools/run_m92_all.py --group 8      # unit tests: every M5 detection and finding test
+  python3 -I tools/run_m92_all.py --group 9      # The transition-bypass probe
+  python3 -I tools/run_m92_all.py --group 10      # The proposal-swap probe
+  python3 -I tools/run_m92_all.py --group 11      # The malformed-version probe
+  python3 -I tools/run_m92_all.py --group 12      # The stale-proposal probe
+  python3 -I tools/run_m92_all.py --group 13      # The approval-binding probe
+  python3 -I tools/run_m92_all.py --group 14      # The M5 wrapper
+  python3 -I tools/run_m92_all.py --group 15      # The M6 wrapper (includes the M6 regression against M5)
+  python3 -I tools/run_m92_all.py --group 16      # M6.2 register checks
+  python3 -I tools/run_m92_all.py --group 17      # M6.2 regression against the delivered M6 package
+  python3 -I tools/run_m92_all.py --group 18      # M6.3 register checks
+  python3 -I tools/run_m92_all.py --group 19      # M6.3 regression against the delivered M6.2 package
+  python3 -I tools/run_m92_all.py --group 20      # M6.4 register checks
+  python3 -I tools/run_m92_all.py --group 21      # M6.4 regression against the delivered M6.3 package
+  python3 -I tools/run_m92_all.py --group 22      # M6.5 register checks
+  python3 -I tools/run_m92_all.py --group 23      # M6.5 regression against the delivered M6.4 package
+  python3 -I tools/run_m92_all.py --group 24      # M9.1 register checks
+  python3 -I tools/run_m92_all.py --group 25      # M9.1 regression against the delivered M6.5 package
+  python3 -I tools/run_m92_all.py --group 26      # M9.2 register checks
+  python3 -I tools/run_m92_all.py --group 27      # M9.2 regression against the delivered M9.1 package (file and table checks; the other steps of that tool are the groups above, or run it whole: python3 -I tools/run_regression_m92.py)
+  The groups together are everything except the mutation run.  Group 8 (the M5 lifecycle tests), 14 and 15 (the M5 and M6 wrappers) are the slow ones.
+
+C. The regression tool, one step at a time (the first two commands are the quick ones)
+  python3 -I tools/run_regression_m92.py --static     # the file and table checks only
+  python3 -I tools/run_regression_m92.py --step R12
+  python3 -I tools/run_regression_m92.py --step R13
+  python3 -I tools/run_regression_m92.py --step R14
+  python3 -I tools/run_regression_m92.py --step R15
+  python3 -I tools/run_regression_m92.py --step R16
+  python3 -I tools/run_regression_m92.py --step R17
+  python3 -I tools/run_regression_m92.py --step R18
+  python3 -I tools/run_regression_m92.py --step R19
+  python3 -I tools/run_regression_m92.py --step R20
+  python3 -I tools/run_regression_m92.py --step R21
+  python3 -I tools/run_regression_m92.py --step R22
+  python3 -I tools/run_regression_m92.py --step R23
+  python3 -I tools/run_regression_m92.py --step R24
+  python3 -I tools/run_regression_m92.py --step R25
+  python3 -I tools/run_regression_m92.py --step R26
+  python3 -I tools/run_regression_m92.py --step R27
+  python3 -I tools/run_regression_m92.py --step R28
+  python3 -I tools/run_regression_m92.py --step R29
+  python3 -I tools/run_regression_m92.py --step R30
+  python3 -I tools/run_regression_m92.py --step R31
+  python3 -I tools/run_regression_m92.py --step R32
+  python3 -I tools/run_regression_m92.py              # everything (several minutes)
+
+D. The mutation run over apg/api/approval_boundary.py, in chunks of at most ten (each a few seconds to a minute; `--list` prints the ids; `--baseline` first checks that the unmutated module passes everything)
+  python3 -I tools/m91_mutants.py --baseline
+  python3 -I tools/m91_mutants.py --ids AB-CMP-001,AB-CMP-002,AB-CMP-003,AB-CMP-004,AB-CMP-005,AB-CMP-006,AB-CMP-007,AB-CMP-008,AB-CMP-009,AB-CMP-010
+  python3 -I tools/m91_mutants.py --ids AB-CMP-011,AB-CMP-012,AB-CMP-013,AB-CMP-014,AB-CMP-015,AB-CMP-016,AB-CMP-017,AB-CMP-018,AB-CMP-019,AB-CMP-020
+  python3 -I tools/m91_mutants.py --ids AB-CMP-021,AB-CMP-022,AB-CMP-023,AB-CMP-024,AB-CMP-025,AB-CMP-026,AB-CMP-027,AB-CMP-028,AB-CMP-029,AB-CMP-030
+  python3 -I tools/m91_mutants.py --ids AB-CMP-031,AB-CMP-032,AB-CMP-033,AB-CMP-034,AB-CMP-035,AB-CMP-036,AB-CMP-037,AB-CMP-038,AB-CMP-039,AB-CMP-040
+  python3 -I tools/m91_mutants.py --ids AB-CMP-041,AB-CMP-042,AB-CMP-043,AB-CMP-044,AB-CMP-045,AB-CMP-046,AB-CMP-047,AB-CMP-048,AB-BOL-001,AB-BOL-002
+  python3 -I tools/m91_mutants.py --ids AB-BOL-003,AB-BOL-004,AB-BOL-005,AB-BOL-006,AB-BOL-007,AB-BOL-008,AB-BOL-009,AB-BOL-010,AB-BOL-011,AB-BOL-012
+  python3 -I tools/m91_mutants.py --ids AB-BOL-013,AB-BOL-014,AB-BOL-015,AB-BOL-016,AB-BOL-017,AB-BOL-018,AB-BOL-019,AB-BOL-020,AB-BOL-021,AB-BOL-022
+  python3 -I tools/m91_mutants.py --ids AB-BOL-023,AB-BOL-024,AB-BOL-025,AB-NOT-001,AB-NOT-002,AB-NOT-003,AB-NOT-004,AB-NOT-005,AB-NOT-006,AB-NOT-007
+  python3 -I tools/m91_mutants.py --ids AB-NOT-008,AB-NOT-009,AB-NOT-010,AB-NOT-011,AB-NOT-012,AB-NOT-013,AB-NOT-014,AB-NOT-015,AB-NOT-016,AB-NOT-017
+  python3 -I tools/m91_mutants.py --ids AB-NOT-018,AB-RSE-001
+  python3 -I tools/m91_mutants.py --jobs 2            # the same, whole
+
+Everything in the M9.1 instructions below still applies.
+
+APG M9.1 -- how to re-check the approval request boundary (Python 3 standard library only; built and run with Python 3.13.16; no network; writes only to temporary folders)
+Run from the folder that contains this file.  The whole wrapper takes several minutes; if a time limit cuts it off, that is an incomplete run, not a pass -- run the groups below one at a time instead.
+
+  python3 -I tools/probe_approval_boundary.py          # six situations through the three calls -> expect: THE BOUNDARY BEHAVES AS THE CONTRACT SAYS in these six situations
+  python3 -I tools/run_m2_tests.py -q 'test_api_approval_boundary*'   # the 67 boundary tests
+  python3 -I tools/run_m2_tests.py -q 'test_api_action_port_contract*' # the 4 port-contract tests (the suite against the reference, and against each faulty port)
+  python3 -I tools/run_m2_tests.py -q 'test_api_static*'              # the 7 static rules for apg/api
+  python3 -I tools/run_m91_contracts.py                # the 14 ProjectActionPort cases on the reference -> expect: ALL CONTRACT CASES PASS
+  python3 -I tools/run_m2_tests.py -q 'test_det_*'     # the lifecycle tests, unchanged (about 30 seconds)
+  python3 -I tools/run_regression_m91.py --static      # the M6.5 files are unchanged except the declared ones (the hash and table checks only; drop --static to run the other tools too)
+  python3 -I tools/programme_check_m91.py .            # structure of the M9.1 records
+  python3 -I tools/run_m91_all.py                      # everything above and below except the mutation run, in named groups with the time of each -> expect: ALL M9.1 CHECKS PASS
+  python3 -I tools/m91_mutants.py --jobs 2             # the mutation run over apg/api/approval_boundary.py (92 mutants; about a minute here) -> expect: MUTATION RUN OK
+The same mutation run in chunks of at most 25 (each about 15 seconds here; `--list` prints the ids):
+  python3 -I tools/m91_mutants.py --ids AB-CMP-001,AB-CMP-002,AB-CMP-003,AB-CMP-004,AB-CMP-005,AB-CMP-006,AB-CMP-007,AB-CMP-008,AB-CMP-009,AB-CMP-010,AB-CMP-011,AB-CMP-012,AB-CMP-013,AB-CMP-014,AB-CMP-015,AB-CMP-016,AB-CMP-017,AB-CMP-018,AB-CMP-019,AB-CMP-020,AB-CMP-021,AB-CMP-022,AB-CMP-023,AB-CMP-024,AB-CMP-025
+  python3 -I tools/m91_mutants.py --ids AB-CMP-026,AB-CMP-027,AB-CMP-028,AB-CMP-029,AB-CMP-030,AB-CMP-031,AB-CMP-032,AB-CMP-033,AB-CMP-034,AB-CMP-035,AB-CMP-036,AB-CMP-037,AB-CMP-038,AB-CMP-039,AB-CMP-040,AB-CMP-041,AB-CMP-042,AB-CMP-043,AB-CMP-044,AB-CMP-045,AB-CMP-046,AB-BOL-001,AB-BOL-002,AB-BOL-003,AB-BOL-004
+  python3 -I tools/m91_mutants.py --ids AB-BOL-005,AB-BOL-006,AB-BOL-007,AB-BOL-008,AB-BOL-009,AB-BOL-010,AB-BOL-011,AB-BOL-012,AB-BOL-013,AB-BOL-014,AB-BOL-015,AB-BOL-016,AB-BOL-017,AB-BOL-018,AB-BOL-019,AB-BOL-020,AB-BOL-021,AB-BOL-022,AB-BOL-023,AB-BOL-024,AB-BOL-025,AB-BOL-026,AB-BOL-027,AB-NOT-001,AB-NOT-002
+  python3 -I tools/m91_mutants.py --ids AB-NOT-003,AB-NOT-004,AB-NOT-005,AB-NOT-006,AB-NOT-007,AB-NOT-008,AB-NOT-009,AB-NOT-010,AB-NOT-011,AB-NOT-012,AB-NOT-013,AB-NOT-014,AB-NOT-015,AB-NOT-016,AB-NOT-017,AB-NOT-018,AB-RSE-001
+
+Everything in the M6.5 instructions below still applies.
+
+APG M6.5 -- how to re-check the correction (Python 3 standard library only; built and run with Python 3.13.16; no network; writes only to temporary folders)
+Run from the folder that contains this file.  The whole wrapper takes several minutes; if a time limit cuts it off, that is an incomplete run, not a pass -- run the groups below one at a time instead.
+
+  python3 -I tools/probe_transition_bypass.py            # the defect's scenario -> expect: OK: every incomplete approval is refused at transition and the complete one is accepted   (the same probe on the delivered M6.4 code prints DEFECT PRESENT)
+  python3 -I tools/run_m2_tests.py -q 'test_det_transition_gate*'   # the 36 new tests
+  python3 -I tools/run_m2_tests.py -q 'test_det_proposal_identity*' # the 29 M6.4 tests (two assertions changed, see the change record)
+  python3 -I tools/run_m2_tests.py -q 'test_det_version_types*'     # the 34 M6.3 tests (calls changed; three assertions changed, see the change record)
+  python3 -I tools/run_m2_tests.py -q 'test_det_proposal_binding*'  # the 47 M6.2 tests (calls changed, assertions kept)
+  python3 -I tools/run_m2_tests.py -q 'test_det_approval_binding*'  # the 21 M6.1 tests (calls changed, assertions kept)
+  python3 -I tools/run_m2_tests.py -q 'test_det_*'                  # every M5 detection and finding test (about 30 seconds)
+  python3 -I tools/run_regression_m65.py --static  # the M6.4 files are unchanged except the declared ones (the hash and table checks only; drop --static to run the other tools too)
+  python3 -I tools/programme_check_m65.py .      # structure of the M6.5 records
+  python3 -I tools/run_m65_all.py                # everything above and below except the mutation runs, in named groups with the time of each -> expect: ALL M6.5 CHECKS PASS
+  python3 -I tools/m5_mutants.py --only FN --jobs 2   # the M5 mutation run for apg/det/findings.py on the corrected code (also DT, RL, PF: the source hash covers all four; run them one after another) -> expect: MUTATION RUN OK
+  python3 -I tools/run_m6_all.py                 # the whole M6 wrapper (about 80 seconds)
+
+Everything in the M6.4 instructions below still applies.
+
+APG M6.4 -- how to re-check the correction (Python 3 standard library only; built and run with Python 3.13.16; no network; writes only to temporary folders)
+Run from the folder that contains this file.  The whole wrapper takes several minutes; if a time limit cuts it off, that is an incomplete run, not a pass -- run the groups below one at a time instead.
+
+  python3 -I tools/probe_proposal_swap.py                # the defect's scenario -> expect: APPROVAL IS BOUND TO THE EXACT PROPOSAL   (the same probe on the delivered M6.3 code prints DEFECT PRESENT)
+  python3 -I tools/run_m2_tests.py -q 'test_det_proposal_identity*'   # the 29 new tests
+  python3 -I tools/run_m2_tests.py -q 'test_det_version_types*'       # the 34 M6.3 tests (calls and fixtures updated, assertions kept)
+  python3 -I tools/run_m2_tests.py -q 'test_det_proposal_binding*'    # the 47 M6.2 tests (calls and fixtures updated, assertions kept)
+  python3 -I tools/run_m2_tests.py -q 'test_det_approval_binding*'    # the 21 M6.1 tests (calls and fixtures updated, assertions kept)
+  python3 -I tools/run_m2_tests.py -q 'test_det_*'                    # every M5 detection and finding test (about 30 seconds)
+  python3 -I tools/run_regression_m64.py --static  # the M6.3 files are unchanged except the declared ones (the hash and table checks only; drop --static to run the other tools too)
+  python3 -I tools/programme_check_m64.py .      # structure of the M6.4 records
+  python3 -I tools/run_m64_all.py                # everything above and below except the mutation runs, in named groups with the time of each -> expect: ALL M6.4 CHECKS PASS
+  python3 -I tools/m5_mutants.py --only FN --jobs 2   # the M5 mutation run for apg/det/findings.py on the corrected code (also DT, RL, PF: the source hash covers all four; run them one after another) -> expect: MUTATION RUN OK
+  python3 -I tools/run_m6_all.py                 # the whole M6 wrapper (about 80 seconds)
+
+Everything in the M6.3 instructions below still applies.
+
+APG M6.3 -- how to re-check the correction (Python 3 standard library only; built and run with Python 3.13.16; no network; writes only to temporary folders)
+Run from the folder that contains this file.  The whole wrapper takes several minutes; if a time limit cuts it off, that is an incomplete run, not a pass -- run the groups below one at a time instead.
+
+  python3 -I tools/probe_malformed_proposal_version.py   # the audit's scenario -> expect: MALFORMED VERSIONS ARE REFUSED   (the same probe on the delivered M6.2 code prints DEFECT PRESENT)
+  python3 -I tools/run_m2_tests.py -q 'test_det_version_types*'       # the 34 new tests
+  python3 -I tools/run_m2_tests.py -q 'test_det_proposal_binding*'    # the 47 M6.2 tests (unchanged)
+  python3 -I tools/run_m2_tests.py -q 'test_det_approval_binding*'    # the 21 M6.1 tests (unchanged since M6.2)
+  python3 -I tools/run_m2_tests.py -q 'test_det_*'                    # every M5 detection and finding test (about 30 seconds)
+  python3 -I tools/run_regression_m63.py --static  # the M6.2 files are unchanged except the declared ones (the hash and table checks only; drop --static to run the other tools too)
+  python3 -I tools/programme_check_m63.py .      # structure of the M6.3 records
+  python3 -I tools/run_m63_all.py                # everything above and below except the mutation runs, in named groups with the time of each -> expect: ALL M6.3 CHECKS PASS
+  python3 -I tools/m5_mutants.py --only FN --jobs 2   # the M5 mutation run for apg/det/findings.py on the corrected code (also DT, RL, PF: the source hash covers all four; run them one after another) -> expect: MUTATION RUN OK
+  python3 -I tools/run_m6_all.py                 # the whole M6 wrapper (about 80 seconds)
+
+Everything in the M6.2 instructions below still applies.
+
+APG M6.2 -- how to re-check the correction (Python 3 standard library only; built and run with Python 3.13.16; no network; writes only to temporary folders)
+Run from the folder that contains this file.  The whole wrapper takes several minutes; if a time limit cuts it off, that is an incomplete run, not a pass -- run the groups below one at a time instead.
+
+  python3 -I tools/probe_stale_proposal.py       # the audit's scenario -> expect: PROPOSAL IS BOUND TO THE EVIDENCE   (the same probe on the delivered M6.1 code prints DEFECT PRESENT)
+  python3 -I tools/run_m2_tests.py -q 'test_det_proposal_binding*'    # the 47 new tests
+  python3 -I tools/run_m2_tests.py -q 'test_det_approval_binding*'    # the 21 M6.1 tests (changed in M6.2)
+  python3 -I tools/run_m2_tests.py -q 'test_det_*'                    # every M5 detection and finding test (about 30 seconds)
+  python3 -I tools/run_regression_m62.py --static  # the M6.1 files are unchanged except the declared ones (the hash and table checks only; drop --static to run the other tools too)
+  python3 -I tools/programme_check_m62.py .      # structure of the M6.2 records
+  python3 -I tools/run_m62_all.py                # everything above and below except the mutation runs, in named groups with the time of each -> expect: ALL M6.2 CHECKS PASS
+  python3 -I tools/m5_mutants.py --only FN --jobs 2   # the M5 mutation run for apg/det/findings.py on the corrected code (also DT, RL, PF: the source hash covers all four) -> expect: MUTATION RUN OK
+  python3 -I tools/run_m6_all.py                 # the whole M6 wrapper (about 80 seconds)
+
+Everything in the M6.1 instructions below still applies.
+
+APG M6.1 -- how to re-check the correction (Python 3 standard library only; built and run with Python 3.13.16; no network; writes only to temporary folders)
+Run from the folder that contains this file:
+
+  python3 -I tools/run_m61_all.py                # everything below except the mutation runs, in named groups with the time of each (about 5 minutes) -> expect: ALL M6.1 CHECKS PASS
+  python3 -I tools/probe_approval_binding.py     # reproduces the version-1-to-version-2 scenario -> expect: APPROVAL IS BOUND TO THE EVIDENCE   (the same probe on the delivered M6 code prints DEFECT PRESENT)
+  python3 -I tools/run_m2_tests.py -q 'test_det_approval_binding*'   # the 21 new tests
+  python3 -I tools/run_regression_m61.py         # the M6 files are unchanged except the declared ones (add --static for the hash checks only)
+  python3 -I tools/programme_check_m61.py .      # structure of the M6.1 records
+  python3 -I tools/m5_mutants.py --only FN       # the M5 mutation run for apg/det/findings.py on the corrected code (also DT, RL, PF: the source hash covers all four) -> expect: MUTATION RUN OK
+  python3 -I tools/run_m6_all.py                 # the whole M6 wrapper, as before
+
+Everything in the M6 instructions below still applies.
+
+APG M6 -- how to re-check the code and data
+Python 3 standard library only (built and run with Python 3.13.16). No network. Writes only to temporary folders.
+Run from the folder that contains this file:
+
+  python3 -I tools/run_m6_all.py                 # about a minute and a half, in named groups with the time of each -> expect: ALL M6 CHECKS PASS
+  python3 -I tools/run_m6_all.py --with-earlier  # the same, then the whole M5 wrapper (several minutes more) -> expect: ALL M6 CHECKS PASS
+  python3 -I tools/m6_mutants.py --jobs 2        # the M6 mutation run (long; --only CP runs one module, --list shows the ids) -> expect: MUTATION RUN OK
+  python3 -I tools/m5_mutants.py --only DT       # the M5 mutation run repeated for the four M5 files M6 changed: DT (detect), FN (findings), RL (relations), PF (portfolio) -> expect: MUTATION RUN OK each
+  python3 -I tools/m5_mutants.py --jobs 2        # the whole M5 mutation run, if wanted -> expect: MUTATION RUN OK
+  python3 -I tools/run_demo_m6.py                # narrated procurement demonstration on Builder Zero (add --check to compare with the saved output)
+
+Individual tools (each group of run_m6_all can be run on its own):
+  python3 -I tools/run_m2_tests.py -q            # all unit, adversarial and golden tests (M2 to M6); a file pattern may be given, e.g. 'test_mkt_compare.py' or 'test_mkt_*.py'
+  python3 -I tools/run_golden_mkt.py             # golden Builder Zero procurement cases against the recorded answers and an independent csv-only oracle (both tenants)
+  python3 -I tools/run_mkt_corpus.py             # the 78 deliberately faulty inputs through intake and the procurement rules
+  python3 -I tools/run_m6_contracts.py           # the ExtractionRuntimePort and MarketFeedPort contract suites against the in-memory references (24 cases)
+  python3 -I tools/run_m6_faults.py              # the 25 faulty feeds and extractors the suites must catch
+  python3 -I tools/programme_check_m6.py .       # structure of the M6 registers and the RFC-01 record
+  python3 -I tools/run_regression_m6.py          # M5 files unchanged except the listed ones; programme tables changed only as allowed; M5 findings and interpretations untouched; M6 golden cases and demonstration
+  python3 -I tools/run_regression_m5.py          # M4 files unchanged (against the stored M5 tables)
+  python3 -I tools/run_m5_all.py                 # the whole M5 wrapper (add --with-earlier for the M4 wrapper too)
+  python3 -I tools/make_mkt_templates.py DIR     # regenerates the nine procurement import templates (compare with mkt_templates/)
+
+Draft working pack. Non-production. Everything is synthetic or draft. Nothing here is integrated, accepted or reviewed by anyone other than the builder. The logs/ folder holds the builder's run output.

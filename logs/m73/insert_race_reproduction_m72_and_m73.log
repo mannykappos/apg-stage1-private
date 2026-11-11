@@ -1,0 +1,35 @@
+delivered M7.2 ZIP sha256 d2f900490f9a0d88c76c390aac3e7d2169f30ccf770ccb8f9dbc779f1d08a476
+
+== ON THE DELIVERED M7.2 PACKAGE (unmodified, the probe copied in) ==
+$ python3 -I tools/probe_m72_insert_race.py
+DEFECT PRESENT  submit  point 1A: refused (SOURCE_CHANGED); the act was committed as revision 2 and then reversed; the recommendation is generated
+DEFECT PRESENT  submit  point 1B: refused (SOURCE_CHANGED); the act was committed as revision 2 and then reversed; the recommendation is generated
+later change    submit  point 2 : refused (SOURCE_CHANGED); the recommendation is generated
+later change    submit  point 3 : accepted; the recommendation is awaiting_approval; the next checked act (approval): SOURCE_CHANGED
+DEFECT PRESENT  approve point 1A: refused (SOURCE_CHANGED); the act was committed as revision 3 and then reversed; the recommendation is awaiting_approval
+DEFECT PRESENT  approve point 1B: refused (SOURCE_CHANGED); the act was committed as revision 3 and then reversed; the recommendation is awaiting_approval
+later change    approve point 2 : refused (SOURCE_CHANGED); the recommendation is awaiting_approval
+later change    approve point 3 : accepted; the recommendation is approved; the next checked act (start of work): SOURCE_CHANGED
+DEFECT PRESENT  start   point 1A: refused (SOURCE_CHANGED); the act was committed as revision 4 and then reversed; the recommendation is approved
+DEFECT PRESENT  start   point 1B: refused (SOURCE_CHANGED); the act was committed as revision 4 and then reversed; the recommendation is approved
+later change    start   point 2 : refused (SOURCE_CHANGED); the recommendation is approved
+later change    start   point 3 : accepted; the recommendation is in_progress; the next run: the approval is ended
+DEFECT PRESENT (6 of 6 present)
+exit 1
+
+== ON M7.3 ==
+$ python3 -I tools/probe_m72_insert_race.py
+closed          submit  point 1A: refused (SOURCE_CHANGED); nothing was committed; the recommendation is generated
+closed          submit  point 1B: refused (SOURCE_CHANGED); nothing was committed; the recommendation is generated
+later change    submit  point 2 : accepted; the recommendation is awaiting_approval; store commit order: the act before the finding; the next checked act (approval): SOURCE_CHANGED
+later change    submit  point 3 : accepted; the recommendation is awaiting_approval; store commit order: the act before the finding; the next checked act (approval): SOURCE_CHANGED
+closed          approve point 1A: refused (SOURCE_CHANGED); nothing was committed; the recommendation is awaiting_approval
+closed          approve point 1B: refused (SOURCE_CHANGED); nothing was committed; the recommendation is awaiting_approval
+later change    approve point 2 : accepted; the recommendation is approved; store commit order: the act before the finding; the next checked act (start of work): SOURCE_CHANGED
+later change    approve point 3 : accepted; the recommendation is approved; store commit order: the act before the finding; the next checked act (start of work): SOURCE_CHANGED
+closed          start   point 1A: refused (SOURCE_CHANGED); nothing was committed; the recommendation is approved
+closed          start   point 1B: refused (SOURCE_CHANGED); nothing was committed; the recommendation is approved
+later change    start   point 2 : accepted; the recommendation is in_progress; store commit order: the act before the finding; the next run: the approval is ended
+later change    start   point 3 : accepted; the recommendation is in_progress; store commit order: the act before the finding; the next run: the approval is ended
+THE INSERT RACE IS CLOSED (0 of 6 present)
+exit 0

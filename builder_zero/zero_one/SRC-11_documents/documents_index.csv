@@ -1,0 +1,3 @@
+doc_id,file,doc_type,ground_truth_supplier,ground_truth_unit_rate_cents,ground_truth_qty,ambiguity
+DOC-001,quote_clear_SUP-006.txt,quote,SUP-006,1740,2000,
+DOC-002,quote_ambiguous_SUP-004.txt,quote,SUP-004,265000,40,"quantity ""4O"" and rate ""$2.650"" are ambiguous"

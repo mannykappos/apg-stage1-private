@@ -1,0 +1,6 @@
+BEFORE action_approved version 1 evidence 67a504082f14 approved by abby
+AFTER  action_approved version 2 evidence 619f1afb69a4 approved by abby updated ['FND-3b24102724f9e17d839d']
+approval still in force: True | status: action_approved | ended approvals kept: 0
+DEFECT PRESENT: an approval of the old evidence still stands
+
+[exit code 1]

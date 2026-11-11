@@ -1,0 +1,12 @@
+$ python3 -I tools/run_regression_m71.py --step R09
+PASS R09 the M7 unit tests and the M7.1 correction tests pass ['OK']
+
+checks 1  failed 0
+$ python3 -I tools/run_regression_m71.py --step R10B
+PASS R10B the M7 audit findings probe reports every finding corrected ['THE AUDIT FINDINGS ARE CORRECTED (0 of 4 present)']
+
+checks 1  failed 0
+$ python3 -I tools/run_regression_m71.py --step R11
+PASS R11 the golden Builder Zero run equals regression/m7/golden_rec.json and the independent oracle agrees ['OK']
+
+checks 1  failed 0

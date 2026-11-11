@@ -1,0 +1,10 @@
+PASS R01 every one of the 795 M9.4 files except the 7 declared changed ones is byte-identical here 
+PASS R02 every file beyond M9.4 is a declared M7 addition, and every declared single addition exists 
+PASS R03 no application file of M9.4 changed; the only application files added are the eight modules of apg/rec 
+PASS R04 no existing test file changed (every M2 to M9.4 test is untouched); the M7 tests are added 
+PASS R05 the programme tables are append-only (rows SR-90 to SR-97, I-99 to I-109, EDR-33, CF-32) and only the M7 milestone status and handoff entry changed 
+PASS R06 the findings, RFC and Engine #17 governance tables are byte-identical to M9.4 (RFC-01 still PROPOSED and unnumbered; no finding is closed) 
+PASS R07 the programme tables are exactly what tools/make_m7_registers.py makes from the M9.4 tables 
+PASS R08 no recommendation module adopts or files a forecast, claims a realised saving outside the gate, or reaches outside the record store 
+
+checks 8  failed 0

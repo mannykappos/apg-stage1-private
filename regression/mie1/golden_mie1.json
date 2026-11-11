@@ -1,0 +1,123 @@
+{
+ "MAT-PBOARD": {
+  "days_to_need_by": 15,
+  "gaps": [
+   "NO_EVIDENCE",
+   "NO_EVIDENCE"
+  ],
+  "influence": "NONE",
+  "outcome": "ACT_NOW",
+  "outcome_reason": null,
+  "qualification": "QUALIFIED",
+  "qualification_reasons": [
+   "NO_EVIDENCE"
+  ],
+  "result_id": "RS-ac403eb9dee4f76fcb178d170b993e8ba5499c5ddeb3af6a796fb83af4eb9604",
+  "rule": "APG-R-WITHIN-LEAD",
+  "signals": [
+   [
+    "APG-FX-MOVEMENT-AUD-USD",
+    "ASSESSED",
+    "UNCHANGED",
+    null
+   ],
+   [
+    "APG-INDEX-MOVEMENT",
+    "NOT_ASSESSED",
+    null,
+    "NO_EVIDENCE"
+   ],
+   [
+    "DATA_MISSING",
+    "ASSESSED",
+    null,
+    null
+   ]
+  ]
+ },
+ "MAT-STEEL": {
+  "days_to_need_by": 62,
+  "gaps": [],
+  "influence": "NONE",
+  "outcome": "ACT_NOW",
+  "outcome_reason": null,
+  "qualification": "UNQUALIFIED",
+  "qualification_reasons": [],
+  "result_id": "RS-94c763efbafc15fb3c690d841e1bce988b69f0462ffb7c527c8eeec6eae34c02",
+  "rule": "APG-R-WITHIN-LEAD",
+  "signals": [
+   [
+    "APG-FX-MOVEMENT-AUD-USD",
+    "ASSESSED",
+    "UNCHANGED",
+    null
+   ],
+   [
+    "APG-INDEX-MOVEMENT",
+    "ASSESSED",
+    "UP",
+    null
+   ]
+  ]
+ },
+ "MAT-STEEL_no_date": {
+  "days_to_need_by": null,
+  "gaps": [
+   "CONSTRAINT_MISSING"
+  ],
+  "influence": "NONE",
+  "outcome": "NOT_ASSESSED",
+  "outcome_reason": "CONSTRAINT_MISSING",
+  "qualification": "UNQUALIFIED",
+  "qualification_reasons": [],
+  "result_id": "RS-720356ee7746e6eb4d1f2c2773e10c3df272f71f9e25db92d870065c07535da4",
+  "rule": null,
+  "signals": [
+   [
+    "APG-FX-MOVEMENT-AUD-USD",
+    "ASSESSED",
+    "UNCHANGED",
+    null
+   ],
+   [
+    "APG-INDEX-MOVEMENT",
+    "ASSESSED",
+    "UP",
+    null
+   ]
+  ]
+ },
+ "messages": 72,
+ "pack_pin": {
+  "pack_hash": "cee5a48fdfeb72d84690936e5592dda8466d6737a9a2afd1bac725cf2d603a13",
+  "pack_id": "APG-CONSTRUCTION",
+  "pack_version": "0.2.0-TEST-ONLY"
+ },
+ "receipt_counts": {
+  "ACCEPTED": 72,
+  "DUPLICATE": 0,
+  "REJECTED": 0
+ },
+ "replay": {
+  "identical": true,
+  "same_digest": true
+ },
+ "signals_MAT-STEEL": [
+  [
+   "APG-FX-MOVEMENT-AUD-USD",
+   "ASSESSED",
+   "UNCHANGED",
+   null
+  ],
+  [
+   "APG-INDEX-MOVEMENT",
+   "ASSESSED",
+   "UP",
+   null
+  ]
+ ],
+ "skipped": [
+  "a material the pack does not track"
+ ],
+ "skipped_count": 19
+}

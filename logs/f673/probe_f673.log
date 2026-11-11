@@ -1,0 +1,44 @@
+CORRECTED       F-74 fin A: entry removed, then re-planted identical                       -> new run approved=False
+CORRECTED       F-74 fin B: the entry changed in place                                     -> new run approved=False
+CORRECTED       F-74 fin C: the approved content rewritten, the entry kept                 -> new run approved=False
+CORRECTED       F-74 fin F: a run made before C, replayed after it                         -> replay ok=True; the stored run still shows approved=True
+CORRECTED       F-74 fin H: after C, the owner approves again                              -> done; new run approved=True
+CORRECTED       F-74 fin D: the content rewritten, then restored                           -> new run approved=False
+CORRECTED       F-74 fin E: the same content and entry written as a new version            -> run of the copy approved=False
+CORRECTED       F-74 fin G: another person approves after the owner                        -> run approved=True; confirmed ['olive', 'otto']
+CORRECTED       F-74 det A: entry removed, then re-planted identical                       -> new run approved=False
+CORRECTED       F-74 det B: the entry changed in place                                     -> new run approved=False
+CORRECTED       F-74 det C: the approved content rewritten, the entry kept                 -> new run approved=False
+CORRECTED       F-74 det F: a run made before C, replayed after it                         -> replay ok=True; the stored run still shows approved=True
+CORRECTED       F-74 det H: after C, the owner approves again                              -> done; new run approved=True
+CORRECTED       F-74 det D: the content rewritten, then restored                           -> new run approved=False
+CORRECTED       F-74 det E: the same content and entry written as a new version            -> run of the copy approved=False
+CORRECTED       F-74 det G: another person approves after the owner                        -> run approved=True; confirmed ['olive', 'otto']
+CORRECTED       F-74 mkt A: entry removed, then re-planted identical                       -> new run approved=False
+CORRECTED       F-74 mkt B: the entry changed in place                                     -> new run approved=False
+CORRECTED       F-74 mkt C: the approved content rewritten, the entry kept                 -> new run approved=False
+CORRECTED       F-74 mkt F: a run made before C, replayed after it                         -> replay ok=True; the stored run still shows approved=True
+CORRECTED       F-74 mkt H: after C, the owner approves again                              -> done; new run approved=True
+CORRECTED       F-74 mkt D: the content rewritten, then restored                           -> new run approved=False
+CORRECTED       F-74 mkt E: the same content and entry written as a new version            -> run of the copy approved=False
+CORRECTED       F-74 mkt G: another person approves after the owner                        -> run approved=True; confirmed ['olive', 'otto']
+CORRECTED       F-74 spec A: entry removed, then re-planted identical                      -> new run approved=False
+CORRECTED       F-74 spec B: the entry changed in place                                    -> new run approved=False
+CORRECTED       F-74 spec C: the approved content rewritten, the entry kept                -> new run approved=False
+CORRECTED       F-74 spec F: a run made before C, replayed after it                        -> replay ok=True; the stored run still shows approved=True
+CORRECTED       F-74 spec H: after C, the owner approves again                             -> done; new run approved=True
+CORRECTED       F-74 spec D: the content rewritten, then restored                          -> new run approved=False
+CORRECTED       F-74 spec E: the same content and entry written as a new version           -> run of the copy approved=False
+CORRECTED       F-74 spec G: another person approves after the owner                       -> run approved=True; confirmed ['olive', 'otto']
+CORRECTED       F-74 rec A: entry removed, then re-planted identical                       -> new run approved=False
+CORRECTED       F-74 rec B: the entry changed in place                                     -> new run approved=False
+CORRECTED       F-74 rec C: the approved content rewritten, the entry kept                 -> new run approved=False
+CORRECTED       F-74 rec F: a run made before C, replayed after it                         -> replay ok=True; the stored run still shows approved=True
+CORRECTED       F-74 rec H: after C, the owner approves again                              -> done; new run approved=True
+CORRECTED       F-74 rec D: the content rewritten, then restored                           -> new run approved=False
+CORRECTED       F-74 rec E: the same content and entry written as a new version            -> run of the copy approved=False
+CORRECTED       F-74 rec G: another person approves after the owner                        -> run approved=True; confirmed ['olive', 'otto']
+CORRECTED       control: an ordinary approval of each record is counted                    -> {'fin': True, 'det': True, 'mkt': True, 'spec': True, 'rec': True}
+
+cases 41  defects present 0
+F-74 IS CORRECTED

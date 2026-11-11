@@ -1,0 +1,1 @@
+quote_id,supplier_id,material_id,specification,issue_date,valid_until,unit_rate_cents,currency,fx_rate_used,fx_rate_date,freight_cents_per_unit,incoterm_delivery_basis,lead_time_days,price_kind

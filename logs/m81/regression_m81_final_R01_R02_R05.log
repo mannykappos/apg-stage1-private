@@ -1,0 +1,9 @@
+PASS R01 every APG-M8-R2 file is byte-identical except the declared M8.1 changes (the adapter, the configuration, seven M8 test files, seven M8 tools, README, RUN_COMMANDS, three registers); the only removal is the AUIF rev13 ZIP and its sidecar; no apg/ or tests/ file changed ['third_party/auif_rev13/AUIF_Independent_Build_v1.0_rev13.zip', 'third_party/auif_rev13/AUIF_Independent_Build_v1.0_rev13.zip.sha256']
+
+checks 1  failed 0
+PASS R02 every added file is declared (the AUIF rev14 ZIP and its sidecar, two tools, the change record, regression/m81/, logs/m81/) 
+
+checks 1  failed 0
+PASS R05 the M8.1 text states the authorisation, the dependency's qualifications, the end of DEV-M8-01 and what stays open, and makes no acceptance, readiness, Engine-integration or gate-closing claim 
+
+checks 1  failed 0

@@ -1,0 +1,10 @@
+PASS R01 every one of the 1,328 APG-M8-R1 files is byte-identical except README.md, RUN_COMMANDS.txt, the audit disposition register and the two declared-file lists; no application code, test logic, data or specification changed 
+PASS R02 every added file is declared (two tools, the change record, regression/m8r2/, logs/m8r2/) 
+PASS R03 the disposition register is the M8-R1 register plus exactly AD-13 to AD-20 (F-82 on APG-M8 and on APG-M8-R1; F-76 to F-81 on AUIF rev14); no existing row changed 
+PASS R04 the two M8 checks changed only by adding M8-R2's own files and the disposition register to their declared lists (no other new entry; no entry is removed) 
+PASS R05 the M8-R2 text states the authorisation, the dispositions and what stays open, and makes no acceptance, readiness, Engine-integration or gate-closing claim 
+PASS R06 the stored definitions, model and packs are unchanged ['config files 17, differing 0, unexpected 0']
+PASS R07 the M8 regression R01 to R10 still passes with the extended lists ['checks 10  failed 0']
+PASS R08 the M8 boundary tests still pass with the extended lists ['M8 tests 8 in 1 files, failed files 0']
+
+checks 8  failed 0

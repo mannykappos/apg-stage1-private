@@ -1,0 +1,61 @@
+mutant_id,mutation,requirement_violated,must_be_killed_by,status,v02_change,v03_change
+SB-01,Insert a default freshness limit when none is supplied,MIE-R-14,UT-14; PK-04,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-02,Accept a float value,MIE-R-07,UT-02,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-03,Treat UNKNOWN licence as LICENSED,MIE-R-09,UT-05,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-04,Include an observation dated after the evaluation date,MIE-R-10,UT-06,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-05,Resolve a conflict by taking the latest or the first value,MIE-R-12,UT-11; UT-12,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-06,Substitute zero for a missing input,MIE-R-24,UT-31; UT-19,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-07,Drop the tenant check on one operation,MIE-R-38,IS-01,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-08,Skip pack hash verification,MIE-R-29,PK-08,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-09,Allow a pack to override a core invariant,MIE-R-31,PK-04; PK-05; PK-06,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-10,Emit a SELL-side outcome under a BUY-only pack,MIE-R-21,UT-26; UT-27,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-11,Read the wall clock inside assessment,MIE-R-04,NE-06; RP-01,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-12,Add a field that states a predicted level to a signal,MIE-R-16,NE-04; UT-24,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-13,Use stale evidence as unqualified current evidence,MIE-R-27,UT-15; AD-09,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-14,Ignore an audit-sink failure and return the result,MIE-R-40,AD-01; CT-06; AU-06,PLANNED - not run,REVISED (MIE-A1),UNCHANGED
+SB-15,Replay against the latest data instead of stored evidence,MIE-R-36,RP-03,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-16,Add a domain term to a core file,MIE-R-01,NE-01; NE-02,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-17,Add a built-in bias that levels tend to rise or fall,MIE-R-20,UT-25; AD-11,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-18,Generate a scenario from history,MIE-R-25,UT-32,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-19,Evaluate decision-table rules in non-deterministic order,MIE-R-22,UT-28; RP-01,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-20,Return a different error for another tenant's record than for a missing one,MIE-R-39,IS-03,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-21,Allow a published pack to be modified in place,MIE-R-30,PK-09; CT-04,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-22,Infer equivalence between identifiers,MIE-R-05,UT-21,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-23,Canonical serialisation depends on key order,MIE-R-29,PK-20; RP-06,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-24,Import an APG module into the core,MIE-R-02,NE-03,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-25,"Merge asking, offer, index and transaction values into one series",MIE-R-08,UT-04,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-26,Use an unlicensed observation in a window that also holds licensed ones,MIE-R-09,AD-10; UT-05,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-27,Wire a signal into an APG finding,MIE-R-51,IG-01; IG-02; IG-05,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-28,Activate a pack without checking the approval reference,MIE-R-33,PK-15; CT-11,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-29,Return a partial result after a store failure,MIE-R-41,AD-02; AD-03,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-30,Let free text change behaviour,MIE-R-43,AD-06; AD-05,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-31,Merge a scenario value into the current-reference group,MIE-R-19,UT-04; UT-32,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-32,Use a licence valid for one tenant for another,MIE-R-09,IS-04,PLANNED - not run,UNCHANGED,UNCHANGED
+SB-33,"list_audit appends its own access event before it reads, so the event appears in its own result",MIE-R-60,AU-02,PLANNED - not run,NEW (MIE-A1),UNCHANGED
+SB-34,list_audit reads another tenant's events,MIE-R-60,AU-04,PLANNED - not run,NEW (MIE-A1),UNCHANGED
+SB-35,list_audit returns events when the audit sink is down,MIE-R-61,AU-03; AU-06,PLANNED - not run,NEW (MIE-A1),UNCHANGED
+SB-36,"Commit state before appending the audit event, so a failed append leaves a state change",MIE-R-61,AU-07; AU-06,PLANNED - not run,NEW (MIE-A1),UNCHANGED
+SB-37,A refusal for an unverifiable context is written into a guessed tenant's audit chain,MIE-R-61,AU-09,PLANNED - not run,NEW (MIE-A1),UNCHANGED
+SB-38,A read operation skips the audit append and its AUDIT_UNAVAILABLE path,MIE-R-40,AU-06; AU-11,PLANNED - not run,NEW (MIE-A1),UNCHANGED
+SB-39,Apply the assumption label and the owner-assumption requirement only to WAIT and HOLD,MIE-R-63,UT-37; PK-21,PLANNED - not run,NEW (MIE-A2),UNCHANGED
+SB-40,"Accept a market-signal rule for ACT_NOW, STAGE or NEGOTIATE with basis OBSERVED_EVIDENCE_ONLY",MIE-R-63,PK-21; PK-19,PLANNED - not run,NEW (MIE-A2),UNCHANGED
+SB-41,Allow an OBSERVED_EVIDENCE_ONLY rule after a signal-influenced rule,MIE-R-63,PK-23; UT-38,PLANNED - not run,NEW (MIE-A2),UNCHANGED
+SB-42,Compute the relative ratio with the signed start as denominator,MIE-R-65,UT-43; UT-46,PLANNED - not run,NEW (MIE-A3),UNCHANGED
+SB-43,Treat a zero start as ratio zero and UNCHANGED instead of ZERO_BASE,MIE-R-65,UT-42; UT-19,PLANNED - not run,NEW (MIE-A3),UNCHANGED
+SB-44,Report a movement across zero as an ordinary percentage without the crosses_zero flag,MIE-R-65,UT-44,PLANNED - not run,NEW (MIE-A3),UNCHANGED
+SB-45,Accept a value outside the unit's declared domain,MIE-R-64,UT-47,PLANNED - not run,NEW (MIE-A3),UNCHANGED
+SB-46,The core calls ObservationSourcePort during assessment,MIE-R-66,FL-01; FL-07,PLANNED - not run,NEW (MIE-A4),UNCHANGED
+SB-47,Skip validation in submit_observations for batches marked as adapter-validated,MIE-R-66,FL-02,PLANNED - not run,NEW (MIE-A4),UNCHANGED
+SB-48,A licence status asserted by the feed grants use,MIE-R-66,FL-08; UT-05,PLANNED - not run,NEW (MIE-A4),UNCHANGED
+SB-49,Record a product-owner-owned question as decided in the dispositions register,MIE-R-67,QA-06,PLANNED - not run,NEW (MIE-A5),UNCHANGED
+SB-50,Exempt the rules after a signal-influenced rule whose configured outcome is NOT_ASSESSED from the owner-assumption requirement (the v0.2 loophole),MIE-R-63,PK-28; PK-29,PLANNED - not run,ABSENT (added in v0.3),NEW (MIE-B1)
+SB-51,Exempt a downstream rule whose own configured outcome is NOT_ASSESSED from the owner-assumption requirement,MIE-R-63,PK-30,PLANNED - not run,ABSENT (added in v0.3),NEW (MIE-B1)
+SB-52,Check the basis class of downstream rules but not their owner reference or assumption statement,MIE-R-63,PK-32,PLANNED - not run,ABSENT (added in v0.3),NEW (MIE-B1)
+SB-53,Refuse the pack at validate_pack but let register_pack store and activate it,MIE-R-69,PK-31; PK-28,PLANNED - not run,ABSENT (added in v0.3),NEW (MIE-B2)
+SB-54,Classify a firing downstream rule as NONE when the earlier signal-influenced rule has configured outcome NOT_ASSESSED,MIE-R-63,UT-50; UT-53; UT-51,PLANNED - not run,ABSENT (added in v0.3),NEW (MIE-B1)
+SB-55,Refuse the valid owner-labelled sequence (over-refusal of a signal-influenced NOT_ASSESSED rule followed by owner-labelled rules),MIE-R-63,PK-33,PLANNED - not run,ABSENT (added in v0.3),NEW (MIE-B1)
+SB-56,Emit a DIRECT or PRECEDENCE result from a fired rule that lacks the owner label instead of failing closed,MIE-R-69,UT-54,PLANNED - not run,ABSENT (added in v0.3),NEW (MIE-B2)
+SB-57,"Give NO_RULE_MATCHED or NO_TABLE a PRECEDENCE class, or omit the evaluated signal-influenced rule identifiers on NO_RULE_MATCHED",MIE-R-63,UT-52,PLANNED - not run,ABSENT (added in v0.3),NEW (MIE-B2)
+SB-58,Treat a negated SIGNAL_NOT_ASSESSED predicate on a market-signal type as not signal-influenced,MIE-R-63,AD-14,PLANNED - not run,ABSENT (added in v0.3),NEW (MIE-B1)
+SB-59,"Validate rule order as sorted or as stored instead of as submitted, so a reordered pack escapes the check",MIE-R-63,AD-15,PLANNED - not run,ABSENT (added in v0.3),NEW (MIE-B1)
+SB-60,"Mark an implementation blocker resolved, or drop it from the blockers register",MIE-R-70,QA-09,PLANNED - not run,ABSENT (added in v0.3),NEW (MIE-B3)

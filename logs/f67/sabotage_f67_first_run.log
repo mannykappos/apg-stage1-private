@@ -1,0 +1,28 @@
+MISSED S01 a version may again be stored with caller-written approvals -> R06 checks 1  failed 0
+CAUGHT S02 a version may name somebody else as its proposer -> R07 
+CAUGHT S03 a service may propose a version -> R07 
+MISSED S04 a stored version may be overwritten with an approval appended -> R06 checks 1  failed 0
+CAUGHT S05 the proposer may approve their own version -> R07 
+CAUGHT S06 a person without the owner role may approve -> R07 
+MISSED S07 the confirmation no longer checks that the approver wrote the event -> R07 checks 1  failed 0
+CAUGHT S08 the confirmation accepts an event written by a service -> R07 
+CAUGHT S09 the confirmation accepts a refused event -> R07 
+CAUGHT S10 the confirmation accepts the event of another version -> R07 
+CAUGHT S26 the confirmation no longer checks the version named in the event -> R07 
+CAUGHT S27 the confirmation no longer checks the record kind named in the event -> R07 
+CAUGHT S11 a run counts approvals the audit log does not confirm -> R06 
+CAUGHT S12 the financial gatherer pins no confirmations -> R07 
+CAUGHT S13 the detection loader counts every stored approval as confirmed -> R06 
+CAUGHT S14 the specification loader counts every stored approval as confirmed -> R06 
+CAUGHT S15 the caller-asserted approve() is restored in the financial policy -> R11 
+CAUGHT S16 the demonstration policy again carries an approval -> R09 
+CAUGHT S17 the F-67 findings row is edited to read corrected -> R01 
+CAUGHT S18 AD-03 loses the timeout qualification -> R03 
+CAUGHT S19 an R1 status row is edited -> R03 
+CAUGHT S20 the readme claims the correction is verified -> R05 
+CAUGHT S21 an undeclared file is added -> R02 
+CAUGHT S22 an unchanged application file changes by one character -> R01 
+CAUGHT S23 a test is removed from an edited test file -> R10 
+CAUGHT S24 the stored R1 original of a changed file is edited -> R02 
+CAUGHT S25 the earlier F-66 correction is undone (the M7 probe must still catch it) -> R08 
+sabotage cases 27  missed 3  MISSED: ['S01', 'S04', 'S07']

@@ -1,0 +1,69 @@
+delivered M7 ZIP sha256 a58b2294a95cb8901dec0154b41e89bd2e987c7eb461672b5e6cf175fba0f934
+
+== ON THE DELIVERED M7 PACKAGE (unmodified, the two files copied in) ==
+$ python3 -I tools/probe_m7_audit_findings.py
+DEFECT PRESENT  F-64 submission accepted after the underlying finding was dismissed, without a fresh run
+DEFECT PRESENT  F-64 submission accepted after a mandatory review was changed to not_cleared, without a fresh run
+DEFECT PRESENT  F-65 start of work accepted after the underlying finding was dismissed following approval
+DEFECT PRESENT  F-66 a policy accepted as approved on caller-supplied approver, role and kind fields
+DEFECT PRESENT (4 of 4 present)
+exit 1
+$ the correction tests, one by one
+  ERROR TestPolicyApprovalBoundary.test_a_concurrent_change_during_approval_is_refused
+  ERROR TestPolicyApprovalBoundary.test_a_policy_cannot_be_stored_with_an_approval
+  FAIL  TestPolicyApprovalBoundary.test_a_run_under_an_unapproved_policy_blocks_every_submission
+  ERROR TestPolicyApprovalBoundary.test_an_approval_written_into_the_store_directly_does_not_count_at_a_run
+  ERROR TestPolicyApprovalBoundary.test_an_audit_event_logged_by_someone_else_does_not_confirm_another_persons_approval
+  ERROR TestPolicyApprovalBoundary.test_an_invalid_policy_is_never_stored_even_by_its_proposer
+  ERROR TestPolicyApprovalBoundary.test_approval_needs_the_owner_role_a_person_and_not_the_proposer
+  ERROR TestPolicyApprovalBoundary.test_storing_the_same_proposal_again_is_a_no_op_before_and_after_approval
+  ERROR TestPolicyApprovalBoundary.test_the_confirmed_approvers_are_part_of_the_run_and_replay
+  ERROR TestPolicyApprovalBoundary.test_the_proposer_is_the_person_storing_it_and_a_machine_cannot_propose
+  FAIL  TestPolicyApprovalBoundary.test_there_is_no_function_that_approves_from_caller_supplied_fields
+  pass  TestStaleAtSubmission.test_a_change_elsewhere_in_the_tenant_does_not_block_it
+  FAIL  TestStaleAtSubmission.test_a_check_that_cannot_be_completed_refuses
+  FAIL  TestStaleAtSubmission.test_a_new_finding_that_overlaps_is_caught_by_the_recomputation
+  FAIL  TestStaleAtSubmission.test_after_a_fresh_run_the_new_version_is_what_counts
+  pass  TestStaleAtSubmission.test_an_unchanged_recommendation_is_submitted_normally
+  ERROR TestStaleAtSubmission.test_each_change_is_refused_at_submission
+  FAIL  TestStaleAtSubmission.test_the_refusal_names_the_revisions
+  FAIL  TestStaleAtSubmission.test_the_refusal_says_what_changed
+  pass  TestStaleBetweenApprovalAndStart.test_a_fresh_run_after_a_material_change_ends_the_approval
+  FAIL  TestStaleBetweenApprovalAndStart.test_each_change_after_approval_is_refused_at_the_start
+  FAIL  TestStaleBetweenSubmissionAndApproval.test_a_change_after_submission_is_refused_at_approval
+  FAIL  TestStaleBetweenSubmissionAndApproval.test_a_non_material_refresh_needs_a_run_and_then_the_submission_stands
+  23 tests; 20 fail or error; 3 pass
+
+== ON M7.1 ==
+$ python3 -I tools/probe_m7_audit_findings.py
+corrected       F-64 submission accepted after the underlying finding was dismissed, without a fresh run
+corrected       F-64 submission accepted after a mandatory review was changed to not_cleared, without a fresh run
+corrected       F-65 start of work accepted after the underlying finding was dismissed following approval
+corrected       F-66 a policy accepted as approved on caller-supplied approver, role and kind fields
+THE AUDIT FINDINGS ARE CORRECTED (0 of 4 present)
+exit 0
+$ the correction tests, one by one
+  pass  TestPolicyApprovalBoundary.test_a_concurrent_change_during_approval_is_refused
+  pass  TestPolicyApprovalBoundary.test_a_policy_cannot_be_stored_with_an_approval
+  pass  TestPolicyApprovalBoundary.test_a_run_under_an_unapproved_policy_blocks_every_submission
+  pass  TestPolicyApprovalBoundary.test_an_approval_written_into_the_store_directly_does_not_count_at_a_run
+  pass  TestPolicyApprovalBoundary.test_an_audit_event_logged_by_someone_else_does_not_confirm_another_persons_approval
+  pass  TestPolicyApprovalBoundary.test_an_invalid_policy_is_never_stored_even_by_its_proposer
+  pass  TestPolicyApprovalBoundary.test_approval_needs_the_owner_role_a_person_and_not_the_proposer
+  pass  TestPolicyApprovalBoundary.test_storing_the_same_proposal_again_is_a_no_op_before_and_after_approval
+  pass  TestPolicyApprovalBoundary.test_the_confirmed_approvers_are_part_of_the_run_and_replay
+  pass  TestPolicyApprovalBoundary.test_the_proposer_is_the_person_storing_it_and_a_machine_cannot_propose
+  pass  TestPolicyApprovalBoundary.test_there_is_no_function_that_approves_from_caller_supplied_fields
+  pass  TestStaleAtSubmission.test_a_change_elsewhere_in_the_tenant_does_not_block_it
+  pass  TestStaleAtSubmission.test_a_check_that_cannot_be_completed_refuses
+  pass  TestStaleAtSubmission.test_a_new_finding_that_overlaps_is_caught_by_the_recomputation
+  pass  TestStaleAtSubmission.test_after_a_fresh_run_the_new_version_is_what_counts
+  pass  TestStaleAtSubmission.test_an_unchanged_recommendation_is_submitted_normally
+  pass  TestStaleAtSubmission.test_each_change_is_refused_at_submission
+  pass  TestStaleAtSubmission.test_the_refusal_names_the_revisions
+  pass  TestStaleAtSubmission.test_the_refusal_says_what_changed
+  pass  TestStaleBetweenApprovalAndStart.test_a_fresh_run_after_a_material_change_ends_the_approval
+  pass  TestStaleBetweenApprovalAndStart.test_each_change_after_approval_is_refused_at_the_start
+  pass  TestStaleBetweenSubmissionAndApproval.test_a_change_after_submission_is_refused_at_approval
+  pass  TestStaleBetweenSubmissionAndApproval.test_a_non_material_refresh_needs_a_run_and_then_the_submission_stands
+  23 tests; 0 fail or error; 23 pass

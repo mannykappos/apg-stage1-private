@@ -1,0 +1,33 @@
+source-hash 13c0e71c8b6a4224bfdd90f377eb5293642e5f31b11f558a71075fea2c0e12b3
+KILLED     DT-CMP-001  (by run_edges)
+KILLED     DT-CMP-002  (by run_edges)
+KILLED     DT-CMP-003  (by run_edges)
+KILLED     DT-CMP-004  (by run_edges)
+KILLED     DT-CMP-005  (by run_edges)
+KILLED     DT-CMP-006  (by run_edges)
+KILLED     DT-CMP-007  (by run_edges)
+KILLED     DT-CMP-008  (by detect)
+KILLED     DT-CMP-009  (by run_edges)
+KILLED     DT-CMP-010  (by run_edges)
+KILLED     DT-CMP-011  (by run_edges)
+KILLED     DT-CMP-012  (by run_edges)
+KILLED     DT-CMP-013  (by run_edges)
+KILLED     DT-CMP-014  (by run_edges)
+KILLED     DT-CMP-015  (by run_edges)
+KILLED     DT-CMP-016  (by run_edges)
+KILLED     DT-CMP-017  (by run_edges)
+KILLED     DT-BOL-001  (by run_edges)
+KILLED     DT-BOL-002  (by run_edges)
+KILLED     DT-BOL-003  (by run_edges)
+KILLED     DT-BOL-004  (by run_edges)
+KILLED     DT-BOL-005  (by detect)
+KILLED     DT-RSE-001  (by run_edges)
+KILLED     DT-RSE-002  (by detect)
+KILLED     DT-RSE-003  (by run_edges)
+KILLED     DT-RSE-004  (by run_edges)
+KILLED     DT-RSE-005  (by run_edges)
+KILLED     DT-RSE-006  (by run_edges)
+mutants 28  killed 28 (first failing test file: {'detect': 3, 'run_edges': 25})  documented-equivalent 0  unexplained survivors 0
+MUTATION RUN OK
+
+[0s]

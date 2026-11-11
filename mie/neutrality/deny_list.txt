@@ -1,0 +1,19 @@
+mie-deny-1
+# The domain terms of the three fields named in the ruling (MIE1_SPEC section 3.2).  Whole words, case-insensitive, with simple plurals; identifiers are split
+# at underscores, hyphens and case changes.  A deny-list shows absence of listed terms only (MIE-L-03).
+construction
+builder
+material
+supplier
+subcontractor
+tender
+landed
+freight
+project
+vehicle
+car
+watch
+luxury
+dealer
+chronograph
+horology

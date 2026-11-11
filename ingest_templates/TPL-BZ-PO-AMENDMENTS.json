@@ -1,0 +1,71 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "amendment_id",
+   "target_field": "source_record_id",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "po_id",
+   "target_field": "purchase_order_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "required": true,
+   "source_column": "amendment_date",
+   "target_field": "amendment_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "required": true,
+   "source_column": "delta_cents",
+   "target_field": "delta_cents",
+   "transform": "none",
+   "type": "money_cents"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "approved_change_ref",
+   "target_field": "approved_change_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "reason",
+   "target_field": "reason_text",
+   "transform": "trim",
+   "type": "string"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "amendment_id"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-03",
+ "source_label": "Builder Zero procurement PO amendments (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "po_amendment",
+ "template_id": "TPL-BZ-PO-AMENDMENTS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

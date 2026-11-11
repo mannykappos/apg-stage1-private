@@ -1,0 +1,134 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "quote_id",
+   "target_field": "source_record_id",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "supplier_id",
+   "target_field": "supplier_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "material_id",
+   "target_field": "material_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "specification",
+   "target_field": "specification_text",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "required": true,
+   "source_column": "issue_date",
+   "target_field": "issue_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "required": true,
+   "source_column": "valid_until",
+   "target_field": "valid_until",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "required": true,
+   "source_column": "unit_rate_cents",
+   "target_field": "unit_rate_minor_units",
+   "transform": "none",
+   "type": "money_cents"
+  },
+  {
+   "allowed": [
+    "AUD",
+    "USD",
+    "EUR",
+    "NZD",
+    "CNY"
+   ],
+   "required": true,
+   "source_column": "currency",
+   "target_field": "currency_code",
+   "transform": "upper",
+   "type": "enum"
+  },
+  {
+   "required": false,
+   "source_column": "fx_rate_used",
+   "target_field": "fx_rate_used",
+   "transform": "none",
+   "type": "decimal"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "required": false,
+   "source_column": "fx_rate_date",
+   "target_field": "fx_rate_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "required": false,
+   "source_column": "freight_cents_per_unit",
+   "target_field": "freight_per_unit_cents",
+   "transform": "none",
+   "type": "money_cents"
+  },
+  {
+   "required": true,
+   "source_column": "incoterm_delivery_basis",
+   "target_field": "delivery_basis",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": false,
+   "source_column": "lead_time_days",
+   "target_field": "lead_time_days",
+   "transform": "none",
+   "type": "integer"
+  },
+  {
+   "required": true,
+   "source_column": "price_kind",
+   "target_field": "price_kind",
+   "transform": "trim",
+   "type": "string"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "quote_id"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-03",
+ "source_label": "Builder Zero quotes export (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "supplier_quote",
+ "template_id": "TPL-BZ-QUOTES",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

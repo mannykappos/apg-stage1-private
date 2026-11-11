@@ -1,0 +1,3 @@
+source-hash 91b67ced7de34d85cf0561168bae5ef72977df62fcc4490531f71dbe5384a0a9
+mutants 177  killed 177 (first failing test file: {'approval_binding': 1, 'detect': 1, 'findings': 58, 'findings_edges': 30, 'portfolio': 5, 'proposal_binding': 82})  documented-equivalent 0  unexplained survivors 0
+MUTATION RUN OK

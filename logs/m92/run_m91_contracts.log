@@ -1,0 +1,19 @@
+PASS AP-01 a granted action on a granted project is answered exactly True, for view and for approve separately
+PASS AP-02 with no grant at all the answer is exactly False, for every action
+PASS AP-03 the right to view does not carry the right to approve
+PASS AP-04 a grant for one project is not a grant for another project
+PASS AP-05 a project grant is not a tenant-level grant; a tenant-level grant is its own thing
+PASS AP-06 a grant belongs to its tenant: the same user id and project id in another tenant is refused
+PASS AP-07 a grant added or taken away is seen on the very next question (nothing is kept from an earlier answer)
+PASS AP-08 an action that is not exactly "view" or "approve" is refused, never raised, never granted by a near match
+PASS AP-09 a scope that is not exactly a project or the tenant is refused without raising
+PASS AP-10 the question does not change what it was given
+PASS AP-11 a session that has ended is not allowed, whatever was granted
+PASS AP-12 a revoked session is not allowed
+PASS AP-13 a context that was not issued by the context port (a forged one) is not allowed
+PASS AP-14 one person's grant is not another person's
+
+contract cases 14  failed 0
+ALL CONTRACT CASES PASS
+
+[exit code 0; 0s]

@@ -1,0 +1,322 @@
+tests 29  failures 3  errors 27
+======================================================================
+ERROR: test_an_edit_after_the_approval_ends_the_approval_in_force (tests.test_det_proposal_identity.TestAStoredProposalThatIsEditedIsNotTheOneThatWasShown.test_an_edit_after_the_approval_ends_the_approval_in_force)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 273, in test_an_edit_after_the_approval_ends_the_approval_in_force
+    g = self.approve(self.token())
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 30, in approve
+    return FD.approve_action(self.m.approver, self.m.clock, self.fid, v, d, rationale, **args)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: approve_action() got an unexpected keyword argument 'approving_proposal'
+
+======================================================================
+ERROR: test_changing_the_number_of_replaced_proposals_changes_the_reference (tests.test_det_proposal_identity.TestAStoredProposalThatIsEditedIsNotTheOneThatWasShown.test_changing_the_number_of_replaced_proposals_changes_the_reference)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 268, in test_changing_the_number_of_replaced_proposals_changes_the_reference
+    self.assertNotEqual(self.token()['proposal'], tok['proposal'])
+                        ~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'proposal'
+
+======================================================================
+ERROR: test_changing_the_text_the_proposer_or_the_time_changes_the_reference_and_the_old_token_is_refused (tests.test_det_proposal_identity.TestAStoredProposalThatIsEditedIsNotTheOneThatWasShown.test_changing_the_text_the_proposer_or_the_time_changes_the_reference_and_the_old_token_is_refused) (field='text')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 260, in test_changing_the_text_the_proposer_or_the_time_changes_the_reference_and_the_old_token_is_refused
+    self.assertNotEqual(self.token()['proposal'], tok['proposal'])
+                        ~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'proposal'
+
+======================================================================
+ERROR: test_changing_the_text_the_proposer_or_the_time_changes_the_reference_and_the_old_token_is_refused (tests.test_det_proposal_identity.TestAStoredProposalThatIsEditedIsNotTheOneThatWasShown.test_changing_the_text_the_proposer_or_the_time_changes_the_reference_and_the_old_token_is_refused) (field='proposed_by')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 260, in test_changing_the_text_the_proposer_or_the_time_changes_the_reference_and_the_old_token_is_refused
+    self.assertNotEqual(self.token()['proposal'], tok['proposal'])
+                        ~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'proposal'
+
+======================================================================
+ERROR: test_changing_the_text_the_proposer_or_the_time_changes_the_reference_and_the_old_token_is_refused (tests.test_det_proposal_identity.TestAStoredProposalThatIsEditedIsNotTheOneThatWasShown.test_changing_the_text_the_proposer_or_the_time_changes_the_reference_and_the_old_token_is_refused) (field='proposed_at')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 260, in test_changing_the_text_the_proposer_or_the_time_changes_the_reference_and_the_old_token_is_refused
+    self.assertNotEqual(self.token()['proposal'], tok['proposal'])
+                        ~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'proposal'
+
+======================================================================
+ERROR: test_the_lower_level_transition_checks_a_proposal_reference_when_one_is_named (tests.test_det_proposal_identity.TestNothingElseMoved.test_the_lower_level_transition_checks_a_proposal_reference_when_one_is_named)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 237, in test_the_lower_level_transition_checks_a_proposal_reference_when_one_is_named
+    FD.transition(self.m.approver, self.m.clock, self.fid, 'action_approved', rationale='ok', approving_proposal='0' * 24)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: transition() got an unexpected keyword argument 'approving_proposal'
+
+======================================================================
+ERROR: test_the_lower_level_transition_still_works_for_a_caller_that_names_nothing (tests.test_det_proposal_identity.TestNothingElseMoved.test_the_lower_level_transition_still_works_for_a_caller_that_names_nothing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 232, in test_the_lower_level_transition_still_works_for_a_caller_that_names_nothing
+    self.assertEqual(g['action']['approved_proposal'], FD.proposal_ref(dict(g, action=dict(g['action']))))
+                     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'approved_proposal'
+
+======================================================================
+ERROR: test_after_the_evidence_changes_a_fresh_proposal_and_a_fresh_token_are_needed (tests.test_det_proposal_identity.TestReplayAndOrdering.test_after_the_evidence_changes_a_fresh_proposal_and_a_fresh_token_are_needed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 217, in test_after_the_evidence_changes_a_fresh_proposal_and_a_fresh_token_are_needed
+    self.approve(old)
+    ~~~~~~~~~~~~^^^^^
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 30, in approve
+    return FD.approve_action(self.m.approver, self.m.clock, self.fid, v, d, rationale, **args)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: approve_action() got an unexpected keyword argument 'approving_proposal'
+
+======================================================================
+ERROR: test_an_old_token_cannot_approve_after_an_approval_was_ended_and_the_proposal_replaced (tests.test_det_proposal_identity.TestReplayAndOrdering.test_an_old_token_cannot_approve_after_an_approval_was_ended_and_the_proposal_replaced)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 208, in test_an_old_token_cannot_approve_after_an_approval_was_ended_and_the_proposal_replaced
+    self.approve(old)
+    ~~~~~~~~~~~~^^^^^
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 30, in approve
+    return FD.approve_action(self.m.approver, self.m.clock, self.fid, v, d, rationale, **args)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: approve_action() got an unexpected keyword argument 'approving_proposal'
+
+======================================================================
+ERROR: test_the_same_approval_sent_twice_is_refused_the_second_time_and_changes_nothing (tests.test_det_proposal_identity.TestReplayAndOrdering.test_the_same_approval_sent_twice_is_refused_the_second_time_and_changes_nothing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 196, in test_the_same_approval_sent_twice_is_refused_the_second_time_and_changes_nothing
+    g = self.approve(tok)
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 30, in approve
+    return FD.approve_action(self.m.approver, self.m.clock, self.fid, v, d, rationale, **args)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: approve_action() got an unexpected keyword argument 'approving_proposal'
+
+======================================================================
+ERROR: test_a_token_shown_for_proposal_1_cannot_approve_proposal_2_written_against_the_same_evidence (tests.test_det_proposal_identity.TestTheAuditReproduction.test_a_token_shown_for_proposal_1_cannot_approve_proposal_2_written_against_the_same_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 49, in test_a_token_shown_for_proposal_1_cannot_approve_proposal_2_written_against_the_same_evidence
+    f = self.refused('PROPOSAL_CHANGED', shown)
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 36, in refused
+    self.approve(tok, **over)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 30, in approve
+    return FD.approve_action(self.m.approver, self.m.clock, self.fid, v, d, rationale, **args)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: approve_action() got an unexpected keyword argument 'approving_proposal'
+
+======================================================================
+ERROR: test_a_token_taken_after_the_replacement_approves_the_new_proposal (tests.test_det_proposal_identity.TestTheAuditReproduction.test_a_token_taken_after_the_replacement_approves_the_new_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 62, in test_a_token_taken_after_the_replacement_approves_the_new_proposal
+    g = self.approve(self.token())
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 30, in approve
+    return FD.approve_action(self.m.approver, self.m.clock, self.fid, v, d, rationale, **args)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: approve_action() got an unexpected keyword argument 'approving_proposal'
+
+======================================================================
+ERROR: test_the_same_text_proposed_again_is_still_a_different_proposal (tests.test_det_proposal_identity.TestTheAuditReproduction.test_the_same_text_proposed_again_is_still_a_different_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 56, in test_the_same_text_proposed_again_is_still_a_different_proposal
+    self.assertNotEqual(shown['proposal'], self.token()['proposal'])
+                        ~~~~~^^^^^^^^^^^^
+KeyError: 'proposal'
+
+======================================================================
+ERROR: test_the_token_issued_for_the_first_proposal_still_approves_the_first_proposal (tests.test_det_proposal_identity.TestTheAuditReproduction.test_the_token_issued_for_the_first_proposal_still_approves_the_first_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 67, in test_the_token_issued_for_the_first_proposal_still_approves_the_first_proposal
+    g = self.approve(self.token())
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 30, in approve
+    return FD.approve_action(self.m.approver, self.m.clock, self.fid, v, d, rationale, **args)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: approve_action() got an unexpected keyword argument 'approving_proposal'
+
+======================================================================
+ERROR: test_a_damaged_proposal_cannot_be_approved_by_any_reference (tests.test_det_proposal_identity.TestTheEntryPointFailsClosed.test_a_damaged_proposal_cannot_be_approved_by_any_reference)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 150, in test_a_damaged_proposal_cannot_be_approved_by_any_reference
+    self.assertIsNone(self.token()['proposal'])
+                      ~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'proposal'
+
+======================================================================
+ERROR: test_a_reference_that_is_not_the_one_on_record_is_refused_as_changed (tests.test_det_proposal_identity.TestTheEntryPointFailsClosed.test_a_reference_that_is_not_the_one_on_record_is_refused_as_changed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 120, in test_a_reference_that_is_not_the_one_on_record_is_refused_as_changed
+    for wrong in ('0' * 24, 'x', tok['proposal'][:-1], tok['proposal'].upper(), tok['proposal'] + ' '):
+                                 ~~~^^^^^^^^^^^^
+KeyError: 'proposal'
+
+======================================================================
+ERROR: test_an_approval_that_does_not_name_the_proposal_is_refused_as_a_missing_token (tests.test_det_proposal_identity.TestTheEntryPointFailsClosed.test_an_approval_that_does_not_name_the_proposal_is_refused_as_a_missing_token)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 106, in test_an_approval_that_does_not_name_the_proposal_is_refused_as_a_missing_token
+    self.refused('APPROVAL_TOKEN_REQUIRED', tok, approving_proposal=bad)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 36, in refused
+    self.approve(tok, **over)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 30, in approve
+    return FD.approve_action(self.m.approver, self.m.clock, self.fid, v, d, rationale, **args)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: approve_action() got an unexpected keyword argument 'approving_proposal'
+
+======================================================================
+ERROR: test_an_older_version_is_still_a_stale_approval_not_a_changed_proposal (tests.test_det_proposal_identity.TestTheEntryPointFailsClosed.test_an_older_version_is_still_a_stale_approval_not_a_changed_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 135, in test_an_older_version_is_still_a_stale_approval_not_a_changed_proposal
+    self.refused('STALE_APPROVAL', tok, approving_proposal='0' * 24)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 36, in refused
+    self.approve(tok, **over)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 30, in approve
+    return FD.approve_action(self.m.approver, self.m.clock, self.fid, v, d, rationale, **args)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: approve_action() got an unexpected keyword argument 'approving_proposal'
+
+======================================================================
+ERROR: test_the_proposal_on_record_being_stale_is_still_refused_as_stale (tests.test_det_proposal_identity.TestTheEntryPointFailsClosed.test_the_proposal_on_record_being_stale_is_still_refused_as_stale)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 141, in test_the_proposal_on_record_being_stale_is_still_refused_as_stale
+    self.refused('STALE_PROPOSAL', tok)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 36, in refused
+    self.approve(tok, **over)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 30, in approve
+    return FD.approve_action(self.m.approver, self.m.clock, self.fid, v, d, rationale, **args)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: approve_action() got an unexpected keyword argument 'approving_proposal'
+
+======================================================================
+ERROR: test_the_self_approval_refusal_still_comes_first (tests.test_det_proposal_identity.TestTheEntryPointFailsClosed.test_the_self_approval_refusal_still_comes_first)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 128, in test_the_self_approval_refusal_still_comes_first
+    FD.approve_action(proposer, self.m.clock, self.fid, tok['version'], tok['digest'], 'ok', approving_proposal='0' * 24)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: approve_action() got an unexpected keyword argument 'approving_proposal'
+
+======================================================================
+ERROR: test_an_approval_whose_recorded_proposal_is_not_the_one_on_record_is_not_current (tests.test_det_proposal_identity.TestTheRecordKeepsWhatWasApproved.test_an_approval_whose_recorded_proposal_is_not_the_one_on_record_is_not_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 177, in test_an_approval_whose_recorded_proposal_is_not_the_one_on_record_is_not_current
+    g = self.approve(self.token())
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 30, in approve
+    return FD.approve_action(self.m.approver, self.m.clock, self.fid, v, d, rationale, **args)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: approve_action() got an unexpected keyword argument 'approving_proposal'
+
+======================================================================
+ERROR: test_an_ended_approval_keeps_the_reference_of_the_proposal_that_was_approved (tests.test_det_proposal_identity.TestTheRecordKeepsWhatWasApproved.test_an_ended_approval_keeps_the_reference_of_the_proposal_that_was_approved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 168, in test_an_ended_approval_keeps_the_reference_of_the_proposal_that_was_approved
+    self.approve(tok)
+    ~~~~~~~~~~~~^^^^^
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 30, in approve
+    return FD.approve_action(self.m.approver, self.m.clock, self.fid, v, d, rationale, **args)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: approve_action() got an unexpected keyword argument 'approving_proposal'
+
+======================================================================
+ERROR: test_the_approval_and_its_event_name_the_approved_proposal (tests.test_det_proposal_identity.TestTheRecordKeepsWhatWasApproved.test_the_approval_and_its_event_name_the_approved_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 159, in test_the_approval_and_its_event_name_the_approved_proposal
+    g = self.approve(tok)
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 30, in approve
+    return FD.approve_action(self.m.approver, self.m.clock, self.fid, v, d, rationale, **args)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: approve_action() got an unexpected keyword argument 'approving_proposal'
+
+======================================================================
+ERROR: test_the_replaced_proposal_is_kept_in_the_history_with_its_reference (tests.test_det_proposal_identity.TestTheRecordKeepsWhatWasApproved.test_the_replaced_proposal_is_kept_in_the_history_with_its_reference)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 186, in test_the_replaced_proposal_is_kept_in_the_history_with_its_reference
+    r1 = self.token()['proposal']
+         ~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'proposal'
+
+======================================================================
+ERROR: test_a_finding_with_no_proposal_has_no_reference_in_its_token (tests.test_det_proposal_identity.TestTheTokenNamesTheProposal.test_a_finding_with_no_proposal_has_no_reference_in_its_token)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 98, in test_a_finding_with_no_proposal_has_no_reference_in_its_token
+    self.assertIsNone(self.token()['proposal'])
+                      ~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'proposal'
+
+======================================================================
+ERROR: test_the_reference_changes_with_the_text_the_proposer_the_evidence_and_the_number_of_replacements (tests.test_det_proposal_identity.TestTheTokenNamesTheProposal.test_the_reference_changes_with_the_text_the_proposer_the_evidence_and_the_number_of_replacements)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 83, in test_the_reference_changes_with_the_text_the_proposer_the_evidence_and_the_number_of_replacements
+    r1 = self.token()['proposal']
+         ~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'proposal'
+
+======================================================================
+ERROR: test_the_reference_is_none_when_there_is_no_usable_proposal (tests.test_det_proposal_identity.TestTheTokenNamesTheProposal.test_the_reference_is_none_when_there_is_no_usable_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 93, in test_the_reference_is_none_when_there_is_no_usable_proposal
+    self.assertIsNone(FD.proposal_ref({'action': bad}), repr(bad))
+                      ^^^^^^^^^^^^^^^
+AttributeError: module 'apg.det.findings' has no attribute 'proposal_ref'. Did you mean: 'proposal_current'?
+
+======================================================================
+FAIL: test_the_lower_level_transition_refuses_a_proposal_that_has_no_usable_reference_even_when_nothing_is_named (tests.test_det_proposal_identity.TestAStoredProposalThatIsEditedIsNotTheOneThatWasShown.test_the_lower_level_transition_refuses_a_proposal_that_has_no_usable_reference_even_when_nothing_is_named)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 284, in test_the_lower_level_transition_refuses_a_proposal_that_has_no_usable_reference_even_when_nothing_is_named
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_leaving_the_argument_out_altogether_is_refused_too (tests.test_det_proposal_identity.TestTheEntryPointFailsClosed.test_leaving_the_argument_out_altogether_is_refused_too)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 112, in test_leaving_the_argument_out_altogether_is_refused_too
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_the_token_has_a_proposal_reference_and_it_is_stable (tests.test_det_proposal_identity.TestTheTokenNamesTheProposal.test_the_token_has_a_proposal_reference_and_it_is_stable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64old_3gjrbplt/APG_M6_3/tests/test_det_proposal_identity.py", line 76, in test_the_token_has_a_proposal_reference_and_it_is_stable
+    self.assertEqual(set(t1), {'finding_id', 'version', 'digest', 'proposal'})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the second set but not the first:
+'proposal'
+
+----------------------------------------------------------------------
+Ran 29 tests in 1.444s
+
+FAILED (failures=3, errors=27)
+
+[exit code 1]

@@ -1,0 +1,233 @@
+tests 34  failures 19  errors 2
+======================================================================
+ERROR: test_approvable_says_no_action_for_every_shape_that_is_not_a_proposal (tests.test_det_version_types.TestDamagedStoredRecordsFailClosed.test_approvable_says_no_action_for_every_shape_that_is_not_a_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 252, in test_approvable_says_no_action_for_every_shape_that_is_not_a_proposal
+    ok, why = FD.approvable(dict(base, action=shape))
+              ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m63old_imzqcddh/APG_M6_2/apg/det/findings.py", line 125, in approvable
+    if not proposal_current(f):
+           ~~~~~~~~~~~~~~~~^^^
+  File "/tmp/m63old_imzqcddh/APG_M6_2/apg/det/findings.py", line 96, in proposal_current
+    return bool(a and a.get('proposed_version') is not None and a.get('proposed_version') == f['version'] and a.get('proposed_digest') == f['signal']['state_digest'])
+                      ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+======================================================================
+ERROR: test_a_non_mapping_action_is_never_current (tests.test_det_version_types.TestProposalCurrentIsStrictAboutTypes.test_a_non_mapping_action_is_never_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 128, in test_a_non_mapping_action_is_never_current
+    self.assertIs(FD.proposal_current({'version': 1, 'signal': {'state_digest': 'd1'}, 'action': bad}), False, repr(bad))
+                  ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m63old_imzqcddh/APG_M6_2/apg/det/findings.py", line 96, in proposal_current
+    return bool(a and a.get('proposed_version') is not None and a.get('proposed_version') == f['version'] and a.get('proposed_digest') == f['signal']['state_digest'])
+                      ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+======================================================================
+FAIL: test_a_malformed_approved_version_is_never_current (tests.test_det_version_types.TestApprovalCurrentIsStrictAboutTypes.test_a_malformed_approved_version_is_never_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 145, in test_a_malformed_approved_version_is_never_current
+    self.assertIs(FD.approval_current(self.finding(bad)), False, repr(bad))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not False : True
+
+======================================================================
+FAIL: test_a_malformed_finding_version_means_no_approval_is_current (tests.test_det_version_types.TestApprovalCurrentIsStrictAboutTypes.test_a_malformed_finding_version_means_no_approval_is_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 156, in test_a_malformed_finding_version_means_no_approval_is_current
+    self.assertIs(FD.approval_current(self.finding(True, fv=True)), False)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_a_malformed_proposal_version_behind_an_approval_means_the_approval_is_not_current (tests.test_det_version_types.TestApprovalCurrentIsStrictAboutTypes.test_a_malformed_proposal_version_behind_an_approval_means_the_approval_is_not_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 153, in test_a_malformed_proposal_version_behind_an_approval_means_the_approval_is_not_current
+    self.assertIs(FD.approval_current(self.finding(1, pv=bad)), False, repr(bad))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not False : True
+
+======================================================================
+FAIL: test_a_damaged_proposal_can_be_replaced_by_the_normal_route_and_the_new_one_is_approvable (tests.test_det_version_types.TestDamagedStoredRecordsFailClosed.test_a_damaged_proposal_can_be_replaced_by_the_normal_route_and_the_new_one_is_approvable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 230, in test_a_damaged_proposal_can_be_replaced_by_the_normal_route_and_the_new_one_is_approvable
+    self.assertEqual(old['proposal_state'], 'stale')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'current' != 'stale'
+- current
++ stale
+
+
+======================================================================
+FAIL: test_a_malformed_stored_digest_blocks_approval (tests.test_det_version_types.TestDamagedStoredRecordsFailClosed.test_a_malformed_stored_digest_blocks_approval)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 214, in test_a_malformed_stored_digest_blocks_approval
+    self.assertIs(FD.proposal_current(FD.get(self.m.svc, self.fid)), False)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_a_malformed_stored_finding_version_blocks_approval_and_cannot_even_make_a_token (tests.test_det_version_types.TestDamagedStoredRecordsFailClosed.test_a_malformed_stored_finding_version_blocks_approval_and_cannot_even_make_a_token)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 206, in test_a_malformed_stored_finding_version_blocks_approval_and_cannot_even_make_a_token
+    self.assertIs(FD.proposal_current(FD.get(self.m.svc, self.fid)), False)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_a_proposal_marked_stale_in_the_record_is_refused_even_if_its_version_and_digest_match (tests.test_det_version_types.TestDamagedStoredRecordsFailClosed.test_a_proposal_marked_stale_in_the_record_is_refused_even_if_its_version_and_digest_match)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 221, in test_a_proposal_marked_stale_in_the_record_is_refused_even_if_its_version_and_digest_match
+    self.refused_by_entry_point('STALE_PROPOSAL', t['version'], t['digest'])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 40, in refused_by_entry_point
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_every_malformed_stored_proposal_version_blocks_approval_through_the_entry_point (tests.test_det_version_types.TestDamagedStoredRecordsFailClosed.test_every_malformed_stored_proposal_version_blocks_approval_through_the_entry_point)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 201, in test_every_malformed_stored_proposal_version_blocks_approval_through_the_entry_point
+    self.refused_by_entry_point('STALE_PROPOSAL', t['version'], t['digest'])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 40, in refused_by_entry_point
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_the_approvable_reason_distinguishes_a_missing_version_from_an_invalid_one (tests.test_det_version_types.TestDamagedStoredRecordsFailClosed.test_the_approvable_reason_distinguishes_a_missing_version_from_an_invalid_one)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 244, in test_the_approvable_reason_distinguishes_a_missing_version_from_an_invalid_one
+    self.assertEqual((ok1, ok2), (False, False))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (False, True) != (False, False)
+
+First differing element 1:
+True
+False
+
+- (False, True)
++ (False, False)
+
+======================================================================
+FAIL: test_a_named_digest_that_is_not_text_is_refused_as_a_malformed_token (tests.test_det_version_types.TestNamedVersionAndDigestAreValidated.test_a_named_digest_that_is_not_text_is_refused_as_a_malformed_token)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 169, in test_a_named_digest_that_is_not_text_is_refused_as_a_malformed_token
+    self.refused_by_transition('APPROVAL_TOKEN_REQUIRED', approving_digest=bad)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 50, in refused_by_transition
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'STALE_APPROVAL' != 'APPROVAL_TOKEN_REQUIRED'
+- STALE_APPROVAL
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_named_version_that_is_not_a_whole_number_is_refused_as_a_malformed_token_even_if_it_equals_the_version (tests.test_det_version_types.TestNamedVersionAndDigestAreValidated.test_a_named_version_that_is_not_a_whole_number_is_refused_as_a_malformed_token_even_if_it_equals_the_version)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 164, in test_a_named_version_that_is_not_a_whole_number_is_refused_as_a_malformed_token_even_if_it_equals_the_version
+    self.refused_by_transition('APPROVAL_TOKEN_REQUIRED', approving_version=bad)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 48, in refused_by_transition
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_a_malformed_finding_version_is_never_current (tests.test_det_version_types.TestProposalCurrentIsStrictAboutTypes.test_a_malformed_finding_version_is_never_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 113, in test_a_malformed_finding_version_is_never_current
+    self.assertIs(FD.proposal_current(self.finding(1, bad)), False, repr(bad))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not False : True
+
+======================================================================
+FAIL: test_a_malformed_or_empty_digest_is_never_current (tests.test_det_version_types.TestProposalCurrentIsStrictAboutTypes.test_a_malformed_or_empty_digest_is_never_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 117, in test_a_malformed_or_empty_digest_is_never_current
+    self.assertIs(FD.proposal_current(self.finding(1, 1, pd=bad, fd=bad)), False, repr(bad))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not False : None
+
+======================================================================
+FAIL: test_a_malformed_stored_proposal_version_is_never_current_even_where_python_equality_holds (tests.test_det_version_types.TestProposalCurrentIsStrictAboutTypes.test_a_malformed_stored_proposal_version_is_never_current_even_where_python_equality_holds)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 101, in test_a_malformed_stored_proposal_version_is_never_current_even_where_python_equality_holds
+    self.assertIs(FD.proposal_current(self.finding(bad, 1)), False, repr(bad))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not False : True
+
+======================================================================
+FAIL: test_a_proposal_explicitly_marked_stale_is_not_current_even_if_version_and_digest_match (tests.test_det_version_types.TestProposalCurrentIsStrictAboutTypes.test_a_proposal_explicitly_marked_stale_is_not_current_even_if_version_and_digest_match)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 122, in test_a_proposal_explicitly_marked_stale_is_not_current_even_if_version_and_digest_match
+    self.assertIs(FD.proposal_current(self.finding(1, proposal_state='stale')), False)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_a_stored_proposal_version_of_true_is_not_current_and_the_audit_path_refuses_it (tests.test_det_version_types.TestTheAuditReproduction.test_a_stored_proposal_version_of_true_is_not_current_and_the_audit_path_refuses_it)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 60, in test_a_stored_proposal_version_of_true_is_not_current_and_the_audit_path_refuses_it
+    self.assertIs(FD.proposal_current(f), False)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_the_refusal_reason_says_the_version_is_not_valid_and_names_the_finding_version (tests.test_det_version_types.TestTheAuditReproduction.test_the_refusal_reason_says_the_version_is_not_valid_and_names_the_finding_version)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 86, in test_the_refusal_reason_says_the_version_is_not_valid_and_names_the_finding_version
+    self.assertFalse(ok)
+    ~~~~~~~~~~~~~~~~^^^^
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_the_same_through_the_lower_level_transition_with_and_without_a_version_named (tests.test_det_version_types.TestTheAuditReproduction.test_the_same_through_the_lower_level_transition_with_and_without_a_version_named)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 78, in test_the_same_through_the_lower_level_transition_with_and_without_a_version_named
+    self.refused_by_transition('STALE_PROPOSAL')
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 48, in refused_by_transition
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_the_store_itself_refuses_a_float_so_1_point_0_can_only_reach_the_function_directly_and_is_refused_there (tests.test_det_version_types.TestTheAuditReproduction.test_the_store_itself_refuses_a_float_so_1_point_0_can_only_reach_the_function_directly_and_is_refused_there)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m63old_imzqcddh/APG_M6_2/tests/test_det_version_types.py", line 72, in test_the_store_itself_refuses_a_float_so_1_point_0_can_only_reach_the_function_directly_and_is_refused_there
+    self.assertIs(FD.proposal_current(direct), False)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not False
+
+----------------------------------------------------------------------
+Ran 34 tests in 0.976s
+
+FAILED (failures=19, errors=2)
+
+[exit code 1]

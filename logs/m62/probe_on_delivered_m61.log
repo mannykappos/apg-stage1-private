@@ -1,0 +1,6 @@
+PROPOSED  action_proposed version 1 evidence 67a504082f14 action written against version 1
+CHANGED   action_proposed version 2 evidence 619f1afb69a4 action still written against version 1 | stale proposals reported by the run: (not reported)
+APPROVE   no version named -> ACCEPTED action_approved at version 2
+DEFECT PRESENT: a proposal written against old evidence was approved
+
+[exit code 1]

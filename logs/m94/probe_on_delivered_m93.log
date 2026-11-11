@@ -1,0 +1,10 @@
+Run against the delivered, unmodified APG-M9.3 package with only tools/probe_m93_clock_failure.py added.
+F-63 present, clock.now() raises RuntimeError                            -> DEFECT PRESENT: escaped RuntimeError: clock unavailable
+F-63 request_approval, clock.now() raises RuntimeError                   -> DEFECT PRESENT: escaped RuntimeError: clock unavailable
+F-63 check_for_execution, clock.now() raises RuntimeError                -> DEFECT PRESENT: escaped RuntimeError: clock unavailable
+F-63 a clock that fails after its first read does not halve an approval  -> DEFECT PRESENT: escaped RuntimeError: clock unavailable; the finding is action_proposed
+F-63 an expiry that cannot be read ends the session                      -> DEFECT PRESENT: escaped RuntimeError: x
+a working clock still approves                                           -> corrected
+DEFECT PRESENT in 5 of 6: ['F-63 present, clock.now() raises RuntimeError', 'F-63 request_approval, clock.now() raises RuntimeError', 'F-63 check_for_execution, clock.now() raises RuntimeError', 'F-63 a clock that fails after its first read does not halve an approval', 'F-63 an expiry that cannot be read ends the session']
+
+[exit code 1]

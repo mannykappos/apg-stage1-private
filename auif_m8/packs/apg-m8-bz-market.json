@@ -1,0 +1,388 @@
+{
+ "artifact_hash": "d850d1e9102480a00dd026c0ad321f96c9f9519eefcd25fab5c9bc86dc1ffc99",
+ "auif_contract_compat": {
+  "max": "1.0.99",
+  "min": "1.0.0"
+ },
+ "canonical_model_compat": {
+  "max": "0.1.99",
+  "min": "0.1.0"
+ },
+ "classification_mappings": [],
+ "contains_governance_logic": false,
+ "contains_secrets": false,
+ "contract_kind": "TranslationPack",
+ "immutable": true,
+ "mappings": [
+  {
+   "canonical_ref": "module.apg.FxRate",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "module.apg.FxRate",
+    "source_type": "entity",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "ENTITY",
+   "mapping_id": "m8-fx-rate-entity",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "fx_rate",
+   "validation_ref": {
+    "evidence_hash": "69fa95f737914891687bfe4d0dfb66667b01c28fa5009db3aef67ff2d6d5e81a",
+    "evidence_id": "val-apg-m8-fx-rate",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.FxRate.fx_date",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-fx-rate-fx-date",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "fx_rate.fx_date",
+   "validation_ref": {
+    "evidence_hash": "704cd484b76a54ae00bfbe7bb3345d280051562bd3b5559af6ac9b43b006bd50",
+    "evidence_id": "val-apg-m8-fx-rate-fx-date",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.FxRate.currency_pair",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-fx-rate-currency-pair",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "fx_rate.pair",
+   "validation_ref": {
+    "evidence_hash": "57201c426084f28c13c42b8d56cfc372c17e31c2ccb1e136851ea33b60ab613b",
+    "evidence_id": "val-apg-m8-fx-rate-currency-pair",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.FxRate.rate_text",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-fx-rate-rate-text",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "fx_rate.rate",
+   "validation_ref": {
+    "evidence_hash": "0f142bd50ddb4616c1c2d0768e2fc79278c4dea3f641f4251c85394ca0bf263e",
+    "evidence_id": "val-apg-m8-fx-rate-rate-text",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.MarketObservation",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "module.apg.MarketObservation",
+    "source_type": "entity",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "ENTITY",
+   "mapping_id": "m8-market-observation-entity",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "market_observation",
+   "validation_ref": {
+    "evidence_hash": "61a9d31aea48bf5727e72c148ea53d08718aef730a4dc6559ca440ecd428f4c2",
+    "evidence_id": "val-apg-m8-market-observation",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.MarketObservation.source_record_id",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-market-observation-source-record-id",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "market_observation.obs_id",
+   "validation_ref": {
+    "evidence_hash": "cbe55ebbb1a4b610a84d5a27150db83367023b1a9aff6dc05d04ab86f5de1c35",
+    "evidence_id": "val-apg-m8-market-observation-source-record-id",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.MarketObservation.material_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-market-observation-material-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "market_observation.material_id",
+   "validation_ref": {
+    "evidence_hash": "59b9eea5ff8b9baff6b53234d847f6bf44605c00a1df6be7a43e8b839f4ebafd",
+    "evidence_id": "val-apg-m8-market-observation-material-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.MarketObservation.obs_date",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-market-observation-obs-date",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "market_observation.obs_date",
+   "validation_ref": {
+    "evidence_hash": "1ae887f7b37f96df0418fb167becdaf19a5f366d3012e5e6e6a73525881c220b",
+    "evidence_id": "val-apg-m8-market-observation-obs-date",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.MarketObservation.value_scaled",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-market-observation-value-scaled",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "market_observation.value",
+   "validation_ref": {
+    "evidence_hash": "60ee5caacc27b4310cd8a8c6d586dd70caa9454fad9b929150af5db7a97e5304",
+    "evidence_id": "val-apg-m8-market-observation-value-scaled",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.MarketObservation.unit_text",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-market-observation-unit-text",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "market_observation.unit",
+   "validation_ref": {
+    "evidence_hash": "0766a95913a16948746622e155fbc0ad23ae0186ac22c2952d4336b1395fa230",
+    "evidence_id": "val-apg-m8-market-observation-unit-text",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.MarketObservation.kind_text",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-market-observation-kind-text",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "market_observation.kind",
+   "validation_ref": {
+    "evidence_hash": "612ec55bd35fee850d14fee3fa717123151d0e51420bb06b09fe156bef7480f1",
+    "evidence_id": "val-apg-m8-market-observation-kind-text",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.MarketObservation.source_label_text",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-market-observation-source-label-text",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "market_observation.source_label",
+   "validation_ref": {
+    "evidence_hash": "deb4ea64dba21e6bfea9a61ff557147354a38e6e79d872c7fc7fa036ce10d1df",
+    "evidence_id": "val-apg-m8-market-observation-source-label-text",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.MarketObservation.geography_text",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-market-observation-geography-text",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "market_observation.geography",
+   "validation_ref": {
+    "evidence_hash": "408fb20223c1eeda057f13db80b671c19b1e6f27e64389fcedb0bfa368d42ee4",
+    "evidence_id": "val-apg-m8-market-observation-geography-text",
+    "kind": "mapping-validation"
+   }
+  }
+ ],
+ "pack_id": "apg-m8-bz-market",
+ "pack_state": "CANDIDATE",
+ "pack_version": "0.1.0",
+ "provenance_rules": {
+  "preserve_pack_identity": true,
+  "preserve_source_field": true,
+  "preserve_source_object": true
+ },
+ "schema_expectations": {
+  "compatible_fingerprints": [
+   "4adceaf4d2c51f229754c534b7b342ed23710f2a46c049fd938ef50973335e0b"
+  ]
+ },
+ "target_system_kind": "synthetic-builder-zero-csv-export",
+ "unmapped_field_policy": {
+  "default_outcome": "REJECTED",
+  "ignored_by_rule": [],
+  "optional_and_unused": []
+ }
+}

@@ -1,0 +1,23 @@
+AUIF verified: zip d534a6e6541b6d1a core 923de5100f95debb
+CONTROL (unmutated copy): passes 98s
+MI-04  KILLED       2s tier 1: FAIL: test_deliveries_from_another_environment (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_deliveries_from_another_environment)
+MI-08  KILLED       1s tier 1: FAIL: test_a_chain_naming_another_source_object (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_a_chain_naming_another_source_objec
+MI-12  KILLED       2s tier 1: FAIL: test_an_attribute_that_is_not_text (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_an_attribute_that_is_not_text)
+MI-16  KILLED      13s tier 1: FAIL: test_a_file_removed_after_activation (tests_m8.test_m8_no_fallback.TestPartial.test_a_file_removed_after_activation)
+MI-20  KILLED      13s tier 1: FAIL: test_a_delivery_lost_between_auif_and_apg (tests_m8.test_m8_no_fallback.TestPartial.test_a_delivery_lost_between_auif_and_apg)
+MI-24  KILLED       1s tier 1: FAIL: test_a_new_manifest_learned_during_the_import (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_a_new_manifest_learned_during_t
+MI-28  KILLED       1s tier 1: FAIL: test_a_chain_naming_another_pack_hash (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_a_chain_naming_another_pack_hash)
+MI-32  KILLED       3s tier 1: FAIL: test_an_unparseable_optional_value_is_held_as_m3_holds_it_and_stops_the_assessment (tests_m8.test_m8_no_fallback.TestInvalidAmbiguousAndTypeMism
+MI-36  EQUIVALENT    95s The adapter skips a blank delivery by the same test the M3 parser uses for a blank row (every cell empty after stripping), so the number of parsed row
+MI-40  KILLED      51s tier 1: FAIL: test_a_read_that_delivered_nothing_is_refused (tests_m8.test_m8r1_empty_source.TestTheBatchCheckItself.test_a_read_that_delivered_nothing_is_ref
+MI-44  KILLED       7s tier 1: ERROR: test_a_change_while_the_figures_are_computed_withdraws_the_result (tests_m8.test_m8_no_fallback.TestNoOldValueShownAsCurrent.test_a_change_whil
+MI-48  KILLED      16s tier 1: FAIL: test_an_in_order_event_auif_cannot_map_stays_outstanding_and_the_in_order_events_are_kept (tests_m8.test_m8_events.TestFindingM8F3.test_an_in_or
+MI-52  KILLED      15s tier 1: FAIL: test_notices_that_disagree_with_the_results_are_a_reason_and_nothing_applied_is_lost (tests_m8.test_m8_events.TestFindingM8F3.test_notices_that_
+MM-04  KILLED      13s tier 1: FAIL: test_a_file_removed_after_activation (tests_m8.test_m8_no_fallback.TestPartial.test_a_file_removed_after_activation)
+MG-02  KILLED      14s tier 1: FAIL: test_an_integration_that_never_reported_a_state (tests_m8.test_m8_no_fallback.TestStaleDriftedAndDegraded.test_an_integration_that_never_reporte
+MG-06  KILLED       2s tier 1: FAIL: test_a_module_handler_failure_recorded_by_auif_stops_the_assessment (tests_m8.test_m8_integrity.TestGateAndBinding.test_a_module_handler_failure
+MA-02  KILLED       9s tier 1: FAIL: test_a_change_while_the_figures_are_computed_withdraws_the_result (tests_m8.test_m8_no_fallback.TestNoOldValueShownAsCurrent.test_a_change_while
+MC-01  KILLED       1s tier 1: FAIL: test_a_pack_in_any_other_form_is_refused_before_it_is_used (tests_m8.test_m8_dev01.TestFailClosed.test_a_pack_in_any_other_form_is_refused_befor
+MD-01  KILLED       1s tier 1: FAIL: test_a_changed_zip_is_refused (tests_m8.test_m8_dependency.TestFrozenDependency.test_a_changed_zip_is_refused)
+ML-02  KILLED      32s tier 1: FAIL: test_an_input_of_an_unknown_kind_is_untraced (tests_m8.test_m8_lineage.TestTheLineageCheckerItself.test_an_input_of_an_unknown_kind_is_untraced)
+mutants 20: killed 19, documented equivalent 1, survived 0, timeout 0 | AUIF after: unchanged

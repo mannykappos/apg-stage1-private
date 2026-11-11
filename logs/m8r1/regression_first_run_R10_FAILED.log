@@ -1,0 +1,13 @@
+PASS R01 every one of the 1,222 APG-F67.4-R2 files is byte-identical except README.md, RUN_COMMANDS.txt and four programme registers (rows appended only; the Engine handoff register is unchanged); no existing application code, test, tool, template, data or specification was modified 
+PASS R02 every file beyond APG-F67.4-R2 is a declared M8 addition (apg_auif/, tests_m8/, auif_m8/, the AUIF ZIP, seven tools, the change record, regression and logs) 
+PASS R03 the four registers are exactly what tools/make_m8_registers.py and then tools/make_m8r1_registers.py make from the R2 registers: every R2 row unchanged; F-76 to F-82, SR-121 to SR-126, I-135 to I-141 and CF-46 to CF-53 appended; the Engine handoff register byte-identical to R2 
+PASS R04 every EDR and CF status from R2 is unchanged (EDR-05, EDR-06, EDR-18, EDR-39, EDR-40, EDR-41 open; CF-41 as recorded); no EDR row added; the M8 and M8-R1 findings and CF-46 to CF-53 are open 
+PASS R05 the M8 text makes no acceptance, readiness, Engine-integration or gate-closing claim and states the authorisations, DEV-M8-01 and the PROPOSED status 
+PASS R06 the package carries the exact AUIF rev13 ZIP (61748dde...); a fresh extraction passes AUIF's own manifest check (tree 9fbc5de7..., 248 files) and core tree hash (74cec87a...) 
+PASS R07 the stored definitions, model and packs are exactly what tools/make_m8_config.py generates ['config files 17, differing 0, unexpected 0']
+PASS R08 the M3 import tests pass unchanged (224, as on R2) ['OK']
+PASS R09 the M8 boundary tests pass (no other change, no network, Governor or credential) ['M8 tests 8 in 1 files, failed files 0']
+FAIL R10 against the delivered APG-M8 ZIP (f1b634d36f2a..., 1,307 files): only the declared M8-R1 files changed (the adapter intake and gate, the corpus declaration and its test, the boundary test, five M8 tools, README, RUN_COMMANDS and four registers, rows appended only) and only the declared M8-R1 files were added ['tests_m8/test_m8_path_equivalence.py']
+
+checks 10  failed 1
+FAILED: ['R10']

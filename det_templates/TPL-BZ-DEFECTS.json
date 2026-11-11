@@ -1,0 +1,88 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "defect_id",
+   "target_field": "source_record_id",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "project_id",
+   "target_field": "project_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "subcontractor",
+   "target_field": "subcontractor_text",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "trade",
+   "target_field": "trade_text",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "required": true,
+   "source_column": "raised_date",
+   "target_field": "raised_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "severity",
+   "target_field": "severity_text",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "rework_cost_cents",
+   "target_field": "rework_cost_cents",
+   "transform": "none",
+   "type": "money_cents"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "status",
+   "target_field": "status_text",
+   "transform": "trim",
+   "type": "string"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "defect_id"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-08",
+ "source_label": "Builder Zero defects (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "defect",
+ "template_id": "TPL-BZ-DEFECTS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

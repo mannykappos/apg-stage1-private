@@ -1,0 +1,5 @@
+"files_checked":253,"ok":true,"tree_sha256":"4918c2a6eb9480e5cfaf5089395c5352af0c7571b7070849f562128b18c2faf3"
+core_tree_sha256': '923de5100f95debbbf63d5ab6e960cee2091ee57abce403792403ff049ac7839'
+Ran 441 tests in 17.750s  OK  [tests]
+Ran 347 tests in 39.722s  OK (skipped=20)  [auif_ext/tests]
+Ran 422 tests in 25.040s  OK  [auif_onboard/tests]

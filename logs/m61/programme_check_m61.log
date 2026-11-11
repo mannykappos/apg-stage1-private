@@ -1,0 +1,15 @@
+PASS N01 F-52 records the defect, the gate that found it, the files, and the correction as builder-implemented with no independent review, with the auditor to confirm; the M5 and M6 archives stay unchanged
+PASS N02 I-59 to I-64 are retained for review, not approved, with no reviewer decision, and state the digest reading, the in-progress reading and the stale-version refusal
+PASS N03 SR-62 to SR-65 sit at or below Local-tested, each has evidence and a claim limit, and the limits say no independent review, proposed only, and not an independent audit
+PASS N04 the Engine #17 governance register holds G-01 to G-12 in order, every cell filled
+PASS N05 RFC-01 is unnumbered, the four baseline rules are PROPOSED and not implemented, no finance assumption is configured, the foundations are not started, the correction waits for the auditor
+PASS N06 no new register text claims approval, independent review, readiness, compliance, adoption or closure []
+PASS N07 RFC-01 is still PROPOSED, not approved and not numbered
+PASS N08 the governance record keeps the locked-baseline hash, the four vector rules as proposed, the approvals-not-given statement and the last-paid-rate rule
+PASS N09 the change record has the defect, impact, exact files changed, behaviour, tests and limits sections, and names every changed or added file []
+PASS N10 the Phase 0 report in the package is the one delivered, by hash
+
+checks 10  failed 0
+ALL M6.1 REGISTER CHECKS PASS
+
+[exit code 0; 0s]

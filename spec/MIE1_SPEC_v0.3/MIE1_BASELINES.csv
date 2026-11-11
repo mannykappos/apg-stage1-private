@@ -1,0 +1,22 @@
+artifact,sha256,state
+Blueprint v1.0 locked package (SHA-256 per lock record),487becabdf47796800937d13a706a19b63b7b8230ecc5354b2f01a647ae5d960,locked; unchanged
+M8.1 ZIP,58ae1f9ff0a28b00ac4b79bc6a61fa7fb4a2ca3bcda183b4819fb712adc0c0f9,preserved release; unchanged
+M8.2 ZIP,6cef0cdfedacbeec6fb2cb0451d33b697fd892499606bd6a0279d69b998b46cf,preserved release; unchanged
+M8.3 ZIP,55ddc98d6daeae7522cecb09a1b075f28c72680a755128736295bd09db74c05a,preserved release; unchanged; passed independent audit for M8.3-01 only; not production approval
+M9.4 ZIP,31c05bf715b0df3e37424347fddd80a795eaaf30bc2940704688eabbcf9b44d3,preserved release; unchanged
+BL-17 discovery ZIP,3b211063225fdc8e88dc7a369210aa7c8d648519d331af7a88568fb994c421c2,preserved release; unchanged
+BL-17 discovery docs,cface8d63d16549d1009c27e10f2f74492c388aebddc8b4ca3931d46f813d45f,preserved; unchanged
+BL-17 S1 v0.1 ZIP,7d49611931df2cef1093c495d4950d33f5edc28a66c326f229fd0d5743e843a2,preserved; unchanged
+BL-17 S1 v0.1 docs,e1fa06491f7cd2b418569ec3baa5d54f7cb4814a5f6ff7c42e41b396306f3d66,preserved; unchanged
+BL-17 S1 v0.2 ZIP (separate workstream),e88f7fff2ecb4a40d6f5ffb3facbfd551dc17b47cabf6adfc118ac3a85993d45,delivered; independently checked 20/20 for integrity; NOT approved (three points returned); superseded by v0.3; not part of this package
+BL-17 S1 v0.2 docs (separate workstream),7a4c48cc5079fe328d2203aeabd01c4f0e7b3b39b9963f0ea4fc567f5932e816,delivered; independently checked 20/20 for integrity; NOT approved (three points returned); superseded by v0.3; not part of this package
+MIE-1 milestone proposal,6210aad2ed50f6381a40b2581bc0864f7b8c4516f8f9bdcfd5a8d7b6e8cfd6a3,"proposal, superseded by the authorisation"
+AUIF rev13 (development reference only; not used by MIE-1),61748ddeba21e8c1d71b56bd0d3ad7a376ea051f4ae6fbe56c6464c0de76e070,not an approved production baseline
+MIE-1 v0.1 ZIP (delivered package; preserved),d0c51fa431c3050a08f104e22d31c7a6301be1e2a31a4cbf19aaedbdac8e5e73,"delivered; independent integrity checks passed (30/30 checker, 22/22 tamper); NOT approved for implementation; unchanged by v0.2 and v0.3"
+MIE-1 v0.1 docs (delivered; preserved),ca117784693859cb2c17ae66a2550de12f62221c18b3cb02b21c09f4724fb17b,delivered; unchanged by v0.2 and v0.3
+BL-17 S1 v0.3 ZIP (separate workstream),16ae373d94ae4ec775a79bb5163354a3e500c123ae50647954a215d66698d815,"delivered; independent integrity checks reported passing (25/25 checker, 36/36 tamper); NOT approved (one finding returned); superseded by v0.4; not part of this package"
+BL-17 S1 v0.3 docs (separate workstream),ab620259c270655f723a93b86ff696b39bb91abdc70aa96d9429bc998a20bfba,delivered; NOT approved (one finding returned); superseded by v0.4; not part of this package
+MIE-1 v0.2 ZIP (delivered; preserved),0bd6177cb4f1262dd9565ab759c67e220bdad6f276dde85affb41fac5cf45fde,"delivered; independent review reproduced manifest, 43/43 checker and 47/47 tamper; NOT approved for implementation (one finding returned); superseded by v0.3; unchanged by v0.3"
+MIE-1 v0.2 docs (delivered; preserved),d4e1bcabdeb5fbacbf912b9703be451c8504938b5b84cab2a324dc04000f9b98,delivered; unchanged by v0.3
+BL-17 S1 v0.4 ZIP (separate workstream),2d32355ac155147a4241ae864154d435efae532ea4bb72c7f18e20540c92b6ed,"delivered, awaiting independent review; not part of this package"
+BL-17 S1 v0.4 docs (separate workstream),73c961fc0017de00d40a3a06280e5d508e2902fbc1cde908e2c9230acff7c976,"delivered, awaiting independent review; not part of this package"

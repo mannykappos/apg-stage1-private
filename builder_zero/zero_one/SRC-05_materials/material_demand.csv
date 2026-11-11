@@ -1,0 +1,3 @@
+demand_id,project_id,material_id,qty,unit,required_on_site
+DEM-0001,PRJ-002,MAT-STEEL,120,tonne,2026-12-01
+DEM-0002,PRJ-001,MAT-PBOARD,2000,sheet,2026-10-15

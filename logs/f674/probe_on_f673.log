@@ -1,0 +1,20 @@
+DEFECT PRESENT  F-75 fin A: credit_reopens_commitment changed from False to 0 (revision 3) -> confirmed ['olive']; run approved=True
+DEFECT PRESENT  F-75 fin B: the owner approves the changed content afresh                  -> refused (PolicyError: olive has already approved this version); confirmed ['olive']
+DEFECT PRESENT  F-75 fin C: the version stored again with 0 for False                      -> done; revision 2 -> 2
+DEFECT PRESENT  F-75 det A: rules/DLY/min_overlap_days changed from 1 to True (revision 3) -> confirmed ['olive']; run approved=True
+DEFECT PRESENT  F-75 det B: the owner approves the changed content afresh                  -> refused (DetPolicyError: olive has already approved this version); confirmed ['olive']
+DEFECT PRESENT  F-75 det C: the version stored again with True for 1                       -> done; revision 2 -> 2
+DEFECT PRESENT  F-75 mkt A: demand/duplicate_window_days changed from 0 to False (revision 3) -> confirmed ['olive']; run approved=True
+DEFECT PRESENT  F-75 mkt B: the owner approves the changed content afresh                  -> refused (MktPolicyError: olive has already approved this version); confirmed ['olive']
+DEFECT PRESENT  F-75 mkt C: the version stored again with False for 0                      -> done; revision 2 -> 2
+DEFECT PRESENT  F-75 spec A: unit_conversions/0/factor_micro changed from 1 to True (revision 3) -> confirmed ['olive']; run approved=True
+DEFECT PRESENT  F-75 spec B: the owner approves the changed content afresh                 -> refused (MktPolicyError: olive has already approved this version); confirmed ['olive']
+DEFECT PRESENT  F-75 spec C: the version stored again with True for 1                      -> done; revision 2 -> 2
+DEFECT PRESENT  F-75 rec A: approval_bands/0/min_cents changed from 0 to False (revision 3) -> confirmed ['olive']; run approved=run refused
+DEFECT PRESENT  F-75 rec B: the owner approves the changed content afresh                  -> refused (RecPolicyError: olive has already approved this version); confirmed ['olive']
+DEFECT PRESENT  F-75 rec C: the version stored again with False for 0                      -> done; revision 2 -> 2
+CORRECTED       control: an ordinary approval of each record is confirmed                  -> {'fin': True, 'det': True, 'mkt': True, 'spec': True, 'rec': True}
+
+cases 16  defects present 15
+F-75 IS NOT CORRECTED
+exit 1

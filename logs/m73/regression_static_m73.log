@@ -1,0 +1,10 @@
+PASS R01 every one of the 889 M7.2 files except the 15 declared changed ones is byte-identical here, and each declared one did change 
+PASS R02 every file beyond M7.2 is a declared M7.3 addition, and every declared single addition exists 
+PASS R03 the only application files changed are the declared five (apg/rec/lifecycle.py and engine.py; apg/ports.py, reference_impl.py and tenancy.py); the only one added is the guard contract; no other M9.4 application file differs from M9.4 ['apg/ports.py', 'apg/rec/engine.py', 'apg/rec/lifecycle.py', 'apg/reference_impl.py', 'apg/tenancy.py', 'apg/contracts/record_store_guard_contract.py']
+PASS R04 the only test file changed is tests/test_rec_m72_race.py (seven tests, declared); every other M2 to M9.4, M7, M7.1 and M7.2 test is unchanged; the M7.3 tests are added 
+PASS R05 the programme tables are append-only (F-69, SR-103 and SR-104, I-116 and I-117, EDR-36, CF-35); the M7.2 rows, including F-64 to F-68, are unchanged; the milestones, RFC and Engine #17 tables are byte-identical to M7.2 
+PASS R06 F-69 is corrected but open until independently verified; F-64 to F-68 are still open; no finding is closed; RFC-01 is still PROPOSED {'F-69': 'Corrected in APG-M7.3 (builder-implemented); open until independently verified'}
+PASS R07 the programme tables are exactly what tools/make_m73_registers.py makes from the M7.2 tables 
+PASS R08 no recommendation module adopts or files a forecast, claims a realised saving outside the gate, or reaches outside the record store 
+
+checks 8  failed 0

@@ -1,0 +1,896 @@
+{
+ "audit_chain_ok": true,
+ "baseline_forecast_state": "provisional",
+ "findings": 31,
+ "first": {
+  "codes": {
+   "DET-AGG|PRJ-002|SUP-003|MAT-REO|CC-03|2026-08-03": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-D01|actual_cost|held_records": [
+    "FINDING_NOT_REVIEWED",
+    "DATA_QUALITY_FINDING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-DEF|SUB-004 (synthetic)|waterproofing": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING"
+   ],
+   "DET-DLY|DLY-001|DLY-002": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-LAB|WP-PLASTER": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_QUALIFIED"
+   ],
+   "DET-MP01|MAT-CU|index": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "DATA_QUALITY_FINDING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP01|MAT-PBOARD|index": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "DATA_QUALITY_FINDING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP01|MAT-REO|quote": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "DATA_QUALITY_FINDING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP02|demand/DEM-0001>Q-0005": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP02|spec_requirement/SPEC-0001>Q-0003": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP03|demand/DEM-0001": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP04|demand/DEM-0002": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_QUALIFIED"
+   ],
+   "DET-MP05|PO-0100|PO-0101": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING"
+   ],
+   "DET-MP06|Q-0005": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP07|Q-0005": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP09|OPP-DEM-0002-Q-0006": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP10|PORT-MAT-CU": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_WEAK",
+    "EVIDENCE_MISSING",
+    "AMOUNT_QUALIFIED"
+   ],
+   "DET-MP10|PORT-MAT-PBOARD": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_WEAK",
+    "EVIDENCE_MISSING",
+    "AMOUNT_QUALIFIED"
+   ],
+   "DET-MP10|PORT-MAT-STEEL": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_WEAK",
+    "EVIDENCE_MISSING",
+    "AMOUNT_QUALIFIED"
+   ],
+   "DET-R01|CC-04": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_QUALIFIED"
+   ],
+   "DET-R02|AMD-001": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING"
+   ],
+   "DET-R03|PO-0091": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING"
+   ],
+   "DET-R04B|NTC-001": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-R04|VAR-0001": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-R05|PRJ-001": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING"
+   ],
+   "DET-R06|SUP-005|public_liability_insurance": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-R06|SUP-008|licence": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-R07|Q-0001>quote:Q-0002": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-R08|HIRE-001": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING",
+    "AMOUNT_QUALIFIED"
+   ],
+   "DET-R09|CC-09|F-2026-08>F-2026-09": [
+    "FINDING_NOT_REVIEWED",
+    "EVIDENCE_MISSING"
+   ]
+  },
+  "excluded": 0,
+  "policy": {
+   "approved": true,
+   "approvers_confirmed_by_audit": [
+    "quentin"
+   ],
+   "missing": [],
+   "version": "SYN-REC-POL-1"
+  },
+  "ranked": [
+   [
+    "DET-R05",
+    "PRJ-001",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R06",
+    "SUP-008|licence",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP02",
+    "spec_requirement/SPEC-0001>Q-0003",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP06",
+    "Q-0005",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R06",
+    "SUP-005|public_liability_insurance",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP07",
+    "Q-0005",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP03",
+    "demand/DEM-0001",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R07",
+    "Q-0001>quote:Q-0002",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP02",
+    "demand/DEM-0001>Q-0005",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP09",
+    "OPP-DEM-0002-Q-0006",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-D01",
+    "actual_cost|held_records",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-D01",
+    "actual_cost|held_records",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R09",
+    "CC-09|F-2026-08>F-2026-09",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R02",
+    "AMD-001",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP01",
+    "MAT-CU|index",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP01",
+    "MAT-REO|quote",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP01",
+    "MAT-PBOARD|index",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R03",
+    "PO-0091",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R04",
+    "VAR-0001",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-AGG",
+    "PRJ-002|SUP-003|MAT-REO|CC-03|2026-08-03",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R01",
+    "CC-04",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R08",
+    "HIRE-001",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-DEF",
+    "SUB-004 (synthetic)|waterproofing",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP05",
+    "PO-0100|PO-0101",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP04",
+    "demand/DEM-0002",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-LAB",
+    "WP-PLASTER",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R04B",
+    "NTC-001",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-DLY",
+    "DLY-001|DLY-002",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP10",
+    "PORT-MAT-CU",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP10",
+    "PORT-MAT-PBOARD",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP10",
+    "PORT-MAT-STEEL",
+    "investigate",
+    "investigate"
+   ]
+  ],
+  "routes": {
+   "action": 0,
+   "close": 0,
+   "in_hand": 0,
+   "investigate": 31
+  },
+  "totals": {
+   "cash_timing_exposure": {
+    "counted": 1,
+    "estimated_net_counted_cents": 0,
+    "not_counted_overlap": [],
+    "potential_gross_counted_cents": 12000000,
+    "recommendations": 1,
+    "unquantified": []
+   },
+   "compliance_risk": {
+    "counted": 0,
+    "estimated_net_counted_cents": 0,
+    "not_counted_overlap": [],
+    "potential_gross_counted_cents": 0,
+    "recommendations": 4,
+    "unquantified": [
+     "REC-5f518797d7d8ab7a772b",
+     "REC-9f07d1c49252f327ca4f",
+     "REC-a27eb6e1854de62e66f8",
+     "REC-e7a9c2746d715d2e6e1e"
+    ]
+   },
+   "data_quality_risk": {
+    "counted": 0,
+    "estimated_net_counted_cents": 0,
+    "not_counted_overlap": [],
+    "potential_gross_counted_cents": 0,
+    "recommendations": 5,
+    "unquantified": [
+     "REC-1bb334676aaef92099a1",
+     "REC-41af285b69454a924bf2",
+     "REC-7c768a055e3b2f234756",
+     "REC-7ec1b1d3fbaae3f80fe5",
+     "REC-853408e9ebdcd8fa1f00"
+    ]
+   },
+   "forecast_exposure": {
+    "counted": 7,
+    "estimated_net_counted_cents": 0,
+    "not_counted_overlap": [
+     "REC-56f0af0fc64c662f1e39",
+     "REC-6cd97d286625ab9c3d2d"
+    ],
+    "potential_gross_counted_cents": 94460068,
+    "recommendations": 12,
+    "unquantified": [
+     "REC-1b4a0ffca2c962bf0f6f",
+     "REC-6299d52df56631274a24",
+     "REC-e43a1d5930725b8904e4"
+    ]
+   },
+   "operational_risk": {
+    "counted": 0,
+    "estimated_net_counted_cents": 0,
+    "not_counted_overlap": [],
+    "potential_gross_counted_cents": 0,
+    "recommendations": 3,
+    "unquantified": [
+     "REC-256d1a7c2a63c988c01e",
+     "REC-7d6279731837559246a6",
+     "REC-cd92faabb11c991f3307"
+    ]
+   },
+   "potential_opportunity": {
+    "counted": 3,
+    "estimated_net_counted_cents": 0,
+    "not_counted_overlap": [],
+    "potential_gross_counted_cents": 71290280,
+    "recommendations": 4,
+    "unquantified": [
+     "REC-730f1db74f9a40c6a8fa"
+    ]
+   },
+   "potential_revenue_at_risk": {
+    "counted": 0,
+    "estimated_net_counted_cents": 0,
+    "not_counted_overlap": [],
+    "potential_gross_counted_cents": 0,
+    "recommendations": 2,
+    "unquantified": [
+     "REC-b1e7983172a15ca82a4c",
+     "REC-d90c9c9ec908998c84c2"
+    ]
+   }
+  }
+ },
+ "first_all_investigate": true,
+ "reconstruct_first_version": [
+  [
+   "REC-22bb652caad3c6639fdd",
+   true
+  ],
+  [
+   "REC-71db5099305daec8fa30",
+   true
+  ]
+ ],
+ "replay": [
+  true,
+  true
+ ],
+ "second": {
+  "codes": {
+   "DET-AGG|PRJ-002|SUP-003|MAT-REO|CC-03|2026-08-03": [
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-D01|actual_cost|held_records": [
+    "DATA_QUALITY_FINDING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-DEF|SUB-004 (synthetic)|waterproofing": [
+    "EVIDENCE_MISSING"
+   ],
+   "DET-DLY|DLY-001|DLY-002": [
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-LAB|WP-PLASTER": [
+    "EVIDENCE_MISSING",
+    "AMOUNT_QUALIFIED"
+   ],
+   "DET-MP01|MAT-CU|index": [
+    "EVIDENCE_MISSING",
+    "DATA_QUALITY_FINDING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP01|MAT-PBOARD|index": [
+    "EVIDENCE_MISSING",
+    "DATA_QUALITY_FINDING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP01|MAT-REO|quote": [
+    "EVIDENCE_MISSING",
+    "DATA_QUALITY_FINDING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP02|demand/DEM-0001>Q-0005": [
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP02|spec_requirement/SPEC-0001>Q-0003": [
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP03|demand/DEM-0001": [
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP04|demand/DEM-0002": [
+    "EVIDENCE_MISSING",
+    "AMOUNT_QUALIFIED"
+   ],
+   "DET-MP05|PO-0100|PO-0101": [
+    "EVIDENCE_MISSING"
+   ],
+   "DET-MP06|Q-0005": [
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP07|Q-0005": [
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP09|OPP-DEM-0002-Q-0006": [
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-MP10|PORT-MAT-CU": [
+    "EVIDENCE_WEAK",
+    "EVIDENCE_MISSING",
+    "AMOUNT_QUALIFIED"
+   ],
+   "DET-MP10|PORT-MAT-PBOARD": [
+    "EVIDENCE_WEAK",
+    "EVIDENCE_MISSING",
+    "AMOUNT_QUALIFIED"
+   ],
+   "DET-MP10|PORT-MAT-STEEL": [
+    "EVIDENCE_WEAK",
+    "EVIDENCE_MISSING",
+    "AMOUNT_QUALIFIED"
+   ],
+   "DET-R01|CC-04": [
+    "AMOUNT_QUALIFIED"
+   ],
+   "DET-R02|AMD-001": [],
+   "DET-R03|PO-0091": [
+    "EVIDENCE_MISSING"
+   ],
+   "DET-R04B|NTC-001": [
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-R04|VAR-0001": [
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-R05|PRJ-001": [
+    "EVIDENCE_MISSING"
+   ],
+   "DET-R06|SUP-005|public_liability_insurance": [
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-R06|SUP-008|licence": [
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-R07|Q-0001>quote:Q-0002": [
+    "EVIDENCE_MISSING",
+    "AMOUNT_UNQUANTIFIED"
+   ],
+   "DET-R08|HIRE-001": [
+    "EVIDENCE_MISSING",
+    "AMOUNT_QUALIFIED"
+   ],
+   "DET-R09|CC-09|F-2026-08>F-2026-09": []
+  },
+  "excluded": 0,
+  "policy": {
+   "approved": true,
+   "approvers_confirmed_by_audit": [
+    "quentin"
+   ],
+   "missing": [],
+   "version": "SYN-REC-POL-1"
+  },
+  "ranked": [
+   [
+    "DET-R09",
+    "CC-09|F-2026-08>F-2026-09",
+    "action",
+    "prevent"
+   ],
+   [
+    "DET-R05",
+    "PRJ-001",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R06",
+    "SUP-008|licence",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP02",
+    "spec_requirement/SPEC-0001>Q-0003",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP06",
+    "Q-0005",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R06",
+    "SUP-005|public_liability_insurance",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP07",
+    "Q-0005",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP03",
+    "demand/DEM-0001",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R07",
+    "Q-0001>quote:Q-0002",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP02",
+    "demand/DEM-0001>Q-0005",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP09",
+    "OPP-DEM-0002-Q-0006",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R02",
+    "AMD-001",
+    "action",
+    "prevent"
+   ],
+   [
+    "DET-D01",
+    "actual_cost|held_records",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-D01",
+    "actual_cost|held_records",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP01",
+    "MAT-CU|index",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP01",
+    "MAT-REO|quote",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP01",
+    "MAT-PBOARD|index",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R03",
+    "PO-0091",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R04",
+    "VAR-0001",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R01",
+    "CC-04",
+    "action",
+    "prevent"
+   ],
+   [
+    "DET-AGG",
+    "PRJ-002|SUP-003|MAT-REO|CC-03|2026-08-03",
+    "action",
+    "correct"
+   ],
+   [
+    "DET-R08",
+    "HIRE-001",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-DEF",
+    "SUB-004 (synthetic)|waterproofing",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP05",
+    "PO-0100|PO-0101",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP04",
+    "demand/DEM-0002",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-LAB",
+    "WP-PLASTER",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-R04B",
+    "NTC-001",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-DLY",
+    "DLY-001|DLY-002",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP10",
+    "PORT-MAT-CU",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP10",
+    "PORT-MAT-PBOARD",
+    "investigate",
+    "investigate"
+   ],
+   [
+    "DET-MP10",
+    "PORT-MAT-STEEL",
+    "investigate",
+    "investigate"
+   ]
+  ],
+  "routes": {
+   "action": 4,
+   "close": 0,
+   "in_hand": 0,
+   "investigate": 27
+  },
+  "totals": {
+   "cash_timing_exposure": {
+    "counted": 1,
+    "estimated_net_counted_cents": 0,
+    "not_counted_overlap": [],
+    "potential_gross_counted_cents": 12000000,
+    "recommendations": 1,
+    "unquantified": []
+   },
+   "compliance_risk": {
+    "counted": 0,
+    "estimated_net_counted_cents": 0,
+    "not_counted_overlap": [],
+    "potential_gross_counted_cents": 0,
+    "recommendations": 4,
+    "unquantified": [
+     "REC-5f518797d7d8ab7a772b",
+     "REC-9f07d1c49252f327ca4f",
+     "REC-a27eb6e1854de62e66f8",
+     "REC-e7a9c2746d715d2e6e1e"
+    ]
+   },
+   "data_quality_risk": {
+    "counted": 0,
+    "estimated_net_counted_cents": 0,
+    "not_counted_overlap": [],
+    "potential_gross_counted_cents": 0,
+    "recommendations": 5,
+    "unquantified": [
+     "REC-1bb334676aaef92099a1",
+     "REC-41af285b69454a924bf2",
+     "REC-7c768a055e3b2f234756",
+     "REC-7ec1b1d3fbaae3f80fe5",
+     "REC-853408e9ebdcd8fa1f00"
+    ]
+   },
+   "forecast_exposure": {
+    "counted": 7,
+    "estimated_net_counted_cents": 120000,
+    "not_counted_overlap": [
+     "REC-56f0af0fc64c662f1e39",
+     "REC-6cd97d286625ab9c3d2d"
+    ],
+    "potential_gross_counted_cents": 94460068,
+    "recommendations": 12,
+    "unquantified": [
+     "REC-1b4a0ffca2c962bf0f6f",
+     "REC-6299d52df56631274a24",
+     "REC-e43a1d5930725b8904e4"
+    ]
+   },
+   "operational_risk": {
+    "counted": 0,
+    "estimated_net_counted_cents": 0,
+    "not_counted_overlap": [],
+    "potential_gross_counted_cents": 0,
+    "recommendations": 3,
+    "unquantified": [
+     "REC-256d1a7c2a63c988c01e",
+     "REC-7d6279731837559246a6",
+     "REC-cd92faabb11c991f3307"
+    ]
+   },
+   "potential_opportunity": {
+    "counted": 3,
+    "estimated_net_counted_cents": 0,
+    "not_counted_overlap": [],
+    "potential_gross_counted_cents": 71290280,
+    "recommendations": 4,
+    "unquantified": [
+     "REC-730f1db74f9a40c6a8fa"
+    ]
+   },
+   "potential_revenue_at_risk": {
+    "counted": 0,
+    "estimated_net_counted_cents": 0,
+    "not_counted_overlap": [],
+    "potential_gross_counted_cents": 0,
+    "recommendations": 2,
+    "unquantified": [
+     "REC-b1e7983172a15ca82a4c",
+     "REC-d90c9c9ec908998c84c2"
+    ]
+   }
+  }
+ },
+ "second_ingest": {
+  "approvals_ended": 0,
+  "created": 0,
+  "deferrals_ended": 0,
+  "finding_excluded": 0,
+  "ignored_older": 0,
+  "new_version": 31,
+  "refreshed": 0,
+  "submissions_ended": 0,
+  "terminal_unchanged": 0
+ },
+ "submissions": [
+  [
+   "REC-22bb652caad3c6639fdd",
+   "submitted"
+  ],
+  [
+   "REC-71db5099305daec8fa30",
+   "NOT_SUBMITTABLE",
+   [
+    "scenario comparison incomplete"
+   ]
+  ]
+ ],
+ "tenant_isolation": {
+  "zero_two_recommendations": 0,
+  "zero_two_sees_run": false
+ }
+}

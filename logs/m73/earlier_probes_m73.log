@@ -1,0 +1,6 @@
+$ python3 -I tools/probe_m71_race.py
+THE RACE IS CLOSED (0 of 8 present)
+$ python3 -I tools/probe_m7_audit_findings.py
+THE AUDIT FINDINGS ARE CORRECTED (0 of 4 present)
+$ python3 -I tools/probe_rec_m7.py
+THE M7 GUARANTEES HOLD (12 of 12)

@@ -1,0 +1,24 @@
+CORRECTED       F-72 fin A: approval while the audit write fails                           -> refused (PolicyErrorNotConfirmed: approval NOT CONFIRMED: the approval by olive of financial policy PF-1 is recorded in the policy but the audit); run approved=False
+CORRECTED       F-72 fin D: the owner retries while the audit write still fails            -> refused (PolicyErrorNotConfirmed: approval NOT CONFIRMED: the approval by olive of financial policy PF-1 is recorded in the policy but the audit); run approved=False
+CORRECTED       F-72 fin C: another person with the role approves meanwhile                -> done; listed ['olive', 'otto']; olive confirmed=False
+CORRECTED       F-72 fin B: the owner retries once the audit log works                     -> done; run approved=True; olive confirmed=True
+CORRECTED       F-72 det A: approval while the audit write fails                           -> refused (DetPolicyErrorNotConfirmed: approval NOT CONFIRMED: the approval by olive of detection policy PD-1 is recorded in the policy but the audit); run approved=False
+CORRECTED       F-72 det D: the owner retries while the audit write still fails            -> refused (DetPolicyErrorNotConfirmed: approval NOT CONFIRMED: the approval by olive of detection policy PD-1 is recorded in the policy but the audit); run approved=False
+CORRECTED       F-72 det C: another person with the role approves meanwhile                -> done; listed ['olive', 'otto']; olive confirmed=False
+CORRECTED       F-72 det B: the owner retries once the audit log works                     -> done; run approved=True; olive confirmed=True
+CORRECTED       F-72 mkt A: approval while the audit write fails                           -> refused (MktPolicyErrorNotConfirmed: approval NOT CONFIRMED: the approval by olive of procurement policy PM-1 is recorded in the policy but the aud); run approved=False
+CORRECTED       F-72 mkt D: the owner retries while the audit write still fails            -> refused (MktPolicyErrorNotConfirmed: approval NOT CONFIRMED: the approval by olive of procurement policy PM-1 is recorded in the policy but the aud); run approved=False
+CORRECTED       F-72 mkt C: another person with the role approves meanwhile                -> done; listed ['olive', 'otto']; olive confirmed=False
+CORRECTED       F-72 mkt B: the owner retries once the audit log works                     -> done; run approved=True; olive confirmed=True
+CORRECTED       F-72 spec A: approval while the audit write fails                          -> refused (MktPolicyErrorNotConfirmed: approval NOT CONFIRMED: the approval by olive of specification register PS-1 is recorded in the policy but the); run approved=False
+CORRECTED       F-72 spec D: the owner retries while the audit write still fails           -> refused (MktPolicyErrorNotConfirmed: approval NOT CONFIRMED: the approval by olive of specification register PS-1 is recorded in the policy but the); run approved=False
+CORRECTED       F-72 spec C: another person with the role approves meanwhile               -> done; listed ['olive', 'otto']; olive confirmed=False
+CORRECTED       F-72 spec B: the owner retries once the audit log works                    -> done; run approved=True; olive confirmed=True
+CORRECTED       F-72 rec A: approval while the audit write fails                           -> refused (RecPolicyErrorNotConfirmed: approval NOT CONFIRMED: the approval by olive of recommendation policy PR-1 is recorded in the policy but the ); run approved=False
+CORRECTED       F-72 rec D: the owner retries while the audit write still fails            -> refused (RecPolicyErrorNotConfirmed: approval NOT CONFIRMED: the approval by olive of recommendation policy PR-1 is recorded in the policy but the ); run approved=False
+CORRECTED       F-72 rec C: another person with the role approves meanwhile                -> done; listed ['olive', 'otto']; olive confirmed=False
+CORRECTED       F-72 rec B: the owner retries once the audit log works                     -> done; run approved=True; olive confirmed=True
+CORRECTED       control: an ordinary approval of each record is counted                    -> {'fin': True, 'det': True, 'mkt': True, 'spec': True, 'rec': True}
+
+cases 21  defects present 0
+F-72 IS CORRECTED

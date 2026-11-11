@@ -1,0 +1,38 @@
+PASS R01 the baseline names the delivered M6.5 ZIP and documents by hash and accounts for every one of its files
+PASS R02 603 files of the delivered M6.5 package are byte-identical to it []
+PASS R03 the 18 changed and 25 added files equal their recorded hashes, and every changed file differs from M6.5 []
+PASS R04 no file exists in the package beyond the M6.5 files and the declared additions []
+PASS R05 no application file of M6.5 or earlier changed (apg/det, apg/mkt and the rest are byte-identical); the only application files added are the five of the new package apg/api
+PASS R06 no existing test file changed (the lifecycle tests are untouched); the only test files added are tests/test_api_approval_boundary.py, tests/test_api_action_port_contract.py and tests/test_api_static.py
+PASS R07 tools changed: make_m0.py (runs the M9.1 register step), the register checks of M4, M5, M6 and M6.5 and the regression tools of M6 to M6.5 (accept the M9.1 rows, tables and declared files; every other check is unchanged); tools added: the mutation tool, the register step, the probe, the M9.1 register check, the wrapper, the contract runner and this tool
+PASS R08 of the non-code files only the readme, the run commands and five programme tables changed; no golden file, baseline, demonstration output, snapshot, earlier log, research file or Builder Zero case changed []
+PASS R09 the findings, RFC and governance tables are byte-identical to the delivered M6.5 ones (no finding is added or changed; RFC-01 still PROPOSED and unnumbered; the proposed baseline rules unchanged)
+PASS R09b the milestones table differs from the delivered M6.5 one in the M9 row only (status and the handoff list gain EDR-31; there is no row for slices, so the slice is recorded on the M9 row); M7, M8 and M10 to M12 are not started
+PASS R09c the handoff register: every delivered row is unchanged; EDR-31 (the per-action project permission port) is appended, described only, no Engine code seen
+PASS R10-STAT STATUS_REGISTER.csv: every delivered M6.5 row is unchanged; rows from SR-76 are appended with milestone M9.1
+PASS R10-INTE INTERPRETATIONS_REGISTER.csv: every delivered M6.5 row is unchanged; rows from I-81 are appended with milestone M9.1
+PASS R10-CARR CARRIED_FORWARD_REGISTER.csv: every delivered M6.5 row is unchanged (CF-22 and CF-25 are not edited and stay open); CF-26 and CF-27 are appended
+PASS R11 no finding and no carried-forward item is shown as closed; F-52 to F-57, CF-22 and CF-25 stay open; the new interpretations are retained for review, not approved, with no reviewer decision
+PASS R12 the boundary probe shows the six situations ending as the contract says (normal path, replay, evidence changed after approval, proposal replaced, wrong project, extra field)
+PASS R13 the boundary tests, the port contract tests and the static tests of apg/api pass
+PASS R14 the 14 cases of the ProjectActionPort contract pass on the in-memory reference
+PASS R15 the M6.5 transition-bypass probe still shows every incomplete approval refused
+PASS R16 the M6.4 swap probe still shows an approval of a replaced proposal refused
+PASS R17 the M6.3 malformed-version probe still shows the malformed values refused
+PASS R18 the M6.2 stale-proposal probe still shows the stale proposal refused
+PASS R19 the M6.1 approval-binding probe still shows the old approval ended
+PASS R20 every M5 detection and finding test, the M6.1 to M6.5 binding and gate tests included, passes unchanged
+PASS R21 the M6.5 regression tool's file and table checks still pass (with the M9.1 declarations)
+PASS R22 the M6.4 regression tool's file and table checks still pass (with the M6.5 and M9.1 declarations)
+PASS R23 the M6.3 regression tool's file and table checks still pass (with the M6.4 to M9.1 declarations)
+PASS R24 the M6.2 regression tool's file and table checks still pass (with the M6.3 to M9.1 declarations)
+PASS R25 the M6.1 regression tool's file and table checks still pass (with the M6.2 to M9.1 declarations)
+PASS R26 the M6 regression tool (which protects M5, M4, M3, M2 and M0/M1) still passes
+PASS R27 the M6 golden cases still give the recorded answers
+PASS R28 the M6 narrated demonstration still prints exactly the recorded output
+PASS R29 the M5 narrated demonstration still prints exactly the recorded output
+
+checks 33  failed 0
+REGRESSION OK
+
+[exit code 0; 93s]

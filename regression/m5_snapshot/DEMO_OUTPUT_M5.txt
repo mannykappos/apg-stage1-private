@@ -1,0 +1,45 @@
+APG M5 DEMONSTRATION: deterministic detection rules on Builder Zero, each finding naming its records, its amount label and what it could not assess.  The data is synthetic; every threshold is SYNTHETIC and ILLUSTRATIVE.
+
+1. DETECT.  Four detection runs (three projects and the tenant) at 2026-09-30 produce 17 findings: PRJ-001 2, PRJ-002 10, PRJ-003 2, tenant 3.
+   The oracle, a separate program that uses only the CSV files, dates and fractions, expects 15 conditions from the same thresholds; every one is found and nothing else is reported as a leak. The negative controls (cost just inside tolerance, an amendment linked to an approved variation, an invoice inside tolerance, a recent variation, a hire inside need, orders sixty days apart) stay silent.
+
+2. THE PLANTED CASES.
+   cost over budget tolerance, cost code CC-04: $219,832.57 (estimate); severity medium; 9 source records
+   commitment increase with no approved change, AMD-001: $85,000.00 (record); severity medium; 2 source records
+   invoiced above order beyond tolerance, PO-0091: $7,600.00 (record); severity low; 2 source records
+   variation unresolved beyond the workflow period, VAR-0001: not quantified, and it says why; severity unrated; 1 source record
+   client instruction with no variation raised, NTC-001: not quantified, and it says why; severity unrated; 1 source record
+   retention release date passed: $120,000.00 (figure); severity medium; 1 source record
+   plant on hire beyond evidenced need, HIRE-001: $210,450.00 (estimate); severity medium; 1 source record
+   forecast movement with no explained bridge: $310,000.00 (record); severity high; 2 source records
+   labour output per hour falling, WP-PLASTER: $8,268.11 (estimate); severity low; 252 source records
+   repeat defect with growing rework cost: $87,000.00 (record); severity medium; 3 source records
+   Every amount carries its label: figure (from an M4 financial figure), record (as recorded in a source record) or estimate (computed with an assumption that the signal lists).
+
+3. WHAT IS NOT PUT IN MONEY.
+   orders split inside a short window: not quantified, and it says why; severity high; 3 source records
+   The orders add up to $271,320.00, which is value at stake and not a loss, so no loss is claimed.  Delay overlap, an unresolved variation, an instruction with no variation, an expired licence and a quote above a declared reference are reported without an amount and each says why.
+   Records held out of the cost figure are reported as data-integrity signals, apart from leakage; 4 findings are not quantified at all.
+
+4. SILENCE IS NEVER THE ONLY ANSWER.
+   Every rule leaves a run record saying whether it was evaluated, how many subjects it looked at and how many it could not assess. Run earlier, at 2026-08-14, the labour rule says it cannot assess: True.  A health report states that the absence of an alert is not evidence that nothing is wrong: True.
+
+5. TIME PASSES.
+   A sweep a day later sees all 17 findings again and creates, updates, reopens and sends nothing (10 seen on PRJ-002, 0 created).  A sweep at 2026-11-30 finds VAR-0002 because it has by then been unresolved beyond the workflow period: True.
+
+6. NOISE CONTROL AND DELIVERY.
+   First flush: 17 notifications sent, 0 duplicate, 0 failed.  Second flush: 0 sent.  Notifications outstanding: 0.  A delivery that fails stays pending and visible; a repeat inside the suppression window is not sent again.
+   Detection never confirms, dismisses, approves or resolves a finding: only a person with the right role can, with a recorded reason, and the person who proposes an action cannot approve it.
+
+7. PORTFOLIO WITHOUT DOUBLE COUNTING.
+   cash_timing_exposure: 1 findings, 1 quantified; between $120,000.00 and $120,000.00.  Interpretations are never added to each other.
+   forecast_exposure: 9 findings, 7 quantified; between $921,700.68 and $929,300.68; overlap-adjusted.  Interpretations are never added to each other.
+   potential_revenue_at_risk: 2 findings, 0 quantified; between $0.00 and $0.00.  Interpretations are never added to each other.
+
+8. REPRODUCIBLE.
+   4 stored detection runs were replayed from their pinned inputs: all reproduce True.  Running the ingest of a run twice changes nothing: True.
+
+9. SECOND TENANT.
+   zero_two reuses identifiers and has its own held invoice; it gets its own answer (DET-D01 only) from its own records.  zero_one's findings visible to zero_two: False; zero_two findings before its own ingest: 0.
+
+Audit chains verify: [True, True].  Open decisions are untouched: DEC-A1-1..8, DEC-MIE-01, CR-02 A1 to A13.  Materials and market scenarios (PS-14, 15, 16, 17, 23, 25) belong to M6 and are not claimed here.

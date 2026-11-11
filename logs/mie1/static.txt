@@ -1,0 +1,9 @@
+PASS NE-01 neutrality 
+PASS NE-03 imports 
+PASS NE-04 field names 
+PASS NE-05 operations 
+PASS NE-06 clock, random, network, files, environment 
+PASS FL-01 no feed call in the core 
+PASS IG-01 no APG module imports MIE 
+PASS IG-05 no MIE module imports APG 
+static checks 8  failed 0

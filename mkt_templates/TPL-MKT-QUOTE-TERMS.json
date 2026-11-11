@@ -1,0 +1,48 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "quote_id",
+   "target_field": "quote_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "term",
+   "target_field": "term_name",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "value",
+   "target_field": "value_text",
+   "transform": "trim",
+   "type": "string"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "quote_id",
+  "term"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-03",
+ "source_label": "M6 synthetic supplement: quote terms",
+ "status": "draft - unverified against any real export",
+ "target_entity": "quote_term",
+ "template_id": "TPL-MKT-QUOTE-TERMS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

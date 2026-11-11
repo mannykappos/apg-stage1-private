@@ -1,0 +1,67 @@
+delivered M7.1 ZIP sha256 6fd3bac49f16a9b954dba79d70ea8d673b8756cdc92ab44e100ffaaea35abe89
+
+== ON THE DELIVERED M7.1 PACKAGE (unmodified, the two files copied in) ==
+$ python3 -I tools/probe_m71_race.py
+DEFECT PRESENT  submit, competing change at point A (the finding is dismissed): accepted; the recommendation is awaiting_approval
+DEFECT PRESENT  submit, competing change at point A (the mandatory review is changed to not_cleared): accepted; the recommendation is awaiting_approval
+DEFECT PRESENT  submit, competing change at point B (the finding is dismissed): accepted; the recommendation is awaiting_approval
+DEFECT PRESENT  submit, competing change at point B (the mandatory review is changed to not_cleared): accepted; the recommendation is awaiting_approval
+DEFECT PRESENT  approve, competing change at point A (the finding is dismissed): accepted; the recommendation is approved
+DEFECT PRESENT  approve, competing change at point B (the finding is dismissed): accepted; the recommendation is approved
+DEFECT PRESENT  start, competing change at point A (the finding is dismissed): accepted; the recommendation is in_progress
+DEFECT PRESENT  start, competing change at point B (the finding is dismissed): accepted; the recommendation is in_progress
+DEFECT PRESENT (8 of 8 present)
+exit 1
+$ the correction tests, one by one
+  pass  TestAChangeBeforeTheAct.test_a_change_before_the_act_is_refused_by_the_check_itself_and_nothing_is_recorded
+  FAIL  TestANewRecordDuringTheAct.test_a_new_overlapping_finding_at_each_boundary_and_point_reverses_the_act
+  FAIL  TestANewRecordDuringTheAct.test_if_the_recommendation_changes_again_before_the_reversal_the_caller_is_told
+  FAIL  TestANewRecordDuringTheAct.test_the_reversal_message
+  ERROR TestTheGuardItself.test_a_guard_for_a_record_read_twice_at_different_revisions_refuses
+  ERROR TestTheGuardItself.test_a_record_that_is_absent_is_reported_as_read_by_nobody
+  FAIL  TestTheGuardItself.test_a_record_that_the_store_would_rewrite_cannot_be_held_and_the_act_is_refused
+  ERROR TestTheGuardItself.test_the_batch_holds_every_record_the_check_read
+  pass  TestTheGuardItself.test_the_store_rules_the_guard_relies_on
+  FAIL  TestTheRaceAtEachBoundary.test_after_the_refusal_a_fresh_run_decides_what_happens_next
+  FAIL  TestTheRaceAtEachBoundary.test_each_change_at_each_boundary_and_each_point_is_refused_and_nothing_is_recorded
+  pass  TestTheRaceAtEachBoundary.test_the_competing_change_itself_is_kept
+  FAIL  TestTheRaceAtEachBoundary.test_the_refusal_says_nothing_was_recorded_and_what_changed
+  FAIL  TestUnchangedAndUnrelated.test_a_concurrent_change_elsewhere_refuses_without_recording_and_a_retry_succeeds
+  pass  TestUnchangedAndUnrelated.test_a_concurrent_write_of_the_recommendation_itself_is_still_a_concurrent_change
+  pass  TestUnchangedAndUnrelated.test_acts_that_are_not_source_checked_are_not_guarded
+  FAIL  TestUnchangedAndUnrelated.test_the_message_for_a_concurrent_change_elsewhere
+  pass  TestUnchangedAndUnrelated.test_with_nothing_changed_every_act_goes_through_and_the_guards_write_nothing
+  18 tests; 12 fail or error; 6 pass
+
+== ON M7.2 ==
+$ python3 -I tools/probe_m71_race.py
+closed          submit, competing change at point A (the finding is dismissed): refused (SOURCE_CHANGED); the recommendation is generated; nothing was recorded
+closed          submit, competing change at point A (the mandatory review is changed to not_cleared): refused (SOURCE_CHANGED); the recommendation is generated; nothing was recorded
+closed          submit, competing change at point B (the finding is dismissed): refused (SOURCE_CHANGED); the recommendation is generated; nothing was recorded
+closed          submit, competing change at point B (the mandatory review is changed to not_cleared): refused (SOURCE_CHANGED); the recommendation is generated; nothing was recorded
+closed          approve, competing change at point A (the finding is dismissed): refused (SOURCE_CHANGED); the recommendation is awaiting_approval; nothing was recorded
+closed          approve, competing change at point B (the finding is dismissed): refused (SOURCE_CHANGED); the recommendation is awaiting_approval; nothing was recorded
+closed          start, competing change at point A (the finding is dismissed): refused (SOURCE_CHANGED); the recommendation is approved; nothing was recorded
+closed          start, competing change at point B (the finding is dismissed): refused (SOURCE_CHANGED); the recommendation is approved; nothing was recorded
+THE RACE IS CLOSED (0 of 8 present)
+exit 0
+$ the correction tests, one by one
+  pass  TestAChangeBeforeTheAct.test_a_change_before_the_act_is_refused_by_the_check_itself_and_nothing_is_recorded
+  pass  TestANewRecordDuringTheAct.test_a_new_overlapping_finding_at_each_boundary_and_point_reverses_the_act
+  pass  TestANewRecordDuringTheAct.test_if_the_recommendation_changes_again_before_the_reversal_the_caller_is_told
+  pass  TestANewRecordDuringTheAct.test_the_reversal_message
+  pass  TestTheGuardItself.test_a_guard_for_a_record_read_twice_at_different_revisions_refuses
+  pass  TestTheGuardItself.test_a_record_that_is_absent_is_reported_as_read_by_nobody
+  pass  TestTheGuardItself.test_a_record_that_the_store_would_rewrite_cannot_be_held_and_the_act_is_refused
+  pass  TestTheGuardItself.test_the_batch_holds_every_record_the_check_read
+  pass  TestTheGuardItself.test_the_store_rules_the_guard_relies_on
+  pass  TestTheRaceAtEachBoundary.test_after_the_refusal_a_fresh_run_decides_what_happens_next
+  pass  TestTheRaceAtEachBoundary.test_each_change_at_each_boundary_and_each_point_is_refused_and_nothing_is_recorded
+  pass  TestTheRaceAtEachBoundary.test_the_competing_change_itself_is_kept
+  pass  TestTheRaceAtEachBoundary.test_the_refusal_says_nothing_was_recorded_and_what_changed
+  pass  TestUnchangedAndUnrelated.test_a_concurrent_change_elsewhere_refuses_without_recording_and_a_retry_succeeds
+  pass  TestUnchangedAndUnrelated.test_a_concurrent_write_of_the_recommendation_itself_is_still_a_concurrent_change
+  pass  TestUnchangedAndUnrelated.test_acts_that_are_not_source_checked_are_not_guarded
+  pass  TestUnchangedAndUnrelated.test_the_message_for_a_concurrent_change_elsewhere
+  pass  TestUnchangedAndUnrelated.test_with_nothing_changed_every_act_goes_through_and_the_guards_write_nothing
+  18 tests; 0 fail or error; 18 pass

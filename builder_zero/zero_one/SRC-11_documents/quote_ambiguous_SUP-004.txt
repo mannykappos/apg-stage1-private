@@ -1,0 +1,6 @@
+SYNTHETIC SUPPLIER QUOTE (poor scan)
+Supplier: SYN Metro Steel Pty Ltd (synthetic)
+Item: Structural steel 250UB
+Quantity: 4O tonnes   [letter O or zero?]
+Rate: $2.650 / t   [decimal point or thousands separator?]
+Valid until: 31/10/26

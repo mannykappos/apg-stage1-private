@@ -1,0 +1,15 @@
+item_id,item,milestone,evidence_ladder_status,evidence,claim_limit
+SR-01,Builder Zero synthetic data generator,M1,Local-tested,builder_zero_check.py: 43 checks incl. byte-for-byte regeneration,"Builder-run, non-production, no independent review"
+SR-02,Builder Zero checker,M1,Local-tested,Sabotage tests in the build record,"Builder-run, no independent review"
+SR-03,Candidate systems catalogue (56 rows),M1,Research record,Vendor documents read 2026-10-13; spot-checked; grades kept,Not a requirement status. Not confirmed with any builder.
+SR-04,"Mapping-template format, validator and examples",M1,Local-tested,mapping_template_check.py: 5 checks incl. 11 rejected broken templates,Draft; not yet checked on any real export
+SR-05,Draft translation-pack specs,M1,Specified,Each vendor entity name traced to the catalogue text,Unverified drafts
+SR-06,Programme milestones and handoff register,M0,Specified,programme_check.py,Plan only
+SR-07,"Values, canonical JSON and port definitions",M2,Local-tested,tests/test_values.py; mutation run over canon.py and values.py,Builder-run on in-memory doubles; non-production; no independent review
+SR-08,"Contract suites for tenant context, record store and audit log, with faulty-implementation proof",M2,Local-tested,tools/run_contracts.py; tools/run_faults.py (each faulty implementation must fail the suite),Passes on in-memory reference doubles only; never run on an Engine implementation; ports are not integration-tested
+SR-09,Tenant-scope guards,M2,Local-tested,tests/test_tenancy.py; tests/test_adversarial_builder_zero.py (tenant spoofing); mutation run,Builder-run; synthetic builders only; role enforcement on direct store writes is an open handoff entry (EDR-20)
+SR-10,"Source authority, quarantine and batch intake guard",M2,Local-tested,tests/test_source_authority.py; adversarial conflicting-source cases; mutation run,"Rules in tests are synthetic; no real authority register exists, and none is approved"
+SR-11,Status and evidence model,M2,Local-tested,tests/test_status_model.py; mutation run,Builder-run; models Section 17 section 2; not yet used on the real RTM
+SR-12,Reproducibility records,M2,Local-tested,tests/test_repro.py; golden reproducibility case; mutation run,Builder-run on in-memory store
+SR-13,Materiality policy engine around the CR-02 rev 2 model,M2,Local-tested,tests/test_materiality_engine.py; CR-02 reference tests and 79 CR-02 mutants rerun on the packaged model; engine mutation run,CR-02 remains PROPOSED; DEC-A1-1 to DEC-A1-8 remain open; test thresholds are illustrative
+SR-14,Golden regression cases and M0/M1 baseline,M2,Local-tested,tools/run_golden.py; tools/run_regression.py,Golden values come from the builder's own code plus an independent csv oracle; no independent review

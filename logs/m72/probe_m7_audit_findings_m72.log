@@ -1,0 +1,6 @@
+$ python3 -I tools/probe_m7_audit_findings.py
+corrected       F-64 submission accepted after the underlying finding was dismissed, without a fresh run
+corrected       F-64 submission accepted after a mandatory review was changed to not_cleared, without a fresh run
+corrected       F-65 start of work accepted after the underlying finding was dismissed following approval
+corrected       F-66 a policy accepted as approved on caller-supplied approver, role and kind fields
+THE AUDIT FINDINGS ARE CORRECTED (0 of 4 present)

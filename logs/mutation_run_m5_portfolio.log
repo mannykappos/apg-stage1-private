@@ -1,0 +1,18 @@
+source-hash 13c0e71c8b6a4224bfdd90f377eb5293642e5f31b11f558a71075fea2c0e12b3
+KILLED     PF-CMP-001  (by portfolio)
+KILLED     PF-CMP-002  (by portfolio)
+KILLED     PF-CMP-003  (by portfolio)
+KILLED     PF-CMP-004  (by portfolio)
+KILLED     PF-CMP-005  (by portfolio)
+KILLED     PF-CMP-006  (by portfolio)
+KILLED     PF-CMP-007  (by portfolio)
+KILLED     PF-CMP-008  (by portfolio)
+KILLED     PF-CMP-009  (by portfolio)
+KILLED     PF-CMP-010  (by portfolio)
+KILLED     PF-CMP-011  (by portfolio)
+KILLED     PF-CMP-012  (by portfolio)
+KILLED     PF-NOT-001  (by portfolio)
+mutants 13  killed 13 (first failing test file: {'portfolio': 13})  documented-equivalent 0  unexplained survivors 0
+MUTATION RUN OK
+
+[0s]

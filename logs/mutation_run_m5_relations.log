@@ -1,0 +1,17 @@
+source-hash 13c0e71c8b6a4224bfdd90f377eb5293642e5f31b11f558a71075fea2c0e12b3
+KILLED     RL-CMP-001  (by timeout)
+KILLED     RL-CMP-002  (by portfolio)
+KILLED     RL-CMP-003  (by portfolio)
+KILLED     RL-CMP-004  (by portfolio)
+KILLED     RL-CMP-005  (by portfolio)
+KILLED     RL-CMP-006  (by portfolio)
+KILLED     RL-CMP-007  (by findings_edges)
+KILLED     RL-BOL-001  (by portfolio)
+KILLED     RL-BOL-002  (by findings_edges)
+KILLED     RL-NOT-001  (by portfolio)
+KILLED     RL-NOT-002  (by findings_edges)
+KILLED     RL-ARI-001  (by findings_edges)
+mutants 12  killed 12 (first failing test file: {'findings_edges': 4, 'portfolio': 7, 'timeout': 1})  documented-equivalent 0  unexplained survivors 0
+MUTATION RUN OK
+
+[0s]

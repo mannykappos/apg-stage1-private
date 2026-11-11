@@ -1,0 +1,19 @@
+CORRECTED       F-73 fin A: a planted entry naming the owner, correct role and kind        -> run approved=False
+CORRECTED       F-73 fin B: the owner then approves in person                              -> done; planted entry still in the record=False; event names revision 4 (planted 2, latest 4)
+CORRECTED       F-73 fin C: as B, the planted entry identical to approve's own             -> done; event names revision 4 (planted 2)
+CORRECTED       F-73 det A: a planted entry naming the owner, correct role and kind        -> run approved=False
+CORRECTED       F-73 det B: the owner then approves in person                              -> done; planted entry still in the record=False; event names revision 4 (planted 2, latest 4)
+CORRECTED       F-73 det C: as B, the planted entry identical to approve's own             -> done; event names revision 4 (planted 2)
+CORRECTED       F-73 mkt A: a planted entry naming the owner, correct role and kind        -> run approved=False
+CORRECTED       F-73 mkt B: the owner then approves in person                              -> done; planted entry still in the record=False; event names revision 4 (planted 2, latest 4)
+CORRECTED       F-73 mkt C: as B, the planted entry identical to approve's own             -> done; event names revision 4 (planted 2)
+CORRECTED       F-73 spec A: a planted entry naming the owner, correct role and kind       -> run approved=False
+CORRECTED       F-73 spec B: the owner then approves in person                             -> done; planted entry still in the record=False; event names revision 4 (planted 2, latest 4)
+CORRECTED       F-73 spec C: as B, the planted entry identical to approve's own            -> done; event names revision 4 (planted 2)
+CORRECTED       F-73 rec A: a planted entry naming the owner, correct role and kind        -> run approved=False
+CORRECTED       F-73 rec B: the owner then approves in person                              -> done; planted entry still in the record=False; event names revision 4 (planted 2, latest 4)
+CORRECTED       F-73 rec C: as B, the planted entry identical to approve's own             -> done; event names revision 4 (planted 2)
+CORRECTED       control: an ordinary approval is counted and names the revision approve wrote -> counted {'fin': True, 'det': True, 'mkt': True, 'spec': True, 'rec': True}; bound {'fin': True, 'det': True, 'mkt': True, 'spec': True, 'rec': True}
+
+cases 16  defects present 0
+F-73 IS CORRECTED

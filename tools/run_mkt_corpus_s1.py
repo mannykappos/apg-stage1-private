@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+"""APG-M11-S1 successor of tools/run_mkt_corpus.py (P4-B15; DP-1.2 (B): tools/run_mkt_corpus.py stays byte-identical).
+Runs the M6 procurement corpus (tests/corpus_mkt.py).
+It prints kind=cases evidence (R1_REQUIREMENTS.md §2.7, T-K R5): one CASE line per case, the M10 human lines, any RUN_ERROR lines and one
+RESULT v=2 line; the case inventory is pinned (tools/expected_counts.json); a candidate is loaded only after the trusted harness, from
+its own top-level package appended to the path, and one of a trusted name is refused (P3-B04, DP-4.3 (c); tools/evkit.cases_main).
+Exit codes as §2.4.  The M10 success marker is printed only on exit 0.     BUILDER-EXECUTED: NOT INDEPENDENT."""
+import os
+import sys
+
+sys.dont_write_bytecode = True
+ROOT = os.path.realpath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, ROOT)
+import tools.evkit as E  # noqa: E402
+
+from tests import corpus_mkt as K  # noqa: E402  (the trusted harness)
+
+TOOL = 'run_mkt_corpus_s1'
+CASES = {c['id']: c for c in K.cases()}
+
+if __name__ == '__main__':
+    sys.exit(E.cases_main(TOOL, lambda cand: [('mkt_corpus', cid) for cid in CASES], lambda cand, s, c: K.check_case(CASES[c]), sys.argv[1:],
+                          success_marker='ALL CORPUS CASES PASS', human_label='corpus cases'))

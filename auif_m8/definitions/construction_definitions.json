@@ -1,0 +1,3569 @@
+[
+ {
+  "apg_entity": "supplier",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "supplier_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "name",
+     "transform": "trim"
+    },
+    "name": "supplier_name",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "abn_synthetic",
+     "transform": "trim"
+    },
+    "name": "abn_text",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.Supplier",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_supplier",
+  "effective_time": {
+   "basis": "none: this record type carries no business date, so only the observed time is recorded",
+   "field": null
+  },
+  "identifiers": {
+   "auif_identity_field": "supplier_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "m3",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-SUPPLIERS",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "ap_invoice",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "invoice_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "supplier_id",
+     "transform": "trim"
+    },
+    "name": "supplier_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "supplier_invoice_no",
+     "transform": "trim"
+    },
+    "name": "supplier_invoice_number",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "project_id",
+     "transform": "trim"
+    },
+    "name": "project_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "cost_code",
+     "transform": "trim"
+    },
+    "name": "cost_code_ref",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, not tolerated: a blank value is held (CRITICAL_VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "po_id",
+     "transform": "trim"
+    },
+    "name": "purchase_order_ref",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "invoice_date",
+     "transform": "parse_date"
+    },
+    "name": "invoice_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "ex_gst_cents",
+     "transform": "none"
+    },
+    "name": "amount_ex_gst_cents",
+    "required": true,
+    "sign_rule": "must be positive",
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "gst_cents",
+     "transform": "none"
+    },
+    "name": "gst_cents",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "status",
+     "transform": "trim"
+    },
+    "name": "source_status",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "source_batch",
+     "transform": "trim"
+    },
+    "name": "source_batch_ref",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text).",
+   "Not in the source layout: invoice line items (the Builder Zero accounting layout has one line per invoice), and the payment and credit links are held on the payment and credit records, not on the invoice."
+  ],
+  "concept": "module.apg.ApInvoice",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_ap_invoice",
+  "effective_time": {
+   "basis": "the record's invoice_date",
+   "field": "invoice_date"
+  },
+  "identifiers": {
+   "auif_identity_field": "invoice_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "m3",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "supplier_ref",
+    "required": true,
+    "to": "module.apg.Supplier",
+    "to_identifier": [
+     "source_record_id"
+    ],
+    "used_by": "apg/ingest/reconcile.py (supplier resolution by the apg/ingest/entities.py ladder; never forced)"
+   },
+   {
+    "attribute": "project_ref",
+    "required": true,
+    "to": "module.apg.Project",
+    "to_identifier": [
+     "project_ref"
+    ],
+    "used_by": "apg/fin/snap.py (project_of: which project a record belongs to, for every calculation and rule)"
+   },
+   {
+    "attribute": "purchase_order_ref",
+    "required": false,
+    "to": "module.apg.PurchaseOrder",
+    "to_identifier": [
+     "source_record_id"
+    ],
+    "used_by": "apg/ingest/reconcile.py (PO_PROJECT_MISMATCH, PO_COST_CODE_MISMATCH)"
+   },
+   {
+    "attribute": "cost_code_ref",
+    "required": false,
+    "to": "module.apg.BudgetLine",
+    "to_identifier": [
+     "project_ref",
+     "cost_code_ref"
+    ],
+    "used_by": "apg/fin/costs.py (cost by cost code)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-AP-INVOICES",
+  "text_references": {
+   "source_batch_ref": "the accounting batch label; kept as text"
+  }
+ },
+ {
+  "apg_entity": "credit_note",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "credit_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "supplier_id",
+     "transform": "trim"
+    },
+    "name": "supplier_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "against_invoice_id",
+     "transform": "trim"
+    },
+    "name": "against_invoice_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "credit_date",
+     "transform": "parse_date"
+    },
+    "name": "credit_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "ex_gst_cents",
+     "transform": "none"
+    },
+    "name": "amount_ex_gst_cents",
+    "required": true,
+    "sign_rule": "must be positive",
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "gst_cents",
+     "transform": "none"
+    },
+    "name": "gst_cents",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.CreditNote",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_credit_note",
+  "effective_time": {
+   "basis": "the record's credit_date",
+   "field": "credit_date"
+  },
+  "identifiers": {
+   "auif_identity_field": "credit_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "m3",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "supplier_ref",
+    "required": true,
+    "to": "module.apg.Supplier",
+    "to_identifier": [
+     "source_record_id"
+    ],
+    "used_by": "apg/ingest/reconcile.py (supplier resolution by the apg/ingest/entities.py ladder; never forced)"
+   },
+   {
+    "attribute": "against_invoice_ref",
+    "required": true,
+    "to": "module.apg.ApInvoice",
+    "to_identifier": [
+     "source_record_id"
+    ],
+    "used_by": "apg/ingest/reconcile.py (credit and reissue lineage)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-CREDIT-NOTES",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "payment",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "payment_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "invoice_id",
+     "transform": "trim"
+    },
+    "name": "invoice_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "payment_date",
+     "transform": "parse_date"
+    },
+    "name": "payment_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "amount_cents",
+     "transform": "none"
+    },
+    "name": "amount_cents",
+    "required": true,
+    "sign_rule": "must be positive",
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.Payment",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_payment",
+  "effective_time": {
+   "basis": "the record's payment_date",
+   "field": "payment_date"
+  },
+  "identifiers": {
+   "auif_identity_field": "payment_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "m3",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "invoice_ref",
+    "required": true,
+    "to": "module.apg.ApInvoice",
+    "to_identifier": [
+     "source_record_id"
+    ],
+    "used_by": "apg/ingest/reconcile.py (payment links)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-PAYMENTS",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "purchase_order",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "po_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "supplier_id",
+     "transform": "trim"
+    },
+    "name": "supplier_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "project_id",
+     "transform": "trim"
+    },
+    "name": "project_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "cost_code",
+     "transform": "trim"
+    },
+    "name": "cost_code_ref",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, not tolerated: a blank value is held (CRITICAL_VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "po_date",
+     "transform": "parse_date"
+    },
+    "name": "order_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "material_id",
+     "transform": "trim"
+    },
+    "name": "material_ref",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "integer",
+     "source_column": "qty",
+     "transform": "none"
+    },
+    "name": "quantity",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "unit",
+     "transform": "trim"
+    },
+    "name": "unit_of_measure",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "unit_rate_cents",
+     "transform": "none"
+    },
+    "name": "unit_rate_cents",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "amount_cents",
+     "transform": "none"
+    },
+    "name": "amount_ex_gst_cents",
+    "required": true,
+    "sign_rule": "must be positive",
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "status",
+     "transform": "trim"
+    },
+    "name": "source_status",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text).",
+   "Not in the source layout: order lines beyond one material line per order; approved changes arrive as separate po_amendment records."
+  ],
+  "concept": "module.apg.PurchaseOrder",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_purchase_order",
+  "effective_time": {
+   "basis": "the record's order_date",
+   "field": "order_date"
+  },
+  "identifiers": {
+   "auif_identity_field": "po_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "m3",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "supplier_ref",
+    "required": true,
+    "to": "module.apg.Supplier",
+    "to_identifier": [
+     "source_record_id"
+    ],
+    "used_by": "apg/ingest/reconcile.py (supplier resolution by the apg/ingest/entities.py ladder; never forced)"
+   },
+   {
+    "attribute": "project_ref",
+    "required": true,
+    "to": "module.apg.Project",
+    "to_identifier": [
+     "project_ref"
+    ],
+    "used_by": "apg/fin/snap.py (project_of: which project a record belongs to, for every calculation and rule)"
+   },
+   {
+    "attribute": "cost_code_ref",
+    "required": false,
+    "to": "module.apg.BudgetLine",
+    "to_identifier": [
+     "project_ref",
+     "cost_code_ref"
+    ],
+    "used_by": "apg/fin/commitments.py"
+   },
+   {
+    "attribute": "material_ref",
+    "required": false,
+    "to": "module.apg.MarketObservation",
+    "to_identifier": [
+     "material_ref"
+    ],
+    "used_by": "apg/det/rules_cost.py (aggregation key)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-PURCHASE-ORDERS",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "po_amendment",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "amendment_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "po_id",
+     "transform": "trim"
+    },
+    "name": "purchase_order_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "amendment_date",
+     "transform": "parse_date"
+    },
+    "name": "amendment_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "delta_cents",
+     "transform": "none"
+    },
+    "name": "delta_cents",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "approved_change_ref",
+     "transform": "trim"
+    },
+    "name": "approved_change_ref",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "reason",
+     "transform": "trim"
+    },
+    "name": "reason_text",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.PoAmendment",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_po_amendment",
+  "effective_time": {
+   "basis": "the record's amendment_date",
+   "field": "amendment_date"
+  },
+  "identifiers": {
+   "auif_identity_field": "amendment_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "m3",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "purchase_order_ref",
+    "required": true,
+    "to": "module.apg.PurchaseOrder",
+    "to_identifier": [
+     "source_record_id"
+    ],
+    "used_by": "apg/ingest/reconcile.py, apg/fin/commitments.py"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-PO-AMENDMENTS",
+  "text_references": {
+   "approved_change_ref": "a change-approval reference; detection reads only whether it is present (apg/det/rules_cost.py)"
+  }
+ },
+ {
+  "apg_entity": "supplier_quote",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "quote_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "supplier_id",
+     "transform": "trim"
+    },
+    "name": "supplier_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "material_id",
+     "transform": "trim"
+    },
+    "name": "material_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "specification",
+     "transform": "trim"
+    },
+    "name": "specification_text",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "issue_date",
+     "transform": "parse_date"
+    },
+    "name": "issue_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "valid_until",
+     "transform": "parse_date"
+    },
+    "name": "valid_until",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "unit_rate_cents",
+     "transform": "none"
+    },
+    "name": "unit_rate_minor_units",
+    "required": true,
+    "sign_rule": "must be positive",
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "allowed": [
+      "AUD",
+      "USD",
+      "EUR",
+      "NZD",
+      "CNY"
+     ],
+     "apg_type": "enum",
+     "source_column": "currency",
+     "transform": "upper"
+    },
+    "name": "currency_code",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "decimal",
+     "source_column": "fx_rate_used",
+     "transform": "none"
+    },
+    "name": "fx_rate_used",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "fx_rate_date",
+     "transform": "parse_date"
+    },
+    "name": "fx_rate_date",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "freight_cents_per_unit",
+     "transform": "none"
+    },
+    "name": "freight_per_unit_cents",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "incoterm_delivery_basis",
+     "transform": "trim"
+    },
+    "name": "delivery_basis",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "integer",
+     "source_column": "lead_time_days",
+     "transform": "none"
+    },
+    "name": "lead_time_days",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "price_kind",
+     "transform": "trim"
+    },
+    "name": "price_kind",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text).",
+   "Not in the source layout: quote tiers and terms (M6 market data, not carried in M8)."
+  ],
+  "concept": "module.apg.SupplierQuote",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_supplier_quote",
+  "effective_time": {
+   "basis": "the record's issue_date",
+   "field": "issue_date"
+  },
+  "identifiers": {
+   "auif_identity_field": "quote_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "m3",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "supplier_ref",
+    "required": true,
+    "to": "module.apg.Supplier",
+    "to_identifier": [
+     "source_record_id"
+    ],
+    "used_by": "apg/ingest/reconcile.py (supplier resolution by the apg/ingest/entities.py ladder; never forced)"
+   },
+   {
+    "attribute": "material_ref",
+    "required": true,
+    "to": "module.apg.MarketObservation",
+    "to_identifier": [
+     "material_ref"
+    ],
+    "used_by": "apg/det/rules_cost.py (R07 quote comparison)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-QUOTES",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "budget_line",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "project_id",
+     "transform": "trim"
+    },
+    "name": "project_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "cost_code",
+     "transform": "trim"
+    },
+    "name": "cost_code_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "budget_cents",
+     "transform": "none"
+    },
+    "name": "budget_cents",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "revision",
+     "transform": "trim"
+    },
+    "name": "source_revision_label",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "revision_date",
+     "transform": "parse_date"
+    },
+    "name": "revision_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.BudgetLine",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_budget_line",
+  "effective_time": {
+   "basis": "the record's revision_date",
+   "field": "revision_date"
+  },
+  "identifiers": {
+   "auif_identity_field": [
+    "project_id",
+    "cost_code"
+   ],
+   "canonical_id": "module.apg.<type>:<integration target system>:<composite source identity (AUIF rev14)>",
+   "composite_identity": "APG-M8.1: this record type is identified by a composite natural key, and AUIF rev14 takes it as a composite source identity (the key fields' text, in key order, joined by \"|\", with \"\\\" and \"|\" escaped): the canonical id is stable across revisions of the same business record (finding M8-F2 corrected).  APG-M8 to M8-R2, on AUIF rev13, had a content-hash canonical id for these record types.",
+   "natural_key": [
+    "project_ref",
+    "cost_code_ref"
+   ]
+  },
+  "intake_family": "m3",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "project_ref",
+    "required": true,
+    "to": "module.apg.Project",
+    "to_identifier": [
+     "project_ref"
+    ],
+    "used_by": "apg/fin/snap.py (project_of: which project a record belongs to, for every calculation and rule)"
+   }
+  ],
+  "revision_field": "source_revision_label",
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-BUDGET-LINES",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "fx_rate",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "fx_date",
+     "transform": "parse_date"
+    },
+    "name": "fx_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "pair",
+     "transform": "trim"
+    },
+    "name": "currency_pair",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "decimal",
+     "source_column": "rate",
+     "transform": "none"
+    },
+    "name": "rate_text",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.FxRate",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_fx_rate",
+  "effective_time": {
+   "basis": "the record's fx_date",
+   "field": "fx_date"
+  },
+  "identifiers": {
+   "auif_identity_field": [
+    "fx_date",
+    "pair"
+   ],
+   "canonical_id": "module.apg.<type>:<integration target system>:<composite source identity (AUIF rev14)>",
+   "composite_identity": "APG-M8.1: this record type is identified by a composite natural key, and AUIF rev14 takes it as a composite source identity (the key fields' text, in key order, joined by \"|\", with \"\\\" and \"|\" escaped): the canonical id is stable across revisions of the same business record (finding M8-F2 corrected).  APG-M8 to M8-R2, on AUIF rev13, had a content-hash canonical id for these record types.",
+   "natural_key": [
+    "fx_date",
+    "currency_pair"
+   ]
+  },
+  "intake_family": "m3",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-FX-RATES",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "market_observation",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "obs_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "material_id",
+     "transform": "trim"
+    },
+    "name": "material_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "obs_date",
+     "transform": "parse_date"
+    },
+    "name": "obs_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "integer",
+     "source_column": "value",
+     "transform": "none"
+    },
+    "name": "value_scaled",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "unit",
+     "transform": "trim"
+    },
+    "name": "unit_text",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "kind",
+     "transform": "trim"
+    },
+    "name": "kind_text",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "source_label",
+     "transform": "trim"
+    },
+    "name": "source_label_text",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "geography",
+     "transform": "trim"
+    },
+    "name": "geography_text",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.MarketObservation",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_market_observation",
+  "effective_time": {
+   "basis": "the record's obs_date",
+   "field": "obs_date"
+  },
+  "identifiers": {
+   "auif_identity_field": "obs_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "m3",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-MARKET-OBSERVATIONS",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "pm_invoice",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "invoice_ref",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "supplier_id",
+     "transform": "trim"
+    },
+    "name": "supplier_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "project_id",
+     "transform": "trim"
+    },
+    "name": "project_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "ex_gst_cents",
+     "transform": "none"
+    },
+    "name": "amount_ex_gst_cents",
+    "required": true,
+    "sign_rule": "must be positive",
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "source",
+     "transform": "trim"
+    },
+    "name": "source_label_text",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.PmInvoice",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_pm_invoice",
+  "effective_time": {
+   "basis": "none: this record type carries no business date, so only the observed time is recorded",
+   "field": null
+  },
+  "identifiers": {
+   "auif_identity_field": "invoice_ref",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "m3",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "source_record_id",
+    "required": true,
+    "to": "module.apg.ApInvoice",
+    "to_identifier": [
+     "source_record_id"
+    ],
+    "used_by": "apg/ingest/reconcile.py (pm_invoice: a secondary source of the same invoice, matched by record key)"
+   },
+   {
+    "attribute": "supplier_ref",
+    "required": true,
+    "to": "module.apg.Supplier",
+    "to_identifier": [
+     "source_record_id"
+    ],
+    "used_by": "apg/ingest/reconcile.py (supplier resolution by the apg/ingest/entities.py ladder; never forced)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-PM-INVOICES",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "project",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "project_id",
+     "transform": "trim"
+    },
+    "name": "project_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "name",
+     "transform": "trim"
+    },
+    "name": "project_name",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "contract_value_cents",
+     "transform": "none"
+    },
+    "name": "contract_value_cents",
+    "required": false,
+    "sign_rule": "must not be negative",
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "start_date",
+     "transform": "parse_date"
+    },
+    "name": "start_date",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "planned_finish",
+     "transform": "parse_date"
+    },
+    "name": "planned_finish",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.Project",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_project",
+  "effective_time": {
+   "basis": "none: this record type carries no business date, so only the observed time is recorded",
+   "field": null
+  },
+  "identifiers": {
+   "auif_identity_field": "project_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "project_ref"
+   ]
+  },
+  "intake_family": "fin",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-PROJECTS",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "contract",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "project_id",
+     "transform": "trim"
+    },
+    "name": "project_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "original_contract_cents",
+     "transform": "none"
+    },
+    "name": "original_contract_cents",
+    "required": true,
+    "sign_rule": "must be positive",
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "approved_variations_cents",
+     "transform": "none"
+    },
+    "name": "approved_variations_cents",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.Contract",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_contract",
+  "effective_time": {
+   "basis": "none: this record type carries no business date, so only the observed time is recorded",
+   "field": null
+  },
+  "identifiers": {
+   "auif_identity_field": "project_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "project_ref"
+   ]
+  },
+  "intake_family": "fin",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "project_ref",
+    "required": true,
+    "to": "module.apg.Project",
+    "to_identifier": [
+     "project_ref"
+    ],
+    "used_by": "apg/fin/snap.py (project_of: which project a record belongs to, for every calculation and rule)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-CONTRACTS",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "variation",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "variation_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "project_id",
+     "transform": "trim"
+    },
+    "name": "project_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "raised_date",
+     "transform": "parse_date"
+    },
+    "name": "raised_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "status",
+     "transform": "trim"
+    },
+    "name": "source_status",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "value_cents",
+     "transform": "none"
+    },
+    "name": "value_cents",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "description",
+     "transform": "trim"
+    },
+    "name": "description_text",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.Variation",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_variation",
+  "effective_time": {
+   "basis": "the record's raised_date",
+   "field": "raised_date"
+  },
+  "identifiers": {
+   "auif_identity_field": "variation_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "fin",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "project_ref",
+    "required": true,
+    "to": "module.apg.Project",
+    "to_identifier": [
+     "project_ref"
+    ],
+    "used_by": "apg/fin/snap.py (project_of: which project a record belongs to, for every calculation and rule)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-VARIATIONS",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "ctc_line",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "project_id",
+     "transform": "trim"
+    },
+    "name": "project_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "cost_code",
+     "transform": "trim"
+    },
+    "name": "cost_code_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "forecast_version",
+     "transform": "trim"
+    },
+    "name": "forecast_version",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "forecast_date",
+     "transform": "parse_date"
+    },
+    "name": "forecast_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "cost_to_complete_cents",
+     "transform": "none"
+    },
+    "name": "cost_to_complete_cents",
+    "required": true,
+    "sign_rule": "must not be negative",
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "estimate_basis",
+     "transform": "trim"
+    },
+    "name": "estimate_basis_text",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "movement_reason",
+     "transform": "trim"
+    },
+    "name": "movement_reason_text",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.CtcLine",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_ctc_line",
+  "effective_time": {
+   "basis": "the record's forecast_date",
+   "field": "forecast_date"
+  },
+  "identifiers": {
+   "auif_identity_field": [
+    "project_id",
+    "cost_code",
+    "forecast_version"
+   ],
+   "canonical_id": "module.apg.<type>:<integration target system>:<composite source identity (AUIF rev14)>",
+   "composite_identity": "APG-M8.1: this record type is identified by a composite natural key, and AUIF rev14 takes it as a composite source identity (the key fields' text, in key order, joined by \"|\", with \"\\\" and \"|\" escaped): the canonical id is stable across revisions of the same business record (finding M8-F2 corrected).  APG-M8 to M8-R2, on AUIF rev13, had a content-hash canonical id for these record types.",
+   "natural_key": [
+    "project_ref",
+    "cost_code_ref",
+    "forecast_version"
+   ]
+  },
+  "intake_family": "fin",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "project_ref",
+    "required": true,
+    "to": "module.apg.Project",
+    "to_identifier": [
+     "project_ref"
+    ],
+    "used_by": "apg/fin/snap.py (project_of: which project a record belongs to, for every calculation and rule)"
+   },
+   {
+    "attribute": "cost_code_ref",
+    "required": true,
+    "to": "module.apg.BudgetLine",
+    "to_identifier": [
+     "project_ref",
+     "cost_code_ref"
+    ],
+    "used_by": "apg/fin/forecast.py (cost to complete by cost code)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-CTC-FORECASTS",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "retention",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "project_id",
+     "transform": "trim"
+    },
+    "name": "project_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "retention_held_cents",
+     "transform": "none"
+    },
+    "name": "retention_held_cents",
+    "required": true,
+    "sign_rule": "must not be negative",
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "release_due_date",
+     "transform": "parse_date"
+    },
+    "name": "release_due_date",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "released_date",
+     "transform": "parse_date"
+    },
+    "name": "released_date",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "hold_reason",
+     "transform": "trim"
+    },
+    "name": "hold_reason_text",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.Retention",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_retention",
+  "effective_time": {
+   "basis": "none: this record type carries no business date, so only the observed time is recorded",
+   "field": null
+  },
+  "identifiers": {
+   "auif_identity_field": "project_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "project_ref"
+   ]
+  },
+  "intake_family": "fin",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "project_ref",
+    "required": true,
+    "to": "module.apg.Project",
+    "to_identifier": [
+     "project_ref"
+    ],
+    "used_by": "apg/fin/snap.py (project_of: which project a record belongs to, for every calculation and rule)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-RETENTION",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "security",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "instrument_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "project_id",
+     "transform": "trim"
+    },
+    "name": "project_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "kind",
+     "transform": "trim"
+    },
+    "name": "kind_text",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "face_value_cents",
+     "transform": "none"
+    },
+    "name": "face_value_cents",
+    "required": true,
+    "sign_rule": "must be positive",
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "expiry_date",
+     "transform": "parse_date"
+    },
+    "name": "expiry_date",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.Security",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_security",
+  "effective_time": {
+   "basis": "none: this record type carries no business date, so only the observed time is recorded",
+   "field": null
+  },
+  "identifiers": {
+   "auif_identity_field": "instrument_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "fin",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "project_ref",
+    "required": true,
+    "to": "module.apg.Project",
+    "to_identifier": [
+     "project_ref"
+    ],
+    "used_by": "apg/fin/snap.py (project_of: which project a record belongs to, for every calculation and rule)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-SECURITY",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "facility",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "facility_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "limit_cents",
+     "transform": "none"
+    },
+    "name": "limit_cents",
+    "required": true,
+    "sign_rule": "must not be negative",
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "drawn_cents",
+     "transform": "none"
+    },
+    "name": "drawn_cents",
+    "required": true,
+    "sign_rule": "must not be negative",
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "integer",
+     "source_column": "rate_bps",
+     "transform": "none"
+    },
+    "name": "rate_bps",
+    "required": true,
+    "sign_rule": "must not be negative",
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "as_of",
+     "transform": "parse_date"
+    },
+    "name": "statement_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.Facility",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_facility",
+  "effective_time": {
+   "basis": "the record's statement_date",
+   "field": "statement_date"
+  },
+  "identifiers": {
+   "auif_identity_field": "facility_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "fin",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-FACILITY",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "bank_txn",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "txn_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "txn_date",
+     "transform": "parse_date"
+    },
+    "name": "txn_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "amount_cents",
+     "transform": "none"
+    },
+    "name": "amount_cents",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "description",
+     "transform": "trim"
+    },
+    "name": "description_text",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.BankTxn",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_bank_txn",
+  "effective_time": {
+   "basis": "the record's txn_date",
+   "field": "txn_date"
+  },
+  "identifiers": {
+   "auif_identity_field": "txn_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "fin",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-BANK",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "compliance",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "supplier_id",
+     "transform": "trim"
+    },
+    "name": "supplier_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "evidence_type",
+     "transform": "trim"
+    },
+    "name": "evidence_type_text",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "expiry_date",
+     "transform": "parse_date"
+    },
+    "name": "expiry_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.Compliance",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_compliance",
+  "effective_time": {
+   "basis": "none: this record type carries no business date, so only the observed time is recorded",
+   "field": null
+  },
+  "identifiers": {
+   "auif_identity_field": [
+    "supplier_id",
+    "evidence_type"
+   ],
+   "canonical_id": "module.apg.<type>:<integration target system>:<composite source identity (AUIF rev14)>",
+   "composite_identity": "APG-M8.1: this record type is identified by a composite natural key, and AUIF rev14 takes it as a composite source identity (the key fields' text, in key order, joined by \"|\", with \"\\\" and \"|\" escaped): the canonical id is stable across revisions of the same business record (finding M8-F2 corrected).  APG-M8 to M8-R2, on AUIF rev13, had a content-hash canonical id for these record types.",
+   "natural_key": [
+    "supplier_ref",
+    "evidence_type_text"
+   ]
+  },
+  "intake_family": "det",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "supplier_ref",
+    "required": true,
+    "to": "module.apg.Supplier",
+    "to_identifier": [
+     "source_record_id"
+    ],
+    "used_by": "apg/det/common.py (compliance evidence by supplier)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-COMPLIANCE",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "notice",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "notice_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "project_id",
+     "transform": "trim"
+    },
+    "name": "project_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "notice_date",
+     "transform": "parse_date"
+    },
+    "name": "notice_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "notice_type",
+     "transform": "trim"
+    },
+    "name": "notice_type_text",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "linked_variation_id",
+     "transform": "trim"
+    },
+    "name": "linked_variation_ref",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "description",
+     "transform": "trim"
+    },
+    "name": "description_text",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.Notice",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_notice",
+  "effective_time": {
+   "basis": "the record's notice_date",
+   "field": "notice_date"
+  },
+  "identifiers": {
+   "auif_identity_field": "notice_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "det",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "project_ref",
+    "required": true,
+    "to": "module.apg.Project",
+    "to_identifier": [
+     "project_ref"
+    ],
+    "used_by": "apg/fin/snap.py (project_of: which project a record belongs to, for every calculation and rule)"
+   },
+   {
+    "attribute": "linked_variation_ref",
+    "required": false,
+    "to": "module.apg.Variation",
+    "to_identifier": [
+     "source_record_id"
+    ],
+    "used_by": "apg/det/rules_commercial.py (R04B)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-NOTICES",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "delay_event",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "event_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "project_id",
+     "transform": "trim"
+    },
+    "name": "project_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "activity_id",
+     "transform": "trim"
+    },
+    "name": "activity_ref",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "start_date",
+     "transform": "parse_date"
+    },
+    "name": "start_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "end_date",
+     "transform": "parse_date"
+    },
+    "name": "end_date",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "integer",
+     "source_column": "working_days",
+     "transform": "none"
+    },
+    "name": "working_days",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "recorded_cause",
+     "transform": "trim"
+    },
+    "name": "recorded_cause_text",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "holding_cost_rate_cents_per_day",
+     "transform": "none"
+    },
+    "name": "holding_rate_cents_per_day",
+    "required": false,
+    "sign_rule": "must not be negative",
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.DelayEvent",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_delay_event",
+  "effective_time": {
+   "basis": "the record's start_date",
+   "field": "start_date"
+  },
+  "identifiers": {
+   "auif_identity_field": "event_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "det",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "project_ref",
+    "required": true,
+    "to": "module.apg.Project",
+    "to_identifier": [
+     "project_ref"
+    ],
+    "used_by": "apg/fin/snap.py (project_of: which project a record belongs to, for every calculation and rule)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-DELAY-EVENTS",
+  "text_references": {
+   "activity_ref": "a programme activity; programme activities are not imported"
+  }
+ },
+ {
+  "apg_entity": "plant_hire",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "hire_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "project_id",
+     "transform": "trim"
+    },
+    "name": "project_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "equipment",
+     "transform": "trim"
+    },
+    "name": "equipment_text",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "on_hire_date",
+     "transform": "parse_date"
+    },
+    "name": "on_hire_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "off_hire_date",
+     "transform": "parse_date"
+    },
+    "name": "off_hire_date",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "needed_until",
+     "transform": "parse_date"
+    },
+    "name": "needed_until",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "rate_cents_per_day",
+     "transform": "none"
+    },
+    "name": "rate_cents_per_day",
+    "required": true,
+    "sign_rule": "must be positive",
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.PlantHire",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_plant_hire",
+  "effective_time": {
+   "basis": "the record's on_hire_date",
+   "field": "on_hire_date"
+  },
+  "identifiers": {
+   "auif_identity_field": "hire_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "det",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "project_ref",
+    "required": true,
+    "to": "module.apg.Project",
+    "to_identifier": [
+     "project_ref"
+    ],
+    "used_by": "apg/fin/snap.py (project_of: which project a record belongs to, for every calculation and rule)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-PLANT-HIRE",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "timesheet",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "entry_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "worker_pseudonym",
+     "transform": "trim"
+    },
+    "name": "worker_pseudonym",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "project_id",
+     "transform": "trim"
+    },
+    "name": "project_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "work_package",
+     "transform": "trim"
+    },
+    "name": "work_package_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "work_date",
+     "transform": "parse_date"
+    },
+    "name": "work_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "decimal",
+     "source_column": "ordinary_hours",
+     "transform": "none"
+    },
+    "name": "ordinary_hours",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "decimal",
+     "source_column": "overtime_hours",
+     "transform": "none"
+    },
+    "name": "overtime_hours",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "rate_cents_per_hour",
+     "transform": "none"
+    },
+    "name": "rate_cents_per_hour",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.Timesheet",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_timesheet",
+  "effective_time": {
+   "basis": "the record's work_date",
+   "field": "work_date"
+  },
+  "identifiers": {
+   "auif_identity_field": "entry_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "det",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "project_ref",
+    "required": true,
+    "to": "module.apg.Project",
+    "to_identifier": [
+     "project_ref"
+    ],
+    "used_by": "apg/fin/snap.py (project_of: which project a record belongs to, for every calculation and rule)"
+   },
+   {
+    "attribute": "work_package_ref",
+    "required": true,
+    "to": "module.apg.WorkOutput",
+    "to_identifier": [
+     "project_ref",
+     "work_package_ref"
+    ],
+    "used_by": "apg/det/rules_ops.py (LAB: hours against completed quantities)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-TIMESHEETS",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "work_output",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "project_id",
+     "transform": "trim"
+    },
+    "name": "project_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "work_package",
+     "transform": "trim"
+    },
+    "name": "work_package_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "week_start",
+     "transform": "parse_date"
+    },
+    "name": "week_start",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "decimal",
+     "source_column": "quantity",
+     "transform": "none"
+    },
+    "name": "quantity",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "unit",
+     "transform": "trim"
+    },
+    "name": "unit_text",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.WorkOutput",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_work_output",
+  "effective_time": {
+   "basis": "the record's week_start",
+   "field": "week_start"
+  },
+  "identifiers": {
+   "auif_identity_field": [
+    "project_id",
+    "work_package",
+    "week_start"
+   ],
+   "canonical_id": "module.apg.<type>:<integration target system>:<composite source identity (AUIF rev14)>",
+   "composite_identity": "APG-M8.1: this record type is identified by a composite natural key, and AUIF rev14 takes it as a composite source identity (the key fields' text, in key order, joined by \"|\", with \"\\\" and \"|\" escaped): the canonical id is stable across revisions of the same business record (finding M8-F2 corrected).  APG-M8 to M8-R2, on AUIF rev13, had a content-hash canonical id for these record types.",
+   "natural_key": [
+    "project_ref",
+    "work_package_ref",
+    "week_start"
+   ]
+  },
+  "intake_family": "det",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "project_ref",
+    "required": true,
+    "to": "module.apg.Project",
+    "to_identifier": [
+     "project_ref"
+    ],
+    "used_by": "apg/fin/snap.py (project_of: which project a record belongs to, for every calculation and rule)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-WORK-OUTPUT",
+  "text_references": {}
+ },
+ {
+  "apg_entity": "defect",
+  "attributes": [
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "defect_id",
+     "transform": "trim"
+    },
+    "name": "source_record_id",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "project_id",
+     "transform": "trim"
+    },
+    "name": "project_ref",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "subcontractor",
+     "transform": "trim"
+    },
+    "name": "subcontractor_text",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "trade",
+     "transform": "trim"
+    },
+    "name": "trade_text",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "date",
+     "date_format": "%Y-%m-%d",
+     "source_column": "raised_date",
+     "transform": "parse_date"
+    },
+    "name": "raised_date",
+    "required": true,
+    "sign_rule": null,
+    "when_blank": "required: a blank value rejects the row (REQUIRED_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "severity",
+     "transform": "trim"
+    },
+    "name": "severity_text",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "FINANCIAL",
+    "constraints": {
+     "apg_type": "money_cents",
+     "money_unit": "cents",
+     "source_column": "rework_cost_cents",
+     "transform": "none"
+    },
+    "name": "rework_cost_cents",
+    "required": false,
+    "sign_rule": "must not be negative",
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   },
+   {
+    "canonical_type": "STRING",
+    "classification": "INTERNAL",
+    "constraints": {
+     "apg_type": "string",
+     "source_column": "status",
+     "transform": "trim"
+    },
+    "name": "status_text",
+    "required": false,
+    "sign_rule": null,
+    "when_blank": "optional, tolerated by the demonstration intake policy: a blank value is a warning (VALUE_MISSING)"
+   }
+  ],
+  "cannot_preserve": [
+   "Every value crosses AUIF as text (canonical type STRING) and is given its APG type (cents, date, decimal, enum, integer) by the unchanged APG mapping rules after delivery. AUIF has no calendar-date type (TIMESTAMP needs a time of day), and an AUIF INTEGER or DECIMAL column would make AUIF's file importer refuse a whole page for one bad cell where APG refuses or holds only that row; so the APG type is recorded in each attribute's constraints (apg_type) and enforced by APG, not by AUIF.",
+   "The record's row number is its position in the delivery batch (blank rows skipped as M3 does), not a line of a file; the file name and file hash that M3 stores are replaced by the AUIF lineage (integration, source record, translation pack and hash, canonical id, observation, manifest).",
+   "A column that is not in the template is not carried: any change to the columns is schema drift for AUIF and the assessment cannot proceed until the pack is revalidated (M3 would accept an extra column and keep its text)."
+  ],
+  "concept": "module.apg.Defect",
+  "demonstrating_test": "tests_m8/test_m8_definitions.py::DefinitionDemonstrations::test_defect",
+  "effective_time": {
+   "basis": "the record's raised_date",
+   "field": "raised_date"
+  },
+  "identifiers": {
+   "auif_identity_field": "defect_id",
+   "canonical_id": "module.apg.<type>:<integration target system>:<source identity field>",
+   "composite_identity": null,
+   "natural_key": [
+    "source_record_id"
+   ]
+  },
+  "intake_family": "det",
+  "mapping_template_status": "draft - unverified against any real export",
+  "missing_or_conflicting": [
+   "A field absent from the delivered object: the batch is not applied and the assessment cannot proceed (MISSING_FIELD).",
+   "A value of the wrong canonical type (not text): AUIF marks the object TRANSLATION_INVALID; the batch is not applied (TRANSLATION_INVALID).",
+   "A blank value: as M3 - a blank required field rejects the row (and the assessment cannot proceed: ROW_REJECTED); a blank optional field is UNKNOWN, never zero: a material field is held (MATERIAL_VALUE_UNKNOWN), a field the intake policy tolerates is a warning (VALUE_MISSING), any other is held (CRITICAL_VALUE_MISSING).",
+   "A value APG cannot parse (cents with a decimal point, a date not written as the template says, an unknown enum value): a required field rejects the row; an optional field is held as INVALID_VALUE; either way the assessment cannot proceed (ROW_REJECTED / VALUE_INVALID).",
+   "The same key delivered again with the same content: a duplicate delivery, no second effect.  A higher declared source revision: a new revision.  A lower one: a stale delivery, recorded and not applied (the assessment cannot proceed: STALE_DELIVERY).  Different content with no way to order the versions: a quarantined conflict holding every version (the existing M3 contract; shown as an exclusion).",
+   "Two sources disagreeing on a field the source-authority register governs: decided by the register in reconciliation (apg/ingest/reconcile.py), never by arrival order.",
+   "A mapping AUIF marks AMBIGUOUS, or a field the pack does not map: the object is not delivered (AMBIGUOUS / TRANSLATION_INVALID) and the assessment cannot proceed."
+  ],
+  "namespace": "MODULE",
+  "relationships": [
+   {
+    "attribute": "project_ref",
+    "required": true,
+    "to": "module.apg.Project",
+    "to_identifier": [
+     "project_ref"
+    ],
+    "used_by": "apg/fin/snap.py (project_of: which project a record belongs to, for every calculation and rule)"
+   }
+  ],
+  "revision_field": null,
+  "status": "PROPOSED",
+  "template_id": "TPL-BZ-DEFECTS",
+  "text_references": {}
+ }
+]

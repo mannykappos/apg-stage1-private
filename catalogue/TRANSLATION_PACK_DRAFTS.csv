@@ -1,0 +1,28 @@
+tracker_class,catalogue_id,system,apg_entity,vendor_entity_named_in_catalogue,evidence_grade,status,open_question
+Q1,CAT-001,Procore,project,projects,B,draft - unverified,Object list is from a secondary source; confirm in official reference.
+Q1,CAT-001,Procore,supplier,vendors,B,draft - unverified,Confirm vendor fields and tax identifiers.
+Q1,CAT-001,Procore,defect,punch_items,B,draft - unverified,A punch item may not equal a defect with rework cost; confirm how builders record rework cost.
+Q1,CAT-001,Procore,budget_line,budgets,C,draft - unverified,Unconfirmed from official docs.
+Q1,CAT-001,Procore,commitment,commitments,C,draft - unverified,Unconfirmed from official docs.
+Q1,CAT-001,Procore,variation,change orders,C,draft - unverified,Unconfirmed; also confirm whether unpriced variations and client instructions are recorded here.
+Q1,CAT-001,Procore,ap_invoice,invoices,C,draft - unverified,Unconfirmed; most builders may hold invoices in accounting instead (source authority question).
+Q2,CAT-008,Xero,ap_invoice,Invoice,B,draft - unverified,Existence confirmed by webhook categories; field-level mapping unconfirmed.
+Q2,CAT-008,Xero,credit_note,CreditNote,B,draft - unverified,Existence confirmed by webhook categories; link from credit to invoice unconfirmed.
+Q2,CAT-008,Xero,supplier,Contact,B,draft - unverified,Existence confirmed by webhook categories.
+Q2,CAT-008,Xero,bank_transaction,BankTransactions,B,draft - unverified,Confirmed in official spec (partial).
+Q2,CAT-008,Xero,payment,Payments,C,draft - unverified,Unconfirmed.
+Q2,CAT-008,Xero,purchase_order,PurchaseOrders,C,draft - unverified,Unconfirmed.
+Q2,CAT-008,Xero,cost_code,TrackingCategories,C,draft - unverified,Unconfirmed whether builders use tracking categories as job cost codes.
+Q3,CAT-017,CostX,estimate,Estimates,B,draft - unverified,Entities and fields unconfirmed; REST/OData access named by vendor page.
+Q3,CAT-017,CostX,material_demand,takeoff quantities,B,draft - unverified,Whether quantities carry units and specification detail is unconfirmed.
+Q5,CAT-025,Oracle Primavera P6,programme_activity,activity,A,draft - unverified,Seen in the REST endpoint list; field detail not read.
+Q5,CAT-025,Oracle Primavera P6,programme_baseline,baselineProject,A,draft - unverified,Seen in the endpoint list.
+Q5,CAT-025,Oracle Primavera P6,working_calendar,calendar,A,draft - unverified,Seen in the endpoint list.
+Q5,CAT-026,Microsoft Project,programme_activity,Tasks,B,draft - unverified,MSPDI file schema; desktop installs have no live API (file exchange only).
+Q5,CAT-026,Microsoft Project,programme_baseline,Baseline,B,draft - unverified,From an archived 2007 schema reference; confirm current.
+Q5,CAT-026,Microsoft Project,working_calendar,Calendars,B,draft - unverified,MSPDI file schema.
+S1,CAT-032,Xero Payroll (Australia) API,timesheet,Timesheet,B,draft - unverified,Endpoint existence seen; field detail unconfirmed.
+S1,CAT-032,Xero Payroll (Australia) API,timesheet_line,Timesheet Line,B,draft - unverified,Can carry a tracking item; whether that maps to a job or cost code is unconfirmed.
+S3,CAT-042,Consumer Data Right (Open Banking) for business,bank_transaction,Bank transaction and account data,C,draft - unverified,Representative route may bar serving a business consumer; needs legal confirmation.
+M,CAT-043,ABS Data API plus ABS Producer Price Indexes,market_observation,Producer Price Indexes,A,draft - unverified,"Quarterly, national with limited state data; an index, not a price."
+M,CAT-044,RBA exchange rates (Statistical Table F11),fx_rate,Units of foreign currency per AUD,A,draft - unverified,"File download only; reference rate, not a transaction rate."

@@ -1,0 +1,32 @@
+PASS R01 the baseline names the delivered M6.3 ZIP and documents by hash and accounts for every one of its files
+PASS R02 525 files of the delivered M6.3 package are byte-identical to it []
+PASS R03 the 19 changed and 15 added files equal their recorded hashes, and every changed file differs from M6.3 []
+PASS R04 no file exists in the package beyond the M6.3 files and the declared additions []
+PASS R05 the only application code that changed is apg/det/findings.py; no application file was added
+PASS R06 of the existing test files only test_det_approval_binding.py, test_det_proposal_binding.py and test_det_version_types.py changed (they call approve_action or build approval records by hand; every assertion is kept); no M5 or earlier test changed; the only test file added is tests/test_det_proposal_identity.py
+PASS R07 tools changed: m5_mutants.py (runs the new tests), make_m0.py (runs the M6.4 register step), probe_malformed_proposal_version.py (passes the proposal reference the entry point now requires), programme_check_m62.py and programme_check_m63.py (accept the appended carried-forward row), run_regression_m6.py, run_regression_m61.py, run_regression_m62.py, run_regression_m63.py (accept the M6.4 rows and declared files); tools added: the register step, the probe, the M6.4 register check, the wrapper and this tool
+PASS R08 of the non-code files only the readme, the run commands and the four append-only tables changed; no golden file, baseline, demonstration output, snapshot, earlier log, research file or Builder Zero case changed []
+PASS R09 the milestones table, the handoff register, the RFC register and the governance register are byte-identical to the delivered M6.3 ones (M7 not started; RFC-01 still PROPOSED and unnumbered; the proposed baseline rules unchanged)
+PASS R10-STAT STATUS_REGISTER.csv: every delivered M6.3 row is unchanged; rows from SR-72 are appended with milestone M6.4
+PASS R10-FIND FINDINGS_REGISTER.csv: every delivered M6.3 row is unchanged; rows from F-56 are appended with milestone M6.4
+PASS R10-INTE INTERPRETATIONS_REGISTER.csv: every delivered M6.3 row is unchanged; rows from I-75 are appended with milestone M6.4
+PASS R10-CARR CARRIED_FORWARD_REGISTER.csv: every delivered M6.3 row is unchanged; CF-25 is appended
+PASS R11 no finding is shown as closed; F-52 to F-56 stay open for independent verification; the new interpretations are retained for review, not approved, with no reviewer decision
+PASS R12 the probe reproduces the swap scenario (a proposal replaced after it was shown, against the same evidence) and shows the approval refused (on the delivered M6.3 code the same probe prints DEFECT PRESENT)
+PASS R13 the M6.3 malformed-version probe still shows the malformed values refused
+PASS R14 the M6.2 stale-proposal probe still shows the stale proposal refused
+PASS R15 the M6.1 approval-binding probe still shows the old approval ended
+PASS R16 the proposal-identity regression tests pass
+PASS R17 every M5 detection and finding test, the M6.1 to M6.4 binding tests and the frozen ones included, passes on the corrected code
+PASS R18 the M6.3 regression tool's file and table checks still pass (with the M6.4 declarations)
+PASS R19 the M6.2 regression tool's file and table checks still pass (with the M6.3 and M6.4 declarations)
+PASS R20 the M6.1 regression tool's file and table checks still pass (with the M6.2 to M6.4 declarations)
+PASS R21 the M6 regression tool (which protects M5, M4, M3, M2 and M0/M1) still passes
+PASS R22 the M6 golden cases still give the recorded answers
+PASS R23 the M6 narrated demonstration still prints exactly the recorded output
+PASS R24 the M5 narrated demonstration still prints exactly the recorded output
+
+checks 27  failed 0
+REGRESSION OK
+
+[exit code 0; 81s]

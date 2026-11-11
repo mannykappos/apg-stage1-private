@@ -1,0 +1,85 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "entry_id",
+   "target_field": "source_record_id",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "worker_pseudonym",
+   "target_field": "worker_pseudonym",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "project_id",
+   "target_field": "project_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "work_package",
+   "target_field": "work_package_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "required": true,
+   "source_column": "work_date",
+   "target_field": "work_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "required": true,
+   "source_column": "ordinary_hours",
+   "target_field": "ordinary_hours",
+   "transform": "none",
+   "type": "decimal"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "overtime_hours",
+   "target_field": "overtime_hours",
+   "transform": "none",
+   "type": "decimal"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "rate_cents_per_hour",
+   "target_field": "rate_cents_per_hour",
+   "transform": "none",
+   "type": "money_cents"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "entry_id"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-12",
+ "source_label": "Builder Zero timesheets, pseudonymised (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "timesheet",
+ "template_id": "TPL-BZ-TIMESHEETS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

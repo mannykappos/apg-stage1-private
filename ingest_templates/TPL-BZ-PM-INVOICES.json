@@ -1,0 +1,62 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "invoice_ref",
+   "target_field": "source_record_id",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "supplier_id",
+   "target_field": "supplier_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "project_id",
+   "target_field": "project_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "ex_gst_cents",
+   "target_field": "amount_ex_gst_cents",
+   "transform": "none",
+   "type": "money_cents"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "source",
+   "target_field": "source_label_text",
+   "transform": "trim",
+   "type": "string"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "invoice_ref"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-04",
+ "source_label": "Builder Zero project-management system invoice export (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "pm_invoice",
+ "template_id": "TPL-BZ-PM-INVOICES",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

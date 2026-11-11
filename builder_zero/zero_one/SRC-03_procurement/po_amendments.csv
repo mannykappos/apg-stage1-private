@@ -1,0 +1,3 @@
+amendment_id,po_id,amendment_date,delta_cents,approved_change_ref,reason
+AMD-001,PO-0037,2026-08-12,8500000,,additional pour
+AMD-002,PO-0037,2026-08-20,1200000,VAR-0003,client instruction

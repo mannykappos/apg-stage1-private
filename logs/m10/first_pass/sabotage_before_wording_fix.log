@@ -1,0 +1,38 @@
+control py     test_every_project_figure_equals_a_fresh_apg_calculation_in_value_and_state: passes on the unbroken copy
+CAUGHT V01 a provisional figure is shown as authoritative (test_every_project_figure_equals_a_fresh_apg_calculation_in_value_and_state) 
+control py     test_a_figure_that_cannot_be_assessed_has_no_value_and_says_why: passes on the unbroken copy
+CAUGHT V02 a figure that cannot be assessed is shown as zero (test_a_figure_that_cannot_be_assessed_has_no_value_and_says_why) 
+control py     test_an_estimated_net_benefit_is_shown_only_when_apg_estimated_it_and_is_labelled_estimate: passes on the unbroken copy
+CAUGHT V03 an unestimated net benefit is shown as an amount (test_an_estimated_net_benefit_is_shown_only_when_apg_estimated_it_and_is_labelled_estimate) 
+control py     test_the_project_manager_sees_only_prj_001_and_no_builder_wide_material: passes on the unbroken copy
+CAUGHT V04 the port is asked about the project but tenant-level grants are assumed (test_the_project_manager_sees_only_prj_001_and_no_builder_wide_material) 
+control py     test_the_request_the_screen_would_send_is_exactly_the_token_present_gave: passes on the unbroken copy
+CAUGHT V05 the request carries a digest other than the one present() gave (test_the_request_the_screen_would_send_is_exactly_the_token_present_gave) 
+control py     test_scenarios_never_change_the_forecast_and_are_labelled_scenario: passes on the unbroken copy
+CAUGHT V06 a scenario total is labelled as an estimate of a saving (test_scenarios_never_change_the_forecast_and_are_labelled_scenario) 
+control py     test_ui_data_views_js_equals_a_fresh_build_byte_for_byte: passes on the unbroken copy
+CAUGHT V07 the stored data file is edited by hand (test_ui_data_views_js_equals_a_fresh_build_byte_for_byte) 
+control py     test_the_prototype_code_has_no_network_call_and_loads_only_local_files: passes on the unbroken copy
+CAUGHT V08 the screen code calls the network (test_the_prototype_code_has_no_network_call_and_loads_only_local_files) 
+control ui     amounts: passes on the unbroken copy
+CAUGHT U01 a figure that cannot be assessed is drawn as $0 (amounts) 
+control ui     ledger: passes on the unbroken copy
+CAUGHT U02 the provisional mark is dropped (ledger) 
+CAUGHT U03 the ledger gains a total row (ledger) 
+CAUGHT U04 an amount is drawn as plain text, not as a link to its evidence (amounts) 
+control ui     approvals: passes on the unbroken copy
+CAUGHT U05 the approval form shows a digest other than the token (approvals) 
+control ui     drawer: passes on the unbroken copy
+CAUGHT U06 Escape no longer closes the evidence drawer (drawer) 
+control ui     screens: passes on the unbroken copy
+CAUGHT U07 secondary text loses its contrast (screens) 
+control ui     savings: passes on the unbroken copy
+CAUGHT U08 a screen claims a saving (savings) 
+control ui     access: passes on the unbroken copy
+CAUGHT U09 the project manager is shown the whole ledger (access) 
+CAUGHT U11 a finding row shows its amount without the evidence button behind it (amounts) 
+control ui     mobile: passes on the unbroken copy
+CAUGHT U10 the page is wider than a phone (mobile) 
+
+sabotage 19  caught 19
+exit 0

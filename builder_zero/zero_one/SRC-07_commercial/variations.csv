@@ -1,0 +1,4 @@
+variation_id,project_id,raised_date,status,value_cents,description
+VAR-0001,PRJ-002,2026-02-10,submitted,,Additional basement waterproofing (unpriced)
+VAR-0002,PRJ-002,2026-09-20,submitted,14500000,Revised facade fixings (recent)
+VAR-0003,PRJ-002,2026-08-05,approved,1200000,Client instruction: extra slab edge

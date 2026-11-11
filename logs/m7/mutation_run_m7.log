@@ -1,0 +1,9 @@
+# tools/m7_mutants.py --jobs 3, run fresh by the builder on the final apg/rec source; started 2026-10-19T06:24:04Z
+BASELINE OK
+EQUIVALENT EN-ARI-002  -- proved: the first element of the confidence key is the strength index plus 1; minus 1 shifts every recommendation by the same amount (2), so every comparison between two keys is unchanged, and the value is never shown (the shown text is built separately).
+EQUIVALENT LC-BOL-017  -- proved: approve() is the entry point and transition() repeats the same whole-token check (F-57 style, killed as LC-BOL-026); with the entry check weakened a partial token reaches transition(), which refuses it with the same code APPROVAL_TOKEN_REQUIRED, the same message and the same audit entry, before anything is read or written.
+EQUIVALENT VF-BOL-013  -- proved unreachable: the message alternative is used only when the forecast replays cleanly (empty code) but the figure is invalid or the pins are inconsistent; the pins and the stored figure are covered by the record body and result hashes that the replay checks first, so a clean replay with an invalid figure or inconsistent pins cannot be stored through the M2 record rules.
+mutants 533  killed 530 (first failing test file: {'test_rec_constraints': 77, 'test_rec_edges': 70, 'test_rec_eligibility': 87, 'test_rec_golden': 1, 'test_rec_lifecycle': 99, 'test_rec_money': 21, 'test_rec_policy': 91, 'test_rec_ranking': 14, 'test_rec_repro': 6, 'test_rec_verify': 64})  documented-equivalent 3  unexplained survivors 0
+MUTATION RUN OK
+exit status 0
+# finished 2026-10-19T06:32:12Z

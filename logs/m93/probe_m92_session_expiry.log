@@ -1,0 +1,9 @@
+F-62 a session that expires 2999-99-99T99:99:99Z                   -> corrected
+F-62 a session that expires 2999-13-01T00:00:00Z                   -> corrected
+F-62 a session that expires 2999-01-01T25:61:61Z                   -> corrected
+F-62 a session that expires 2999-02-30T00:00:00Z                   -> corrected
+F-62 a clock that does not say a real moment                       -> corrected
+a real leap day in the future is still a live session              -> corrected
+THE SESSION EXPIRY CHECK IS CORRECTED (builder test world; no independent review)
+
+[exit code 0; 1s]

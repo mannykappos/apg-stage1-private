@@ -1,0 +1,7 @@
+item_id,item,milestone,evidence_ladder_status,evidence,claim_limit
+SR-01,Builder Zero synthetic data generator,M1,Local-tested,builder_zero_check.py: 43 checks incl. byte-for-byte regeneration,"Builder-run, non-production, no independent review"
+SR-02,Builder Zero checker,M1,Local-tested,Sabotage tests in the build record,"Builder-run, no independent review"
+SR-03,Candidate systems catalogue (56 rows),M1,Research record,Vendor documents read 2026-10-13; spot-checked; grades kept,Not a requirement status. Not confirmed with any builder.
+SR-04,"Mapping-template format, validator and examples",M1,Local-tested,mapping_template_check.py: 5 checks incl. 11 rejected broken templates,Draft; not yet checked on any real export
+SR-05,Draft translation-pack specs,M1,Specified,Each vendor entity name traced to the catalogue text,Unverified drafts
+SR-06,Programme milestones and handoff register,M0,Specified,programme_check.py,Plan only

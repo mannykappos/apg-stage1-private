@@ -1,0 +1,14 @@
+== tests/test_mie_core_m11_corrections.py run against the delivered MIE-1 code (copied in):
+tests 10; tests failing or erroring: 9
+  FAILS ON MIE-1: test_a_level_cannot_supersede_an_event_or_the_reverse
+  FAILS ON MIE-1: test_a_store_failure_part_way_through_a_batch_stores_nothing
+  FAILS ON MIE-1: test_a_true_correction_is_accepted_also_within_one_batch
+  FAILS ON MIE-1: test_an_audit_sink_that_fails_in_any_way_is_AUDIT_UNAVAILABLE_with_no_state_change
+  FAILS ON MIE-1: test_an_incompatible_link_already_in_a_store_never_hides_evidence
+  FAILS ON MIE-1: test_an_incompatible_supersession_is_rejected_and_changes_no_evidence
+  FAILS ON MIE-1: test_an_unexpected_store_exception_at_the_commit_fails_closed_with_a_FAILED_event
+  FAILS ON MIE-1: test_the_FAILED_event_is_attempted_once_and_its_own_failure_does_not_change_the_answer
+  FAILS ON MIE-1: test_the_reference_batch_store_contract
+
+== the same file on MIE-1.1:
+tests 10  failures 0  errors 0

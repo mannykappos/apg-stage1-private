@@ -1,0 +1,12 @@
+PASS M6.1 unit tests: approval binding (F-52)  (2s)  [OK]
+PASS M6.1 unit tests: every M5 detection and finding test  (28s)  [OK]
+PASS The approval-binding probe  (0s)  [APPROVAL IS BOUND TO THE EVIDENCE]
+PASS The M5 wrapper  (60s)  [ALL M5 CHECKS PASS]
+PASS The M6 wrapper (includes the M6 regression against M5)  (83s)  [ALL M6 CHECKS PASS]
+PASS M6.1 register checks  (0s)  [ALL M6.1 REGISTER CHECKS PASS]
+PASS M6.1 regression against the delivered M6 package  (77s)  [REGRESSION OK]
+
+250s in total
+ALL M6.1 CHECKS PASS
+
+[exit code 0; 250s]

@@ -1,0 +1,89 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "event_id",
+   "target_field": "source_record_id",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "project_id",
+   "target_field": "project_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "activity_id",
+   "target_field": "activity_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "required": true,
+   "source_column": "start_date",
+   "target_field": "start_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "end_date",
+   "target_field": "end_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "working_days",
+   "target_field": "working_days",
+   "transform": "none",
+   "type": "integer"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "recorded_cause",
+   "target_field": "recorded_cause_text",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "holding_cost_rate_cents_per_day",
+   "target_field": "holding_rate_cents_per_day",
+   "transform": "none",
+   "type": "money_cents"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "event_id"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-04",
+ "source_label": "Builder Zero delay events (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "delay_event",
+ "template_id": "TPL-BZ-DELAY-EVENTS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

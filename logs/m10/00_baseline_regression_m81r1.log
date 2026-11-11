@@ -1,0 +1,9 @@
+PASS R01 every one of the 1,368 APG-M8.1 files is byte-identical except README.md, RUN_COMMANDS.txt, the audit disposition register, the milestones table and the three declared-file lists; no application code, test logic, data or specification changed 
+PASS R02 every added file is declared (two tools, the change record, regression/m81r1/, logs/m81r1/) 
+PASS R03 the disposition register is the M8.1 register plus exactly AD-21 (APG-M8.1, with its qualifications and what it does not mean); in the milestones table only the status of M8 changed; M10 to M12 are not started; no existing disposition row changed 
+PASS R04 the three list files changed only by adding M8.1-R1's own files and its two tables to their declared lists (no other new entry; no entry is removed; every other changed line names M8.1-R1) 
+PASS R05 the M8.1-R1 text states the authorisation, the disposition, its qualifications and what stays open, and makes no acceptance, readiness, Engine-integration or gate-closing claim 
+PASS R06 the stored definitions, model and packs are unchanged ['config files 17, differing 0, unexpected 0']
+PASS R07 the M8.1 regression R01 to R09 still passes with the extended lists (its R08 reruns the M8 regression R01 to R10, its R09 the M8 boundary tests) ['checks 9  failed 0']
+
+checks 7  failed 0

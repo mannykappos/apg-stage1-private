@@ -1,0 +1,21 @@
+CAUGHT S01 approve completes an entry it finds again (the F-73 defect restored) -> R06 
+CAUGHT S02 the entry found in the caller's name is kept next to the fresh one -> R07 
+CAUGHT S03 the confirmation names the revision before approve wrote -> R06 
+CAUGHT S04 confirmed no longer checks the revision binding -> R07 
+CAUGHT S05 the binding accepts any revision that lists the entry, not only the one that added it -> R07 
+CAUGHT S06 the binding accepts a revision that is not a positive whole number -> R07 
+CAUGHT S07 the recommendation policy completes an entry it finds again -> R06 
+CAUGHT S08 the recommendation policy no longer checks the revision binding -> R07 
+CAUGHT S09 the recommendation confirmation names the revision before approve wrote -> R06 
+CAUGHT S10 a confirmed approver may approve again (double counting) -> R08 
+CAUGHT S11 an unconfirmed entry blocks its own owner again (the F-72 defect restored) -> R06 
+CAUGHT S12 the confirmation no longer reports how many entries it replaced -> R07 
+CAUGHT S13 the F-73 row is changed to read verified -> R03 
+CAUGHT S14 the readme says M8 is authorised -> R05 
+CAUGHT S15 a test is removed from the changed F-67.1 test file -> R10 
+CAUGHT S16 another existing test file is edited -> R10 
+CAUGHT S17 an unchanged application file changes by one character -> R01 
+CAUGHT S18 an undeclared file is added -> R02 
+CAUGHT S19 the stored F67.1 original of a changed file is edited -> R02 
+CAUGHT S20 approve keeps a completing path that returns early -> R11 
+sabotage cases 20  missed 0

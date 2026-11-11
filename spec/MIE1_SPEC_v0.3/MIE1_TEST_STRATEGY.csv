@@ -1,0 +1,176 @@
+test_id,family,case,requirement_ids,acceptance_ids,status,v02_change,v03_change
+NE-01,NE,"Static scan of core source, schemas, vocabularies and tests finds no deny-listed domain term",MIE-R-01,MIE-AC-01,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+NE-02,NE,A planted domain term in a core file makes the neutrality check fail,MIE-R-01,MIE-AC-01; MIE-AC-11,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+NE-03,NE,"Core import graph has no apg, pack or consumer import; a planted import is detected",MIE-R-02,MIE-AC-01,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+NE-04,NE,"Core schemas contain no field named forecast, predicted, expected or projected; a planted field is detected",MIE-R-16,MIE-AC-16,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+NE-05,NE,"The operation list has no operation that orders, commits, notifies or reads or writes a forecast",MIE-R-26; MIE-R-25,MIE-AC-07; MIE-AC-15,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+NE-06,NE,"Core source reads no clock, random, network, file system or environment; a planted read is detected",MIE-R-04,MIE-AC-08,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-01,PK,A valid synthetic pack publishes and its hash equals SHA-256 over its canonical bytes,MIE-R-28; MIE-R-29,MIE-AC-03,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-02,PK,Unknown key in a pack is refused as PACK_MALFORMED,MIE-R-28; MIE-R-31,MIE-AC-03,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-03,PK,Executable or code-like content in a pack is refused,MIE-R-28; MIE-R-31,MIE-AC-03,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-04,PK,A pack that supplies a default freshness limit is refused as PACK_INVARIANT_OVERRIDE,MIE-R-31; MIE-R-14,MIE-AC-03; MIE-AC-05,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-05,PK,A pack that tries to make a non-LICENSED status usable is refused as PACK_INVARIANT_OVERRIDE,MIE-R-31; MIE-R-09,MIE-AC-03; MIE-AC-04,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-06,PK,A pack that allows an intention other than BUY or SELL is refused,MIE-R-31; MIE-R-21,MIE-AC-03; MIE-AC-06,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-07,PK,A pack that adds a signal type or redefines a core signal is refused,MIE-R-15; MIE-R-31,MIE-AC-03; MIE-AC-16,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-08,PK,A request pinned to a changed hash is refused as PACK_HASH_MISMATCH,MIE-R-29,MIE-AC-03; MIE-AC-14,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-09,PK,Same pack id and version with different bytes is refused as PACK_VERSION_CONFLICT,MIE-R-30,MIE-AC-14,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-10,PK,Re-publishing identical bytes is an idempotent no-op,MIE-R-30,MIE-AC-14,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-11,PK,A withdrawn pack refuses new assessments and its earlier results still replay,MIE-R-30; MIE-R-36,MIE-AC-14; MIE-AC-08,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-12,PK,A pack naming an unsupported schema or core version is refused,MIE-R-32,MIE-AC-03,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-13,PK,"Dangling references (source to licence, rule to parameter, hook to port) are refused",MIE-R-31,MIE-AC-03,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-14,PK,"Duplicate identifiers, non-NFC text, floats and duplicate JSON keys in a pack are refused",MIE-R-31; MIE-R-43,MIE-AC-03; MIE-AC-18,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-15,PK,"Activation without an owner approval reference, or with one the verifier rejects, is refused",MIE-R-33,MIE-AC-14,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-16,PK,An incomplete pack activates but every assessment is NOT_ASSESSED with the missing items listed,MIE-R-18; MIE-R-50,MIE-AC-20,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-17,PK,A rule whose outcome is not in the per-intention vocabulary is refused,MIE-R-21; MIE-R-22,MIE-AC-06; MIE-AC-22,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-18,PK,Under CONTEXT_ONLY a rule with a signal predicate is refused,MIE-R-34,MIE-AC-21; MIE-AC-20,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+PK-19,PK,A rule with a market-signal predicate and any outcome but without OWNER_ASSUMPTION basis is refused with PACK_RULE_POLICY_VIOLATION (subsumes the WAIT and HOLD case of v0.1),MIE-R-22; MIE-R-34; MIE-R-63,MIE-AC-22; MIE-AC-21; MIE-AC-20; MIE-AC-24,"PLANNED - not written, not run",REVISED (MIE-A2),UNCHANGED
+PK-20,PK,"Canonical bytes are stable under key reordering, whitespace and platform",MIE-R-29,MIE-AC-03,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-01,UT,Each required observation attribute missing in turn is rejected with the field named,MIE-R-06,MIE-AC-04,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-02,UT,"Float, NaN, infinity, boolean and numeric-string values are rejected",MIE-R-07,MIE-AC-04,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-03,UT,Value with exponent gives exact ratios; no float is created,MIE-R-07; MIE-R-20,MIE-AC-04; MIE-AC-16,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-04,UT,Unknown class or basis is rejected; the four evidence groups stay separate in a result,MIE-R-08; MIE-R-19,MIE-AC-04; MIE-AC-15,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-05,UT,"UNLICENSED, UNKNOWN and EXPIRED licences are never used, and an unknown status is not treated as licensed",MIE-R-09,MIE-AC-04,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-06,UT,An observation after the evaluation date is excluded and reported,MIE-R-10,MIE-AC-04,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-07,UT,retrieved_at before as_of is refused,MIE-R-10,MIE-AC-04,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-08,UT,"No interpolation, extrapolation, carry-forward or borrowing: a missing day stays missing",MIE-R-11,MIE-AC-04,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-09,UT,Duplicate submission is idempotent and the content-addressed id is stable,MIE-R-13,MIE-AC-04,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-10,UT,A correction supersedes by a new observation and the original is retained,MIE-R-13; MIE-R-12,MIE-AC-04; MIE-AC-17,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-11,UT,Two values for one series and date are both reported and the date is listed as conflicting,MIE-R-12,MIE-AC-17,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-12,UT,A higher revision supersedes; equal revision with different value conflicts,MIE-R-12,MIE-AC-17,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-13,UT,Exactly at the freshness limit is fresh and one day past is stale,MIE-R-14,MIE-AC-05; MIE-AC-17,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-14,UT,"Missing, null, boolean, float or negative freshness limit gives NOT_ASSESSED FRESHNESS_LIMIT_MISSING",MIE-R-14; MIE-R-18,MIE-AC-05,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-15,UT,"Stale evidence qualifies the result, emits DATA_STALE with its age and stays available as history",MIE-R-27; MIE-R-14,MIE-AC-17,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-16,UT,An observation past valid_until is expired for current use and the result is qualified,MIE-R-10; MIE-R-27,MIE-AC-04; MIE-AC-17,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-17,UT,Each missing signal parameter in turn gives NOT_ASSESSED PARAMETER_MISSING,MIE-R-18,MIE-AC-05; MIE-AC-20,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-18,UT,"LEVEL_MOVEMENT up, down and unchanged report exact ratio, endpoints, window and evidence ids",MIE-R-17,MIE-AC-16,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-19,UT,Under RELATIVE movement a zero start gives NOT_ASSESSED ZERO_BASE and a listed gap,MIE-R-17; MIE-R-24,MIE-AC-16; MIE-AC-07,"PLANNED - not written, not run",REVISED (MIE-A3),UNCHANGED
+UT-20,UT,"Unit, market or comparison-group mismatch gives NOT_ASSESSED UNIT_MISMATCH and a gap",MIE-R-05; MIE-R-24,MIE-AC-04; MIE-AC-07; MIE-AC-17,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-21,UT,Equivalence exists only where the pack declares it; ambiguous aliases and cycles are refused,MIE-R-05,MIE-AC-04,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-22,UT,CONVERSION_MOVEMENT comes only from a pack-declared conversion series,MIE-R-15; MIE-R-17,MIE-AC-16,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-23,UT,"AVAILABILITY_CHANGE, VARIANT_INTRODUCED and VARIANT_WITHDRAWN come only from event observations the pack maps",MIE-R-15; MIE-R-17,MIE-AC-16,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-24,UT,The basis statement holds counts only; no probability or confidence number exists,MIE-R-17; MIE-R-16,MIE-AC-16,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-25,UT,Mirrored histories give mirrored signals and no preference arises from the core,MIE-R-20,MIE-AC-16,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-26,UT,Under a BUY-only pack no SELL-side outcome can be produced by any input,MIE-R-21; MIE-R-49,MIE-AC-06,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-27,UT,A SELL intention on a BUY-only pack is refused as INTENTION_NOT_ALLOWED,MIE-R-21; MIE-R-49,MIE-AC-06,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-28,UT,Rules are first-match and order-sensitive; no match gives NOT_ASSESSED NO_RULE_MATCHED,MIE-R-22,MIE-AC-22,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-29,UT,An absent decision table gives NOT_ASSESSED NO_TABLE,MIE-R-22; MIE-R-50,MIE-AC-22; MIE-AC-20,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-30,UT,"Every result discloses evidence, ages, limits, uncertainty, gaps, qualification, rule fired and the advisory statement",MIE-R-23; MIE-R-26,MIE-AC-07,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-31,UT,A missing input is a listed gap and is never substituted by zero in any calculation,MIE-R-24,MIE-AC-07; MIE-AC-17,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-32,UT,A caller scenario appears as a labelled ASSUMPTION; none is derived from history,MIE-R-25,MIE-AC-15,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-33,UT,A forecast-shaped input or a reference to a forecast is refused,MIE-R-25,MIE-AC-15,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-34,UT,No result carries commit or order state and each states that a human decides,MIE-R-26,MIE-AC-07; MIE-AC-15,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-35,UT,A need-by constraint is compared with a pack parameter; a missing parameter or constraint gives the stated reason,MIE-R-22; MIE-R-18,MIE-AC-22; MIE-AC-05,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+UT-36,UT,An outcome from an OWNER_ASSUMPTION rule is labelled assumption-based with owner and statement,MIE-R-22; MIE-R-23,MIE-AC-22; MIE-AC-07,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+RP-01,RP,The same request and pins replay byte-identically,MIE-R-35; MIE-R-04,MIE-AC-08,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+RP-02,RP,"The result id changes when core version, pack hash or any evidence digest changes",MIE-R-35,MIE-AC-08,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+RP-03,RP,Replay uses stored evidence; observations added later do not alter the replay,MIE-R-36,MIE-AC-08,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+RP-04,RP,Missing stored evidence gives REPLAY_EVIDENCE_UNAVAILABLE,MIE-R-36,MIE-AC-08,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+RP-05,RP,Replay under a changed pack or core version gives a drift report and leaves the original unchanged,MIE-R-37,MIE-AC-08,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+RP-06,RP,"Canonical serialisation is stable across runs, key orders and platforms (property test)",MIE-R-35; MIE-R-04,MIE-AC-08,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+IS-01,IS,"Every operation refuses a missing, forged or expired context",MIE-R-38,MIE-AC-09,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+IS-02,IS,A tenant field in a payload is refused,MIE-R-38,MIE-AC-09,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+IS-03,IS,"Another tenant's observation, result or activation gives the same code and shape as a missing one",MIE-R-39,MIE-AC-09,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+IS-04,IS,A licence for tenant A is not a licence for tenant B,MIE-R-39; MIE-R-09,MIE-AC-09; MIE-AC-04,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+IS-05,IS,Returned values are independent copies,MIE-R-39,MIE-AC-09,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+IS-06,IS,Stored keys are tenant-scoped (store inspection),MIE-R-39,MIE-AC-09,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+CT-01,CT,"describe() reports core, schema and every vocabulary version",MIE-R-03; MIE-R-44,MIE-AC-19,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+CT-02,CT,Every inbound operation takes a tenant context and canonical value-typed messages,MIE-R-44,MIE-AC-19,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+CT-03,CT,"ObservationStorePort contract: append-only, idempotent, tenant-scoped, returns copies",MIE-R-45; MIE-R-13; MIE-R-46,MIE-AC-19; MIE-AC-04,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+CT-04,CT,"PackRegistryPort contract: immutable, hash-bound, withdrawal record",MIE-R-45; MIE-R-30; MIE-R-46,MIE-AC-19; MIE-AC-14,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+CT-05,CT,"ResultStorePort contract: stores by content-addressed id, returns copies",MIE-R-45; MIE-R-35; MIE-R-46,MIE-AC-19; MIE-AC-08,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+CT-06,CT,"AuditLogPort (append) contract with failure injection: failure is surfaced, never swallowed",MIE-R-45; MIE-R-40; MIE-R-46,MIE-AC-19; MIE-AC-18,"PLANNED - not written, not run",REVISED (MIE-A1),UNCHANGED
+CT-07,CT,TenantContextPort contract,MIE-R-45; MIE-R-38; MIE-R-46,MIE-AC-19; MIE-AC-09,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+CT-08,CT,Adapter-side ObservationSourcePort contract: the analogues of MF-01..MF-13 hold for what a feed adapter hands to submit_observations,MIE-R-47; MIE-R-06; MIE-R-09,MIE-AC-19; MIE-AC-04,"PLANNED - not written, not run",REVISED (MIE-A4),UNCHANGED
+CT-09,CT,CostValueHookPort determinism contract with a test double; no hook formula exists,MIE-R-48,MIE-AC-19,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+CT-10,CT,Reference implementations are labelled non-production and claim no persistence,MIE-R-46; MIE-R-58,MIE-AC-19; MIE-AC-12,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+CT-11,CT,ApprovalVerifierPort contract,MIE-R-45; MIE-R-33,MIE-AC-19; MIE-AC-14,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+CT-12,CT,Absent limits give LIMIT_NOT_CONFIGURED,MIE-R-42,MIE-AC-18,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+AD-01,AD,"Audit sink down: AUDIT_UNAVAILABLE, no result, no state change",MIE-R-40,MIE-AC-18,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+AD-02,AD,"Store failure mid-assessment: typed error, no partial result",MIE-R-41,MIE-AC-18,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+AD-03,AD,Unexpected exception gives INTERNAL_ERROR_FAIL_CLOSED and no outcome,MIE-R-41,MIE-AC-18,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+AD-04,AD,"Oversize batch, string, series, rule count or pack gives LIMIT_EXCEEDED",MIE-R-42,MIE-AC-18,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+AD-05,AD,"Control characters, NFC/NFD twins, right-to-left marks and homoglyph identifiers are refused or inert",MIE-R-43,MIE-AC-18,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+AD-06,AD,Injection-like text in any free-text field never alters behaviour,MIE-R-43,MIE-AC-18,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+AD-07,AD,"Extreme exponents and very large integers are handled exactly or refused, never overflow",MIE-R-07; MIE-R-42,MIE-AC-04; MIE-AC-18,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+AD-08,AD,"Evaluation date missing, non-ISO, or earlier than all data",MIE-R-10; MIE-R-14,MIE-AC-04; MIE-AC-05,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+AD-09,AD,"Worlds that are all stale, all conflicting, all unlicensed or empty give NOT_ASSESSED, never an outcome",MIE-R-24; MIE-R-27,MIE-AC-17,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+AD-10,AD,Licensed and unlicensed data in one window: unlicensed excluded and reported,MIE-R-09; MIE-R-24,MIE-AC-04; MIE-AC-17,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+AD-11,AD,A long one-directional history with no table rule produces no outcome,MIE-R-20; MIE-R-22,MIE-AC-16; MIE-AC-22,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+AD-12,AD,Re-submitting one observation under another tenant or another licence creates no cross-tenant effect,MIE-R-13; MIE-R-39,MIE-AC-04; MIE-AC-09,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+AD-13,AD,Duplicate JSON keys and prototype-style keys in a pack are refused,MIE-R-31,MIE-AC-03,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+IG-01,IG,No APG finding or recommendation module imports the core (import graph),MIE-R-51,MIE-AC-13,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+IG-02,IG,APG outputs are byte-identical with and without the core present,MIE-R-51; MIE-R-52,MIE-AC-13; MIE-AC-10,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+IG-03,IG,M6 and the whole existing APG suite pass unchanged on the tree containing the core,MIE-R-52,MIE-AC-10,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+IG-04,IG,Preserved release hashes and locked-file hashes re-verified unchanged,MIE-R-52,MIE-AC-10,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+IG-05,IG,No consumer adapter from the core to APG exists,MIE-R-51,MIE-AC-13,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+SY-01,SY,"The synthetic pack is labelled SYNTHETIC and contains no vendor, real-data or market-claim text",MIE-R-53,MIE-AC-02; MIE-AC-20,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+SY-02,SY,Core file hashes are identical before and after the synthetic pack is added,MIE-R-54,MIE-AC-02,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+SY-03,SY,Both packs run through the same assess code path; BUY-only versus BUY and SELL,MIE-R-54; MIE-R-49; MIE-R-53,MIE-AC-02; MIE-AC-06,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+SY-04,SY,"The APG pack validates, allows BUY only and carries no threshold, parameter or rule",MIE-R-49; MIE-R-50,MIE-AC-06; MIE-AC-20,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+SY-05,SY,The APG pack vocabulary names M6 terms and adds no M6 behaviour,MIE-R-49; MIE-R-52,MIE-AC-06; MIE-AC-10,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+SY-06,SY,Every builder-authored fixture value is in test files and flagged TEST-ONLY,MIE-R-18; MIE-R-50; MIE-R-53,MIE-AC-20,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+QA-01,QA,Sabotage run: every catalogued mutant is killed,MIE-R-56,MIE-AC-11,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+QA-02,QA,The test inventory matches this register,MIE-R-55,MIE-AC-11,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+QA-03,QA,The evidence report separates builder-run from independently verified results,MIE-R-57,MIE-AC-12,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+QA-04,QA,"Release text scan finds no unsupported readiness, predictive or coverage claim",MIE-R-58,MIE-AC-12,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+QA-05,QA,The change request is present as an unnumbered DRAFT and locked-file hashes are unchanged,MIE-R-59; MIE-R-52,MIE-AC-21; MIE-AC-10,"PLANNED - not written, not run",UNCHANGED,UNCHANGED
+AU-01,AU,list_audit reads the calling tenant's events through AuditQueryPort up to a cutoff sequence and returns the chain verification result and the cutoff,MIE-R-60,MIE-AC-23,"PLANNED - not written, not run",NEW (MIE-A1),UNCHANGED
+AU-02,AU,"list_audit appends exactly one access event after fixing its cutoff; the event is absent from its own result, returning it creates no further event, and the next call shows it",MIE-R-60; MIE-R-61,MIE-AC-23,"PLANNED - not written, not run",NEW (MIE-A1),UNCHANGED
+AU-03,AU,With the audit sink down list_audit returns AUDIT_UNAVAILABLE and no events,MIE-R-60; MIE-R-61; MIE-R-40,MIE-AC-23; MIE-AC-18,"PLANNED - not written, not run",NEW (MIE-A1),UNCHANGED
+AU-04,AU,AuditQueryPort is tenant-scoped: another tenant's events are invisible and the chains are separate,MIE-R-60; MIE-R-39,MIE-AC-23; MIE-AC-09,"PLANNED - not written, not run",NEW (MIE-A1),UNCHANGED
+AU-05,AU,A tampered chain is reported by the verification result and the events are neither trimmed nor repaired,MIE-R-60,MIE-AC-23,"PLANNED - not written, not run",NEW (MIE-A1),UNCHANGED
+AU-06,AU,"For each of OP-01..OP-12 with the audit sink down the result is AUDIT_UNAVAILABLE, with no result and no state change",MIE-R-40; MIE-R-61,MIE-AC-23; MIE-AC-18,"PLANNED - not written, not run",NEW (MIE-A1),UNCHANGED
+AU-07,AU,For each state-changing operation the audit event is appended before the commit; a failing append leaves every store untouched,MIE-R-61,MIE-AC-23,"PLANNED - not written, not run",NEW (MIE-A1),UNCHANGED
+AU-08,AU,"A store failure after the audit append returns STORE_UNAVAILABLE, no result, one attempted FAILED event and no record of a completed change",MIE-R-61; MIE-R-41,MIE-AC-23; MIE-AC-18,"PLANNED - not written, not run",NEW (MIE-A1),UNCHANGED
+AU-09,AU,"A missing, forged or expired context produces the context error and no tenant audit event, on every operation",MIE-R-40; MIE-R-61; MIE-R-38,MIE-AC-23; MIE-AC-09,"PLANNED - not written, not run",NEW (MIE-A1),UNCHANGED
+AU-10,AU,Audit events hold identifiers and digests only: a planted licensed value never appears in any event,MIE-R-40; MIE-R-61,MIE-AC-23; MIE-AC-18,"PLANNED - not written, not run",NEW (MIE-A1),UNCHANGED
+AU-11,AU,"Inventory: for every operation the error list in the register equals the common failures plus its specific ones, and each listed code is reachable by a case",MIE-R-62,MIE-AC-23,"PLANNED - not written, not run",NEW (MIE-A1),UNCHANGED
+AU-12,AU,A refusal (for example INTENTION_NOT_ALLOWED) produces an event with outcome REFUSED and the error code,MIE-R-61; MIE-R-40,MIE-AC-23; MIE-AC-18,"PLANNED - not written, not run",NEW (MIE-A1),UNCHANGED
+CT-13,CT,"AuditQueryPort contract: tenant-scoped read with from_seq and limit, verify, copies returned, no write path",MIE-R-45; MIE-R-60; MIE-R-46,MIE-AC-19; MIE-AC-23,"PLANNED - not written, not run",NEW (MIE-A1),UNCHANGED
+PK-21,PK,"In SIGNAL_RULES a market-signal rule with basis OBSERVED_EVIDENCE_ONLY is refused for each outcome: ACT_NOW, WAIT, STAGE, NEGOTIATE (BUY) and ACT_NOW, HOLD, WAIT (SELL)",MIE-R-63; MIE-R-22,MIE-AC-24,"PLANNED - not written, not run",NEW (MIE-A2),UNCHANGED
+PK-22,PK,An OWNER_ASSUMPTION rule missing its owner reference or its assumption statement is refused,MIE-R-63,MIE-AC-24,"PLANNED - not written, not run",NEW (MIE-A2),UNCHANGED
+PK-23,PK,"A rule placed after a signal-influenced rule (a downstream rule) is refused unless it is OWNER_ASSUMPTION with owner reference and assumption statement, whatever the configured outcome of the earlier signal-influenced rule (NOT_ASSESSED included) and whatever the downstream rule's own configured outcome (NOT_ASSESSED included)",MIE-R-63,MIE-AC-24; MIE-AC-29,"PLANNED - not written, not run",NEW (MIE-A2),REVISED (MIE-B1)
+PK-24,PK,A rule that uses only data-quality or gap predicates is not treated as signal-influenced and needs no assumption basis,MIE-R-63,MIE-AC-24,"PLANNED - not written, not run",NEW (MIE-A2),UNCHANGED
+PK-25,PK,"A pack containing OWNER_ASSUMPTION rules activates only with a verified approval reference, and results record that reference",MIE-R-63; MIE-R-33,MIE-AC-24; MIE-AC-14,"PLANNED - not written, not run",NEW (MIE-A2),UNCHANGED
+PK-26,PK,A unit without value_domain is refused as PACK_MALFORMED; a conversion series outside the POSITIVE domain is refused,MIE-R-64,MIE-AC-25,"PLANNED - not written, not run",NEW (MIE-A3),UNCHANGED
+PK-27,PK,"A movement threshold of zero, below zero or not an exact integer ratio is refused",MIE-R-65,MIE-AC-25,"PLANNED - not written, not run",NEW (MIE-A3),UNCHANGED
+UT-37,UT,"Each of ACT_NOW, WAIT, STAGE, NEGOTIATE (BUY) and ACT_NOW, HOLD, WAIT (SELL) fired by a market-signal rule carries the assumption label with owner reference and statement",MIE-R-63; MIE-R-23,MIE-AC-24,"PLANNED - not written, not run",NEW (MIE-A2),UNCHANGED
+UT-38,UT,"The signal-influence class is DIRECT, PRECEDENCE or NONE by the one definition of MIE-R-63 (fired rule signal-influenced; fired rule downstream; neither) and is disclosed on every result",MIE-R-63; MIE-R-23,MIE-AC-24; MIE-AC-29,"PLANNED - not written, not run",NEW (MIE-A2),REVISED (MIE-B1)
+UT-39,UT,An outcome fixed by a rule placed before any signal-influenced rule has class NONE and no assumption label,MIE-R-63,MIE-AC-24,"PLANNED - not written, not run",NEW (MIE-A2),UNCHANGED
+UT-40,UT,Under CONTEXT_ONLY signals appear as context beside the outcome and the class is NONE for every outcome,MIE-R-34; MIE-R-63,MIE-AC-24,"PLANNED - not written, not run",NEW (MIE-A2),UNCHANGED
+UT-41,UT,"A signal-influenced outcome with stale, expired, unavailable or conflicting evidence is qualified and is never presented as a forecast or a tendency of prices",MIE-R-63; MIE-R-27,MIE-AC-24; MIE-AC-17,"PLANNED - not written, not run",NEW (MIE-A2),UNCHANGED
+UT-42,UT,"RELATIVE movement with a zero start gives NOT_ASSESSED ZERO_BASE and a listed gap for every end value, positive, negative and zero",MIE-R-65; MIE-R-24,MIE-AC-25; MIE-AC-07,"PLANNED - not written, not run",NEW (MIE-A3),UNCHANGED
+UT-43,UT,RELATIVE movement with a negative start is direction-safe: -10 to -5 is UP with ratio 1/2 and -10 to -15 is DOWN with ratio -1/2,MIE-R-65,MIE-AC-25,"PLANNED - not written, not run",NEW (MIE-A3),UNCHANGED
+UT-44,UT,A movement between values of opposite sign states crosses_zero true: -10 to 10 is UP with ratio 2 and 10 to -10 is DOWN with ratio -2,MIE-R-65; MIE-R-17,MIE-AC-25; MIE-AC-16,"PLANNED - not written, not run",NEW (MIE-A3),UNCHANGED
+UT-45,UT,"ABSOLUTE movement is defined for zero and negative starts: 0 to 5 UP, -5 to 0 UP, 5 to 0 DOWN, with the boundary exactly at T",MIE-R-65,MIE-AC-25,"PLANNED - not written, not run",NEW (MIE-A3),UNCHANGED
+UT-46,UT,Negating every value of a SIGNED series negates the difference and the ratio and exchanges UP with DOWN under both bases (property test),MIE-R-65; MIE-R-20,MIE-AC-25; MIE-AC-16,"PLANNED - not written, not run",NEW (MIE-A3),UNCHANGED
+UT-47,UT,"A value outside the unit's declared domain is rejected with VALUE_OUT_OF_DOMAIN: POSITIVE rejects zero and negatives, NON_NEGATIVE rejects negatives, SIGNED accepts both",MIE-R-64; MIE-R-06,MIE-AC-25; MIE-AC-04,"PLANNED - not written, not run",NEW (MIE-A3),UNCHANGED
+UT-48,UT,A missing movement_basis or threshold gives NOT_ASSESSED PARAMETER_MISSING and the core assumes no basis,MIE-R-65; MIE-R-18,MIE-AC-25; MIE-AC-05,"PLANNED - not written, not run",NEW (MIE-A3),UNCHANGED
+UT-49,UT,Values with different decimal exponents align exactly to a common exponent; no float is created; the ratios are identical to those of the same values at one exponent,MIE-R-65; MIE-R-07,MIE-AC-25; MIE-AC-04,"PLANNED - not written, not run",NEW (MIE-A3),UNCHANGED
+FL-01,FL,The core has no call to ObservationSourcePort or to any feed on any path (static call and import scan; a planted call is detected),MIE-R-66; MIE-R-45,MIE-AC-26,"PLANNED - not written, not run",NEW (MIE-A4),UNCHANGED
+FL-02,FL,submit_observations re-validates every item: an invalid item that an adapter marks as pre-validated is rejected with the field named,MIE-R-66; MIE-R-06,MIE-AC-26; MIE-AC-04,"PLANNED - not written, not run",NEW (MIE-A4),UNCHANGED
+FL-03,FL,"End to end with test doubles: ingestion driver, feed adapter and ObservationSourcePort double produce a batch and the core returns per-item receipts to the driver",MIE-R-66; MIE-R-46,MIE-AC-26,"PLANNED - not written, not run",NEW (MIE-A4),UNCHANGED
+FL-04,FL,Resubmitting the same batch (a driver retry) yields duplicates and no second observation,MIE-R-66; MIE-R-13,MIE-AC-26; MIE-AC-04,"PLANNED - not written, not run",NEW (MIE-A4),UNCHANGED
+FL-05,FL,"A feed failure (unavailable, malformed, empty) is adapter-side: no core operation is invoked, no core state changes, and no feed error code exists in the core vocabulary",MIE-R-66,MIE-AC-26,"PLANNED - not written, not run",NEW (MIE-A4),UNCHANGED
+FL-06,FL,A partial feed leaves missing days; get_signals and assess_timing list them as gaps and fill nothing,MIE-R-66; MIE-R-11; MIE-R-24,MIE-AC-26; MIE-AC-04; MIE-AC-07,"PLANNED - not written, not run",NEW (MIE-A4),UNCHANGED
+FL-07,FL,get_signals and assess_timing perform no retrieval: a double that fails on any feed call is never called,MIE-R-66; MIE-R-04,MIE-AC-26; MIE-AC-08,"PLANNED - not written, not run",NEW (MIE-A4),UNCHANGED
+FL-08,FL,A licence status asserted by the feed is recorded as evidence and never grants use; only the pack licence record decides,MIE-R-66; MIE-R-09,MIE-AC-26; MIE-AC-04,"PLANNED - not written, not run",NEW (MIE-A4),UNCHANGED
+FL-09,FL,A batch cannot name a tenant; the tenant is the verified context the driver supplies,MIE-R-66; MIE-R-38,MIE-AC-26; MIE-AC-09,"PLANNED - not written, not run",NEW (MIE-A4),UNCHANGED
+FL-10,FL,"A mapping-adapter double for the M6 MarketFeedPort definition satisfies the analogues of MF-01..MF-13 through submit_observations and assessment, and the M6 definition is not edited",MIE-R-47; MIE-R-66,MIE-AC-26; MIE-AC-19,"PLANNED - not written, not run",NEW (MIE-A4),UNCHANGED
+QA-06,QA,The open-question dispositions register carries the nine dispositions with every field; none is marked as decided by the builder; product-owner-owned items show the decision still required,MIE-R-67,MIE-AC-27,"PLANNED - not written, not run",NEW (MIE-A5),UNCHANGED
+QA-07,QA,"The change log maps each of the six audit points to existing requirements, acceptance criteria, tests, mutants and registers, and every tagged row is named in it",MIE-R-68,MIE-AC-28,"PLANNED - not written, not run",NEW (MIE-A6),UNCHANGED
+QA-08,QA,The delivered v0.1 ZIP and documents are re-hashed and equal the hashes recorded for them,MIE-R-68; MIE-R-52,MIE-AC-28; MIE-AC-10,"PLANNED - not written, not run",NEW (MIE-A6),UNCHANGED
+PK-28,PK,Exact sequence of the finding: rule 1 signal-influenced (OWNER_ASSUMPTION) with configured outcome NOT_ASSESSED; rule 2 OBSERVED_EVIDENCE_ONLY with outcome ACT_NOW; validate_pack and register_pack refuse the pack with PACK_RULE_POLICY_VIOLATION and nothing is stored,MIE-R-63; MIE-R-22; MIE-R-69,MIE-AC-29; MIE-AC-24,"PLANNED - not written, not run",ABSENT (added in v0.3),NEW (MIE-B1)
+PK-29,PK,"The same sequence is refused for each later outcome: ACT_NOW, WAIT, STAGE, NEGOTIATE (BUY) and ACT_NOW, HOLD, WAIT (SELL)",MIE-R-63; MIE-R-22,MIE-AC-29; MIE-AC-24,"PLANNED - not written, not run",ABSENT (added in v0.3),NEW (MIE-B1)
+PK-30,PK,"A downstream rule whose own configured outcome is NOT_ASSESSED and whose basis is OBSERVED_EVIDENCE_ONLY is refused too; there is no NOT_ASSESSED exemption, before or after the earlier signal-influenced rule's own outcome",MIE-R-63,MIE-AC-29; MIE-AC-24,"PLANNED - not written, not run",ABSENT (added in v0.3),NEW (MIE-B1)
+PK-31,PK,"A refused pack produces no result of any class: register_pack stores nothing, get_pack and activate_pack return NOT_FOUND, and assess_timing against its pin returns PACK_NOT_ACTIVE",MIE-R-69; MIE-R-63,MIE-AC-29; MIE-AC-24,"PLANNED - not written, not run",ABSENT (added in v0.3),NEW (MIE-B2)
+PK-32,PK,"A downstream OWNER_ASSUMPTION rule that lacks its owner reference, or lacks its assumption statement, is refused",MIE-R-63,MIE-AC-29; MIE-AC-24,"PLANNED - not written, not run",ABSENT (added in v0.3),NEW (MIE-B1)
+PK-33,PK,"The valid owner-labelled version (signal-influenced NOT_ASSESSED rule, then an OWNER_ASSUMPTION rule with owner reference and assumption statement) is accepted by validate_pack and register_pack; a rule placed before the first signal-influenced rule may still be OBSERVED_EVIDENCE_ONLY",MIE-R-63; MIE-R-22,MIE-AC-29; MIE-AC-24,"PLANNED - not written, not run",ABSENT (added in v0.3),NEW (MIE-B1)
+UT-50,UT,"In the valid owner-labelled pack, when the signal-influenced NOT_ASSESSED rule does not match and the later ACT_NOW rule fires, the class is PRECEDENCE, the outcome carries the assumption label with the fired rule's owner reference and assumption statement, and the earlier signal-influenced rule is listed as evaluated",MIE-R-63; MIE-R-23,MIE-AC-29; MIE-AC-24,"PLANNED - not written, not run",ABSENT (added in v0.3),NEW (MIE-B1)
+UT-51,UT,Class matrix on one pack: a firing signal-influenced rule gives DIRECT; a firing downstream rule gives PRECEDENCE; a firing rule placed before the first signal-influenced rule gives NONE; a firing rule that is both signal-influenced and downstream gives DIRECT,MIE-R-63; MIE-R-23,MIE-AC-29; MIE-AC-24,"PLANNED - not written, not run",ABSENT (added in v0.3),NEW (MIE-B1)
+UT-52,UT,NO_TABLE and NO_RULE_MATCHED give NOT_ASSESSED with class NONE and no assumption label; with NO_RULE_MATCHED the identifiers of the signal-influenced rules evaluated are listed,MIE-R-63; MIE-R-22,MIE-AC-29; MIE-AC-24,"PLANNED - not written, not run",ABSENT (added in v0.3),NEW (MIE-B2)
+UT-53,UT,"A firing downstream rule whose configured outcome is NOT_ASSESSED (owner-labelled) has class PRECEDENCE and carries the assumption label, as an actionable one does",MIE-R-63; MIE-R-23,MIE-AC-29; MIE-AC-24,"PLANNED - not written, not run",ABSENT (added in v0.3),NEW (MIE-B2)
+UT-54,UT,"Fail closed: a test double gives the evaluator a fired DIRECT or PRECEDENCE rule that lacks the owner basis, owner reference or assumption statement; the result is INTERNAL_ERROR_FAIL_CLOSED, a FAILED audit event is appended, no outcome is emitted and no result is stored",MIE-R-69; MIE-R-63,MIE-AC-29,"PLANNED - not written, not run",ABSENT (added in v0.3),NEW (MIE-B2)
+AD-14,AD,Evasion attempts after a signal-influenced NOT_ASSESSED rule: a negated SIGNAL_NOT_ASSESSED predicate on a market-signal type; several consecutive signal-influenced NOT_ASSESSED rules; a mix of signal types; each followed by an unlabelled rule; all refused,MIE-R-63; MIE-R-22,MIE-AC-29; MIE-AC-24,"PLANNED - not written, not run",ABSENT (added in v0.3),NEW (MIE-B1)
+AD-15,AD,"Reordering: a pack version that moves an unlabelled rule from before to after a signal-influenced rule is refused (the check uses the submitted order, not a sorted or stored order); with the unlabelled rule first it is accepted",MIE-R-63,MIE-AC-29; MIE-AC-24,"PLANNED - not written, not run",ABSENT (added in v0.3),NEW (MIE-B1)
+QA-09,QA,"The implementation-blockers register lists BLK-01..BLK-03, each open and blocking, none resolved or decided; the specification and README state them",MIE-R-70,MIE-AC-30,"PLANNED - not written, not run",ABSENT (added in v0.3),NEW (MIE-B3)

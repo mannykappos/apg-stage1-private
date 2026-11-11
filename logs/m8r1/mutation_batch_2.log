@@ -1,0 +1,21 @@
+AUIF verified: zip 61748ddeba21e8c1 core 74cec87afd167601
+CONTROL (unmutated copy): passes 104s
+MI-02  KILLED       2s tier 1: FAIL: test_an_object_that_is_not_valid (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_an_object_that_is_not_valid)
+MI-06  KILLED       2s tier 1: FAIL: test_a_chain_naming_another_pack_hash (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_a_chain_naming_another_pack_hash)
+MI-10  KILLED       2s tier 1: FAIL: test_a_delivery_that_is_not_in_order (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_a_delivery_that_is_not_in_order)
+MI-14  KILLED       2s tier 1: FAIL: test_a_source_identity_taken_from_the_wrong_field (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_a_source_identity_taken_fro
+MI-18  KILLED       3s tier 1: FAIL: test_ambiguous_counted_only_in_the_report (tests_m8.test_m8_integrity.TestTheTransportReportStandsAlone.test_ambiguous_counted_only_in_the_repor
+MI-22  KILLED       2s tier 1: FAIL: test_a_state_change_seen_during_the_import_even_if_active_again_at_the_end (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_a_
+MI-26  KILLED      17s tier 1: FAIL: test_a_wait_that_times_out_goes_to_reconciliation_and_never_invents_the_missing_event (tests_m8.test_m8_events.TestEvents.test_a_wait_that_times
+MI-30  KILLED       5s tier 1: FAIL: test_an_unparseable_required_amount_is_rejected_as_m3_rejects_it_and_stops_the_assessment (tests_m8.test_m8_no_fallback.TestInvalidAmbiguousAndT
+MI-34  KILLED      18s tier 1: FAIL: test_in_order_events_become_records_with_their_sequence_in_the_lineage (tests_m8.test_m8_events.TestEvents.test_in_order_events_become_records_w
+MI-38  KILLED      19s tier 1: FAIL: test_differs_as_declared (tests_m8.test_m8_corpus.TestCorpusThroughAuif.test_differs_as_declared) [F11]
+MI-42  KILLED      53s tier 1: FAIL: test_a_failed_or_forbidden_read_keeps_its_own_reason (tests_m8.test_m8r1_empty_source.TestTheBatchCheckItself.test_a_failed_or_forbidden_read_ke
+MM-04  KILLED      15s tier 1: FAIL: test_a_file_removed_after_activation (tests_m8.test_m8_no_fallback.TestPartial.test_a_file_removed_after_activation)
+MG-02  KILLED      16s tier 1: FAIL: test_an_integration_that_never_reported_a_state (tests_m8.test_m8_no_fallback.TestStaleDriftedAndDegraded.test_an_integration_that_never_reporte
+MG-06  KILLED       2s tier 1: FAIL: test_a_module_handler_failure_recorded_by_auif_stops_the_assessment (tests_m8.test_m8_integrity.TestGateAndBinding.test_a_module_handler_failure
+MA-02  KILLED      10s tier 1: FAIL: test_a_change_while_the_figures_are_computed_withdraws_the_result (tests_m8.test_m8_no_fallback.TestNoOldValueShownAsCurrent.test_a_change_while
+MC-01  KILLED       1s tier 1: FAIL: test_a_pack_in_any_other_form_is_refused_before_it_is_used (tests_m8.test_m8_dev01.TestFailClosed.test_a_pack_in_any_other_form_is_refused_befor
+MD-01  KILLED       1s tier 1: FAIL: test_a_changed_zip_is_refused (tests_m8.test_m8_dependency.TestFrozenDependency.test_a_changed_zip_is_refused)
+ML-02  KILLED      34s tier 1: FAIL: test_an_input_of_an_unknown_kind_is_untraced (tests_m8.test_m8_lineage.TestTheLineageCheckerItself.test_an_input_of_an_unknown_kind_is_untraced)
+mutants 18: killed 18, documented equivalent 0, survived 0, timeout 0 | AUIF after: unchanged

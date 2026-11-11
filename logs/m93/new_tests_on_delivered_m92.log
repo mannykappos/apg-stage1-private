@@ -1,0 +1,165 @@
+Run against the delivered, unmodified APG-M9.2 package (extracted from its ZIP; hash ad889d545a5ad91a100ff89425353b425a908fe23f50c44d0a11dd128247f1d8) with only tests/test_api_m93_corrections.py added.
+tests 18  failures 11  errors 1
+======================================================================
+ERROR: test_year_0001_is_the_first_year_and_year_0000_does_not_exist (tests.test_api_m93_corrections.TestTheExpiryMustBeARealMomentInTime.test_year_0001_is_the_first_year_and_year_0000_does_not_exist)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m93pre_qx89w923/APG_M9_2/tests/test_api_m93_corrections.py", line 90, in test_year_0001_is_the_first_year_and_year_0000_does_not_exist
+    self.assertTrue(AB._is_moment('0001-01-01T00:00:00Z'))
+                    ^^^^^^^^^^^^^
+AttributeError: module 'apg.api.approval_boundary' has no attribute '_is_moment'
+
+======================================================================
+FAIL: test_a_clock_that_does_not_give_a_real_moment_makes_every_session_not_live (tests.test_api_m93_corrections.TestTheExpiryMustBeARealMomentInTime.test_a_clock_that_does_not_give_a_real_moment_makes_every_session_not_live)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m93pre_qx89w923/APG_M9_2/tests/test_api_m93_corrections.py", line 117, in test_a_clock_that_does_not_give_a_real_moment_makes_every_session_not_live
+    self.assertFalse(live('2999-01-01T00:00:00Z', now), repr(now))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false : '2026-10-01T09:00:00Z\n'
+
+======================================================================
+FAIL: test_each_part_is_live_at_its_last_valid_value_and_not_one_past_it (tests.test_api_m93_corrections.TestTheExpiryMustBeARealMomentInTime.test_each_part_is_live_at_its_last_valid_value_and_not_one_past_it)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m93pre_qx89w923/APG_M9_2/tests/test_api_m93_corrections.py", line 86, in test_each_part_is_live_at_its_last_valid_value_and_not_one_past_it
+    self.assertFalse(live(bad), bad)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: True is not false : 2999-13-01T00:00:00Z
+
+======================================================================
+FAIL: test_leap_days_are_live_only_in_leap_years (tests.test_api_m93_corrections.TestTheExpiryMustBeARealMomentInTime.test_leap_days_are_live_only_in_leap_years)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m93pre_qx89w923/APG_M9_2/tests/test_api_m93_corrections.py", line 77, in test_leap_days_are_live_only_in_leap_years
+    self.assertEqual(live(f'{y}-02-29T00:00:00Z'), ok, y)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True != False : 2100
+
+======================================================================
+FAIL: test_no_impossible_month_day_hour_minute_second_or_year_is_live (tests.test_api_m93_corrections.TestTheExpiryMustBeARealMomentInTime.test_no_impossible_month_day_hour_minute_second_or_year_is_live)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m93pre_qx89w923/APG_M9_2/tests/test_api_m93_corrections.py", line 67, in test_no_impossible_month_day_hour_minute_second_or_year_is_live
+    self.assertFalse(live(bad), bad)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: True is not false : 2999-99-99T99:99:99Z
+
+======================================================================
+FAIL: test_the_impossible_values_the_audit_found_are_not_live (tests.test_api_m93_corrections.TestTheExpiryMustBeARealMomentInTime.test_the_impossible_values_the_audit_found_are_not_live)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m93pre_qx89w923/APG_M9_2/tests/test_api_m93_corrections.py", line 63, in test_the_impossible_values_the_audit_found_are_not_live
+    self.assertFalse(live(bad), bad)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: True is not false : 2999-99-99T99:99:99Z
+
+======================================================================
+FAIL: test_every_value_that_is_not_live_is_refused_the_same_way_by_a_request (tests.test_api_m93_corrections.TestTheSameShapeFlawsStayClosed.test_every_value_that_is_not_live_is_refused_the_same_way_by_a_request)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m93pre_qx89w923/APG_M9_2/tests/test_api_m93_corrections.py", line 207, in test_every_value_that_is_not_live_is_refused_the_same_way_by_a_request
+    self.assertEqual((res['status'], res['code']), ('refused', 'SESSION_EXPIRED'), repr(bad))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: ('approved', 'OK') != ('refused', 'SESSION_EXPIRED')
+
+First differing element 0:
+'approved'
+'refused'
+
+- ('approved', 'OK')
++ ('refused', 'SESSION_EXPIRED') : '2999-99-99T99:99:99Z'
+
+======================================================================
+FAIL: test_a_clock_that_is_not_a_real_moment_ends_every_session_at_all_three_calls (tests.test_api_m93_corrections.TestTheSessionCheckThroughTheBoundaryEntryPoints.test_a_clock_that_is_not_a_real_moment_ends_every_session_at_all_three_calls)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m93pre_qx89w923/APG_M9_2/tests/test_api_m93_corrections.py", line 179, in test_a_clock_that_is_not_a_real_moment_ends_every_session_at_all_three_calls
+    self.assertEqual((r['status'], r['code']), ('refused', 'NOT_ALLOWED'), now)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: ('shown', 'OK') != ('refused', 'NOT_ALLOWED')
+
+First differing element 0:
+'shown'
+'refused'
+
+- ('shown', 'OK')
++ ('refused', 'NOT_ALLOWED') : 2026-13-01T09:00:00Z
+
+======================================================================
+FAIL: test_a_request_with_an_impossible_expiry_is_refused_as_an_ended_session_and_approves_nothing (tests.test_api_m93_corrections.TestTheSessionCheckThroughTheBoundaryEntryPoints.test_a_request_with_an_impossible_expiry_is_refused_as_an_ended_session_and_approves_nothing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m93pre_qx89w923/APG_M9_2/tests/test_api_m93_corrections.py", line 147, in test_a_request_with_an_impossible_expiry_is_refused_as_an_ended_session_and_approves_nothing
+    self.assertEqual((res['status'], res['code']), ('refused', 'SESSION_EXPIRED'), bad)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: ('approved', 'OK') != ('refused', 'SESSION_EXPIRED')
+
+First differing element 0:
+'approved'
+'refused'
+
+- ('approved', 'OK')
++ ('refused', 'SESSION_EXPIRED') : 2999-99-99T99:99:99Z
+
+======================================================================
+FAIL: test_each_refusal_is_audited_and_no_event_carries_the_impossible_value_as_a_resource (tests.test_api_m93_corrections.TestTheSessionCheckThroughTheBoundaryEntryPoints.test_each_refusal_is_audited_and_no_event_carries_the_impossible_value_as_a_resource)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m93pre_qx89w923/APG_M9_2/tests/test_api_m93_corrections.py", line 171, in test_each_refusal_is_audited_and_no_event_carries_the_impossible_value_as_a_resource
+    self.assertEqual(sorted(e.event_type for e in new), ['approval_request.execution_check', 'approval_request.refused', 'approval_request.refused'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['approval_request.accepted', 'approval_request.execution_ch[27 chars]wed'] != ['approval_request.execution_check', 'approval_request.refus[27 chars]sed']
+
+First differing element 0:
+'approval_request.accepted'
+'approval_request.execution_check'
+
+- ['approval_request.accepted',
+-  'approval_request.execution_check',
+? ^
+
++ ['approval_request.execution_check',
+? ^
+
++  'approval_request.refused',
+-  'approval_request.viewed']
+?                    ^^ ^
+
++  'approval_request.refused']
+?                    ^ ^^^
+
+
+======================================================================
+FAIL: test_the_executor_check_is_false_for_an_impossible_expiry_and_true_for_a_real_one_once_approved (tests.test_api_m93_corrections.TestTheSessionCheckThroughTheBoundaryEntryPoints.test_the_executor_check_is_false_for_an_impossible_expiry_and_true_for_a_real_one_once_approved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m93pre_qx89w923/APG_M9_2/tests/test_api_m93_corrections.py", line 161, in test_the_executor_check_is_false_for_an_impossible_expiry_and_true_for_a_real_one_once_approved
+    self.assertEqual(self.check_with(bad), {'valid': False, 'code': 'NOT_ALLOWED'}, bad)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'valid': True, 'code': 'OK'} != {'valid': False, 'code': 'NOT_ALLOWED'}
+- {'code': 'OK', 'valid': True}
++ {'code': 'NOT_ALLOWED', 'valid': False} : 2999-99-99T99:99:99Z
+
+======================================================================
+FAIL: test_the_screen_refuses_an_impossible_expiry_and_shows_a_real_one (tests.test_api_m93_corrections.TestTheSessionCheckThroughTheBoundaryEntryPoints.test_the_screen_refuses_an_impossible_expiry_and_shows_a_real_one)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m93pre_qx89w923/APG_M9_2/tests/test_api_m93_corrections.py", line 136, in test_the_screen_refuses_an_impossible_expiry_and_shows_a_real_one
+    self.assertEqual((r['status'], r['code']), ('refused', 'NOT_ALLOWED'), bad)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: ('shown', 'OK') != ('refused', 'NOT_ALLOWED')
+
+First differing element 0:
+'shown'
+'refused'
+
+- ('shown', 'OK')
++ ('refused', 'NOT_ALLOWED') : 2999-99-99T99:99:99Z
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.494s
+
+FAILED (failures=11, errors=1)
+
+[exit code 1]

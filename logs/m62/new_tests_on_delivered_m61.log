@@ -1,0 +1,412 @@
+tests 47  failures 11  errors 29
+======================================================================
+ERROR: test_a_token_for_an_older_version_or_digest_is_refused (tests.test_det_proposal_binding.TestApprovalEntryPointFailsClosed.test_a_token_for_an_older_version_or_digest_is_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 371, in test_a_token_for_an_older_version_or_digest_is_refused
+    t = self.token()
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 347, in token
+    return FD.approval_token(f)
+           ^^^^^^^^^^^^^^^^^
+AttributeError: module 'apg.det.findings' has no attribute 'approval_token'. Did you mean: 'approval_current'?
+
+======================================================================
+ERROR: test_an_approved_finding_is_not_approvable_again (tests.test_det_proposal_binding.TestApprovalEntryPointFailsClosed.test_an_approved_finding_is_not_approvable_again)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 415, in test_an_approved_finding_is_not_approvable_again
+    self.assertEqual(FD.approvable(FD.get(self.m.svc, self.fid)), (False, 'the finding is action_approved, not action_proposed'))
+                     ^^^^^^^^^^^^^
+AttributeError: module 'apg.det.findings' has no attribute 'approvable'
+
+======================================================================
+ERROR: test_approvable_says_why_not (tests.test_det_proposal_binding.TestApprovalEntryPointFailsClosed.test_approvable_says_why_not)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 402, in test_approvable_says_why_not
+    self.assertEqual(FD.approvable(f), (False, 'no action has been proposed'))
+                     ^^^^^^^^^^^^^
+AttributeError: module 'apg.det.findings' has no attribute 'approvable'
+
+======================================================================
+ERROR: test_approve_action_with_the_shown_token_approves_and_binds_exactly_that (tests.test_det_proposal_binding.TestApprovalEntryPointFailsClosed.test_approve_action_with_the_shown_token_approves_and_binds_exactly_that)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 356, in test_approve_action_with_the_shown_token_approves_and_binds_exactly_that
+    t = self.token()
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 347, in token
+    return FD.approval_token(f)
+           ^^^^^^^^^^^^^^^^^
+AttributeError: module 'apg.det.findings' has no attribute 'approval_token'. Did you mean: 'approval_current'?
+
+======================================================================
+ERROR: test_missing_or_malformed_token_parts_are_refused_before_anything_is_looked_at (tests.test_det_proposal_binding.TestApprovalEntryPointFailsClosed.test_missing_or_malformed_token_parts_are_refused_before_anything_is_looked_at)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 362, in test_missing_or_malformed_token_parts_are_refused_before_anything_is_looked_at
+    t = self.token()
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 347, in token
+    return FD.approval_token(f)
+           ^^^^^^^^^^^^^^^^^
+AttributeError: module 'apg.det.findings' has no attribute 'approval_token'. Did you mean: 'approval_current'?
+
+======================================================================
+ERROR: test_the_current_token_still_cannot_approve_a_stale_proposal (tests.test_det_proposal_binding.TestApprovalEntryPointFailsClosed.test_the_current_token_still_cannot_approve_a_stale_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 381, in test_the_current_token_still_cannot_approve_a_stale_proposal
+    t = self.token()
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 347, in token
+    return FD.approval_token(f)
+           ^^^^^^^^^^^^^^^^^
+AttributeError: module 'apg.det.findings' has no attribute 'approval_token'. Did you mean: 'approval_current'?
+
+======================================================================
+ERROR: test_the_other_gates_still_apply_through_the_entry_point (tests.test_det_proposal_binding.TestApprovalEntryPointFailsClosed.test_the_other_gates_still_apply_through_the_entry_point)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 388, in test_the_other_gates_still_apply_through_the_entry_point
+    t = self.token()
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 347, in token
+    return FD.approval_token(f)
+           ^^^^^^^^^^^^^^^^^
+AttributeError: module 'apg.det.findings' has no attribute 'approval_token'. Did you mean: 'approval_current'?
+
+======================================================================
+ERROR: test_the_token_names_what_the_approver_is_shown (tests.test_det_proposal_binding.TestApprovalEntryPointFailsClosed.test_the_token_names_what_the_approver_is_shown)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 352, in test_the_token_names_what_the_approver_is_shown
+    self.assertEqual(FD.approval_token(f), {'finding_id': self.fid, 'version': 1, 'digest': f['signal']['state_digest']})
+                     ^^^^^^^^^^^^^^^^^
+AttributeError: module 'apg.det.findings' has no attribute 'approval_token'. Did you mean: 'approval_current'?
+
+======================================================================
+ERROR: test_a_proposal_made_after_nothing_was_replaced_has_an_empty_proposal_history (tests.test_det_proposal_binding.TestExactTextAndContextAreKept.test_a_proposal_made_after_nothing_was_replaced_has_an_empty_proposal_history)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 341, in test_a_proposal_made_after_nothing_was_replaced_has_an_empty_proposal_history
+    self.assertEqual((f['action']['proposal_history'], f['action']['approval_history'], f['action']['proposal_state']), ([], [], 'current'))
+                      ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'proposal_history'
+
+======================================================================
+ERROR: test_a_replaced_proposal_that_had_been_approved_keeps_its_approval_in_the_history_too (tests.test_det_proposal_binding.TestExactTextAndContextAreKept.test_a_replaced_proposal_that_had_been_approved_keeps_its_approval_in_the_history_too)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 321, in test_a_replaced_proposal_that_had_been_approved_keeps_its_approval_in_the_history_too
+    (old,) = f['action']['proposal_history']
+             ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'proposal_history'
+
+======================================================================
+ERROR: test_a_replaced_stale_proposal_is_kept_in_full_in_the_proposal_history (tests.test_det_proposal_binding.TestExactTextAndContextAreKept.test_a_replaced_stale_proposal_is_kept_in_full_in_the_proposal_history)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 311, in test_a_replaced_stale_proposal_is_kept_in_full_in_the_proposal_history
+    (old,) = f3['action']['proposal_history']
+             ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'proposal_history'
+
+======================================================================
+ERROR: test_an_ended_approval_keeps_the_exact_text_the_proposer_and_the_approval_rationale (tests.test_det_proposal_binding.TestExactTextAndContextAreKept.test_an_ended_approval_keeps_the_exact_text_the_proposer_and_the_approval_rationale)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 302, in test_an_ended_approval_keeps_the_exact_text_the_proposer_and_the_approval_rationale
+    self.assertEqual((h['action_text'], h['proposed_by'], h['proposed_at'], h['proposed_version'], h['proposed_digest'], h['approval_rationale']),
+                      ~^^^^^^^^^^^^^^^
+KeyError: 'action_text'
+
+======================================================================
+ERROR: test_the_approval_event_carries_the_text_the_proposal_version_and_the_version_approved (tests.test_det_proposal_binding.TestExactTextAndContextAreKept.test_the_approval_event_carries_the_text_the_proposal_version_and_the_version_approved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 288, in test_the_approval_event_carries_the_text_the_proposal_version_and_the_version_approved
+    self.assertEqual((d['action_text'], d['proposed_version'], d['proposed_digest'], d['approved_version'], d['approved_digest'], d['rationale']),
+                      ~^^^^^^^^^^^^^^^
+KeyError: 'action_text'
+
+======================================================================
+ERROR: test_the_proposal_event_carries_the_exact_action_text_and_what_it_was_written_against (tests.test_det_proposal_binding.TestExactTextAndContextAreKept.test_the_proposal_event_carries_the_exact_action_text_and_what_it_was_written_against)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 281, in test_the_proposal_event_carries_the_exact_action_text_and_what_it_was_written_against
+    self.assertEqual((ev['detail']['action_text'], ev['detail']['proposed_version'], ev['detail']['proposed_digest']), ('renegotiate exactly: 3 % off, 30 days', 1, f['signal']['state_digest']))
+                      ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'action_text'
+
+======================================================================
+ERROR: test_two_replacements_leave_two_entries_in_order_and_the_event_history_only_grows (tests.test_det_proposal_binding.TestExactTextAndContextAreKept.test_two_replacements_leave_two_entries_in_order_and_the_event_history_only_grows)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 332, in test_two_replacements_leave_two_entries_in_order_and_the_event_history_only_grows
+    self.assertEqual([(e['text'], e['proposed_version']) for e in f3['action']['proposal_history']], [('first', 1), ('second', 2)])
+                                                                  ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'proposal_history'
+
+======================================================================
+ERROR: test_the_same_with_the_version_and_digest_named (tests.test_det_proposal_binding.TestFreshProposalIsApprovable.test_the_same_with_the_version_and_digest_named)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 142, in test_the_same_with_the_version_and_digest_named
+    f = FD.transition(self.m.approver, self.m.clock, self.fid, 'action_approved', rationale='ok', approving_version=1, approving_digest=f1['signal']['state_digest'])
+TypeError: transition() got an unexpected keyword argument 'approving_digest'
+
+======================================================================
+ERROR: test_a_later_run_with_the_same_evidence_leaves_a_current_proposal_current (tests.test_det_proposal_binding.TestReplayAndOlderRuns.test_a_later_run_with_the_same_evidence_leaves_a_current_proposal_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 214, in test_a_later_run_with_the_same_evidence_leaves_a_current_proposal_current
+    self.assertEqual((f['action']['proposal_state'], FD.proposal_current(f)), ('current', True))
+                      ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'proposal_state'
+
+======================================================================
+ERROR: test_naming_an_older_digest_is_refused_as_a_stale_approval (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_naming_an_older_digest_is_refused_as_a_stale_approval)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 72, in test_naming_an_older_digest_is_refused_as_a_stale_approval
+    self.refused('STALE_APPROVAL', approving_version=2, approving_digest=f1['signal']['state_digest'])
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 35, in refused
+    FD.transition(self.m.approver, self.m.clock, self.fid, 'action_approved', rationale='ok', **kw)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: transition() got an unexpected keyword argument 'approving_digest'
+
+======================================================================
+ERROR: test_naming_the_current_evidence_digest_does_not_make_a_stale_proposal_approvable (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_naming_the_current_evidence_digest_does_not_make_a_stale_proposal_approvable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 67, in test_naming_the_current_evidence_digest_does_not_make_a_stale_proposal_approvable
+    self.refused('STALE_PROPOSAL', approving_version=2, approving_digest=f['signal']['state_digest'])
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 35, in refused
+    FD.transition(self.m.approver, self.m.clock, self.fid, 'action_approved', rationale='ok', **kw)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: transition() got an unexpected keyword argument 'approving_digest'
+
+======================================================================
+ERROR: test_a_proposal_with_no_recorded_version_is_never_approvable_and_the_reason_says_so (tests.test_det_proposal_binding.TestTheEvidenceDigestAloneCanBeNamed.test_a_proposal_with_no_recorded_version_is_never_approvable_and_the_reason_says_so)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 128, in test_a_proposal_with_no_recorded_version_is_never_approvable_and_the_reason_says_so
+    ok, why = FD.approvable(legacy)
+              ^^^^^^^^^^^^^
+AttributeError: module 'apg.det.findings' has no attribute 'approvable'
+
+======================================================================
+ERROR: test_an_older_digest_alone_is_refused_as_a_stale_approval_and_the_current_digest_alone_cannot_approve_a_stale_proposal (tests.test_det_proposal_binding.TestTheEvidenceDigestAloneCanBeNamed.test_an_older_digest_alone_is_refused_as_a_stale_approval_and_the_current_digest_alone_cannot_approve_a_stale_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 123, in test_an_older_digest_alone_is_refused_as_a_stale_approval_and_the_current_digest_alone_cannot_approve_a_stale_proposal
+    self.refused('STALE_APPROVAL', approving_digest=f1['signal']['state_digest'])
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 35, in refused
+    FD.transition(self.m.approver, self.m.clock, self.fid, 'action_approved', rationale='ok', **kw)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: transition() got an unexpected keyword argument 'approving_digest'
+
+======================================================================
+ERROR: test_the_current_digest_alone_approves_a_fresh_proposal (tests.test_det_proposal_binding.TestTheEvidenceDigestAloneCanBeNamed.test_the_current_digest_alone_approves_a_fresh_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 117, in test_the_current_digest_alone_approves_a_fresh_proposal
+    f = FD.transition(self.m.approver, self.m.clock, self.fid, 'action_approved', rationale='ok', approving_digest=f1['signal']['state_digest'])
+TypeError: transition() got an unexpected keyword argument 'approving_digest'
+
+======================================================================
+ERROR: test_a_dismissed_finding_with_no_action_reopened_has_no_proposal_to_mark (tests.test_det_proposal_binding.TestTheRecordSaysWhenAProposalWentStale.test_a_dismissed_finding_with_no_action_reopened_has_no_proposal_to_mark)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 258, in test_a_dismissed_finding_with_no_action_reopened_has_no_proposal_to_mark
+    self.assertEqual((f['status'], f['action'], out['proposals_stale']), ('reopened', None, []))
+                                                ~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'proposals_stale'
+
+======================================================================
+ERROR: test_a_finding_with_no_action_has_no_stale_proposal_to_report (tests.test_det_proposal_binding.TestTheRecordSaysWhenAProposalWentStale.test_a_finding_with_no_action_has_no_stale_proposal_to_report)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 235, in test_a_finding_with_no_action_has_no_stale_proposal_to_report
+    self.assertEqual(out['proposals_stale'], [])
+                     ~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'proposals_stale'
+
+======================================================================
+ERROR: test_a_proposal_made_stale_by_an_ended_approval_is_marked_stale_in_the_same_step (tests.test_det_proposal_binding.TestTheRecordSaysWhenAProposalWentStale.test_a_proposal_made_stale_by_an_ended_approval_is_marked_stale_in_the_same_step)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 242, in test_a_proposal_made_stale_by_an_ended_approval_is_marked_stale_in_the_same_step
+    self.assertEqual((out['proposals_stale'], f['action']['proposal_state'], f['action']['approval_state']), ([self.fid], 'stale', 'invalidated'))
+                      ~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'proposals_stale'
+
+======================================================================
+ERROR: test_a_resolved_finding_reopened_on_new_evidence_has_its_old_proposal_marked_stale (tests.test_det_proposal_binding.TestTheRecordSaysWhenAProposalWentStale.test_a_resolved_finding_reopened_on_new_evidence_has_its_old_proposal_marked_stale)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 249, in test_a_resolved_finding_reopened_on_new_evidence_has_its_old_proposal_marked_stale
+    self.assertEqual((f['status'], f['version'], out['reopened'], out['proposals_stale']), ('reopened', 2, [self.fid], [self.fid]))
+                                                                  ~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'proposals_stale'
+
+======================================================================
+ERROR: test_proposal_current_is_strict (tests.test_det_proposal_binding.TestTheRecordSaysWhenAProposalWentStale.test_proposal_current_is_strict)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 263, in test_proposal_current_is_strict
+    self.assertTrue(FD.proposal_current(ok))
+                    ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'apg.det.findings' has no attribute 'proposal_current'. Did you mean: 'approval_current'?
+
+======================================================================
+ERROR: test_the_run_summary_names_the_proposals_that_went_stale_and_only_those (tests.test_det_proposal_binding.TestTheRecordSaysWhenAProposalWentStale.test_the_run_summary_names_the_proposals_that_went_stale_and_only_those)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 221, in test_the_run_summary_names_the_proposals_that_went_stale_and_only_those
+    self.assertEqual((out['updated'], out['proposals_stale']), ([self.fid], [self.fid]))
+                                      ~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'proposals_stale'
+
+======================================================================
+ERROR: test_the_stored_action_is_marked_stale_and_the_history_says_which_version_it_was_written_against (tests.test_det_proposal_binding.TestTheRecordSaysWhenAProposalWentStale.test_the_stored_action_is_marked_stale_and_the_history_says_which_version_it_was_written_against)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 229, in test_the_stored_action_is_marked_stale_and_the_history_says_which_version_it_was_written_against
+    self.assertEqual((f['action']['proposal_state'], FD.proposal_current(f)), ('stale', False))
+                      ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'proposal_state'
+
+======================================================================
+FAIL: test_a_refused_stale_approval_adds_nothing_to_the_history (tests.test_det_proposal_binding.TestExactTextAndContextAreKept.test_a_refused_stale_approval_adds_nothing_to_the_history)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 295, in test_a_refused_stale_approval_adds_nothing_to_the_history
+    self.refused('STALE_PROPOSAL')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 34, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_a_later_run_with_the_same_evidence_does_not_make_a_stale_proposal_current (tests.test_det_proposal_binding.TestReplayAndOlderRuns.test_a_later_run_with_the_same_evidence_does_not_make_a_stale_proposal_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 206, in test_a_later_run_with_the_same_evidence_does_not_make_a_stale_proposal_current
+    self.refused('STALE_PROPOSAL')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 34, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_an_older_run_arriving_late_neither_refreshes_nor_restores_the_proposal (tests.test_det_proposal_binding.TestReplayAndOlderRuns.test_an_older_run_arriving_late_neither_refreshes_nor_restores_the_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 199, in test_an_older_run_arriving_late_neither_refreshes_nor_restores_the_proposal
+    self.refused('STALE_PROPOSAL')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 34, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_replaying_the_run_that_made_the_proposal_stale_changes_nothing_and_the_proposal_stays_stale (tests.test_det_proposal_binding.TestReplayAndOlderRuns.test_replaying_the_run_that_made_the_proposal_stale_changes_nothing_and_the_proposal_stays_stale)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 190, in test_replaying_the_run_that_made_the_proposal_stale_changes_nothing_and_the_proposal_stays_stale
+    self.refused('STALE_PROPOSAL')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 34, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_a_refused_approval_leaves_the_record_exactly_as_it_was (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_a_refused_approval_leaves_the_record_exactly_as_it_was)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 110, in test_a_refused_approval_leaves_the_record_exactly_as_it_was
+    self.refused('STALE_PROPOSAL')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 34, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_an_approval_ended_by_changed_evidence_cannot_be_given_again_on_the_old_proposal (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_an_approval_ended_by_changed_evidence_cannot_be_given_again_on_the_old_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 86, in test_an_approval_ended_by_changed_evidence_cannot_be_given_again_on_the_old_proposal
+    f = self.refused('STALE_PROPOSAL')
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 34, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_evidence_that_changes_again_after_a_fresh_proposal_makes_that_proposal_stale_too (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_evidence_that_changes_again_after_a_fresh_proposal_makes_that_proposal_stale_too)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 96, in test_evidence_that_changes_again_after_a_fresh_proposal_makes_that_proposal_stale_too
+    self.refused('STALE_PROPOSAL')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 34, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_naming_the_current_version_does_not_make_a_stale_proposal_approvable (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_naming_the_current_version_does_not_make_a_stale_proposal_approvable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 56, in test_naming_the_current_version_does_not_make_a_stale_proposal_approvable
+    self.refused('STALE_PROPOSAL', approving_version=2)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 34, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_the_audit_reproduction_a_proposal_for_version_1_cannot_be_approved_once_the_finding_is_at_version_2 (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_the_audit_reproduction_a_proposal_for_version_1_cannot_be_approved_once_the_finding_is_at_version_2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 49, in test_the_audit_reproduction_a_proposal_for_version_1_cannot_be_approved_once_the_finding_is_at_version_2
+    f = self.refused('STALE_PROPOSAL')
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 34, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_the_refusal_is_audited_with_the_reason (tests.test_det_proposal_binding.TestStaleProposalCannotBeApproved.test_the_refusal_is_audited_with_the_reason)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 77, in test_the_refusal_is_audited_with_the_reason
+    self.refused('STALE_PROPOSAL')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 34, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_approval_current_also_needs_a_current_proposal (tests.test_det_proposal_binding.TestTheRecordSaysWhenAProposalWentStale.test_approval_current_also_needs_a_current_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old_zrgt6rxb/APG_M6_1/tests/test_det_proposal_binding.py", line 272, in test_approval_current_also_needs_a_current_proposal
+    self.assertFalse(FD.approval_current(f))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 47 tests in 3.073s
+
+FAILED (failures=11, errors=29)
+
+[exit code 1]

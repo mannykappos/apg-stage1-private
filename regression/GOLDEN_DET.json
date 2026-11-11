@@ -1,0 +1,946 @@
+{
+ "golden": {
+  "all_runs_reproduce": true,
+  "audit_chain_ok": [
+   true,
+   true
+  ],
+  "delivered_notes": 17,
+  "earlier_asof_labour_not_assessed": true,
+  "findings_created": {
+   "PRJ-001": 2,
+   "PRJ-002": 10,
+   "PRJ-003": 2,
+   "tenant": 3
+  },
+  "findings_total": 17,
+  "first_flush": {
+   "duplicate": 0,
+   "failed": 0,
+   "sent": 17
+  },
+  "health_statement_present": true,
+  "later_sweep_finds_VAR-0002": true,
+  "outstanding": 0,
+  "policy_versions": [
+   "SYN-FIN-POL-1",
+   "SYN-DET-POL-1"
+  ],
+  "portfolio": {
+   "cash_timing_exposure": {
+    "amount_labels": [
+     "figure"
+    ],
+    "components": 1,
+    "findings": 1,
+    "lower_bound_cents": 12000000,
+    "overlap_adjusted": false,
+    "quantified": 1,
+    "upper_bound_cents": 12000000
+   },
+   "forecast_exposure": {
+    "amount_labels": [
+     "record",
+     "estimate"
+    ],
+    "components": 6,
+    "findings": 9,
+    "lower_bound_cents": 92170068,
+    "overlap_adjusted": true,
+    "quantified": 7,
+    "upper_bound_cents": 92930068
+   },
+   "potential_revenue_at_risk": {
+    "amount_labels": [],
+    "components": 0,
+    "findings": 2,
+    "lower_bound_cents": 0,
+    "overlap_adjusted": false,
+    "quantified": 0,
+    "upper_bound_cents": 0
+   }
+  },
+  "portfolio_unquantified": 4,
+  "replay_of_ingest_is_a_no_op": true,
+  "rule_runs": {
+   "PRJ-001": {
+    "AGG": [
+     "evaluated",
+     30,
+     0,
+     30,
+     2
+    ],
+    "D01": [
+     "evaluated",
+     61,
+     0,
+     1,
+     0
+    ],
+    "D02": [
+     "evaluated",
+     546,
+     0,
+     0,
+     0
+    ],
+    "DEF": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "DLY": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "LAB": [
+     "evaluated",
+     1,
+     1,
+     0,
+     0
+    ],
+    "R01": [
+     "evaluated",
+     10,
+     0,
+     10,
+     0
+    ],
+    "R02": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "R03": [
+     "evaluated",
+     30,
+     0,
+     30,
+     0
+    ],
+    "R04": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "R04B": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "R05": [
+     "evaluated",
+     1,
+     1,
+     0,
+     0
+    ],
+    "R08": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "R09": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "PRJ-002": {
+    "AGG": [
+     "evaluated",
+     38,
+     1,
+     35,
+     0
+    ],
+    "D01": [
+     "evaluated",
+     66,
+     1,
+     0,
+     0
+    ],
+    "D02": [
+     "evaluated",
+     6,
+     0,
+     0,
+     0
+    ],
+    "DEF": [
+     "evaluated",
+     1,
+     1,
+     0,
+     0
+    ],
+    "DLY": [
+     "evaluated",
+     1,
+     1,
+     0,
+     0
+    ],
+    "LAB": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "R01": [
+     "evaluated",
+     10,
+     1,
+     9,
+     0
+    ],
+    "R02": [
+     "evaluated",
+     2,
+     1,
+     1,
+     0
+    ],
+    "R03": [
+     "evaluated",
+     32,
+     1,
+     31,
+     0
+    ],
+    "R04": [
+     "evaluated",
+     3,
+     1,
+     2,
+     0
+    ],
+    "R04B": [
+     "evaluated",
+     1,
+     1,
+     0,
+     0
+    ],
+    "R05": [
+     "evaluated",
+     1,
+     0,
+     1,
+     0
+    ],
+    "R08": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "R09": [
+     "evaluated",
+     1,
+     1,
+     0,
+     0
+    ]
+   },
+   "PRJ-003": {
+    "AGG": [
+     "evaluated",
+     30,
+     0,
+     30,
+     1
+    ],
+    "D01": [
+     "evaluated",
+     61,
+     1,
+     0,
+     0
+    ],
+    "D02": [
+     "evaluated",
+     2,
+     0,
+     0,
+     0
+    ],
+    "DEF": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "DLY": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "LAB": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "R01": [
+     "evaluated",
+     10,
+     0,
+     10,
+     0
+    ],
+    "R02": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "R03": [
+     "evaluated",
+     30,
+     0,
+     30,
+     1
+    ],
+    "R04": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "R04B": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "R05": [
+     "evaluated",
+     1,
+     0,
+     1,
+     0
+    ],
+    "R08": [
+     "evaluated",
+     2,
+     1,
+     1,
+     0
+    ],
+    "R09": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "tenant": {
+    "D02": [
+     "evaluated",
+     24,
+     0,
+     0,
+     0
+    ],
+    "R06": [
+     "evaluated",
+     24,
+     2,
+     22,
+     0
+    ],
+    "R07": [
+     "evaluated",
+     1,
+     1,
+     0,
+     0
+    ]
+   }
+  },
+  "runs": {},
+  "runs_checked": 4,
+  "second_flush": {
+   "duplicate": 0,
+   "failed": 0,
+   "sent": 0
+  },
+  "second_sweep": {
+   "PRJ-001": {
+    "created": 0,
+    "not_redetected": 0,
+    "reopened": 0,
+    "seen": 2,
+    "updated": 0
+   },
+   "PRJ-002": {
+    "created": 0,
+    "not_redetected": 0,
+    "reopened": 0,
+    "seen": 10,
+    "updated": 0
+   },
+   "PRJ-003": {
+    "created": 0,
+    "not_redetected": 0,
+    "reopened": 0,
+    "seen": 2,
+    "updated": 0
+   },
+   "tenant": {
+    "created": 0,
+    "not_redetected": 0,
+    "reopened": 0,
+    "seen": 3,
+    "updated": 0
+   }
+  },
+  "signals": {
+   "PRJ-001": [
+    {
+     "evidence_records": 1,
+     "extra": {
+      "days_late": 61,
+      "figure_state": "authoritative"
+     },
+     "gross_cents": 12000000,
+     "impact_cents": 12000000,
+     "interpretation": "cash_timing_exposure",
+     "label": "figure",
+     "rule": "DET-R05",
+     "severity": "medium",
+     "status": "quantified",
+     "strength": "strong",
+     "subject": "PRJ-001",
+     "subtype": "retention_release_overdue"
+    },
+    {
+     "evidence_records": 252,
+     "extra": {
+      "baseline_hours_micro": 1280000000,
+      "baseline_output_micro": 2516000000,
+      "baseline_weeks": [
+       "2026-07-06",
+       "2026-07-13",
+       "2026-07-20",
+       "2026-07-27",
+       "2026-08-03",
+       "2026-08-10",
+       "2026-08-17",
+       "2026-08-24"
+      ],
+      "decline_bps": 1900,
+      "recent_hours_micro": 640000000,
+      "recent_output_micro": 1019000000,
+      "recent_weeks": [
+       "2026-08-31",
+       "2026-09-07",
+       "2026-09-14",
+       "2026-09-21"
+      ],
+      "unit": "m2"
+     },
+     "gross_cents": 826811,
+     "impact_cents": 826811,
+     "interpretation": "forecast_exposure",
+     "label": "estimate",
+     "rule": "DET-LAB",
+     "severity": "low",
+     "status": "quantified",
+     "strength": "moderate",
+     "subject": "WP-PLASTER",
+     "subtype": "output_per_hour_falling"
+    }
+   ],
+   "PRJ-002": [
+    {
+     "evidence_records": 2,
+     "extra": {
+      "direction": "increase",
+      "movement_cents": 31000000
+     },
+     "gross_cents": 31000000,
+     "impact_cents": 31000000,
+     "interpretation": "forecast_exposure",
+     "label": "record",
+     "rule": "DET-R09",
+     "severity": "high",
+     "status": "quantified",
+     "strength": "strong",
+     "subject": "CC-09|F-2026-08>F-2026-09",
+     "subtype": "forecast_movement_unexplained"
+    },
+    {
+     "evidence_records": 2,
+     "extra": {
+      "committed_cents": 9800000,
+      "invoiced_cents": 10560000,
+      "over_bps": 776
+     },
+     "gross_cents": 760000,
+     "impact_cents": 760000,
+     "interpretation": "forecast_exposure",
+     "label": "record",
+     "rule": "DET-R03",
+     "severity": "low",
+     "status": "quantified",
+     "strength": "strong",
+     "subject": "PO-0091",
+     "subtype": "invoiced_above_order"
+    },
+    {
+     "evidence_records": 2,
+     "extra": {
+      "purchase_order": "PO-0037",
+      "why": "NO_APPROVED_CHANGE_REFERENCE"
+     },
+     "gross_cents": 8500000,
+     "impact_cents": 8500000,
+     "interpretation": "forecast_exposure",
+     "label": "record",
+     "rule": "DET-R02",
+     "severity": "medium",
+     "status": "quantified",
+     "strength": "strong",
+     "subject": "AMD-001",
+     "subtype": "commitment_without_approved_change"
+    },
+    {
+     "evidence_records": 9,
+     "extra": {
+      "actual_cents": 161890238,
+      "budget_cents": 139906981,
+      "figure_state": "provisional",
+      "over_bps": 1571
+     },
+     "gross_cents": 21983257,
+     "impact_cents": 21983257,
+     "interpretation": "forecast_exposure",
+     "label": "estimate",
+     "rule": "DET-R01",
+     "severity": "medium",
+     "status": "quantified",
+     "strength": "moderate",
+     "subject": "CC-04",
+     "subtype": "actual_cost_over_budget"
+    },
+    {
+     "evidence_records": 1,
+     "extra": {
+      "by_class": {
+       "held": 1
+      },
+      "candidate_amount_cents_known": 3200000,
+      "figure_state": "provisional"
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "data_quality_risk",
+     "label": "none",
+     "rule": "DET-D01",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "strong",
+     "subject": "actual_cost|held_records",
+     "subtype": "records_held_out_of_cost"
+    },
+    {
+     "evidence_records": 3,
+     "extra": {
+      "events": 3,
+      "growing": true,
+      "rework_costs_cents": [
+       1200000,
+       2600000,
+       4900000
+      ]
+     },
+     "gross_cents": 8700000,
+     "impact_cents": 8700000,
+     "interpretation": "forecast_exposure",
+     "label": "record",
+     "rule": "DET-DEF",
+     "severity": "medium",
+     "status": "quantified",
+     "strength": "moderate",
+     "subject": "SUB-004 (synthetic)|waterproofing",
+     "subtype": "repeat_defect_growing_rework"
+    },
+    {
+     "evidence_records": 3,
+     "extra": {
+      "aggregate_cents": 27132000,
+      "first_order_date": "2026-08-03",
+      "keys": [
+       "project",
+       "supplier",
+       "material",
+       "cost_code"
+      ],
+      "orders": [
+       "PO-0093",
+       "PO-0094",
+       "PO-0095"
+      ],
+      "window_days": 30
+     },
+     "gross_cents": null,
+     "impact_cents": 27132000,
+     "interpretation": "compliance_risk",
+     "label": "none",
+     "rule": "DET-AGG",
+     "severity": "high",
+     "status": "unquantified",
+     "strength": "moderate",
+     "subject": "PRJ-002|SUP-003|MAT-REO|CC-03|2026-08-03",
+     "subtype": "orders_split_inside_window"
+    },
+    {
+     "evidence_records": 1,
+     "extra": {
+      "age_days": 232,
+      "status": "submitted"
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "potential_revenue_at_risk",
+     "label": "none",
+     "rule": "DET-R04",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "strong",
+     "subject": "VAR-0001",
+     "subtype": "variation_unpriced_unresolved"
+    },
+    {
+     "evidence_records": 1,
+     "extra": {
+      "age_days": 104
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "potential_revenue_at_risk",
+     "label": "none",
+     "rule": "DET-R04B",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "moderate",
+     "subject": "NTC-001",
+     "subtype": "instruction_without_variation"
+    },
+    {
+     "evidence_records": 2,
+     "extra": {
+      "holding_rates_cents_per_day": [
+       1850000
+      ],
+      "overlap_days": 9,
+      "overlap_end": "2026-07-21",
+      "overlap_start": "2026-07-13",
+      "sum_of_durations_days": 28,
+      "union_days": 19
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "forecast_exposure",
+     "label": "none",
+     "rule": "DET-DLY",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "moderate",
+     "subject": "DLY-001|DLY-002",
+     "subtype": "delay_events_overlap"
+    }
+   ],
+   "PRJ-003": [
+    {
+     "evidence_records": 1,
+     "extra": {
+      "by_class": {
+       "disputed": 1
+      },
+      "candidate_amount_cents_known": 7280125,
+      "figure_state": "provisional"
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "data_quality_risk",
+     "label": "none",
+     "rule": "DET-D01",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "strong",
+     "subject": "actual_cost|held_records",
+     "subtype": "records_held_out_of_cost"
+    },
+    {
+     "evidence_records": 1,
+     "extra": {
+      "days_beyond_need": 183,
+      "off_hire_recorded": false,
+      "rate_cents_per_day": 115000
+     },
+     "gross_cents": 21045000,
+     "impact_cents": 21045000,
+     "interpretation": "forecast_exposure",
+     "label": "estimate",
+     "rule": "DET-R08",
+     "severity": "medium",
+     "status": "quantified",
+     "strength": "moderate",
+     "subject": "HIRE-001",
+     "subtype": "hire_beyond_need"
+    }
+   ],
+   "tenant": [
+    {
+     "evidence_records": 2,
+     "extra": {
+      "over_bps": 331,
+      "unit_difference_cents": 8500
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "forecast_exposure",
+     "label": "none",
+     "rule": "DET-R07",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "moderate",
+     "subject": "Q-0001>quote:Q-0002",
+     "subtype": "quote_above_reference"
+    },
+    {
+     "evidence_records": 1,
+     "extra": {
+      "days_to_expiry": -30,
+      "evidence_type": "licence",
+      "supplier": "SUP-008"
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "compliance_risk",
+     "label": "none",
+     "rule": "DET-R06",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "strong",
+     "subject": "SUP-008|licence",
+     "subtype": "compliance_expired"
+    },
+    {
+     "evidence_records": 1,
+     "extra": {
+      "days_to_expiry": 19,
+      "evidence_type": "public_liability_insurance",
+      "supplier": "SUP-005"
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "compliance_risk",
+     "label": "none",
+     "rule": "DET-R06",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "strong",
+     "subject": "SUP-005|public_liability_insurance",
+     "subtype": "compliance_expiring"
+    }
+   ]
+  },
+  "tenant_isolation": {
+   "every_zero_two_pin_resolves_in_its_own_tenant": true,
+   "zero_one_findings": 17,
+   "zero_one_run_visible_to_zero_two": false,
+   "zero_two_findings_before_ingest": 0
+  },
+  "zero_two_signals": {
+   "PRJ-001": [
+    {
+     "evidence_records": 1,
+     "extra": {
+      "by_class": {
+       "disputed": 1
+      },
+      "candidate_amount_cents_known": 0,
+      "figure_state": "provisional"
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "data_quality_risk",
+     "label": "none",
+     "rule": "DET-D01",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "strong",
+     "subject": "actual_cost|held_records",
+     "subtype": "records_held_out_of_cost"
+    }
+   ],
+   "tenant": []
+  }
+ },
+ "oracle": {
+  "excluded_invoices": [
+   "INV-0121",
+   "INV-0183",
+   "INV-0187"
+  ],
+  "expected": {
+   "AGG|PRJ-002|PRJ-002|SUP-003|MAT-REO|CC-03|2026-08-03": {
+    "aggregate_cents": 27132000,
+    "orders": [
+     "PO-0093",
+     "PO-0094",
+     "PO-0095"
+    ]
+   },
+   "DEF|PRJ-002|SUB-004 (synthetic)|waterproofing": {
+    "events": 3,
+    "growing": true,
+    "total_cents": 8700000
+   },
+   "DLY|PRJ-002|DLY-001|DLY-002": {
+    "overlap_days": 9,
+    "sum_days": 28,
+    "union_days": 19
+   },
+   "LAB|PRJ-001|WP-PLASTER": {
+    "cost_cents": 826811,
+    "decline_bps": 1900
+   },
+   "R01|PRJ-002|CC-04": {
+    "excess_cents": 21983257
+   },
+   "R02|PRJ-002|AMD-001": {
+    "delta_cents": 8500000
+   },
+   "R03|PRJ-002|PO-0091": {
+    "excess_cents": 760000
+   },
+   "R04B|PRJ-002|NTC-001": {
+    "age_days": 104
+   },
+   "R04|PRJ-002|VAR-0001": {
+    "age_days": 232,
+    "value_cents": null
+   },
+   "R05|PRJ-001|PRJ-001": {
+    "days_late": 61,
+    "withheld_cents": 12000000
+   },
+   "R06|tenant|SUP-005|public_liability_insurance": {
+    "days_to_expiry": 19
+   },
+   "R06|tenant|SUP-008|licence": {
+    "days_to_expiry": -30
+   },
+   "R07|tenant|Q-0001>quote:Q-0002": {
+    "unit_difference_cents": 8500
+   },
+   "R08|PRJ-003|HIRE-001": {
+    "cost_cents": 21045000,
+    "days_beyond_need": 183
+   },
+   "R09|PRJ-002|CC-09|F-2026-08>F-2026-09": {
+    "movement_cents": 31000000
+   }
+  },
+  "expected_count": 15,
+  "lab_decline_bps": {
+   "PRJ-001|WP-PLASTER": 1900
+  },
+  "po_over_bps": {
+   "PO-0091": 776,
+   "PO-0092": 40
+  },
+  "quote_landed": {
+   "Q-0001": 265000,
+   "Q-0002": 256500
+  },
+  "ratio_bps": {
+   "PRJ-001|CC-01": 7374,
+   "PRJ-001|CC-02": 7377,
+   "PRJ-001|CC-03": 7490,
+   "PRJ-001|CC-04": 7373,
+   "PRJ-001|CC-05": 7190,
+   "PRJ-001|CC-06": 7446,
+   "PRJ-001|CC-07": 7499,
+   "PRJ-001|CC-08": 7590,
+   "PRJ-001|CC-09": 7500,
+   "PRJ-001|CC-10": 7785,
+   "PRJ-002|CC-01": 7197,
+   "PRJ-002|CC-02": 7695,
+   "PRJ-002|CC-03": 7198,
+   "PRJ-002|CC-04": 11571,
+   "PRJ-002|CC-05": 9800,
+   "PRJ-002|CC-06": 7914,
+   "PRJ-002|CC-07": 7500,
+   "PRJ-002|CC-08": 7598,
+   "PRJ-002|CC-09": 7400,
+   "PRJ-002|CC-10": 7194,
+   "PRJ-003|CC-01": 5694,
+   "PRJ-003|CC-02": 7191,
+   "PRJ-003|CC-03": 7296,
+   "PRJ-003|CC-04": 7165,
+   "PRJ-003|CC-05": 7388,
+   "PRJ-003|CC-06": 7702,
+   "PRJ-003|CC-07": 7400,
+   "PRJ-003|CC-08": 7293,
+   "PRJ-003|CC-09": 7400,
+   "PRJ-003|CC-10": 7193
+  }
+ },
+ "oracle_zero_two": {
+  "excluded_invoices": [
+   "INV-0001"
+  ],
+  "expected": {},
+  "expected_count": 0,
+  "lab_decline_bps": {
+   "PRJ-001|WP-PLASTER": 0
+  },
+  "po_over_bps": {},
+  "ratio_bps": {
+   "PRJ-001|CC-01": 5839,
+   "PRJ-001|CC-02": 7888,
+   "PRJ-001|CC-03": 7289,
+   "PRJ-001|CC-04": 7062,
+   "PRJ-001|CC-05": 7075,
+   "PRJ-001|CC-06": 7017,
+   "PRJ-001|CC-07": 7300,
+   "PRJ-001|CC-08": 7484,
+   "PRJ-001|CC-09": 7500,
+   "PRJ-001|CC-10": 7585
+  }
+ }
+}

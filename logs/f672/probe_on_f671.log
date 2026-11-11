@@ -1,0 +1,20 @@
+CORRECTED       F-73 fin A: a planted entry naming the owner, correct role and kind        -> run approved=False
+DEFECT PRESENT  F-73 fin B: the owner then approves in person                              -> done; planted entry still in the record=True; event names revision None (planted 2, latest 2)
+DEFECT PRESENT  F-73 fin C: as B, the planted entry identical to approve's own             -> done; event names revision None (planted 2)
+CORRECTED       F-73 det A: a planted entry naming the owner, correct role and kind        -> run approved=False
+DEFECT PRESENT  F-73 det B: the owner then approves in person                              -> done; planted entry still in the record=True; event names revision None (planted 2, latest 2)
+DEFECT PRESENT  F-73 det C: as B, the planted entry identical to approve's own             -> done; event names revision None (planted 2)
+CORRECTED       F-73 mkt A: a planted entry naming the owner, correct role and kind        -> run approved=False
+DEFECT PRESENT  F-73 mkt B: the owner then approves in person                              -> done; planted entry still in the record=True; event names revision None (planted 2, latest 2)
+DEFECT PRESENT  F-73 mkt C: as B, the planted entry identical to approve's own             -> done; event names revision None (planted 2)
+CORRECTED       F-73 spec A: a planted entry naming the owner, correct role and kind       -> run approved=False
+DEFECT PRESENT  F-73 spec B: the owner then approves in person                             -> done; planted entry still in the record=True; event names revision None (planted 2, latest 2)
+DEFECT PRESENT  F-73 spec C: as B, the planted entry identical to approve's own            -> done; event names revision None (planted 2)
+CORRECTED       F-73 rec A: a planted entry naming the owner, correct role and kind        -> run approved=False
+DEFECT PRESENT  F-73 rec B: the owner then approves in person                              -> done; planted entry still in the record=True; event names revision None (planted 2, latest 2)
+DEFECT PRESENT  F-73 rec C: as B, the planted entry identical to approve's own             -> done; event names revision None (planted 2)
+DEFECT PRESENT  control: an ordinary approval is counted and names the revision approve wrote -> counted {'fin': True, 'det': True, 'mkt': True, 'spec': True, 'rec': True}; bound {'fin': False, 'det': False, 'mkt': False, 'spec': False, 'rec': False}
+
+cases 16  defects present 11
+F-73 IS NOT CORRECTED
+exit 1

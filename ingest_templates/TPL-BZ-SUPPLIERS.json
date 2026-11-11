@@ -1,0 +1,48 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "supplier_id",
+   "target_field": "source_record_id",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "name",
+   "target_field": "supplier_name",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "abn_synthetic",
+   "target_field": "abn_text",
+   "transform": "trim",
+   "type": "string"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "supplier_id"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-06",
+ "source_label": "Builder Zero supplier list (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "supplier",
+ "template_id": "TPL-BZ-SUPPLIERS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

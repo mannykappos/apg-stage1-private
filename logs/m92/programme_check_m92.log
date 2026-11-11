@@ -1,0 +1,20 @@
+PASS P01 F-58 to F-60 are recorded as raised by the independent audit of M9.1 and F-61 as found by the builder's own review; all four are "corrected in APG-M9.2 (builder-implemented); open until independently verified"
+PASS P01b no finding is shown as closed, accepted, approved or resolved; F-52 to F-57 stay open
+PASS P02 SR-81 to SR-83 sit at Local-tested (the contract document at Specified), each has evidence and a claim limit saying no independent review has taken place; SR-81 names EDR-32 and says CF-22 and CF-25 stay open
+PASS P02b no new status row is above Local-tested or Specified
+PASS P03 I-88 to I-92 are retained for review, not approved, with no reviewer decision; each states the reading and what follows if it is wrong; the interpretation numbering is unbroken
+PASS P04 the carried-forward register holds CF-01 to CF-29 in order with every cell filled
+PASS P04b CF-22, CF-25, CF-26 and CF-27 are unedited and open; CF-28 records the auditor's incomplete runs as incomplete and is open for the auditor; CF-29 names EDR-32 and says no independent review has taken place
+PASS P04c no carried-forward item is shown as closed, resolved, accepted or approved
+PASS P05 EDR-32 is described only (no Engine code seen) and owned by the Engine; the M9 row lists EDR-31 and EDR-32 and is "In this delivery"; M7, M8 and M10 to M12 are not started
+PASS P06 the governance and RFC registers are unchanged: RFC-01 unnumbered and proposed, the four baseline rules PROPOSED, no finance assumption configured, foundations not started
+PASS P07 no new register text claims approval, independent review, readiness, compliance, adoption or closure []
+PASS P08 the contract document (revised for M9.2) has its nine sections, names EDR-31 and EDR-32, cites the right module path, says nothing here has been independently reviewed and that CF-22 and CF-25 stay open
+PASS P09 the change record has its eight sections, names every changed or added file, names F-58 to F-61 and CF-28, records the auditor's unfinished runs as incomplete, says no independent review has taken place, and keeps CF-22 and F-52 to F-61 open []
+PASS P10 the change record does not claim approval, independent review, readiness, compliance or closure
+PASS P11 the run commands and the readme start with an M9.2 section; the run commands give the split-group and mutation-chunk commands; the readme says the corrections are not independently reviewed and the M9.1 ZIP is unchanged
+
+checks 15  failed 0
+ALL M9.2 REGISTER CHECKS PASS
+
+[exit code 0; 0s]

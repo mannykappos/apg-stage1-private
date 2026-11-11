@@ -1,0 +1,48 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "project_id",
+   "target_field": "project_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "original_contract_cents",
+   "target_field": "original_contract_cents",
+   "transform": "none",
+   "type": "money_cents"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "approved_variations_cents",
+   "target_field": "approved_variations_cents",
+   "transform": "none",
+   "type": "money_cents"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "project_id"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-07",
+ "source_label": "Builder Zero contracts (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "contract",
+ "template_id": "TPL-BZ-CONTRACTS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

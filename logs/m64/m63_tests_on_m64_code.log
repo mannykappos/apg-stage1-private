@@ -1,0 +1,148 @@
+tests 179  failures 10  errors 2
+======================================================================
+ERROR: test_approve_action_with_the_shown_token_approves_and_binds_exactly_that (tests.test_det_proposal_binding.TestApprovalEntryPointFailsClosed.test_approve_action_with_the_shown_token_approves_and_binds_exactly_that)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64cur_m_4xotcs/p/tests/test_det_proposal_binding.py", line 357, in test_approve_action_with_the_shown_token_approves_and_binds_exactly_that
+    f = FD.approve_action(self.m.approver, self.m.clock, self.fid, t['version'], t['digest'], 'ok')
+  File "/tmp/m64cur_m_4xotcs/p/apg/det/findings.py", line 490, in approve_action
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action
+
+======================================================================
+ERROR: test_a_well_formed_current_token_still_approves_a_fresh_proposal (tests.test_det_version_types.TestNamedVersionAndDigestAreValidated.test_a_well_formed_current_token_still_approves_a_fresh_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64cur_m_4xotcs/p/tests/test_det_version_types.py", line 179, in test_a_well_formed_current_token_still_approves_a_fresh_proposal
+    f = FD.approve_action(self.m.approver, self.m.clock, self.fid, t['version'], t['digest'], 'ok')
+  File "/tmp/m64cur_m_4xotcs/p/apg/det/findings.py", line 490, in approve_action
+    raise LifecycleError('APPROVAL_TOKEN_REQUIRED', 'name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action')
+apg.det.findings.LifecycleError: APPROVAL_TOKEN_REQUIRED: name the version, the evidence digest and the proposal reference you were shown (approval_token) to approve an action
+
+======================================================================
+FAIL: test_only_a_current_approval_of_exactly_this_version_and_digest_counts (tests.test_det_approval_binding.TestApprovalCurrentIsStrict.test_only_a_current_approval_of_exactly_this_version_and_digest_counts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64cur_m_4xotcs/p/tests/test_det_approval_binding.py", line 185, in test_only_a_current_approval_of_exactly_this_version_and_digest_counts
+    self.assertTrue(FD.approval_current(self.F))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_a_token_for_an_older_version_or_digest_is_refused (tests.test_det_proposal_binding.TestApprovalEntryPointFailsClosed.test_a_token_for_an_older_version_or_digest_is_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64cur_m_4xotcs/p/tests/test_det_proposal_binding.py", line 376, in test_a_token_for_an_older_version_or_digest_is_refused
+    self.assertEqual(c.exception.code, 'STALE_APPROVAL', (v, d))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_APPROVAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_APPROVAL
+ : (1, '67a504082f147af50344d0ba')
+
+======================================================================
+FAIL: test_the_current_token_still_cannot_approve_a_stale_proposal (tests.test_det_proposal_binding.TestApprovalEntryPointFailsClosed.test_the_current_token_still_cannot_approve_a_stale_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64cur_m_4xotcs/p/tests/test_det_proposal_binding.py", line 384, in test_the_current_token_still_cannot_approve_a_stale_proposal
+    self.assertEqual(c.exception.code, 'STALE_PROPOSAL')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+======================================================================
+FAIL: test_the_other_gates_still_apply_through_the_entry_point (tests.test_det_proposal_binding.TestApprovalEntryPointFailsClosed.test_the_other_gates_still_apply_through_the_entry_point)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64cur_m_4xotcs/p/tests/test_det_proposal_binding.py", line 391, in test_the_other_gates_still_apply_through_the_entry_point
+    self.assertEqual(c.exception.code, 'ROLE_REQUIRED')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'ROLE_REQUIRED'
+- APPROVAL_TOKEN_REQUIRED
++ ROLE_REQUIRED
+
+
+======================================================================
+FAIL: test_the_token_names_what_the_approver_is_shown (tests.test_det_proposal_binding.TestApprovalEntryPointFailsClosed.test_the_token_names_what_the_approver_is_shown)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64cur_m_4xotcs/p/tests/test_det_proposal_binding.py", line 352, in test_the_token_names_what_the_approver_is_shown
+    self.assertEqual(FD.approval_token(f), {'finding_id': self.fid, 'version': 1, 'digest': f['signal']['state_digest']})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'fin[66 chars]504082f147af50344d0ba', 'proposal': '82ec1413f406c8629e0d6d9b'} != {'fin[66 chars]504082f147af50344d0ba'}
+  {'digest': '67a504082f147af50344d0ba',
+   'finding_id': 'FND-3b24102724f9e17d839d',
+-  'proposal': '82ec1413f406c8629e0d6d9b',
+   'version': 1}
+
+======================================================================
+FAIL: test_approval_current_also_needs_a_current_proposal (tests.test_det_proposal_binding.TestTheRecordSaysWhenAProposalWentStale.test_approval_current_also_needs_a_current_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64cur_m_4xotcs/p/tests/test_det_proposal_binding.py", line 274, in test_approval_current_also_needs_a_current_proposal
+    self.assertTrue(FD.approval_current(f))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_a_normal_approval_is_current (tests.test_det_version_types.TestApprovalCurrentIsStrictAboutTypes.test_a_normal_approval_is_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64cur_m_4xotcs/p/tests/test_det_version_types.py", line 141, in test_a_normal_approval_is_current
+    self.assertIs(FD.approval_current(self.finding(1)), True)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not True
+
+======================================================================
+FAIL: test_a_proposal_marked_stale_in_the_record_is_refused_even_if_its_version_and_digest_match (tests.test_det_version_types.TestDamagedStoredRecordsFailClosed.test_a_proposal_marked_stale_in_the_record_is_refused_even_if_its_version_and_digest_match)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64cur_m_4xotcs/p/tests/test_det_version_types.py", line 221, in test_a_proposal_marked_stale_in_the_record_is_refused_even_if_its_version_and_digest_match
+    self.refused_by_entry_point('STALE_PROPOSAL', t['version'], t['digest'])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m64cur_m_4xotcs/p/tests/test_det_version_types.py", line 42, in refused_by_entry_point
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+======================================================================
+FAIL: test_every_malformed_stored_proposal_version_blocks_approval_through_the_entry_point (tests.test_det_version_types.TestDamagedStoredRecordsFailClosed.test_every_malformed_stored_proposal_version_blocks_approval_through_the_entry_point)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64cur_m_4xotcs/p/tests/test_det_version_types.py", line 201, in test_every_malformed_stored_proposal_version_blocks_approval_through_the_entry_point
+    self.refused_by_entry_point('STALE_PROPOSAL', t['version'], t['digest'])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m64cur_m_4xotcs/p/tests/test_det_version_types.py", line 42, in refused_by_entry_point
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+======================================================================
+FAIL: test_a_stored_proposal_version_of_true_is_not_current_and_the_audit_path_refuses_it (tests.test_det_version_types.TestTheAuditReproduction.test_a_stored_proposal_version_of_true_is_not_current_and_the_audit_path_refuses_it)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m64cur_m_4xotcs/p/tests/test_det_version_types.py", line 61, in test_a_stored_proposal_version_of_true_is_not_current_and_the_audit_path_refuses_it
+    self.refused_by_entry_point('STALE_PROPOSAL', t['version'], t['digest'])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m64cur_m_4xotcs/p/tests/test_det_version_types.py", line 42, in refused_by_entry_point
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'APPROVAL_TOKEN_REQUIRED' != 'STALE_PROPOSAL'
+- APPROVAL_TOKEN_REQUIRED
++ STALE_PROPOSAL
+
+
+----------------------------------------------------------------------
+Ran 179 tests in 8.311s
+
+FAILED (failures=10, errors=2)
+
+[exit code 1]

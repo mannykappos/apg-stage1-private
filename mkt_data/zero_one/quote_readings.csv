@@ -1,0 +1,15 @@
+quote_id,attribute,value,extracted_by,extractor_kind,verified_by,verified_on
+Q-0001,grade,300PLUS,synthetic.extractor,ai_model,synthetic.procurement_officer,2026-09-11
+Q-0001,section,250UB,synthetic.extractor,ai_model,synthetic.procurement_officer,2026-09-11
+Q-0001,unit,tonne,synthetic.extractor,ai_model,synthetic.procurement_officer,2026-09-11
+Q-0002,grade,300PLUS,synthetic.extractor,ai_model,synthetic.procurement_officer,2026-09-13
+Q-0002,section,250UB,synthetic.extractor,ai_model,synthetic.procurement_officer,2026-09-13
+Q-0002,unit,tonne,synthetic.extractor,ai_model,synthetic.procurement_officer,2026-09-13
+Q-0003,strength_mpa,32,synthetic.extractor,ai_model,synthetic.procurement_officer,2026-09-06
+Q-0003,unit,m3,synthetic.extractor,ai_model,synthetic.procurement_officer,2026-09-06
+Q-0004,bar_size,N16,synthetic.extractor,ai_model,synthetic.procurement_officer,2026-03-02
+Q-0004,unit,tonne,synthetic.extractor,ai_model,synthetic.procurement_officer,2026-03-02
+Q-0005,grade,300PLUS,synthetic.extractor,ai_model,,
+Q-0005,unit,tonne,synthetic.extractor,ai_model,,
+Q-0006,thickness_mm,13,synthetic.extractor,ai_model,synthetic.procurement_officer,2026-09-09
+Q-0006,unit,sheet,synthetic.extractor,ai_model,synthetic.procurement_officer,2026-09-09

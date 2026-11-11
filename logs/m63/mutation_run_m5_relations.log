@@ -1,0 +1,3 @@
+source-hash f90a2f66f762d9ad809645951d2dd366a45ecac9bb4db8fbadc2a6dfd9c22a62
+mutants 12  killed 12 (first failing test file: {'findings_edges': 4, 'portfolio': 7, 'timeout': 1})  documented-equivalent 0  unexplained survivors 0
+MUTATION RUN OK

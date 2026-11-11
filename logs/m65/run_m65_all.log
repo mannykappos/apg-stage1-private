@@ -1,0 +1,26 @@
+PASS M6.5 unit tests: transition gate (F-57)  (3s)  [OK]
+PASS M6.5 unit tests: proposal identity (F-56)  (2s)  [OK]
+PASS M6.5 unit tests: version types (F-55)  (1s)  [OK]
+PASS M6.5 unit tests: proposal binding (F-53, F-54)  (4s)  [OK]
+PASS M6.5 unit tests: approval binding (F-52)  (2s)  [OK]
+PASS M6.5 unit tests: every M5 detection and finding test  (40s)  [OK]
+PASS The transition-bypass probe  (1s)  [OK: every incomplete approval is refused at transition and the complete one is accepted]
+PASS The proposal-swap probe  (0s)  [APPROVAL IS BOUND TO THE EXACT PROPOSAL]
+PASS The malformed-version probe  (1s)  [MALFORMED VERSIONS ARE REFUSED]
+PASS The stale-proposal probe  (0s)  [PROPOSAL IS BOUND TO THE EVIDENCE]
+PASS The approval-binding probe  (0s)  [APPROVAL IS BOUND TO THE EVIDENCE]
+PASS The M5 wrapper  (71s)  [ALL M5 CHECKS PASS]
+PASS The M6 wrapper (includes the M6 regression against M5)  (91s)  [ALL M6 CHECKS PASS]
+PASS M6.2 register checks  (0s)  [ALL M6.2 REGISTER CHECKS PASS]
+PASS M6.2 regression against the delivered M6 package  (92s)  [REGRESSION OK]
+PASS M6.3 register checks  (0s)  [ALL M6.3 REGISTER CHECKS PASS]
+PASS M6.3 regression against the delivered M6.2 package  (84s)  [REGRESSION OK]
+PASS M6.4 register checks  (0s)  [ALL M6.4 REGISTER CHECKS PASS]
+PASS M6.4 regression against the delivered M6.3 package  (86s)  [REGRESSION OK]
+PASS M6.5 register checks  (0s)  [ALL M6.5 REGISTER CHECKS PASS]
+PASS M6.5 regression against the delivered M6.4 package  (86s)  [REGRESSION OK]
+
+565s in total
+ALL M6.5 CHECKS PASS
+
+[exit code 0; 565s]

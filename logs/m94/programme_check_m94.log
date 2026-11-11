@@ -1,0 +1,16 @@
+PASS S01 F-63 is recorded as raised by the independent audit of M9.3 and as "corrected in APG-M9.4 (builder-implemented); open until independently verified"; F-62 keeps its M9.3 status and F-58 to F-61 their M9.2 status (the audit has not verified them)
+PASS S01b no finding is shown as closed, accepted, approved or resolved; F-52 to F-57 stay open
+PASS S02 SR-87 to SR-89 sit at Local-tested (the contract document at Specified), each has evidence and a claim limit saying no independent review has taken place; SR-87 says CF-22, CF-25 and CF-29 stay open
+PASS S03 I-96 to I-98 are retained for review, not approved, with no reviewer decision; each states the reading and what follows if it is wrong; the numbering is unbroken
+PASS S04 the carried-forward register holds CF-01 to CF-31 in order with every cell filled; CF-22, CF-25 and CF-29 are unedited and open; CF-30 is unedited; CF-31 records the M9.3 audit's unfinished runs as incomplete and is open for the auditor; none is closed
+PASS S05 EDR-32 is still described only (no Engine code seen) and no Engine entry was added; the M9 row is "In this delivery"; M7, M8 and M10 to M12 are not started
+PASS S06 the governance and RFC registers are unchanged: RFC-01 unnumbered and proposed, the four baseline rules PROPOSED, no finance assumption configured, foundations not started
+PASS S07 no new register text claims approval, independent review, readiness, compliance, adoption or closure []
+PASS S08 the contract document (revised for M9.4) has its nine sections, says what a live session is (a real UTC moment, strictly later than now, the clock held to the same rule), that a clock or expiry that cannot be read ends the session and that the clock is read once per call, names F-62 and F-63, says nothing here has been independently reviewed and that CF-22 and CF-25 stay open
+PASS S09 the change record has its eight sections, names every changed or added file, names F-63 and CF-31, records the auditor's unfinished runs as incomplete, says no independent review has taken place, keeps CF-22, CF-25, CF-29 and F-52 to F-63 open, and claims no approval []
+PASS S10 the run commands and the readme start with an M9.4 section; the run commands give the split-group and mutation-chunk commands; the readme says the correction is not independently reviewed and the M9.3 ZIP is unchanged
+
+checks 11  failed 0
+ALL M9.4 REGISTER CHECKS PASS
+
+[exit code 0; 0s]

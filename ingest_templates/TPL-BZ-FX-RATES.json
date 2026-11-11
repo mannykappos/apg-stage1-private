@@ -1,0 +1,49 @@
+{
+ "columns": [
+  {
+   "date_format": "%Y-%m-%d",
+   "required": true,
+   "source_column": "fx_date",
+   "target_field": "fx_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "required": true,
+   "source_column": "pair",
+   "target_field": "currency_pair",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "rate",
+   "target_field": "rate_text",
+   "transform": "none",
+   "type": "decimal"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "fx_date",
+  "pair"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-10",
+ "source_label": "Builder Zero exchange rates (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "fx_rate",
+ "template_id": "TPL-BZ-FX-RATES",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

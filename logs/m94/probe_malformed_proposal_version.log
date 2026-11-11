@@ -1,0 +1,11 @@
+STORED proposal version True          proposal_current=False approve_action -> REFUSED STALE_PROPOSAL
+STORED proposal version False         proposal_current=False approve_action -> REFUSED STALE_PROPOSAL
+STORED proposal version 0             proposal_current=False approve_action -> REFUSED STALE_PROPOSAL
+STORED proposal version the text '1'  proposal_current=False approve_action -> REFUSED STALE_PROPOSAL
+NAMED version True  -> REFUSED APPROVAL_TOKEN_REQUIRED
+NAMED version 1.0   -> REFUSED APPROVAL_TOKEN_REQUIRED
+NAMED version '1'   -> REFUSED APPROVAL_TOKEN_REQUIRED
+NORMAL proposal -> action_approved | approval current: True
+MALFORMED VERSIONS ARE REFUSED
+
+[exit code 0; 0s]

@@ -1,0 +1,23 @@
+AUIF verified: zip d534a6e6541b6d1a core 923de5100f95debb
+CONTROL (unmutated copy): passes 103s
+MI-03  KILLED       2s tier 1: FAIL: test_an_object_of_another_concept (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_an_object_of_another_concept)
+MI-07  KILLED       2s tier 1: FAIL: test_a_schema_fingerprint_the_pinned_pack_does_not_accept (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_a_schema_fingerprin
+MI-11  KILLED       3s tier 1: ERROR: test_an_optional_key_missing_from_one_object_is_a_missing_field (tests_m8.test_m8_no_fallback.TestInvalidAmbiguousAndTypeMismatched.test_an_opt
+MI-15  KILLED       2s tier 1: FAIL: test_a_report_that_says_reading_was_not_allowed (tests_m8.test_m8_integrity.TestTheTransportReportStandsAlone.test_a_report_that_says_reading_wa
+MI-19  KILLED      15s tier 1: FAIL: test_a_read_that_stops_at_the_page_limit_is_incomplete (tests_m8.test_m8_no_fallback.TestPartial.test_a_read_that_stops_at_the_page_limit_is_inc
+MI-23  KILLED       3s tier 1: FAIL: test_a_pack_with_an_ambiguous_mapping_never_activates (tests_m8.test_m8_no_fallback.TestInvalidAmbiguousAndTypeMismatched.test_a_pack_with_an_am
+MI-27  KILLED      16s tier 1: FAIL: test_an_event_ahead_of_its_predecessor_waits_and_the_assessment_waits_with_it (tests_m8.test_m8_events.TestEvents.test_an_event_ahead_of_its_pre
+MI-31  KILLED      16s tier 1: FAIL: test_a_stale_delivery_is_recorded_not_applied_and_stops_the_assessment (tests_m8.test_m8_no_fallback.TestStaleDriftedAndDegraded.test_a_stale_de
+MI-35  KILLED       4s tier 1: FAIL: test_an_unparseable_optional_value_is_held_as_m3_holds_it_and_stops_the_assessment (tests_m8.test_m8_no_fallback.TestInvalidAmbiguousAndTypeMism
+MI-39  EQUIVALENT   101s M8-R1: AUIF reports empty (NO_DATA) only when the first page brings no data, so an empty report always has no delivery, no invalid or ambiguous object
+MI-43  KILLED      18s tier 1: FAIL: test_apgs_own_identity_rule_matches_rev14s (tests_m8.test_m8_findings.TestM8F2CompositeIdentity.test_apgs_own_identity_rule_matches_rev14s)
+MI-47  KILLED      15s tier 1: FAIL: test_a_missing_notice_is_a_reason_and_what_auif_applied_is_kept (tests_m8.test_m8_events.TestFindingM8F3.test_a_missing_notice_is_a_reason_and_w
+MI-51  KILLED      15s tier 1: FAIL: test_a_missing_notice_is_a_reason_and_what_auif_applied_is_kept (tests_m8.test_m8_events.TestFindingM8F3.test_a_missing_notice_is_a_reason_and_w
+MM-03  KILLED       3s tier 1: FAIL: test_a_failure_inside_the_adapter_is_never_silent (tests_m8.test_m8_no_fallback.TestAlertsAndAdapterFailures.test_a_failure_inside_the_adapter_i
+MG-01  KILLED      10s tier 1: FAIL: test_a_change_while_the_figures_are_computed_withdraws_the_result (tests_m8.test_m8_no_fallback.TestNoOldValueShownAsCurrent.test_a_change_while
+MG-05  KILLED       2s tier 1: FAIL: test_an_object_outside_any_import_whose_observation_never_comes (tests_m8.test_m8_integrity.TestTheTransportReportStandsAlone.test_an_object_out
+MA-01  KILLED      14s tier 1: FAIL: test_a_degraded_integration_withdraws_the_assessment_and_returns_no_earlier_figure (tests_m8.test_m8_no_fallback.TestNoOldValueShownAsCurrent.te
+MP-03  KILLED       1s tier 1: FAIL: test_an_entity_mapping_without_the_full_module_name_is_refused (tests_m8.test_m8_dev01.TestContractForm.test_an_entity_mapping_without_the_full_
+MC-04  KILLED       2s tier 1: FAIL: test_an_auif_tenant_cannot_be_bound_to_another_tenants_store (tests_m8.test_m8_integrity.TestGateAndBinding.test_an_auif_tenant_cannot_be_bound_
+ML-01  KILLED      34s tier 1: FAIL: test_each_missing_or_broken_part_is_found (tests_m8.test_m8_lineage.TestTheLineageCheckerItself.test_each_missing_or_broken_part_is_found)
+mutants 20: killed 19, documented equivalent 1, survived 0, timeout 0 | AUIF after: unchanged

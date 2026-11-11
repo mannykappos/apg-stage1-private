@@ -1,0 +1,18 @@
+PASS N01 SR-76 to SR-80 sit at Local-tested (the contract document at Specified), each has evidence and a claim limit; every limit says no independent review has taken place; SR-76 says no screen or API exists and CF-22 and CF-25 stay open; SR-80 says an unfinished run is incomplete, not a pass
+PASS N01b no new status row is above Local-tested or Specified
+PASS N02 I-81 to I-87 are retained for review, not approved, with no reviewer decision; each states the reading and what follows if it is wrong
+PASS N03 the carried-forward register holds CF-01 to CF-27 in order with every cell filled
+PASS N03b CF-22 and CF-25 are unedited and open (CF-26 records what was built and what remains); CF-26 says no independent review has taken place; CF-27 is open for the auditor
+PASS N03c no carried-forward item is shown as closed, resolved, accepted or approved
+PASS N04 EDR-31 is described only (no Engine code seen), with its contract and contract test named; the M9 row lists it and is "In this delivery"; M7 is not started
+PASS N05 no finding was added (F-57 is the last) or closed; F-52 to F-57 stay open for independent verification
+PASS N06 the governance and RFC registers are unchanged: RFC-01 unnumbered and proposed, the four baseline rules PROPOSED, no finance assumption configured, foundations not started
+PASS N07 no new register text claims approval, independent review, readiness, compliance, adoption or closure []
+PASS N08 the contract document has its nine sections, names EDR-31, says nothing here has been independently reviewed and that CF-22 and CF-25 stay open
+PASS N09 the change record has its eight sections, names every changed or added file, says no independent review has taken place, and keeps CF-22 and F-52 to F-57 open []
+PASS N10 the change record does not claim approval, independent review, readiness, compliance or closure
+
+checks 13  failed 0
+ALL M9.1 REGISTER CHECKS PASS
+
+[exit code 0; 0s]

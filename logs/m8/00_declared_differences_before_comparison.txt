@@ -1,0 +1,13 @@
+2026-10-20T08:29:55Z
+74e146a585b34ac8e29747fea562ac62b4905114afcd058b5250312aadad0146  auif_m8/PATH_EQUIVALENCE_DECLARED_DIFFERENCES.json
+recorded before tests_m8/test_m8_path_equivalence.py and tests_m8/test_m8_corpus.py existed
+2026-10-20T08:34:24Z
+f7d86cfba2b6f1ea1bb6dfba25c17bb6d1d63110b5368c75331da3b87c7ceb97  auif_m8/PATH_EQUIVALENCE_DECLARED_DIFFERENCES.json
+correction recorded in the file: R03 moved to 'differs' (found by test_m8_definitions, before the corpus test existed)
+__init__.py
+_auif.py
+test_m8_conformance.py
+test_m8_definitions.py
+test_m8_dependency.py
+test_m8_dev01.py
+test_m8_layout_config.py

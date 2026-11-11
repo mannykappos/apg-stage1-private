@@ -1,0 +1,7 @@
+CAUGHT T1 the F-70 findings row is edited to say verified -> R04
+CAUGHT T2 the mutation caveat is dropped from AD-01 -> R04
+CAUGHT T3 CF-38 (the development deviation) is marked closed -> R04
+CAUGHT T4 a disposition is added for F-69 -> R03
+CAUGHT T5 a core file changes -> R01
+CAUGHT T6 the readme claims acceptance -> R05
+tamper cases 6  missed 0

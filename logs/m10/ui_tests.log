@@ -1,0 +1,177 @@
+v22.22.0
+PASS screen zero_one-director portfolio light: renders with no console error or outside request
+PASS screen zero_one-director portfolio light: no axe violation
+PASS screen zero_one-director portfolio dark: renders with no console error or outside request
+PASS screen zero_one-director portfolio dark: no axe violation
+PASS screen zero_one-director project light: renders with no console error or outside request
+PASS screen zero_one-director project light: no axe violation
+PASS screen zero_one-director project dark: renders with no console error or outside request
+PASS screen zero_one-director project dark: no axe violation
+PASS screen zero_one-director health light: renders with no console error or outside request
+PASS screen zero_one-director health light: no axe violation
+PASS screen zero_one-director health dark: renders with no console error or outside request
+PASS screen zero_one-director health dark: no axe violation
+PASS screen zero_one-director imports light: renders with no console error or outside request
+PASS screen zero_one-director imports light: no axe violation
+PASS screen zero_one-director imports dark: renders with no console error or outside request
+PASS screen zero_one-director imports dark: no axe violation
+PASS screen zero_one-director approvals light: renders with no console error or outside request
+PASS screen zero_one-director approvals light: no axe violation
+PASS screen zero_one-director approvals dark: renders with no console error or outside request
+PASS screen zero_one-director approvals dark: no axe violation
+PASS screen zero_one-director materials light: renders with no console error or outside request
+PASS screen zero_one-director materials light: no axe violation
+PASS screen zero_one-director materials dark: renders with no console error or outside request
+PASS screen zero_one-director materials dark: no axe violation
+PASS screen zero_two-director portfolio light: renders with no console error or outside request
+PASS screen zero_two-director portfolio light: no axe violation
+PASS screen zero_two-director portfolio dark: renders with no console error or outside request
+PASS screen zero_two-director portfolio dark: no axe violation
+PASS screen zero_two-director project light: renders with no console error or outside request
+PASS screen zero_two-director project light: no axe violation
+PASS screen zero_two-director project dark: renders with no console error or outside request
+PASS screen zero_two-director project dark: no axe violation
+PASS screen zero_two-director health light: renders with no console error or outside request
+PASS screen zero_two-director health light: no axe violation
+PASS screen zero_two-director health dark: renders with no console error or outside request
+PASS screen zero_two-director health dark: no axe violation
+PASS screen zero_two-director imports light: renders with no console error or outside request
+PASS screen zero_two-director imports light: no axe violation
+PASS screen zero_two-director imports dark: renders with no console error or outside request
+PASS screen zero_two-director imports dark: no axe violation
+PASS screen zero_two-director approvals light: renders with no console error or outside request
+PASS screen zero_two-director approvals light: no axe violation
+PASS screen zero_two-director approvals dark: renders with no console error or outside request
+PASS screen zero_two-director approvals dark: no axe violation
+PASS screen zero_two-director materials light: renders with no console error or outside request
+PASS screen zero_two-director materials light: no axe violation
+PASS screen zero_two-director materials dark: renders with no console error or outside request
+PASS screen zero_two-director materials dark: no axe violation
+PASS screen zero_one-project-manager portfolio light: renders with no console error or outside request
+PASS screen zero_one-project-manager portfolio light: no axe violation
+PASS screen zero_one-project-manager portfolio dark: renders with no console error or outside request
+PASS screen zero_one-project-manager portfolio dark: no axe violation
+PASS screen zero_one-project-manager project light: renders with no console error or outside request
+PASS screen zero_one-project-manager project light: no axe violation
+PASS screen zero_one-project-manager project dark: renders with no console error or outside request
+PASS screen zero_one-project-manager project dark: no axe violation
+PASS screen zero_one-project-manager health light: renders with no console error or outside request
+PASS screen zero_one-project-manager health light: no axe violation
+PASS screen zero_one-project-manager health dark: renders with no console error or outside request
+PASS screen zero_one-project-manager health dark: no axe violation
+PASS screen zero_one-project-manager imports light: renders with no console error or outside request
+PASS screen zero_one-project-manager imports light: no axe violation
+PASS screen zero_one-project-manager imports dark: renders with no console error or outside request
+PASS screen zero_one-project-manager imports dark: no axe violation
+PASS screen zero_one-project-manager approvals light: renders with no console error or outside request
+PASS screen zero_one-project-manager approvals light: no axe violation
+PASS screen zero_one-project-manager approvals dark: renders with no console error or outside request
+PASS screen zero_one-project-manager approvals dark: no axe violation
+PASS screen zero_one-project-manager materials light: renders with no console error or outside request
+PASS screen zero_one-project-manager materials light: no axe violation
+PASS screen zero_one-project-manager materials dark: renders with no console error or outside request
+PASS screen zero_one-project-manager materials dark: no axe violation
+PASS amounts zero_one-director portfolio: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_one-director portfolio: no dollar amount outside an evidence button
+PASS amounts zero_one-director project: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_one-director project: no dollar amount outside an evidence button
+PASS amounts zero_one-director health: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_one-director health: no dollar amount outside an evidence button
+PASS amounts zero_one-director imports: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_one-director imports: no dollar amount outside an evidence button
+PASS amounts zero_one-director approvals: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_one-director approvals: no dollar amount outside an evidence button
+PASS amounts zero_one-director materials: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_one-director materials: no dollar amount outside an evidence button
+PASS amounts zero_two-director portfolio: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_two-director portfolio: no dollar amount outside an evidence button
+PASS amounts zero_two-director project: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_two-director project: no dollar amount outside an evidence button
+PASS amounts zero_two-director health: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_two-director health: no dollar amount outside an evidence button
+PASS amounts zero_two-director imports: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_two-director imports: no dollar amount outside an evidence button
+PASS amounts zero_two-director approvals: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_two-director approvals: no dollar amount outside an evidence button
+PASS amounts zero_two-director materials: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_two-director materials: no dollar amount outside an evidence button
+PASS amounts zero_one-project-manager portfolio: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_one-project-manager portfolio: no dollar amount outside an evidence button
+PASS amounts zero_one-project-manager project: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_one-project-manager project: no dollar amount outside an evidence button
+PASS amounts zero_one-project-manager health: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_one-project-manager health: no dollar amount outside an evidence button
+PASS amounts zero_one-project-manager imports: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_one-project-manager imports: no dollar amount outside an evidence button
+PASS amounts zero_one-project-manager approvals: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_one-project-manager approvals: no dollar amount outside an evidence button
+PASS amounts zero_one-project-manager materials: every amount opens its evidence; no missing value drawn as a number
+PASS amounts zero_one-project-manager materials: no dollar amount outside an evidence button
+PASS ledger zero_one-director: every cell is the APG value, rounded to the dollar, with its state and evidence
+PASS ledger zero_one-director: one row per visible project and no total row or column
+PASS ledger zero_two-director: every cell is the APG value, rounded to the dollar, with its state and evidence
+PASS ledger zero_two-director: one row per visible project and no total row or column
+PASS ledger zero_one-project-manager: every cell is the APG value, rounded to the dollar, with its state and evidence
+PASS ledger zero_one-project-manager: one row per visible project and no total row or column
+PASS words zero_one-director portfolio: no sentence claims a saving or a realised amount
+PASS words zero_one-director project: no sentence claims a saving or a realised amount
+PASS words zero_one-director health: no sentence claims a saving or a realised amount
+PASS words zero_one-director imports: no sentence claims a saving or a realised amount
+PASS words zero_one-director approvals: no sentence claims a saving or a realised amount
+PASS words zero_one-director materials: no sentence claims a saving or a realised amount
+PASS words zero_two-director portfolio: no sentence claims a saving or a realised amount
+PASS words zero_two-director project: no sentence claims a saving or a realised amount
+PASS words zero_two-director health: no sentence claims a saving or a realised amount
+PASS words zero_two-director imports: no sentence claims a saving or a realised amount
+PASS words zero_two-director approvals: no sentence claims a saving or a realised amount
+PASS words zero_two-director materials: no sentence claims a saving or a realised amount
+PASS words zero_one-project-manager portfolio: no sentence claims a saving or a realised amount
+PASS words zero_one-project-manager project: no sentence claims a saving or a realised amount
+PASS words zero_one-project-manager health: no sentence claims a saving or a realised amount
+PASS words zero_one-project-manager imports: no sentence claims a saving or a realised amount
+PASS words zero_one-project-manager approvals: no sentence claims a saving or a realised amount
+PASS words zero_one-project-manager materials: no sentence claims a saving or a realised amount
+PASS drawer: opens from the keyboard and moves focus to its title
+PASS drawer: a figure that cannot be assessed shows its reasons and no value
+PASS drawer: Tab keeps focus inside the open drawer
+PASS drawer: Escape closes it and returns focus to the amount
+PASS drawer: a provisional figure shows its exact cents and its reasons
+PASS drawer: no console error
+PASS approvals: one form per proposal this person can approve
+PASS approvals: the version, digest and proposal shown are exactly the token present() gave
+PASS approvals: approving without a rationale is refused on the screen
+PASS approvals: the prototype says nothing was sent and shows the exact request
+PASS approvals: no request left the machine and no console error
+PASS approvals: the approved action says it is still in force
+PASS approvals: the project manager sees the proposal but no approve form
+PASS access project manager portfolio: no PRJ-002 or PRJ-003 anywhere in the page
+PASS access zero_two portfolio: nothing of zero_one
+PASS access project manager project: no PRJ-002 or PRJ-003 anywhere in the page
+PASS access zero_two project: nothing of zero_one
+PASS access project manager health: no PRJ-002 or PRJ-003 anywhere in the page
+PASS access project manager health: says the screen is not shown and why
+PASS access zero_two health: nothing of zero_one
+PASS access project manager imports: no PRJ-002 or PRJ-003 anywhere in the page
+PASS access project manager imports: says the screen is not shown and why
+PASS access zero_two imports: nothing of zero_one
+PASS access project manager approvals: no PRJ-002 or PRJ-003 anywhere in the page
+PASS access zero_two approvals: nothing of zero_one
+PASS access project manager materials: no PRJ-002 or PRJ-003 anywhere in the page
+PASS access zero_two materials: nothing of zero_one
+PASS health zero_two: the connected-systems route says Cannot assess
+PASS health zero_two: the eight empty record types are listed with their code
+PASS health zero_one: both routes can be assessed
+PASS materials: says scenarios are not recommendations and nothing is chosen
+PASS materials: the excluded concrete quote is shown with why
+PASS materials: every amount in a scenario table is labelled scenario or estimate
+PASS materials zero_two: no market data is said plainly, nothing invented
+PASS mobile portfolio: no sideways page scroll at 390 px
+PASS mobile project: no sideways page scroll at 390 px
+PASS mobile health: no sideways page scroll at 390 px
+PASS mobile imports: no sideways page scroll at 390 px
+PASS mobile approvals: no sideways page scroll at 390 px
+PASS mobile materials: no sideways page scroll at 390 px
+PASS keyboard: the skip link is first and moves focus to the screen without changing the route
+
+checks 173  failed 0
+exit 0

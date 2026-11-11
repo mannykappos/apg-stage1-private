@@ -1,0 +1,170 @@
+{
+ "golden": {
+  "NC-10": {
+   "PO-0096": [
+    false,
+    [
+     "NM-BELOW"
+    ]
+   ],
+   "PO-0097": [
+    false,
+    [
+     "NM-BELOW"
+    ]
+   ],
+   "PO-0098": [
+    false,
+    [
+     "NM-BELOW"
+    ]
+   ]
+  },
+  "NC-10_whole_project_ledger": {
+   "PO-0096": [
+    false,
+    [
+     "NM-BELOW"
+    ]
+   ],
+   "PO-0097": [
+    false,
+    [
+     "NM-BELOW"
+    ]
+   ],
+   "PO-0098": [
+    true,
+    [
+     "M-AGG"
+    ]
+   ]
+  },
+  "PS-10": {
+   "PO-0093": [
+    true,
+    [
+     "M-AGG"
+    ]
+   ],
+   "PO-0094": [
+    true,
+    [
+     "M-AGG"
+    ]
+   ],
+   "PO-0095": [
+    true,
+    [
+     "M-AGG"
+    ]
+   ]
+  },
+  "PS-13": {
+   "authoritative_cents": 2181147997,
+   "complete": false,
+   "excluded": [
+    [
+     "INV-0121",
+     "quarantined",
+     [
+      "SECONDARY_DISAGREES:pm-system"
+     ]
+    ]
+   ],
+   "included_count": 186,
+   "outcomes": {
+    "accepted": 186,
+    "quarantined": 1
+   }
+  },
+  "PS-21": {
+   "gst_complete": false,
+   "gst_known_total_cents": 218673816,
+   "gst_left_out": [
+    [
+     "INV-0186",
+     "no_data"
+    ]
+   ]
+  },
+  "PS-24": {
+   "spoof_attempts_refused": 3,
+   "spoofed_record_stored": false,
+   "zero_one_held": [],
+   "zero_one_stored": 187,
+   "zero_two_cannot_see_zero_one_only_ids": true,
+   "zero_two_held": {
+    "INV-0001": 2
+   },
+   "zero_two_stored": 59
+  },
+  "PS-26": {
+   "ocr_authoritative": false,
+   "ocr_outcome": "pending_reconciliation",
+   "quantity_text_reads_as": "Unknown:invalid",
+   "rate_text_reads_as": "Unknown:invalid"
+  },
+  "audit_chain_ok": [
+   true,
+   true
+  ],
+  "materiality_assessment_verifies": [
+   true,
+   ""
+  ],
+  "materiality_open_decisions": [
+   "DEC-A1-5",
+   "DEC-A1-8"
+  ],
+  "materiality_summary": {
+   "by_reason": {
+    "M-ABS": 33,
+    "M-AGG": 96,
+    "NM-BELOW": 5
+   },
+   "material": 96,
+   "orders": 101
+  },
+  "policy_change_kind": "loosen",
+  "reproducibility": {
+   "drift": [
+    {
+     "input": "ap_invoice/INV-0061",
+     "latest_revision": 2,
+     "pinned_revision": 1
+    }
+   ],
+   "replay_ok_after_input_changed": true,
+   "result": {
+    "cents": 1257251316,
+    "n": 65
+   },
+   "run_key": "9b2a76373383243eb172b59b026713a1"
+  },
+  "status_ladder": {
+   "first_refusal": "MOCK_ONLY",
+   "supported_status": "Local-tested"
+  }
+ },
+ "oracle": {
+  "conflict_accounting_cents": 7280125,
+  "conflict_invoice": "INV-0121",
+  "conflict_pm_cents": 8180125,
+  "po_0098_same_project_orders_within_30_days": [
+   "PO-0091",
+   "PO-0092",
+   "PO-0093"
+  ],
+  "zero_one_ex_gst_total_cents": 2188428122,
+  "zero_one_gst_blank_ids": [
+   "INV-0186"
+  ],
+  "zero_one_gst_total_cents_known": 218673816,
+  "zero_one_invoice_rows": 187,
+  "zero_two_invoice_rows": 61,
+  "zero_two_repeated_ids": [
+   "INV-0001"
+  ]
+ }
+}

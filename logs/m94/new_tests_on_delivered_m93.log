@@ -1,0 +1,437 @@
+Run against the delivered, unmodified APG-M9.3 package (extracted from its ZIP; hash 4dae205ca53e6b47ca794e0515a7b679fa52b9d803ade257f169748e963d8882) with only tests/test_api_m94_corrections.py added.
+tests 29  failures 3  errors 15
+======================================================================
+ERROR: test_a_clock_that_is_missing_or_not_a_clock_ends_the_session (tests.test_api_m94_corrections.TestAClockThatRaisesNeverEscapesAndNeverApproves.test_a_clock_that_is_missing_or_not_a_clock_ends_the_session)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 163, in test_a_clock_that_is_missing_or_not_a_clock_ends_the_session
+    self.assert_all_three_refuse(clock, repr(clock)[:40])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 119, in assert_all_three_refuse
+    r = self.present_with(clock)
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 107, in present_with
+    return AB.present(who or self.m.approver, self.scopes, clock, self.fid)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 148, in present
+    if ctx.actor_kind != 'human' or not _session_live(ctx, clock):
+                                        ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+          ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'now'
+
+======================================================================
+ERROR: test_every_ordinary_exception_type_is_a_refusal_at_all_three_entry_points (tests.test_api_m94_corrections.TestAClockThatRaisesNeverEscapesAndNeverApproves.test_every_ordinary_exception_type_is_a_refusal_at_all_three_entry_points)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 139, in test_every_ordinary_exception_type_is_a_refusal_at_all_three_entry_points
+    self.assert_all_three_refuse(RaisingClock(exc), type(exc).__name__)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 119, in assert_all_three_refuse
+    r = self.present_with(clock)
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 107, in present_with
+    return AB.present(who or self.m.approver, self.scopes, clock, self.fid)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 148, in present
+    if ctx.actor_kind != 'human' or not _session_live(ctx, clock):
+                                        ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+RuntimeError: clock unavailable
+
+======================================================================
+ERROR: test_the_audit_names_the_clock_not_a_missing_person (tests.test_api_m94_corrections.TestAClockThatRaisesNeverEscapesAndNeverApproves.test_the_audit_names_the_clock_not_a_missing_person)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 143, in test_the_audit_names_the_clock_not_a_missing_person
+    self.present_with(RaisingClock(RuntimeError('clock unavailable')))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 107, in present_with
+    return AB.present(who or self.m.approver, self.scopes, clock, self.fid)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 148, in present
+    if ctx.actor_kind != 'human' or not _session_live(ctx, clock):
+                                        ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+RuntimeError: clock unavailable
+
+======================================================================
+ERROR: test_the_clock_is_read_once_per_call_and_a_failed_read_is_not_retried (tests.test_api_m94_corrections.TestAClockThatRaisesNeverEscapesAndNeverApproves.test_the_clock_is_read_once_per_call_and_a_failed_read_is_not_retried)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 152, in test_the_clock_is_read_once_per_call_and_a_failed_read_is_not_retried
+    self.present_with(c)
+    ~~~~~~~~~~~~~~~~~^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 107, in present_with
+    return AB.present(who or self.m.approver, self.scopes, clock, self.fid)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 148, in present
+    if ctx.actor_kind != 'human' or not _session_live(ctx, clock):
+                                        ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+RuntimeError: clock unavailable
+
+======================================================================
+ERROR: test_an_actor_kind_that_cannot_be_read_is_not_a_person (tests.test_api_m94_corrections.TestAccessorFailuresOfTheSession.test_an_actor_kind_that_cannot_be_read_is_not_a_person)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 271, in test_an_actor_kind_that_cannot_be_read_is_not_a_person
+    r = AB.present(who, self.scopes, self.m.clock, self.fid)
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 148, in present
+    if ctx.actor_kind != 'human' or not _session_live(ctx, clock):
+       ^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 90, in boom
+    raise exc
+RuntimeError: x
+
+======================================================================
+ERROR: test_an_expiry_that_cannot_be_read_ends_the_session (tests.test_api_m94_corrections.TestAccessorFailuresOfTheSession.test_an_expiry_that_cannot_be_read_ends_the_session)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 267, in test_an_expiry_that_cannot_be_read_ends_the_session
+    self.assert_all_three_refuse_with(who, type(exc).__name__)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 280, in assert_all_three_refuse_with
+    r = AB.present(who, self.scopes, self.m.clock, self.fid)
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 148, in present
+    if ctx.actor_kind != 'human' or not _session_live(ctx, clock):
+                                        ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 106, in _session_live
+    e = ctx.expires_at
+        ^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 90, in boom
+    raise exc
+RuntimeError: x
+
+======================================================================
+ERROR: test_a_failing_clock_does_not_change_an_approved_action_and_the_executor_check_recovers (tests.test_api_m94_corrections.TestFailurePathsKeepTheInvariants.test_a_failing_clock_does_not_change_an_approved_action_and_the_executor_check_recovers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 319, in test_a_failing_clock_does_not_change_an_approved_action_and_the_executor_check_recovers
+    self.assertEqual(self.check_with(RaisingClock(exc)), {'valid': False, 'code': 'NOT_ALLOWED'})
+                     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 114, in check_with
+    return AB.check_for_execution(who or self.m.approver, self.scopes, clock, self.fid, tok['version'], tok['digest'], tok['proposal'])
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 269, in check_for_execution
+    if not ok_shape or not _session_live(ctx, clock):
+                           ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+  File "/usr/lib/python3.13/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/usr/lib/python3.13/unittest/case.py", line 651, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3.13/unittest/case.py", line 606, in _callTestMethod
+    if method() is not None:
+       ~~~~~~^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 139, in test_every_ordinary_exception_type_is_a_refusal_at_all_three_entry_points
+    self.assert_all_three_refuse(RaisingClock(exc), type(exc).__name__)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 119, in assert_all_three_refuse
+    r = self.present_with(clock)
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 107, in present_with
+    return AB.present(who or self.m.approver, self.scopes, clock, self.fid)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 148, in present
+    if ctx.actor_kind != 'human' or not _session_live(ctx, clock):
+                                        ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+RuntimeError: clock unavailable
+
+======================================================================
+ERROR: test_a_person_without_the_approver_role_with_a_failing_clock_gets_the_clock_refusal_first_and_the_role_refusal_otherwise (tests.test_api_m94_corrections.TestFailurePathsKeepTheInvariants.test_a_person_without_the_approver_role_with_a_failing_clock_gets_the_clock_refusal_first_and_the_role_refusal_otherwise)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 385, in test_a_person_without_the_approver_role_with_a_failing_clock_gets_the_clock_refusal_first_and_the_role_refusal_otherwise
+    self.assertEqual(self.request_with(RaisingClock(RuntimeError('clock unavailable')), 'ROLE-1', who=viewer)['code'], 'SESSION_EXPIRED')
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 110, in request_with
+    return AB.request_approval(who or self.m.approver, self.scopes, clock, self.req(rid=rid))
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 196, in request_approval
+    if not _session_live(ctx, clock):
+           ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+RuntimeError: clock unavailable
+
+======================================================================
+ERROR: test_a_replay_with_a_failing_clock_is_a_refusal_not_the_stored_answer (tests.test_api_m94_corrections.TestFailurePathsKeepTheInvariants.test_a_replay_with_a_failing_clock_is_a_refusal_not_the_stored_answer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 309, in test_a_replay_with_a_failing_clock_is_a_refusal_not_the_stored_answer
+    res = self.request_with(RaisingClock(RuntimeError('clock unavailable')), 'REPLAY-1')
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 110, in request_with
+    return AB.request_approval(who or self.m.approver, self.scopes, clock, self.req(rid=rid))
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 196, in request_approval
+    if not _session_live(ctx, clock):
+           ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+RuntimeError: clock unavailable
+
+======================================================================
+ERROR: test_an_audit_write_that_fails_during_a_clock_refusal_is_still_a_refusal_and_is_not_reported_as_audited (tests.test_api_m94_corrections.TestFailurePathsKeepTheInvariants.test_an_audit_write_that_fails_during_a_clock_refusal_is_still_a_refusal_and_is_not_reported_as_audited)
+Refusals are audited best-effort (as before): the failure is swallowed, the refusal stands, and no event exists to claim.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 338, in test_an_audit_write_that_fails_during_a_clock_refusal_is_still_a_refusal_and_is_not_reported_as_audited
+    r = AB.present(who, self.scopes, RaisingClock(RuntimeError('clock unavailable')), self.fid)
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 148, in present
+    if ctx.actor_kind != 'human' or not _session_live(ctx, clock):
+                                        ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+RuntimeError: clock unavailable
+
+======================================================================
+ERROR: test_another_tenants_session_with_a_failing_clock_is_refused_and_with_a_working_one_still_does_not_see_the_finding (tests.test_api_m94_corrections.TestFailurePathsKeepTheInvariants.test_another_tenants_session_with_a_failing_clock_is_refused_and_with_a_working_one_still_does_not_see_the_finding)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 377, in test_another_tenants_session_with_a_failing_clock_is_refused_and_with_a_working_one_still_does_not_see_the_finding
+    bad = AB.request_approval(two, sc2, RaisingClock(RuntimeError('clock unavailable')), self.req(rid='T2-1'))
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 196, in request_approval
+    if not _session_live(ctx, clock):
+           ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+RuntimeError: clock unavailable
+
+======================================================================
+ERROR: test_no_failing_clock_ever_approves_whatever_else_is_true (tests.test_api_m94_corrections.TestFailurePathsKeepTheInvariants.test_no_failing_clock_ever_approves_whatever_else_is_true)
+Approver role, project permission, a live-looking session: only the clock is bad.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 326, in test_no_failing_clock_ever_approves_whatever_else_is_true
+    res = AB.request_approval(Expiring(self.m.approver, FUTURE), self.scopes, clock, self.req(rid=f'NEVER-{i}'))
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 196, in request_approval
+    if not _session_live(ctx, clock):
+           ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+  File "/usr/lib/python3.13/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/usr/lib/python3.13/unittest/case.py", line 651, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3.13/unittest/case.py", line 606, in _callTestMethod
+    if method() is not None:
+       ~~~~~~^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 319, in test_a_failing_clock_does_not_change_an_approved_action_and_the_executor_check_recovers
+    self.assertEqual(self.check_with(RaisingClock(exc)), {'valid': False, 'code': 'NOT_ALLOWED'})
+                     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 114, in check_with
+    return AB.check_for_execution(who or self.m.approver, self.scopes, clock, self.fid, tok['version'], tok['digest'], tok['proposal'])
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 269, in check_for_execution
+    if not ok_shape or not _session_live(ctx, clock):
+                           ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+  File "/usr/lib/python3.13/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/usr/lib/python3.13/unittest/case.py", line 651, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3.13/unittest/case.py", line 606, in _callTestMethod
+    if method() is not None:
+       ~~~~~~^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 139, in test_every_ordinary_exception_type_is_a_refusal_at_all_three_entry_points
+    self.assert_all_three_refuse(RaisingClock(exc), type(exc).__name__)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 119, in assert_all_three_refuse
+    r = self.present_with(clock)
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 107, in present_with
+    return AB.present(who or self.m.approver, self.scopes, clock, self.fid)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 148, in present
+    if ctx.actor_kind != 'human' or not _session_live(ctx, clock):
+                                        ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+RuntimeError: clock unavailable
+
+======================================================================
+ERROR: test_repeated_refusals_leave_no_state_and_the_same_request_id_can_be_used_afterwards (tests.test_api_m94_corrections.TestFailurePathsKeepTheInvariants.test_repeated_refusals_leave_no_state_and_the_same_request_id_can_be_used_afterwards)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 295, in test_repeated_refusals_leave_no_state_and_the_same_request_id_can_be_used_afterwards
+    res = self.request_with(RaisingClock(RuntimeError('clock unavailable')), 'AGAIN-1')
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 110, in request_with
+    return AB.request_approval(who or self.m.approver, self.scopes, clock, self.req(rid=rid))
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 196, in request_approval
+    if not _session_live(ctx, clock):
+           ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+RuntimeError: clock unavailable
+
+======================================================================
+ERROR: test_a_clock_that_fails_after_its_first_read_still_completes_the_whole_request (tests.test_api_m94_corrections.TestTheClockIsReadOnceSoALaterFailureCannotHalveAnApproval.test_a_clock_that_fails_after_its_first_read_still_completes_the_whole_request)
+The first read decides the session; the lifecycle then uses that reading, not the clock.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 212, in test_a_clock_that_fails_after_its_first_read_still_completes_the_whole_request
+    res = self.request_with(c, 'ONE-1', who=Expiring(self.m.approver, FUTURE))
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 110, in request_with
+    return AB.request_approval(who or self.m.approver, self.scopes, clock, self.req(rid=rid))
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 222, in request_approval
+    rec = scoped.put(REQUEST_KIND, key, {'request_id': rid, 'request_hash': h, 'finding_id': fid, 'by': ctx.user_id, 'at': clock.now(), 'state': 'pending', 'history_len': len(f.get('history') or []), 'result': None}, expected_revision=0)
+                                                                                                                           ~~~~~~~~~^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 35, in now
+    raise self.exc
+RuntimeError: clock unavailable
+
+======================================================================
+ERROR: test_the_helper_still_answers_true_or_false_and_never_raises_for_a_failing_clock_or_expiry (tests.test_api_m94_corrections.TestTheSessionRuleOfM93StillHolds.test_the_helper_still_answers_true_or_false_and_never_raises_for_a_failing_clock_or_expiry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 397, in test_the_helper_still_answers_true_or_false_and_never_raises_for_a_failing_clock_or_expiry
+    self.assertIs(AB._session_live(ctx, RaisingClock(exc)), False, type(exc).__name__)
+                  ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+  File "/usr/lib/python3.13/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/usr/lib/python3.13/unittest/case.py", line 651, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3.13/unittest/case.py", line 606, in _callTestMethod
+    if method() is not None:
+       ~~~~~~^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 326, in test_no_failing_clock_ever_approves_whatever_else_is_true
+    res = AB.request_approval(Expiring(self.m.approver, FUTURE), self.scopes, clock, self.req(rid=f'NEVER-{i}'))
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 196, in request_approval
+    if not _session_live(ctx, clock):
+           ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+  File "/usr/lib/python3.13/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/usr/lib/python3.13/unittest/case.py", line 651, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3.13/unittest/case.py", line 606, in _callTestMethod
+    if method() is not None:
+       ~~~~~~^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 319, in test_a_failing_clock_does_not_change_an_approved_action_and_the_executor_check_recovers
+    self.assertEqual(self.check_with(RaisingClock(exc)), {'valid': False, 'code': 'NOT_ALLOWED'})
+                     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 114, in check_with
+    return AB.check_for_execution(who or self.m.approver, self.scopes, clock, self.fid, tok['version'], tok['digest'], tok['proposal'])
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 269, in check_for_execution
+    if not ok_shape or not _session_live(ctx, clock):
+                           ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+  File "/usr/lib/python3.13/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/usr/lib/python3.13/unittest/case.py", line 651, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3.13/unittest/case.py", line 606, in _callTestMethod
+    if method() is not None:
+       ~~~~~~^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 139, in test_every_ordinary_exception_type_is_a_refusal_at_all_three_entry_points
+    self.assert_all_three_refuse(RaisingClock(exc), type(exc).__name__)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 119, in assert_all_three_refuse
+    r = self.present_with(clock)
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 107, in present_with
+    return AB.present(who or self.m.approver, self.scopes, clock, self.fid)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 148, in present
+    if ctx.actor_kind != 'human' or not _session_live(ctx, clock):
+                                        ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/apg/api/approval_boundary.py", line 107, in _session_live
+    now = clock.now()
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 24, in now
+    raise self.exc
+RuntimeError: clock unavailable
+
+======================================================================
+FAIL: test_every_call_reads_the_clock_exactly_once (tests.test_api_m94_corrections.TestTheClockIsReadOnceSoALaterFailureCannotHalveAnApproval.test_every_call_reads_the_clock_exactly_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 226, in test_every_call_reads_the_clock_exactly_once
+    self.assertEqual(c.reads, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: 5 != 1
+
+======================================================================
+FAIL: test_if_the_history_holds_no_entry_the_answer_still_names_the_approver_and_the_reading (tests.test_api_m94_corrections.TestTheClockIsReadOnceSoALaterFailureCannotHalveAnApproval.test_if_the_history_holds_no_entry_the_answer_still_names_the_approver_and_the_reading)
+The fallback of the answer (the lifecycle approved, its history entry cannot be found): the approver of the call and the reading of the call.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 246, in test_if_the_history_holds_no_entry_the_answer_still_names_the_approver_and_the_reading
+    self.assertEqual((res['status'], res['code'], res['approved_by'], res['approved_at']), ('approved', 'OK', 'abby', '2026-10-01T09:00:00Z'))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: ('approved', 'OK', 'abby', '2026-10-01T09:00:05Z') != ('approved', 'OK', 'abby', '2026-10-01T09:00:00Z')
+
+First differing element 3:
+'2026-10-01T09:00:05Z'
+'2026-10-01T09:00:00Z'
+
+- ('approved', 'OK', 'abby', '2026-10-01T09:00:05Z')
+?                                               ^
+
++ ('approved', 'OK', 'abby', '2026-10-01T09:00:00Z')
+?                                               ^
+
+
+======================================================================
+FAIL: test_the_answer_carries_the_one_reading_even_when_the_clock_moves_on (tests.test_api_m94_corrections.TestTheClockIsReadOnceSoALaterFailureCannotHalveAnApproval.test_the_answer_carries_the_one_reading_even_when_the_clock_moves_on)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m94pre_gjav9o0s/APG_M9_3/tests/test_api_m94_corrections.py", line 238, in test_the_answer_carries_the_one_reading_even_when_the_clock_moves_on
+    self.assertEqual(c.reads, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: 5 != 1
+
+----------------------------------------------------------------------
+Ran 29 tests in 1.104s
+
+FAILED (failures=3, errors=15)
+
+[exit code 1]

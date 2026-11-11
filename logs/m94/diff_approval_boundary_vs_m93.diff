@@ -1,0 +1,98 @@
+--- M9.3/apg/api/approval_boundary.py
++++ M9.4/apg/api/approval_boundary.py
+@@ -12,5 +12,7 @@
+ * a request that stopped half way (a crash between the approval and the note of it) is recognised on the next try from the finding's own history and is not approved twice;
+ * every outcome, replays and refusals included, is written to the audit log with the request id, never with the rationale text;
+-* the approval's audit entry is written BEFORE the answer is noted under the request id, so an approval whose entry could not be written is not noted as done: the retry recognises the approval and writes the entry (at least once).
++* the approval's audit entry is written BEFORE the answer is noted under the request id, so an approval whose entry could not be written is not noted as done: the retry recognises the approval and writes the entry (at least once);
++* the clock is read ONCE per call, and a clock that cannot be read or that does not say a real UTC moment ends the session (F-63): the call gives its ordinary refusal and is audited best-effort, never an exception, and the one reading is
++  what every timestamp of the call and the lifecycle use, so a clock that fails later cannot fail half way through an approval.
+ 
+ What this module does NOT do: it has no HTTP, session or role directory (the Engine's EDR-11 and EDR-20), it does not decide who may approve in which project (EDR-31, EDR-29), it does not execute anything, and nothing here has
+@@ -102,9 +104,48 @@
+ 
+ 
++class _Pinned:
++    """The one reading of the clock that a call takes.  It answers that reading every time, so the lifecycle's timestamps are the instant the session was checked and the clock is not asked again (F-63)."""
++    __slots__ = ('_t',)
++
++    def __init__(self, t):
++        self._t = t
++
++    def now(self):
++        return self._t
++
++
++CLOCK_WHY = 'the clock gave no usable time, so the session could not be checked and is treated as ended'      # the audit reason when the clock fails or does not say a real moment (F-63)
++
++
++def _check_session(ctx, clock):
++    """-> (pinned_clock, None) if the session is live, else (None, why) with why 'clock', 'expiry' or 'ended'.  Never raises an ordinary exception: whatever cannot be read, or is not a real UTC moment, ends the session
++    (fail closed).  The session is live only if its expiry is a real moment and strictly later than the present one, which must be a real moment too (F-62).  An interrupt (KeyboardInterrupt, SystemExit) is not caught."""
++    try:
++        now = clock.now()
++    except Exception:
++        return None, 'clock'
++    try:
++        e = ctx.expires_at
++    except Exception:
++        return None, 'expiry'
++    if not _is_moment(now):
++        return None, 'clock'
++    if not _is_moment(e):
++        return None, 'expiry'
++    if not e > now:
++        return None, 'ended'
++    return _Pinned(now), None
++
++
+ def _session_live(ctx, clock):
+-    """The session is live only if its expiry is a real moment and strictly later than the present one, and the present one is a real moment too (a clock that says something else ends every session: fail closed)."""
+-    e = ctx.expires_at
+-    now = clock.now()
+-    return _is_moment(e) and _is_moment(now) and e > now
++    """True only if the session is live (see _check_session); False for anything else, including a clock or an expiry that cannot be read."""
++    return _check_session(ctx, clock)[0] is not None
++
++
++def _is_human(ctx):
++    try:
++        return ctx.actor_kind == 'human'
++    except Exception:                                      # a kind that cannot be read is not a person
++        return False
+ 
+ 
+@@ -146,6 +187,7 @@
+     if not _is_id(finding_id):
+         return _refuse(scoped, None, finding_id, 'NOT_FOUND', 'no such finding', 'the finding id is not a plain identifier')
+-    if ctx.actor_kind != 'human' or not _session_live(ctx, clock):
+-        return _refuse(scoped, None, finding_id, 'NOT_ALLOWED', 'not allowed', 'a person with a live session is required to view an approval')
++    pinned, why = _check_session(ctx, clock) if _is_human(ctx) else (None, 'person')
++    if pinned is None:
++        return _refuse(scoped, None, finding_id, 'NOT_ALLOWED', 'not allowed', CLOCK_WHY if why == 'clock' else 'a person with a live session is required to view an approval')
+     f = _find(scoped, finding_id)
+     if f is None or not _allowed(scoped, scopes, f, 'view'):
+@@ -192,8 +234,10 @@
+         return _refuse(scoped, request.get('request_id') if isinstance(request, dict) else None, request.get('finding_id') if isinstance(request, dict) else None, 'REQUEST_MALFORMED', 'the request is not well formed', why)
+     rid, fid = request['request_id'], request['finding_id']
+-    if ctx.actor_kind != 'human':
++    if not _is_human(ctx):
+         return _refuse(scoped, rid, fid, 'HUMAN_REQUIRED', 'an approval must be made by a person', 'a person is required')
+-    if not _session_live(ctx, clock):
+-        return _refuse(scoped, rid, fid, 'SESSION_EXPIRED', 'the session has ended', 'the session has expired or carries no valid expiry')
++    pinned, why = _check_session(ctx, clock)
++    if pinned is None:
++        return _refuse(scoped, rid, fid, 'SESSION_EXPIRED', 'the session has ended', CLOCK_WHY if why == 'clock' else 'the session has expired or carries no valid expiry')
++    clock = pinned                                          # from here on the call uses this one reading (F-63)
+     if FD.APPROVER not in ctx.roles:
+         return _refuse(scoped, rid, fid, 'ROLE_REQUIRED', 'the approver role is required', 'missing role ' + FD.APPROVER)
+@@ -267,6 +311,7 @@
+     ctx = scoped.ctx
+     ok_shape = _is_id(finding_id) and FD._is_version(version) and FD._is_digest(digest) and FD._is_digest(proposal)
+-    if not ok_shape or not _session_live(ctx, clock):
+-        _log_refusal(scoped, 'approval_request.execution_check', 'finding/' + _safe(finding_id), 'a malformed call or a session that has ended')          # F-61
++    pinned, why = _check_session(ctx, clock) if ok_shape else (None, 'shape')
++    if pinned is None:
++        _log_refusal(scoped, 'approval_request.execution_check', 'finding/' + _safe(finding_id), CLOCK_WHY if why == 'clock' else 'a malformed call or a session that has ended')          # F-61
+         return {'valid': False, 'code': 'NOT_ALLOWED'}
+     f = _find(scoped, finding_id)

@@ -1,0 +1,9 @@
+supplier_id,evidence_type,expiry_date
+SUP-001,public_liability_insurance,2027-02-27
+SUP-001,licence,2027-11-04
+SUP-002,public_liability_insurance,2027-03-10
+SUP-002,licence,2027-11-13
+SUP-003,public_liability_insurance,2027-03-21
+SUP-003,licence,2027-11-22
+SUP-004,public_liability_insurance,2027-04-01
+SUP-004,licence,2027-12-01

@@ -1,0 +1,162 @@
+== batch 1/8
+KILLED     PA-CMP-001  (by test_f672_forged_entry)
+KILLED     PA-CMP-002  (by test_f672_forged_entry)
+KILLED     PA-CMP-003  (by test_f672_forged_entry)
+KILLED     PA-CMP-004  (by test_f672_forged_entry)
+KILLED     PA-CMP-005  (by test_f672_forged_entry)
+KILLED     PA-CMP-006  (by test_f672_forged_entry)
+KILLED     PA-CMP-007  (by test_f672_forged_entry)
+KILLED     PA-CMP-008  (by test_f672_forged_entry)
+KILLED     PA-CMP-009  (by test_f672_forged_entry)
+KILLED     PA-CMP-010  (by test_f672_forged_entry)
+KILLED     PA-CMP-011  (by test_f672_forged_entry)
+EQUIVALENT PA-CMP-012  -- equivalent against the reference store: for revision 1 the mutant (>= instead of >) reads revision 0, and the reference RecordStorePort.get returns None for any revision outside 1..n, the same value the original assigns. The guard is kept for an Engine store that might treat revision 0 otherwise; the record-store contract does not yet pin this down (noted for EDR-39/EDR-40).
+KILLED     PA-CMP-013  (by test_f672_forged_entry)
+KILLED     PA-CMP-014  (by test_f672_forged_entry)
+mutants 14  killed 13 (first failing test file: {'test_f672_forged_entry': 13})  documented-equivalent 1  unexplained survivors 0
+MUTATION RUN OK
+
+real	1m7.551s
+user	1m9.349s
+sys	0m0.413s
+== batch 2/8
+KILLED     PA-CMP-015  (by test_f67_policy_approval)
+KILLED     PA-CMP-016  (by test_f672_forged_entry)
+KILLED     PA-CMP-017  (by test_f672_forged_entry)
+KILLED     PA-CMP-018  (by test_f672_forged_entry)
+KILLED     PA-CMP-019  (by test_f672_forged_entry)
+KILLED     PA-CMP-020  (by test_f672_forged_entry)
+KILLED     PA-CMP-021  (by test_f672_forged_entry)
+KILLED     PA-CMP-022  (by test_f672_forged_entry)
+KILLED     PA-CMP-023  (by test_f672_forged_entry)
+KILLED     PA-CMP-024  (by test_f672_forged_entry)
+KILLED     PA-CMP-025  (by policy)
+KILLED     PA-CMP-026  (by test_f67_policy_approval)
+KILLED     PA-CMP-027  (by test_f672_forged_entry)
+KILLED     PA-CMP-028  (by test_f672_forged_entry)
+mutants 14  killed 14 (first failing test file: {'policy': 1, 'test_f672_forged_entry': 11, 'test_f67_policy_approval': 2})  documented-equivalent 0  unexplained survivors 0
+MUTATION RUN OK
+
+real	0m6.649s
+user	0m10.873s
+sys	0m0.298s
+== batch 3/8
+KILLED     PA-CMP-029  (by test_f672_forged_entry)
+KILLED     PA-CMP-030  (by test_f672_forged_entry)
+KILLED     PA-CMP-031  (by test_f672_forged_entry)
+KILLED     PA-CMP-032  (by test_f672_forged_entry)
+KILLED     PA-CMP-033  (by test_f672_forged_entry)
+KILLED     PA-CMP-034  (by test_f672_forged_entry)
+KILLED     PA-CMP-035  (by policy)
+KILLED     PA-CMP-036  (by policy)
+KILLED     PA-BOL-001  (by test_f671_approval_recovery)
+KILLED     PA-BOL-002  (by test_f672_forged_entry)
+KILLED     PA-BOL-003  (by test_f672_forged_entry)
+KILLED     PA-BOL-004  (by test_f672_forged_entry)
+KILLED     PA-BOL-005  (by policy)
+KILLED     PA-BOL-006  (by test_f67_policy_approval)
+mutants 14  killed 14 (first failing test file: {'policy': 3, 'test_f671_approval_recovery': 1, 'test_f672_forged_entry': 9, 'test_f67_policy_approval': 1})  documented-equivalent 0  unexplained survivors 0
+MUTATION RUN OK
+
+real	0m11.708s
+user	0m19.558s
+sys	0m0.502s
+== batch 4/8
+KILLED     PA-BOL-007  (by test_f672_forged_entry)
+KILLED     PA-BOL-008  (by test_f672_forged_entry)
+KILLED     PA-BOL-009  (by test_f672_forged_entry)
+KILLED     PA-BOL-010  (by test_f672_forged_entry)
+KILLED     PA-BOL-011  (by test_f67_policy_approval)
+KILLED     PA-BOL-012  (by test_f672_forged_entry)
+KILLED     PA-BOL-013  (by test_f672_forged_entry)
+KILLED     PA-BOL-014  (by test_f672_forged_entry)
+KILLED     PA-NOT-001  (by test_f672_forged_entry)
+KILLED     PA-NOT-002  (by test_f672_forged_entry)
+KILLED     PA-NOT-003  (by test_f672_forged_entry)
+KILLED     PA-RSE-001  (by test_f671_approval_recovery)
+KILLED     PA-RSE-002  (by test_mkt_edges_policy)
+KILLED     PA-RSE-003  (by policy)
+mutants 14  killed 14 (first failing test file: {'policy': 1, 'test_f671_approval_recovery': 1, 'test_f672_forged_entry': 10, 'test_f67_policy_approval': 1, 'test_mkt_edges_policy': 1})  documented-equivalent 0  unexplained survivors 0
+MUTATION RUN OK
+
+real	0m8.928s
+user	0m15.565s
+sys	0m0.398s
+== batch 5/8
+KILLED     PA-RSE-004  (by test_f67_policy_approval)
+KILLED     PA-RSE-005  (by test_f67_policy_approval)
+KILLED     PA-RSE-006  (by test_f671_approval_recovery)
+KILLED     PA-RSE-007  (by test_f672_forged_entry)
+KILLED     PA-RSE-008  (by test_f672_forged_entry)
+KILLED     PA-ARI-001  (by test_f672_forged_entry)
+KILLED     FP-CMP-001  (by test_f672_forged_entry)
+KILLED     FP-RSE-001  (by test_f67_policy_approval)
+KILLED     FP-RSE-002  (by arith)
+KILLED     DP-CMP-001  (by test_f672_forged_entry)
+KILLED     DP-RSE-001  (by test_f67_policy_approval)
+KILLED     DP-RSE-002  (by policy)
+KILLED     MP-CMP-001  (by test_f672_forged_entry)
+KILLED     MP-CMP-002  (by test_f672_forged_entry)
+mutants 14  killed 14 (first failing test file: {'arith': 1, 'policy': 1, 'test_f671_approval_recovery': 1, 'test_f672_forged_entry': 7, 'test_f67_policy_approval': 4})  documented-equivalent 0  unexplained survivors 0
+MUTATION RUN OK
+
+real	0m11.282s
+user	0m19.455s
+sys	0m0.428s
+== batch 6/8
+KILLED     MP-RSE-001  (by test_f67_policy_approval)
+KILLED     MP-RSE-002  (by test_mkt_policy)
+KILLED     MP-RSE-003  (by test_f67_policy_approval)
+KILLED     MP-RSE-004  (by test_mkt_policy)
+KILLED     RP-CMP-001  (by test_f672_forged_entry)
+KILLED     RP-CMP-002  (by test_f672_forged_entry)
+KILLED     RP-CMP-003  (by test_f672_forged_entry)
+KILLED     RP-CMP-004  (by test_f672_forged_entry)
+KILLED     RP-CMP-005  (by test_f672_forged_entry)
+KILLED     RP-CMP-006  (by test_f672_forged_entry)
+KILLED     RP-CMP-007  (by test_f672_forged_entry)
+KILLED     RP-CMP-008  (by test_f672_forged_entry)
+KILLED     RP-CMP-009  (by test_f672_forged_entry)
+KILLED     RP-CMP-010  (by test_f672_forged_entry)
+mutants 14  killed 14 (first failing test file: {'test_f672_forged_entry': 10, 'test_f67_policy_approval': 2, 'test_mkt_policy': 2})  documented-equivalent 0  unexplained survivors 0
+MUTATION RUN OK
+
+real	0m8.881s
+user	0m16.152s
+sys	0m0.544s
+== batch 7/8
+KILLED     RP-CMP-011  (by test_f672_forged_entry)
+KILLED     RP-CMP-012  (by test_f672_forged_entry)
+KILLED     RP-CMP-013  (by test_f672_forged_entry)
+KILLED     RP-CMP-014  (by test_f672_forged_entry)
+KILLED     RP-CMP-015  (by test_f672_forged_entry)
+KILLED     RP-CMP-016  (by test_f672_forged_entry)
+KILLED     RP-CMP-017  (by test_f672_forged_entry)
+KILLED     RP-BOL-001  (by test_f671_approval_recovery)
+KILLED     RP-BOL-002  (by test_f672_forged_entry)
+KILLED     RP-BOL-003  (by test_rec_m71_corrections)
+KILLED     RP-BOL-004  (by test_f672_forged_entry)
+KILLED     RP-BOL-005  (by test_f672_forged_entry)
+KILLED     RP-BOL-006  (by test_f672_forged_entry)
+KILLED     RP-BOL-007  (by test_f672_forged_entry)
+mutants 14  killed 14 (first failing test file: {'test_f671_approval_recovery': 1, 'test_f672_forged_entry': 12, 'test_rec_m71_corrections': 1})  documented-equivalent 0  unexplained survivors 0
+MUTATION RUN OK
+
+real	0m5.204s
+user	0m8.865s
+sys	0m0.536s
+== batch 8/8
+KILLED     RP-NOT-001  (by test_f672_forged_entry)
+KILLED     RP-RSE-001  (by test_f671_approval_recovery)
+KILLED     RP-RSE-002  (by test_rec_m71_corrections)
+KILLED     RP-RSE-003  (by test_rec_m71_corrections)
+KILLED     RP-RSE-004  (by test_rec_m71_corrections)
+KILLED     RP-RSE-005  (by test_f671_approval_recovery)
+KILLED     RP-RSE-006  (by test_f672_forged_entry)
+KILLED     RP-RSE-007  (by test_f672_forged_entry)
+mutants 8  killed 8 (first failing test file: {'test_f671_approval_recovery': 2, 'test_f672_forged_entry': 3, 'test_rec_m71_corrections': 3})  documented-equivalent 0  unexplained survivors 0
+MUTATION RUN OK
+
+real	0m7.004s
+user	0m12.191s
+sys	0m0.674s

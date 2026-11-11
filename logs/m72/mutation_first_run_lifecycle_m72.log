@@ -1,0 +1,8 @@
+SURVIVED   LC-CMP-055
+EQUIVALENT LC-BOL-017  -- proved: approve() is the entry point and transition() repeats the same whole-token check (F-57 style, killed as LC-BOL-026); with the entry check weakened a partial token reaches transition(), which refuses it with the same code APPROVAL_TOKEN_REQUIRED, the same message and the same audit entry, before anything is read or written.
+mutants 138  killed 136 (first failing test file: {'test_rec_edges': 15, 'test_rec_lifecycle': 105, 'test_rec_m71_corrections': 5, 'test_rec_m72_race': 5, 'test_rec_repro': 5, 'test_rec_verify': 1})  documented-equivalent 1  unexplained survivors 1
+UNEXPLAINED: ['LC-CMP-055']
+
+real	3m19.933s
+user	6m9.413s
+sys	0m3.152s

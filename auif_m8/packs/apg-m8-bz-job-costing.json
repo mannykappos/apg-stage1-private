@@ -1,0 +1,415 @@
+{
+ "artifact_hash": "40137b7d9bdb08bcf6650d8de9d4cd7eee1afeae3a8941b56bf7d3627a5c8065",
+ "auif_contract_compat": {
+  "max": "1.0.99",
+  "min": "1.0.0"
+ },
+ "canonical_model_compat": {
+  "max": "0.1.99",
+  "min": "0.1.0"
+ },
+ "classification_mappings": [],
+ "contains_governance_logic": false,
+ "contains_secrets": false,
+ "contract_kind": "TranslationPack",
+ "immutable": true,
+ "mappings": [
+  {
+   "canonical_ref": "module.apg.BudgetLine",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "module.apg.BudgetLine",
+    "source_type": "entity",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "ENTITY",
+   "mapping_id": "m8-budget-line-entity",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "budget_line",
+   "validation_ref": {
+    "evidence_hash": "33e1ed3f53a05bda4f1c902351689ef6b0f5f533943f8f0c364c45a7b82e2e2e",
+    "evidence_id": "val-apg-m8-budget-line",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.BudgetLine.project_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-budget-line-project-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "budget_line.project_id",
+   "validation_ref": {
+    "evidence_hash": "09a7a9aa8dcd7d9100febca484a2a1bc2c911a4d3560c23134b5f25c38a2c501",
+    "evidence_id": "val-apg-m8-budget-line-project-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.BudgetLine.cost_code_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-budget-line-cost-code-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "budget_line.cost_code",
+   "validation_ref": {
+    "evidence_hash": "e97dbfb3addf6b4c29316c36b51e1e88e4308595941fd79acb9e5c5b34fa6373",
+    "evidence_id": "val-apg-m8-budget-line-cost-code-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.BudgetLine.budget_cents",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-budget-line-budget-cents",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "budget_line.budget_cents",
+   "validation_ref": {
+    "evidence_hash": "7cec179b662f3e16b51ed3812a128a085c8078fd023b9763ceb4c204aec45b0e",
+    "evidence_id": "val-apg-m8-budget-line-budget-cents",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.BudgetLine.source_revision_label",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-budget-line-source-revision-label",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "budget_line.revision",
+   "validation_ref": {
+    "evidence_hash": "e1c04a4df62b5e83b4c941c4b35444e164c02700dbdbce9207a5c8b17ad7d0e2",
+    "evidence_id": "val-apg-m8-budget-line-source-revision-label",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.BudgetLine.revision_date",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-budget-line-revision-date",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "budget_line.revision_date",
+   "validation_ref": {
+    "evidence_hash": "22e683d720b66786b9b7aa682db21f1b3d2bcc72dc4d9cd0a600181e0f78d2d9",
+    "evidence_id": "val-apg-m8-budget-line-revision-date",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.CtcLine",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "module.apg.CtcLine",
+    "source_type": "entity",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "ENTITY",
+   "mapping_id": "m8-ctc-line-entity",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ctc_line",
+   "validation_ref": {
+    "evidence_hash": "17dd675a84a104660accfe3690016c77e0e7056503d87d6ad45a20fc207428a2",
+    "evidence_id": "val-apg-m8-ctc-line",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.CtcLine.project_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ctc-line-project-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ctc_line.project_id",
+   "validation_ref": {
+    "evidence_hash": "c181a69ffd57e23075138ddffce38074d8dca0ee32bc9fd5b0e069d1e02ba904",
+    "evidence_id": "val-apg-m8-ctc-line-project-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.CtcLine.cost_code_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ctc-line-cost-code-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ctc_line.cost_code",
+   "validation_ref": {
+    "evidence_hash": "f5408090b1ecb3b457c6fb1952dbe9222a6d5d69eede71e398f2229801ff34e8",
+    "evidence_id": "val-apg-m8-ctc-line-cost-code-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.CtcLine.forecast_version",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ctc-line-forecast-version",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ctc_line.forecast_version",
+   "validation_ref": {
+    "evidence_hash": "9dd50f1f4d1734092fe7d7b2f9d443afcb81ef8f6462c667e104f12a8864cda3",
+    "evidence_id": "val-apg-m8-ctc-line-forecast-version",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.CtcLine.forecast_date",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ctc-line-forecast-date",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ctc_line.forecast_date",
+   "validation_ref": {
+    "evidence_hash": "71fd4ec50bf2fa29a1b62423b26b2f78110dfb19b99cfaf5e3a6126cdc897ae2",
+    "evidence_id": "val-apg-m8-ctc-line-forecast-date",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.CtcLine.cost_to_complete_cents",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ctc-line-cost-to-complete-cents",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ctc_line.cost_to_complete_cents",
+   "validation_ref": {
+    "evidence_hash": "8276d83e0874d2871a959551d5221a0539284d70bdab96224eb8e231ca8996d1",
+    "evidence_id": "val-apg-m8-ctc-line-cost-to-complete-cents",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.CtcLine.estimate_basis_text",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ctc-line-estimate-basis-text",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ctc_line.estimate_basis",
+   "validation_ref": {
+    "evidence_hash": "8797a1651391a82f08f31683a0778536338334bd598dd8be143321e6b90d6198",
+    "evidence_id": "val-apg-m8-ctc-line-estimate-basis-text",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.CtcLine.movement_reason_text",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-ctc-line-movement-reason-text",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "ctc_line.movement_reason",
+   "validation_ref": {
+    "evidence_hash": "917d06aed00e01617ebe4e67e0dedee74be94a59ebb77e9818b574b5ab8158aa",
+    "evidence_id": "val-apg-m8-ctc-line-movement-reason-text",
+    "kind": "mapping-validation"
+   }
+  }
+ ],
+ "pack_id": "apg-m8-bz-job-costing",
+ "pack_state": "CANDIDATE",
+ "pack_version": "0.1.0",
+ "provenance_rules": {
+  "preserve_pack_identity": true,
+  "preserve_source_field": true,
+  "preserve_source_object": true
+ },
+ "schema_expectations": {
+  "compatible_fingerprints": [
+   "43fc9c4531858d5213e22b237aab8e48fd747732b3ef67ae9e8ec8d703da8d06"
+  ]
+ },
+ "target_system_kind": "synthetic-builder-zero-csv-export",
+ "unmapped_field_policy": {
+  "default_outcome": "REJECTED",
+  "ignored_by_rule": [],
+  "optional_and_unused": []
+ }
+}

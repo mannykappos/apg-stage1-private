@@ -1,0 +1,253 @@
+{
+ "artifact_hash": "6228e14a2765448207577aa64c7a9da171161f083fd1775e7ba3a8767912b80d",
+ "auif_contract_compat": {
+  "max": "1.0.99",
+  "min": "1.0.0"
+ },
+ "canonical_model_compat": {
+  "max": "0.1.99",
+  "min": "0.1.0"
+ },
+ "classification_mappings": [],
+ "contains_governance_logic": false,
+ "contains_secrets": false,
+ "contract_kind": "TranslationPack",
+ "immutable": true,
+ "mappings": [
+  {
+   "canonical_ref": "module.apg.PlantHire",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "module.apg.PlantHire",
+    "source_type": "entity",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "ENTITY",
+   "mapping_id": "m8-plant-hire-entity",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "plant_hire",
+   "validation_ref": {
+    "evidence_hash": "2caabcb3ac4e1e170f00ec2d5426e14276d7623a32095d89e9dd426a0eb22c4b",
+    "evidence_id": "val-apg-m8-plant-hire",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.PlantHire.source_record_id",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-plant-hire-source-record-id",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "plant_hire.hire_id",
+   "validation_ref": {
+    "evidence_hash": "d35754fef3614271f77ab39a376d1d70e562e5d69b958c5acce13753b83bf4f7",
+    "evidence_id": "val-apg-m8-plant-hire-source-record-id",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.PlantHire.project_ref",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-plant-hire-project-ref",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "plant_hire.project_id",
+   "validation_ref": {
+    "evidence_hash": "048221067a6df289ee396fc7a7bef3093583ef0e16047fd90ff3c1ac20ea69a1",
+    "evidence_id": "val-apg-m8-plant-hire-project-ref",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.PlantHire.equipment_text",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-plant-hire-equipment-text",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "plant_hire.equipment",
+   "validation_ref": {
+    "evidence_hash": "044d32f290d564051d3f111f4446b77c5fbee7ec0967556ae576418deaf8fae6",
+    "evidence_id": "val-apg-m8-plant-hire-equipment-text",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.PlantHire.on_hire_date",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-plant-hire-on-hire-date",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "plant_hire.on_hire_date",
+   "validation_ref": {
+    "evidence_hash": "fd7476057cce9d489ab9847f3d2bd497283bf1b149991e464808a0e32eb16f51",
+    "evidence_id": "val-apg-m8-plant-hire-on-hire-date",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.PlantHire.off_hire_date",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-plant-hire-off-hire-date",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "plant_hire.off_hire_date",
+   "validation_ref": {
+    "evidence_hash": "af693ab55dd7218c17b11f72a2c439274b2455e75d8c464d00755910bb7a1919",
+    "evidence_id": "val-apg-m8-plant-hire-off-hire-date",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.PlantHire.needed_until",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-plant-hire-needed-until",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "plant_hire.needed_until",
+   "validation_ref": {
+    "evidence_hash": "fc2aa53eb0e81d8362bf2e9e5db1fc1e70a90d5e8ed74f597641fbb8ad1d2efe",
+    "evidence_id": "val-apg-m8-plant-hire-needed-until",
+    "kind": "mapping-validation"
+   }
+  },
+  {
+   "canonical_ref": "module.apg.PlantHire.rate_cents_per_day",
+   "deterministic_validation_performed": true,
+   "inbound": {
+    "canonical_type": "STRING",
+    "source_type": "string",
+    "transform": {
+     "deterministic": true,
+     "kind": "IDENTITY",
+     "parameters": {}
+    }
+   },
+   "kind": "FIELD",
+   "mapping_id": "m8-plant-hire-rate-cents-per-day",
+   "mapping_state": "VALIDATED",
+   "outbound": {
+    "reason": "APG imports only: it never writes to a source system",
+    "supported": false
+   },
+   "proposed_by": "DETERMINISTIC_TOOL",
+   "source_ref": "plant_hire.rate_cents_per_day",
+   "validation_ref": {
+    "evidence_hash": "a64bb0954838f029a6949df100234112729abe4078aa9813dcbcbae889ef7afd",
+    "evidence_id": "val-apg-m8-plant-hire-rate-cents-per-day",
+    "kind": "mapping-validation"
+   }
+  }
+ ],
+ "pack_id": "apg-m8-bz-plant",
+ "pack_state": "CANDIDATE",
+ "pack_version": "0.1.0",
+ "provenance_rules": {
+  "preserve_pack_identity": true,
+  "preserve_source_field": true,
+  "preserve_source_object": true
+ },
+ "schema_expectations": {
+  "compatible_fingerprints": [
+   "3122bce6392075f00899c5a0fe59ee4f655539ec5ccd4c6be611d521790b93c8"
+  ]
+ },
+ "target_system_kind": "synthetic-builder-zero-csv-export",
+ "unmapped_field_policy": {
+  "default_outcome": "REJECTED",
+  "ignored_by_rule": [],
+  "optional_and_unused": []
+ }
+}

@@ -1,0 +1,4 @@
+S11 CAUGHT         1s  an R2 register row edited  [FAILED: ['R03']]
+sabotage cases 1: caught 1, missed 0, incomplete 0
+S12 CAUGHT         1s  a Builder Zero source file changed (R2 data must stay byte-identical)  [FAILED: ['R01']]
+sabotage cases 1: caught 1, missed 0, incomplete 0

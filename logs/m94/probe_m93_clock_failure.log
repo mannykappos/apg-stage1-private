@@ -1,0 +1,9 @@
+F-63 present, clock.now() raises RuntimeError                            -> corrected
+F-63 request_approval, clock.now() raises RuntimeError                   -> corrected
+F-63 check_for_execution, clock.now() raises RuntimeError                -> corrected
+F-63 a clock that fails after its first read does not halve an approval  -> corrected
+F-63 an expiry that cannot be read ends the session                      -> corrected
+a working clock still approves                                           -> corrected
+THE CLOCK FAILURE IS HANDLED SAFELY (builder test world; no independent review)
+
+[exit code 0; 1s]

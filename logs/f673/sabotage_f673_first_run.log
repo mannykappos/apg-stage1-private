@@ -1,0 +1,21 @@
+CAUGHT S01 holds no longer checks the approved content -> R06 
+CAUGHT S02 holds no longer checks that the entry stays present and unchanged -> R06 
+CAUGHT S03 holds checks only the judged revision, not every revision in between -> R06 
+CAUGHT S04 confirmed ignores the revision it is asked to judge at -> R07 
+CAUGHT S05 confirmations judge a pinned reference at the latest revision -> R07 
+CAUGHT S06 the recommendation run judges at the latest revision, not the pinned one -> R11 
+CAUGHT S07 confirmed checks only the binding again (the F-74 defect restored) -> R06 
+CAUGHT S08 the recommendation policy checks only the binding again -> R06 
+CAUGHT S09 the approved content includes the approvals, so another person's approval breaks it -> R06 
+CAUGHT S10 holds accepts a judged revision before the confirmed one -> R07 
+CAUGHT S11 the reference store reads revision 0 as the latest -> R12 
+CAUGHT S12 the history contract loses its out-of-range case -> R12 
+MISSED S13 the detection gatherer passes bare keys again (judged at the latest) -> R11 checks 1  failed 0
+CAUGHT S14 approve completes an entry it finds again (the F-73 defect restored) -> R08 
+CAUGHT S15 the F-74 row is changed to read verified -> R03 
+CAUGHT S16 the readme says M8 is authorised -> R05 
+CAUGHT S17 an existing test file is edited -> R10 
+CAUGHT S18 an unchanged application file changes by one character -> R01 
+CAUGHT S19 an undeclared file is added -> R02 
+CAUGHT S20 the stored F67.2 original of a changed file is edited -> R02 
+sabotage cases 20  missed 1  MISSED: ['S13']

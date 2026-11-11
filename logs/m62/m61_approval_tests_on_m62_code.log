@@ -1,0 +1,47 @@
+tests 21  failures 1  errors 3
+======================================================================
+ERROR: test_an_approval_that_names_a_version_other_than_the_current_one_is_refused (tests.test_det_approval_binding_m61.TestOldApprovalCannotBeReused.test_an_approval_that_names_a_version_other_than_the_current_one_is_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old2_u0ts7jxa/p/tests/test_det_approval_binding_m61.py", line 156, in test_an_approval_that_names_a_version_other_than_the_current_one_is_refused
+    f = FD.transition(m.approver, m.clock, self.fid, 'action_approved', rationale='I read version 2', approving_version=2)
+  File "/tmp/m62old2_u0ts7jxa/p/apg/det/findings.py", line 405, in transition
+    raise LifecycleError('STALE_PROPOSAL', why)
+apg.det.findings.LifecycleError: STALE_PROPOSAL: the proposal was written against version 1 and the finding is now at version 2; send it back to a reviewer (confirmed) and propose the action again against the current evidence
+
+======================================================================
+ERROR: test_the_proposer_still_cannot_approve_and_a_new_approval_binds_the_new_version_and_digest (tests.test_det_approval_binding_m61.TestOldApprovalCannotBeReused.test_the_proposer_still_cannot_approve_and_a_new_approval_binds_the_new_version_and_digest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old2_u0ts7jxa/p/tests/test_det_approval_binding_m61.py", line 143, in test_the_proposer_still_cannot_approve_and_a_new_approval_binds_the_new_version_and_digest
+    f3 = FD.transition(m.approver, m.clock, self.fid, 'action_approved', rationale='approved on the larger overrun')
+  File "/tmp/m62old2_u0ts7jxa/p/apg/det/findings.py", line 405, in transition
+    raise LifecycleError('STALE_PROPOSAL', why)
+apg.det.findings.LifecycleError: STALE_PROPOSAL: the proposal was written against version 1 and the finding is now at version 2; send it back to a reviewer (confirmed) and propose the action again against the current evidence
+
+======================================================================
+ERROR: test_two_endings_leave_two_entries_in_order_in_the_approval_history (tests.test_det_approval_binding_m61.TestRunSummaryAndReopening.test_two_endings_leave_two_entries_in_order_in_the_approval_history)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old2_u0ts7jxa/p/tests/test_det_approval_binding_m61.py", line 238, in test_two_endings_leave_two_entries_in_order_in_the_approval_history
+    FD.transition(m.approver, m.clock, self.fid, 'action_approved', rationale='approved on version 2')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m62old2_u0ts7jxa/p/apg/det/findings.py", line 405, in transition
+    raise LifecycleError('STALE_PROPOSAL', why)
+apg.det.findings.LifecycleError: STALE_PROPOSAL: the proposal was written against version 1 and the finding is now at version 2; send it back to a reviewer (confirmed) and propose the action again against the current evidence
+
+======================================================================
+FAIL: test_only_a_current_approval_of_exactly_this_version_and_digest_counts (tests.test_det_approval_binding_m61.TestApprovalCurrentIsStrict.test_only_a_current_approval_of_exactly_this_version_and_digest_counts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m62old2_u0ts7jxa/p/tests/test_det_approval_binding_m61.py", line 176, in test_only_a_current_approval_of_exactly_this_version_and_digest_counts
+    self.assertTrue(FD.approval_current(self.F))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 21 tests in 1.456s
+
+FAILED (failures=1, errors=3)
+
+[exit code 1]

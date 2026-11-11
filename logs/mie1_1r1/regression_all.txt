@@ -1,0 +1,9 @@
+PASS R01 every one of the 1,033 MIE-1.1 files except README.md, RUN_COMMANDS.txt and the interpretations register is byte-identical; no code, test, tool or specification changed 
+PASS R02 every file beyond MIE-1.1 is a declared R1 addition (the disposition register, the change record, two tools, regression and logs) 
+PASS R03 the tables are exactly what tools/make_mie1_1r1_registers.py makes from the MIE-1.1 tables: I-127 appended, and the disposition register holds AD-01 and AD-02 only 
+PASS R04 F-70 and F-71 are recorded as independently verified corrected with the audit scope; the full mutation run stays builder-reported; no release acceptance; the findings rows are untouched; CF-36 to CF-39 and EDR-36 to EDR-38 stay open 
+PASS R05 the R1 text makes no acceptance or readiness claim and keeps the mutation caveat 
+PASS R06 the MIE-1 audit-findings probe still reports every case corrected ['THE MIE-1 AUDIT FINDINGS ARE CORRECTED']
+PASS R07 the MIE tests still pass (244) ['OK']
+
+checks 7  failed 0

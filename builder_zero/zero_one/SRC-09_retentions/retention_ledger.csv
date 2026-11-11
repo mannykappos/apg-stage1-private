@@ -1,0 +1,4 @@
+project_id,retention_held_cents,release_due_date,released_date,hold_reason
+PRJ-001,12000000,2026-07-31,,
+PRJ-002,46250000,2027-02-26,,
+PRJ-003,23000000,2026-12-18,,

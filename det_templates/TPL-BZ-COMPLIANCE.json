@@ -1,0 +1,49 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "supplier_id",
+   "target_field": "supplier_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "evidence_type",
+   "target_field": "evidence_type_text",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "required": true,
+   "source_column": "expiry_date",
+   "target_field": "expiry_date",
+   "transform": "parse_date",
+   "type": "date"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "supplier_id",
+  "evidence_type"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-06",
+ "source_label": "Builder Zero supplier compliance evidence (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "compliance",
+ "template_id": "TPL-BZ-COMPLIANCE",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

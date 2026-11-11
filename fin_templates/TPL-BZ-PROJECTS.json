@@ -1,0 +1,67 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "project_id",
+   "target_field": "project_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "name",
+   "target_field": "project_name",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "contract_value_cents",
+   "target_field": "contract_value_cents",
+   "transform": "none",
+   "type": "money_cents"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "start_date",
+   "target_field": "start_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "planned_finish",
+   "target_field": "planned_finish",
+   "transform": "parse_date",
+   "type": "date"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "project_id"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-02",
+ "source_label": "Builder Zero project master (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "project",
+ "template_id": "TPL-BZ-PROJECTS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

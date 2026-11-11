@@ -1,0 +1,24 @@
+AUIF verified: zip d534a6e6541b6d1a core 923de5100f95debb
+CONTROL (unmutated copy): passes 102s
+MI-02  KILLED       2s tier 1: FAIL: test_an_object_that_is_not_valid (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_an_object_that_is_not_valid)
+MI-06  KILLED       2s tier 1: FAIL: test_a_chain_naming_another_pack_hash (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_a_chain_naming_another_pack_hash)
+MI-10  KILLED       2s tier 1: FAIL: test_a_delivery_that_is_not_in_order (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_a_delivery_that_is_not_in_order)
+MI-14  KILLED       2s tier 1: FAIL: test_a_source_identity_taken_from_the_wrong_field (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_a_source_identity_taken_fro
+MI-18  KILLED       3s tier 1: FAIL: test_ambiguous_counted_only_in_the_report (tests_m8.test_m8_integrity.TestTheTransportReportStandsAlone.test_ambiguous_counted_only_in_the_repor
+MI-22  KILLED       2s tier 1: FAIL: test_a_state_change_seen_during_the_import_even_if_active_again_at_the_end (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_a_
+MI-26  KILLED      16s tier 1: FAIL: test_a_wait_that_times_out_goes_to_reconciliation_and_never_invents_the_missing_event (tests_m8.test_m8_events.TestEvents.test_a_wait_that_times
+MI-30  KILLED       4s tier 1: FAIL: test_an_unparseable_required_amount_is_rejected_as_m3_rejects_it_and_stops_the_assessment (tests_m8.test_m8_no_fallback.TestInvalidAmbiguousAndT
+MI-34  KILLED      16s tier 1: FAIL: test_in_order_events_become_records_with_their_sequence_in_the_lineage (tests_m8.test_m8_events.TestEvents.test_in_order_events_become_records_w
+MI-38  KILLED      21s tier 1: FAIL: test_differs_as_declared (tests_m8.test_m8_corpus.TestCorpusThroughAuif.test_differs_as_declared) [F11]
+MI-42  KILLED      61s tier 1: FAIL: test_a_failed_or_forbidden_read_keeps_its_own_reason (tests_m8.test_m8r1_empty_source.TestTheBatchCheckItself.test_a_failed_or_forbidden_read_ke
+MI-46  KILLED      16s tier 1: FAIL: test_a_wait_that_times_out_goes_to_reconciliation_and_never_invents_the_missing_event (tests_m8.test_m8_events.TestEvents.test_a_wait_that_times
+MI-50  KILLED      56s tier 1: FAIL: test_a_read_whose_records_were_all_refused_keeps_its_own_reason (tests_m8.test_m8r1_empty_source.TestTheBatchCheckItself.test_a_read_whose_recor
+MM-02  KILLED      16s tier 1: FAIL: test_an_event_object_whose_observation_never_arrives_is_refused (tests_m8.test_m8_events.TestEventLineage.test_an_event_object_whose_observation
+MM-06  KILLED       2s tier 1: FAIL: test_an_object_outside_any_import_whose_observation_never_comes (tests_m8.test_m8_integrity.TestTheTransportReportStandsAlone.test_an_object_out
+MG-04  KILLED      15s tier 1: FAIL: test_a_revalidated_integration_makes_earlier_imports_stale_until_reimported (tests_m8.test_m8_no_fallback.TestStaleDriftedAndDegraded.test_a_rev
+MG-08  KILLED      16s tier 1: ERROR: test_an_integration_that_never_reported_a_state (tests_m8.test_m8_no_fallback.TestStaleDriftedAndDegraded.test_an_integration_that_never_report
+MP-02  KILLED       1s tier 1: FAIL: test_this_code_generates_exactly_the_stored_packs (tests_m8.test_m8_dev01.TestContractForm.test_this_code_generates_exactly_the_stored_packs)
+MC-03  KILLED      19s tier 1: FAIL: test_every_auif_call_that_raises_is_refused_as_auif_raised (tests_m8.test_m8_findings.TestAnAuifExceptionIsStillRefused.test_every_auif_call_tha
+MD-03  KILLED       1s tier 1: FAIL: test_a_consistently_re_manifested_auif_is_refused (tests_m8.test_m8_dependency.TestFrozenDependency.test_a_consistently_re_manifested_auif_is_re
+ML-04  KILLED      36s tier 1: FAIL: test_each_missing_or_broken_part_is_found (tests_m8.test_m8_lineage.TestTheLineageCheckerItself.test_each_missing_or_broken_part_is_found)
+mutants 21: killed 21, documented equivalent 0, survived 0, timeout 0 | AUIF after: unchanged

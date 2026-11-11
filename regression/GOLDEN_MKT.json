@@ -1,0 +1,784 @@
+{
+ "golden": {
+  "all_runs_reproduce": true,
+  "audit_chain_ok": [
+   true,
+   true
+  ],
+  "event_count": {
+   "PRJ-001": 4,
+   "PRJ-002": 4,
+   "PRJ-003": 0,
+   "tenant": 6
+  },
+  "findings_created": {
+   "PRJ-001": 3,
+   "PRJ-002": 3,
+   "PRJ-003": 0,
+   "tenant": 8
+  },
+  "findings_total": 14,
+  "no_definitive_recommendation_when_a_gate_fails": true,
+  "policy_versions": [
+   "SYN-FIN-POL-1",
+   "SYN-DET-POL-1",
+   "SYN-MKT-POL-1",
+   "SYN-MKT-SPEC-1"
+  ],
+  "portfolio": {
+   "forecast_exposure": {
+    "amount_labels": [
+     "record",
+     "estimate"
+    ],
+    "findings": 3,
+    "lower_bound_cents": 2405000,
+    "quantified": 2,
+    "quantified_amount_available": true,
+    "range_display": "24050.00 to 35150.00; 1 further finding(s) are unquantified and not included",
+    "unquantified": 1,
+    "upper_bound_cents": 3515000
+   },
+   "potential_opportunity": {
+    "amount_labels": [
+     "estimate"
+    ],
+    "findings": 4,
+    "lower_bound_cents": 71290280,
+    "quantified": 3,
+    "quantified_amount_available": true,
+    "range_display": "712902.80; 1 further finding(s) are unquantified and not included",
+    "unquantified": 1,
+    "upper_bound_cents": 71290280
+   }
+  },
+  "rankings": {
+   "PRJ-001|demand/DEM-0002": {
+    "definitive": false,
+    "human_approval_required": true,
+    "status": "insufficient_offers"
+   },
+   "PRJ-002|demand/DEM-0001": {
+    "definitive": false,
+    "human_approval_required": true,
+    "status": "indicative"
+   },
+   "PRJ-002|spec_requirement/SPEC-0001": {
+    "definitive": false,
+    "human_approval_required": true,
+    "status": "insufficient_offers"
+   },
+   "tenant|demand/DEM-0001": {
+    "definitive": false,
+    "human_approval_required": true,
+    "status": "indicative"
+   },
+   "tenant|demand/DEM-0002": {
+    "definitive": false,
+    "human_approval_required": true,
+    "status": "insufficient_offers"
+   },
+   "tenant|spec_requirement/SPEC-0001": {
+    "definitive": false,
+    "human_approval_required": true,
+    "status": "insufficient_offers"
+   }
+  },
+  "replay_of_ingest_is_a_no_op": true,
+  "rule_runs": {
+   "PRJ-001": {
+    "MP02": [
+     "evaluated",
+     1,
+     0,
+     1,
+     0
+    ],
+    "MP03": [
+     "evaluated",
+     1,
+     0,
+     1,
+     0
+    ],
+    "MP04": [
+     "evaluated",
+     1,
+     1,
+     0,
+     0
+    ],
+    "MP05": [
+     "evaluated",
+     1,
+     1,
+     0,
+     0
+    ],
+    "MP09": [
+     "evaluated",
+     1,
+     1,
+     0,
+     0
+    ],
+    "MPD1": [
+     "evaluated",
+     1,
+     0,
+     0,
+     0
+    ]
+   },
+   "PRJ-002": {
+    "MP02": [
+     "evaluated",
+     4,
+     2,
+     2,
+     0
+    ],
+    "MP03": [
+     "evaluated",
+     1,
+     1,
+     0,
+     0
+    ],
+    "MP04": [
+     "evaluated",
+     1,
+     0,
+     1,
+     0
+    ],
+    "MP05": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "MP09": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "MPD1": [
+     "evaluated",
+     2,
+     0,
+     0,
+     0
+    ]
+   },
+   "PRJ-003": {
+    "MP02": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "MP03": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "MP04": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "MP05": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "MP09": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ],
+    "MPD1": [
+     "evaluated",
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "tenant": {
+    "MP01": [
+     "evaluated",
+     4,
+     3,
+     0,
+     0
+    ],
+    "MP06": [
+     "evaluated",
+     1,
+     1,
+     0,
+     0
+    ],
+    "MP07": [
+     "evaluated",
+     1,
+     1,
+     0,
+     0
+    ],
+    "MP08": [
+     "evaluated",
+     9,
+     0,
+     9,
+     0
+    ],
+    "MP10": [
+     "evaluated",
+     3,
+     3,
+     0,
+     0
+    ],
+    "MPD1": [
+     "evaluated",
+     217,
+     0,
+     0,
+     0
+    ]
+   }
+  },
+  "runs_checked": 4,
+  "scenarios": {
+   "PRJ-002": {
+    "demand/DEM-0001|supplier_quote/Q-0001|buy_now": 10777255,
+    "demand/DEM-0001|supplier_quote/Q-0001|stage": 10742405,
+    "demand/DEM-0001|supplier_quote/Q-0001|wait:down_5pct": 10099450,
+    "demand/DEM-0001|supplier_quote/Q-0001|wait:flat": 10630263,
+    "demand/DEM-0001|supplier_quote/Q-0001|wait:up_5pct": 11161076,
+    "demand/DEM-0001|supplier_quote/Q-0002|buy_now": 10404458,
+    "demand/DEM-0001|supplier_quote/Q-0002|stage": 10370727,
+    "demand/DEM-0001|supplier_quote/Q-0002|wait:down_5pct": 9775954,
+    "demand/DEM-0001|supplier_quote/Q-0002|wait:flat": 10289741,
+    "demand/DEM-0001|supplier_quote/Q-0002|wait:up_5pct": 10803528,
+    "demand/DEM-0001|supplier_quote/Q-0005|buy_now": 492711,
+    "demand/DEM-0001|supplier_quote/Q-0005|stage": 516396
+   },
+   "tenant": {
+    "demand/DEM-0001|supplier_quote/Q-0001|buy_now": 10777255,
+    "demand/DEM-0001|supplier_quote/Q-0001|stage": 10742405,
+    "demand/DEM-0001|supplier_quote/Q-0001|wait:down_5pct": 10099450,
+    "demand/DEM-0001|supplier_quote/Q-0001|wait:flat": 10630263,
+    "demand/DEM-0001|supplier_quote/Q-0001|wait:up_5pct": 11161076,
+    "demand/DEM-0001|supplier_quote/Q-0002|buy_now": 10404458,
+    "demand/DEM-0001|supplier_quote/Q-0002|stage": 10370727,
+    "demand/DEM-0001|supplier_quote/Q-0002|wait:down_5pct": 9775954,
+    "demand/DEM-0001|supplier_quote/Q-0002|wait:flat": 10289741,
+    "demand/DEM-0001|supplier_quote/Q-0002|wait:up_5pct": 10803528,
+    "demand/DEM-0001|supplier_quote/Q-0005|buy_now": 492711,
+    "demand/DEM-0001|supplier_quote/Q-0005|stage": 516396
+   }
+  },
+  "signals": {
+   "PRJ-001": [
+    {
+     "evidence_records": 2,
+     "facts": {
+      "gross_cents": 2405000,
+      "orders": [
+       "purchase_order/PO-0100",
+       "purchase_order/PO-0101"
+      ]
+     },
+     "gross_cents": 2405000,
+     "impact_cents": 2405000,
+     "interpretation": "forecast_exposure",
+     "label": "record",
+     "rule": "DET-MP05",
+     "severity": "low",
+     "status": "quantified",
+     "strength": "moderate",
+     "subject": "PO-0100|PO-0101",
+     "subtype": "possible_duplicate_order"
+    },
+    {
+     "evidence_records": 5,
+     "facts": {
+      "gross_cents": 1110000,
+      "surplus_micro": 600000000
+     },
+     "gross_cents": 1110000,
+     "impact_cents": 1110000,
+     "interpretation": "forecast_exposure",
+     "label": "estimate",
+     "rule": "DET-MP04",
+     "severity": "low",
+     "status": "quantified",
+     "strength": "moderate",
+     "subject": "demand/DEM-0002",
+     "subtype": "ordered_above_demand"
+    },
+    {
+     "evidence_records": 7,
+     "facts": {
+      "gap_bps": 595,
+      "gross_cents": null,
+      "unit_gap_cents": 110
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "potential_opportunity",
+     "label": "none",
+     "rule": "DET-MP09",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "moderate",
+     "subject": "OPP-DEM-0002-Q-0006",
+     "subtype": "saving_opportunity"
+    }
+   ],
+   "PRJ-002": [
+    {
+     "evidence_records": 5,
+     "facts": {
+      "baseline_unit_cents": 28730,
+      "cls": "not_comparable",
+      "unit_cents": 27000
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "operational_risk",
+     "label": "none",
+     "rule": "DET-MP02",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "strong",
+     "subject": "spec_requirement/SPEC-0001>Q-0003",
+     "subtype": "cheaper_quote_not_comparable"
+    },
+    {
+     "evidence_records": 9,
+     "facts": {
+      "baseline_unit_cents": 245000,
+      "cls": "partially_comparable",
+      "unit_cents": 12002
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "operational_risk",
+     "label": "none",
+     "rule": "DET-MP02",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "moderate",
+     "subject": "demand/DEM-0001>Q-0005",
+     "subtype": "cheaper_quote_partially_comparable"
+    },
+    {
+     "evidence_records": 19,
+     "facts": {
+      "days_left": 27,
+      "due_date": "2026-10-27",
+      "offers": [
+       "supplier_quote/Q-0001",
+       "supplier_quote/Q-0002",
+       "supplier_quote/Q-0005"
+      ],
+      "uncovered_micro": 40000000
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "operational_risk",
+     "label": "none",
+     "rule": "DET-MP03",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "moderate",
+     "subject": "demand/DEM-0001",
+     "subtype": "purchase_decision_due"
+    }
+   ],
+   "PRJ-003": [],
+   "tenant": [
+    {
+     "evidence_records": 1,
+     "facts": {
+      "age_days": 168,
+      "state": "stale"
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "data_quality_risk",
+     "label": "none",
+     "rule": "DET-MP01",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "strong",
+     "subject": "MAT-CU|index",
+     "subtype": "market_series_stale"
+    },
+    {
+     "evidence_records": 3,
+     "facts": {
+      "unresolved_critical": [
+       "customs_classification",
+       "duty_rate_confirmed",
+       "import_permit"
+      ]
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "compliance_risk",
+     "label": "none",
+     "rule": "DET-MP07",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "strong",
+     "subject": "Q-0005",
+     "subtype": "international_checks_unresolved"
+    },
+    {
+     "evidence_records": 2,
+     "facts": {
+      "divergence_bps": 109,
+      "reference_aud_cents": 10550,
+      "stated_aud_cents": 10436,
+      "stated_rate_age_days": 151
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "forecast_exposure",
+     "label": "none",
+     "rule": "DET-MP06",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "strong",
+     "subject": "Q-0005",
+     "subtype": "fx_stale_or_diverging"
+    },
+    {
+     "evidence_records": 3,
+     "facts": {
+      "estimate_cents": 17870944,
+      "gap_bps": 3306,
+      "highest": "PRJ-002",
+      "lowest": "PRJ-003"
+     },
+     "gross_cents": 17870944,
+     "impact_cents": 17870944,
+     "interpretation": "potential_opportunity",
+     "label": "estimate",
+     "rule": "DET-MP10",
+     "severity": "medium",
+     "status": "quantified",
+     "strength": "weak",
+     "subject": "PORT-MAT-PBOARD",
+     "subtype": "portfolio_rate_gap"
+    },
+    {
+     "evidence_records": 1,
+     "facts": {
+      "states": [
+       [
+        "supplier_quote/Q-0004",
+        "expired"
+       ]
+      ]
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "data_quality_risk",
+     "label": "none",
+     "rule": "DET-MP01",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "strong",
+     "subject": "MAT-REO|quote",
+     "subtype": "quote_evidence_not_current"
+    },
+    {
+     "evidence_records": 1,
+     "facts": {
+      "age_days": null,
+      "state": "unavailable"
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "data_quality_risk",
+     "label": "none",
+     "rule": "DET-MP01",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "strong",
+     "subject": "MAT-PBOARD|index",
+     "subtype": "market_series_unavailable"
+    },
+    {
+     "evidence_records": 3,
+     "facts": {
+      "estimate_cents": 50578576,
+      "gap_bps": 465778,
+      "highest": "PRJ-003",
+      "lowest": "PRJ-002"
+     },
+     "gross_cents": 50578576,
+     "impact_cents": 50578576,
+     "interpretation": "potential_opportunity",
+     "label": "estimate",
+     "rule": "DET-MP10",
+     "severity": "high",
+     "status": "quantified",
+     "strength": "weak",
+     "subject": "PORT-MAT-CU",
+     "subtype": "portfolio_rate_gap"
+    },
+    {
+     "evidence_records": 5,
+     "facts": {
+      "estimate_cents": 2840760,
+      "gap_bps": 636,
+      "highest": "PRJ-003",
+      "lowest": "PRJ-002"
+     },
+     "gross_cents": 2840760,
+     "impact_cents": 2840760,
+     "interpretation": "potential_opportunity",
+     "label": "estimate",
+     "rule": "DET-MP10",
+     "severity": "low",
+     "status": "quantified",
+     "strength": "weak",
+     "subject": "PORT-MAT-STEEL",
+     "subtype": "portfolio_rate_gap"
+    }
+   ]
+  },
+  "tenant_isolation": {
+   "every_zero_two_pin_resolves_in_its_own_tenant": true,
+   "zero_one_findings": 14,
+   "zero_one_run_visible_to_zero_two": false,
+   "zero_two_findings_before_ingest": 0
+  },
+  "zero_two_signals": {
+   "PRJ-001": [],
+   "tenant": [
+    {
+     "evidence_records": 1,
+     "facts": {
+      "age_days": 168,
+      "state": "stale"
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "data_quality_risk",
+     "label": "none",
+     "rule": "DET-MP01",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "strong",
+     "subject": "MAT-CU|index",
+     "subtype": "market_series_stale"
+    },
+    {
+     "evidence_records": 1,
+     "facts": {
+      "age_days": null,
+      "state": "unavailable"
+     },
+     "gross_cents": null,
+     "impact_cents": null,
+     "interpretation": "data_quality_risk",
+     "label": "none",
+     "rule": "DET-MP01",
+     "severity": "unrated",
+     "status": "unquantified",
+     "strength": "strong",
+     "subject": "MAT-PBOARD|index",
+     "subtype": "market_series_unavailable"
+    }
+   ]
+  }
+ },
+ "oracle": {
+  "expected": {
+   "MP01|tenant|MAT-CU|index": {
+    "age_days": 168,
+    "state": "stale"
+   },
+   "MP01|tenant|MAT-PBOARD|index": {
+    "age_days": null,
+    "state": "unavailable"
+   },
+   "MP01|tenant|MAT-REO|quote": {
+    "states": [
+     [
+      "supplier_quote/Q-0004",
+      "expired"
+     ]
+    ]
+   },
+   "MP02|PRJ-002|demand/DEM-0001>Q-0005": {
+    "baseline_unit_cents": 245000,
+    "cls": "partially_comparable",
+    "unit_cents": 12002
+   },
+   "MP02|PRJ-002|spec_requirement/SPEC-0001>Q-0003": {
+    "baseline_unit_cents": 28730,
+    "cls": "not_comparable",
+    "unit_cents": 27000
+   },
+   "MP03|PRJ-002|demand/DEM-0001": {
+    "days_left": 27,
+    "due_date": "2026-10-27",
+    "offers": [
+     "supplier_quote/Q-0001",
+     "supplier_quote/Q-0002",
+     "supplier_quote/Q-0005"
+    ],
+    "uncovered_micro": 40000000
+   },
+   "MP04|PRJ-001|demand/DEM-0002": {
+    "gross_cents": 1110000,
+    "surplus_micro": 600000000
+   },
+   "MP05|PRJ-001|PO-0100|PO-0101": {
+    "gross_cents": 2405000,
+    "orders": [
+     "purchase_order/PO-0100",
+     "purchase_order/PO-0101"
+    ]
+   },
+   "MP06|tenant|Q-0005": {
+    "divergence_bps": 109,
+    "reference_aud_cents": 10550,
+    "stated_aud_cents": 10436,
+    "stated_rate_age_days": 151
+   },
+   "MP07|tenant|Q-0005": {
+    "unresolved_critical": [
+     "customs_classification",
+     "duty_rate_confirmed",
+     "import_permit"
+    ]
+   },
+   "MP09|PRJ-001|OPP-DEM-0002-Q-0006": {
+    "gap_bps": 595,
+    "gross_cents": null,
+    "unit_gap_cents": 110
+   },
+   "MP10|tenant|PORT-MAT-CU": {
+    "estimate_cents": 50578576,
+    "gap_bps": 465778,
+    "highest": "PRJ-003",
+    "lowest": "PRJ-002"
+   },
+   "MP10|tenant|PORT-MAT-PBOARD": {
+    "estimate_cents": 17870944,
+    "gap_bps": 3306,
+    "highest": "PRJ-002",
+    "lowest": "PRJ-003"
+   },
+   "MP10|tenant|PORT-MAT-STEEL": {
+    "estimate_cents": 2840760,
+    "gap_bps": 636,
+    "highest": "PRJ-003",
+    "lowest": "PRJ-002"
+   }
+  },
+  "expected_count": 14,
+  "scenario_totals": {
+   "buy_now": 10777255,
+   "offer": "supplier_quote/Q-0001",
+   "quantity": 40,
+   "stage": 10742405,
+   "wait_flat": 10630263
+  },
+  "supplier_levels": {
+   "SUP-001": {
+    "acceptance_bps": 10000,
+    "fill_bps": 10000,
+    "orders": 6
+   },
+   "SUP-002": {
+    "acceptance_bps": 10000,
+    "fill_bps": 10000,
+    "orders": 11
+   },
+   "SUP-003": {
+    "acceptance_bps": 10000,
+    "fill_bps": 10000,
+    "orders": 8
+   },
+   "SUP-004": {
+    "acceptance_bps": 10000,
+    "fill_bps": 10000,
+    "orders": 8
+   },
+   "SUP-005": {
+    "acceptance_bps": 10000,
+    "fill_bps": 10000,
+    "orders": 13
+   },
+   "SUP-006": {
+    "acceptance_bps": 10000,
+    "fill_bps": 10000,
+    "orders": 17
+   },
+   "SUP-007": {
+    "acceptance_bps": 10000,
+    "fill_bps": 10000,
+    "orders": 13
+   },
+   "SUP-008": {
+    "acceptance_bps": 10000,
+    "fill_bps": 10000,
+    "orders": 14
+   }
+  }
+ },
+ "oracle_zero_two": {
+  "expected": {
+   "MP01|tenant|MAT-CU|index": {
+    "age_days": 168,
+    "state": "stale"
+   },
+   "MP01|tenant|MAT-PBOARD|index": {
+    "age_days": null,
+    "state": "unavailable"
+   }
+  },
+  "expected_count": 2,
+  "supplier_levels": {
+   "SUP-001": {
+    "acceptance_bps": 10000,
+    "fill_bps": 10000,
+    "orders": 10
+   },
+   "SUP-002": {
+    "acceptance_bps": 10000,
+    "fill_bps": 10000,
+    "orders": 12
+   },
+   "SUP-003": {
+    "acceptance_bps": 10000,
+    "fill_bps": 10000,
+    "orders": 8
+   }
+  }
+ }
+}

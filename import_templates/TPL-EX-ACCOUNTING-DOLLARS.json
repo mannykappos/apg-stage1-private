@@ -1,0 +1,62 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "Ref",
+   "target_field": "source_record_id",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "Supplier",
+   "target_field": "supplier_name_text",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "Job",
+   "target_field": "project_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%d/%m/%Y",
+   "required": true,
+   "source_column": "Date",
+   "target_field": "invoice_date",
+   "transform": "parse_date",
+   "type": "date"
+  },
+  {
+   "required": true,
+   "source_column": "Total (inc GST)",
+   "target_field": "amount_inc_gst_cents",
+   "transform": "dollars_to_cents",
+   "type": "money_cents"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8-sig",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "inclusive_total_column",
+  "unit": "dollars"
+ },
+ "natural_key": [
+  "Ref"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-01",
+ "source_label": "Example only: a different layout with DD/MM/YYYY dates and dollar amounts (synthetic)",
+ "status": "draft - unverified against any real export",
+ "target_entity": "ap_invoice",
+ "template_id": "TPL-EX-ACCOUNTING-DOLLARS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

@@ -1,0 +1,4 @@
+First full run of tools/sabotage_mie1.py: 58 of 60 caught. SB-26 was pointed at the wrong test file (the licence-window test is in test_mie_core_observations.py, AD-10); SB-25 found a real gap (no test showed that two value bases never form one series), closed by test_UT_04_different_value_bases_are_never_one_series in test_mie_core_timing.py.
+MISSED SB-25 asking, offer and index values are merged into one series -> test_mie_core_signals.py  [tests 23  failures 0  errors 0]
+MISSED SB-26 an observation outside its licence window is used -> test_mie_core_signals.py  [tests 23  failures 0  errors 0]
+sabotage cases 60  missed 2  MISSED: ['SB-25', 'SB-26']

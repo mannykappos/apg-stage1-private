@@ -1,0 +1,14 @@
+== the reference store (InMemoryRecordStore)
+PASS RH-01 revisions are numbered 1..n in the order written; put returns the revision it wrote; history lists them oldest first
+PASS RH-02 a past revision reads back exactly as written, payload and hash, after later writes
+PASS RH-03 a revision outside 1..n reads as nothing: 0, -1, n+1, a boolean, a text or a fraction
+PASS RH-04 an identical payload appends nothing; any other payload appends exactly one revision
+PASS RH-05 history and get(revision) agree for every revision, and another tenant sees none of it
+PASS RH-06 nothing a caller does with what it reads or writes changes a stored revision
+CAUGHT faulty store OutOfRangeReadsLatest (Reads revision 0 or a negative revision like a list index (so 0 reads the latest).): fails ['RH-03']
+CAUGHT faulty store LeaksStoredObjects (Hands callers the stored payload object itself, so a caller can change history.): fails ['RH-06']
+CAUGHT faulty store AppendsIdentical (Appends a revision even for a payload identical to the latest.): fails ['RH-04']
+CAUGHT faulty store RewritesHistory (Rewrites the previous revision in place when a new one is written.): fails ['RH-01', 'RH-02']
+
+history cases 6  reference failed 0  faulty stores 4  missed 0
+ALL HISTORY CASES PASS AND EVERY FAULTY STORE IS CAUGHT

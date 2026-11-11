@@ -1,0 +1,268 @@
+Run against the delivered, unmodified APG-M9.1 package (extracted from its ZIP; hash 12326469a951238f674013918f279b89a75f3ea471fa6c5cbcefd1df0496cb9f) with only tests/test_api_m92_corrections.py added.
+tests 24  failures 14  errors 2
+======================================================================
+ERROR: test_a_request_id_or_finding_id_with_a_trailing_newline_is_malformed (tests.test_api_m92_corrections.TestIdentifiersAndTimesAreWholeStrings.test_a_request_id_or_finding_id_with_a_trailing_newline_is_malformed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 142, in test_a_request_id_or_finding_id_with_a_trailing_newline_is_malformed
+    res = self.ask(self.req(**{field: self.fid + '\n' if field == 'finding_id' else 'REQ-9\n'}))
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_approval_boundary.py", line 77, in ask
+    return AB.request_approval(who or self.m.approver, self.scopes if scopes == 'default' else scopes, self.m.clock, request)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/apg/api/approval_boundary.py", line 218, in request_approval
+    return _finish(scoped, rec, key, rid, fid, h, res, ctx, clock, 'accepted')
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/apg/api/approval_boundary.py", line 236, in _finish
+    scoped.log('approval_request.accepted', 'approval_request/' + rid, 'ok',
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               reason={'accepted': 'the approval was recorded', 'recovered': 'an earlier try had recorded the approval; it was not made again'}[kind], detail={'code': res.get('code'), 'finding': fid})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/apg/tenancy.py", line 107, in log
+    return self._audit.append(self.ctx, event_type, resource, outcome, reason, correlation_id, detail)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/apg/reference_impl.py", line 176, in append
+    _check_id(n, v)
+    ~~~~~~~~~^^^^^^
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/apg/reference_impl.py", line 68, in _check_id
+    raise PayloadInvalid(f'{name} must be a non-empty string without control characters, at most 200 characters')
+apg.ports.PayloadInvalid: resource must be a non-empty string without control characters, at most 200 characters
+
+======================================================================
+ERROR: test_no_audit_resource_name_can_carry_a_newline (tests.test_api_m92_corrections.TestIdentifiersAndTimesAreWholeStrings.test_no_audit_resource_name_can_carry_a_newline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 160, in test_no_audit_resource_name_can_carry_a_newline
+    self.ask(self.req(rid='REQ-9\n'))
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_approval_boundary.py", line 77, in ask
+    return AB.request_approval(who or self.m.approver, self.scopes if scopes == 'default' else scopes, self.m.clock, request)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/apg/api/approval_boundary.py", line 218, in request_approval
+    return _finish(scoped, rec, key, rid, fid, h, res, ctx, clock, 'accepted')
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/apg/api/approval_boundary.py", line 236, in _finish
+    scoped.log('approval_request.accepted', 'approval_request/' + rid, 'ok',
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               reason={'accepted': 'the approval was recorded', 'recovered': 'an earlier try had recorded the approval; it was not made again'}[kind], detail={'code': res.get('code'), 'finding': fid})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/apg/tenancy.py", line 107, in log
+    return self._audit.append(self.ctx, event_type, resource, outcome, reason, correlation_id, detail)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/apg/reference_impl.py", line 176, in append
+    _check_id(n, v)
+    ~~~~~~~~~^^^^^^
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/apg/reference_impl.py", line 68, in _check_id
+    raise PayloadInvalid(f'{name} must be a non-empty string without control characters, at most 200 characters')
+apg.ports.PayloadInvalid: resource must be a non-empty string without control characters, at most 200 characters
+
+======================================================================
+FAIL: test_the_audit_entry_names_the_code_and_not_the_rationale (tests.test_api_m92_corrections.TestAConflictOnOpeningTheRequestIsAudited.test_the_audit_entry_names_the_code_and_not_the_rationale)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 100, in test_the_audit_entry_names_the_code_and_not_the_rationale
+    self.assertEqual(len(ev), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_the_outcome_is_answered_as_before_and_one_refusal_is_audited (tests.test_api_m92_corrections.TestAConflictOnOpeningTheRequestIsAudited.test_the_outcome_is_answered_as_before_and_one_refusal_is_audited)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 93, in test_the_outcome_is_answered_as_before_and_one_refusal_is_audited
+    self.assertEqual([(e.event_type, e.outcome, e.resource) for e in ev], [('approval_request.refused', 'refused', 'approval_request/R-1')])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != [('approval_request.refused', 'refused', 'approval_request/R-1')]
+
+Second list contains 1 additional elements.
+First extra element 0:
+('approval_request.refused', 'refused', 'approval_request/R-1')
+
+- []
++ [('approval_request.refused', 'refused', 'approval_request/R-1')]
+
+======================================================================
+FAIL: test_two_copies_of_one_request_leave_one_approval_and_every_outcome_audited (tests.test_api_m92_corrections.TestAConflictOnOpeningTheRequestIsAudited.test_two_copies_of_one_request_leave_one_approval_and_every_outcome_audited)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 131, in test_two_copies_of_one_request_leave_one_approval_and_every_outcome_audited
+    self.assertIn(('approval_request.refused', 'refused'), kinds)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('approval_request.refused', 'refused') not found in [('approval_request.accepted', 'ok')]
+
+======================================================================
+FAIL: test_a_crash_after_the_audit_entry_and_before_the_answer_is_noted_leaves_at_least_one_entry (tests.test_api_m92_corrections.TestAnApprovalIsAuditedAfterAFailedFirstAuditWrite.test_a_crash_after_the_audit_entry_and_before_the_answer_is_noted_leaves_at_least_one_entry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 197, in test_a_crash_after_the_audit_entry_and_before_the_answer_is_noted_leaves_at_least_one_entry
+    self.assertGreaterEqual(len([e for e in self.boundary_events() if e.event_type == 'approval_request.accepted']), 1)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 not greater than or equal to 1
+
+======================================================================
+FAIL: test_the_approval_exists_the_caller_is_told_and_a_retry_writes_the_missing_entry (tests.test_api_m92_corrections.TestAnApprovalIsAuditedAfterAFailedFirstAuditWrite.test_the_approval_exists_the_caller_is_told_and_a_retry_writes_the_missing_entry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 183, in test_the_approval_exists_the_caller_is_told_and_a_retry_writes_the_missing_entry
+    self.assertEqual(self.stored_requests()[0].payload['state'], 'pending', 'the answer is not noted until the audit entry exists')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'done' != 'pending'
+- done
++ pending
+ : the answer is not noted until the audit entry exists
+
+======================================================================
+FAIL: test_a_malformed_call_is_refused_and_audited (tests.test_api_m92_corrections.TestEveryCallOfTheExecutorCheckIsAudited.test_a_malformed_call_is_refused_and_audited)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 223, in test_a_malformed_call_is_refused_and_audited
+    self.assertEqual([(e.event_type, e.outcome) for e in ev], [('approval_request.execution_check', 'refused')])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != [('approval_request.execution_check', 'refused')]
+
+Second list contains 1 additional elements.
+First extra element 0:
+('approval_request.execution_check', 'refused')
+
+- []
++ [('approval_request.execution_check', 'refused')]
+
+======================================================================
+FAIL: test_a_session_expiry_with_a_trailing_newline_or_non_ascii_digits_is_not_live (tests.test_api_m92_corrections.TestIdentifiersAndTimesAreWholeStrings.test_a_session_expiry_with_a_trailing_newline_or_non_ascii_digits_is_not_live)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 170, in test_a_session_expiry_with_a_trailing_newline_or_non_ascii_digits_is_not_live
+    self.assertFalse(AB._session_live(types.SimpleNamespace(expires_at=bad), self.m.clock), repr(bad))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false : '2999-01-01T00:00:00Z\n'
+
+======================================================================
+FAIL: test_the_screen_and_the_executor_check_refuse_a_finding_id_with_a_trailing_newline (tests.test_api_m92_corrections.TestIdentifiersAndTimesAreWholeStrings.test_the_screen_and_the_executor_check_refuse_a_finding_id_with_a_trailing_newline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 157, in test_the_screen_and_the_executor_check_refuse_a_finding_id_with_a_trailing_newline
+    self.assertEqual(res, {'valid': False, 'code': 'NOT_ALLOWED'})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'valid': False, 'code': 'NOT_FOUND'} != {'valid': False, 'code': 'NOT_ALLOWED'}
+- {'code': 'NOT_FOUND', 'valid': False}
+?               ^ ^^
+
++ {'code': 'NOT_ALLOWED', 'valid': False}
+?               ^^^ ^^
+
+
+======================================================================
+FAIL: test_a_person_with_no_role_at_all_gets_no_token (tests.test_api_m92_corrections.TestTheTokenIsOnlyForACallerWhoCanApprove.test_a_person_with_no_role_at_all_gets_no_token)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 48, in test_a_person_with_no_role_at_all_gets_no_token
+    self.assertEqual((r['can_approve'], r['token']), (False, None))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (False, {'finding_id': 'FND-3b24102724f9e17d839d'[89 chars]93'}) != (False, None)
+
+First differing element 1:
+{'finding_id': 'FND-3b24102724f9e17d839d'[88 chars]b93'}
+None
+
++ (False, None)
+- (False,
+-  {'digest': '67a504082f147af50344d0ba',
+-   'finding_id': 'FND-3b24102724f9e17d839d',
+-   'proposal': 'b6435f21d0255226ebba2b93',
+-   'version': 1})
+
+======================================================================
+FAIL: test_a_proposer_who_also_holds_the_approver_role_gets_no_token (tests.test_api_m92_corrections.TestTheTokenIsOnlyForACallerWhoCanApprove.test_a_proposer_who_also_holds_the_approver_role_gets_no_token)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 57, in test_a_proposer_who_also_holds_the_approver_role_gets_no_token
+    self.assertEqual((r['can_approve'], r['token']), (False, None))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (False, {'finding_id': 'FND-3b24102724f9e17d839d'[89 chars]93'}) != (False, None)
+
+First differing element 1:
+{'finding_id': 'FND-3b24102724f9e17d839d'[88 chars]b93'}
+None
+
++ (False, None)
+- (False,
+-  {'digest': '67a504082f147af50344d0ba',
+-   'finding_id': 'FND-3b24102724f9e17d839d',
+-   'proposal': 'b6435f21d0255226ebba2b93',
+-   'version': 1})
+
+======================================================================
+FAIL: test_a_viewer_with_the_approver_role_but_no_project_approval_gets_no_token (tests.test_api_m92_corrections.TestTheTokenIsOnlyForACallerWhoCanApprove.test_a_viewer_with_the_approver_role_but_no_project_approval_gets_no_token)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 37, in test_a_viewer_with_the_approver_role_but_no_project_approval_gets_no_token
+    self.assertEqual((r['can_approve'], r['token']), (False, None))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (False, {'finding_id': 'FND-3b24102724f9e17d839d'[89 chars]93'}) != (False, None)
+
+First differing element 1:
+{'finding_id': 'FND-3b24102724f9e17d839d'[88 chars]b93'}
+None
+
++ (False, None)
+- (False,
+-  {'digest': '67a504082f147af50344d0ba',
+-   'finding_id': 'FND-3b24102724f9e17d839d',
+-   'proposal': 'b6435f21d0255226ebba2b93',
+-   'version': 1})
+
+======================================================================
+FAIL: test_a_viewer_without_the_approver_role_gets_no_token (tests.test_api_m92_corrections.TestTheTokenIsOnlyForACallerWhoCanApprove.test_a_viewer_without_the_approver_role_gets_no_token)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 43, in test_a_viewer_without_the_approver_role_gets_no_token
+    self.assertEqual((r['can_approve'], r['token']), (False, None))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (False, {'finding_id': 'FND-3b24102724f9e17d839d'[89 chars]93'}) != (False, None)
+
+First differing element 1:
+{'finding_id': 'FND-3b24102724f9e17d839d'[88 chars]b93'}
+None
+
++ (False, None)
+- (False,
+-  {'digest': '67a504082f147af50344d0ba',
+-   'finding_id': 'FND-3b24102724f9e17d839d',
+-   'proposal': 'b6435f21d0255226ebba2b93',
+-   'version': 1})
+
+======================================================================
+FAIL: test_the_proposer_gets_no_token_for_their_own_proposal (tests.test_api_m92_corrections.TestTheTokenIsOnlyForACallerWhoCanApprove.test_the_proposer_gets_no_token_for_their_own_proposal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 52, in test_the_proposer_gets_no_token_for_their_own_proposal
+    self.assertEqual((r['can_approve'], r['token']), (False, None))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (False, {'finding_id': 'FND-3b24102724f9e17d839d'[89 chars]93'}) != (False, None)
+
+First differing element 1:
+{'finding_id': 'FND-3b24102724f9e17d839d'[88 chars]b93'}
+None
+
++ (False, None)
+- (False,
+-  {'digest': '67a504082f147af50344d0ba',
+-   'finding_id': 'FND-3b24102724f9e17d839d',
+-   'proposal': 'b6435f21d0255226ebba2b93',
+-   'version': 1})
+
+======================================================================
+FAIL: test_the_token_is_never_given_unless_can_approve_is_true_in_any_combination (tests.test_api_m92_corrections.TestTheTokenIsOnlyForACallerWhoCanApprove.test_the_token_is_never_given_unless_can_approve_is_true_in_any_combination)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 72, in test_the_token_is_never_given_unless_can_approve_is_true_in_any_combination
+    self.assertTokenFollowsCanApprove(r)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/tmp/m92pre_ns0po8xa/APG_M9_1/tests/test_api_m92_corrections.py", line 32, in assertTokenFollowsCanApprove
+    self.assertEqual(r['token'] is not None, r['can_approve'], r)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True != False : {'status': 'shown', 'code': 'OK', 'finding_id': 'FND-3b24102724f9e17d839d', 'finding_status': 'action_proposed', 'finding_version': 1, 'scope': {'level': 'project', 'project': 'PRJ-001'}, 'proposal': {'text': 'renegotiate with the supplier', 'proposed_by': 'oscar', 'proposed_at': '2026-10-01T09:00:00Z'}, 'can_approve': False, 'token': {'finding_id': 'FND-3b24102724f9e17d839d', 'version': 1, 'digest': '67a504082f147af50344d0ba', 'proposal': 'b6435f21d0255226ebba2b93'}}
+
+----------------------------------------------------------------------
+Ran 24 tests in 1.185s
+
+FAILED (failures=14, errors=2)
+
+[exit code 1]

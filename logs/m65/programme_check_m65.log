@@ -1,0 +1,19 @@
+PASS N01 F-57 records the bypass of the lower-level call, that the audit reported it and the builder reproduced it, that M6.4 left the arguments optional (I-76), the files, the refusals, that it is builder-implemented with no independent review and still open, with F-52 to F-56 and CF-22 also open
+PASS N02 F-52 to F-56 are unchanged (earlier rows are not rewritten) and not shown as closed
+PASS N03 I-79 and I-80 are retained for review, not approved, with no reviewer decision; I-79 withdraws the reading I-76 without rewriting it, I-80 states the re-check on starting the action
+PASS N03b I-76 is kept as it was written in M6.4 (earlier rows are append-only); I-79 withdraws it
+PASS N04 SR-74 and SR-75 sit at Local-tested, each has evidence and a claim limit; the limits say no independent review and that incomplete runs are not passes
+PASS N05 the carried-forward register still holds CF-01 to CF-25 in order, every cell filled (no row added or changed in M6.5)
+PASS N06 CF-22 stays open and CF-25 (the approval request boundary) stays not built
+PASS N07 no carried-forward item is shown as closed, resolved, accepted or approved
+PASS N08 the governance register is unchanged: RFC-01 unnumbered, the four baseline rules PROPOSED, no finance assumption configured, foundations not started
+PASS N09 RFC-01 is still PROPOSED, not approved and not numbered; M7 is not started
+PASS N10 no new register text claims approval, independent review, readiness, compliance, adoption or closure []
+PASS N11 no finding in the register is shown as closed, resolved, accepted or approved
+PASS N12 the change record has the defect, impact, exact files changed, behaviour, tests, classified results, carried-forward and limits sections, and names every changed or added file []
+PASS N13 the change record lists the test assertions that were changed and says that every other assertion is kept
+
+checks 14  failed 0
+ALL M6.5 REGISTER CHECKS PASS
+
+[exit code 0; 0s]

@@ -1,0 +1,21 @@
+PASS group 1: Static regression against the delivered M7.3 package (R01 to R08, R13) | checks 9  failed 0
+PASS group 2: Static checks of the core: neutrality, imports, field names, operations, clock, feed calls, isolation gate (NE-01 to NE-06, FL-01, IG-01, IG-05) | static checks 8  failed 0
+PASS group 3: Coverage: every one of the 175 planned cases accounted for (QA-02) | EVERY PLANNED CASE IS ACCOUNTED FOR
+PASS group 4: MIE tests: the core, synthetic pack only (twelve files) | tests 200
+PASS group 5: MIE tests: the observation-feed flow and portability | tests 11
+PASS group 6: MIE tests: the construction pack, the M6 mapping and feed, isolation, golden (Builder Zero) | tests 23
+PASS group 7: The golden Builder Zero MIE-1 run equals regression/mie1/golden_mie1.json | THE GOLDEN MIE-1 RUN EQUALS THE RECORDED ANSWER
+PASS group 8: Mutation baseline (the unparsed core modules pass every MIE core test) | BASELINE OK
+PASS group 9: whole suite, part 1 of 11: the API boundary tests (M9) | tests 149
+PASS group 10: whole suite, part 2 of 11: detection and findings (M5, M6.1 to M6.5) | tests 605
+PASS group 11: whole suite, part 3 of 11: the financial core (M4) | tests 340
+PASS group 12: whole suite, part 4 of 11: ingestion (M3) | tests 224
+PASS group 13: whole suite, part 5 of 11: materials and market (M6) | tests 544
+PASS group 14: whole suite, part 6 of 11: recommendations (M7 to M7.3) | tests 216
+PASS group 15: whole suite, part 7 of 11: the materiality engine (M2) | tests 45
+PASS group 16: whole suite, part 8 of 11: golden, source authority, status model, tenancy, values (M2) | tests 105
+PASS group 17: whole suite, part 9 of 11: the Builder Zero adversarial tests (M1) | tests 33
+PASS group 18: whole suite, part 10 of 11: reproducibility (M2) | tests 23
+PASS group 19: whole suite, part 11 of 11: MIE-1 (groups 4 to 6 together) | tests 234
+whole suite: 2518 tests in groups 9 to 19 (expected 2518)
+groups 19  failed 0

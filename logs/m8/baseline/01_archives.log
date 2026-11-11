@@ -1,0 +1,12 @@
+== archive hashes
+3e474b4671c846e7581ccb6d1ca27a6fe339f03a2275bf9ad7f753b0097a516e  inputs/APG_F67_4_R2_CODE_AND_DATA.zip
+5dad8d2764f6f8c54f6fdb6a6079eb9ab30062c48af7e6225a847d203c5f4f1a  inputs/AUIF_Amir_Handover_Package.zip
+the two uploaded handover archives are byte-identical
+== handover SHA256SUMS
+./1_build/AUIF_Independent_Build_v1.0_rev13.zip: OK
+./1_build/AUIF_Independent_Build_v1.0_rev13.zip.sha256: OK
+./2_audit_evidence/AUIF_rev13_evidence_bundle.zip: OK
+./2_audit_evidence/AUIF_rev13_evidence_bundle.zip.sha256: OK
+./AMIR_HANDOVER_BRIEF.md: OK
+./README_START_HERE.md: OK
+AUIF_Independent_Build_v1.0_rev13.zip: OK

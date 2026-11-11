@@ -1,0 +1,3 @@
+First full run of tools/sabotage_mie1_1.py: 69 of 70 caught. C-09 (drop only the same-source check) was missed: the test's 'another source' case also changed the value basis, so the series check alone rejected it. Closed by adding cases that change only the source (SYN-SRC-W) and only the observation class, to the tests and the probe.
+MISSED C-09 F-71: a correction may name another source -> test_mie_core_m11_corrections.py  [tests 10  failures 0  errors 0]
+sabotage cases 70  missed 1  MISSED: ['C-09']

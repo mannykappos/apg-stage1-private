@@ -1,0 +1,8 @@
+material_id,description,unit
+MAT-REO,Reinforcing bar N16,tonne
+MAT-CONC40,Concrete 40 MPa,m3
+MAT-CONC32,Concrete 32 MPa,m3
+MAT-STEEL,Structural steel sections,tonne
+MAT-TIMB,LVL timber,m3
+MAT-PBOARD,Plasterboard 13mm sheet,sheet
+MAT-CU,Copper pipe 22mm,metre

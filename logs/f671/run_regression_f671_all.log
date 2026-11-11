@@ -1,0 +1,13 @@
+PASS R01 every one of the 1,105 APG-F67 files is byte-identical except the declared changes (5 code files, 7 records); no existing test, tool or specification changed 
+PASS R02 every file beyond APG-F67 is a declared F-67.1 addition, and regression/f671/f67_originals holds the exact F67 text of every changed code file 
+PASS R03 the five tables are exactly what tools/make_f671_registers.py makes from the F67 tables: F-72, SR-113, SR-114, I-130, EDR-40, CF-41 and CF-42 appended; no existing row changed 
+PASS R04 F-67 keeps its row; F-72 stays open until verified; SR-113 and SR-114 are Local-tested only; CF-41 records APG-F67 as started without explicit authorisation and not ratified, with its ZIP unchanged; CF-36 to CF-40, CF-42 and EDR-34, EDR-36 to EDR-40 stay open; M8 is not authorised 
+PASS R05 the F-67.1 text makes no acceptance, verification, ratification or readiness claim; keeps F-72 open; records APG-F67 as started without explicit authorisation and not ratified; quotes the F-67.1 authorisation; M8 not authorised 
+PASS R06 the F-72 probe reports every case corrected and the control counted ['F-72 IS CORRECTED']
+PASS R07 the F-67.1 recovery tests pass (11) ['OK']
+PASS R08 the F-67 probe and tests and the M7 audit-findings probe (F-64 to F-66) still report every case corrected 
+PASS R09 the golden Builder Zero runs (financial, detection, procurement, recommendations) are unchanged 
+PASS R10 every one of the 113 APG-F67 test files is unchanged (no test removed, renamed or edited); the F-67.1 tests are in a new file 
+PASS R11 static: every approval of the five records writes its confirming event only through _confirm (new and completing paths); ApprovalNotConfirmed, status and approval_status exist for each record 
+
+checks 11  failed 0

@@ -1,0 +1,9 @@
+EQUIVALENT EN-ARI-002  -- proved: the first element of the confidence key is the strength index plus 1; minus 1 shifts every recommendation by the same amount (2), so every comparison between two keys is unchanged, and the value is never shown (the shown text is built separately).
+EQUIVALENT LC-BOL-017  -- proved: approve() is the entry point and transition() repeats the same whole-token check (F-57 style, killed as LC-BOL-026); with the entry check weakened a partial token reaches transition(), which refuses it with the same code APPROVAL_TOKEN_REQUIRED, the same message and the same audit entry, before anything is read or written.
+EQUIVALENT VF-BOL-013  -- proved unreachable: the message alternative is used only when the forecast replays cleanly (empty code) but the figure is invalid or the pins are inconsistent; the pins and the stored figure are covered by the record body and result hashes that the replay checks first, so a clean replay with an invalid figure or inconsistent pins cannot be stored through the M2 record rules.
+mutants 582  killed 579 (first failing test file: {'test_rec_constraints': 88, 'test_rec_edges': 70, 'test_rec_eligibility': 87, 'test_rec_golden': 1, 'test_rec_lifecycle': 105, 'test_rec_m71_corrections': 22, 'test_rec_money': 21, 'test_rec_policy': 101, 'test_rec_ranking': 14, 'test_rec_repro': 6, 'test_rec_verify': 64})  documented-equivalent 3  unexplained survivors 0
+MUTATION RUN OK
+
+real	10m43.271s
+user	20m38.466s
+sys	0m12.213s

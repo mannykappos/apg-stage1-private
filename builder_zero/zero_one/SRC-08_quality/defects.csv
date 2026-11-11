@@ -1,0 +1,4 @@
+defect_id,project_id,subcontractor,trade,raised_date,severity,rework_cost_cents,status
+DEF-001,PRJ-002,SUB-004 (synthetic),waterproofing,2026-05-12,major,1200000,open
+DEF-002,PRJ-002,SUB-004 (synthetic),waterproofing,2026-07-03,major,2600000,open
+DEF-003,PRJ-002,SUB-004 (synthetic),waterproofing,2026-09-01,major,4900000,open

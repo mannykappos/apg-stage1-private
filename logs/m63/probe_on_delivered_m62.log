@@ -1,0 +1,11 @@
+STORED proposal version True          proposal_current=True  approve_action -> ACCEPTED action_approved
+STORED proposal version False         proposal_current=False approve_action -> REFUSED STALE_PROPOSAL
+STORED proposal version 0             proposal_current=False approve_action -> REFUSED STALE_PROPOSAL
+STORED proposal version the text '1'  proposal_current=False approve_action -> REFUSED STALE_PROPOSAL
+NAMED version True  -> ACCEPTED
+NAMED version 1.0   -> ACCEPTED
+NAMED version '1'   -> REFUSED STALE_APPROVAL
+NORMAL proposal -> action_approved | approval current: True
+DEFECT PRESENT: a malformed stored or named version was accepted
+
+[exit code 1]

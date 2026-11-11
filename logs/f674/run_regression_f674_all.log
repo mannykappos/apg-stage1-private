@@ -1,0 +1,15 @@
+PASS R01 every one of the 1,186 APG-F67.3 files is byte-identical except the declared changes (2 code files, 0 test files, 6 records); no existing test changed 
+PASS R02 every file beyond APG-F67.3 is a declared F-67.4 addition, and regression/f674/f673_originals holds the exact F67.3 text of every changed code file 
+PASS R03 the four tables are exactly what tools/make_f674_registers.py makes from the F67.3 tables: F-75, SR-119, SR-120, I-133 and CF-45 appended; no existing row changed 
+PASS R04 F-67 keeps its row; F-72 to F-75 stay open until verified; SR-119 and SR-120 are Local-tested only; CF-41 is unchanged; CF-36 to CF-40 and CF-42 to CF-45 and EDR-34, EDR-36 to EDR-41 stay open; M8 is not authorised 
+PASS R05 the F-67.4 text makes no acceptance, verification or readiness claim; keeps F-72 to F-75 open; quotes the F-67.4 authorisation; M8 not authorised 
+PASS R06 the F-75 probe reports every case corrected and the control confirmed ['F-75 IS CORRECTED']
+PASS R07 the F-67.4 tests pass (9) ['OK']
+PASS R08 the F-74, F-73, F-72 and F-67 probes and tests and the M7 audit-findings probe still report every case corrected 
+PASS R09 the golden Builder Zero runs (financial, detection, procurement, recommendations) are unchanged 
+PASS R10 every APG-F67.3 test file (and helper) is unchanged, the F-73 and F-74 tests included; the F-67.4 tests are in a new file 
+PASS R11 static: holds compares the approved content and the entries by the canonical fingerprint; both re-store checks compare by fingerprint; no Python equality on policy content remains in them 
+PASS R12 the record-store history contract passes on the reference store and catches every faulty store ['ALL HISTORY CASES PASS AND EVERY FAULTY STORE IS CAUGHT']
+PASS R13 the suite groups and the per-file list (one test file per group) cover every test file exactly once and add up to the whole suite ['groups 1  failed 0']
+
+checks 13  failed 0

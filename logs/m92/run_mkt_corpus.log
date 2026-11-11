@@ -1,0 +1,83 @@
+PASS A01 control: two comparable, current, complete offers give a definitive ranking, cheapest first
+PASS A02 one offer is never a ranking
+PASS A03 no quote at all is no offers
+PASS A04 a quote with no readings at all is not a verified like-for-like offer, so nothing is definitive
+PASS A05 readings verified by the person who extracted them do not count as verified
+PASS A06 a cheaper offer at a lower verified strength is excluded and explained, and wins nothing
+PASS A07 the same, with a third comparable offer: the ranking stays definitive and the excluded offer stays visible
+PASS A08 a cheaper offer for a different material is excluded
+PASS A09 a verified unit that differs from the demanded unit excludes the offer
+PASS A10 an ex-works offer with no stated freight is not a complete landed cost, so no definitive ranking
+PASS A11 an ex-works offer whose headline rate is lower but whose landed cost is higher does not rank first
+PASS A12 a cheaper delivered offer ranks first on landed cost and the ex-works offer is second
+PASS A13 a missing procurement-policy parameter stops the ranking and says which one
+PASS A14 a missing benchmark-freshness parameter makes the staleness rule say it could not run, rather than pass
+PASS A15 no demand: the uncovered-demand rule is silent and no ranking is made for a demand that does not exist
+PASS A16 a quote with a blank unit rate is held at intake and is not an offer
+PASS A17 a quote with a negative unit rate is held and is not an offer
+PASS A18 a quote with a zero unit rate is not an offer
+PASS B01 two different verified readings of one attribute block the offer
+PASS B02 a quote re-delivered under the same id with a different rate is held: neither version is used, nothing is overwritten silently, and it is reported
+PASS B03 an exact repeat of a quote row is one offer, not two
+PASS B04 two quotes from the same supplier are not two independent offers for a definitive ranking
+PASS B05 identical orders on the same day are reported as a possible duplicate
+PASS B06 a demand delivered twice with different quantities is a conflict: reported, and not used
+PASS B07 two different FX rates for one date leave the conversion unresolved, so the foreign offer is not definitive
+PASS B09 orders that differ in any one detail are not a possible duplicate
+PASS B08 a zero tier price is held, reported as held and never used
+PASS B10 clean inputs keep the held-input rule silent
+PASS C01 a foreign quote with no stated and no reference rate cannot be converted: landed incomplete, not definitive
+PASS C02 a stated rate with no reference rate is reported as having nothing to check against, never guessed
+PASS C03 a recent stated rate that diverges beyond the tolerance from the reference is flagged
+PASS C04 a recent stated rate inside the tolerance is silent
+PASS C05 an inverted rate (AUD per USD instead of USD per AUD) is flagged as diverging
+PASS C06 a zero stated exchange rate is reported and does not alter the conversion, which uses the reference rate
+PASS C07 a negative stated exchange rate is reported and does not alter the conversion, which uses the reference rate
+PASS C08 a currency code the programme does not know is not converted
+PASS C09 a reference rate older than the limit leaves the foreign offer qualified, the ranking indicative and the age stated
+PASS C10 an international offer with unresolved critical checks is never definitive
+PASS C11 resolving every critical check, with a person, a date and evidence, clears the check rule
+PASS C12 a rate stated in the foreign currency is kept as stated: the converted figure never overwrites it
+PASS C13 a foreign quote past its validity is not flagged as a live risk
+PASS C14 an old stated rate is flagged even when it is close to the reference
+PASS D01 a quote exactly at the age limit is current; one day older is stale and cannot make a definitive ranking
+PASS D02 one day past the age limit the quote is stale: still an offer, not definitive-eligible
+PASS D03 a quote past its validity date is historical only and is not offered
+PASS D04 a quote issued after the as-of day is not yet knowable and is not offered
+PASS D05 a stale price index is flagged with its age
+PASS D06 a price index exactly at the limit is fresh
+PASS D07 no index observation at all is unavailable, never fresh
+PASS D08 a comparable current quote cheaper than the last paid rate is an estimate for the quantity not yet ordered
+PASS D09 a quote dearer than the last paid rate is silent
+PASS D10 a cheaper partially comparable quote is not the baseline for the comparability warning (Defect B regression)
+PASS D11 a cheaper non-comparable quote is flagged as a comparability warning, never as a saving
+PASS D12 a dearer non-comparable quote is silent
+PASS E01 a lead time that cannot meet the required date is shown on the scenario and not hidden
+PASS E02 a lead time that just meets the required date is shown as meeting it
+PASS E03 a required date earlier than today leaves no decision window and says so
+PASS E04 demand with offers lapsing inside the decision window is flagged with the earliest comparable date
+PASS E05 demand whose decision date is beyond the window is silent
+PASS E06 orders above the demand by more than the tolerance are an estimated surplus
+PASS E07 orders within the surplus tolerance are silent
+PASS E08 orders in a different unit from the demand cannot be assessed and say so
+PASS E09 orders for another project do not cover this demand
+PASS E10 short-accepted dockets over a sufficient sample are an observation about the supplier, not a ranking
+PASS E11 a small docket sample is not assessed rather than reported as good or bad
+PASS E12 a zero-quantity demand produces no purchase scenario and no division by zero
+PASS E13 a very large quantity and rate stay exact integers
+PASS F01 scenarios never choose between themselves or between offers
+PASS F02 a wait scenario whose quote lapses before the order date is flagged as an evidence gap, not priced as available
+PASS F03 a saving is never claimed realised: claim_saving always refuses
+PASS F04 every ranking requires a human approval, whatever its status
+PASS F05 a portfolio comparison is silent when the authorised projects do not cover every project that bought the material
+PASS F06 a portfolio comparison needs every buying project authorised and then is a weak estimate
+PASS F11 two authorised projects paying different average rates give a weak, labelled portfolio estimate
+PASS F07 a wait path that is not in the policy is never invented
+PASS F08 an unapproved procurement policy does not run the rules
+PASS F09 a tenant run that is authorised for no project reports nothing about any project
+PASS F10 the same inputs give the same run key and the same signals
+
+corpus cases 78  failed 0
+ALL CORPUS CASES PASS
+
+[exit code 0; 7s]

@@ -1,0 +1,6 @@
+PASS R05 the M8 text makes no acceptance, readiness, Engine-integration or gate-closing claim and states the authorisations, DEV-M8-01 and the PROPOSED status 
+
+checks 1  failed 0
+PASS R10 against the delivered APG-M8 ZIP (f1b634d36f2a..., 1,307 files): only the declared M8-R1 files changed (the adapter intake and gate, the corpus declaration, the corpus and path-equivalence tests, the boundary test, five M8 tools, README, RUN_COMMANDS and four registers, rows appended only) and only the declared M8-R1 files were added 
+
+checks 1  failed 0

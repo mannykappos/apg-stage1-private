@@ -1,0 +1,4 @@
+2026-10-20T23:24:56Z
+dadcba92e801280ca1c82bc9ac7ba96efad00c169e666f2916782c70568927a8  /tmp/claude-0/-home-claude/9c1f68fa-600c-55a6-9aff-0843afa2c30f/scratchpad/mie1b/m8r2/deliv/APG_M8R2_CODE_AND_DATA.zip
+d534a6e6541b6d1a58e0389161d08698a1d7ac92ee9ad880a51fcee36497c649  /tmp/claude-0/-home-claude/9c1f68fa-600c-55a6-9aff-0843afa2c30f/scratchpad/mie1b/r14/deliv/AUIF_Independent_Build_v1.0_rev14.zip
+d534a6e6541b6d1a58e0389161d08698a1d7ac92ee9ad880a51fcee36497c649  AUIF_Independent_Build_v1.0_rev14.zip

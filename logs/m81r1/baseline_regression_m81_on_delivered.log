@@ -1,0 +1,15 @@
+PASS R01 every APG-M8-R2 file is byte-identical except the declared M8.1 changes (the adapter, the configuration, seven M8 test files, seven M8 tools, README, RUN_COMMANDS, three registers); the only removal is the AUIF rev13 ZIP and its sidecar; no apg/ or tests/ file changed ['third_party/auif_rev13/AUIF_Independent_Build_v1.0_rev13.zip', 'third_party/auif_rev13/AUIF_Independent_Build_v1.0_rev13.zip.sha256']
+PASS R02 every added file is declared (the AUIF rev14 ZIP and its sidecar, two tools, the change record, regression/m81/, logs/m81/) 
+PASS R03 the registers are the M8-R2 registers plus exactly SR-127, I-142 to I-144, CF-54 and CF-55; no existing row changed; no finding added 
+PASS R04 the package carries the exact AUIF rev14 ZIP (d534a6e6...); a fresh extraction passes AUIF's own manifest check (253 files, tree 4918c2a6...) and core tree hash (923de510...) 
+PASS R05 the M8.1 text states the authorisation, the dependency's qualifications, the end of DEV-M8-01 and what stays open, and makes no acceptance, readiness, Engine-integration or gate-closing claim 
+PASS R06 every FIELD mapping of the 15 stored packs is in the contract form module.apg.<Type>.<attribute> of its entity's concept (DEV-M8-01 ended) 
+PASS R07 the stored definitions, model and packs are exactly what tools/make_m8_config.py generates ['config files 17, differing 0, unexpected 0']
+PASS R08 the M8 regression R01 to R10 passes on M8.1 ['checks 10  failed 0']
+PASS R09 the M8 boundary tests pass (no other change, no network, Governor or credential) ['M8 tests 8 in 1 files, failed files 0']
+
+checks 9  failed 0
+
+real	0m25.082s
+user	0m22.434s
+sys	0m0.441s

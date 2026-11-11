@@ -1,0 +1,18 @@
+PASS N01 F-53 records the audit reproduction, the gap in the M6.1 tests, the files, the refusal (STALE_PROPOSAL) and that it is builder-implemented with no independent review, still open, with F-52 also open; the earlier archives stay unchanged
+PASS N02 F-54 records the audit-trail point, the reading behind the correction (I-69) and that it is builder-implemented with no independent review, still open
+PASS N03 F-52 is unchanged (the M6.1 row is not rewritten) and not shown as closed
+PASS N04 I-65 to I-70 are retained for review, not approved, with no reviewer decision, and state the digest reading, the reviewer route with the unchanged 14 transitions, the entry point and the history
+PASS N05 SR-66 to SR-69 sit at or below Local-tested, each has evidence and a claim limit; the limits say no independent review, incomplete runs are not passes, and the register closes nothing
+PASS N06 the carried-forward register holds CF-01 to CF-23 in order, every cell filled
+PASS N07 the register carries the audit's open items by section: synthetic data, ports, tenant isolation (EDR-29, not reproduced, no fix claimed), invoice-only cost, event gaps, portfolio purchasing, the approval-screen gate and the verification limits
+PASS N08 no carried-forward item is shown as closed, resolved, accepted or approved
+PASS N09 the governance register of M6.1 is unchanged: RFC-01 unnumbered, the four baseline rules PROPOSED, no finance assumption configured, foundations not started
+PASS N10 RFC-01 is still PROPOSED, not approved and not numbered; M7 is not started
+PASS N11 no new register text claims approval, independent review, readiness, compliance, adoption or closure []
+PASS N12 no finding in the register is shown as closed, resolved, accepted or approved
+PASS N13 the change record has the defect, impact, exact files changed, behaviour, tests, classified results, carried-forward and limits sections, and names every changed or added file []
+
+checks 13  failed 0
+ALL M6.2 REGISTER CHECKS PASS
+
+[exit code 0; 0s]

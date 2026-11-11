@@ -1,0 +1,26 @@
+$ python3 -I tools/sabotage_m72.py
+CAUGHT S01 the submission gate is switched off -> R09 
+CAUGHT S02 the verification gate stops checking the offsetting costs -> R09 
+CAUGHT S03 the ranking is reversed -> R09 
+CAUGHT S04 every member of an overlap component is counted -> R09 
+CAUGHT S05 execute stops refusing -> R10 
+CAUGHT S06 an M9.4 application file changes by one character -> R01 
+CAUGHT S07 an earlier status row is edited -> R05 
+CAUGHT S08 the golden file is edited -> R11 
+CAUGHT S09 RFC-01 is shown as approved -> R06 
+CAUGHT S10 an undeclared file is added -> R02 
+CAUGHT S11 a recommendation module reaches the operating system -> R08 
+CAUGHT S12 an existing test is edited -> R04 
+CAUGHT S13 weak evidence stops routing to investigation -> R09 
+CAUGHT S14 the approval stops checking the submission reference -> R09 
+CAUGHT S15 a register row stops being what the register tool makes -> R07 
+CAUGHT S16 the source-freshness check before the act is switched off (F-64, F-65) -> R09 
+CAUGHT S17 a policy may again be stored with caller-supplied approvals (F-66) -> R10B 
+CAUGHT S18 a run counts approvals the audit log does not confirm (F-66) -> R09 
+CAUGHT S19 an unchanged M7.1 module changes -> R01 
+CAUGHT S20 the guards are dropped from the commit batch (F-68) -> R10C 
+CAUGHT S21 the checked acts are written without the commit guard (F-68) -> R10C 
+CAUGHT S22 the check after the commit is removed (I-115) -> R09 
+CAUGHT S23 a source conflict is reported as a mere concurrent change (F-68) -> R09 
+CAUGHT S24 an M7.1 tool changes -> R01 
+sabotage cases 24  missed 0

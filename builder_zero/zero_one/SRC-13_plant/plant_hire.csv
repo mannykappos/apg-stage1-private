@@ -1,0 +1,3 @@
+hire_id,project_id,equipment,on_hire_date,off_hire_date,needed_until,rate_cents_per_day
+HIRE-001,PRJ-003,20t excavator (synthetic),2026-02-01,,2026-03-31,115000
+HIRE-002,PRJ-003,Telehandler (synthetic),2026-08-10,,2026-12-18,38000

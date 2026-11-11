@@ -1,0 +1,20 @@
+backlog_id,item,why_it_matters,owner,depends_on,blocks_capabilities,status,origin
+BL-01,Pilot builders name the systems they use for the five classes (and the three supplementary ones),Every connector choice depends on it (CR-08 input),Pilot builders (asked through Emmanuel),,CAP-01; CAP-03; CAP-07; CAP-08,Open,Questionnaire in this package
+BL-02,"Confirm what each named vendor lets us read (API, scheduled export, or neither) and what access costs",Decides access tier T1/T2/T3 per system,Claude (draft),BL-01,CAP-01,Not started,Connector tracker
+BL-03,"AUIF: complete its audit sequence, then a real-system sandbox proof",APG's connectors are meant to run on AUIF; no real-system proof exists yet,AUIF team (Amir and Emmanuel),,CAP-01,Open (AUIF sequence in progress),AUIF records
+BL-04,Give access to the Anchor repository so Section 01 discovery can start,No product code has been inspected; every capability is unverified until then,Emmanuel (decision),,All,Open,Section 01
+BL-05,Amir returns the Market Intelligence Engine evidence,The market-data capability cannot be audited without it,"Amir (engine, database, environment)",,CAP-20; CAP-21; CAP-22; CAP-25,Waiting,MIE evidence kit
+BL-06,Decide DEC-MIE-01 (market intelligence as a platform requirement or not),Decides whether the engine is shared across modules,Emmanuel (decision),,CAP-20,Open,MIE draft CR
+BL-07,Decide DEC-A1-1 to DEC-A1-8 (materiality policy),Thresholds for leak rules and price alerts,Emmanuel (decision),,CAP-08; CAP-21; CAP-32,Open,CR-02 Stage 1 rev 2
+BL-08,Assign an independent reviewer for the ten inventory classifications,Auditor's issue 2; frozen inventory stays untouched until reviewed,Emmanuel (decision),,CAP-32,Open,CR-02 Stage 1 rev 2
+BL-09,Decide B7 (include or exclude),Standing product-owner decision,Emmanuel (decision),,,Open,Standing
+BL-10,Independent re-review of CR-01 rev 3,Needs an independent reviewer; a product-owner action,Emmanuel (decision),BL-08,,Open,Standing
+BL-11,"Draft CR-02 Stage 2 (A2 to A13, B1 to B3: cash-position-adjusted margin, cost-to-complete formulas and so on)",Formula-level remediation of the financial core,Claude (draft),Emmanuel's go; no locking of CR-02 and no implementation (auditor boundary),CAP-10; CAP-11,Not started,Auditor review of CR-02 Stage 1
+BL-12,"Draft the Source Authority Register skeleton from the questionnaire answers, then approve it",Section 04 §5 makes it mandatory before a source can update an authoritative field,Emmanuel (decision),BL-01,CAP-03,Not started,Section 04 §5
+BL-13,Decide whether file import is the first real-data path,Lets APG run on real data before any live connector exists,Emmanuel (decision),,CAP-04,Open,Gap map
+BL-14,Decide whether a dedicated price-increase alert requirement is wanted (through change control),The blueprint has no dedicated price-alert requirement,Emmanuel (decision),BL-07,CAP-21,Open,Observation O-2
+BL-15,"Raise observation O-1 for change control if confirmed (labour, plant hire, bank/funding data are consumed but not listed as Section 04 source categories)",Locked text is not changed by this package,Emmanuel (decision),BL-01,CAP-07; CAP-11; CAP-14; CAP-17,Open,Observation O-1
+BL-16,Confirm the first release is read-only toward the builders' systems,Section 02 §7 makes human-approval-only a permanent default,Emmanuel (decision),,CAP-30,Open,Section 02 §7
+BL-17,Reconcile the APG-to-AUIF interface draft with the actual AUIF extension package and the GD-05 overlay,The draft was written without reading those packages in this session,AUIF team (Amir and Emmanuel),,CAP-01,Not started,Interface draft
+BL-18,"Implementation programme per Section 14 (phases, database closure, integration closure)",Nothing is built until this runs; it starts with Section 01 discovery,"Amir (engine, database, environment)",BL-04,All,Not started,Section 14
+BL-19,"Auditor re-audit of r15 with DEC-01; correct stale ""awaiting approval"" wording in the next r15 revision only",Standing,Auditor,,,Waiting,Standing

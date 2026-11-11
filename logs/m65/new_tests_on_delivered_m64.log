@@ -1,0 +1,698 @@
+tests 36  failures 50  errors 0
+======================================================================
+FAIL: test_a_proposal_with_no_usable_reference_is_refused_whatever_is_named (tests.test_det_transition_gate.TestAProposalThatWasReplacedAfterItWasShown.test_a_proposal_with_no_usable_reference_is_refused_whatever_is_named)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 172, in test_a_proposal_with_no_usable_reference_is_refused_whatever_is_named
+    self.assertIn('cannot be identified', str(c.exception), 'the approver is told that reading the proposal again will not help: it has to be proposed again')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'cannot be identified' not found in 'PROPOSAL_CHANGED: the proposal on record is not the one you were shown; read it again' : the approver is told that reading the proposal again will not help: it has to be proposed again
+
+======================================================================
+FAIL: test_every_proper_subset_of_the_three_items_is_refused (tests.test_det_transition_gate.TestEveryIncompleteApprovalIsRefusedAtTheLowerLevelCall.test_every_proper_subset_of_the_three_items_is_refused) (named=())
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 65, in test_every_proper_subset_of_the_three_items_is_refused
+    f = self.refused('APPROVAL_TOKEN_REQUIRED', **{k: full[k] for k in chosen})
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 41, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_every_proper_subset_of_the_three_items_is_refused (tests.test_det_transition_gate.TestEveryIncompleteApprovalIsRefusedAtTheLowerLevelCall.test_every_proper_subset_of_the_three_items_is_refused) (named=('approving_version',))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 65, in test_every_proper_subset_of_the_three_items_is_refused
+    f = self.refused('APPROVAL_TOKEN_REQUIRED', **{k: full[k] for k in chosen})
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_every_proper_subset_of_the_three_items_is_refused (tests.test_det_transition_gate.TestEveryIncompleteApprovalIsRefusedAtTheLowerLevelCall.test_every_proper_subset_of_the_three_items_is_refused) (named=('approving_digest',))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 65, in test_every_proper_subset_of_the_three_items_is_refused
+    f = self.refused('APPROVAL_TOKEN_REQUIRED', **{k: full[k] for k in chosen})
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_every_proper_subset_of_the_three_items_is_refused (tests.test_det_transition_gate.TestEveryIncompleteApprovalIsRefusedAtTheLowerLevelCall.test_every_proper_subset_of_the_three_items_is_refused) (named=('approving_proposal',))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 65, in test_every_proper_subset_of_the_three_items_is_refused
+    f = self.refused('APPROVAL_TOKEN_REQUIRED', **{k: full[k] for k in chosen})
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_every_proper_subset_of_the_three_items_is_refused (tests.test_det_transition_gate.TestEveryIncompleteApprovalIsRefusedAtTheLowerLevelCall.test_every_proper_subset_of_the_three_items_is_refused) (named=('approving_version', 'approving_digest'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 65, in test_every_proper_subset_of_the_three_items_is_refused
+    f = self.refused('APPROVAL_TOKEN_REQUIRED', **{k: full[k] for k in chosen})
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_every_proper_subset_of_the_three_items_is_refused (tests.test_det_transition_gate.TestEveryIncompleteApprovalIsRefusedAtTheLowerLevelCall.test_every_proper_subset_of_the_three_items_is_refused) (named=('approving_version', 'approving_proposal'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 65, in test_every_proper_subset_of_the_three_items_is_refused
+    f = self.refused('APPROVAL_TOKEN_REQUIRED', **{k: full[k] for k in chosen})
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_every_proper_subset_of_the_three_items_is_refused (tests.test_det_transition_gate.TestEveryIncompleteApprovalIsRefusedAtTheLowerLevelCall.test_every_proper_subset_of_the_three_items_is_refused) (named=('approving_digest', 'approving_proposal'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 65, in test_every_proper_subset_of_the_three_items_is_refused
+    f = self.refused('APPROVAL_TOKEN_REQUIRED', **{k: full[k] for k in chosen})
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_naming_the_three_items_each_as_none_is_the_same_as_leaving_them_out (tests.test_det_transition_gate.TestEveryIncompleteApprovalIsRefusedAtTheLowerLevelCall.test_naming_the_three_items_each_as_none_is_the_same_as_leaving_them_out) (missing='approving_version')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 71, in test_naming_the_three_items_each_as_none_is_the_same_as_leaving_them_out
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(**{missing: None}))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 41, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_naming_the_three_items_each_as_none_is_the_same_as_leaving_them_out (tests.test_det_transition_gate.TestEveryIncompleteApprovalIsRefusedAtTheLowerLevelCall.test_naming_the_three_items_each_as_none_is_the_same_as_leaving_them_out) (missing='approving_digest')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 71, in test_naming_the_three_items_each_as_none_is_the_same_as_leaving_them_out
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(**{missing: None}))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_naming_the_three_items_each_as_none_is_the_same_as_leaving_them_out (tests.test_det_transition_gate.TestEveryIncompleteApprovalIsRefusedAtTheLowerLevelCall.test_naming_the_three_items_each_as_none_is_the_same_as_leaving_them_out) (missing='approving_proposal')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 71, in test_naming_the_three_items_each_as_none_is_the_same_as_leaving_them_out
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(**{missing: None}))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_the_audit_reproduction_an_approval_that_names_nothing_is_refused (tests.test_det_transition_gate.TestEveryIncompleteApprovalIsRefusedAtTheLowerLevelCall.test_the_audit_reproduction_an_approval_that_names_nothing_is_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 55, in test_the_audit_reproduction_an_approval_that_names_nothing_is_refused
+    f = self.refused('APPROVAL_TOKEN_REQUIRED')
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 41, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_a_digest_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_digest_that_is_not_a_non_empty_text_is_refused) (digest=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 102, in test_a_digest_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_digest=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 41, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_a_digest_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_digest_that_is_not_a_non_empty_text_is_refused) (digest=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 102, in test_a_digest_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_digest=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_digest_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_digest_that_is_not_a_non_empty_text_is_refused) (digest=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 102, in test_a_digest_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_digest=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_digest_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_digest_that_is_not_a_non_empty_text_is_refused) (digest=1.5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 102, in test_a_digest_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_digest=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_digest_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_digest_that_is_not_a_non_empty_text_is_refused) (digest='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 102, in test_a_digest_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_digest=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_digest_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_digest_that_is_not_a_non_empty_text_is_refused) (digest='   ')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 102, in test_a_digest_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_digest=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_digest_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_digest_that_is_not_a_non_empty_text_is_refused) (digest=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 102, in test_a_digest_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_digest=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_digest_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_digest_that_is_not_a_non_empty_text_is_refused) (digest={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 102, in test_a_digest_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_digest=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_digest_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_digest_that_is_not_a_non_empty_text_is_refused) (digest=b'x')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 102, in test_a_digest_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_digest=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused) (proposal=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 107, in test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_proposal=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 41, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused) (proposal=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 107, in test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_proposal=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused) (proposal=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 107, in test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_proposal=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused) (proposal=1.5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 107, in test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_proposal=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused) (proposal='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 107, in test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_proposal=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused) (proposal='   ')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 107, in test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_proposal=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused) (proposal=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 107, in test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_proposal=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused) (proposal={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 107, in test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_proposal=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused) (proposal=b'x')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 107, in test_a_proposal_reference_that_is_not_a_non_empty_text_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_proposal=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused) (version=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 97, in test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_version=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 41, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused) (version=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 97, in test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_version=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused) (version=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 97, in test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_version=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused) (version=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 97, in test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_version=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused) (version=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 97, in test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_version=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused) (version=1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 97, in test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_version=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused) (version='1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 97, in test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_version=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused) (version='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 97, in test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_version=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused) (version=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 97, in test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_version=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused) (version={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 97, in test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_version=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused (tests.test_det_transition_gate.TestMalformedItemsFailClosedAtTheLowerLevelCall.test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused) (version=1e+30)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 97, in test_a_version_that_is_not_a_whole_number_of_at_least_one_is_refused
+    self.refused('APPROVAL_TOKEN_REQUIRED', **self.full(approving_version=bad))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 43, in refused
+    self.assertEqual(c.exception.code, code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TRANSITION_NOT_ALLOWED' != 'APPROVAL_TOKEN_REQUIRED'
+- TRANSITION_NOT_ALLOWED
++ APPROVAL_TOKEN_REQUIRED
+
+
+======================================================================
+FAIL: test_an_approval_that_is_no_longer_in_force_does_not (tests.test_det_transition_gate.TestStartingTheActionRechecksThatTheApprovalIsStillInForce.test_an_approval_that_is_no_longer_in_force_does_not) (case='approval ended')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 346, in test_an_approval_that_is_no_longer_in_force_does_not
+    self.refused('APPROVAL_NOT_CURRENT', who=self.m.owner, to='in_progress')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 41, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_an_approval_that_is_no_longer_in_force_does_not (tests.test_det_transition_gate.TestStartingTheActionRechecksThatTheApprovalIsStillInForce.test_an_approval_that_is_no_longer_in_force_does_not) (case='no approver recorded')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 346, in test_an_approval_that_is_no_longer_in_force_does_not
+    self.refused('APPROVAL_NOT_CURRENT', who=self.m.owner, to='in_progress')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 41, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_an_approval_that_is_no_longer_in_force_does_not (tests.test_det_transition_gate.TestStartingTheActionRechecksThatTheApprovalIsStillInForce.test_an_approval_that_is_no_longer_in_force_does_not) (case='approved another digest')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 346, in test_an_approval_that_is_no_longer_in_force_does_not
+    self.refused('APPROVAL_NOT_CURRENT', who=self.m.owner, to='in_progress')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 41, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_an_approval_that_is_no_longer_in_force_does_not (tests.test_det_transition_gate.TestStartingTheActionRechecksThatTheApprovalIsStillInForce.test_an_approval_that_is_no_longer_in_force_does_not) (case='approved another version')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 346, in test_an_approval_that_is_no_longer_in_force_does_not
+    self.refused('APPROVAL_NOT_CURRENT', who=self.m.owner, to='in_progress')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 41, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_an_approval_that_is_no_longer_in_force_does_not (tests.test_det_transition_gate.TestStartingTheActionRechecksThatTheApprovalIsStillInForce.test_an_approval_that_is_no_longer_in_force_does_not) (case='approved another proposal')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 346, in test_an_approval_that_is_no_longer_in_force_does_not
+    self.refused('APPROVAL_NOT_CURRENT', who=self.m.owner, to='in_progress')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 41, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_an_approval_that_is_no_longer_in_force_does_not (tests.test_det_transition_gate.TestStartingTheActionRechecksThatTheApprovalIsStillInForce.test_an_approval_that_is_no_longer_in_force_does_not) (case='no proposal reference kept')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 346, in test_an_approval_that_is_no_longer_in_force_does_not
+    self.refused('APPROVAL_NOT_CURRENT', who=self.m.owner, to='in_progress')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 41, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_an_approval_that_is_no_longer_in_force_does_not (tests.test_det_transition_gate.TestStartingTheActionRechecksThatTheApprovalIsStillInForce.test_an_approval_that_is_no_longer_in_force_does_not) (case='proposal text edited after approval')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 346, in test_an_approval_that_is_no_longer_in_force_does_not
+    self.refused('APPROVAL_NOT_CURRENT', who=self.m.owner, to='in_progress')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 41, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_an_approval_that_is_no_longer_in_force_does_not (tests.test_det_transition_gate.TestStartingTheActionRechecksThatTheApprovalIsStillInForce.test_an_approval_that_is_no_longer_in_force_does_not) (case='proposal marked stale')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 346, in test_an_approval_that_is_no_longer_in_force_does_not
+    self.refused('APPROVAL_NOT_CURRENT', who=self.m.owner, to='in_progress')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 41, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+======================================================================
+FAIL: test_an_approval_that_is_no_longer_in_force_does_not (tests.test_det_transition_gate.TestStartingTheActionRechecksThatTheApprovalIsStillInForce.test_an_approval_that_is_no_longer_in_force_does_not) (case='evidence moved without the service')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 346, in test_an_approval_that_is_no_longer_in_force_does_not
+    self.refused('APPROVAL_NOT_CURRENT', who=self.m.owner, to='in_progress')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/m65old_rash0tpe/APG_M6_4/tests/test_det_transition_gate.py", line 41, in refused
+    with self.assertRaises(FD.LifecycleError) as c:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: LifecycleError not raised
+
+----------------------------------------------------------------------
+Ran 36 tests in 2.500s
+
+FAILED (failures=50)
+
+[exit code 1]

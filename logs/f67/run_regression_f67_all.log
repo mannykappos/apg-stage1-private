@@ -1,0 +1,13 @@
+PASS R01 every one of the 1,049 MIE-1.1-R1 files is byte-identical except the declared changes (18 code, 14 test, 7 records) 
+PASS R02 every file beyond MIE-1.1-R1 is a declared F-67 addition, and regression/f67/r1_originals holds the exact R1 text of every changed code and test file 
+PASS R03 the five tables are exactly what tools/make_f67_registers.py makes from the R1 tables: SR-111, SR-112, I-128, I-129, EDR-39, CF-40 and AD-03 appended; no existing row changed; the findings register is byte-identical (R01) 
+PASS R04 F-67 keeps its findings row and stays open until verified; SR-111 is Local-tested only; I-128 states the limit; AD-03 records the auditor's completed MIE-1.1 mutation run with the 30-second timeout qualification and no release acceptance; CF-36 to CF-40 and EDR-34, EDR-36 to EDR-39 stay open 
+PASS R05 the F-67 text makes no acceptance, verification or readiness claim, keeps F-67 open, and states how the build was authorised and that M8 is not started 
+PASS R06 the F-67 probe reports every case corrected and the control counted ['F-67 IS CORRECTED']
+PASS R07 the F-67 correction tests pass (12) ['OK']
+PASS R08 the earlier audit-findings probes (M7, M7.1, M7.2, MIE-1) still report every case corrected 
+PASS R09 the golden Builder Zero runs (financial, detection, procurement, recommendations, MIE-1) are unchanged 
+PASS R10 no test of MIE-1.1-R1 is removed or added in an edited file; one test is renamed because its old name described the defect 
+PASS R11 static: no caller-asserted approve() remains; every store and approval goes through apg/policy_approval.py; is_approved counts only confirmed approvals; the gatherers pin the confirmations and the loaders read only the pinned ones 
+
+checks 11  failed 0

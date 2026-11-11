@@ -1,0 +1,19 @@
+AUIF verified: zip 61748ddeba21e8c1 core 74cec87afd167601
+CONTROL (unmutated copy): passes 98s
+MI-04  SURVIVED    99s 
+MI-08  KILLED       1s tier 1: FAIL: test_a_chain_naming_another_source_object (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_a_chain_naming_another_source_objec
+MI-12  KILLED       2s tier 1: FAIL: test_an_attribute_that_is_not_text (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_an_attribute_that_is_not_text)
+MI-16  KILLED      15s tier 1: FAIL: test_a_file_removed_after_activation (tests_m8.test_m8_no_fallback.TestPartial.test_a_file_removed_after_activation)
+MI-20  KILLED      15s tier 1: FAIL: test_a_delivery_lost_between_auif_and_apg (tests_m8.test_m8_no_fallback.TestPartial.test_a_delivery_lost_between_auif_and_apg)
+MI-24  KILLED       1s tier 1: FAIL: test_a_new_manifest_learned_during_the_import (tests_m8.test_m8_integrity.TestEachIntegrityCheckStandsAlone.test_a_new_manifest_learned_during_t
+MI-28  KILLED       1s tier 1: FAIL: test_even_if_the_check_were_bypassed_nothing_is_stored_and_the_assessment_cannot_proceed (tests_m8.test_m8_dev01.TestFailClosed.test_even_if_the
+MI-32  KILLED       4s tier 1: FAIL: test_an_unparseable_optional_value_is_held_as_m3_holds_it_and_stops_the_assessment (tests_m8.test_m8_no_fallback.TestInvalidAmbiguousAndTypeMism
+MI-36  SURVIVED   101s 
+MM-03  KILLED       3s tier 1: FAIL: test_a_failure_inside_the_adapter_is_never_silent (tests_m8.test_m8_no_fallback.TestAlertsAndAdapterFailures.test_a_failure_inside_the_adapter_i
+MG-01  KILLED      11s tier 1: FAIL: test_a_change_while_the_figures_are_computed_withdraws_the_result (tests_m8.test_m8_no_fallback.TestNoOldValueShownAsCurrent.test_a_change_while
+MG-05  KILLED       2s tier 1: FAIL: test_an_auif_error_outside_an_import_blocks_until_the_integration_is_imported_again (tests_m8.test_m8_no_fallback.TestAlertsAndAdapterFailures.t
+MA-01  KILLED      16s tier 1: FAIL: test_a_degraded_integration_withdraws_the_assessment_and_returns_no_earlier_figure (tests_m8.test_m8_no_fallback.TestNoOldValueShownAsCurrent.te
+MP-03  SURVIVED    97s 
+MC-04  KILLED       2s tier 1: FAIL: test_an_auif_tenant_cannot_be_bound_to_another_tenants_store (tests_m8.test_m8_integrity.TestGateAndBinding.test_an_auif_tenant_cannot_be_bound_
+ML-01  KILLED      37s tier 1: FAIL: test_each_missing_or_broken_part_is_found (tests_m8.test_m8_lineage.TestTheLineageCheckerItself.test_each_missing_or_broken_part_is_found)
+mutants 16: killed 13, survived 3, timeout 0 | AUIF after: unchanged

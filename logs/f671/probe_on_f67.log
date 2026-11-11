@@ -1,0 +1,25 @@
+DEFECT PRESENT  F-72 fin A: approval while the audit write fails                           -> refused (RuntimeError: audit sink unavailable); run approved=False
+CORRECTED       F-72 fin D: the owner retries while the audit write still fails            -> refused (PolicyError: olive has already approved this version); run approved=False
+CORRECTED       F-72 fin C: another person with the role approves meanwhile                -> done; listed ['olive', 'otto']; olive confirmed=False
+DEFECT PRESENT  F-72 fin B: the owner retries once the audit log works                     -> refused (PolicyError: olive has already approved this version); run approved=True; olive confirmed=False
+DEFECT PRESENT  F-72 det A: approval while the audit write fails                           -> refused (RuntimeError: audit sink unavailable); run approved=False
+CORRECTED       F-72 det D: the owner retries while the audit write still fails            -> refused (DetPolicyError: olive has already approved this version); run approved=False
+CORRECTED       F-72 det C: another person with the role approves meanwhile                -> done; listed ['olive', 'otto']; olive confirmed=False
+DEFECT PRESENT  F-72 det B: the owner retries once the audit log works                     -> refused (DetPolicyError: olive has already approved this version); run approved=True; olive confirmed=False
+DEFECT PRESENT  F-72 mkt A: approval while the audit write fails                           -> refused (RuntimeError: audit sink unavailable); run approved=False
+CORRECTED       F-72 mkt D: the owner retries while the audit write still fails            -> refused (MktPolicyError: olive has already approved this version); run approved=False
+CORRECTED       F-72 mkt C: another person with the role approves meanwhile                -> done; listed ['olive', 'otto']; olive confirmed=False
+DEFECT PRESENT  F-72 mkt B: the owner retries once the audit log works                     -> refused (MktPolicyError: olive has already approved this version); run approved=True; olive confirmed=False
+DEFECT PRESENT  F-72 spec A: approval while the audit write fails                          -> refused (RuntimeError: audit sink unavailable); run approved=False
+CORRECTED       F-72 spec D: the owner retries while the audit write still fails           -> refused (MktPolicyError: olive has already approved this version); run approved=False
+CORRECTED       F-72 spec C: another person with the role approves meanwhile               -> done; listed ['olive', 'otto']; olive confirmed=False
+DEFECT PRESENT  F-72 spec B: the owner retries once the audit log works                    -> refused (MktPolicyError: olive has already approved this version); run approved=True; olive confirmed=False
+DEFECT PRESENT  F-72 rec A: approval while the audit write fails                           -> refused (RuntimeError: audit sink unavailable); run approved=False
+CORRECTED       F-72 rec D: the owner retries while the audit write still fails            -> refused (RecPolicyError: olive has already approved this version); run approved=False
+CORRECTED       F-72 rec C: another person with the role approves meanwhile                -> done; listed ['olive', 'otto']; olive confirmed=False
+DEFECT PRESENT  F-72 rec B: the owner retries once the audit log works                     -> refused (RecPolicyError: olive has already approved this version); run approved=True; olive confirmed=False
+CORRECTED       control: an ordinary approval of each record is counted                    -> {'fin': True, 'det': True, 'mkt': True, 'spec': True, 'rec': True}
+
+cases 21  defects present 10
+F-72 IS NOT CORRECTED
+exit 1

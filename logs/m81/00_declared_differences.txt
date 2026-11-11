@@ -1,0 +1,6 @@
+APG-M8.1. Before the first comparison on AUIF rev14 the declarations were the APG-M8-R2 file, unchanged:
+4799c8044069e4715009ad8717efb6281760c304f2a2d9902fb53777684cb169  auif_m8/PATH_EQUIVALENCE_DECLARED_DIFFERENCES.json
+The first comparison on rev14 passed with it (logs/m81/01_first_comparison_on_rev14_no_declaration_change.log).
+2026-10-20T23:40:20Z
+cf60fd673efd7963a7a4db56e492b572f86db75f008b94e44d8ac12f1949b73c  auif_m8/PATH_EQUIVALENCE_DECLARED_DIFFERENCES.json
+after that run: corpus case R03's 'auif' text updated (wording only), with a correction note in the file.

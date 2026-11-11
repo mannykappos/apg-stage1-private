@@ -1,0 +1,72 @@
+{
+ "columns": [
+  {
+   "required": true,
+   "source_column": "requirement_id",
+   "target_field": "source_record_id",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "project_id",
+   "target_field": "project_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "required": true,
+   "source_column": "material_id",
+   "target_field": "material_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "basis_ref",
+   "target_field": "basis_ref",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "approved_by",
+   "target_field": "approved_by",
+   "transform": "trim",
+   "type": "string"
+  },
+  {
+   "date_format": "%Y-%m-%d",
+   "missing_means": "unknown_not_zero",
+   "required": false,
+   "source_column": "approved_on",
+   "target_field": "approved_on",
+   "transform": "parse_date",
+   "type": "date"
+  }
+ ],
+ "file": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "header_row": 1,
+  "type": "csv"
+ },
+ "format_version": "apg-mapping-template-1.0",
+ "money": {
+  "gst": "not_applicable",
+  "unit": "cents"
+ },
+ "natural_key": [
+  "requirement_id"
+ ],
+ "on_row_error": "reject_row_and_report",
+ "source_category": "SRC-05",
+ "source_label": "M6 synthetic supplement: specification requirements a person approved",
+ "status": "draft - unverified against any real export",
+ "target_entity": "spec_requirement",
+ "template_id": "TPL-MKT-SPEC-REQUIREMENTS",
+ "tenant_binding": "authenticated_context",
+ "unmapped_columns_policy": "preserve_as_raw_and_report"
+}

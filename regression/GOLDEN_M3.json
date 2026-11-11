@@ -1,0 +1,543 @@
+{
+ "golden": {
+  "PS-11": {
+   "INV-0001": "accepted",
+   "INV-0183": [
+    "duplicate_delivery",
+    "duplicate_of",
+    "INV-0001"
+   ],
+   "counted_once": true,
+   "redelivery_of_all_files_adds_records": 0,
+   "whole_files_replayed": [
+    11,
+    11
+   ]
+  },
+  "PS-12": {
+   "CRN-0001": [
+    "accepted",
+    null
+   ],
+   "INV-0184": [
+    "accepted_with_warnings",
+    {
+     "credits": [
+      "CRN-0001"
+     ],
+     "reissue_basis": "invoice-number pattern only; not used in any total",
+     "reissue_candidates": [
+      "INV-0185"
+     ]
+    }
+   ],
+   "INV-0185": [
+    "accepted_with_warnings",
+    {
+     "reissue_of_candidate": "INV-0184"
+    }
+   ],
+   "net_of_the_three_events_cents": 5800000
+  },
+  "PS-13": {
+   "INV-0121": [
+    "quarantined",
+    "current",
+    [
+     "SECONDARY_DISAGREES:pm_system"
+    ]
+   ],
+   "in_authoritative_total": false,
+   "in_gst_view": false
+  },
+  "PS-14": {
+   "MAT-CU_last_observation": "2026-04-15",
+   "Q-0001": "valid",
+   "Q-0004": "expired",
+   "buy_timing_assessment": [
+    "qualified",
+    [
+     "MAT-CU"
+    ]
+   ],
+   "unconfigured_policy_says": "cannot_assess"
+  },
+  "PS-17_ingestion_side": {
+   "PO-0100": [
+    "pending_reconciliation",
+    "current",
+    [
+     "DUPLICATE_CANDIDATE:PO-0101"
+    ]
+   ],
+   "PO-0101": [
+    "pending_reconciliation",
+    "current",
+    [
+     "DUPLICATE_CANDIDATE:PO-0100"
+    ]
+   ]
+  },
+  "PS-21": {
+   "INV-0186": [
+    "accepted_with_warnings",
+    {
+     "gst_cents": "no_data"
+    }
+   ],
+   "PO-0099": [
+    "pending_reconciliation",
+    [
+     "CRITICAL_VALUE_MISSING:cost_code_ref"
+    ]
+   ],
+   "gst_complete": false,
+   "gst_left_out": [
+    [
+     "INV-0186",
+     "no_data",
+     ""
+    ]
+   ],
+   "gst_total_cents": 216578173
+  },
+  "PS-22": {
+   "INV-0187": [
+    "pending_reconciliation",
+    null,
+    null,
+    [
+     "SUPPLIER_AMBIGUOUS:SUP-004,SUP-009"
+    ]
+   ],
+   "in_authoritative_total": false
+  },
+  "PS-23": {
+   "assessment": [
+    "qualified",
+    [
+     [
+      "Q-0005 rate date",
+      "stale"
+     ],
+     [
+      "latest AUD/USD",
+      "fresh"
+     ]
+    ]
+   ],
+   "conversion_at_latest_rate_for_comparison": {
+    "converted_minor": 10550,
+    "method": "USD->AUD exact fraction, half-up to whole minor units",
+    "pair": "AUD/USD",
+    "rate": "0.6540",
+    "rate_date": "2026-09-30",
+    "rate_source": "fx_rates.csv",
+    "source_amount_minor": 6900,
+    "source_currency": "USD",
+    "target_currency": "AUD"
+   },
+   "conversion_at_quote_rate": {
+    "converted_minor": 10436,
+    "method": "USD->AUD exact fraction, half-up to whole minor units",
+    "pair": "AUD/USD",
+    "rate": "0.6612",
+    "rate_date": "2026-05-02",
+    "rate_source": "quote Q-0005",
+    "source_amount_minor": 6900,
+    "source_currency": "USD",
+    "target_currency": "AUD"
+   }
+  },
+  "PS-24": {
+   "spoofed_files_refused": 3,
+   "spoofed_record_stored": false,
+   "tenants_with_records": [
+    "zero_one",
+    "zero_two"
+   ],
+   "zero_one_untouched_total": true,
+   "zero_two_INV-0001": [
+    "quarantined",
+    "current",
+    [
+     "CONFLICT_SAME_KEY"
+    ]
+   ],
+   "zero_two_authoritative_cents": 312130548,
+   "zero_two_conflict_marker_contenders": 2,
+   "zero_two_excluded": [
+    "INV-0001"
+   ]
+  },
+  "PS-26": {
+   "DOC-001": {
+    "quantity": {
+     "ambiguous": false,
+     "authoritative_before_verification": false,
+     "candidates": [
+      2000
+     ]
+    },
+    "unit_rate_cents": {
+     "ambiguous": false,
+     "authoritative_before_verification": false,
+     "candidates": [
+      1740
+     ]
+    }
+   },
+   "DOC-002": {
+    "quantity": {
+     "ambiguous": true,
+     "authoritative_before_verification": false,
+     "candidates": [
+      40
+     ]
+    },
+    "unit_rate_cents": {
+     "ambiguous": true,
+     "authoritative_before_verification": false,
+     "candidates": [
+      265,
+      265000
+     ]
+    }
+   }
+  },
+  "after_reviewer_decision_INV-0121": {
+   "INV-0121_outcome": "accepted_with_warnings",
+   "authoritative_cents": 2174751822,
+   "delta_cents": 7280125,
+   "evidence_revisions_for_INV-0121": 1
+  },
+  "audit_chain_ok": [
+   true,
+   true
+  ],
+  "effective_outcomes_zero_one": {
+   "accepted": 596,
+   "accepted_with_warnings": 9,
+   "duplicate_delivery": 1,
+   "pending_reconciliation": 4,
+   "quarantined": 1
+  },
+  "ingest_counts_zero_one": {
+   "ap_invoices.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 187,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 187,
+    "stale": 0
+   },
+   "budget_lines.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 30,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 30,
+    "stale": 0
+   },
+   "credit_notes.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 1,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 1,
+    "stale": 0
+   },
+   "fx_rates.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 20,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 20,
+    "stale": 0
+   },
+   "market_observations.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 71,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 71,
+    "stale": 0
+   },
+   "payments.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 180,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 180,
+    "stale": 0
+   },
+   "pm_system_invoices.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 1,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 1,
+    "stale": 0
+   },
+   "po_amendments.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 2,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 2,
+    "stale": 0
+   },
+   "purchase_orders.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 1,
+    "new": 101,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 101,
+    "stale": 0
+   },
+   "quotes.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 6,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 6,
+    "stale": 0
+   },
+   "suppliers.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 12,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 12,
+    "stale": 0
+   }
+  },
+  "ingest_counts_zero_two": {
+   "ap_invoices.csv": {
+    "conflict": 1,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 60,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 61,
+    "stale": 0
+   },
+   "budget_lines.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 10,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 10,
+    "stale": 0
+   },
+   "credit_notes.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 0,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 0,
+    "stale": 0
+   },
+   "fx_rates.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 20,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 20,
+    "stale": 0
+   },
+   "market_observations.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 71,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 71,
+    "stale": 0
+   },
+   "payments.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 60,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 60,
+    "stale": 0
+   },
+   "po_amendments.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 0,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 0,
+    "stale": 0
+   },
+   "purchase_orders.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 30,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 30,
+    "stale": 0
+   },
+   "quotes.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 0,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 0,
+    "stale": 0
+   },
+   "suppliers.csv": {
+    "conflict": 0,
+    "duplicate": 0,
+    "held_at_intake": 0,
+    "new": 4,
+    "rejected": 0,
+    "revision": 0,
+    "rows": 4,
+    "stale": 0
+   }
+  },
+  "invoice_cost_zero_one": {
+   "authoritative_cents": 2167471697,
+   "complete": false,
+   "excluded": [
+    [
+     "INV-0121",
+     "quarantined",
+     [
+      "SECONDARY_DISAGREES:pm_system"
+     ]
+    ],
+    [
+     "INV-0183",
+     "duplicate_delivery",
+     []
+    ],
+    [
+     "INV-0187",
+     "pending_reconciliation",
+     [
+      "SUPPLIER_AMBIGUOUS:SUP-004,SUP-009"
+     ]
+    ]
+   ],
+   "included_count": 184,
+   "provisional_cents": 10480125,
+   "provisional_unverified": [
+    [
+     "INV-0121",
+     "quarantined",
+     "7280125"
+    ],
+    [
+     "INV-0187",
+     "pending_reconciliation",
+     "3200000"
+    ]
+   ]
+  },
+  "reconcile_zero_one": {
+   "by_outcome": {
+    "accepted": 596,
+    "accepted_with_warnings": 9,
+    "duplicate_delivery": 1,
+    "pending_reconciliation": 4,
+    "quarantined": 1
+   },
+   "closed": 0,
+   "held": 5,
+   "records": 611
+  },
+  "scan_gate": {
+   "clean_replay_of_same_bytes": true,
+   "file_id_stable": true,
+   "unscanned_code": "SCAN_REQUIRED"
+  }
+ },
+ "oracle": {
+  "conflict_accounting_cents": 7280125,
+  "conflict_pm_cents": 8180125,
+  "duplicate_delivery_ids": [
+   "INV-0183"
+  ],
+  "eligible_gross_ex_gst_cents": 2173471697,
+  "eligible_invoice_count": 184,
+  "eligible_net_of_credits_ex_gst_cents": 2167471697,
+  "expired_quote_ids": [
+   "Q-0004"
+  ],
+  "gst_blank_ids": [
+   "INV-0186"
+  ],
+  "gst_known_net_of_credits_cents_of_eligible": 216578173,
+  "held_invoice_ids": [
+   "INV-0121",
+   "INV-0183",
+   "INV-0187"
+  ],
+  "identical_po_groups": [
+   [
+    "PO-0100",
+    "PO-0101"
+   ]
+  ],
+  "invoice_rows": 187,
+  "latest_aud_usd_date": "2026-09-30",
+  "mat_cu_last_observation": "2026-04-15",
+  "pm_conflict_ids": [
+   "INV-0121"
+  ],
+  "po_missing_cost_code_ids": [
+   "PO-0099"
+  ],
+  "q0005_rate": "0.6612",
+  "q0005_rate_date": "2026-05-02",
+  "q0005_usd_minor": 6900,
+  "unknown_supplier_text_ids": [
+   "INV-0187"
+  ],
+  "zero_two_invoice_ids_with_different_content": [
+   "INV-0001"
+  ],
+  "zero_two_rows": 61
+ }
+}

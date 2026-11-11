@@ -1,0 +1,2245 @@
+{
+ "compatibility": {
+  "backward_compatible_with": [
+   "0.1.0"
+  ],
+  "breaking_change_policy": "PROPOSED model: any change is a new version; packs pin the range they support."
+ },
+ "concepts": [
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "supplier_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG supplier field read from source column 'supplier_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "name",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG supplier field read from source column 'name' (APG type string)",
+     "name": "supplier_name",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "abn_synthetic",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG supplier field read from source column 'abn_synthetic' (APG type string)",
+     "name": "abn_text",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.Supplier",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "invoice_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG ap_invoice field read from source column 'invoice_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "supplier_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG ap_invoice field read from source column 'supplier_id' (APG type string)",
+     "name": "supplier_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "supplier_invoice_no",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG ap_invoice field read from source column 'supplier_invoice_no' (APG type string)",
+     "name": "supplier_invoice_number",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "project_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG ap_invoice field read from source column 'project_id' (APG type string)",
+     "name": "project_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "cost_code",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG ap_invoice field read from source column 'cost_code' (APG type string)",
+     "name": "cost_code_ref",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "po_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG ap_invoice field read from source column 'po_id' (APG type string)",
+     "name": "purchase_order_ref",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "invoice_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG ap_invoice field read from source column 'invoice_date' (APG type date)",
+     "name": "invoice_date",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "ex_gst_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG ap_invoice field read from source column 'ex_gst_cents' (APG type money_cents)",
+     "name": "amount_ex_gst_cents",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "gst_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG ap_invoice field read from source column 'gst_cents' (APG type money_cents)",
+     "name": "gst_cents",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "status",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG ap_invoice field read from source column 'status' (APG type string)",
+     "name": "source_status",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "source_batch",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG ap_invoice field read from source column 'source_batch' (APG type string)",
+     "name": "source_batch_ref",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.ApInvoice",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "credit_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG credit_note field read from source column 'credit_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "supplier_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG credit_note field read from source column 'supplier_id' (APG type string)",
+     "name": "supplier_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "against_invoice_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG credit_note field read from source column 'against_invoice_id' (APG type string)",
+     "name": "against_invoice_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "credit_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG credit_note field read from source column 'credit_date' (APG type date)",
+     "name": "credit_date",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "ex_gst_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG credit_note field read from source column 'ex_gst_cents' (APG type money_cents)",
+     "name": "amount_ex_gst_cents",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "gst_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG credit_note field read from source column 'gst_cents' (APG type money_cents)",
+     "name": "gst_cents",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.CreditNote",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "payment_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG payment field read from source column 'payment_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "invoice_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG payment field read from source column 'invoice_id' (APG type string)",
+     "name": "invoice_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "payment_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG payment field read from source column 'payment_date' (APG type date)",
+     "name": "payment_date",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "amount_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG payment field read from source column 'amount_cents' (APG type money_cents)",
+     "name": "amount_cents",
+     "required": true,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.Payment",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "po_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG purchase_order field read from source column 'po_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "supplier_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG purchase_order field read from source column 'supplier_id' (APG type string)",
+     "name": "supplier_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "project_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG purchase_order field read from source column 'project_id' (APG type string)",
+     "name": "project_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "cost_code",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG purchase_order field read from source column 'cost_code' (APG type string)",
+     "name": "cost_code_ref",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "po_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG purchase_order field read from source column 'po_date' (APG type date)",
+     "name": "order_date",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "material_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG purchase_order field read from source column 'material_id' (APG type string)",
+     "name": "material_ref",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "integer",
+      "source_column": "qty",
+      "transform": "none"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG purchase_order field read from source column 'qty' (APG type integer)",
+     "name": "quantity",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "unit",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG purchase_order field read from source column 'unit' (APG type string)",
+     "name": "unit_of_measure",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "unit_rate_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG purchase_order field read from source column 'unit_rate_cents' (APG type money_cents)",
+     "name": "unit_rate_cents",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "amount_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG purchase_order field read from source column 'amount_cents' (APG type money_cents)",
+     "name": "amount_ex_gst_cents",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "status",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG purchase_order field read from source column 'status' (APG type string)",
+     "name": "source_status",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.PurchaseOrder",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "amendment_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG po_amendment field read from source column 'amendment_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "po_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG po_amendment field read from source column 'po_id' (APG type string)",
+     "name": "purchase_order_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "amendment_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG po_amendment field read from source column 'amendment_date' (APG type date)",
+     "name": "amendment_date",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "delta_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG po_amendment field read from source column 'delta_cents' (APG type money_cents)",
+     "name": "delta_cents",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "approved_change_ref",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG po_amendment field read from source column 'approved_change_ref' (APG type string)",
+     "name": "approved_change_ref",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "reason",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG po_amendment field read from source column 'reason' (APG type string)",
+     "name": "reason_text",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.PoAmendment",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "quote_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG supplier_quote field read from source column 'quote_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "supplier_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG supplier_quote field read from source column 'supplier_id' (APG type string)",
+     "name": "supplier_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "material_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG supplier_quote field read from source column 'material_id' (APG type string)",
+     "name": "material_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "specification",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG supplier_quote field read from source column 'specification' (APG type string)",
+     "name": "specification_text",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "issue_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG supplier_quote field read from source column 'issue_date' (APG type date)",
+     "name": "issue_date",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "valid_until",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG supplier_quote field read from source column 'valid_until' (APG type date)",
+     "name": "valid_until",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "unit_rate_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG supplier_quote field read from source column 'unit_rate_cents' (APG type money_cents)",
+     "name": "unit_rate_minor_units",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "allowed": [
+       "AUD",
+       "USD",
+       "EUR",
+       "NZD",
+       "CNY"
+      ],
+      "apg_type": "enum",
+      "source_column": "currency",
+      "transform": "upper"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG supplier_quote field read from source column 'currency' (APG type enum)",
+     "name": "currency_code",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "decimal",
+      "source_column": "fx_rate_used",
+      "transform": "none"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG supplier_quote field read from source column 'fx_rate_used' (APG type decimal)",
+     "name": "fx_rate_used",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "fx_rate_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG supplier_quote field read from source column 'fx_rate_date' (APG type date)",
+     "name": "fx_rate_date",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "freight_cents_per_unit",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG supplier_quote field read from source column 'freight_cents_per_unit' (APG type money_cents)",
+     "name": "freight_per_unit_cents",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "incoterm_delivery_basis",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG supplier_quote field read from source column 'incoterm_delivery_basis' (APG type string)",
+     "name": "delivery_basis",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "integer",
+      "source_column": "lead_time_days",
+      "transform": "none"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG supplier_quote field read from source column 'lead_time_days' (APG type integer)",
+     "name": "lead_time_days",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "price_kind",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG supplier_quote field read from source column 'price_kind' (APG type string)",
+     "name": "price_kind",
+     "required": true,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.SupplierQuote",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "project_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG budget_line field read from source column 'project_id' (APG type string)",
+     "name": "project_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "cost_code",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG budget_line field read from source column 'cost_code' (APG type string)",
+     "name": "cost_code_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "budget_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG budget_line field read from source column 'budget_cents' (APG type money_cents)",
+     "name": "budget_cents",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "revision",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG budget_line field read from source column 'revision' (APG type string)",
+     "name": "source_revision_label",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "revision_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG budget_line field read from source column 'revision_date' (APG type date)",
+     "name": "revision_date",
+     "required": true,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.BudgetLine",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "fx_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG fx_rate field read from source column 'fx_date' (APG type date)",
+     "name": "fx_date",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "pair",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG fx_rate field read from source column 'pair' (APG type string)",
+     "name": "currency_pair",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "decimal",
+      "source_column": "rate",
+      "transform": "none"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG fx_rate field read from source column 'rate' (APG type decimal)",
+     "name": "rate_text",
+     "required": true,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.FxRate",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "obs_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG market_observation field read from source column 'obs_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "material_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG market_observation field read from source column 'material_id' (APG type string)",
+     "name": "material_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "obs_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG market_observation field read from source column 'obs_date' (APG type date)",
+     "name": "obs_date",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "integer",
+      "source_column": "value",
+      "transform": "none"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG market_observation field read from source column 'value' (APG type integer)",
+     "name": "value_scaled",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "unit",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG market_observation field read from source column 'unit' (APG type string)",
+     "name": "unit_text",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "kind",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG market_observation field read from source column 'kind' (APG type string)",
+     "name": "kind_text",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "source_label",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG market_observation field read from source column 'source_label' (APG type string)",
+     "name": "source_label_text",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "geography",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG market_observation field read from source column 'geography' (APG type string)",
+     "name": "geography_text",
+     "required": true,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.MarketObservation",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "invoice_ref",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG pm_invoice field read from source column 'invoice_ref' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "supplier_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG pm_invoice field read from source column 'supplier_id' (APG type string)",
+     "name": "supplier_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "project_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG pm_invoice field read from source column 'project_id' (APG type string)",
+     "name": "project_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "ex_gst_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG pm_invoice field read from source column 'ex_gst_cents' (APG type money_cents)",
+     "name": "amount_ex_gst_cents",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "source",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG pm_invoice field read from source column 'source' (APG type string)",
+     "name": "source_label_text",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.PmInvoice",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "project_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG project field read from source column 'project_id' (APG type string)",
+     "name": "project_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "name",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG project field read from source column 'name' (APG type string)",
+     "name": "project_name",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "contract_value_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG project field read from source column 'contract_value_cents' (APG type money_cents)",
+     "name": "contract_value_cents",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "start_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG project field read from source column 'start_date' (APG type date)",
+     "name": "start_date",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "planned_finish",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG project field read from source column 'planned_finish' (APG type date)",
+     "name": "planned_finish",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.Project",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "project_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG contract field read from source column 'project_id' (APG type string)",
+     "name": "project_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "original_contract_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG contract field read from source column 'original_contract_cents' (APG type money_cents)",
+     "name": "original_contract_cents",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "approved_variations_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG contract field read from source column 'approved_variations_cents' (APG type money_cents)",
+     "name": "approved_variations_cents",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.Contract",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "variation_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG variation field read from source column 'variation_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "project_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG variation field read from source column 'project_id' (APG type string)",
+     "name": "project_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "raised_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG variation field read from source column 'raised_date' (APG type date)",
+     "name": "raised_date",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "status",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG variation field read from source column 'status' (APG type string)",
+     "name": "source_status",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "value_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG variation field read from source column 'value_cents' (APG type money_cents)",
+     "name": "value_cents",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "description",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG variation field read from source column 'description' (APG type string)",
+     "name": "description_text",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.Variation",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "project_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG ctc_line field read from source column 'project_id' (APG type string)",
+     "name": "project_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "cost_code",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG ctc_line field read from source column 'cost_code' (APG type string)",
+     "name": "cost_code_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "forecast_version",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG ctc_line field read from source column 'forecast_version' (APG type string)",
+     "name": "forecast_version",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "forecast_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG ctc_line field read from source column 'forecast_date' (APG type date)",
+     "name": "forecast_date",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "cost_to_complete_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG ctc_line field read from source column 'cost_to_complete_cents' (APG type money_cents)",
+     "name": "cost_to_complete_cents",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "estimate_basis",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG ctc_line field read from source column 'estimate_basis' (APG type string)",
+     "name": "estimate_basis_text",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "movement_reason",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG ctc_line field read from source column 'movement_reason' (APG type string)",
+     "name": "movement_reason_text",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.CtcLine",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "project_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG retention field read from source column 'project_id' (APG type string)",
+     "name": "project_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "retention_held_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG retention field read from source column 'retention_held_cents' (APG type money_cents)",
+     "name": "retention_held_cents",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "release_due_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG retention field read from source column 'release_due_date' (APG type date)",
+     "name": "release_due_date",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "released_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG retention field read from source column 'released_date' (APG type date)",
+     "name": "released_date",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "hold_reason",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG retention field read from source column 'hold_reason' (APG type string)",
+     "name": "hold_reason_text",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.Retention",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "instrument_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG security field read from source column 'instrument_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "project_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG security field read from source column 'project_id' (APG type string)",
+     "name": "project_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "kind",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG security field read from source column 'kind' (APG type string)",
+     "name": "kind_text",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "face_value_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG security field read from source column 'face_value_cents' (APG type money_cents)",
+     "name": "face_value_cents",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "expiry_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG security field read from source column 'expiry_date' (APG type date)",
+     "name": "expiry_date",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.Security",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "facility_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG facility field read from source column 'facility_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "limit_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG facility field read from source column 'limit_cents' (APG type money_cents)",
+     "name": "limit_cents",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "drawn_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG facility field read from source column 'drawn_cents' (APG type money_cents)",
+     "name": "drawn_cents",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "integer",
+      "source_column": "rate_bps",
+      "transform": "none"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG facility field read from source column 'rate_bps' (APG type integer)",
+     "name": "rate_bps",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "as_of",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG facility field read from source column 'as_of' (APG type date)",
+     "name": "statement_date",
+     "required": true,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.Facility",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "txn_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG bank_txn field read from source column 'txn_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "txn_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG bank_txn field read from source column 'txn_date' (APG type date)",
+     "name": "txn_date",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "amount_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG bank_txn field read from source column 'amount_cents' (APG type money_cents)",
+     "name": "amount_cents",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "description",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG bank_txn field read from source column 'description' (APG type string)",
+     "name": "description_text",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.BankTxn",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "supplier_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG compliance field read from source column 'supplier_id' (APG type string)",
+     "name": "supplier_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "evidence_type",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG compliance field read from source column 'evidence_type' (APG type string)",
+     "name": "evidence_type_text",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "expiry_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG compliance field read from source column 'expiry_date' (APG type date)",
+     "name": "expiry_date",
+     "required": true,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.Compliance",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "notice_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG notice field read from source column 'notice_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "project_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG notice field read from source column 'project_id' (APG type string)",
+     "name": "project_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "notice_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG notice field read from source column 'notice_date' (APG type date)",
+     "name": "notice_date",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "notice_type",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG notice field read from source column 'notice_type' (APG type string)",
+     "name": "notice_type_text",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "linked_variation_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG notice field read from source column 'linked_variation_id' (APG type string)",
+     "name": "linked_variation_ref",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "description",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG notice field read from source column 'description' (APG type string)",
+     "name": "description_text",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.Notice",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "event_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG delay_event field read from source column 'event_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "project_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG delay_event field read from source column 'project_id' (APG type string)",
+     "name": "project_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "activity_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG delay_event field read from source column 'activity_id' (APG type string)",
+     "name": "activity_ref",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "start_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG delay_event field read from source column 'start_date' (APG type date)",
+     "name": "start_date",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "end_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG delay_event field read from source column 'end_date' (APG type date)",
+     "name": "end_date",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "integer",
+      "source_column": "working_days",
+      "transform": "none"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG delay_event field read from source column 'working_days' (APG type integer)",
+     "name": "working_days",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "recorded_cause",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG delay_event field read from source column 'recorded_cause' (APG type string)",
+     "name": "recorded_cause_text",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "holding_cost_rate_cents_per_day",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG delay_event field read from source column 'holding_cost_rate_cents_per_day' (APG type money_cents)",
+     "name": "holding_rate_cents_per_day",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.DelayEvent",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "hire_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG plant_hire field read from source column 'hire_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "project_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG plant_hire field read from source column 'project_id' (APG type string)",
+     "name": "project_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "equipment",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG plant_hire field read from source column 'equipment' (APG type string)",
+     "name": "equipment_text",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "on_hire_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG plant_hire field read from source column 'on_hire_date' (APG type date)",
+     "name": "on_hire_date",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "off_hire_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG plant_hire field read from source column 'off_hire_date' (APG type date)",
+     "name": "off_hire_date",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "needed_until",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG plant_hire field read from source column 'needed_until' (APG type date)",
+     "name": "needed_until",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "rate_cents_per_day",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG plant_hire field read from source column 'rate_cents_per_day' (APG type money_cents)",
+     "name": "rate_cents_per_day",
+     "required": true,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.PlantHire",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "entry_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG timesheet field read from source column 'entry_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "worker_pseudonym",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG timesheet field read from source column 'worker_pseudonym' (APG type string)",
+     "name": "worker_pseudonym",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "project_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG timesheet field read from source column 'project_id' (APG type string)",
+     "name": "project_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "work_package",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG timesheet field read from source column 'work_package' (APG type string)",
+     "name": "work_package_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "work_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG timesheet field read from source column 'work_date' (APG type date)",
+     "name": "work_date",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "decimal",
+      "source_column": "ordinary_hours",
+      "transform": "none"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG timesheet field read from source column 'ordinary_hours' (APG type decimal)",
+     "name": "ordinary_hours",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "decimal",
+      "source_column": "overtime_hours",
+      "transform": "none"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG timesheet field read from source column 'overtime_hours' (APG type decimal)",
+     "name": "overtime_hours",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "rate_cents_per_hour",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG timesheet field read from source column 'rate_cents_per_hour' (APG type money_cents)",
+     "name": "rate_cents_per_hour",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.Timesheet",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "project_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG work_output field read from source column 'project_id' (APG type string)",
+     "name": "project_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "work_package",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG work_output field read from source column 'work_package' (APG type string)",
+     "name": "work_package_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "week_start",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG work_output field read from source column 'week_start' (APG type date)",
+     "name": "week_start",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "decimal",
+      "source_column": "quantity",
+      "transform": "none"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG work_output field read from source column 'quantity' (APG type decimal)",
+     "name": "quantity",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "unit",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG work_output field read from source column 'unit' (APG type string)",
+     "name": "unit_text",
+     "required": true,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.WorkOutput",
+   "namespace": "MODULE"
+  },
+  {
+   "attributes": [
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "defect_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG defect field read from source column 'defect_id' (APG type string)",
+     "name": "source_record_id",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "project_id",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG defect field read from source column 'project_id' (APG type string)",
+     "name": "project_ref",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "subcontractor",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG defect field read from source column 'subcontractor' (APG type string)",
+     "name": "subcontractor_text",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "trade",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG defect field read from source column 'trade' (APG type string)",
+     "name": "trade_text",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "date",
+      "date_format": "%Y-%m-%d",
+      "source_column": "raised_date",
+      "transform": "parse_date"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG defect field read from source column 'raised_date' (APG type date)",
+     "name": "raised_date",
+     "required": true,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "severity",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG defect field read from source column 'severity' (APG type string)",
+     "name": "severity_text",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "money_cents",
+      "money_unit": "cents",
+      "source_column": "rework_cost_cents",
+      "transform": "none"
+     },
+     "default_classification": "FINANCIAL",
+     "description": "APG defect field read from source column 'rework_cost_cents' (APG type money_cents)",
+     "name": "rework_cost_cents",
+     "required": false,
+     "type": "STRING"
+    },
+    {
+     "constraints": {
+      "apg_type": "string",
+      "source_column": "status",
+      "transform": "trim"
+     },
+     "default_classification": "INTERNAL",
+     "description": "APG defect field read from source column 'status' (APG type string)",
+     "name": "status_text",
+     "required": false,
+     "type": "STRING"
+    }
+   ],
+   "extension_rules": {
+    "module_extension_allowed": false
+   },
+   "name": "module.apg.Defect",
+   "namespace": "MODULE"
+  }
+ ],
+ "contract_kind": "CanonicalModelDefinition",
+ "deterministic_validation": {
+  "rules_ref": "apg-m8-rules-0.1.0"
+ },
+ "model_version": "0.1.0",
+ "status": "PROPOSED"
+}
