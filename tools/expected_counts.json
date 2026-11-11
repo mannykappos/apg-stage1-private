@@ -4062,6 +4062,41 @@
    "date": "2026-11-11T08:43:47Z",
    "reason": "amendment 5, row 55: the test made deterministic (a held group) after the full suite showed a timing race in the test itself",
    "version": 101
+  },
+  {
+   "cause": "tests_tools/test_consumer_exit_codes.py and tests_tools/test_no_timeout_kill.py changed on branch row68",
+   "changes": [
+    {
+     "entry": "test_files/tests_tools/test_consumer_exit_codes.py",
+     "new": {
+      "ids_sha256": "019ebe65926eaad83bfd9c42701a034748c5d13649fd7c26537a258e930b70e2",
+      "sha256": "dbf50fab5e995fda7d701a39e2c9195d7394bca9cc5ce64ee0cc1f44083fe587",
+      "tests": 91
+     },
+     "old": {
+      "ids_sha256": "019ebe65926eaad83bfd9c42701a034748c5d13649fd7c26537a258e930b70e2",
+      "sha256": "b8f3e6c625b97e3a411e7fd5d68267ead461b27c5c68ae0499a2f9b59e5a7c96",
+      "tests": 91
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_no_timeout_kill.py",
+     "new": {
+      "ids_sha256": "9d8fff121d3f473f26a678525fe1727ca177887dc44b75dc8f038bf35583a8f2",
+      "sha256": "5c04aed862ec4ef723e09e131236ac4e8c2044d5ec3019df9e73987ebc479f55",
+      "tests": 52
+     },
+     "old": {
+      "ids_sha256": "9d8fff121d3f473f26a678525fe1727ca177887dc44b75dc8f038bf35583a8f2",
+      "sha256": "d25a9ff0fd8b7a7ff7cfb7ec3f628bdc461c20c37b616e56b2669922d30003af",
+      "tests": 52
+     }
+    }
+   ],
+   "content_sha256": "7ee7b3fe6c0f1a711c1bd578fd9c8f79fe408715d5b8940ee92eb94837773fbe",
+   "date": "2026-11-11T19:34:06Z",
+   "reason": "amendment 5, row 68 (owner 2026-11-12 answer \"Add limits, then refreeze\"): the test_files entries of the two tests_tools files whose helper process starts were given a time limit",
+   "version": 102
   }
  ],
  "check_lists": {
@@ -38874,7 +38909,7 @@
     "tests_tools.test_consumer_exit_codes.WrapperResultW1.test_zero_work_is_an_evidence_error"
    ],
    "ids_sha256": "019ebe65926eaad83bfd9c42701a034748c5d13649fd7c26537a258e930b70e2",
-   "sha256": "b8f3e6c625b97e3a411e7fd5d68267ead461b27c5c68ae0499a2f9b59e5a7c96"
+   "sha256": "dbf50fab5e995fda7d701a39e2c9195d7394bca9cc5ce64ee0cc1f44083fe587"
   },
   "tests_tools/test_exec_env.py": {
    "ids": [
@@ -39308,7 +39343,7 @@
     "tests_tools.test_no_timeout_kill.SuccessorNeverCountsATimeoutOrCrash.test_timeout_is_indeterminate_in_every_kind"
    ],
    "ids_sha256": "9d8fff121d3f473f26a678525fe1727ca177887dc44b75dc8f038bf35583a8f2",
-   "sha256": "d25a9ff0fd8b7a7ff7cfb7ec3f628bdc461c20c37b616e56b2669922d30003af"
+   "sha256": "5c04aed862ec4ef723e09e131236ac4e8c2044d5ec3019df9e73987ebc479f55"
   },
   "tests_tools/test_runner_zero_work.py": {
    "ids": [
@@ -39484,7 +39519,7 @@
   }
  },
  "timeout_kill_factor": null,
- "version": 101,
+ "version": 102,
  "wrapper_inventories": {
   "run_f671_all_s1": {
    "files": {
