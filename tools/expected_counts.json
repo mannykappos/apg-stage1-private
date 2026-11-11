@@ -3966,6 +3966,80 @@
    "date": "2026-11-11T05:38:25Z",
    "reason": "recovery after the workspace loss of 2026-11-11 (corrective pass 2): the test_files entries of the tests_tools files, which hold the pass 2 tests, re-pinned on the rebuilt tree (c9b324eb pins v110 and v111, whose bytes were lost)",
    "version": 99
+  },
+  {
+   "cause": "tests_tools files changed on branch step3",
+   "changes": [
+    {
+     "entry": "test_files/tests_tools/test_consumer_exit_codes.py",
+     "new": {
+      "ids_sha256": "019ebe65926eaad83bfd9c42701a034748c5d13649fd7c26537a258e930b70e2",
+      "sha256": "b8f3e6c625b97e3a411e7fd5d68267ead461b27c5c68ae0499a2f9b59e5a7c96",
+      "tests": 91
+     },
+     "old": {
+      "ids_sha256": "d750fb9709d2b32f75bcb2baeb1a0eab4b45213ab9944a242bfae48fb28bfbd9",
+      "sha256": "f10bc724c7bd4dfe6f66c801cd90467f78cd22a7f614e445a7049ad9f50d58d4",
+      "tests": 86
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_exec_env.py",
+     "new": {
+      "ids_sha256": "f3b208c4ea459120decf0e90af59bf973d323d80665cd5b876526e5a420e5c15",
+      "sha256": "fb0ebacf5bac6019f8c053223d1636f7ffd9bae5e19ff0063ccbf71e25a0237c",
+      "tests": 42
+     },
+     "old": {
+      "ids_sha256": "c9786913dada46d5a470f8f156ffd2eb7b35894b90e26eaa3a64fe11927947df",
+      "sha256": "d27892108342df949c1ac6a44ae283353c880c40190b656d77a324abafe47b0f",
+      "tests": 39
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_mutation_timeout.py",
+     "new": {
+      "ids_sha256": "1789b9e3ee8a4c7eb7d5106faafe53ca6b8ab7c745a34c8fab40cbb042a4b718",
+      "sha256": "8367ef42815a97a7ad9802d916721717414e95ade54f7784e53e12a8b1179ad8",
+      "tests": 200
+     },
+     "old": {
+      "ids_sha256": "622df01ce1d0b4c1598c179eab62b27a122a01b4c02f48e94774743ec107de5a",
+      "sha256": "33a6807919cfb138a4018defcff6200f3cdff7573d325d49be375ed14b737b4c",
+      "tests": 180
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_no_timeout_kill.py",
+     "new": {
+      "ids_sha256": "9d8fff121d3f473f26a678525fe1727ca177887dc44b75dc8f038bf35583a8f2",
+      "sha256": "d25a9ff0fd8b7a7ff7cfb7ec3f628bdc461c20c37b616e56b2669922d30003af",
+      "tests": 52
+     },
+     "old": {
+      "ids_sha256": "1fcf30bb6bce9813086c8dbd3b29cab304f0b725eca761164f4f8b2a6a14d790",
+      "sha256": "de6ed9fdf397297a8eec197e77348ed0882bf0c562a52c7bf77d19c5db31df7b",
+      "tests": 34
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_runner_zero_work.py",
+     "new": {
+      "ids_sha256": "050ea34f42bad2dc154eb2dd76e45fba6c1e716e73c9e42c8ba24a37a0109b90",
+      "sha256": "ee7c50a4124bf7c19cf8a0f5451e45ae20dbf8f73d1cf99caacb36cb1e3864fa",
+      "tests": 166
+     },
+     "old": {
+      "ids_sha256": "2ed3f12d9af5eac5f14a8ae3c5ed1cddbf0b6b84aa60611aecd5c3c32fc5e6e3",
+      "sha256": "72fa22da49eef23f81fe433cf0c79c58aecc32d44d16911828a85feb47204014",
+      "tests": 125
+     }
+    }
+   ],
+   "content_sha256": "492b4a6544f8ebb07f25e8c2d5ade8b154b14928daade35d9d5f3e241c71abdb",
+   "date": "2026-11-11T07:48:10Z",
+   "reason": "amendment 5 (owner 2026-11-08 11:26; S15 to S17 at 12:47; option A of 2026-11-09): the test_files entries of the tests_tools files that hold the amendment 5 tests, rewritten after the workspace loss of 2026-11-11",
+   "version": 100
   }
  ],
  "check_lists": {
@@ -38688,6 +38762,11 @@
     "tests_tools.test_consumer_exit_codes.AChildInTheWrongModeIsAnItemError.test_mutation_tool",
     "tests_tools.test_consumer_exit_codes.AChildInTheWrongModeIsAnItemError.test_sabotage_tool",
     "tests_tools.test_consumer_exit_codes.AChildInTheWrongModeIsAnItemError.test_wrapper_group",
+    "tests_tools.test_consumer_exit_codes.AM5Checker.test_row34_no_resolved_selection_with_a_non_zero_selected",
+    "tests_tools.test_consumer_exit_codes.AM5Checker.test_row57_a_completed_end_control_beside_not_run",
+    "tests_tools.test_consumer_exit_codes.AM5Checker.test_row57_a_completed_end_control_reported_as_not_run",
+    "tests_tools.test_consumer_exit_codes.AM5Checker.test_row62_cross_kind_v3_dispatch",
+    "tests_tools.test_consumer_exit_codes.AM5Checker.test_row63_tests_and_wrapper_outputs_twice_through_the_checker",
     "tests_tools.test_consumer_exit_codes.CaseInventoryHash.test_a_case_suite_that_is_not_pinned",
     "tests_tools.test_consumer_exit_codes.CaseInventoryHash.test_each_form_with_and_without_the_pins",
     "tests_tools.test_consumer_exit_codes.CheckerRejectsBadOutput.test_a_survivor_hidden_behind_ok",
@@ -38772,11 +38851,14 @@
     "tests_tools.test_consumer_exit_codes.WrapperResultW1.test_status_and_exit",
     "tests_tools.test_consumer_exit_codes.WrapperResultW1.test_zero_work_is_an_evidence_error"
    ],
-   "ids_sha256": "d750fb9709d2b32f75bcb2baeb1a0eab4b45213ab9944a242bfae48fb28bfbd9",
-   "sha256": "f10bc724c7bd4dfe6f66c801cd90467f78cd22a7f614e445a7049ad9f50d58d4"
+   "ids_sha256": "019ebe65926eaad83bfd9c42701a034748c5d13649fd7c26537a258e930b70e2",
+   "sha256": "b8f3e6c625b97e3a411e7fd5d68267ead461b27c5c68ae0499a2f9b59e5a7c96"
   },
   "tests_tools/test_exec_env.py": {
    "ids": [
+    "tests_tools.test_exec_env.AM5SecondChain.test_row29_the_second_chain_through_run_m8_tests_s1",
+    "tests_tools.test_exec_env.AM5SecondChain.test_row29_the_second_chain_through_run_m8_tests_s1_interrupt",
+    "tests_tools.test_exec_env.AM5SecondChain.test_row29_the_second_chain_through_run_m8_tests_s1_timeout",
     "tests_tools.test_exec_env.AuifRootAtRunnerLevel.test_an_inherited_value_that_is_not_a_verified_copy_is_refused",
     "tests_tools.test_exec_env.AuifRootAtRunnerLevel.test_children_get_only_the_copy_the_runner_verified",
     "tests_tools.test_exec_env.AuifRootAtRunnerLevel.test_the_child_accepts_the_copy_its_runner_verified",
@@ -38817,8 +38899,8 @@
     "tests_tools.test_exec_env.StartChecksInAChild.test_started_with_site_is_a_run_error",
     "tests_tools.test_exec_env.StartChecksInAChild.test_started_without_isolation_is_a_run_error"
    ],
-   "ids_sha256": "c9786913dada46d5a470f8f156ffd2eb7b35894b90e26eaa3a64fe11927947df",
-   "sha256": "d27892108342df949c1ac6a44ae283353c880c40190b656d77a324abafe47b0f"
+   "ids_sha256": "f3b208c4ea459120decf0e90af59bf973d323d80665cd5b876526e5a420e5c15",
+   "sha256": "fb0ebacf5bac6019f8c053223d1636f7ffd9bae5e19ff0063ccbf71e25a0237c"
   },
   "tests_tools/test_harness_isolation.py": {
    "ids": [
@@ -38944,6 +39026,26 @@
   },
   "tests_tools/test_mutation_timeout.py": {
    "ids": [
+    "tests_tools.test_mutation_timeout.AM5F2RemainingPoints.test_m2_sigterm_between_items",
+    "tests_tools.test_mutation_timeout.AM5F2RemainingPoints.test_m2_sigterm_during_an_earlier_commands_cleanup",
+    "tests_tools.test_mutation_timeout.AM5F2RemainingPoints.test_m2_sigterm_during_the_end_control",
+    "tests_tools.test_mutation_timeout.AM5F2RemainingPoints.test_m2_sigterm_during_the_end_controls_cleanup",
+    "tests_tools.test_mutation_timeout.AM5F2RemainingPoints.test_sabotage_m7_both_signals_during_the_end_control",
+    "tests_tools.test_mutation_timeout.AM5F2RemainingPoints.test_sabotage_m7_both_signals_during_the_end_controls_cleanup",
+    "tests_tools.test_mutation_timeout.AM5MoreMutationFamily.test_d10_the_fixed_values_of_e2",
+    "tests_tools.test_mutation_timeout.AM5MoreMutationFamily.test_d14_the_1_mib_boundary_at_tool_level",
+    "tests_tools.test_mutation_timeout.AM5MoreMutationFamily.test_row50_sabotage_m7_the_floor_during_the_items_with_jobs_2",
+    "tests_tools.test_mutation_timeout.AM5SabotageControls.test_row41_m8_end_control_bad",
+    "tests_tools.test_mutation_timeout.AM5SabotageControls.test_row41_m8_end_control_crash",
+    "tests_tools.test_mutation_timeout.AM5SabotageControls.test_row41_m8_start_control_bad",
+    "tests_tools.test_mutation_timeout.AM5SabotageControls.test_row41_m8_start_control_crash",
+    "tests_tools.test_mutation_timeout.AM5SabotageControls.test_row41_mie1_end_control_bad",
+    "tests_tools.test_mutation_timeout.AM5SabotageControls.test_row41_mie1_end_control_crash",
+    "tests_tools.test_mutation_timeout.AM5SabotageControls.test_row41_mie1_start_control_bad",
+    "tests_tools.test_mutation_timeout.AM5SabotageControls.test_row41_mie1_start_control_crash",
+    "tests_tools.test_mutation_timeout.AM5ToolLevelRefusals.test_row4_m2_mutants_s1_without_pidfd_send_signal",
+    "tests_tools.test_mutation_timeout.AM5ToolLevelRefusals.test_row4_run_faults_s1_without_a_libc",
+    "tests_tools.test_mutation_timeout.AM5ToolLevelRefusals.test_row4_sigchld_not_default_at_tool_level",
     "tests_tools.test_mutation_timeout.BaselineOptionW1A.test_control_failure",
     "tests_tools.test_mutation_timeout.BaselineOptionW1A.test_only_the_nine_tools_take_the_option",
     "tests_tools.test_mutation_timeout.BaselineOptionW1A.test_pass",
@@ -39125,11 +39227,29 @@
     "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_mie",
     "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_mie11"
    ],
-   "ids_sha256": "622df01ce1d0b4c1598c179eab62b27a122a01b4c02f48e94774743ec107de5a",
-   "sha256": "33a6807919cfb138a4018defcff6200f3cdff7573d325d49be375ed14b737b4c"
+   "ids_sha256": "1789b9e3ee8a4c7eb7d5106faafe53ca6b8ab7c745a34c8fab40cbb042a4b718",
+   "sha256": "8367ef42815a97a7ad9802d916721717414e95ade54f7784e53e12a8b1179ad8"
   },
   "tests_tools/test_no_timeout_kill.py": {
    "ids": [
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_row11_equal_start_times_are_recorded_and_never_signalled",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_row15_every_wait_is_on_one_pid_with_wnohang",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_row19_a_unit_that_forks_repeatedly_during_cleanup",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_row21_the_cleanup_records_their_fields_and_order",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_row23_a_real_nested_supervisor_escalated_and_its_orphans_adopted",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_row4_each_failing_setup_step_is_a_refusal",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_row6_a_secret_in_the_parent_never_reaches_a_unit_or_a_record",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_row71_row101_a_leaf_reaps_its_exited_orphans_before_its_result",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_row71_the_hook_registers_each_child_once",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_row72_immutable_codes_children_keep_their_command_environment_and_limit",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_row77_a_grandchild_holding_the_message_pipe",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_row90_the_pipe_drain_is_bounded",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_row91_sigterm_goes_to_the_nested_supervisor_alone",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_row92_the_grace_ends_early_after_two_empty_scans",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_row96_an_unowned_child_is_attributed_to_run_end",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_row99_the_summary_counts_the_units_started",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_s15_a_phase_in_flight_is_a_leak_for_an_unrecorded_orphan",
+    "tests_tools.test_no_timeout_kill.AM5Supervision.test_s15_each_units_record_names_the_conservatively_attributed_orphan",
     "tests_tools.test_no_timeout_kill.Census.test_every_m10_mutation_tool_has_a_successor_and_the_successors_are_clean",
     "tests_tools.test_no_timeout_kill.Census.test_the_census_finds_the_m10_pattern",
     "tests_tools.test_no_timeout_kill.Census.test_the_census_of_tools_evkit",
@@ -39165,11 +39285,52 @@
     "tests_tools.test_no_timeout_kill.SuccessorNeverCountsATimeoutOrCrash.test_run_child_timeout_and_crash",
     "tests_tools.test_no_timeout_kill.SuccessorNeverCountsATimeoutOrCrash.test_timeout_is_indeterminate_in_every_kind"
    ],
-   "ids_sha256": "1fcf30bb6bce9813086c8dbd3b29cab304f0b725eca761164f4f8b2a6a14d790",
-   "sha256": "de6ed9fdf397297a8eec197e77348ed0882bf0c562a52c7bf77d19c5db31df7b"
+   "ids_sha256": "9d8fff121d3f473f26a678525fe1727ca177887dc44b75dc8f038bf35583a8f2",
+   "sha256": "d25a9ff0fd8b7a7ff7cfb7ec3f628bdc461c20c37b616e56b2669922d30003af"
   },
   "tests_tools/test_runner_zero_work.py": {
    "ids": [
+    "tests_tools.test_runner_zero_work.AM5AttributionTable.test_child_unittest_runner_start_as_its_parent_reads_it",
+    "tests_tools.test_runner_zero_work.AM5AttributionTable.test_row100_the_child_runner_is_a_supervisor_only_when_it_verifies_a_copy",
+    "tests_tools.test_runner_zero_work.AM5AttributionTable.test_run_start_and_run_end_of_a_mutation_tool",
+    "tests_tools.test_runner_zero_work.AM5CR02.test_row69_a_leak_is_never_a_pass",
+    "tests_tools.test_runner_zero_work.AM5CR02.test_row69_the_systemexit_path_is_cleaned_up",
+    "tests_tools.test_runner_zero_work.AM5CR02.test_row85_the_synthetic_completed_process_fields",
+    "tests_tools.test_runner_zero_work.AM5CaseRunnerOrder.test_row31_step_5_a_candidate_that_cannot_be_loaded",
+    "tests_tools.test_runner_zero_work.AM5CaseRunnerOrder.test_row31_step_6_an_inventory_that_differs",
+    "tests_tools.test_runner_zero_work.AM5CaseRunnerOrder.test_row31_step_8_the_end_check_keeps_the_selection",
+    "tests_tools.test_runner_zero_work.AM5CaseRunnerOrder.test_row36_row46_an_import_failure_keeps_the_selection_and_its_hash",
+    "tests_tools.test_runner_zero_work.AM5CaseRunnerOrder.test_row59_per_case_message_forms",
+    "tests_tools.test_runner_zero_work.AM5CaseRunnerOrder.test_row60_the_hang_on_run_history_contract_s1_and_run_mkt_corpus_s1",
+    "tests_tools.test_runner_zero_work.AM5CaseRunnerOrder.test_row79_no_batch_after_a_start_refusal_and_pin_uses_the_batch_unit",
+    "tests_tools.test_runner_zero_work.AM5CaseRunnerOrder.test_row81_precedence_rows_7_and_3_with_a_leak",
+    "tests_tools.test_runner_zero_work.AM5CaseRunnerReadings.test_row95_a_start_control_interrupted_before_it_began",
+    "tests_tools.test_runner_zero_work.AM5CaseRunnerReadings.test_row97_argument_errors_are_step_3_refusals",
+    "tests_tools.test_runner_zero_work.AM5CaseRunnerReadings.test_row98_the_suites_in_both_orders",
+    "tests_tools.test_runner_zero_work.AM5FaultRunnerHistory.test_controls",
+    "tests_tools.test_runner_zero_work.AM5FaultRunnerHistory.test_f2_sigterm_while_a_plant_runs",
+    "tests_tools.test_runner_zero_work.AM5FaultRunnerHistory.test_plants",
+    "tests_tools.test_runner_zero_work.AM5FaultRunnerM3.test_controls",
+    "tests_tools.test_runner_zero_work.AM5FaultRunnerM3.test_f2_sigterm_while_a_plant_runs",
+    "tests_tools.test_runner_zero_work.AM5FaultRunnerM3.test_plants",
+    "tests_tools.test_runner_zero_work.AM5FaultRunnerM5.test_controls",
+    "tests_tools.test_runner_zero_work.AM5FaultRunnerM5.test_f2_sigterm_while_a_plant_runs",
+    "tests_tools.test_runner_zero_work.AM5FaultRunnerM5.test_plants",
+    "tests_tools.test_runner_zero_work.AM5FaultRunnerM6.test_controls",
+    "tests_tools.test_runner_zero_work.AM5FaultRunnerM6.test_f2_sigterm_while_a_plant_runs",
+    "tests_tools.test_runner_zero_work.AM5FaultRunnerM6.test_plants",
+    "tests_tools.test_runner_zero_work.AM5NoResultSupervisors.test_row66_child_unittest_runner_stops_between_tests",
+    "tests_tools.test_runner_zero_work.AM5NoResultSupervisors.test_row66_run_m8_tests_s1_stops_between_tests",
+    "tests_tools.test_runner_zero_work.AM5NoResultSupervisors.test_row83_signal_after_completion_keeps_the_exit_and_its_place",
+    "tests_tools.test_runner_zero_work.AM5PlantAndCaseHangs.test_row25_a_failed_id_outside_the_paired_inventory_is_rejected_on_all_five_pairs",
+    "tests_tools.test_runner_zero_work.AM5PlantAndCaseHangs.test_row30_a_forked_case_that_ignores_sigterm_after_its_valid_result",
+    "tests_tools.test_runner_zero_work.AM5PlantAndCaseHangs.test_row30_a_forked_plant_that_cannot_be_killed_after_its_valid_result",
+    "tests_tools.test_runner_zero_work.AM5PlantAndCaseHangs.test_row30_a_forked_plant_that_ignores_sigterm_after_its_valid_result",
+    "tests_tools.test_runner_zero_work.AM5Wrappers.test_row22_a_wrapper_file_group_that_leaks",
+    "tests_tools.test_runner_zero_work.AM5Wrappers.test_row22_s16_a_wrapper_check_group_that_leaks",
+    "tests_tools.test_runner_zero_work.AM5Wrappers.test_row51_to_53_run_m4_all_s1_between_groups",
+    "tests_tools.test_runner_zero_work.AM5Wrappers.test_row55_an_interrupted_wrapper_group",
+    "tests_tools.test_runner_zero_work.AM5Wrappers.test_s16_an_exit_3_check_of_a_class_that_is_not_n_or_b",
     "tests_tools.test_runner_zero_work.CasesRunners.test_a_changed_case_inventory_fails_closed",
     "tests_tools.test_runner_zero_work.CasesRunners.test_every_successor_runs_its_whole_pinned_inventory_and_the_checker_accepts_it",
     "tests_tools.test_runner_zero_work.CasesRunners.test_m10_det_corpus_with_an_unknown_only_reports_zero_cases_as_a_pass",
@@ -39296,12 +39457,12 @@
     "tests_tools.test_runner_zero_work.ZeroAndPartialWork.test_partial_work_is_never_ok",
     "tests_tools.test_runner_zero_work.ZeroAndPartialWork.test_zero_selected_never_succeeds_in_any_kind"
    ],
-   "ids_sha256": "2ed3f12d9af5eac5f14a8ae3c5ed1cddbf0b6b84aa60611aecd5c3c32fc5e6e3",
-   "sha256": "72fa22da49eef23f81fe433cf0c79c58aecc32d44d16911828a85feb47204014"
+   "ids_sha256": "050ea34f42bad2dc154eb2dd76e45fba6c1e716e73c9e42c8ba24a37a0109b90",
+   "sha256": "ee7c50a4124bf7c19cf8a0f5451e45ae20dbf8f73d1cf99caacb36cb1e3864fa"
   }
  },
  "timeout_kill_factor": null,
- "version": 99,
+ "version": 100,
  "wrapper_inventories": {
   "run_f671_all_s1": {
    "files": {
