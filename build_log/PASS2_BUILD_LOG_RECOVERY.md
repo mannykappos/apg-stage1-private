@@ -105,4 +105,8 @@ review pack); everything after that is restated here from the conversation recor
   so no commit on GitHub now carries it. It was on GitHub for a short time.
 - 21:00 to 21:30 Separate work for the owner (not stage 1): revision 2 of the data readiness change request written after the GPT
   and two Gemini reviews (a new Claude doc; the CSVs on the data-readiness branch).
-- 21:35 Step 3 merged into main (fast-forward to be0c27b). Step 3 checkpoint zip next, then step 4.
+- 21:32 Step 3 merged into main (fast-forward to be0c27b). Step 3 checkpoint zip next, then step 4.
+- Mistake 53 (disclosed): two times written before reading the clock: the merge entry above said 21:35 (the clock and the commit
+  show 21:32) and the checkpoint PRIVACY_CHECK.txt said 21:40 (made at 21:33). Both corrected before sending.
+- 21:33 Step 3 checkpoint zip built (tree be0c27b, records), privacy check: one accepted immutable hit (logs/m81 baseline),
+  hostname false positives, nothing else.
