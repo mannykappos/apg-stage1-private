@@ -1,0 +1,1 @@
+BUILDER-EXECUTED: NOT INDEPENDENT. Step 2 full suite on the rebuilt tree (main 42305fb), Python 3.13.18 and 3.12.3: every file OK, 613 tests on each. Logs: the session id in paths masked as <SESSION-ID>.

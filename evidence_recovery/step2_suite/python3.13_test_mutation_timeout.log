@@ -1,0 +1,17 @@
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/m73_store_mutants.py:29: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/apg/reference_impl.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, path), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/m73_store_mutants.py:29: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/apg/tenancy.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, path), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+..../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_mutation_timeout.py:184: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_baseline_zhh8j8c_/toolerr/tools/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(p))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.........../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_e26_1if34242/m10/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.....................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 180 tests in 1375.526s
+
+OK

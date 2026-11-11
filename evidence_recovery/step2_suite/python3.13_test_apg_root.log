@@ -1,0 +1,20 @@
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_apg_root.py:132: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_apgroot_zgf0824m/t/tools/child_unittest_runner.py' mode='r' encoding='utf-8'>
+  src = open(cp, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_apgroot_7xx0m5wc/m10/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_apgroot_mm9uc7k_/m10/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_apgroot_yqwsem7c/m10_m8/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+......................................../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_e4_5pymtw57/m10/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+........
+----------------------------------------------------------------------
+Ran 51 tests in 48.241s
+
+OK

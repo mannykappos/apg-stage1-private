@@ -1,0 +1,41 @@
+2026-11-11T16:40:03+11:00 start python3.13_test_apg_root
+2026-11-11T16:40:51+11:00 end python3.13_test_apg_root rc=0 Ran 51 tests in 48.241s  OK 
+2026-11-11T16:40:51+11:00 start python3.13_test_consumer_exit_codes
+2026-11-11T16:42:28+11:00 end python3.13_test_consumer_exit_codes rc=0 Ran 86 tests in 96.179s  OK 
+2026-11-11T16:42:28+11:00 start python3.13_test_exec_env
+2026-11-11T16:48:14+11:00 end python3.13_test_exec_env rc=0 Ran 39 tests in 346.207s  OK 
+2026-11-11T16:48:14+11:00 start python3.13_test_harness_isolation
+2026-11-11T16:48:55+11:00 end python3.13_test_harness_isolation rc=0 Ran 16 tests in 41.177s  OK 
+2026-11-11T16:48:55+11:00 start python3.13_test_mut_runner_output
+2026-11-11T16:49:34+11:00 end python3.13_test_mut_runner_output rc=0 Ran 12 tests in 38.794s  OK 
+2026-11-11T16:49:34+11:00 start python3.13_test_mutant_targets
+2026-11-11T16:51:04+11:00 end python3.13_test_mutant_targets rc=0 Ran 66 tests in 89.827s  OK 
+2026-11-11T16:51:04+11:00 start python3.13_test_mutation_error_shape
+2026-11-11T16:52:08+11:00 end python3.13_test_mutation_error_shape rc=0 Ran 4 tests in 64.442s  OK 
+2026-11-11T16:52:08+11:00 start python3.13_test_mutation_timeout
+2026-11-11T17:15:04+11:00 end python3.13_test_mutation_timeout rc=0 Ran 180 tests in 1375.526s  OK 
+2026-11-11T17:15:04+11:00 start python3.13_test_no_timeout_kill
+2026-11-11T17:15:53+11:00 end python3.13_test_no_timeout_kill rc=0 Ran 34 tests in 49.058s  OK 
+2026-11-11T17:15:53+11:00 start python3.13_test_runner_zero_work
+2026-11-11T17:24:11+11:00 end python3.13_test_runner_zero_work rc=0 Ran 125 tests in 497.519s  OK 
+2026-11-11T17:24:11+11:00 start python3.12_test_apg_root
+2026-11-11T17:25:00+11:00 end python3.12_test_apg_root rc=0 Ran 51 tests in 48.651s  OK 
+2026-11-11T17:25:00+11:00 start python3.12_test_consumer_exit_codes
+2026-11-11T17:26:41+11:00 end python3.12_test_consumer_exit_codes rc=0 Ran 86 tests in 101.368s  OK 
+2026-11-11T17:26:41+11:00 start python3.12_test_exec_env
+2026-11-11T17:33:10+11:00 end python3.12_test_exec_env rc=0 Ran 39 tests in 388.193s  OK 
+2026-11-11T17:33:10+11:00 start python3.12_test_harness_isolation
+2026-11-11T17:33:52+11:00 end python3.12_test_harness_isolation rc=0 Ran 16 tests in 42.813s  OK 
+2026-11-11T17:33:52+11:00 start python3.12_test_mut_runner_output
+2026-11-11T17:34:45+11:00 end python3.12_test_mut_runner_output rc=0 Ran 12 tests in 51.982s  OK 
+2026-11-11T17:34:45+11:00 start python3.12_test_mutant_targets
+2026-11-11T17:36:23+11:00 end python3.12_test_mutant_targets rc=0 Ran 66 tests in 98.057s  OK 
+2026-11-11T17:36:23+11:00 start python3.12_test_mutation_error_shape
+2026-11-11T17:37:35+11:00 end python3.12_test_mutation_error_shape rc=0 Ran 4 tests in 71.732s  OK 
+2026-11-11T17:37:35+11:00 start python3.12_test_mutation_timeout
+2026-11-11T18:03:37+11:00 end python3.12_test_mutation_timeout rc=0 Ran 180 tests in 1562.631s  OK 
+2026-11-11T18:03:37+11:00 start python3.12_test_no_timeout_kill
+2026-11-11T18:04:28+11:00 end python3.12_test_no_timeout_kill rc=0 Ran 34 tests in 50.141s  OK 
+2026-11-11T18:04:28+11:00 start python3.12_test_runner_zero_work
+2026-11-11T18:13:58+11:00 end python3.12_test_runner_zero_work rc=0 Ran 125 tests in 570.586s  OK 
+2026-11-11T18:13:58+11:00 ALL DONE

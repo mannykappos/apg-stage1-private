@@ -1,0 +1,37 @@
+..../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/m2_mutants.py:232: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/apg/canon.py' mode='r' encoding='utf-8'>
+  src = open(path, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/m2_mutants.py:237: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_m10_9vj_gyc6/CA03-keys-not-sorted/apg/canon.py' mode='w' encoding='utf-8'>
+  open(os.path.join(work, 'apg', fname), 'w', encoding='utf-8').write(src.replace(old, new, 1))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/m2_mutants.py:232: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/apg/canon.py' mode='r' encoding='utf-8'>
+  src = open(path, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/m2_mutants.py:237: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_m10_e2nbwypt/CA03-keys-not-sorted/apg/canon.py' mode='w' encoding='utf-8'>
+  open(os.path.join(work, 'apg', fname), 'w', encoding='utf-8').write(src.replace(old, new, 1))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+....<string>:3: ResourceWarning: unclosed file <_io.TextIOWrapper name='/proc/self/stat' mode='r' encoding='utf-8'>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<string>:4: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_edg7kv2t/ids.txt' mode='a' encoding='utf-8'>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.<string>:3: ResourceWarning: unclosed file <_io.TextIOWrapper name='/proc/self/stat' mode='r' encoding='utf-8'>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<string>:4: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_4lkh1egf/ids.txt' mode='a' encoding='utf-8'>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+......./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_no_timeout_kill.py:616: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_lj0hyg0x/tree/tools/evkit.py' mode='r' encoding='utf-8'>
+  src = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_no_timeout_kill.py:618: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_lj0hyg0x/tree/tools/evkit.py' mode='w' encoding='utf-8'>
+  open(p, 'w').write(src.replace(old, new))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_no_timeout_kill.py:616: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_aog0ofwz/tree/tools/evkit.py' mode='r' encoding='utf-8'>
+  src = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_no_timeout_kill.py:618: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_aog0ofwz/tree/tools/evkit.py' mode='w' encoding='utf-8'>
+  open(p, 'w').write(src.replace(old, new))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+................
+----------------------------------------------------------------------
+Ran 34 tests in 49.058s
+
+OK

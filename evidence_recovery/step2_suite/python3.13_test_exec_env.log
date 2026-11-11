@@ -1,0 +1,29 @@
+.............../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_e7_jywb0fgn/m10/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_exec_env.py:565: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_decoy_ags_2miw/IMPORTED' mode='r' encoding='utf-8'>
+  names = open(self.decoy.marker).read().split() if self.decoy.imported() else []
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_e7_m8v2j8oe/m10/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_exec_env.py:565: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_decoy_sg6pppsq/IMPORTED' mode='r' encoding='utf-8'>
+  names = open(self.decoy.marker).read().split() if self.decoy.imported() else []
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_e7_1scd55az/m10/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_exec_env.py:565: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_decoy_yl4pwuhv/IMPORTED' mode='r' encoding='utf-8'>
+  names = open(self.decoy.marker).read().split() if self.decoy.imported() else []
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_e7_v4yg2hxw/m10/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_exec_env.py:565: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_decoy_t3j3sc_b/IMPORTED' mode='r' encoding='utf-8'>
+  names = open(self.decoy.marker).read().split() if self.decoy.imported() else []
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.....................
+----------------------------------------------------------------------
+Ran 39 tests in 346.207s
+
+OK

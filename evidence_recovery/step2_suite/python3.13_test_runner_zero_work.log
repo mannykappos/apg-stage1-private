@@ -1,0 +1,86 @@
+.............../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/sabotage_m8.py:30: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_m8mode_80p7r2n8/t/auif_m8/packs/apg-m8-bz-master.json' mode='r' encoding='utf-8'>
+  d = json.load(open(p))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/sabotage_m8.py:33: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_m8mode_80p7r2n8/t/auif_m8/packs/apg-m8-bz-master.json' mode='w' encoding='utf-8'>
+  open(p, 'w').write(json.dumps(d, indent=1, sort_keys=True) + '\n')
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:386: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_m8mode_rndxo2k4/o/tools/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(p))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+....../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:1848: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am3_xm2netng/b/tools/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(p, encoding='utf-8'))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+............../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:1626: ResourceWarning: unclosed file <_io.BufferedReader name='/proc/5575/cmdline'>
+  if needle in open('/proc/%d/cmdline' % pid, 'rb').read().decode('utf-8', 'replace'):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+...../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:1626: ResourceWarning: unclosed file <_io.BufferedReader name='/proc/5624/cmdline'>
+  if needle in open('/proc/%d/cmdline' % pid, 'rb').read().decode('utf-8', 'replace'):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:1626: ResourceWarning: unclosed file <_io.BufferedReader name='/proc/5627/cmdline'>
+  if needle in open('/proc/%d/cmdline' % pid, 'rb').read().decode('utf-8', 'replace'):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:1626: ResourceWarning: unclosed file <_io.BufferedReader name='/proc/5630/cmdline'>
+  if needle in open('/proc/%d/cmdline' % pid, 'rb').read().decode('utf-8', 'replace'):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:1626: ResourceWarning: unclosed file <_io.BufferedReader name='/proc/5633/cmdline'>
+  if needle in open('/proc/%d/cmdline' % pid, 'rb').read().decode('utf-8', 'replace'):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:30: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_pins_pylx4bm9/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(self.path))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:30: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_pins_9qeo92ts/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(self.path))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:30: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_pins_mf0_bw47/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(self.path))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+..................................................../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/run_m93_all.py:18: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/run_m5_all.py' mode='r' encoding='utf-8'>
+  exec(compile(open(path, encoding='utf-8').read().split("if '--with-earlier'")[0], fn, 'exec'), ns)          # the part of the file that defines its list of groups; nothing is run
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/run_m93_all.py:18: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/run_m6_all.py' mode='r' encoding='utf-8'>
+  exec(compile(open(path, encoding='utf-8').read().split("if '--with-earlier'")[0], fn, 'exec'), ns)          # the part of the file that defines its list of groups; nothing is run
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/run_m94_all.py:18: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/run_m5_all.py' mode='r' encoding='utf-8'>
+  exec(compile(open(path, encoding='utf-8').read().split("if '--with-earlier'")[0], fn, 'exec'), ns)          # the part of the file that defines its list of groups; nothing is run
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/run_m94_all.py:18: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/run_m6_all.py' mode='r' encoding='utf-8'>
+  exec(compile(open(path, encoding='utf-8').read().split("if '--with-earlier'")[0], fn, 'exec'), ns)          # the part of the file that defines its list of groups; nothing is run
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+......../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:458: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_wrap_n2_7osca/excl/tools/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(p, encoding='utf-8'))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:458: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_wrap_n2_7osca/excl2/tools/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(p, encoding='utf-8'))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:458: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_wrap_n2_7osca/chk/tools/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(p, encoding='utf-8'))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:458: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_wrap_e2vcjop5/o_fail/tools/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(p, encoding='utf-8'))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:458: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_wrap_e2vcjop5/o_nomarker/tools/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(p, encoding='utf-8'))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:458: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_wrap_e2vcjop5/o_pass/tools/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(p, encoding='utf-8'))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/run_m93_all.py:18: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/run_m5_all.py' mode='r' encoding='utf-8'>
+  exec(compile(open(path, encoding='utf-8').read().split("if '--with-earlier'")[0], fn, 'exec'), ns)          # the part of the file that defines its list of groups; nothing is run
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/run_m93_all.py:18: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/run_m6_all.py' mode='r' encoding='utf-8'>
+  exec(compile(open(path, encoding='utf-8').read().split("if '--with-earlier'")[0], fn, 'exec'), ns)          # the part of the file that defines its list of groups; nothing is run
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/run_m94_all.py:18: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/run_m5_all.py' mode='r' encoding='utf-8'>
+  exec(compile(open(path, encoding='utf-8').read().split("if '--with-earlier'")[0], fn, 'exec'), ns)          # the part of the file that defines its list of groups; nothing is run
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/run_m94_all.py:18: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/run_m6_all.py' mode='r' encoding='utf-8'>
+  exec(compile(open(path, encoding='utf-8').read().split("if '--with-earlier'")[0], fn, 'exec'), ns)          # the part of the file that defines its list of groups; nothing is run
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_runner_zero_work.py:596: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_w1b_k7m5e3ep/x/tools/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(p, encoding='utf-8'))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.......
+----------------------------------------------------------------------
+Ran 125 tests in 497.519s
+
+OK

@@ -1,0 +1,11 @@
+................................................................/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/m2_mutants.py:232: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/apg/reference_impl.py' mode='r' encoding='utf-8'>
+  src = open(path, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tests_tools/test_mutant_targets.py:88: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite2/tree_python3.13/tools/m2_mutants.py' mode='r' encoding='utf-8'>
+  self.assertIn('if src.count(old) < 1:', open(os.path.join(ROOT, 'tools', 'm2_mutants.py')).read())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+..
+----------------------------------------------------------------------
+Ran 66 tests in 89.827s
+
+OK
