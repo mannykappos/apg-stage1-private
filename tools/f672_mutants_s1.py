@@ -51,9 +51,11 @@ def commands(work, mutant):
 
 
 def main(argv):
+    ms, rc = E.list_mutants(TOOL, mutants)   # decision (c) (owner, 2026-11-02 14:24): a failed listing is a refusal, not a crash
+    if rc is not None:
+        return rc
     if '--batch' in sys.argv:   # M10's --batch K/N slices the universe inside candidates(); here --ids gives exact batches
-        return E.refuse_run('mutation', TOOL, [m.id for m in mutants()], E.RunError('SELECTION_INVALID', '--batch is not supported; use --ids with exact ids'))
-    ms = mutants()
+        return E.refuse_run('mutation', TOOL, [m.id for m in ms], E.RunError('SELECTION_INVALID', '--batch is not supported; use --ids with exact ids'))
     targets = sorted({m.relpath for m in ms})
     return E.mutation_main(TOOL, ms, commands, argv, equivalents=EQUIV, baseline=E.unparse_baseline(targets), timeout=300,
                            success_marker='MUTATION RUN OK', baseline_option=True)   # --baseline: decision W-1A.3 (a)

@@ -49,7 +49,9 @@ def commands(work, mutant):
 
 
 def main(argv):
-    ms = mutants()
+    ms, rc = E.list_mutants(TOOL, mutants)   # decision (c) (owner, 2026-11-02 14:24): a failed listing is a refusal, not a crash
+    if rc is not None:
+        return rc
     targets = sorted({m.relpath for m in ms})
     return E.mutation_main(TOOL, ms, commands, argv, equivalents=M.EQUIV, baseline=E.unparse_baseline(targets), timeout=300,
                            success_marker='MUTATION RUN OK', baseline_option=True)   # --baseline: decision W-1A.3 (a)

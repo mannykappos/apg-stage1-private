@@ -57,15 +57,17 @@ def main(argv):
         rel.append('%s/%s.py' % (mm.group(1), mm.group(2)))
     if not mods and not errors:
         errors.append(E.RunError('SELECTION_INVALID', 'no_modules'))
-    allowed = ()
+    allowed, auif = (), None
     try:
         auif = E.check_auif_root(os.environ.get('APG_AUIF_ROOT'))
         if auif:
             allowed = (auif,)
     except E.RunError as e:
         errors.append(e)
+    # decision (f) (owner, 2026-11-02 14:24): a copy given in APG_AUIF_ROOT is verified with AUIF's own loader before any test
+    # (evkit.tests_runner_main, verify_auif); a copy that cannot be verified is RUN_ERROR ENV_AUIF_ROOT_UNVERIFIED, every file NOT_RUN
     return E.tests_runner_main(TOOL, None, {'relpaths': rel, 'mode': mode, 'caller': caller, 'run_id': run_id, 'errors': errors,
-                                            'allowed_paths': allowed})
+                                            'allowed_paths': allowed, 'verify_auif': auif})
 
 
 if __name__ == '__main__':
