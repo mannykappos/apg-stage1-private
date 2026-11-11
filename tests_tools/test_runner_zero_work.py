@@ -2104,6 +2104,10 @@ def _am5_valid_then_hang(where, normal):
     _sg.signal(_sg.SIGTERM, _sg.SIG_IGN)
     if mode.endswith('vunkillable'):
         open(_o.path.join(d, 'unkillable'), 'a').write('%%d\n' %% _o.getpid())
+        # it outlives the tool: it lets go of the tool's output pipe, so the test's read of that pipe can end when the tool exits
+        _nul = _o.open(_o.devnull, _o.O_WRONLY)
+        _o.dup2(_nul, 1)
+        _o.dup2(_nul, 2)
     open(_o.path.join(d, 'started'), 'w').close()
     w = max(int(x) for x in _o.listdir('/proc/self/fd') if int(x) > 2 and _o.path.exists('/proc/self/fd/' + x))
     data = _j.dumps(normal_message(normal)).encode()
