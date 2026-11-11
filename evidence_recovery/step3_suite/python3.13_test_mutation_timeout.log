@@ -1,0 +1,81 @@
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_m2_sigterm_between_items run=tool descendants=16252:920166:-
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_m2_sigterm_between_items CLEANUP_SUMMARY units=4 leaked=0 remaining=0
+.P_IDENTITY test=__main__.AM5F2RemainingPoints.test_m2_sigterm_during_an_earlier_commands_cleanup run=tool descendants=16262:920628:-,16264:920686:-,16265:920696:-,16266:920757:-,16267:920759:-
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_m2_sigterm_during_an_earlier_commands_cleanup CLEANUP control_end:run_m2_tests_s1 by=m2_mutants_s1:16257 child=16266:920757 pgid=16266 scan=5-17 left=16267:920759 exited_in_grace=- killed=16267:920759 sigterm=1 sigkill=1 scans=13 deadline=grace escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_m2_sigterm_during_an_earlier_commands_cleanup CLEANUP_SUMMARY units=5 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM5F2RemainingPoints.test_m2_sigterm_during_the_end_control run=tool descendants=16269:921130:-,16274:921218:-,16275:921295:-
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_m2_sigterm_during_the_end_control CLEANUP control_end:run_m2_tests_s1 by=m2_mutants_s1:16268 child=16275:921295 pgid=16275 scan=5-7 left=16275:921295 exited_in_grace=16275:921295 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_m2_sigterm_during_the_end_control CLEANUP_SUMMARY units=5 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM5F2RemainingPoints.test_m2_sigterm_during_the_end_controls_cleanup run=tool descendants=16278:921457:-,16280:921524:-,16283:921607:-,16284:921609:-
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_m2_sigterm_during_the_end_controls_cleanup CLEANUP control_end:run_contracts_s1 by=m2_mutants_s1:16276 child=16283:921607 pgid=16283 scan=6-28 left=16284:921609 exited_in_grace=- killed=16284:921609 sigterm=1 sigkill=1 scans=23 deadline=grace escalated_after=2.0s ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_m2_sigterm_during_the_end_controls_cleanup CLEANUP_SUMMARY units=6 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM5F2RemainingPoints.test_sabotage_m7_both_signals_during_the_end_control run=tool descendants=16289:922184:-
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_sabotage_m7_both_signals_during_the_end_control CLEANUP control_end:R09 by=sabotage_m7_s1:16285 child=16289:922184 pgid=16289 scan=3-5 left=16289:922184 exited_in_grace=16289:922184 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_sabotage_m7_both_signals_during_the_end_control CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_sabotage_m7_both_signals_during_the_end_control run=tool descendants=16291:922368:-,16294:922496:-
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_sabotage_m7_both_signals_during_the_end_control CLEANUP control_end:R09 by=sabotage_m7_s1:16290 child=16294:922496 pgid=16294 scan=3-5 left=16294:922496 exited_in_grace=16294:922496 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_sabotage_m7_both_signals_during_the_end_control CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM5F2RemainingPoints.test_sabotage_m7_both_signals_during_the_end_controls_cleanup run=tool descendants=16299:922804:-,16300:922807:-
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_sabotage_m7_both_signals_during_the_end_controls_cleanup CLEANUP control_end:R09 by=sabotage_m7_s1:16295 child=16299:922804 pgid=16299 scan=3-15 left=16300:922807 exited_in_grace=- killed=16300:922807 sigterm=1 sigkill=1 scans=13 deadline=grace escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_sabotage_m7_both_signals_during_the_end_controls_cleanup CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_sabotage_m7_both_signals_during_the_end_controls_cleanup run=tool descendants=16304:923209:-,16305:923248:-,16306:923250:-
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_sabotage_m7_both_signals_during_the_end_controls_cleanup CLEANUP control_end:R09 by=sabotage_m7_s1:16301 child=16305:923248 pgid=16305 scan=3-15 left=16306:923250 exited_in_grace=- killed=16306:923250 sigterm=1 sigkill=1 scans=13 deadline=grace escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5F2RemainingPoints.test_sabotage_m7_both_signals_during_the_end_controls_cleanup CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+..P_IDENTITY test=__main__.AM5MoreMutationFamily.test_d14_the_1_mib_boundary_at_tool_level run=tool descendants=16309:923594:-,16311:923599:-
+P_IDENTITY test=__main__.AM5MoreMutationFamily.test_d14_the_1_mib_boundary_at_tool_level CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+P_IDENTITY test=__main__.AM5MoreMutationFamily.test_d14_the_1_mib_boundary_at_tool_level run=tool descendants=-
+P_IDENTITY test=__main__.AM5MoreMutationFamily.test_d14_the_1_mib_boundary_at_tool_level CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+.P_IDENTITY test=__main__.AM5MoreMutationFamily.test_row50_sabotage_m7_the_floor_during_the_items_with_jobs_2 run=tool descendants=16320:923873:-
+P_IDENTITY test=__main__.AM5MoreMutationFamily.test_row50_sabotage_m7_the_floor_during_the_items_with_jobs_2 CLEANUP S01:R09 by=sabotage_m7_s1:16316 child=16320:923873 pgid=16320 scan=2-4 left=16320:923873 exited_in_grace=16320:923873 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5MoreMutationFamily.test_row50_sabotage_m7_the_floor_during_the_items_with_jobs_2 CLEANUP_SUMMARY units=2 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM5SabotageControls.test_row41_m8_end_control_bad run=tool descendants=16326:924257:-
+P_IDENTITY test=__main__.AM5SabotageControls.test_row41_m8_end_control_bad CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+.P_IDENTITY test=__main__.AM5SabotageControls.test_row41_m8_end_control_crash run=tool descendants=16332:924565:-
+P_IDENTITY test=__main__.AM5SabotageControls.test_row41_m8_end_control_crash CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+.P_IDENTITY test=__main__.AM5SabotageControls.test_row41_m8_start_control_bad run=tool descendants=-
+P_IDENTITY test=__main__.AM5SabotageControls.test_row41_m8_start_control_bad CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+.P_IDENTITY test=__main__.AM5SabotageControls.test_row41_m8_start_control_crash run=tool descendants=-
+P_IDENTITY test=__main__.AM5SabotageControls.test_row41_m8_start_control_crash CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+.P_IDENTITY test=__main__.AM5SabotageControls.test_row41_mie1_end_control_bad run=tool descendants=16341:925165:-
+P_IDENTITY test=__main__.AM5SabotageControls.test_row41_mie1_end_control_bad CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+.P_IDENTITY test=__main__.AM5SabotageControls.test_row41_mie1_end_control_crash run=tool descendants=16343:925339:-,16346:925513:-
+P_IDENTITY test=__main__.AM5SabotageControls.test_row41_mie1_end_control_crash CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+.P_IDENTITY test=__main__.AM5SabotageControls.test_row41_mie1_start_control_bad run=tool descendants=-
+P_IDENTITY test=__main__.AM5SabotageControls.test_row41_mie1_start_control_bad CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+.P_IDENTITY test=__main__.AM5SabotageControls.test_row41_mie1_start_control_crash run=tool descendants=-
+P_IDENTITY test=__main__.AM5SabotageControls.test_row41_mie1_start_control_crash CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_mutation_timeout.py:1344: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5r_6er14c9u/pidfd/tools/evkit.py' mode='r' encoding='utf-8'>
+  src = open(p, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_mutation_timeout.py:1348: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5r_6er14c9u/pidfd/tools/evkit.py' mode='w' encoding='utf-8'>
+  open(p, 'w', encoding='utf-8').write(src)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_mutation_timeout.py:1344: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5r_1ga5ec7r/libc/tools/evkit.py' mode='r' encoding='utf-8'>
+  src = open(p, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_mutation_timeout.py:1348: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5r_1ga5ec7r/libc/tools/evkit.py' mode='w' encoding='utf-8'>
+  open(p, 'w', encoding='utf-8').write(src)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_mutation_timeout.py:1344: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5r_pu99xl0c/sigchld/tools/evkit.py' mode='r' encoding='utf-8'>
+  src = open(p, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_mutation_timeout.py:1348: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5r_pu99xl0c/sigchld/tools/evkit.py' mode='w' encoding='utf-8'>
+  open(p, 'w', encoding='utf-8').write(src)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m73_store_mutants.py:29: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/reference_impl.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, path), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m73_store_mutants.py:29: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/tenancy.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, path), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+..../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_mutation_timeout.py:184: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_baseline_c0au6fjj/toolerr/tools/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(p))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.........../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_e26_x26dhew4/m10/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.....................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 200 tests in 1598.304s
+
+OK

@@ -1,0 +1,203 @@
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m3_mutants.py:112: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/ingest/mapping.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'ingest', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m3_mutants.py:112: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/ingest/entities.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'ingest', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m3_mutants.py:112: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/ingest/specs.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'ingest', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m3_mutants.py:112: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/ingest/pipeline.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'ingest', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m3_mutants.py:112: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/ingest/reconcile.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'ingest', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m3_mutants.py:112: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/ingest/review.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'ingest', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m3_mutants.py:112: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/ingest/views.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'ingest', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m3_mutants.py:112: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/ingest/freshness.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'ingest', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m3_mutants.py:112: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/ingest/documents.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'ingest', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m3_mutants.py:112: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/ingest/jobs.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'ingest', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m3_mutants.py:112: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/ingest/filestore.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'ingest', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m4_mutants.py:116: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/fin/figure.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'fin', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m4_mutants.py:116: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/fin/fmath.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'fin', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m4_mutants.py:116: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/fin/policy.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'fin', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m4_mutants.py:116: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/fin/snap.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'fin', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m4_mutants.py:116: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/fin/gather.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'fin', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m4_mutants.py:116: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/fin/intake.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'fin', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m4_mutants.py:116: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/fin/costs.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'fin', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m4_mutants.py:116: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/fin/commitments.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'fin', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m4_mutants.py:116: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/fin/revenue.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'fin', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m4_mutants.py:116: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/fin/forecast.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'fin', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m4_mutants.py:116: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/fin/margins.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'fin', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m4_mutants.py:116: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/fin/cash_states.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'fin', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m4_mutants.py:116: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/fin/cashview.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'fin', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m4_mutants.py:116: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/fin/bridge.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'fin', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m4_mutants.py:116: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/fin/forecast_book.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'fin', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m4_mutants.py:116: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/fin/calc_records.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'fin', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m5_mutants.py:117: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/det/signal.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'det', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m5_mutants.py:117: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/det/common.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'det', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m5_mutants.py:117: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/det/policy.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'det', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m5_mutants.py:117: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/det/noise.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'det', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m5_mutants.py:117: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/det/rules_cost.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'det', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m5_mutants.py:117: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/det/rules_commercial.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'det', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m5_mutants.py:117: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/det/rules_ops.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'det', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m5_mutants.py:117: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/det/gather.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'det', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m5_mutants.py:117: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/det/intake.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'det', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m5_mutants.py:117: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/det/detect.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'det', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m5_mutants.py:117: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/det/findings.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'det', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m5_mutants.py:117: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/det/relations.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'det', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m5_mutants.py:117: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/det/portfolio.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'det', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m5_mutants.py:117: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/det/monitor.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'det', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/common.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/policy.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/fx.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/fresh.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/intake.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/gather.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/spec.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/landed.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/intl.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/compare.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/demand.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/scenarios.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/opportunity.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/purchasing.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/suppliers.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/events.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/analysis.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/rules.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m6_mutants.py:126: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/mkt/detect.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'mkt', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m7_mutants.py:113: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/rec/engine.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'rec', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m7_mutants.py:113: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/rec/lifecycle.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'rec', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m7_mutants.py:113: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/rec/inputs.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'rec', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m7_mutants.py:113: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/rec/policy.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'rec', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m7_mutants.py:113: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/rec/verify.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'rec', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tools/m91_mutants.py:112: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/apg/api/approval_boundary.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg', 'api', mod + '.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+...
+----------------------------------------------------------------------
+Ran 4 tests in 79.589s
+
+OK

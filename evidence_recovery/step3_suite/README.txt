@@ -1,0 +1,1 @@
+BUILDER-EXECUTED: NOT INDEPENDENT. Step 3 full suite on branch step3 e1b79ac, Python 3.13.18 and 3.12.3, 700 tests each. 3.13: 699 OK, 1 FAIL (test_row55_an_interrupted_wrapper_group: a timing race in the new test, fixed in 58b3f81). 3.12: 700 OK. test_runner_zero_work is rerun on both Pythons on be0c27b. Session id in paths masked as <SESSION-ID>.

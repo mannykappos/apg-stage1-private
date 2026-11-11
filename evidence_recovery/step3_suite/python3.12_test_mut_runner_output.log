@@ -1,0 +1,38 @@
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.12/tests_tools/test_mut_runner_output.py:61: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_mutrunner_mopvzt90/mutant/apg/canon.py' mode='r' encoding='utf-8'>
+  src = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.12/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_mutrunner_mopvzt90/m10c8/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.12/tests_tools/test_mut_runner_output.py:61: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_mutrunner_2vpx9ky0/mutant/apg/canon.py' mode='r' encoding='utf-8'>
+  src = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.12/tests_tools/test_mut_runner_output.py:61: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_mutrunner_a_n5hezh/mutant/apg/canon.py' mode='r' encoding='utf-8'>
+  src = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.12/tests_tools/test_mut_runner_output.py:61: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_mutrunner_egifwyyq/mutant/apg/canon.py' mode='r' encoding='utf-8'>
+  src = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.12/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_mutrunner_egifwyyq/m10mut/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.12/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_mutrunner_9sv2rhen/m10/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.12/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_mutrunner_c41h4a4s/m10n/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.12/tests_tools/test_mut_runner_output.py:61: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_mutrunner_sg2dfymd/mutant/apg/canon.py' mode='r' encoding='utf-8'>
+  src = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.12/tests_tools/test_mut_runner_output.py:61: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_mutrunner_2b0l_39r/mutant/apg/canon.py' mode='r' encoding='utf-8'>
+  src = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.12/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_mutrunner_f2do743r/m10/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+..
+----------------------------------------------------------------------
+Ran 12 tests in 53.550s
+
+OK

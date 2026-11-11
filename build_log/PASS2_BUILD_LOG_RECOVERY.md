@@ -96,3 +96,4 @@ review pack); everything after that is restated here from the conversation recor
   continues on e1b79ac; test_runner_zero_work is then rerun on both Pythons on be0c27b.
 - 19:36 Separate work for the owner (not stage 1): the APG Data Readiness change request draft (a Claude doc) and its GPT/Gemini
   review pack were sent.
+- 20:42 Step 3 suite on 3.12 (e1b79ac): all 10 files OK, 700 tests. 3.13: 699 OK + the row 55 race (fixed). Rerun of test_runner_zero_work on both Pythons on be0c27b started. Evidence in evidence_recovery/step3_suite.

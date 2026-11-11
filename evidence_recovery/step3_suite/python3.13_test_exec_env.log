@@ -1,0 +1,69 @@
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_exec_env.py:649: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5sc_ssgp_mc8/normal/tools/child_unittest_runner.py' mode='r' encoding='utf-8'>
+  src = open(p, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_exec_env.py:651: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5sc_ssgp_mc8/normal/tools/child_unittest_runner.py' mode='w' encoding='utf-8'>
+  open(p, 'w', encoding='utf-8').write(head + '\n' + AM5_TEE % os.path.join(root, '_p2', 'leaf.txt') + rest)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_exec_env.py:653: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5sc_ssgp_mc8/normal/_p2/mode' mode='w' encoding='utf-8'>
+  open(os.path.join(root, '_p2', 'mode'), 'w').write(mode)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_exec_env.py:658: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5sc_ssgp_mc8/normal/_p2/leaf.txt' mode='r' encoding='utf-8'>
+  return open(p).read() if os.path.exists(p) else ''
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.AM5SecondChain.test_row29_the_second_chain_through_run_m8_tests_s1 run=tool descendants=15407:851029:-,15408:851032:-,15409:851045:-,15410:851049:-,15411:851063:-,15412:851065:-,15415:851085:-,15416:851106:-,15417:851111:-,15418:851116:-,15420:851148:-,15421:851151:-
+P_IDENTITY test=__main__.AM5SecondChain.test_row29_the_second_chain_through_run_m8_tests_s1 CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+P_IDENTITY test=__main__.AM5SecondChain.test_row29_the_second_chain_through_run_m8_tests_s1 CLEANUP test_m8_dependency.py by=child_unittest_runner:15408 child=15411:851063 pgid=- scan=2-4 left=15411:851063,15412:851065 exited_in_grace=15411:851063,15412:851065 killed=- sigterm=2 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5SecondChain.test_row29_the_second_chain_through_run_m8_tests_s1 CLEANUP_SUMMARY units=2 leaked=1 remaining=0
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_exec_env.py:649: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5sc_278xkt1t/hang/tools/child_unittest_runner.py' mode='r' encoding='utf-8'>
+  src = open(p, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_exec_env.py:651: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5sc_278xkt1t/hang/tools/child_unittest_runner.py' mode='w' encoding='utf-8'>
+  open(p, 'w', encoding='utf-8').write(head + '\n' + AM5_TEE % os.path.join(root, '_p2', 'leaf.txt') + rest)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_exec_env.py:653: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5sc_278xkt1t/hang/_p2/mode' mode='w' encoding='utf-8'>
+  open(os.path.join(root, '_p2', 'mode'), 'w').write(mode)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.AM5SecondChain.test_row29_the_second_chain_through_run_m8_tests_s1_interrupt run=tool descendants=15424:851231:-,15425:851234:-,15427:851251:-,15428:851263:-,15429:851266:-,15430:851558:-,15431:851562:-
+P_IDENTITY test=__main__.AM5SecondChain.test_row29_the_second_chain_through_run_m8_tests_s1_interrupt CLEANUP test_m8_dependency.py by=run_m8_tests_s1:15422 child=15425:851234 pgid=15425 scan=2-24 left=15425:851234,15428:851263,15429:851266 exited_in_grace=- killed=15425:851234,15428:851263,15429:851266 sigterm=1 sigkill=3 scans=23 deadline=grace escalated_after=2.0s ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5SecondChain.test_row29_the_second_chain_through_run_m8_tests_s1_interrupt CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_exec_env.py:649: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5sc_p4h3u0yd/hang/tools/child_unittest_runner.py' mode='r' encoding='utf-8'>
+  src = open(p, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_exec_env.py:651: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5sc_p4h3u0yd/hang/tools/child_unittest_runner.py' mode='w' encoding='utf-8'>
+  open(p, 'w', encoding='utf-8').write(head + '\n' + AM5_TEE % os.path.join(root, '_p2', 'leaf.txt') + rest)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_exec_env.py:653: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5sc_p4h3u0yd/hang/_p2/mode' mode='w' encoding='utf-8'>
+  open(os.path.join(root, '_p2', 'mode'), 'w').write(mode)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.AM5SecondChain.test_row29_the_second_chain_through_run_m8_tests_s1_timeout run=tool descendants=15433:851668:-,15435:851679:-,15437:851704:-,15438:851716:-,15439:851719:-,15442:852703:-,15443:852707:-
+P_IDENTITY test=__main__.AM5SecondChain.test_row29_the_second_chain_through_run_m8_tests_s1_timeout CLEANUP test_m8_dependency.py by=run_m8_tests_s1:15432 child=15435:851679 pgid=15435 scan=2-24 left=15435:851679,15438:851716,15439:851719 exited_in_grace=- killed=15435:851679,15438:851716,15439:851719 sigterm=1 sigkill=3 scans=23 deadline=grace escalated_after=2.0s ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5SecondChain.test_row29_the_second_chain_through_run_m8_tests_s1_timeout CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+................/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_e7_8oilq8d3/m10/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_exec_env.py:565: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_decoy_4j4ycgw_/IMPORTED' mode='r' encoding='utf-8'>
+  names = open(self.decoy.marker).read().split() if self.decoy.imported() else []
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_e7_u3yx50vw/m10/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_exec_env.py:565: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_decoy_dx4avdvw/IMPORTED' mode='r' encoding='utf-8'>
+  names = open(self.decoy.marker).read().split() if self.decoy.imported() else []
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_e7_3faihb_b/m10/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_exec_env.py:565: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_decoy_rl2hh_5q/IMPORTED' mode='r' encoding='utf-8'>
+  names = open(self.decoy.marker).read().split() if self.decoy.imported() else []
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_apg_root.py:45: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_e7_hkwsmmlb/m10/tests_m8/_auif.py' mode='r' encoding='utf-8'>
+  s1 = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/suite3/tree_python3.13/tests_tools/test_exec_env.py:565: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_decoy_ieq_r46_/IMPORTED' mode='r' encoding='utf-8'>
+  names = open(self.decoy.marker).read().split() if self.decoy.imported() else []
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.....................
+----------------------------------------------------------------------
+Ran 42 tests in 415.648s
+
+OK
