@@ -1923,6 +1923,14 @@ class P2GuardedImports(unittest.TestCase):
         self.assertEqual(f['started'], 0)
         self.assertEqual(f['not_run'], f['selected'])
         self.assertEqual(E.check_output(out, code), [], out[-3000:])
+        # amendment 5, row 46 (C.2 per runner): nothing the guard covers was imported before it (the start check's IMPORT lines name
+        # only the tool and evkit), and every item is NOT_RUN cause=run_error, one line per selected item
+        mods = [l.split()[1] for l in lines if l.startswith('IMPORT ')]
+        self.assertTrue(all(m in ('__main__', 'tools') or m.startswith('tools.') for m in mods), mods)
+        items = [l for l in lines if l.split(' ', 1)[0] in ('CASE', 'PLANT', 'MUTANT')]
+        self.assertTrue(all(l.endswith(' NOT_RUN cause=run_error') for l in items), items)
+        if items or kind != 'cases':
+            self.assertEqual(len(items), f['selected'])
         return f
 
     def test_c2_the_15_runners(self):
@@ -1959,6 +1967,502 @@ class P2GuardedImports(unittest.TestCase):
                 self.assertEqual(code, 2, out[-2000:])
                 self.assertRegex(out, r'(?m)^(FILE G%02d state=ITEM_ERROR |CHECK G%02d ITEM_ERROR )' % (int(group), int(group)))
                 self.assertEqual(E.check_output(out, code), [], out[-3000:])
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Amendment 5 (owner, 2026-11-08 11:26, AM5-4 option A; S15 to S17 at 12:47; option A of 2026-11-09): Appendix A part 1 at tool level.
+# Rewritten after the workspace loss of 2026-11-11 from the amendment and the rulings (recovery authorisation, rebuild rule).
+# ---------------------------------------------------------------------------------------------------------------------------------------
+def p2_identity_record(test, seen, out, run='tool'):
+    """Amendment 5, row 121 (I.3, B.5; discrepancy 1): the per-test evidence record, kept with the T log (stderr): each descendant seen
+    while the tool ran (pid:start:pgid, the pgid read while it lived when possible) and the CLEANUP lines of the cleaning supervisor."""
+    ds = []
+    for pid, start in sorted(seen):
+        try:
+            pg = os.getpgid(pid)
+        except OSError:
+            pg = '-'
+        ds.append('%d:%d:%s' % (pid, start, pg))
+    lines = ['P_IDENTITY test=%s run=%s descendants=%s' % (test.id(), run, ','.join(ds) or '-')]
+    lines += ['P_IDENTITY test=%s %s' % (test.id(), l) for l in out.splitlines() if l.startswith('CLEANUP')]
+    sys.stderr.write('\n'.join(lines) + '\n')
+
+
+AM5_WRAP = r'''
+
+def normal_message(normal):
+    return {"failed": sorted(normal())}
+
+
+def _p2_wrap(plants, run_reference):
+    """amendment 5, row 42 (test only, in a copy): every plant and the reference control through _p2_behaviour; the control counts
+    its own calls in _p2/controls, so its first call is control_start and its second control_end."""
+    import os as _o
+    def ctl():
+        cf = _o.path.join(%(root)r, "_p2", "controls")
+        open(cf, "a").write("x")
+        return _p2_behaviour("control_start" if len(open(cf).read()) == 1 else "control_end", run_reference)
+    return [(p[0], p[1], (lambda run=p[2]: _p2_behaviour("plant", run)), p[3]) for p in plants], ctl
+
+
+def _am5_unkillable(pid):
+    import os as _o
+    f = _o.path.join(%(root)r, "_p2", "unkillable")
+    return _o.path.exists(f) and str(pid) in open(f).read().split()
+'''
+
+
+class AM5FaultRunnerFullSet(P2FaultRunners):
+    """Row 42 (B.5): the full set of P2FaultRunners on each of the other four fault runners.  The plants and the reference control are
+    wrapped inside faults_main (in a copy), so the hang is each plant's own and never a start-control timeout."""
+    TOOL = 'run_faults_s1'
+    WRAP = ('    import time\n    by_id = {p[0]: p for p in plants}\n',
+            '    import time\n    plants, run_reference = _p2_wrap(plants, run_reference)\n    by_id = {p[0]: p for p in plants}\n')
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_am5f_')
+        doc, _ = E.load_pins()
+        self.pid0 = doc['plant_lists'][self.TOOL]['ids'][0]
+
+    def tree(self, mode):
+        root = os.path.join(self.tmp, mode.replace(':', '_'))
+        p2b_copy(root, [('tools/evkit.py',) + self.WRAP])
+        with open(os.path.join(root, 'tools', 'evkit.py'), 'a', encoding='utf-8') as fh:
+            fh.write(P2_PLANT % {'root': root} + AM5_WRAP % {'root': root})
+        os.makedirs(os.path.join(root, '_p2'))
+        with open(os.path.join(root, '_p2', 'mode'), 'w') as fh:
+            fh.write(mode)
+        return root
+
+    def run_f(self, mode, when=None, sig=_p2sig.SIGINT):
+        root = self.tree(mode)
+        code, out, seen = p2b_run(root, ['tools/%s.py' % self.TOOL, '--ids', self.pid0], when=when, sig=sig)
+        p2_identity_record(self, seen, out)
+        self.assertEqual(E.check_output(out, code, selected=[self.pid0]), [], out[-3000:])
+        p2b_gone(self, seen)
+        return code, out
+
+    def plant_is(self, out, state, cause):
+        self.assertRegex(out, r'(?m)^CONTROL start CONTROL_PASS cause=ok ')
+        self.assertNotRegex(out, r'(?m)^CONTROL start CONTROL_TIMEOUT ')
+        self.assertRegex(out, r'(?m)^PLANT %s %s cause=%s$' % (_p2re.escape(self.pid0), state, cause))
+
+    def test_plants(self):
+        P2FaultRunners.test_plants(self)
+        # the CLEANUP record names this runner
+        c, out = self.run_f('plant:leak')
+        self.assertRegex(out, r'(?m)^CLEANUP %s by=%s:\d+ ' % (_p2re.escape(self.pid0), self.TOOL))
+
+    test_the_hang_on_each_of_the_other_four_runners = None
+
+
+class AM5FaultRunnerM3(AM5FaultRunnerFullSet):
+    TOOL = 'run_m3_faults_s1'
+
+
+class AM5FaultRunnerM5(AM5FaultRunnerFullSet):
+    TOOL = 'run_m5_faults_s1'
+
+
+class AM5FaultRunnerM6(AM5FaultRunnerFullSet):
+    TOOL = 'run_m6_faults_s1'
+
+
+class AM5FaultRunnerHistory(AM5FaultRunnerFullSet):
+    TOOL = 'run_history_contract_s1'
+
+
+del AM5FaultRunnerFullSet
+
+
+class AM5PlantAndCaseHangs(unittest.TestCase):
+    """Row 30 (P.10 valid_result_then_hangs) and row 25 (P.8 step 5) at tool level."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_am5h_')
+        self.doc, _ = E.load_pins()
+
+    def tearDown(self):
+        for f in getattr(self, 'unkill', ()):
+            try:
+                os.kill(f, 9)
+            except OSError:
+                pass
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def faults_tree(self, tool, mode, unkillable=False):
+        root = os.path.join(self.tmp, '%s_%s' % (tool, mode.replace(':', '_')))
+        edits = [('tools/evkit.py',) + AM5FaultRunnerFullSet_WRAP]
+        if unkillable:     # simulated: SIGKILL does not take for a process whose pid the plant listed in _p2/unkillable
+            edits.append(('tools/evkit.py', '        _pidfd_send_signal(fd, sig)\n        return True\n',
+                          '        if sig == _signal.SIGKILL and _am5_unkillable(pid):\n            return False\n'
+                          '        _pidfd_send_signal(fd, sig)\n        return True\n'))
+        p2b_copy(root, edits)
+        extra = r'''
+
+def _am5_valid_then_hang(where, normal):
+    import os as _o, signal as _sg, json as _j, time as _tm
+    d = _o.path.join(%(root)r, '_p2')
+    mode = open(_o.path.join(d, 'mode')).read().strip()
+    if not mode.startswith(where + ':'):
+        return normal()
+    _sg.signal(_sg.SIGTERM, _sg.SIG_IGN)
+    if mode.endswith(':unkillable'):
+        open(_o.path.join(d, 'unkillable'), 'a').write('%%d\n' %% _o.getpid())
+    open(_o.path.join(d, 'started'), 'w').close()
+    w = max(int(x) for x in _o.listdir('/proc/self/fd') if int(x) > 2 and _o.path.exists('/proc/self/fd/' + x))
+    data = _j.dumps(normal_message(normal)).encode()
+    _o.write(w, len(data).to_bytes(4, 'big') + data)
+    _o.close(w)
+    while True:
+        _tm.sleep(1)
+''' % {'root': root}
+        with open(os.path.join(root, 'tools', 'evkit.py'), 'a', encoding='utf-8') as fh:
+            fh.write(P2_PLANT % {'root': root} + AM5_WRAP % {'root': root} + extra +
+                     '\n\n_p2_behaviour_real = _p2_behaviour\n\n\ndef _p2_behaviour(where, normal):\n'
+                     '    return _am5_valid_then_hang(where, normal) if open(%r).read().startswith(where + ":v") else '
+                     '_p2_behaviour_real(where, normal)\n' % os.path.join(root, '_p2', 'mode'))
+        os.makedirs(os.path.join(root, '_p2'))
+        with open(os.path.join(root, '_p2', 'mode'), 'w') as fh:
+            fh.write(mode)
+        return root
+
+    def test_row30_a_forked_plant_that_ignores_sigterm_after_its_valid_result(self):
+        pid0 = self.doc['plant_lists']['run_faults_s1']['ids'][0]
+        root = self.faults_tree('run_faults_s1', 'plant:vignore')
+        code, out, seen = p2b_run(root, ['tools/run_faults_s1.py', '--ids', pid0])
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertRegex(out, r'(?m)^PLANT %s INDETERMINATE cause=processes_left$' % _p2re.escape(pid0))
+        rec = [l for l in out.splitlines() if l.startswith('CLEANUP %s ' % pid0)]
+        self.assertEqual(len(rec), 1, out[-2000:])
+        self.assertRegex(rec[0], r' sigkill=1 .* deadline=grace .* remaining=-$')
+        self.assertRegex(out, r'(?m)^CLEANUP_SUMMARY units=\d+ leaked=1 remaining=0$')
+        self.assertEqual(E.check_output(out, code, selected=[pid0]), [], out[-3000:])
+        p2b_gone(self, seen)
+
+    def test_row30_a_forked_plant_that_cannot_be_killed_after_its_valid_result(self):
+        pid0 = self.doc['plant_lists']['run_faults_s1']['ids'][0]
+        root = self.faults_tree('run_faults_s1', 'plant:vunkillable', unkillable=True)
+        code, out, seen = p2b_run(root, ['tools/run_faults_s1.py', '--ids', pid0])
+        p2_identity_record(self, seen, out)
+        self.unkill = [int(x) for x in open(os.path.join(root, '_p2', 'unkillable')).read().split()]
+        alive = [p for p in self.unkill if E.proc_stat(p) is not None and E.proc_stat(p)[0] != 'Z']
+        self.assertEqual(len(alive), 1)                     # still there when the tool printed its RESULT line and exited
+        self.assertEqual(code, 2, out[-2000:])
+        self.assertRegex(out, r'(?m)^PLANT %s INDETERMINATE cause=processes_left$' % _p2re.escape(pid0))
+        self.assertRegex(out, r'(?m)^RUN_ERROR CLEANUP_INCOMPLETE %s %d:\d+$' % (_p2re.escape(pid0), alive[0]))
+        self.assertRegex(out, r'(?m)^CLEANUP %s .* deadline=kill_verify .* remaining=%d:\d+$' % (_p2re.escape(pid0), alive[0]))
+        self.assertRegex(out, r'(?m)^CLEANUP_SUMMARY units=\d+ leaked=1 remaining=1$')
+        self.assertEqual(E.check_output(out, code, selected=[pid0]), [], out[-3000:])
+
+    def test_row30_a_forked_case_that_ignores_sigterm_after_its_valid_result(self):
+        ids = self.doc['case_inventories']['run_fin_corpus_s1']['fin_corpus']['ids']
+        root = os.path.join(self.tmp, 'fin')
+        old = "def run_case(cand, suite, cid):\n"
+        body = ('    if cid == %r:\n        import os, signal, json, time\n        signal.signal(signal.SIGTERM, signal.SIG_IGN)\n'
+                '        w = max(int(x) for x in os.listdir("/proc/self/fd") if int(x) > 2 and os.path.exists("/proc/self/fd/" + x))\n'
+                '        data = json.dumps({"ok": True, "detail": ""}).encode()\n'
+                '        os.write(w, len(data).to_bytes(4, "big") + data)\n        os.close(w)\n        while True:\n'
+                '            time.sleep(1)\n' % ids[0])
+        p2b_copy(root, [('tools/run_fin_corpus_s1.py', old, old + body)])
+        code, out, seen = p2b_run(root, ['tools/run_fin_corpus_s1.py', '--only', ','.join(ids[:2])])
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertRegex(out, r'(?m)^CASE fin_corpus/%s INDETERMINATE cause=processes_left$' % _p2re.escape(ids[0]))
+        self.assertRegex(out, r'(?m)^CASE fin_corpus/%s PASS cause=ok$' % _p2re.escape(ids[1]))
+        self.assertRegex(out, r'(?m)^CLEANUP fin_corpus/%s .* sigkill=1 ' % _p2re.escape(ids[0]))
+        self.assertEqual(E.check_output(out, code, pins=self.doc['case_inventories']['run_fin_corpus_s1']), [], out[-3000:])
+        p2b_gone(self, seen)
+
+    def test_row25_a_failed_id_outside_the_paired_inventory_is_rejected_on_all_five_pairs(self):
+        # P.8 step 5 (amendment 2 reading 12): a plant whose message names a case id the paired case runner's pinned inventory does
+        # not hold is bad_result, never CAUGHT
+        pairs = getattr(E, 'FAULT_CASE_PAIRS', {})
+        self.assertEqual(len(pairs), 5, pairs)
+        for tool in sorted(pairs):
+            with self.subTest(tool=tool):
+                pid0 = self.doc['plant_lists'][tool]['ids'][0]
+                root = os.path.join(self.tmp, 'p8_' + tool)
+                p2b_copy(root, [('tools/evkit.py',) + AM5FaultRunnerFullSet_WRAP])
+                with open(os.path.join(root, 'tools', 'evkit.py'), 'a', encoding='utf-8') as fh:
+                    fh.write(P2_PLANT % {'root': root} + AM5_WRAP % {'root': root} +
+                             '\n\n_p2_behaviour_real = _p2_behaviour\n\n\ndef _p2_behaviour(where, normal):\n'
+                             '    if where == "plant":\n        return set(normal()) | {"NOT-A-PINNED-CASE-ID"}\n'
+                             '    return _p2_behaviour_real(where, normal)\n')
+                os.makedirs(os.path.join(root, '_p2'))
+                open(os.path.join(root, '_p2', 'mode'), 'w').close()
+                code, out, seen = p2b_run(root, ['tools/%s.py' % tool, '--ids', pid0])
+                p2_identity_record(self, seen, out)
+                self.assertRegex(out, r'(?m)^PLANT %s INDETERMINATE cause=bad_result$' % _p2re.escape(pid0), out[-2000:])
+                self.assertNotRegex(out, r'(?m)^PLANT %s CAUGHT' % _p2re.escape(pid0))
+                self.assertEqual(code, 3, out[-2000:])
+                self.assertEqual(E.check_output(out, code, selected=[pid0]), [], out[-3000:])
+                p2b_gone(self, seen)
+                shutil.rmtree(root, ignore_errors=True)
+
+
+AM5FaultRunnerFullSet_WRAP = ('    import time\n    by_id = {p[0]: p for p in plants}\n',
+                              '    import time\n    plants, run_reference = _p2_wrap(plants, run_reference)\n    by_id = {p[0]: p for p in plants}\n')
+
+
+class AM5Wrappers(unittest.TestCase):
+    """Rows 22 (a wrapper FILE and CHECK leak), 51 to 53 and 55 to 56 (F.2 in wrapper_main), and S16 (owner 12:47, option A) on
+    run_m4_all_s1, in temporary copies."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_am5w_')
+        self.doc, _ = E.load_pins()
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def m4(self, name, edits=(), prepend=()):
+        root = p2b_copy(os.path.join(self.tmp, name), edits)
+        for rel, text in prepend:
+            p = os.path.join(root, rel)
+            src = open(p, encoding='utf-8').read()
+            head, rest = src.split('\n', 1)
+            open(p, 'w', encoding='utf-8').write(head + '\n' + text + rest)
+        os.makedirs(os.path.join(root, '_p2'), exist_ok=True)
+        return root
+
+    def wpins(self):
+        return E.wrapper_check_pins('run_m4_all_s1', self.doc)
+
+    def test_row51_to_53_run_m4_all_s1_between_groups(self):
+        for sig in (_p2sig.SIGINT, _p2sig.SIGTERM):
+            with self.subTest(sig=sig.name):
+                hold = ("            stop_now = CANCEL.set and cls != 'H'",
+                        "            if gid == 'G02':\n                open(os.path.join(root, '_p2', 'between'), 'w').close()\n"
+                        "                _time.sleep(3)\n            stop_now = CANCEL.set and cls != 'H'")
+                root = self.m4('between_' + sig.name, [('tools/evkit.py',) + hold])
+                code, out, seen = p2b_run(root, ['tools/run_m4_all_s1.py'], when=p2b_mark('between'), sig=sig)
+                p2_identity_record(self, seen, out)
+                self.assertEqual(code, 3, out[-2000:])
+                self.assertRegex(out, r'(?m)^FILE G01 state=COMPLETED ')
+                for g in ('G02', 'G13'):
+                    self.assertRegex(out, r'(?m)^FILE %s state=NOT_RUN ' % g)
+                self.assertRegex(out, r'(?m)^CHECK G14 NOT_RUN ')
+                for g in ('G16', 'G17', 'G18'):          # row 56, reading 16: the H groups after the interrupt keep their line
+                    self.assertRegex(out, r'(?m)^EXCLUDED %s NOT_RUN_HISTORICAL ' % g)
+                self.assertRegex(out.strip().splitlines()[-2], r'^INTERRUPTED signal=%s at=\S+ received=1$' % sig.name)
+                self.assertEqual(E.check_output(out, code, pins=self.wpins()), [], out[-3000:])
+                p2b_gone(self, seen)
+
+    def test_row55_an_interrupted_wrapper_group(self):
+        # F.2 (b): the group running at the signal is INDETERMINATE, the groups after it NOT_RUN, the H groups EXCLUDED; RESULT exit 3
+        def running(tree, d):
+            for pid, _ in d:
+                try:
+                    if b'test_fin_arith' in open('/proc/%d/cmdline' % pid, 'rb').read():
+                        return True
+                except OSError:
+                    pass
+            return False
+        root = self.m4('in_group')
+        code, out, seen = p2b_run(root, ['tools/run_m4_all_s1.py'], when=running, delay=0.5)
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertRegex(out, r'(?m)^FILE G01 state=INDETERMINATE ')
+        self.assertRegex(out, r'(?m)^FILE G02 state=NOT_RUN ')
+        self.assertRegex(out, r'(?m)^EXCLUDED G18 NOT_RUN_HISTORICAL ')
+        self.assertTrue(out.strip().splitlines()[-1].endswith(' exit=3'))
+        self.assertEqual(E.check_output(out, code, pins=self.wpins()), [], out[-3000:])
+        p2b_gone(self, seen)
+
+    def test_row22_a_wrapper_file_group_that_leaks(self):
+        leak = ('import subprocess as _am5s, sys as _am5y\n'
+                '_am5s.Popen([_am5y.executable, "-c", "import time; time.sleep(30)"])\n')
+        root = self.m4('file_leak', prepend=[('tools/run_m2_tests_s1.py', leak)])
+        code, out, seen = p2b_run(root, ['tools/run_m4_all_s1.py', '--group', '1'])
+        p2_identity_record(self, seen, out)
+        self.assertRegex(out, r'(?m)^FILE G01 state=INDETERMINATE ')
+        self.assertRegex(out, r'(?m)^CLEANUP G01 by=run_m4_all_s1:\d+ ')
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertEqual(E.check_output(out, code, pins=self.wpins()), [], out[-3000:])
+        p2b_gone(self, seen)
+
+    def test_row22_s16_a_wrapper_check_group_that_leaks(self):
+        # a class P check whose child leaks is INDETERMINATE whatever its exit (P.6); S16: the checker accepts that line because the
+        # group's CLEANUP record is in the output, and refuses it without the record
+        leak = ('import subprocess as _am5s, sys as _am5y\n'
+                '_am5s.Popen([_am5y.executable, "-c", "import time; time.sleep(30)"])\n')
+        root = self.m4('check_leak', prepend=[('tools/run_golden_fin.py', leak)])
+        code, out, seen = p2b_run(root, ['tools/run_m4_all_s1.py', '--group', '14'])
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, 3, out[-2000:])
+        m = _p2re.search(r'(?m)^CHECK G14 INDETERMINATE source=child exit=(\S+) marker=(\S+) ', out)
+        self.assertTrue(m, out[-2000:])
+        self.assertRegex(out, r'(?m)^CLEANUP G14 by=run_m4_all_s1:\d+ ')
+        pins = self.wpins()
+        self.assertEqual(E.check_output(out, code, pins=pins), [], out[-3000:])
+        without = '\n'.join(l for l in out.splitlines() if not l.startswith('CLEANUP G14 '))
+        self.assertIn('CHECK G14 outcome INDETERMINATE contradicts exit=%s marker=%s' % (m.group(1), m.group(2)),
+                      E.check_output(without, code, pins=pins))
+        p2b_gone(self, seen)
+
+    def test_s16_an_exit_3_check_of_a_class_that_is_not_n_or_b(self):
+        # S16 with AM3-4: an exit=3 INDETERMINATE CHECK of a class P group is accepted when the group's CLEANUP record is present, and
+        # refused without it, with AM3-4's message
+        leak = ('import subprocess as _am5s, sys as _am5y\n'
+                '_am5s.Popen([_am5y.executable, "-c", "import time; time.sleep(30)"])\n')
+        root = self.m4('check_exit3', prepend=[('tools/run_golden_fin.py', leak)])
+        code, out, seen = p2b_run(root, ['tools/run_m4_all_s1.py', '--group', '14'])
+        three = _p2re.sub(r'(?m)^(CHECK G14 INDETERMINATE source=child) exit=\S+ marker=\S+ ', r'\1 exit=3 marker=seen ', out)
+        pins = self.wpins()
+        self.assertEqual(pins['classes']['G14'], 'P')
+        self.assertEqual(E.check_output(three, code, pins=pins), [], three[-3000:])
+        without = '\n'.join(l for l in three.splitlines() if not l.startswith('CLEANUP G14 '))
+        self.assertIn('CHECK G14 outcome INDETERMINATE exit=3 needs a pinned class N or B (class: P)',
+                      E.check_output(without, code, pins=pins))
+        p2b_gone(self, seen)
+
+
+class AM5CaseRunnerReadings(unittest.TestCase):
+    """Rows 97 (reading 10 and S17 (b)), 98 (reading 11) and 95 (reading 8)."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_am5k_')
+        self.doc, _ = E.load_pins()
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def go(self, tool, *args):
+        p = _p2sp.run([sys.executable, '-I', '-S', 'tools/%s.py' % tool] + list(args), cwd=ROOT, capture_output=True, text=True,
+                      timeout=900, stdin=_p2sp.DEVNULL)
+        return p.returncode, p.stdout
+
+    def test_row97_argument_errors_are_step_3_refusals(self):
+        pins = self.doc['case_inventories']['run_contracts_s1']
+        for args, msg in ((['--suite'], 'missing value for --suite'),
+                          (['--path', self.tmp], '--path without a candidate factory'),
+                          (['--factory', 'p2cand:Store'], 'a candidate factory needs --path'),
+                          (['--path', self.tmp, '--factory', 'p2cand::Store'], '--factory must be module:attr'),
+                          (['--path', self.tmp, '--factory', 'p2cand:Store:x'], '--factory must be module:attr'),
+                          (['--path', self.tmp, '--factory', 'p2 cand:Store'], '--factory must be module:attr'),
+                          (['--bogus'], 'unknown argument --bogus')):
+            with self.subTest(args=args):
+                code, out = self.go('run_contracts_s1', *args)
+                self.assertEqual(code, 2, out[-2000:])
+                self.assertRegex(out, r'(?m)^RUN_ERROR SELECTION_INVALID %s' % _p2re.escape(msg))
+                f = E.parse_result_line(out.strip().splitlines()[-1])[1]
+                self.assertEqual((f['suites'], f['suites_selected'], f['selected']), ('-', 0, 0))
+                self.assertEqual(f['case_inventory_sha256'], E.sha256_lines([]))
+                self.assertNotRegex(out, r'(?m)^CASE ')
+                self.assertEqual(E.check_output(out, code, pins=pins), [], out[-3000:])
+
+    def test_row98_the_suites_in_both_orders(self):
+        pins = self.doc['case_inventories']['run_contracts_s1']
+        a = self.go('run_contracts_s1', '--suite', 'record_store', '--suite', 'audit_log')
+        b = self.go('run_contracts_s1', '--suite', 'audit_log', '--suite', 'record_store')
+        fa = E.parse_result_line(a[1].strip().splitlines()[-1])[1]
+        fb = E.parse_result_line(b[1].strip().splitlines()[-1])[1]
+        self.assertEqual((a[0], b[0]), (0, 0))
+        self.assertEqual(fa['case_inventory_sha256'], fb['case_inventory_sha256'])
+        self.assertEqual((fa['suites'], fb['suites']), ('audit_log,record_store', 'audit_log,record_store'))
+        order = lambda out: [l.split()[1].split('/')[0] for l in out.splitlines() if l.startswith('CASE ')]
+        oa, ob = order(a[1]), order(b[1])
+        self.assertEqual(oa, sorted(oa, key=lambda s: s != 'record_store'))     # the requested execution order is kept
+        self.assertEqual(ob, sorted(ob, key=lambda s: s != 'audit_log'))
+        self.assertEqual([l for l in a[1].splitlines() if l.startswith('CASE record_store/')],
+                         ['CASE record_store/%s PASS cause=ok' % c for c in pins['record_store']['ids']])
+        for out, code in ((a[1], a[0]), (b[1], b[0])):
+            self.assertEqual(E.check_output(out, code, pins=pins), [], out[-3000:])
+
+    def test_row95_a_start_control_interrupted_before_it_began(self):
+        # reading 8: the signal arrives before the start control has started: CONTROL start CONTROL_INTERRUPTED cause=interrupted,
+        # control_start=FAIL, every plant NOT_RUN
+        pid0 = self.doc['plant_lists']['run_faults_s1']['ids'][0]
+        hold = ("        set_phase('control_start')\n        try:\n            cs, cl = control_run('start')\n",
+                "        set_phase('control_start')\n        open(os.path.join(root, '_p2', 'before'), 'w').close()\n"
+                "        _time.sleep(3)\n        try:\n            cs, cl = control_run('start')\n")
+        root = p2b_copy(os.path.join(self.tmp, 'before'), [('tools/evkit.py',) + hold])
+        os.makedirs(os.path.join(root, '_p2'))
+        code, out, seen = p2b_run(root, ['tools/run_faults_s1.py', '--ids', pid0], when=p2b_mark('before'))
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertRegex(out, r'(?m)^CONTROL start CONTROL_INTERRUPTED cause=interrupted$')
+        self.assertIn(' control_start=FAIL ', out.strip().splitlines()[-1])
+        self.assertRegex(out, r'(?m)^PLANT %s NOT_RUN ' % _p2re.escape(pid0))
+        self.assertEqual(out.strip().splitlines()[-2], 'INTERRUPTED signal=SIGINT at=control_start received=1')
+        self.assertEqual(E.check_output(out, code, selected=[pid0]), [], out[-3000:])
+        p2b_gone(self, seen)
+
+
+class AM5AttributionTable(unittest.TestCase):
+    """Row 73 (AM-5 (c)) and row 100 (reading 14) at tool level, in temporary copies."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_am5a_')
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    LEAK = "_subprocess.Popen([sys.executable, '-c', 'import time; time.sleep(30)'])"
+
+    def test_child_unittest_runner_start_as_its_parent_reads_it(self):
+        # the child runner's AUIF verification (its run start) leaves a process: the child refuses (PROCESSES_LEFT run_start, exit 2),
+        # and its parent reads it as CHILD_EVIDENCE_ERROR: FILE ITEM_ERROR; the parent itself has no leak
+        edit = ("                _auif_dependency.ensure(argv['verify_auif'])\n",
+                "                _auif_dependency.ensure(argv['verify_auif'])\n                %s\n" % self.LEAK)
+        root = p2b_copy(os.path.join(self.tmp, 'cur_parent'), [('tools/evkit.py',) + edit])
+        code, out, seen = p2b_run(root, ['tools/run_m8_tests_s1.py', '--file', 'test_m8_dependency.py'])
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, 2, out[-3000:])
+        self.assertRegex(out, r'(?m)^FILE test_m8_dependency\.py state=ITEM_ERROR ')
+        self.assertIn('CHILD_EVIDENCE_ERROR', out)
+        self.assertNotRegex(out, r'(?m)^RUN_ERROR PROCESSES_LEFT ')
+        self.assertEqual(E.check_output(out, code), [], out[-3000:])
+        p2b_gone(self, seen)
+
+    def test_run_start_and_run_end_of_a_mutation_tool(self):
+        # m8_mutants_s1: a leak in its AUIF verification (run_start) refuses the run (every mutant NOT_RUN); one by its after-check
+        # (run_end) is RUN_ERROR PROCESSES_LEFT run_end
+        doc, _ = E.load_pins()
+        first = doc['mutation_lists']['m8_mutants_s1']['ids'][0]
+        root = p2b_copy(os.path.join(self.tmp, 'm8_start'),
+                        [('tools/m8_mutants_s1.py', '            dep = dependency.ensure()\n',
+                          '            dep = dependency.ensure()\n            import subprocess as _s\n'
+                          '            _s.Popen([sys.executable, "-c", "import time; time.sleep(30)"])\n')])
+        code, out, seen = p2b_run(root, ['tools/m8_mutants_s1.py', '--ids', first])
+        p2_identity_record(self, seen, out)
+        self.assertEqual(code, 2, out[-3000:])
+        self.assertRegex(out, r'(?m)^RUN_ERROR PROCESSES_LEFT run_start$')
+        self.assertEqual([l for l in out.splitlines() if l.startswith('MUTANT ')],
+                         ['MUTANT %s NOT_RUN cause=run_error' % m for m in doc['mutation_lists']['m8_mutants_s1']['ids']])
+        self.assertRegex(out, r'(?m)^CLEANUP run_start by=m8_mutants_s1:\d+ ')
+        self.assertEqual(E.check_output(out, code), [], out[-3000:])
+        p2b_gone(self, seen)
+
+    def test_row100_the_child_runner_is_a_supervisor_only_when_it_verifies_a_copy(self):
+        # reading 14: child_unittest_runner declares itself a supervisor immediately before verify_auif, and only then; with
+        # containment unavailable it refuses there (ENV_NO_PROCESS_SUPERVISION), while the same runner without a copy runs as a leaf
+        r = _p2sp.run([sys.executable, '-I', '-S', '-c', 'import sys; sys.path.insert(0, %r)\nfrom apg_auif import dependency as d\n'
+                       'print(d.extract(sys.argv[1]))' % ROOT, os.path.join(self.tmp, 'auif')], cwd=ROOT, capture_output=True, text=True,
+                      timeout=600)
+        auif = r.stdout.strip().splitlines()[-1]
+        env = {'PATH': '/usr/local/bin:/usr/bin:/bin', 'LANG': 'C.UTF-8', 'LC_ALL': 'C.UTF-8', 'TZ': 'UTC', 'TMPDIR': self.tmp,
+               'PYTHONDONTWRITEBYTECODE': '1'}
+
+        def child(root, with_copy):
+            e = dict(env, APG_AUIF_ROOT=auif) if with_copy else env
+            p = _p2sp.run([sys.executable, '-I', '-S', 'tools/child_unittest_runner.py', '--caller', 'run_m8_tests_s1', '--mode', 'full',
+                           'tests_m8.test_m8_dependency'], cwd=root, capture_output=True, text=True, timeout=1800, env=e)
+            return p.returncode, p.stdout
+        code, out = child(ROOT, True)
+        self.assertEqual(code, 0, out[-2000:])
+        self.assertRegex(out, r'(?m)^CLEANUP_SUMMARY units=\d+ leaked=0 remaining=0$')
+        code, out = child(ROOT, False)
+        self.assertNotRegex(out, r'(?m)^CLEANUP_SUMMARY ')
+        root = p2b_copy(os.path.join(self.tmp, 'nolibc'), [('tools/evkit.py', "_LIBC = 'libc.so.6'", "_LIBC = 'libc-missing.so'")])
+        code, out = child(root, True)
+        self.assertEqual(code, 2, out[-2000:])
+        self.assertIn('RUN_ERROR ENV_NO_PROCESS_SUPERVISION unavailable_OSError', out)
+        self.assertRegex(out, r'(?m)^FILE test_m8_dependency\.py state=NOT_RUN ')
+        code, out = child(root, False)
+        self.assertNotIn('ENV_NO_PROCESS_SUPERVISION', out)
 
 
 if __name__ == '__main__':
