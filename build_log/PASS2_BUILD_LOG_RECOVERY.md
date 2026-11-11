@@ -97,3 +97,12 @@ review pack); everything after that is restated here from the conversation recor
 - 19:36 Separate work for the owner (not stage 1): the APG Data Readiness change request draft (a Claude doc) and its GPT/Gemini
   review pack were sent.
 - 20:42 Step 3 suite on 3.12 (e1b79ac): all 10 files OK, 700 tests. 3.13: 699 OK + the row 55 race (fixed). Rerun of test_runner_zero_work on both Pythons on be0c27b started. Evidence in evidence_recovery/step3_suite.
+- 21:08 Rerun of test_runner_zero_work on be0c27b (BUILDER-EXECUTED: NOT INDEPENDENT): Python 3.13 166 tests OK (20:42 to 20:55),
+  Python 3.12 166 tests OK (20:55 to 21:08). With the 20:42 suites, step 3 is 700 tests OK on both Pythons on be0c27b (the only file
+  changed after e1b79ac is test_runner_zero_work.py, rerun here). Logs in evidence_recovery/step3_suite (session id masked).
+- Mistake 52 (disclosed): at about 19:36 a scratchpad path containing the session id was pushed in data-readiness/build_gap.py (the
+  separate data readiness work, not stage 1). Found in my own check; the path was replaced and the branch squashed and force-pushed,
+  so no commit on GitHub now carries it. It was on GitHub for a short time.
+- 21:00 to 21:30 Separate work for the owner (not stage 1): revision 2 of the data readiness change request written after the GPT
+  and two Gemini reviews (a new Claude doc; the CSVs on the data-readiness branch).
+- 21:35 Step 3 merged into main (fast-forward to be0c27b). Step 3 checkpoint zip next, then step 4.
