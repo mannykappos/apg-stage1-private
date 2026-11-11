@@ -152,3 +152,14 @@ review pack); everything after that is restated here from the conversation recor
 - 06:41 main fast-forwarded to e9e11d9. Freeze of e9e11d9 built twice, byte-identical, 1555 files, APG-M11-S1.zip SHA-256
   ee1ce3ec4be1a76482595688cfd9b41910fa26f4c9fe9a936f8971e86b5e0735; frozen_compare against M10: changed 3, identical 1463, new 89,
   problems 0. This supersedes be0c27b (67203973..., kept in freezes/be0c27b, no evidence made on it). Step 5.1 restarts on it.
+
+## 2026-11-12 step 5.1 (T/W/M sets) on freeze ee1ce3ec (e9e11d9) - BUILDER-EXECUTED: NOT INDEPENDENT
+- Tool note: the step 5 tools were rewritten after the workspace loss (AM5-3 A1 allowance limited to CA01-float-allowed and RI13-input-aliased,
+  M10 ('KILLED','timeout') with successor EQUIVALENT only; discrepancies 7 and 21 handled as recorded earlier). run_index_s1.py always returns 0,
+  so the driver does not gate on it: every set's exits are checked by hand from run_index.csv.
+- 06:41 to 07:31 py313_T: 700 tests, every exit 0, tree changes 0.
+- 07:31 to 08:27 py313_W: 19 wrappers, every exit 0; wrapper_check: every group OK or OK_WITH_EXCLUSIONS, checker_problems 0 on all 19,
+  totals FILE 454 / CHECK 103 / EXCLUDED 100, non-passing group lines none; tree changes 0.
+- 08:27 to 08:39 py313_M: exit 0; m8_check "as expected (exit 0, no checker problem, 79 KILLED, 3 EQUIVALENT: MI-36 MI-39 MD-02): True";
+  82 mutants, survived 0, indeterminate 0, item_errors 0; tree changes 0.
+- 08:39 py312_T started.
