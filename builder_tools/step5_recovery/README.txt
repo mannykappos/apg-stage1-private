@@ -12,3 +12,10 @@ New in the recovery:
 - recorded_totals_s1: the owner's B.6/K.2 answer (2026-11-11 22:47): totals against d5f87d6b and c9b324eb as recorded
 - tset_start_scan_s1: row 68 / discrepancy 6, every process start in tests_tools and its limit
 DEV_tset_scan_row68_branch.txt: a development run of the scan on the work tree (branch row68), not evidence.
+Added 2026-11-12 (new or rewritten in the recovery; their c9b324eb-era tools were lost):
+- m2_extras_s1: AM5-1 A (i) the M10 --list literal; AM5-3 B the one-worker run on M10's EQUIV ids (through s14_diag.py)
+- case_inventory_limit_s1: row 37, the 2C demonstration (from the format of static/case_inventory_limit.txt); both Pythons
+- route_children_s1: row 119, the first route proof (from the format of static/route_children.txt)
+- audit_process_api_reach_s1: row 7, process-API reach from a unit started by run_unit, with the PID 1 line and the process list
+- tset_start_scan_s1: the alarm pattern widened to the alias _sig (2026-11-12 06:3x, before the row 68 count)
+drivers/: driver51 (AM5-6 step 1), driver523 (steps 2 and 3), driver54 (step 4).
