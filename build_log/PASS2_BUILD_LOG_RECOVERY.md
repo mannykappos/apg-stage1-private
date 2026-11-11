@@ -169,3 +169,10 @@ review pack); everything after that is restated here from the conversation recor
 - 10:21 to 10:32 py312_M: exit 0; m8_check "as expected (exit 0, no checker problem, 79 KILLED, 3 EQUIVALENT: MI-36 MI-39 MD-02): True"; tree changes 0.
 - 10:32 STEP51 DONE. Step 5.1 found nothing unexpected on either Python.
 - 10:32 driver523 started (steps 5.2 and 5.3: golden, pairs, b6 and k2 against e4531a35 with the recorded totals, then m2), one job at a time.
+- 10:32 to 10:36 step 5.2 (BUILDER-EXECUTED: NOT INDEPENDENT): golden SAME, pairs SAME, b6 SAME (111 items vs e4531a35), k2 SAME (386 items vs
+  e4531a35), b6 and k2 recorded totals SAME (d5f87d6b and c9b324eb), on Python 3.13 and on 3.12. No per-item difference.
+- MISTAKE 56 (disclosed): recorded_totals_s1.py printed a hard-coded label "be0c27b" for the new side, left from when be0c27b was the freeze. The
+  numbers compared are this run's (driver523 reads freeze5 = e9e11d9 / ee1ce3ec); only the label is wrong. Fixed the label (line 42, now
+  "e9e11d9 (freeze ee1ce3ec)"); the old file is kept as ev5/recorded_totals_s1.py.before_label_fix. The four totals jobs (b6tot and k2tot on both
+  Pythons) will be re-run after step 5.3 finishes, one job at a time, so the evidence carries the right label; the wrong-label outputs are kept.
+- 10:36 STEP52 DONE; step 5.3 (m2) started: m2list_313 "m10 --list: exit 0, 199 ids, RI10 at 51, m2_mutants.py as expected: OK".
