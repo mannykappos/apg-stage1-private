@@ -1,0 +1,32 @@
+run_contracts          s1 cases    exit=0 status=OK
+run_contracts          m10 exit=0 verdicts=38  s1 verdicts=38
+run_det_corpus         s1 cases    exit=0 status=OK
+run_det_corpus         m10 exit=0 verdicts=75  s1 verdicts=75
+run_fin_corpus         s1 cases    exit=0 status=OK
+run_fin_corpus         m10 exit=0 verdicts=63  s1 verdicts=63
+run_guard_contract     s1 cases    exit=0 status=OK
+run_guard_contract     m10 exit=0 verdicts=8  s1 verdicts=8
+run_ingest_corpus      s1 cases    exit=0 status=OK
+run_ingest_corpus      m10 exit=0 verdicts=44  s1 verdicts=44
+run_m3_contracts       s1 cases    exit=0 status=OK
+run_m3_contracts       m10 exit=0 verdicts=24  s1 verdicts=24
+run_m5_contracts       s1 cases    exit=0 status=OK
+run_m5_contracts       m10 exit=0 verdicts=12  s1 verdicts=12
+run_m6_contracts       s1 cases    exit=0 status=OK
+run_m6_contracts       m10 exit=0 verdicts=24  s1 verdicts=24
+run_m91_contracts      s1 cases    exit=0 status=OK
+run_m91_contracts      m10 exit=0 verdicts=14  s1 verdicts=14
+run_mkt_corpus         s1 cases    exit=0 status=OK
+run_mkt_corpus         m10 exit=0 verdicts=78  s1 verdicts=78
+run_history_contract   s1 sabotage exit=0 status=OK
+run_history_contract   s1 cases    exit=0 status=OK
+run_history_contract   m10 exit=0 verdicts=10  s1 verdicts=10
+run_faults             s1 sabotage exit=0 status=OK
+run_faults             m10 exit=0 verdicts=39  s1 verdicts=39
+run_m3_faults          s1 sabotage exit=0 status=OK
+run_m3_faults          m10 exit=0 verdicts=28  s1 verdicts=28
+run_m5_faults          s1 sabotage exit=0 status=OK
+run_m5_faults          m10 exit=0 verdicts=15  s1 verdicts=15
+run_m6_faults          s1 sabotage exit=0 status=OK
+run_m6_faults          m10 exit=0 verdicts=25  s1 verdicts=25
+RESULT pairs SAME

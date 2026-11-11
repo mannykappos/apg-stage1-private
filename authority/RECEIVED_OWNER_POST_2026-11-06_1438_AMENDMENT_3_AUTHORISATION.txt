@@ -1,0 +1,3 @@
+Owner's post, 14:38 on 2026-11-06 (AEDT), verbatim:
+
+I authorise amendment 3 to APG D14 stage 1 corrective pass 2, as set out in APG_D14_STAGE1_CORRECTIVE_PASS_2_AMENDMENT_3_DRAFT_v2.md (SHA-256 89e5a268242c8ce0471d45af12a056c444fad25c57978741e5f3cdb283436715), including decisions AM3-1 to AM3-5 and the S11 correction in AM3-4. The posted paper 23d2adb9…f0ea5, as amended by amendments 1 (211971…d382) and 2 (a3cc26b5…cd6e), stands as further amended. This authorises corrective work only; it is not stage 1 acceptance and does not authorise stage 2.

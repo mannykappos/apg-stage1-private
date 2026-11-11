@@ -1,0 +1,119 @@
+changed .py files 88, successor tools 73, code literals naming an old tool 326
+  tests_m8/test_m8_boundary.py :: <module>  -> m8_mutants run_m8_all run_m8_tests run_regression_m10 run_regression_m8 run_regression_m81 run_regression_m81r1 run_regression_m8r2 sabotage_m10 sabotage_m8
+  tests_tools/test_apg_root.py :: test_a_declared_file_that_is_a_link_to_an_in_tree_file  -> run_contracts
+  tests_tools/test_apg_root.py :: test_m10_from_a_decoy_working_directory_imports_its_own_apg  -> run_m2_tests
+  tests_tools/test_apg_root.py :: test_m10_run_m2_tests_imports_the_decoy  -> run_m2_tests
+  tests_tools/test_apg_root.py :: test_m10_run_m8_tests_imports_the_decoy  -> run_m8_tests
+  tests_tools/test_consumer_exit_codes.py :: test_mutation_tool  -> m6_mutants
+  tests_tools/test_exec_env.py :: go  -> run_m2_tests
+  tests_tools/test_exec_env.py :: test_m8_mutants_controls_and_a_known_kill  -> m8_mutants
+  tests_tools/test_exec_env.py :: test_run_m8_tests  -> run_m8_tests
+  tests_tools/test_exec_env.py :: test_run_regression_m10_step_r07  -> run_regression_m10
+  tests_tools/test_exec_env.py :: test_sabotage_m10_one_plant  -> sabotage_m10
+  tests_tools/test_harness_isolation.py :: <module>  -> run_contracts run_det_corpus run_fin_corpus run_ingest_corpus run_m3_contracts run_m5_contracts run_m6_contracts run_m91_contracts
+  tests_tools/test_mut_runner_output.py :: test_e20_the_c8_kill_attribution_matches_m10  -> mut_runner
+  tests_tools/test_mut_runner_output.py :: test_m10_failure_prints_only_the_short_name  -> mut_runner
+  tests_tools/test_mut_runner_output.py :: test_m10_prints_nothing_on_success  -> mut_runner
+  tests_tools/test_mut_runner_output.py :: test_no_names  -> mut_runner
+  tests_tools/test_mut_runner_output.py :: test_the_eight_c8_files  -> mut_runner
+  tests_tools/test_mut_runner_output.py :: test_unpinned_name_and_no_names  -> mut_runner
+  tests_tools/test_mutant_targets.py :: <module>  -> sabotage_f67 sabotage_f671 sabotage_f672 sabotage_f673 sabotage_f674 sabotage_m10 sabotage_m7 sabotage_m71 sabotage_m72 sabotage_m73
+  tests_tools/test_mutant_targets.py :: setUp  -> m2_mutants
+  tests_tools/test_mutant_targets.py :: test_m10_m2_list_from_the_source_fails_only_on_ri10  -> m2_mutants
+  tests_tools/test_mutant_targets.py :: test_m10_starts_the_workers_and_reports_the_error_afterwards  -> m2_mutants run_contracts run_m2_tests
+  tests_tools/test_mutant_targets.py :: test_m10_tool_only_finds_it_per_mutant  -> m2_mutants
+  tests_tools/test_mutant_targets.py :: test_m8_mutants_and_the_sabotage_plants  -> m8_mutants sabotage_f67 sabotage_f671 sabotage_f672 sabotage_f673 sabotage_f674 sabotage_m10 sabotage_m7 sabotage_m71 sabotage_m72 sabotage_m73
+  tests_tools/test_mutant_targets.py :: test_sabotage_tool_whose_added_file_already_exists  -> sabotage_f67
+  tests_tools/test_mutant_targets.py :: test_the_successor_m2_list_has_every_target_exactly_once  -> m2_mutants
+  tests_tools/test_mutation_error_shape.py :: test_successor_reports_a_worker_exception_as_that_mutants_item_error  -> m91_mutants
+  tests_tools/test_mutation_timeout.py :: <module>  -> f672_mutants m2_mutants m3_mutants m4_mutants m5_mutants m6_mutants m73_store_mutants m7_mutants m91_mutants mie_mutants mut_runner run_contracts run_m2_tests
+  tests_tools/test_mutation_timeout.py :: m10  -> m8_mutants
+  tests_tools/test_mutation_timeout.py :: sabotage_case  -> sabotage_m10
+  tests_tools/test_mutation_timeout.py :: setUp  -> m8_mutants
+  tests_tools/test_mutation_timeout.py :: stub_tree  -> m2_mutants
+  tests_tools/test_mutation_timeout.py :: test_e17_ml01_kill_attribution_matches_m10  -> m8_mutants
+  tests_tools/test_mutation_timeout.py :: test_m10_counts_it_as_a_kill  -> m4_mutants
+  tests_tools/test_mutation_timeout.py :: test_m10_runner_passes_a_pattern_that_selects_no_file  -> run_m2_tests
+  tests_tools/test_mutation_timeout.py :: test_m10_sabotage_m10_counts_a_crash_as_caught  -> sabotage_m10
+  tests_tools/test_no_timeout_kill.py :: setUp  -> m2_mutants
+  tests_tools/test_no_timeout_kill.py :: test_the_census_finds_the_m10_pattern  -> m6_mutants
+  tests_tools/test_runner_zero_work.py :: <module>  -> m3_mutants m4_mutants m5_mutants m6_mutants m7_mutants m8_mutants mut_runner run_contracts run_det_corpus run_f671_all run_f672_all run_f673_all run_f674_all run_f67_all run_fin_corpus run_m2_tests run_m3_all run_m3_contracts run_m4_all run_m6_all run_m71_all run_m72_all run_m73_all run_m7_all run_m8_all run_m8_tests run_m91_all run_m92_all run_m93_all run_m94_all run_mie1_1_all run_mie1_all run_mkt_corpus sabotage_m10 sabotage_m8
+  tests_tools/test_runner_zero_work.py :: _add_selector_cases  -> m8_mutants
+  tests_tools/test_runner_zero_work.py :: test_a_broken_reference_m10_still_catches_everything_the_successor_stops  -> run_faults
+  tests_tools/test_runner_zero_work.py :: test_a_step_that_fails_on_the_clean_tree_is_no_catch  -> sabotage_m7
+  tests_tools/test_runner_zero_work.py :: test_an_empty_fault_list_m10_passes_the_successor_refuses  -> run_m5_faults
+  tests_tools/test_runner_zero_work.py :: test_an_empty_m3_fault_list_and_an_empty_ingest_corpus  -> run_ingest_corpus run_m3_faults
+  tests_tools/test_runner_zero_work.py :: test_an_excluded_built_in_check_is_never_evaluated_and_never_a_pass  -> run_f671_all run_f674_all
+  tests_tools/test_runner_zero_work.py :: test_c2_the_18_mutation_and_sabotage_successors  -> sabotage_m10 sabotage_m8
+  tests_tools/test_runner_zero_work.py :: test_c3_the_wrapper_consumer_paths  -> m7_mutants
+  tests_tools/test_runner_zero_work.py :: test_consumer_sabotage_m8_s1_at_a_plant_and_at_each_control  -> run_regression_m8 sabotage_m8
+  tests_tools/test_runner_zero_work.py :: test_m10_det_corpus_with_an_unknown_only_reports_zero_cases_as_a_pass  -> run_det_corpus
+  tests_tools/test_runner_zero_work.py :: test_m10_run_m3_all_passes_its_zero_work_test_group  -> run_m2_tests run_m3_all
+  tests_tools/test_runner_zero_work.py :: test_m10_wrapper_passes_every_zero_work_group  -> run_m2_tests run_m4_all run_m6_all
+  tests_tools/test_runner_zero_work.py :: test_m1_full_run_goes_on_after_a_failing_test  -> run_m8_tests sabotage_m8
+  tests_tools/test_runner_zero_work.py :: test_m8t_tiers_omit_only_the_boundary_test_and_are_pinned  -> m8_mutants
+  tests_tools/test_runner_zero_work.py :: test_pin_accepts_only_the_adopted_v3_files  -> run_f671_all
+  tests_tools/test_runner_zero_work.py :: test_run_m8_all_per_file_groups_map_one_to_one  -> run_f674_all run_m8_all
+  tests_tools/test_runner_zero_work.py :: test_sabotage_unknown_id_m10_zero_work_successor_exit_2  -> sabotage_m7
+  tests_tools/test_runner_zero_work.py :: test_the_three_built_in_checks_are_h_and_the_fourth_stays_w  -> run_f671_all run_f672_all run_f673_all run_f674_all
+  tests_tools/test_runner_zero_work.py :: test_wrapper_full_mode_runs_the_next_group_after_a_failing_one  -> run_m71_all
+  tools/evkit.py :: <module>  -> run_contracts run_cr02_reference run_det_corpus run_f671_all run_f672_all run_f673_all run_f674_all run_f67_all run_faults run_fin_corpus run_guard_contract run_history_contract run_ingest_corpus run_m2_tests run_m3_all run_m3_contracts run_m3_faults run_m4_all run_m5_contracts run_m5_faults run_m6_all run_m6_contracts run_m6_faults run_m71_all run_m72_all run_m73_all run_m7_all run_m8_all run_m8_tests run_m91_all run_m91_contracts run_m92_all run_m93_all run_m94_all run_mie1_1_all run_mie1_all run_mkt_corpus run_regression_m8 run_regression_m81 run_test_files
+  tools/evkit.py :: _resolve_tests  -> run_m2_tests run_test_files
+  tools/evkit.py :: m10_wrapper_table  -> run_m8_all
+  tools/evkit.py :: wrapper_plan  -> run_f674_all run_test_files
+  tools/f671_mutants_s1.py :: load  -> f671_mutants
+  tools/f672_mutants_s1.py :: load  -> f672_mutants
+  tools/f673_mutants_s1.py :: load  -> f673_mutants
+  tools/f674_mutants_s1.py :: load  -> f674_mutants
+  tools/f67_mutants_s1.py :: load  -> f67_mutants
+  tools/m2_mutants_s1.py :: load  -> m2_mutants
+  tools/m3_mutants_s1.py :: load  -> m3_mutants
+  tools/m4_mutants_s1.py :: load  -> m4_mutants
+  tools/m5_mutants_s1.py :: load  -> m5_mutants
+  tools/m6_mutants_s1.py :: load  -> m6_mutants
+  tools/m73_store_mutants_s1.py :: load  -> m73_store_mutants
+  tools/m7_mutants_s1.py :: load  -> m7_mutants
+  tools/m8_mutants_s1.py :: load  -> m8_mutants
+  tools/m91_mutants_s1.py :: load  -> m91_mutants
+  tools/mie11_mutants_s1.py :: load  -> mie11_mutants
+  tools/mie_mutants_s1.py :: load  -> mie_mutants
+  tools/run_cr02_reference_s1.py :: main  -> run_cr02_reference
+  tools/run_f671_all_s1.py :: <module>  -> run_f671_all
+  tools/run_f672_all_s1.py :: <module>  -> run_f672_all
+  tools/run_f673_all_s1.py :: <module>  -> run_f673_all
+  tools/run_f674_all_s1.py :: <module>  -> run_f674_all
+  tools/run_f67_all_s1.py :: <module>  -> run_f67_all
+  tools/run_history_contract_s1.py :: load  -> run_history_contract
+  tools/run_m3_all_s1.py :: <module>  -> run_m3_all
+  tools/run_m4_all_s1.py :: <module>  -> run_m4_all
+  tools/run_m6_all_s1.py :: <module>  -> run_m6_all
+  tools/run_m71_all_s1.py :: <module>  -> run_m71_all
+  tools/run_m72_all_s1.py :: <module>  -> run_m72_all
+  tools/run_m73_all_s1.py :: <module>  -> run_m73_all
+  tools/run_m7_all_s1.py :: <module>  -> run_m7_all
+  tools/run_m8_all_s1.py :: <module>  -> run_m8_all
+  tools/run_m91_all_s1.py :: <module>  -> run_m91_all
+  tools/run_m92_all_s1.py :: <module>  -> run_m92_all
+  tools/run_m93_all_s1.py :: <module>  -> run_m93_all
+  tools/run_m94_all_s1.py :: <module>  -> run_m94_all
+  tools/run_mie1_1_all_s1.py :: <module>  -> run_mie1_1_all
+  tools/run_mie1_all_s1.py :: <module>  -> run_mie1_all
+  tools/run_regression_m10_s1.py :: <module>  -> run_regression_m10
+  tools/run_regression_m81_s1.py :: <module>  -> run_regression_m81
+  tools/run_regression_m81r1_s1.py :: <module>  -> run_regression_m81r1
+  tools/run_regression_m8_s1.py :: <module>  -> run_regression_m8
+  tools/run_regression_m8r2_s1.py :: <module>  -> run_regression_m8r2
+  tools/sabotage_f671_s1.py :: <module>  -> sabotage_f671
+  tools/sabotage_f672_s1.py :: <module>  -> sabotage_f672
+  tools/sabotage_f673_s1.py :: <module>  -> sabotage_f673
+  tools/sabotage_f674_s1.py :: <module>  -> sabotage_f674
+  tools/sabotage_f67_s1.py :: <module>  -> sabotage_f67
+  tools/sabotage_m10_s1.py :: load  -> sabotage_m10
+  tools/sabotage_m71_s1.py :: <module>  -> sabotage_m71
+  tools/sabotage_m72_s1.py :: <module>  -> sabotage_m72
+  tools/sabotage_m73_s1.py :: <module>  -> sabotage_m73
+  tools/sabotage_m7_s1.py :: <module>  -> sabotage_m7
+  tools/sabotage_m8_s1.py :: cmd  -> run_m8_tests run_regression_m8
+  tools/sabotage_m8_s1.py :: load  -> sabotage_m8
+  tools/sabotage_mie1_1_s1.py :: <module>  -> sabotage_mie1_1
+  tools/sabotage_mie1_s1.py :: <module>  -> sabotage_mie1

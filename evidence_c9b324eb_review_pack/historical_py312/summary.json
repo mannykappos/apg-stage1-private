@@ -1,0 +1,8 @@
+{
+ "python": "/usr/bin/python3.12",
+ "rows": 100,
+ "distinct_commands_run": 45,
+ "exit_as_recorded": 100,
+ "last_line_as_recorded": 100,
+ "archive_files_changed_by_the_checks": []
+}

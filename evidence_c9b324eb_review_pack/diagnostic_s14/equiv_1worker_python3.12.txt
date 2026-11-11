@@ -1,0 +1,4 @@
+{"id": "CA01-float-allowed", "result": ["CA01-float-allowed", "SURVIVED", ""], "seconds": 258.8}
+{"id": "RI13-input-aliased", "result": ["RI13-input-aliased", "SURVIVED", ""], "seconds": 225.3}
+{"id": "ME35-decision-ledger-by-presence", "result": ["ME35-decision-ledger-by-presence", "SURVIVED", ""], "seconds": 233.4}
+{"equiv": ["CA01-float-allowed", "ME35-decision-ledger-by-presence", "RI13-input-aliased"], "results": [{"id": "CA01-float-allowed", "result": ["CA01-float-allowed", "SURVIVED", ""], "seconds": 258.8}, {"id": "RI13-input-aliased", "result": ["RI13-input-aliased", "SURVIVED", ""], "seconds": 225.3}, {"id": "ME35-decision-ledger-by-presence", "result": ["ME35-decision-ledger-by-presence", "SURVIVED", ""], "seconds": 233.4}]}

@@ -1,0 +1,6 @@
+CHECK groups that start a child: 102
+  M10 tool, no successor: 72
+  successor: 30
+children that name an old tool that has a successor: 0 []
+FILE groups run: ['tools/run_contracts_s1.py', 'tools/run_det_corpus_s1.py', 'tools/run_faults_s1.py', 'tools/run_fin_corpus_s1.py', 'tools/run_guard_contract_s1.py', 'tools/run_ingest_corpus_s1.py', 'tools/run_m2_tests_s1.py', 'tools/run_m3_contracts_s1.py', 'tools/run_m3_faults_s1.py', 'tools/run_m5_contracts_s1.py', 'tools/run_m5_faults_s1.py', 'tools/run_m6_contracts_s1.py', 'tools/run_m6_faults_s1.py', 'tools/run_m8_tests_s1.py', 'tools/run_m91_contracts_s1.py', 'tools/run_mkt_corpus_s1.py', 'tools/run_test_files_s1.py']
+REGRESSION_REDIRECTS: [('tools/run_m2_tests.py', ('tools/run_m2_tests_s1.py', ['--caller', 'wrapper'])), ('tools/run_m8_tests.py', ('tools/run_m8_tests_s1.py', ['--caller', 'wrapper'])), ('tools/run_regression_m8.py', ('tools/run_regression_m8_s1.py', [])), ('tools/run_regression_m81.py', ('tools/run_regression_m81_s1.py', []))]

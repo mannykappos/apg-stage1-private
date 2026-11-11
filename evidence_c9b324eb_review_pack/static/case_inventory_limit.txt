@@ -1,0 +1,27 @@
+run_contracts_s1 --suite audit_log --only AL-01: exit 0, suites_selected=1, CASE suites printed ['audit_log']
+  printed hash = the selected suites ['audit_log']: True
+    hash of the set ['audit_log']                                 accepted (the true selection)
+    hash of the set ['record_store']                              rejected
+    hash of the set ['tenant_context']                            rejected
+    hash of the set ['audit_log', 'record_store']                 rejected
+    hash of the set ['audit_log', 'tenant_context']               rejected
+    hash of the set ['record_store', 'tenant_context']            rejected
+    hash of the set ['audit_log', 'record_store', 'tenant_context'] rejected
+run_contracts_s1 --suite record_store --suite audit_log --only AL-01: exit 0, suites_selected=2, CASE suites printed ['audit_log']
+  printed hash = the selected suites ['record_store', 'audit_log']: True
+    hash of the set ['audit_log']                                 rejected
+    hash of the set ['record_store']                              rejected
+    hash of the set ['tenant_context']                            rejected
+    hash of the set ['audit_log', 'record_store']                 accepted (the true selection)
+    hash of the set ['audit_log', 'tenant_context']               rejected
+    hash of the set ['record_store', 'tenant_context']            rejected
+    hash of the set ['audit_log', 'record_store', 'tenant_context'] rejected
+run_contracts_s1 --suite record_store --suite audit_log: exit 0, suites_selected=2, CASE suites printed ['audit_log', 'record_store']
+  printed hash = the selected suites ['record_store', 'audit_log']: True
+    hash of the set ['audit_log']                                 rejected
+    hash of the set ['record_store']                              rejected
+    hash of the set ['tenant_context']                            rejected
+    hash of the set ['audit_log', 'record_store']                 accepted (the true selection)
+    hash of the set ['audit_log', 'tenant_context']               rejected
+    hash of the set ['record_store', 'tenant_context']            rejected
+    hash of the set ['audit_log', 'record_store', 'tenant_context'] rejected

@@ -1,0 +1,10 @@
+harness slices: 0:40, 40:80, 80:120, 120:160, 160:199; ids covered 199
+M10 ids 199; RI10-query-crosses-tenants at position 51; ERROR ids ['RI10-query-crosses-tenants']
+M10 run_one: KILLED 197 (tests 114, contracts 0, timeout 83), EQUIVALENT 1, SURVIVED 0, ERROR 1
+M10 script as written: NOT RUN (no m10_script_as_written.txt)
+m2_mutants_s1: exit 0 status OK ids_sha256 649e0e48d843bf4e792727b5b7789ff9a9a0d3ddb346f36dc51693d652f3384e (expected 649e0e48d843bf4e792727b5b7789ff9a9a0d3ddb346f36dc51693d652f3384e), 199 MUTANT lines
+DIFFERENT CA01-float-allowed M10 KILLED (timeout) successor EQUIVALENT documented
+DIFFERENT RI13-input-aliased M10 KILLED (timeout) successor EQUIVALENT documented
+allowed differences (1):
+  RI10-query-crosses-tenants: M10 ERROR, successor KILLED test_adversarial_builder_zero.py
+RESULT m2 DIFFERENT 2

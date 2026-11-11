@@ -1,0 +1,3 @@
+tools/m2_mutants.py fe1fd878fee975dff6dfdbdf27a7124665228a6efef624c396b40f7d68cd157b (expected fe1fd878fee975dff6dfdbdf27a7124665228a6efef624c396b40f7d68cd157b)
+harness slice 120:160 exit 0, 40 results, TMPDIR bytes at end 3189264151
+RESULT m2h_120_160 SAME

@@ -1,0 +1,21 @@
+BUILDER-EXECUTED: NOT INDEPENDENT. Corrective pass 2, P.9 audit part 1 (mechanical scan), from /tmp/s1_auditx_WKj8/APG-M11-S1/
+
+A. Process-start calls in successor code (AST scan of tools/evkit.py and 73 tools/*_s1.py)
+  tools/evkit.py:1739  run_unit                         _subprocess.Popen
+  tools/evkit.py:1831  run_forked                       os.fork
+  total: 2
+  files that replace subprocess.run with a shim: ['tools/run_cr02_reference_s1.py']
+
+D. M10 tools in tools/ (200) that name any *_s1 tool: 0 []
+
+E. Code under test and tools (grep of *.py, and *.js/*.mjs for process starts)
+  apg        py=122  socket/http/urllib/asyncio imports=0   port-2024/cc-socks/process_api=0   process starts=0
+  apg_auif   py=12   socket/http/urllib/asyncio imports=0   port-2024/cc-socks/process_api=0   process starts=1
+  apg_ui     py=3    socket/http/urllib/asyncio imports=0   port-2024/cc-socks/process_api=0   process starts=0
+  mie        py=19   socket/http/urllib/asyncio imports=0   port-2024/cc-socks/process_api=0   process starts=0
+  auif_m8    py=0    socket/http/urllib/asyncio imports=0   port-2024/cc-socks/process_api=0   process starts=0
+  tests      py=128  socket/http/urllib/asyncio imports=0   port-2024/cc-socks/process_api=0   process starts=7
+  tests_m8   py=18   socket/http/urllib/asyncio imports=0   port-2024/cc-socks/process_api=0   process starts=3
+  tests_m10  py=2    socket/http/urllib/asyncio imports=0   port-2024/cc-socks/process_api=0   process starts=0
+  tools      py=274  socket/http/urllib/asyncio imports=0   port-2024/cc-socks/process_api=0   process starts=92
+  reference  py=3    socket/http/urllib/asyncio imports=0   port-2024/cc-socks/process_api=0   process starts=1

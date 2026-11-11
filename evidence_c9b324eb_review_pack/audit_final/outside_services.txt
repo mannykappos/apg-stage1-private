@@ -1,0 +1,538 @@
+BUILDER-EXECUTED: NOT INDEPENDENT. Corrective pass 2, P.2 outside-service audit, from /tmp/s1_auditx_WKj8/APG-M11-S1
+{
+ "auditor_env_names": [
+  "LANG",
+  "LC_ALL",
+  "PATH",
+  "TMPDIR",
+  "TZ"
+ ],
+ "auditor_pid": 13967,
+ "forked_unit_after_scrub": {
+  "env": {
+   "LANG": "C.UTF-8",
+   "LC_ALL": "C.UTF-8",
+   "PATH": "/usr/local/bin:/usr/bin:/bin",
+   "PYTHONDONTWRITEBYTECODE": "1",
+   "TMPDIR": "/tmp/s1_audt_T7eS/audit_unit_tmp_8om2m8c6",
+   "TZ": "UTC"
+  },
+  "fds": {
+   "0": "/dev/null",
+   "1": "/tmp/claude-0/-home-claude/<SESSION-ID>/tasks/ba4g6onxq.output",
+   "2": "/tmp/claude-0/-home-claude/<SESSION-ID>/tasks/ba4g6onxq.output",
+   "3": "unreadable [Errno 2] No such file or directory: '/proc/self/fd/3'",
+   "6": "pipe:[27708]"
+  },
+  "gid": 0,
+  "groups": [],
+  "known_service_paths": {
+   "/run/containerd/containerd.sock": "absent",
+   "/run/crio/crio.sock": "absent",
+   "/run/dbus/system_bus_socket": "absent",
+   "/run/docker.sock": "absent",
+   "/run/podman/podman.sock": "absent",
+   "/run/systemd/notify": "absent",
+   "/run/systemd/private": "absent",
+   "/run/user": "exists 0o755",
+   "/var/run/dbus/system_bus_socket": "absent",
+   "/var/run/docker.sock": "absent"
+  },
+  "launchers_on_unit_path": {
+   "at": "not on the unit PATH",
+   "atq": "not on the unit PATH",
+   "batch": "not on the unit PATH",
+   "busctl": [
+    "/usr/bin/busctl",
+    "/bin/busctl"
+   ],
+   "crontab": "not on the unit PATH",
+   "ctr": [
+    "/usr/bin/ctr",
+    "/bin/ctr"
+   ],
+   "daemonize": "not on the unit PATH",
+   "dbus-send": [
+    "/usr/bin/dbus-send",
+    "/bin/dbus-send"
+   ],
+   "docker": [
+    "/usr/bin/docker",
+    "/bin/docker"
+   ],
+   "nerdctl": "not on the unit PATH",
+   "nohup": [
+    "/usr/bin/nohup",
+    "/bin/nohup"
+   ],
+   "nsenter": [
+    "/usr/bin/nsenter",
+    "/bin/nsenter"
+   ],
+   "pkexec": "not on the unit PATH",
+   "podman": "not on the unit PATH",
+   "runc": [
+    "/usr/bin/runc",
+    "/bin/runc"
+   ],
+   "setsid": [
+    "/usr/bin/setsid",
+    "/bin/setsid"
+   ],
+   "ssh": "not on the unit PATH",
+   "start-stop-daemon": "not on the unit PATH",
+   "su": [
+    "/usr/bin/su",
+    "/bin/su"
+   ],
+   "sudo": [
+    "/usr/bin/sudo",
+    "/bin/sudo"
+   ],
+   "systemctl": [
+    "/usr/bin/systemctl",
+    "/bin/systemctl"
+   ],
+   "systemd-run": [
+    "/usr/bin/systemd-run",
+    "/bin/systemd-run"
+   ],
+   "unshare": [
+    "/usr/bin/unshare",
+    "/bin/unshare"
+   ]
+  },
+  "network": {
+   "direct_tcp_1.1.1.1_443": "connect accepted (closed at once, nothing sent)",
+   "direct_tcp_8.8.8.8_53": "connect failed: ConnectionRefusedError 111",
+   "proc_net_route": [
+    "Iface\tDestination\tGateway \tFlags\tRefCnt\tUse\tMetric\tMask\t\tMTU\tWindow\tIRTT                                                       ",
+    "eth0\t00000000\t010200C0\t0003\t0\t0\t0\t00000000\t0\t0\t0                                                                               ",
+    "eth0\t000200C0\t00000000\t0001\t0\t0\t0\t00FFFFFF\t0\t0\t0                                                                               "
+   ],
+   "proxy_variables_in_unit_env": [],
+   "resolv_conf": [
+    "nameserver 8.8.8.8",
+    "nameserver 8.8.4.4",
+    "options timeout:2 attempts:3"
+   ]
+  },
+  "pgid": 13967,
+  "pid": 14016,
+  "ppid": 13967,
+  "proc_net_unix_checked": {
+   "/tmp/cc-socks/92.sock": "owner 0:0 mode 600; connect accepted (closed at once, nothing sent)"
+  },
+  "proc_net_unix_named": [
+   "/proc/self/fd/20/sock",
+   "/tmp/cc-socks/92.sock"
+  ],
+  "secret_bearing_names": [],
+  "setuid_setgid_on_unit_path": [
+   "/usr/bin/chage mode 2755 owner 0",
+   "/usr/bin/chfn mode 4755 owner 0",
+   "/usr/bin/chsh mode 4755 owner 0",
+   "/usr/bin/expiry mode 2755 owner 0",
+   "/usr/bin/fusermount mode 4755 owner 0",
+   "/usr/bin/fusermount3 mode 4755 owner 0",
+   "/usr/bin/gpasswd mode 4755 owner 0",
+   "/usr/bin/mount mode 4755 owner 0",
+   "/usr/bin/newgrp mode 4755 owner 0",
+   "/usr/bin/passwd mode 4755 owner 0",
+   "/usr/bin/sg mode 4755 owner 0",
+   "/usr/bin/su mode 4755 owner 0",
+   "/usr/bin/sudo mode 4755 owner 0",
+   "/usr/bin/sudoedit mode 4755 owner 0",
+   "/usr/bin/umount mode 4755 owner 0",
+   "/bin/chage mode 2755 owner 0",
+   "/bin/chfn mode 4755 owner 0",
+   "/bin/chsh mode 4755 owner 0",
+   "/bin/expiry mode 2755 owner 0",
+   "/bin/fusermount mode 4755 owner 0",
+   "/bin/fusermount3 mode 4755 owner 0",
+   "/bin/gpasswd mode 4755 owner 0",
+   "/bin/mount mode 4755 owner 0",
+   "/bin/newgrp mode 4755 owner 0",
+   "/bin/passwd mode 4755 owner 0",
+   "/bin/sg mode 4755 owner 0",
+   "/bin/su mode 4755 owner 0",
+   "/bin/sudo mode 4755 owner 0",
+   "/bin/sudoedit mode 4755 owner 0",
+   "/bin/umount mode 4755 owner 0"
+  ],
+  "sid": 13961,
+  "socket_files": {
+   "/run/sandbox-telemetry/ingest.sock": "owner 64321:64321 mode 666; connect accepted (closed at once, nothing sent)",
+   "/tmp/cc-socks/92.sock": "owner 0:0 mode 600; connect accepted (closed at once, nothing sent)",
+   "/var/run/sandbox-telemetry/ingest.sock": "owner 64321:64321 mode 666; connect accepted (closed at once, nothing sent)"
+  },
+  "socket_walk": {
+   "depths": "tmp and var/tmp 3, others 5",
+   "notes": []
+  },
+  "spools": {
+   "/etc/cron.d": "exists owner 0:0 mode 755 writable_by_unit=True",
+   "/etc/crontab": "absent",
+   "/var/spool/at": "absent",
+   "/var/spool/atjobs": "absent",
+   "/var/spool/cron": "absent",
+   "/var/spool/cron/crontabs": "absent"
+  },
+  "uid": 0
+ },
+ "forked_unit_before_scrub": {
+  "env": {
+   "AUDIT_PARENT_ONLY": "parent-only-value",
+   "LANG": "C.UTF-8",
+   "LC_ALL": "C.UTF-8",
+   "PATH": "/usr/bin:/bin",
+   "TMPDIR": "/tmp/s1_audt_T7eS",
+   "TZ": "UTC"
+  },
+  "fds": {
+   "0": "/dev/null",
+   "1": "/tmp/claude-0/-home-claude/<SESSION-ID>/tasks/ba4g6onxq.output",
+   "2": "/tmp/claude-0/-home-claude/<SESSION-ID>/tasks/ba4g6onxq.output",
+   "3": "/tmp/s1_audt_T7eS/audit_probe_9q1_5w3w/parent_only.txt",
+   "4": "anon_inode:[pidfd]",
+   "5": "unreadable [Errno 2] No such file or directory: '/proc/self/fd/5'",
+   "6": "pipe:[26756]"
+  },
+  "gid": 0,
+  "groups": [],
+  "known_service_paths": {
+   "/run/containerd/containerd.sock": "absent",
+   "/run/crio/crio.sock": "absent",
+   "/run/dbus/system_bus_socket": "absent",
+   "/run/docker.sock": "absent",
+   "/run/podman/podman.sock": "absent",
+   "/run/systemd/notify": "absent",
+   "/run/systemd/private": "absent",
+   "/run/user": "exists 0o755",
+   "/var/run/dbus/system_bus_socket": "absent",
+   "/var/run/docker.sock": "absent"
+  },
+  "launchers_on_unit_path": {
+   "at": "not on the unit PATH",
+   "atq": "not on the unit PATH",
+   "batch": "not on the unit PATH",
+   "busctl": [
+    "/usr/bin/busctl",
+    "/bin/busctl"
+   ],
+   "crontab": "not on the unit PATH",
+   "ctr": [
+    "/usr/bin/ctr",
+    "/bin/ctr"
+   ],
+   "daemonize": "not on the unit PATH",
+   "dbus-send": [
+    "/usr/bin/dbus-send",
+    "/bin/dbus-send"
+   ],
+   "docker": [
+    "/usr/bin/docker",
+    "/bin/docker"
+   ],
+   "nerdctl": "not on the unit PATH",
+   "nohup": [
+    "/usr/bin/nohup",
+    "/bin/nohup"
+   ],
+   "nsenter": [
+    "/usr/bin/nsenter",
+    "/bin/nsenter"
+   ],
+   "pkexec": "not on the unit PATH",
+   "podman": "not on the unit PATH",
+   "runc": [
+    "/usr/bin/runc",
+    "/bin/runc"
+   ],
+   "setsid": [
+    "/usr/bin/setsid",
+    "/bin/setsid"
+   ],
+   "ssh": "not on the unit PATH",
+   "start-stop-daemon": "not on the unit PATH",
+   "su": [
+    "/usr/bin/su",
+    "/bin/su"
+   ],
+   "sudo": [
+    "/usr/bin/sudo",
+    "/bin/sudo"
+   ],
+   "systemctl": [
+    "/usr/bin/systemctl",
+    "/bin/systemctl"
+   ],
+   "systemd-run": [
+    "/usr/bin/systemd-run",
+    "/bin/systemd-run"
+   ],
+   "unshare": [
+    "/usr/bin/unshare",
+    "/bin/unshare"
+   ]
+  },
+  "network": {
+   "direct_tcp_1.1.1.1_443": "connect accepted (closed at once, nothing sent)",
+   "direct_tcp_8.8.8.8_53": "connect failed: ConnectionRefusedError 111",
+   "proc_net_route": [
+    "Iface\tDestination\tGateway \tFlags\tRefCnt\tUse\tMetric\tMask\t\tMTU\tWindow\tIRTT                                                       ",
+    "eth0\t00000000\t010200C0\t0003\t0\t0\t0\t00000000\t0\t0\t0                                                                               ",
+    "eth0\t000200C0\t00000000\t0001\t0\t0\t0\t00FFFFFF\t0\t0\t0                                                                               "
+   ],
+   "proxy_variables_in_unit_env": [],
+   "resolv_conf": [
+    "nameserver 8.8.8.8",
+    "nameserver 8.8.4.4",
+    "options timeout:2 attempts:3"
+   ]
+  },
+  "pgid": 13967,
+  "pid": 13974,
+  "ppid": 13967,
+  "proc_net_unix_checked": {
+   "/tmp/cc-socks/92.sock": "owner 0:0 mode 600; connect accepted (closed at once, nothing sent)"
+  },
+  "proc_net_unix_named": [
+   "/proc/self/fd/20/sock",
+   "/tmp/cc-socks/92.sock"
+  ],
+  "secret_bearing_names": [],
+  "setuid_setgid_on_unit_path": [
+   "/usr/bin/chage mode 2755 owner 0",
+   "/usr/bin/chfn mode 4755 owner 0",
+   "/usr/bin/chsh mode 4755 owner 0",
+   "/usr/bin/expiry mode 2755 owner 0",
+   "/usr/bin/fusermount mode 4755 owner 0",
+   "/usr/bin/fusermount3 mode 4755 owner 0",
+   "/usr/bin/gpasswd mode 4755 owner 0",
+   "/usr/bin/mount mode 4755 owner 0",
+   "/usr/bin/newgrp mode 4755 owner 0",
+   "/usr/bin/passwd mode 4755 owner 0",
+   "/usr/bin/sg mode 4755 owner 0",
+   "/usr/bin/su mode 4755 owner 0",
+   "/usr/bin/sudo mode 4755 owner 0",
+   "/usr/bin/sudoedit mode 4755 owner 0",
+   "/usr/bin/umount mode 4755 owner 0",
+   "/bin/chage mode 2755 owner 0",
+   "/bin/chfn mode 4755 owner 0",
+   "/bin/chsh mode 4755 owner 0",
+   "/bin/expiry mode 2755 owner 0",
+   "/bin/fusermount mode 4755 owner 0",
+   "/bin/fusermount3 mode 4755 owner 0",
+   "/bin/gpasswd mode 4755 owner 0",
+   "/bin/mount mode 4755 owner 0",
+   "/bin/newgrp mode 4755 owner 0",
+   "/bin/passwd mode 4755 owner 0",
+   "/bin/sg mode 4755 owner 0",
+   "/bin/su mode 4755 owner 0",
+   "/bin/sudo mode 4755 owner 0",
+   "/bin/sudoedit mode 4755 owner 0",
+   "/bin/umount mode 4755 owner 0"
+  ],
+  "sid": 13961,
+  "socket_files": {
+   "/run/sandbox-telemetry/ingest.sock": "owner 64321:64321 mode 666; connect accepted (closed at once, nothing sent)",
+   "/tmp/cc-socks/92.sock": "owner 0:0 mode 600; connect accepted (closed at once, nothing sent)",
+   "/var/run/sandbox-telemetry/ingest.sock": "owner 64321:64321 mode 666; connect accepted (closed at once, nothing sent)"
+  },
+  "socket_walk": {
+   "depths": "tmp and var/tmp 3, others 5",
+   "notes": []
+  },
+  "spools": {
+   "/etc/cron.d": "exists owner 0:0 mode 755 writable_by_unit=True",
+   "/etc/crontab": "absent",
+   "/var/spool/at": "absent",
+   "/var/spool/atjobs": "absent",
+   "/var/spool/cron": "absent",
+   "/var/spool/cron/crontabs": "absent"
+  },
+  "uid": 0
+ },
+ "subprocess_unit": {
+  "record": {
+   "env": {
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "/tmp/s1_audt_T7eS/audit_unit_tmp_8om2m8c6",
+    "TZ": "UTC"
+   },
+   "fds": {
+    "0": "/dev/null",
+    "1": "pipe:[26711]",
+    "2": "pipe:[26712]",
+    "3": "unreadable [Errno 2] No such file or directory: '/proc/self/fd/3'"
+   },
+   "gid": 0,
+   "groups": [],
+   "known_service_paths": {
+    "/run/containerd/containerd.sock": "absent",
+    "/run/crio/crio.sock": "absent",
+    "/run/dbus/system_bus_socket": "absent",
+    "/run/docker.sock": "absent",
+    "/run/podman/podman.sock": "absent",
+    "/run/systemd/notify": "absent",
+    "/run/systemd/private": "absent",
+    "/run/user": "exists 0o755",
+    "/var/run/dbus/system_bus_socket": "absent",
+    "/var/run/docker.sock": "absent"
+   },
+   "launchers_on_unit_path": {
+    "at": "not on the unit PATH",
+    "atq": "not on the unit PATH",
+    "batch": "not on the unit PATH",
+    "busctl": [
+     "/usr/bin/busctl",
+     "/bin/busctl"
+    ],
+    "crontab": "not on the unit PATH",
+    "ctr": [
+     "/usr/bin/ctr",
+     "/bin/ctr"
+    ],
+    "daemonize": "not on the unit PATH",
+    "dbus-send": [
+     "/usr/bin/dbus-send",
+     "/bin/dbus-send"
+    ],
+    "docker": [
+     "/usr/bin/docker",
+     "/bin/docker"
+    ],
+    "nerdctl": "not on the unit PATH",
+    "nohup": [
+     "/usr/bin/nohup",
+     "/bin/nohup"
+    ],
+    "nsenter": [
+     "/usr/bin/nsenter",
+     "/bin/nsenter"
+    ],
+    "pkexec": "not on the unit PATH",
+    "podman": "not on the unit PATH",
+    "runc": [
+     "/usr/bin/runc",
+     "/bin/runc"
+    ],
+    "setsid": [
+     "/usr/bin/setsid",
+     "/bin/setsid"
+    ],
+    "ssh": "not on the unit PATH",
+    "start-stop-daemon": "not on the unit PATH",
+    "su": [
+     "/usr/bin/su",
+     "/bin/su"
+    ],
+    "sudo": [
+     "/usr/bin/sudo",
+     "/bin/sudo"
+    ],
+    "systemctl": [
+     "/usr/bin/systemctl",
+     "/bin/systemctl"
+    ],
+    "systemd-run": [
+     "/usr/bin/systemd-run",
+     "/bin/systemd-run"
+    ],
+    "unshare": [
+     "/usr/bin/unshare",
+     "/bin/unshare"
+    ]
+   },
+   "network": {
+    "direct_tcp_1.1.1.1_443": "connect accepted (closed at once, nothing sent)",
+    "direct_tcp_8.8.8.8_53": "connect failed: ConnectionRefusedError 111",
+    "proc_net_route": [
+     "Iface\tDestination\tGateway \tFlags\tRefCnt\tUse\tMetric\tMask\t\tMTU\tWindow\tIRTT                                                       ",
+     "eth0\t00000000\t010200C0\t0003\t0\t0\t0\t00000000\t0\t0\t0                                                                               ",
+     "eth0\t000200C0\t00000000\t0001\t0\t0\t0\t00FFFFFF\t0\t0\t0                                                                               "
+    ],
+    "proxy_variables_in_unit_env": [],
+    "resolv_conf": [
+     "nameserver 8.8.8.8",
+     "nameserver 8.8.4.4",
+     "options timeout:2 attempts:3"
+    ]
+   },
+   "pgid": 13967,
+   "pid": 13968,
+   "ppid": 13967,
+   "proc_net_unix_checked": {
+    "/tmp/cc-socks/92.sock": "owner 0:0 mode 600; connect accepted (closed at once, nothing sent)"
+   },
+   "proc_net_unix_named": [
+    "/proc/self/fd/20/sock",
+    "/tmp/cc-socks/92.sock"
+   ],
+   "secret_bearing_names": [],
+   "setuid_setgid_on_unit_path": [
+    "/usr/bin/chage mode 2755 owner 0",
+    "/usr/bin/chfn mode 4755 owner 0",
+    "/usr/bin/chsh mode 4755 owner 0",
+    "/usr/bin/expiry mode 2755 owner 0",
+    "/usr/bin/fusermount mode 4755 owner 0",
+    "/usr/bin/fusermount3 mode 4755 owner 0",
+    "/usr/bin/gpasswd mode 4755 owner 0",
+    "/usr/bin/mount mode 4755 owner 0",
+    "/usr/bin/newgrp mode 4755 owner 0",
+    "/usr/bin/passwd mode 4755 owner 0",
+    "/usr/bin/sg mode 4755 owner 0",
+    "/usr/bin/su mode 4755 owner 0",
+    "/usr/bin/sudo mode 4755 owner 0",
+    "/usr/bin/sudoedit mode 4755 owner 0",
+    "/usr/bin/umount mode 4755 owner 0",
+    "/bin/chage mode 2755 owner 0",
+    "/bin/chfn mode 4755 owner 0",
+    "/bin/chsh mode 4755 owner 0",
+    "/bin/expiry mode 2755 owner 0",
+    "/bin/fusermount mode 4755 owner 0",
+    "/bin/fusermount3 mode 4755 owner 0",
+    "/bin/gpasswd mode 4755 owner 0",
+    "/bin/mount mode 4755 owner 0",
+    "/bin/newgrp mode 4755 owner 0",
+    "/bin/passwd mode 4755 owner 0",
+    "/bin/sg mode 4755 owner 0",
+    "/bin/su mode 4755 owner 0",
+    "/bin/sudo mode 4755 owner 0",
+    "/bin/sudoedit mode 4755 owner 0",
+    "/bin/umount mode 4755 owner 0"
+   ],
+   "sid": 13961,
+   "socket_files": {
+    "/run/sandbox-telemetry/ingest.sock": "owner 64321:64321 mode 666; connect accepted (closed at once, nothing sent)",
+    "/tmp/cc-socks/92.sock": "owner 0:0 mode 600; connect accepted (closed at once, nothing sent)",
+    "/var/run/sandbox-telemetry/ingest.sock": "owner 64321:64321 mode 666; connect accepted (closed at once, nothing sent)"
+   },
+   "socket_walk": {
+    "depths": "tmp and var/tmp 3, others 5",
+    "notes": [
+     "walk stopped at the 30 s budget in /tmp/tmp3ka1nnoj/prog (the complete list of bound sockets is /proc/net/unix above)",
+     "walk stopped at the 30 s budget in /var/tmp (the complete list of bound sockets is /proc/net/unix above)",
+     "walk stopped at the 30 s budget in /dev/shm (the complete list of bound sockets is /proc/net/unix above)",
+     "walk stopped at the 30 s budget in /root (the complete list of bound sockets is /proc/net/unix above)"
+    ]
+   },
+   "spools": {
+    "/etc/cron.d": "exists owner 0:0 mode 755 writable_by_unit=True",
+    "/etc/crontab": "absent",
+    "/var/spool/at": "absent",
+    "/var/spool/atjobs": "absent",
+    "/var/spool/cron": "absent",
+    "/var/spool/cron/crontabs": "absent"
+   },
+   "uid": 0
+  },
+  "returncode": 0,
+  "stderr": ""
+ },
+ "zip_extraction": "/tmp/s1_auditx_WKj8/APG-M11-S1"
+}

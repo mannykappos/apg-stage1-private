@@ -1,0 +1,20 @@
+tcp 127.0.0.1 2024 connect accepted (closed at once, nothing sent)
+tcp 192.0.2.2 2024 connect accepted (closed at once, nothing sent)
+vsock cid 1 2024 TimeoutError None
+vsock cid 2 2024 ConnectionResetError 104
+vsock cid 3 2024 OSError 19
+
+PID 1: /process_api --firecracker-init --addr 0.0.0.0:2024 --max-ws-buffer-size 32768 --block-local-connections --log-vsock-port 5002 --control-vsock-port 5001 --listen-vsock-port 2024 --tcp-readiness-only 
+user-space processes:
+  PID  PPID USER     COMMAND
+    1     0 root     process_api
+   66     1 64321    6
+   67     1 root     rclone-filestor
+   78     1 root     sh
+   85    78 root     environment-man
+   92    85 root     claude
+12623    92 root     bash
+13973 12623 root     sleep
+14038    92 root     bash
+14042 14038 root     ps
+14043 14038 root     awk

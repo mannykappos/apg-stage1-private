@@ -1,0 +1,9 @@
+M01 m8_mutants_s1.py --jobs 2 exit=0 checker_problems=0 
+SELECTED 82 ids_sha256 9b6e09a8f6a16f824e2409fd46f506bf2184cdecf97e111fddb3c6a7876f2fec
+CONTROL start CONTROL_PASS cause=ok tier1=51.219s tier2=47.521s load=0.96 free_disk_bytes=19201957888
+CONTROL end CONTROL_PASS cause=ok tier1=51.767s tier2=46.490s load=1.13 free_disk_bytes=19201949696
+MUTANT lines by verdict: {'EQUIVALENT': 3, 'KILLED': 79}
+EQUIVALENT ids: ['MI-36', 'MI-39', 'MD-02']
+mutants 82  killed 79  documented-equivalent 3  survived 0  indeterminate 0  item_errors 0  not_run 0
+RESULT v=3 kind=mutation tool=m8_mutants_s1 run=run selected=82 preflight=PASS control_start=PASS started=82 completed=82 killed=79 survived=0 equivalent=3 indeterminate=0 item_errors=0 not_run=0 control_end=PASS run_errors=0 ids_sha256=9b6e09a8f6a16f824e2409fd46f506bf2184cdecf97e111fddb3c6a7876f2fec status=OK exit=0
+as expected (exit 0, no checker problem, 79 KILLED, 3 EQUIVALENT: MI-36 MI-39 MD-02): True

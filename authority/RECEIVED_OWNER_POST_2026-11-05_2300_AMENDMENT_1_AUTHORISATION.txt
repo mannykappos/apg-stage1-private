@@ -1,0 +1,6 @@
+Received from the product owner, 2026-11-05 23:00 (AEDT). Filed verbatim by the builder.
+---
+I authorise amendment 1 to APG D14 stage 1 corrective pass 2, as set out in APG_D14_STAGE1_CORRECTIVE_PASS_2_AMENDMENT_1.md (SHA-256 211971452c8f02ac0d24514ebc9a12c1c0cded3eeb55f2c918f125a775c6d382), including decisions AM-1 to AM-6 and findings 11 to 13. The posted paper 23d2adb9…f0ea5 stands as amended. This authorises corrective work only; it is not stage 1 acceptance and does not authorise stage 2.
+
+
+Build until complete im going to sleep

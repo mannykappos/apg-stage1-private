@@ -1,0 +1,113 @@
+S10 demonstration (BUILDER-EXECUTED: NOT INDEPENDENT). Temporary copy of the tree at stop 3; tools/run_contracts_s1.py load() edited to insert, before its first guarded import:
+    import sys as _s; _s.path.insert(0, '<scratch>/e3chk/decoy')
+The decoy holds a full copy of apg whose __init__.py writes a marker file. Marker written: yes. Exit: 2. Full output follows (CASE lines included).
+
+ENV interpreter /usr/bin/python3.13
+ENV version 3.13.16
+ENV interpreter_sha256 a35753ccb97941cce1467786cce892e608141f09d717188a3235d4f51a754446
+ENV flags isolated=1 no_site=1
+ENV sys_path /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/t /usr/lib/python313.zip /usr/lib/python3.13 /usr/lib/python3.13/lib-dynload
+ENV cwd /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/t
+ENV free_disk_bytes 19103404032
+IMPORT __main__ /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/t/tools/run_contracts_s1.py
+IMPORT tools /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/t/tools
+IMPORT tools.evkit /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/t/tools/evkit.py
+LIMIT item=300s exit_after_result=2s grace=10s grace_cancelled=2s escalate=10s kill_verify=5s
+IMPORT_END __main__ /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/t/tools/run_contracts_s1.py
+IMPORT_END apg /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/decoy/apg/__init__.py
+IMPORT_END apg.canon /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/decoy/apg/canon.py
+IMPORT_END apg.contracts /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/decoy/apg/contracts/__init__.py
+IMPORT_END apg.contracts.audit_log_contract /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/decoy/apg/contracts/audit_log_contract.py
+IMPORT_END apg.contracts.framework /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/decoy/apg/contracts/framework.py
+IMPORT_END apg.contracts.run /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/decoy/apg/contracts/run.py
+IMPORT_END apg.ports /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/decoy/apg/ports.py
+IMPORT_END apg.reference_impl /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/decoy/apg/reference_impl.py
+IMPORT_END tools /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/t/tools
+IMPORT_END tools.evkit /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/t/tools/evkit.py
+CASE audit_log/AL-01 PASS cause=ok
+CASE audit_log/AL-02 PASS cause=ok
+CASE audit_log/AL-03 PASS cause=ok
+CASE audit_log/AL-04 PASS cause=ok
+CASE audit_log/AL-05 PASS cause=ok
+CASE audit_log/AL-06 PASS cause=ok
+CASE audit_log/AL-07 PASS cause=ok
+CASE audit_log/AL-08 PASS cause=ok
+CASE audit_log/AL-09 PASS cause=ok
+CASE audit_log/AL-10 PASS cause=ok
+CASE audit_log/AL-11 PASS cause=ok
+CASE audit_log/AL-12 PASS cause=ok
+CASE audit_log/AL-13 PASS cause=ok
+CASE audit_log/AL-14 PASS cause=ok
+CASE record_store/RS-01 PASS cause=ok
+CASE record_store/RS-02 PASS cause=ok
+CASE record_store/RS-03 PASS cause=ok
+CASE record_store/RS-04 PASS cause=ok
+CASE record_store/RS-05 PASS cause=ok
+CASE record_store/RS-06 PASS cause=ok
+CASE record_store/RS-07 PASS cause=ok
+CASE record_store/RS-08 PASS cause=ok
+CASE record_store/RS-09 PASS cause=ok
+CASE record_store/RS-10 PASS cause=ok
+CASE record_store/RS-11 PASS cause=ok
+CASE record_store/RS-12 PASS cause=ok
+CASE record_store/RS-13 PASS cause=ok
+CASE record_store/RS-14 PASS cause=ok
+CASE record_store/RS-15 PASS cause=ok
+CASE record_store/RS-16 PASS cause=ok
+CASE record_store/RS-17 PASS cause=ok
+CASE record_store/RS-18 PASS cause=ok
+CASE tenant_context/TC-01 PASS cause=ok
+CASE tenant_context/TC-02 PASS cause=ok
+CASE tenant_context/TC-03 PASS cause=ok
+CASE tenant_context/TC-04 PASS cause=ok
+CASE tenant_context/TC-05 PASS cause=ok
+CASE tenant_context/TC-06 PASS cause=ok
+PASS audit_log/AL-01
+PASS audit_log/AL-02
+PASS audit_log/AL-03
+PASS audit_log/AL-04
+PASS audit_log/AL-05
+PASS audit_log/AL-06
+PASS audit_log/AL-07
+PASS audit_log/AL-08
+PASS audit_log/AL-09
+PASS audit_log/AL-10
+PASS audit_log/AL-11
+PASS audit_log/AL-12
+PASS audit_log/AL-13
+PASS audit_log/AL-14
+PASS record_store/RS-01
+PASS record_store/RS-02
+PASS record_store/RS-03
+PASS record_store/RS-04
+PASS record_store/RS-05
+PASS record_store/RS-06
+PASS record_store/RS-07
+PASS record_store/RS-08
+PASS record_store/RS-09
+PASS record_store/RS-10
+PASS record_store/RS-11
+PASS record_store/RS-12
+PASS record_store/RS-13
+PASS record_store/RS-14
+PASS record_store/RS-15
+PASS record_store/RS-16
+PASS record_store/RS-17
+PASS record_store/RS-18
+PASS tenant_context/TC-01
+PASS tenant_context/TC-02
+PASS tenant_context/TC-03
+PASS tenant_context/TC-04
+PASS tenant_context/TC-05
+PASS tenant_context/TC-06
+contract cases 38  failed 0
+RUN_ERROR IMPORT_OUTSIDE_EXTRACTION apg /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/decoy/apg/__init__.py
+RUN_ERROR IMPORT_OUTSIDE_EXTRACTION apg.canon /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/decoy/apg/canon.py
+RUN_ERROR IMPORT_OUTSIDE_EXTRACTION apg.contracts /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/decoy/apg/contracts/__init__.py
+RUN_ERROR IMPORT_OUTSIDE_EXTRACTION apg.contracts.audit_log_contract /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/decoy/apg/contracts/audit_log_contract.py
+RUN_ERROR IMPORT_OUTSIDE_EXTRACTION apg.contracts.framework /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/decoy/apg/contracts/framework.py
+RUN_ERROR IMPORT_OUTSIDE_EXTRACTION apg.contracts.run /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/decoy/apg/contracts/run.py
+RUN_ERROR IMPORT_OUTSIDE_EXTRACTION apg.ports /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/decoy/apg/ports.py
+RUN_ERROR IMPORT_OUTSIDE_EXTRACTION apg.reference_impl /tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/e3chk/decoy/apg/reference_impl.py
+CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+RESULT v=3 kind=cases tool=run_contracts_s1 run=run suites_selected=3 suites=audit_log,record_store,tenant_context selected=38 started=38 completed=38 passed=38 failed=0 indeterminate=0 item_errors=0 not_run=0 run_errors=8 case_inventory_sha256=f76063263e5145a51fbf26956e655191ac57be9eeeb211bf05267efabfa5b0f0 status=EVIDENCE_ERROR exit=2

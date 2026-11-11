@@ -1,0 +1,21 @@
+W01 run_m4_all_s1.py       exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W02 run_m3_all_s1.py       exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W03 run_m6_all_s1.py       exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W04 run_m7_all_s1.py       exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W05 run_m71_all_s1.py      exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W06 run_m72_all_s1.py      exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W07 run_m73_all_s1.py      exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W08 run_m91_all_s1.py      exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W09 run_m92_all_s1.py      exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W10 run_m93_all_s1.py      exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W11 run_m94_all_s1.py      exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W12 run_f67_all_s1.py      exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W13 run_f671_all_s1.py     exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W14 run_f672_all_s1.py     exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W15 run_f673_all_s1.py     exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W16 run_f674_all_s1.py     exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W17 run_mie1_all_s1.py     exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W18 run_mie1_1_all_s1.py   exit=0 OK_WITH_EXCLUSIONS  checker_problems=0 pins=yes
+W19 run_m8_all_s1.py       exit=0 OK                  checker_problems=0 pins=yes
+totals {'FILE': 454, 'CHECK': 103, 'EXCLUDED': 100}
+non-passing group lines: none

@@ -1,0 +1,12 @@
+run_faults_s1            items new=39 old=39  exit new=0 old=0  status new=OK old=OK  controls new=PASS/PASS old=PASS/PASS  v new=3 old=2
+run_faults_s1            CONTROL lines new=[('end', 'CONTROL_PASS', 'ok'), ('start', 'CONTROL_PASS', 'ok')] old=[('end', 'CONTROL_PASS', 'ok'), ('start', 'CONTROL_PASS', 'ok')]
+run_history_contract_s1  items new=4 old=4  exit new=0 old=0  status new=OK old=OK  controls new=PASS/PASS old=PASS/PASS  v new=3 old=2
+run_history_contract_s1  CONTROL lines new=[('end', 'CONTROL_PASS', 'ok'), ('start', 'CONTROL_PASS', 'ok')] old=[('end', 'CONTROL_PASS', 'ok'), ('start', 'CONTROL_PASS', 'ok')]
+run_m3_faults_s1         items new=28 old=28  exit new=0 old=0  status new=OK old=OK  controls new=PASS/PASS old=PASS/PASS  v new=3 old=2
+run_m3_faults_s1         CONTROL lines new=[('end', 'CONTROL_PASS', 'ok'), ('start', 'CONTROL_PASS', 'ok')] old=[('end', 'CONTROL_PASS', 'ok'), ('start', 'CONTROL_PASS', 'ok')]
+run_m5_faults_s1         items new=15 old=15  exit new=0 old=0  status new=OK old=OK  controls new=PASS/PASS old=PASS/PASS  v new=3 old=2
+run_m5_faults_s1         CONTROL lines new=[('end', 'CONTROL_PASS', 'ok'), ('start', 'CONTROL_PASS', 'ok')] old=[('end', 'CONTROL_PASS', 'ok'), ('start', 'CONTROL_PASS', 'ok')]
+run_m6_faults_s1         items new=25 old=25  exit new=0 old=0  status new=OK old=OK  controls new=PASS/PASS old=PASS/PASS  v new=3 old=2
+run_m6_faults_s1         CONTROL lines new=[('end', 'CONTROL_PASS', 'ok'), ('start', 'CONTROL_PASS', 'ok')] old=[('end', 'CONTROL_PASS', 'ok'), ('start', 'CONTROL_PASS', 'ok')]
+items compared: 111
+RESULT b6 SAME

@@ -1,0 +1,7 @@
+run_golden         file m10=24c06ca9a278 s1=24c06ca9a278  exit m10=0 s1=0  output identical  logs 38e574077411 38e574077411
+run_golden_det     file m10=bfecb583e801 s1=bfecb583e801  exit m10=0 s1=0  output identical  logs 28809bb4554d 28809bb4554d
+run_golden_fin     file m10=1590628937ef s1=1590628937ef  exit m10=0 s1=0  output identical  logs b480511ddd14 b480511ddd14
+run_golden_m3      file m10=851ec5a76285 s1=851ec5a76285  exit m10=0 s1=0  output identical  logs c271c88c1215 c271c88c1215
+run_golden_mie1    file m10=92ab30a76636 s1=92ab30a76636  exit m10=0 s1=0  output identical  logs 63f955d4f74f 63f955d4f74f
+run_golden_mkt     file m10=905332ac0b04 s1=905332ac0b04  exit m10=0 s1=0  output identical  logs 01ef89e433d0 01ef89e433d0
+RESULT golden SAME

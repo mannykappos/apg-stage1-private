@@ -1,0 +1,3 @@
+tools/m2_mutants.py fe1fd878fee975dff6dfdbdf27a7124665228a6efef624c396b40f7d68cd157b (expected fe1fd878fee975dff6dfdbdf27a7124665228a6efef624c396b40f7d68cd157b)
+m2_mutants_s1: exit 0; RESULT v=3 kind=mutation tool=m2_mutants_s1 run=run selected=199 preflight=PASS control_start=PASS started=199 completed=199 killed=196 survived=0 equivalent=3 indeterminate=0 item_errors=0 not_run=0 control_end=PASS run_errors=0 ids_sha256=649e0e48d843bf4e792727b5b7789ff9a9a0d3ddb346f36dc51693d652f3384e status=OK exit=0
+RESULT m2s SAME

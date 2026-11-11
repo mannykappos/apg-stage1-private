@@ -1,0 +1,52 @@
+RECEIVED OWNER POST, 2026-11-11 15:48 (Australia/Sydney, UTC+11), verbatim. Filed by the builder (BUILDER-EXECUTED: NOT INDEPENDENT).
+The owner pasted the builder's draft unchanged, with the repo name left as "[REPO NAME]"; the builder had said it would use
+apg-stage1-private if none was given. The owner added: "I dont have the nov 8 approval."
+
+APG D14 stage 1, corrective pass 2: RECOVERY AUTHORISATION (one milestone)
+
+Objective
+Rebuild the stage 1 tree lost in the workspace wipe of 2026-11-11 and bring it back to the state of freeze 303b6414,
+then produce the full evidence, the scoped re-mapping, the documents, the package and the GPT gate prompt.
+
+Authority (unchanged, applies in full)
+- The corrective pass 2 decision paper and amendments 1 to 5 (amendment 5 = draft v4, SHA-256 3649fa74…295b),
+  with my decisions: AM5-1 A, AM5-2, AM5-3 A1 and B, AM5-4 A, AM5-5 (a)–(c), AM5-6.
+- My rulings of 8 Nov 12:47: S15 A, S16 A, S17 (a) A and (b) A, and the plan corrections for rows 6 and 17.
+- My answers of 9 and 11 Nov: option A; package with the residuals disclosed; mask the session id in loose files and
+  accept it inside immutable or already-sent ZIPs.
+
+Sources for the rebuild
+- M10 archive bd5c592a…5192 (re-attached), the stage 1 package with freeze e4531a35 (re-uploaded), the amendment 5 review
+  pack (code and records at freeze c9b324eb), the stop 3 diff, and this conversation's record of the option A work.
+- Recover byte-exact where a recorded hash exists. Where code must be rewritten (the amendment 5 Appendix A part 1
+  tests, the S15–S17 fixes, the 15 files changed after stop 3), rewrite it from the papers and my rulings,
+  and record it in the change record and the build log as rewritten after the loss, not recovered.
+
+Steps (run without asking me between them)
+1. Private GitHub repo: mannykappos/[REPO NAME]. Push the restored tree and every commit as it is made. Push each
+   finished evidence step's results and the build log as they finish. Send me a checkpoint zip at the end of steps 3, 5 and 7.
+2. Finish c9b324eb's remaining files; full suite on Python 3.13 and 3.12.
+3. Rewrite the amendment 5 tests and the S15–S17 fixes; restore the option A tests; focused checks, then the full suite on both Pythons.
+4. Commit; new freeze, built twice, byte-identical.
+5. The full evidence on it, in amendment 5's AM5-6 order (steps 1–4), one job at a time, 10 GB disk floor kept.
+6. A fresh-agent scoped re-mapping of the rebuilt freeze, scoped to the 64 items plus row 42, compared with
+   the two earlier re-mappings' results. Report its findings to me.
+7. Documents, package with the privacy check, a fresh-agent pre-gate audit with its findings fixed,
+   then the GPT gate prompt (one pass, every problem listed).
+
+Acceptance for this milestone
+- Every result as expected on both Pythons; the re-mapping shows nothing closed on 303b6414 regressing to partly addressed or open.
+- Every rewritten item and every difference from 303b6414 disclosed in the documents.
+
+Stop and report to me (do not continue) if
+- any test or evidence result is not as expected, or a new defect, gap or regression appears (paper H);
+- anything would need a logic change, a changed claim, a relaxed condition or wider scope;
+- the re-mapping finds more partly addressed or open items than on 303b6414;
+- GitHub push fails, or the workspace is lost again.
+
+Standing rules (unchanged)
+No production systems, credentials or customer data; synthetic data only. Do not close EDR or CF items.
+APG-M8.1, earlier audited packages and the M10 archive are immutable. Label builder evidence BUILDER-EXECUTED:
+NOT INDEPENDENT and agent work INDEPENDENT READ-ONLY (agent). No production-readiness claims, no stage 1 acceptance,
+stage 2 not authorised. No work for Amir and no dependency on him. Read every time from the clock;
+disclose every mistake. Deliverables: one ZIP plus one documents file.

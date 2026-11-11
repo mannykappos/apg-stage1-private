@@ -1,0 +1,49 @@
+BUILDER-EXECUTED: NOT INDEPENDENT. Corrective pass 2, P.2 outside-service audit, rerun on freeze c9b324eb (2026-11-08): the conclusions.
+They follow the corrected 11-05 conclusions (evidence_pass2/audit/outside_services_conclusions.txt, earlier freeze d5f87d6b) point by
+point, and say what changed. The raw records are outside_services.txt and process_api_reach.txt in this folder.
+
+0. HOW THIS RUN WAS MADE (and a disclosed first attempt)
+ - The auditor was started as the run index starts a runner: env -i PATH TMPDIR LANG LC_ALL TZ, python3 -I -S, from a fresh
+   extraction of freeze c9b324eb (auditor_env_names: the five names).
+ - Disclosed: a first run on 2026-11-08 (02:40 Melbourne) was started from the builder's shell with its full environment (231 names).
+   Secret-bearing names were recorded by name only, as the tool does, but the values of other session identifiers were recorded. That
+   record was read only by the builder and the mapping agent inside this workspace, was never sent anywhere, has been
+   deleted, and is not evidence. It was found by the independent mapping agent (its discrepancies 18
+   and 22). Mistake 33.
+ - The audit tool starts its subprocess child with subprocess.run, as the 11-05 tool did. It does NOT start it through this freeze's
+   run_unit (the Popen hook, stdin /dev/null), and its forked child's scrub is the tool's own, not run_forked. So this audit shows what
+   an outside service offers a unit; it is not evidence of AM-4 or of the P.2 scrub. Those are shown by the unit tests
+   (test_no_timeout_kill.py P2SubprocessUnits::test_what_a_unit_child_inherits, P2ForkedUnits::test_what_a_forked_child_inherits).
+
+1. THE ENVIRONMENT
+ - Same as 11-05. The subprocess child and the scrubbed forked child each have exactly clean_env's allowlist: PATH, LANG, LC_ALL,
+   TZ, TMPDIR, PYTHONDONTWRITEBYTECODE. The forked child before the scrub has the auditor's five names plus the planted
+   AUDIT_PARENT_ONLY. secret_bearing_names is empty in all three children.
+
+2. STANDARD INPUT
+ - Descriptor 0 was /dev/null in all three children, because the auditor's own standard input was /dev/null (it was started from a
+   background shell). As 11-05 found, the target comes from how the top process was started. This freeze makes it fixed in run_unit and
+   run_forked (AM-4); this audit does not exercise them (point 0).
+
+3. THE NETWORK
+ - A unit has no proxy variable and a default route via eth0. A direct TCP connect to 1.1.1.1:443 was accepted; one to 8.8.8.8:53 was
+   refused (on 11-05 it timed out). The egress boundary stays UNKNOWN; nothing here claims that egress is restricted.
+
+4. THE SOCKETS AND SERVICES
+ - PID 1 (/process_api): REACHABLE (TCP connects to 127.0.0.1:2024 and 192.0.2.2:2024 accepted). Its command line has changed since
+   11-05 (the container was restarted): it now also has --tcp-readiness-only. Whether a unit could use it to start a process is NOT
+   RULED OUT and NOT ESTABLISHED; nothing was sent.
+ - The agent harness's socket is now /tmp/cc-socks/92.sock (root, 0600; 96.sock on 11-05): REACHABLE, as units run as uid 0.
+   Abilities unknown. NOT RULED OUT.
+ - /run/sandbox-telemetry/ingest.sock (uid 64321, 0666): REACHABLE. Abilities unknown. NOT RULED OUT.
+ - The 11-05 PostgreSQL socket (/tmp/apg_m10b_pg) no longer exists: the builder removed that stale October scratch directory on
+   2026-11-07 (disk cleanup, logged).
+ - Process-launching daemons: none running (process_api_reach.txt lists the user-space processes: no cron, crond, atd, systemd,
+   dockerd or containerd). Two processes are new since 11-05: rclone-filestor (root, child of PID 1) and one process of uid 64321 (the
+   telemetry collector's user). Neither was probed. /etc/cron.d is still writable by a unit; with no cron daemon, no route as observed.
+ - Privileges: every unit runs as uid 0, gid 0, with no supplementary groups.
+
+5. WHAT THE AUDIT DOES AND DOES NOT ESTABLISH
+ - Unchanged from 11-05. It establishes which services a unit can connect to, and (child_start_scan.txt E) that no unit's code opens a
+   socket or names any of them. It does NOT establish that a unit cannot use PID 1's process API, the harness socket or the telemetry
+   socket to have a process started outside its tree. P.2's requirement is NOT MET in this workspace. That is open finding 11.

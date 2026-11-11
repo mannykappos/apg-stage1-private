@@ -1,0 +1,226 @@
+# /usr/bin/python3.13 -I -S tools/m2_mutants_s1.py
+# exit 0
+ENV interpreter /usr/bin/python3.13
+ENV version 3.13.16
+ENV interpreter_sha256 a35753ccb97941cce1467786cce892e608141f09d717188a3235d4f51a754446
+ENV flags isolated=1 no_site=1
+ENV sys_path /tmp/s1_cmp_m2_325pfab3/new/APG-M11-S1 /usr/lib/python313.zip /usr/lib/python3.13 /usr/lib/python3.13/lib-dynload
+ENV cwd /tmp/s1_cmp_m2_325pfab3/new/APG-M11-S1
+ENV free_disk_bytes 22940618752
+IMPORT __main__ /tmp/s1_cmp_m2_325pfab3/new/APG-M11-S1/tools/m2_mutants_s1.py
+IMPORT tools /tmp/s1_cmp_m2_325pfab3/new/APG-M11-S1/tools
+IMPORT tools.evkit /tmp/s1_cmp_m2_325pfab3/new/APG-M11-S1/tools/evkit.py
+SELECTED 199 ids_sha256 649e0e48d843bf4e792727b5b7789ff9a9a0d3ddb346f36dc51693d652f3384e
+LIMIT item=300s exit_after_result=2s grace=10s grace_cancelled=2s escalate=10s kill_verify=5s
+CONTROL start CONTROL_PASS cause=ok run_m2_tests_s1=196.275s run_contracts_s1=0.215s load=0.91 free_disk_bytes=22824038400
+CONTROL end CONTROL_PASS cause=ok run_m2_tests_s1=209.839s run_contracts_s1=0.230s load=1.01 free_disk_bytes=12569595904
+MUTANT CA01-float-allowed EQUIVALENT cause=documented
+MUTANT CA02-nonstring-key-allowed KILLED cause=test_values.py
+MUTANT CA03-keys-not-sorted KILLED cause=test_f674_type_strict.py
+MUTANT CA04-no-nfkc KILLED cause=test_adversarial_builder_zero.py
+MUTANT CA05-invisible-kept KILLED cause=test_adversarial_builder_zero.py
+MUTANT CA06-separators-not-unified KILLED cause=test_adversarial_builder_zero.py
+MUTANT CA07-case-kept KILLED cause=test_adversarial_builder_zero.py
+MUTANT CA08-unsupported-type-allowed KILLED cause=test_values.py
+MUTANT VA01-known-accepts-bool KILLED cause=test_values.py
+MUTANT VA02-known-truthy KILLED cause=test_values.py
+MUTANT VA03-unknown-falsy KILLED cause=test_adversarial_builder_zero.py
+MUTANT VA04-unknown-cents-zero KILLED cause=test_adversarial_builder_zero.py
+MUTANT VA05-unknown-arith-zero KILLED cause=test_adversarial_builder_zero.py
+MUTANT VA06-bool-is-money KILLED cause=test_values.py
+MUTANT VA07-unicode-digits KILLED cause=test_values.py
+MUTANT VA08-total-counts-unknown KILLED cause=test_adversarial_builder_zero.py
+MUTANT VA09-total-always-complete KILLED cause=test_adversarial_builder_zero.py
+MUTANT VA10-require-complete-silent KILLED cause=test_adversarial_builder_zero.py
+MUTANT VA11-zero-denominator-allowed KILLED cause=test_values.py
+MUTANT VA12-round-half-down KILLED cause=test_values.py
+MUTANT VA13-sign-lost KILLED cause=test_values.py
+MUTANT VA14-unknown-numerator-used KILLED cause=test_values.py
+MUTANT VA15-unknown-denominator-used KILLED cause=test_values.py
+MUTANT TE01-org-names-ignored KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE02-tenant-word-ignored KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE03-underscores-kept KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE04-depth-cap-removed KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE05-embedded-json-ignored KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE06-lookalike-matches KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE07-foreign-claims-allowed KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE08-refusal-not-audited KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE09-claims-not-stripped KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE10-embedded-claims-not-stripped KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE11-put-unscreened KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE12-atomic-unscreened KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE13-query-filter-unscreened KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE14-job-claim-unchecked KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE15-job-payload-unscreened KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE16-scoped-ctx-unchecked KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE17-job-credentials-unchecked KILLED cause=test_adversarial_builder_zero.py
+MUTANT TE18-screen-ctx-unchecked KILLED cause=test_tenancy.py
+MUTANT RI01-seal-unchecked KILLED cause=test_adversarial_builder_zero.py
+MUTANT RI02-expiry-unchecked-in-verify KILLED cause=test_adversarial_builder_zero.py
+MUTANT RI03-revocation-unchecked-in-verify KILLED cause=test_adversarial_builder_zero.py
+MUTANT RI04-revoked-credentials-resolve KILLED cause=test_ingest_contracts.py
+MUTANT RI05-expired-credentials-resolve KILLED cause=tenant_context_TC-04__-__Fail:_resolve_after_expiry_did_not_raise__class__apg.ports.Unauthenticated__
+MUTANT RI06-context-type-unchecked KILLED cause=audit_log_AL-08__-__Fail:_append_raised_AttributeError:__str__object_has_no_attribute__fields___expected___class__apg.ports.Unauthenticated_____class__apg.ports.NoContext___
+MUTANT RI07-missing-context-allowed KILLED cause=audit_log_AL-08__-__Fail:_a_call_with_no_context_at_all_must_raise_NoContext_raised_Unauthenticated:_context_failed_verification__expected___class__apg.ports.NoContext____
+MUTANT RI08-expected-revision-ignored KILLED cause=test_det_findings.py
+MUTANT RI09-identical-put-appends KILLED cause=test_f674_type_strict.py
+MUTANT RI10-query-crosses-tenants KILLED cause=test_adversarial_builder_zero.py
+MUTANT RI11-revision-zero-reads-latest KILLED cause=record_store_RS-16__-__Fail:_revision_0_should_be_None
+MUTANT RI12-output-aliased KILLED cause=test_ingest_contracts.py
+MUTANT RI13-input-aliased EQUIVALENT cause=documented
+MUTANT RI14-batch-ops-not-staged KILLED cause=record_store_RS-14__-__ConflictError:_invoice_K:_expected_revision_1__current_0
+MUTANT RI15-audit-chain-not-linked KILLED cause=test_det_golden.py
+MUTANT RI16-verify-ignores-links KILLED cause=audit_log_AL-13__-__Fail:_a_hash-recomputing_rewrite_of_outcome_on_event_3_not_detected__VerifyResult_ok_True__checked_5__first_bad_seq_None__
+MUTANT RI17-verify-ignores-hash KILLED cause=audit_log_AL-04__-__Fail:_tampering_with_outcome_of_event_3_not_detected__VerifyResult_ok_True__checked_5__first_bad_seq_None__
+MUTANT RI18-secrets-not-redacted KILLED cause=audit_log_AL-05__-__Fail:_a_secret_value_appears_in_the_stored_event
+MUTANT RI19-audit-read-aliased KILLED cause=audit_log_AL-07__-__Fail:_log_changed_through_a_returned_event
+MUTANT RI20-audit-chain-shared KILLED cause=test_adversarial_builder_zero.py
+MUTANT RI21-audit-seq-off-by-one KILLED cause=test_adversarial_builder_zero.py
+MUTANT RI22-ids-unchecked KILLED cause=record_store_RS-10__-__Fail:_put_kind__bad_nkind__key__k__did_not_raise__class__apg.ports.PayloadInvalid__
+MUTANT RI23-reason-type-unchecked KILLED cause=audit_log_AL-06__-__Fail:_reason_not_a_string_did_not_raise__class__apg.ports.PayloadInvalid__
+MUTANT RI24-audit-verify-skips-tenant KILLED cause=audit_log_AL-14__-__Fail:_a_foreign_tenant_id_on_the_last_event_not_detected__VerifyResult_ok_True__checked_4__first_bad_seq_None__
+MUTANT RI25-seal-not-over-fields KILLED cause=tenant_context_TC-05__-__Fail:_forged_context___user_id___verified
+MUTANT SA01-proposer-may-approve KILLED cause=test_ingest_reconcile.py
+MUTANT SA02-ai-may-approve KILLED cause=test_ingest_reconcile.py
+MUTANT SA03-any-role-approves KILLED cause=test_ingest_reconcile.py
+MUTANT SA04-overlap-allowed KILLED cause=test_source_authority.py
+MUTANT SA05-asof-unchecked KILLED cause=test_source_authority.py
+MUTANT SA06-unapproved-register-used KILLED cause=test_ingest_golden.py
+MUTANT SA07-unpermitted-source-used KILLED cause=test_adversarial_builder_zero.py
+MUTANT SA08-cancelled-used KILLED cause=test_adversarial_builder_zero.py
+MUTANT SA09-lowest-revision-wins KILLED cause=test_adversarial_builder_zero.py
+MUTANT SA10-same-revision-conflict-ignored KILLED cause=test_adversarial_builder_zero.py
+MUTANT SA11-unknown-revision-order-ignored KILLED cause=test_adversarial_builder_zero.py
+MUTANT SA12-invalid-revision-ignored KILLED cause=test_source_authority.py
+MUTANT SA13-ocr-trusted KILLED cause=test_adversarial_builder_zero.py
+MUTANT SA14-human-approval-skipped KILLED cause=test_source_authority.py
+MUTANT SA15-only-higher-secondary-flagged KILLED cause=test_source_authority.py
+MUTANT SA16-quarantine-mode-ignored KILLED cause=test_adversarial_builder_zero.py
+MUTANT SA17-warnings-dropped KILLED cause=test_adversarial_builder_zero.py
+MUTANT SA18-pending-not-worst KILLED cause=test_source_authority.py
+MUTANT SA19-provisional-nature-ignored KILLED cause=test_source_authority.py
+MUTANT SA20-total-counts-unaccepted KILLED cause=test_fin_golden.py
+MUTANT SA21-total-always-complete KILLED cause=test_adversarial_builder_zero.py
+MUTANT SA22-auth-total-addable KILLED cause=test_adversarial_builder_zero.py
+MUTANT SA23-provisional-counts-accepted KILLED cause=test_source_authority.py
+MUTANT SA24-provisional-addable KILLED cause=test_adversarial_builder_zero.py
+MUTANT SA25-resolver-role-unchecked KILLED cause=test_ingest_adversarial.py
+MUTANT SA26-ai-may-resolve KILLED cause=test_ingest_reconcile.py
+MUTANT SA27-note-optional KILLED cause=test_ingest_adversarial.py
+MUTANT SA28-same-person-twice KILLED cause=test_adversarial_builder_zero.py
+MUTANT SA29-one-approval-promotes KILLED cause=test_adversarial_builder_zero.py
+MUTANT SA30-disagreeing-approvers KILLED cause=test_source_authority.py
+MUTANT SA31-final-state-rewritten KILLED cause=test_ingest_reconcile.py
+MUTANT SA32-correction-unchecked KILLED cause=test_ingest_reconcile.py
+MUTANT SA33-retained-not-open KILLED cause=test_ingest_reconcile.py
+MUTANT SA34-register-replaced KILLED cause=test_source_authority.py
+MUTANT SA35-supersedes-unchecked KILLED cause=test_source_authority.py
+MUTANT SA36-rule-end-exclusive KILLED cause=test_source_authority.py
+MUTANT SA37-rule-start-exclusive KILLED cause=test_source_authority.py
+MUTANT SA38-batch-conflict-ignored KILLED cause=test_adversarial_builder_zero.py
+MUTANT SA39-batch-no-identifier-ok KILLED cause=test_adversarial_builder_zero.py
+MUTANT SA40-conflict-rows-still-clean KILLED cause=test_adversarial_builder_zero.py
+MUTANT SA41-approvals-zero KILLED cause=test_source_authority.py
+MUTANT SA42-action-unchecked KILLED cause=test_source_authority.py
+MUTANT SA43-conflict-not-logged KILLED cause=test_adversarial_builder_zero.py
+MUTANT SM01-result-must-be-exactly-pass KILLED cause=test_status_model.py
+MUTANT SM02-evidence-for-any-requirement KILLED cause=test_status_model.py
+MUTANT SM03-build-unchecked KILLED cause=test_status_model.py
+MUTANT SM04-hash-unchecked KILLED cause=test_status_model.py
+MUTANT SM05-tests-unnamed KILLED cause=test_status_model.py
+MUTANT SM06-mock-always-ok KILLED cause=test_adversarial_builder_zero.py
+MUTANT SM07-environment-unchecked KILLED cause=test_status_model.py
+MUTANT SM08-kind-unchecked KILLED cause=test_status_model.py
+MUTANT SM09-rungs-skippable KILLED cause=test_status_model.py
+MUTANT SM10-failed-advances KILLED cause=test_status_model.py
+MUTANT SM11-any-approver-specifies KILLED cause=test_status_model.py
+MUTANT SM12-self-acceptance KILLED cause=test_status_model.py
+MUTANT SM13-acceptance-below-level KILLED cause=test_status_model.py
+MUTANT SM14-any-reviewer-accepts KILLED cause=test_status_model.py
+MUTANT SM15-any-actor-closes KILLED cause=test_status_model.py
+MUTANT SM16-mandatory-tests-ignored KILLED cause=test_status_model.py
+MUTANT SM17-gates-ignored KILLED cause=test_status_model.py
+MUTANT SM18-build-change-keeps-status KILLED cause=test_status_model.py
+MUTANT SM19-recovery-evidence-stale-ok KILLED cause=test_status_model.py
+MUTANT SM20-recovery-jumps-to-top KILLED cause=test_status_model.py
+MUTANT SM21-failure-needs-no-fail KILLED cause=test_status_model.py
+MUTANT SM22-block-without-reason KILLED cause=test_status_model.py
+MUTANT SM23-integration-without-components KILLED cause=test_status_model.py
+MUTANT SM24-implemented-without-record KILLED cause=test_status_model.py
+MUTANT SM25-mock-local-refused KILLED cause=test_adversarial_builder_zero.py
+MUTANT SM26-required-level-unchecked KILLED cause=test_status_model.py
+MUTANT SM27-closure-counts-other-builds KILLED cause=test_status_model.py
+MUTANT SM28-actor-kind-unchecked KILLED cause=test_status_model.py
+MUTANT SM29-ref-and-actor-optional KILLED cause=test_status_model.py
+MUTANT SM30-same-build-demotes KILLED cause=test_status_model.py
+MUTANT SM31-recover-from-good-state KILLED cause=test_status_model.py
+MUTANT SM32-last-good-lost KILLED cause=test_status_model.py
+MUTANT SM33-closure-build-unchecked KILLED cause=test_status_model.py
+MUTANT SM34-acceptance-build-unchecked KILLED cause=test_status_model.py
+MUTANT SM35-unknown-status-passes KILLED cause=test_status_model.py
+MUTANT SM36-history-not-kept KILLED cause=test_status_model.py
+MUTANT RP01-input-hash-unchecked KILLED cause=test_repro.py
+MUTANT RP02-store-hash-trusted KILLED cause=test_repro.py
+MUTANT RP03-formula-version-reuse KILLED cause=test_rec_repro.py
+MUTANT RP04-nondeterminism-ignored KILLED cause=test_repro.py
+MUTANT RP05-rerun-overwrites KILLED cause=test_repro.py
+MUTANT RP06-stored-result-unchecked KILLED cause=test_det_detect.py
+MUTANT RP07-stored-params-unchecked KILLED cause=test_fin_records.py
+MUTANT RP08-run-key-unchecked KILLED cause=test_fin_records.py
+MUTANT RP09-formula-drift-ignored KILLED cause=test_fin_records.py
+MUTANT RP10-result-difference-ignored KILLED cause=test_repro.py
+MUTANT RP11-duplicate-inputs-ok KILLED cause=test_fin_bridge_book.py
+MUTANT RP12-no-inputs-ok KILLED cause=test_repro.py
+MUTANT RP13-formula-sees-live-inputs KILLED cause=test_repro.py
+MUTANT RP14-drift-includes-equal KILLED cause=test_det_detect.py
+MUTANT RP15-version-zero-ok KILLED cause=test_repro.py
+MUTANT RP16-float-result-ok KILLED cause=test_repro.py
+MUTANT RP17-latest-pinned-wrongly KILLED cause=test_api_action_port_contract.py
+MUTANT RP18-created-by-dropped KILLED cause=test_fin_bridge_book.py
+MUTANT ME01-ai-records-decisions KILLED cause=test_materiality_engine.py
+MUTANT ME02-anyone-records-decisions KILLED cause=test_materiality_engine.py
+MUTANT ME03-self-approval KILLED cause=test_materiality_engine.py
+MUTANT ME04-roleless-approval KILLED cause=test_materiality_engine.py
+MUTANT ME05-approval-not-bound-to-content KILLED cause=test_materiality_engine.py
+MUTANT ME06-approval-key-unchecked KILLED cause=test_materiality_engine.py
+MUTANT ME07-approval-not-bound-to-change KILLED cause=test_materiality_engine.py
+MUTANT ME08-first-policy-compared-to-itself KILLED cause=test_adversarial_builder_zero.py
+MUTANT ME09-activation-not-compare-and-set KILLED cause=test_materiality_engine.py
+MUTANT ME10-stored-policy-unchecked KILLED cause=test_materiality_engine.py
+MUTANT ME11-active-pointer-unchecked KILLED cause=test_materiality_engine.py
+MUTANT ME12-versions-overwritable KILLED cause=test_materiality_engine.py
+MUTANT ME13-different-content-same-version KILLED cause=test_materiality_engine.py
+MUTANT ME14-invalid-rule-proposed KILLED cause=test_materiality_engine.py
+MUTANT ME15-no-policy-not-material KILLED cause=test_materiality_engine.py
+MUTANT ME16-open-decisions-hidden KILLED cause=test_golden.py
+MUTANT ME17-unset-rule-no-dependency KILLED cause=test_materiality_engine.py
+MUTANT ME18-all-records-no-dependency KILLED cause=test_materiality_engine.py
+MUTANT ME19-two-measures-no-dependency KILLED cause=test_materiality_engine.py
+MUTANT ME20-always-list-no-dependency KILLED cause=test_materiality_engine.py
+MUTANT ME21-aggregation-no-dependency KILLED cause=test_golden.py
+MUTANT ME22-unknown-becomes-zero KILLED cause=test_adversarial_builder_zero.py
+MUTANT ME23-bases-not-normalised KILLED cause=test_materiality_engine.py
+MUTANT ME24-record-unscreened KILLED cause=test_materiality_engine.py
+MUTANT ME25-candidates-unscreened KILLED cause=test_materiality_engine.py
+MUTANT ME26-verify-inputs-unchecked KILLED cause=test_materiality_engine.py
+MUTANT ME27-verify-result-unchecked KILLED cause=test_materiality_engine.py
+MUTANT ME28-verify-policy-unchecked KILLED cause=test_materiality_engine.py
+MUTANT ME29-key-ignores-policy KILLED cause=test_golden.py
+MUTANT ME30-ai-approves KILLED cause=test_materiality_engine.py
+MUTANT ME31-decision-incomplete-ok KILLED cause=test_materiality_engine.py
+MUTANT ME32-unknown-decision-ok KILLED cause=test_materiality_engine.py
+MUTANT ME33-activation-unchecked KILLED cause=test_materiality_engine.py
+MUTANT ME34-unstorable-input-trusted KILLED cause=test_materiality_engine.py
+MUTANT ME35-decision-ledger-by-presence EQUIVALENT cause=documented
+MUTANT ME36-invalid-policy-proposed KILLED cause=test_materiality_engine.py
+IMPORT_END __main__ /tmp/s1_cmp_m2_325pfab3/new/APG-M11-S1/tools/m2_mutants_s1.py
+IMPORT_END m2_mutants /tmp/s1_cmp_m2_325pfab3/new/APG-M11-S1/tools/m2_mutants.py
+IMPORT_END tools /tmp/s1_cmp_m2_325pfab3/new/APG-M11-S1/tools
+IMPORT_END tools.evkit /tmp/s1_cmp_m2_325pfab3/new/APG-M11-S1/tools/evkit.py
+EQUIVALENT CA01-float-allowed  -- a float then reaches the final 'unsupported type' branch of _check and is still refused with CanonError; only the message differs.
+EQUIVALENT RI13-input-aliased  -- _mk deep-copies the payload again before it is stored, so a caller's object is never held; the first copy is redundant defence.
+EQUIVALENT ME35-decision-ledger-by-presence  -- the only writer of the ledger kind in this package is record_decision, which always stores decided_by; a direct store write is outside the engine and is recorded as handoff item EDR-20 (write authorisation by record kind).
+mutants 199  killed 196  documented-equivalent 3  survived 0  indeterminate 0  item_errors 0  not_run 0
+CLEANUP_SUMMARY units=219 leaked=0 remaining=0
+MUTATION RUN OK
+RESULT v=3 kind=mutation tool=m2_mutants_s1 run=run selected=199 preflight=PASS control_start=PASS started=199 completed=199 killed=196 survived=0 equivalent=3 indeterminate=0 item_errors=0 not_run=0 control_end=PASS run_errors=0 ids_sha256=649e0e48d843bf4e792727b5b7789ff9a9a0d3ddb346f36dc51693d652f3384e status=OK exit=0

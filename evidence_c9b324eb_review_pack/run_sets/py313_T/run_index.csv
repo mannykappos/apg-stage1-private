@@ -1,0 +1,11 @@
+order,python,command,start_utc,seconds,exit,log,log_sha256,last_line
+T01,/usr/bin/python3.13,/usr/bin/python3.13 -I -S tests_tools/test_apg_root.py,2026-11-06T07:47:26Z,51,0,logs/T01_test_apg_root.txt,fa02b1be7ebd1bdca9c1ae9f8cb5ec164687e0f92fc7cc17b52ef8302134dfe8,OK
+T02,/usr/bin/python3.13,/usr/bin/python3.13 -I -S tests_tools/test_consumer_exit_codes.py,2026-11-06T07:48:18Z,99,0,logs/T02_test_consumer_exit_codes.txt,c49f27507a632ff9ac8eb7a49cef3b15fc26d338c5709c1a27521a96a7fd1981,OK
+T03,/usr/bin/python3.13,/usr/bin/python3.13 -I -S tests_tools/test_exec_env.py,2026-11-06T07:49:57Z,422,0,logs/T03_test_exec_env.txt,13cf1d5697b590bd0109a223e77d85aa7bbfdf60639be4b63fd127748be48fac,OK
+T04,/usr/bin/python3.13,/usr/bin/python3.13 -I -S tests_tools/test_harness_isolation.py,2026-11-06T07:56:59Z,40,0,logs/T04_test_harness_isolation.txt,0b377fed3c24fb179800b1f566144507824e4300893ef26edaa418f3363d717b,OK
+T05,/usr/bin/python3.13,/usr/bin/python3.13 -I -S tests_tools/test_mut_runner_output.py,2026-11-06T07:57:39Z,48,0,logs/T05_test_mut_runner_output.txt,13cd54b775e8e6c44aa675b4a184a321833602c44eafd52c198f3cdfd970274b,OK
+T06,/usr/bin/python3.13,/usr/bin/python3.13 -I -S tests_tools/test_mutant_targets.py,2026-11-06T07:58:27Z,91,0,logs/T06_test_mutant_targets.txt,765873601c780ad02957f8043412f238a78664a67eb4044ad75d0cba52c1e5f7,OK
+T07,/usr/bin/python3.13,/usr/bin/python3.13 -I -S tests_tools/test_mutation_error_shape.py,2026-11-06T07:59:58Z,71,0,logs/T07_test_mutation_error_shape.txt,598550fc02319239e6f9f18598639fabb6e690fc48bcdc9166135bd248682160,OK
+T08,/usr/bin/python3.13,/usr/bin/python3.13 -I -S tests_tools/test_mutation_timeout.py,2026-11-06T08:01:09Z,1435,0,logs/T08_test_mutation_timeout.txt,fe048479a15c89e3b2f38643b1db942a2afe502fd8a2e63741e1fa822ffe7ccb,OK
+T09,/usr/bin/python3.13,/usr/bin/python3.13 -I -S tests_tools/test_no_timeout_kill.py,2026-11-06T08:25:03Z,62,0,logs/T09_test_no_timeout_kill.txt,0a3a9ef15b2db6cd9e7b7feae42d4cce3ed632d6d954558c2bfe9cb8c0abc0a2,OK
+T10,/usr/bin/python3.13,/usr/bin/python3.13 -I -S tests_tools/test_runner_zero_work.py,2026-11-06T08:26:05Z,517,0,logs/T10_test_runner_zero_work.txt,1f3a42ed7a3a5ae5c775ce49c84a0d4716183d4278146232d510c9832eb4696a,OK

@@ -1,0 +1,13 @@
+run_contracts_s1         items new=38 old=38  exit new=0 old=0  status new=OK old=OK  controls new=None/None old=None/None  v new=3 old=2
+run_det_corpus_s1        items new=75 old=75  exit new=0 old=0  status new=OK old=OK  controls new=None/None old=None/None  v new=3 old=2
+run_fin_corpus_s1        items new=63 old=63  exit new=0 old=0  status new=OK old=OK  controls new=None/None old=None/None  v new=3 old=2
+run_guard_contract_s1    items new=8 old=8  exit new=0 old=0  status new=OK old=OK  controls new=None/None old=None/None  v new=3 old=2
+run_history_contract_s1  items new=6 old=6  exit new=0 old=0  status new=OK old=OK  controls new=None/None old=None/None  v new=3 old=2
+run_ingest_corpus_s1     items new=44 old=44  exit new=0 old=0  status new=OK old=OK  controls new=None/None old=None/None  v new=3 old=2
+run_m3_contracts_s1      items new=24 old=24  exit new=0 old=0  status new=OK old=OK  controls new=None/None old=None/None  v new=3 old=2
+run_m5_contracts_s1      items new=12 old=12  exit new=0 old=0  status new=OK old=OK  controls new=None/None old=None/None  v new=3 old=2
+run_m6_contracts_s1      items new=24 old=24  exit new=0 old=0  status new=OK old=OK  controls new=None/None old=None/None  v new=3 old=2
+run_m91_contracts_s1     items new=14 old=14  exit new=0 old=0  status new=OK old=OK  controls new=None/None old=None/None  v new=3 old=2
+run_mkt_corpus_s1        items new=78 old=78  exit new=0 old=0  status new=OK old=OK  controls new=None/None old=None/None  v new=3 old=2
+items compared: 386
+RESULT k2 SAME

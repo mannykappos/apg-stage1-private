@@ -1,0 +1,8 @@
+
+**Route proof, the static part** (R1 §3.3, first point; `tools/route_scan_s1.py`; every code literal naming an old tool, with its file, line and function, in `evidence/static_final/route_scan.csv`). Every literal falls into one of these kinds, none of which runs the old file as the route:
+- a successor reading its M10 original's definitions by path for its lists and tables (`E.load_tool_module`, `E.load_m10_prefix`, `E.wrapper_main(tool, m10_name)`, `m10_wrapper_table`), with the M10 file's hash checked where the file runs code at import (DP-1.2 (B): the M10 files stay byte-identical and hold the data the successor must use unchanged);
+- `tools/evkit.py`'s name tables (`WRAPPER_TEST_RUNNERS`, `WRAPPER_RESULT_SUCC`, `WRAPPER_NOKIND_SUCC`, `REGRESSION_REDIRECTS`, `WRAPPER_STOP`), which map each old name to its successor;
+- `run_cr02_reference_s1` running M10's CR-02 reference script by its pinned hash inside the successor's allowlist environment (its design, P1-F6);
+- the tests in `tests_tools/`, which run the M10 tools on purpose, in temporary copies, as the M10 half of each case.
+
+**Route proof, the IMPORT lines** (second point): every successor prints its `IMPORT` lines at the start and its `IMPORT_END` lines at the end (R1 §2.5); the run logs in section 3 carry them, and `test_apg_root.py`, `test_exec_env.py` and `test_harness_isolation.py` assert the real packages and never a decoy. **Third point:** M10's `RUN_COMMANDS.txt` is a Part A file outside stage 1's 89 rows and was not changed; stage 1's run instruction is the run index of section 3, which names only `_s1` entry points and the 10 test files.
