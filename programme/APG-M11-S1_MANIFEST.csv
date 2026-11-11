@@ -4,18 +4,18 @@ d1,programme/D2_HISTORICAL_MUTATION_ASSESSMENT.csv,new,-,5ca8b3d9aafba98b709eebd
 d1,tests/_path.py,modified,ef0cb5f7d80f247ed1483d0f7ab24eea76ec240050b1ada16c9bdd143ed043d3,74452b5db885db76c1f81fb34231efbc1abc83b790e4215e9f9d96c7be0e0ec0,-,findings=P1-F6
 d1,tests_m8/_auif.py,modified,efc14287f0c72aa8f3619c024262477a1441e22b2052ab23b4428b36c6a1cb2f,88e675be3f9be541c79716fb53cedc0954dcb1210fb5a8365dc93941158985ad,-,findings=P7-B2 P7-M1
 d1,tests_tools/test_apg_root.py,new,-,e974afc2a6d248b9737dd9f7ebf140e511a7686e8054093b44c3b23c0d29bb98,-,findings=P1-F6 P7-B2 T-0
-d1,tests_tools/test_consumer_exit_codes.py,new,-,b8f3e6c625b97e3a411e7fd5d68267ead461b27c5c68ae0499a2f9b59e5a7c96,-,findings=P1-F5 P2-B8 P4-B17 T-0
+d1,tests_tools/test_consumer_exit_codes.py,new,-,dbf50fab5e995fda7d701a39e2c9195d7394bca9cc5ce64ee0cc1f44083fe587,-,findings=P1-F5 P2-B8 P4-B17 T-0
 d1,tests_tools/test_exec_env.py,new,-,fb0ebacf5bac6019f8c053223d1636f7ffd9bae5e19ff0063ccbf71e25a0237c,-,findings=P1-F6 T-0
 d1,tests_tools/test_harness_isolation.py,new,-,28806ee0a63e2f2a0094df3daa94af076595af54ef03eff5a5c5d44be81d7a3d,-,findings=P3-B04 T-0
 d1,tests_tools/test_mut_runner_output.py,new,-,85593c93d40dee043e0174271725e40fe1c21a18f144ceaefd3ec2da56a7853d,-,findings=E1-C8 P1-F5 T-0
 d1,tests_tools/test_mutant_targets.py,new,-,b3857cb696eb6a96d3230328aec99b9526393d1bc62c86ddd7de832e43d69e4d,-,findings=E1-RI10 T-0
 d1,tests_tools/test_mutation_error_shape.py,new,-,d7ecee71d26ef41a0bbbce9d96ea7aebbb9f4f47468dda0dbc40294f2fd1d692,-,findings=P2-S3 P3-S01 P4-S14 P5-S07 T-0
 d1,tests_tools/test_mutation_timeout.py,new,-,8367ef42815a97a7ad9802d916721717414e95ade54f7784e53e12a8b1179ad8,-,findings=AX-4 P1-F7 P4-B13 P5-S08 T-0
-d1,tests_tools/test_no_timeout_kill.py,new,-,d25a9ff0fd8b7a7ff7cfb7ec3f628bdc461c20c37b616e56b2669922d30003af,-,findings=AX-4 P1-F7 T-0
+d1,tests_tools/test_no_timeout_kill.py,new,-,5c04aed862ec4ef723e09e131236ac4e8c2044d5ec3019df9e73987ebc479f55,-,findings=AX-4 P1-F7 T-0
 d1,tests_tools/test_runner_zero_work.py,new,-,0d480af2790f0ebf00257d65ae867dc63819d841411193f675534ace9260d987,-,findings=P1-F5 P2-B8 P3-B03 P4-B15 P5-B06 P7-B3 T-0
 d1,tools/child_unittest_runner.py,new,-,7238c0f246c009817451ef2f0bb1fe550279112542a60a50ae5b36e02ff98591,-,findings=P1-F6
 d1,tools/evkit.py,new,-,80823af14db61e7fbb9eeeb3387b2ada0af1a7440e6adb8aff864361c3d94c57,-,findings=AX-4 E1-C8 E1-RI10 P1-F5 P1-F6 P1-F7 P2-B8 P2-S3 P3-B03 P3-B04 P4-B13 P4-B15 P4-B17 P5-B06 P5-S08 P7-B3 T-0
-d1,tools/expected_counts.json,new,-,d63531c6cd3c23a55039729dab4a78acdbee616fcf67e5e7ad2b9a3e690591e6,-,findings=AX-4 E1-RI10 P1-F5 P2-B8 P3-B03 T-0
+d1,tools/expected_counts.json,new,-,66da88363b3a0518743f6097b71ff96bacf2855320ce1140754d6f26c1a6f6f3,-,findings=AX-4 E1-RI10 P1-F5 P2-B8 P3-B03 T-0
 d1,tools/f671_mutants.py,unchanged,6e4a5b875f5d87447e195d39bcf6104747632fd374b51c7f1266fb1ba97f33a7,6e4a5b875f5d87447e195d39bcf6104747632fd374b51c7f1266fb1ba97f33a7,tools/f671_mutants_s1.py,findings=P1-F6
 d1,tools/f672_mutants.py,unchanged,3fa25c406b8f99614370152404021bf3a6f8ad4963ed0ba3ab92c0b39de1f982,3fa25c406b8f99614370152404021bf3a6f8ad4963ed0ba3ab92c0b39de1f982,tools/f672_mutants_s1.py,findings=AX-4 E1-RI10 P1-F5 P1-F6
 d1,tools/f673_mutants.py,unchanged,e5972d0faaa322a087eeadda5ded702f02a942cf71436b1d9676fa5f86d0752a,e5972d0faaa322a087eeadda5ded702f02a942cf71436b1d9676fa5f86d0752a,tools/f673_mutants_s1.py,findings=P1-F6
@@ -97,18 +97,18 @@ changed,tests/_path.py,modified,ef0cb5f7d80f247ed1483d0f7ab24eea76ec240050b1ada1
 changed,tests_m8/_auif.py,modified,efc14287f0c72aa8f3619c024262477a1441e22b2052ab23b4428b36c6a1cb2f,88e675be3f9be541c79716fb53cedc0954dcb1210fb5a8365dc93941158985ad,-,-
 changed,tests_m8/test_m8_boundary.py,modified,074969a7cc93e8818e5d1589cc93492af8be7f98e4950710a0a2ad526f608ac2,81f315fc1c07ebd80d5c96fe334643b40237f91c444d45fec475b1ed37d866a4,-,-
 changed,tests_tools/test_apg_root.py,new,-,e974afc2a6d248b9737dd9f7ebf140e511a7686e8054093b44c3b23c0d29bb98,-,-
-changed,tests_tools/test_consumer_exit_codes.py,new,-,b8f3e6c625b97e3a411e7fd5d68267ead461b27c5c68ae0499a2f9b59e5a7c96,-,-
+changed,tests_tools/test_consumer_exit_codes.py,new,-,dbf50fab5e995fda7d701a39e2c9195d7394bca9cc5ce64ee0cc1f44083fe587,-,-
 changed,tests_tools/test_exec_env.py,new,-,fb0ebacf5bac6019f8c053223d1636f7ffd9bae5e19ff0063ccbf71e25a0237c,-,-
 changed,tests_tools/test_harness_isolation.py,new,-,28806ee0a63e2f2a0094df3daa94af076595af54ef03eff5a5c5d44be81d7a3d,-,-
 changed,tests_tools/test_mut_runner_output.py,new,-,85593c93d40dee043e0174271725e40fe1c21a18f144ceaefd3ec2da56a7853d,-,-
 changed,tests_tools/test_mutant_targets.py,new,-,b3857cb696eb6a96d3230328aec99b9526393d1bc62c86ddd7de832e43d69e4d,-,-
 changed,tests_tools/test_mutation_error_shape.py,new,-,d7ecee71d26ef41a0bbbce9d96ea7aebbb9f4f47468dda0dbc40294f2fd1d692,-,-
 changed,tests_tools/test_mutation_timeout.py,new,-,8367ef42815a97a7ad9802d916721717414e95ade54f7784e53e12a8b1179ad8,-,-
-changed,tests_tools/test_no_timeout_kill.py,new,-,d25a9ff0fd8b7a7ff7cfb7ec3f628bdc461c20c37b616e56b2669922d30003af,-,-
+changed,tests_tools/test_no_timeout_kill.py,new,-,5c04aed862ec4ef723e09e131236ac4e8c2044d5ec3019df9e73987ebc479f55,-,-
 changed,tests_tools/test_runner_zero_work.py,new,-,0d480af2790f0ebf00257d65ae867dc63819d841411193f675534ace9260d987,-,-
 changed,tools/child_unittest_runner.py,new,-,7238c0f246c009817451ef2f0bb1fe550279112542a60a50ae5b36e02ff98591,-,-
 changed,tools/evkit.py,new,-,80823af14db61e7fbb9eeeb3387b2ada0af1a7440e6adb8aff864361c3d94c57,-,-
-changed,tools/expected_counts.json,new,-,d63531c6cd3c23a55039729dab4a78acdbee616fcf67e5e7ad2b9a3e690591e6,-,-
+changed,tools/expected_counts.json,new,-,66da88363b3a0518743f6097b71ff96bacf2855320ce1140754d6f26c1a6f6f3,-,-
 changed,tools/f671_mutants_s1.py,new,-,7eaaa6d3b132da88d6f1993a90928036bed5088b94ea992bc584807eb61ad31f,-,-
 changed,tools/f672_mutants_s1.py,new,-,efa50a39d7779f4c99fb7cdb507a67b296e35c6bfeaceac6705ccd8b2df97fb2,-,-
 changed,tools/f673_mutants_s1.py,new,-,7ea78e26916d29d8a3f88dffb67411fb6a0bf481dd0729d644890603c74b0032,-,-
