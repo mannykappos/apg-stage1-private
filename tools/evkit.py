@@ -1188,6 +1188,7 @@ class _Owner:
         self.ambiguous = {}       # identities whose only link was an equal-start-time parent that is not a direct child
         self.first_scan = self.last_scan = None
         self.leaked = False
+        self.conservative = set()  # amendment 5, S15: orphans with no recorded parent, attributed to this owner conservatively (P.3)
         self.remaining = ()
         self.record = None
 
@@ -1298,10 +1299,16 @@ class _Supervision:
                     continue
                 if ident not in self.adopted:
                     who = [o for o in self.owners if ident in o.members]
-                    if not who:      # created and orphaned between two scans: attributed to every unit in flight (P.3)
+                    conservative = not who
+                    if conservative:      # created and orphaned between two scans: attributed to every unit in flight (P.3)
                         who = list(self.in_flight) or [self.current_owner()]
                     for o in who:
                         o.members.setdefault(ident, (me, None))
+                        if conservative:
+                            # amendment 5, S15 (owner, 2026-11-08 12:47, option A): each owner it is attributed to records it as a
+                            # leak (P.6) and names it in its CLEANUP record, even when it has exited before that owner's cleanup
+                            o.conservative.add(ident)
+                            o.leaked = True
                     self.adopted[ident] = who
                 if state == 'Z':
                     try:
@@ -1348,16 +1355,12 @@ class _Supervision:
     # ---- the cleanup contract (P.5) --------------------------------------------------------------------------------------------------
     def cleanup(self, o, reap_direct=None, direct=None):
         """P.5 steps 2 to 8 for one owner.  direct: the identity of the unit's direct child (for a nested supervisor's escalation).
-        Returns True when the owner had members alive at step 3 (a leak, P.6)."""
+        Returns True when the owner had members alive at step 3, or (amendment 5, S15) a conservatively attributed orphan: a leak, P.6."""
         reap = reap_direct or (lambda: None)
         cancelled = CANCEL.cancelled()
         grace = T_ESCALATE if o.nested else (T_GRACE_CANCELLED if cancelled else T_GRACE)
         reap()
         live = self.scan([o])[o]
-        if not live:
-            self._settle(o, reap)
-            return False
-        o.leaked = True
         first = self.scan_id
         left = set(live)
         seen = set(live)
@@ -1377,25 +1380,27 @@ class _Supervision:
                 termed.add(i)
                 if self.signal(i, _signal.SIGTERM):
                     nterm += 1
-        term(live)
-        end = t0 + grace
-        empty = 0
-        while True:
-            _time.sleep(SCAN_INTERVAL_S)
-            reap()
-            live = self.scan([o])[o]
-            scans += 1
-            seen |= live
-            if not live:
-                empty += 1
-                if empty >= 2:
-                    break
-                continue
-            empty = 0
+        if live:      # S15: the signal steps run only when a member is alive; a conservatively attributed orphan alone is recorded
+            o.leaked = True
             term(live)
-            if _time.monotonic() >= end:
-                deadline = 'grace'
-                break
+            end = t0 + grace
+            empty = 0
+            while True:
+                _time.sleep(SCAN_INTERVAL_S)
+                reap()
+                live = self.scan([o])[o]
+                scans += 1
+                seen |= live
+                if not live:
+                    empty += 1
+                    if empty >= 2:
+                        break
+                    continue
+                empty = 0
+                term(live)
+                if _time.monotonic() >= end:
+                    deadline = 'grace'
+                    break
         if live:
             escalated = _time.monotonic() - t0
             kend = _time.monotonic() + T_KILL_VERIFY
@@ -1423,20 +1428,24 @@ class _Supervision:
                 if _time.monotonic() >= kend:
                     deadline = 'kill_verify'
                     break
-        elif o.nested:
+        elif o.nested and left:
             escalated = _time.monotonic() - t0
         o.remaining = tuple(sorted(live))
+        last, ambiguous = self.scan_id, _ident_text(o.ambiguous)     # S15: the record's scan range and ambiguous set, before step 6
+        self._settle(o, reap)
+        if not left and not o.conservative:
+            return False
+        o.leaked = True
         child = next(((r.pid, r.start) for r in o.direct), None)
         o.record = ('CLEANUP %s by=%s:%d child=%s pgid=%s scan=%d-%d left=%s exited_in_grace=%s killed=%s sigterm=%d sigkill=%d '
                     'scans=%d deadline=%s escalated_after=%s ambiguous=%s remaining=%s' % (
                         o.id, self.tool or 'evkit', self.pid, '%d:%d' % child if child else '-',
                         child[0] if (child and o.kind == 'unit') else '-',
-                        first, self.scan_id, _ident_text(left), _ident_text(seen - killed), _ident_text(killed), nterm, nkill, scans,
-                        deadline, ('%.1fs' % escalated) if (o.nested and escalated is not None) else '-', _ident_text(o.ambiguous),
+                        first, last, _ident_text(left | o.conservative), _ident_text(seen - killed), _ident_text(killed), nterm, nkill,
+                        scans, deadline, ('%.1fs' % escalated) if (o.nested and escalated is not None) else '-', ambiguous,
                         _ident_text(live)))
         if live:
             self.errors.append(RunError('CLEANUP_INCOMPLETE', '%s %s' % (o.id, _ident_text(live))))
-        self._settle(o, reap)
         return True
 
     def _settle(self, o, reap):
@@ -3280,6 +3289,11 @@ def _case_unit_outcome(res, forms):
     return 'MESSAGE', None, kv
 
 
+# amendment 5, S17 (b): a candidate factory spec is a dotted module name, one colon, and one attribute name; anything else (a missing
+# part, a second colon, a space, a path) is a step 3 refusal, SELECTION_INVALID '<option> must be module:attr'
+FACTORY_SPEC = re.compile(r'^[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*:[A-Za-z_][A-Za-z0-9_]*\Z')
+
+
 def cases_main(tool, enumerate_cases, run_case, argv, candidate_options=(), success_marker=None, human_label='contract cases',
                root=ROOT, load=None, batch=None):
     """The successor contract and corpus run (kind=cases, RESULT v=3).
@@ -3338,7 +3352,7 @@ def cases_main(tool, enumerate_cases, run_case, argv, candidate_options=(), succ
     elif opts['path'] and not opts['factories']:
         argerrs.append(RunError('SELECTION_INVALID', '--path without a candidate factory'))
     for opt_name, spec in opts['factories'].items():
-        if ':' not in spec:
+        if not FACTORY_SPEC.match(spec):     # amendment 5, S17 (b) (owner, 2026-11-08 12:47, option A): exactly module:attr
             argerrs.append(RunError('SELECTION_INVALID', '%s must be module:attr' % opt_name))
     preloaded = PRELOADED_AT_EVKIT_IMPORT
     # (1) the start checks (amendment 3, AM3-1 (c): also for --pin, which then runs the guarded load, the post-load identity check and the
@@ -4447,6 +4461,9 @@ def _check_wrapper(f, lines, pins, selected):
     group ids in order.  Amendment 3, AM3-4: a child CHECK INDETERMINATE exit=3 is accepted only for a group whose class is given as N or B."""
     p = []
     files, checks, excl, pending, order = [], [], [], [], []
+    # amendment 5, S16 (owner, 2026-11-08 12:47, option A): the groups whose unit has a CLEANUP record (P.5 step 8); a leak makes a
+    # check INDETERMINATE whatever its exit (P.6), so for these groups an INDETERMINATE CHECK is accepted in the forms below
+    cleaned = {l.split(' ', 2)[1] for l in lines if l.startswith('CLEANUP ') and len(l.split(' ', 2)) == 3}
     for l in lines:
         if l.startswith(('TEST ', 'CASE ', 'PLANT ')):
             pending.append(l)
@@ -4482,6 +4499,8 @@ def _check_wrapper(f, lines, pins, selected):
                       'ITEM_ERROR': not (ex == '0' and marker == 'seen') and ex != '1'}[outcome]
             else:
                 ok = ex == '-' and marker == '-' and outcome in ('PASS', 'FAIL', 'ITEM_ERROR', 'NOT_RUN')
+            if not ok and outcome == 'INDETERMINATE' and gid in cleaned and (source == 'child' or (ex == '-' and marker == '-')):
+                ok = True      # S16: the group's unit leaked and was cleaned up (its CLEANUP record is in this output)
             if not ok:
                 if source == 'child' and outcome == 'INDETERMINATE' and ex == '3' and marker in ('seen', 'absent'):
                     p.append('CHECK %s outcome INDETERMINATE exit=3 needs a pinned class N or B (class: %s)' % (gid, cls or 'not given'))
