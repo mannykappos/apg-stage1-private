@@ -21,8 +21,14 @@ sys.path.insert(0, ROOT)
 import tools.evkit as E  # noqa: E402
 
 TOOL = 'sabotage_m10_s1'
-M = E.load_tool_module('sabotage_m10', ROOT)
+M = None   # moved into load() under evkit.import_guard (corrective pass 2, C.1)
 NODE = shutil.which('node') or 'node'
+
+def load():
+    """C.1: the M10 load, and every module-level statement that uses it, after the start checks (evkit.guarded_load)."""
+    global M
+    with E.import_guard('sabotage_m10'):
+        M = E.load_tool_module('sabotage_m10', ROOT)
 
 
 def label(check):
@@ -74,5 +80,8 @@ def control_commands(work, items):
 
 
 if __name__ == '__main__':
+    rc = E.guarded_load(TOOL, 'sabotage', load)
+    if rc is not None:
+        sys.exit(rc)
     argv = ['--ids' if a == '--only' else a for a in sys.argv[1:]]
     sys.exit(E.mutation_main(TOOL, plants(), commands, argv, timeout=1800, kind='sabotage', control_commands=control_commands))

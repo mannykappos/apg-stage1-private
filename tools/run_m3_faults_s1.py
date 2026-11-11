@@ -4,7 +4,9 @@ The plants are M10's faulty FileStore and JobRunner implementations (apg/ingest/
 reads), each run on its own suite with the reference for the other, as M10 does; the reference envs on both suites are the start and end
 control and must fail no case (tools/evkit.faults_main).
 Usage: python3 -I -S tools/run_m3_faults_s1.py [--list] [--ids ID[,ID]] [--run-id ID] | --pin --reason TEXT --cause TEXT
-Exit codes as §2.4; the M10 marker ALL FAULTS CAUGHT only on exit 0.     BUILDER-EXECUTED: NOT INDEPENDENT."""
+Exit codes as §2.4; the M10 marker ALL FAULTS CAUGHT only on exit 0.     BUILDER-EXECUTED: NOT INDEPENDENT.
+Corrective pass 2 (C, B): the harness imports and PLANTS run in load(), under evkit.import_guard, after the start checks
+(evkit.guarded_load); every plant and both controls run as forked units under P (evkit.faults_main)."""
 import os
 import sys
 
@@ -13,8 +15,21 @@ ROOT = os.path.realpath(os.path.dirname(os.path.dirname(os.path.abspath(__file__
 sys.path.insert(0, ROOT)
 import tools.evkit as E  # noqa: E402
 
-from apg.ingest import contracts_m3 as C, reference_m3 as REF  # noqa: E402
-from apg.ingest.faulty_m3 import FAULTS  # noqa: E402
+TOOL = "run_m3_faults_s1"
+C = REF = FAULTS = None
+PLANTS = []
+
+
+def load():
+    global C, REF, FAULTS, PLANTS
+    with E.import_guard("apg.ingest.contracts_m3"):
+        import apg.ingest.contracts_m3 as C
+    with E.import_guard("apg.ingest.reference_m3"):
+        import apg.ingest.reference_m3 as REF
+    with E.import_guard("apg.ingest.faulty_m3"):
+        from apg.ingest.faulty_m3 import FAULTS
+        PLANTS = [(fid, text, (lambda kind=kind, factory=factory: failed_for(kind, factory)), list(expect))
+                  for fid, (text, kind, factory, expect) in FAULTS.items()]
 
 
 def failed_for(kind, factory):
@@ -27,8 +42,8 @@ def reference_failed():
     return {r[1] for r in C.run_all(REF.file_env(), REF.job_env(), [C.FS, C.JR]) if not r[3]}
 
 
-PLANTS = [(fid, text, (lambda kind=kind, factory=factory: failed_for(kind, factory)), list(expect))
-          for fid, (text, kind, factory, expect) in FAULTS.items()]
-
 if __name__ == "__main__":
-    sys.exit(E.faults_main("run_m3_faults_s1", PLANTS, reference_failed, sys.argv[1:], success_marker="ALL FAULTS CAUGHT"))
+    rc = E.guarded_load(TOOL, "sabotage", load)
+    if rc is not None:
+        sys.exit(rc)
+    sys.exit(E.faults_main(TOOL, PLANTS, reference_failed, sys.argv[1:], success_marker="ALL FAULTS CAUGHT"))

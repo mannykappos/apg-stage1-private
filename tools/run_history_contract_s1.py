@@ -12,7 +12,10 @@ M10 SHA-256, with no command-line option reaching it (tools/evkit.load_m10_prefi
 Usage: python3 -I -S tools/run_history_contract_s1.py [--list] [--ids ID[,ID]] [--run-id ID] | --pin --reason TEXT --cause TEXT
        python3 -I -S tools/run_history_contract_s1.py --path DIR --factory module:attr [--only RH-01,..] [--run-id ID]
        python3 -I -S tools/run_history_contract_s1.py --pin-cases --reason TEXT --cause TEXT
-Exit codes as §2.4.     BUILDER-EXECUTED: NOT INDEPENDENT."""
+Exit codes as §2.4.     BUILDER-EXECUTED: NOT INDEPENDENT.
+Corrective pass 2 (C, B, amendment 2 AM2-1): the M10 load and STORES run in load(), under evkit.import_guard; the fault mode's
+plants and controls are forked units under P (evkit.faults_main); the case mode's one harness call is batch(), one forked unit
+(evkit.cases_main)."""
 import os
 import sys
 
@@ -22,28 +25,36 @@ sys.path.insert(0, ROOT)
 import tools.evkit as E  # noqa: E402
 
 M10_SHA256 = "c8a887c9e8423997a4ffb7fedaa283ba289d26035f3fd00b39f987524097c1f8"
-H = E.load_m10_prefix("run_history_contract", "if opt('--factory'):", M10_SHA256)
-STORES = ((H.OutOfRangeReadsLatest, "RH-03"), (H.LeaksStoredObjects, "RH-06"), (H.AppendsIdentical, "RH-04"), (H.RewritesHistory, "RH-02"))
 SUITE = "record_store_history"
-_CACHE = {}
+H = None
+STORES = ()
+
+
+def load():
+    global H, STORES
+    with E.import_guard("run_history_contract"):
+        H = E.load_m10_prefix("run_history_contract", "if opt('--factory'):", M10_SHA256)
+        STORES = ((H.OutOfRangeReadsLatest, "RH-03"), (H.LeaksStoredObjects, "RH-06"), (H.AppendsIdentical, "RH-04"),
+                  (H.RewritesHistory, "RH-02"))
+    return {"batch": batch}
 
 
 def failed(cls):
     return {r[0] for r in H.run_history_suite(H.env_for(cls)) if not r[2]}
 
 
-def results(cand):
-    if "r" not in _CACHE:
-        _CACHE["r"] = {r[0]: (r[2], r[3]) for r in H.run_history_suite(cand.get("--factory") or H.env_for(H.InMemoryRecordStore))}
-    return _CACHE["r"]
+def batch(cand):
+    return [[SUITE, r[0], bool(r[2]), str(r[3])] for r in H.run_history_suite(cand.get("--factory") or H.env_for(H.InMemoryRecordStore))]
 
 
 def main(argv):
     if "--factory" in argv or "--path" in argv or "--pin-cases" in argv:
         argv = ["--pin" if a == "--pin-cases" else a for a in argv]
-        return E.cases_main("run_history_contract_s1", lambda cand: [(SUITE, c) for c in results(cand)],
-                            lambda cand, s, c: results(cand)[c], argv, candidate_options=("--factory",),
-                            success_marker="ALL HISTORY CASES PASS", human_label="history cases")
+        return E.cases_main("run_history_contract_s1", None, None, argv, candidate_options=("--factory",),
+                            success_marker="ALL HISTORY CASES PASS", human_label="history cases", load=load)
+    rc = E.guarded_load("run_history_contract_s1", "sabotage", load)
+    if rc is not None:
+        return rc
     plants = [(cls.__name__, cls.__doc__.strip(), (lambda cls=cls: failed(cls)), [must]) for cls, must in STORES]
     return E.faults_main("run_history_contract_s1", plants, lambda: failed(H.InMemoryRecordStore), argv,
                          success_marker="ALL HISTORY CASES PASS AND EVERY FAULTY STORE IS CAUGHT", total_label="faulty stores")

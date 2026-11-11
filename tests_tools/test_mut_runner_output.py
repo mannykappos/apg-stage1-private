@@ -98,6 +98,46 @@ class MutRunnerOutput(unittest.TestCase):
     C8 = ['test_adversarial_builder_zero.py', 'test_golden.py', 'test_materiality_engine.py', 'test_repro.py', 'test_source_authority.py',
           'test_status_model.py', 'test_tenancy.py', 'test_values.py']
 
+
+    # corrective pass 2, E point 22: the standalone pin, and F11 on mut_runner_s1's failing file, asserted directly
+    def test_e22_the_standalone_pin_and_f11_on_the_failing_file(self):
+        import re
+        self.assertEqual(self.pins['runner_profiles']['mut_runner_s1@standalone'], {'mode': 'failfast'})
+        dest = self.mutated_copy()
+        code, out, err = run([sys.executable, '-I', '-S', 'tools/mut_runner_s1.py', 'test_values.py', 'test_tenancy.py'], dest, self.tmp)
+        self.assertEqual(code, 1, out[-3000:] + err[-2000:])
+        self.assertIn(' mode=failfast ', out.strip().splitlines()[-1])        # no --caller: the standalone profile, as pinned
+        pin = self.pins['test_files']['tests/test_values.py']
+        m = re.search(r'(?m)^FILE test_values\.py state=COMPLETED tests=(\d+) passed=\d+ failed=([1-9]\d*) errors=\d+ skipped=\d+ '
+                      r'tests_not_run=(\d+) file_sha256=(\S+) ', out)
+        self.assertTrue(m, out[-3000:])
+        self.assertEqual(int(m.group(1)) + int(m.group(3)), len(pin['ids']))
+        self.assertEqual(m.group(4), pin['sha256'])
+        tests = re.findall(r'(?m)^TEST test_values\.py::(\S+) (\S+)$', out)
+        self.assertEqual([t[0] for t in tests], pin['ids'])                     # one TEST line per pinned test, in pinned order
+        self.assertEqual(sum(1 for t in tests if t[1] == 'NOT_RUN_AFTER_FAILURE'), int(m.group(3)))
+        self.assertEqual(sum(1 for t in tests if t[1] == 'FAIL'), int(m.group(2)))
+        self.assertNotRegex(out, r'(?m)^TEST test_tenancy\.py::\S+ (PASS|FAIL|ERROR)$')
+
+    # corrective pass 2, E point 20: E1-C8's genuine-kill attribution compared with M10's, on the eight C8 files
+    def test_e20_the_c8_kill_attribution_matches_m10(self):
+        import re
+        dest = self.mutated_copy()
+        m10 = m10_view(os.path.join(self.tmp, 'm10c8'))
+        shutil.copy(os.path.join(dest, 'apg', 'canon.py'), os.path.join(m10, 'apg', 'canon.py'))
+        code, out, err = run([sys.executable, '-I', 'tools/mut_runner.py'] + self.C8, m10, self.tmp)
+        self.assertEqual(code, 1, out + err[-1500:])
+        m10_name = out.strip()
+        self.assertTrue(m10_name and '\n' not in m10_name, out)
+        code, out, err = run([sys.executable, '-I', '-S', 'tools/mut_runner_s1.py'] + self.C8, dest, self.tmp)
+        self.assertEqual(code, 1, out[-3000:] + err[-2000:])
+        self.assertEqual([l[5:] for l in out.splitlines() if l.startswith('FAIL ')], [m10_name])
+        first = [n for n, f in re.findall(r'(?m)^FILE (\S+) state=COMPLETED .* failed=(\d+) ', out) if f != '0']
+        self.assertEqual(len(first), 1)
+        self.assertEqual(first[0].replace('.py', ''), m10_name)
+        rels = ['tests/' + f for f in self.C8]
+        self.assertEqual(E.check_output(evidence(out), code, pins=E.test_file_pins(self.pins, rels), selected=self.C8), [])
+
     def test_the_eight_c8_files(self):
         # E1-C8 (R4/R5): the P1 run record's command C8 (M10: exit 0 and no output at all); the successor prints the eight pinned counts
         rels = ['tests/' + f for f in self.C8]
@@ -164,6 +204,48 @@ class MutRunnerOutput(unittest.TestCase):
         self.assertIn(' files_skipped_after_failure=0 ', last)
         self.assertTrue(last.endswith(' status=FAILED exit=1'))
         self.assertEqual(E.check_output(evidence(out), code, pins=fp, selected=names), [])
+
+    def test_run_m2_tests_s1_in_each_of_its_pinned_modes(self):
+        # DP-2.3 F3, F4 and F11 on the real runner (authorisation §4.6), in a copy where M10's CA07 mutant makes test_materiality_engine.py
+        # fail: as a mutation tool's kill oracle (--failfast --caller mutation_tool, pinned failfast) the failing file stops at its first
+        # failing test and is COMPLETED with tests_not_run recorded (F11), and every later file is SKIPPED_AFTER_FAILURE; as a wrapper's child
+        # (--caller wrapper, pinned full) it runs every test of every file past the failure and never reports SKIPPED_AFTER_FAILURE
+        dest = self.mutated_copy()
+        pattern = 'test_m[ai]*.py'
+        rels = sorted(k for k in self.pins['test_files'] if k.startswith('tests/test_m') and os.path.basename(k)[6] in 'ai')
+        names = [os.path.basename(r) for r in rels]
+        self.assertEqual(names[0], 'test_materiality_engine.py')
+        self.assertGreater(len(names), 5)
+        fp = E.test_file_pins(self.pins, rels)
+        code, out, err = run([sys.executable, '-I', '-S', 'tools/run_m2_tests_s1.py', '-q', '--failfast', '--caller', 'mutation_tool', pattern],
+                             dest, self.tmp)
+        self.assertEqual(code, 1, out[-3000:] + err[-2000:])
+        import re
+        m = re.search(r'(?m)^FILE test_materiality_engine\.py state=COMPLETED tests=(\d+) passed=\d+ failed=[1-9]\d* .* tests_not_run=(\d+) ', out)
+        self.assertTrue(m, out[-3000:])
+        self.assertEqual(int(m.group(1)) + int(m.group(2)), len(fp['test_materiality_engine.py']['ids']))
+        self.assertGreater(int(m.group(2)), 0)
+        for n in names[1:]:
+            self.assertRegex(out, r'(?m)^FILE %s state=SKIPPED_AFTER_FAILURE ' % re.escape(n))
+        last = out.strip().splitlines()[-1]
+        self.assertIn(' mode=failfast ', last)
+        self.assertIn(' files_skipped_after_failure=%d ' % (len(names) - 1), last)
+        self.assertEqual(E.check_output(evidence(out), code, pins=fp, selected=names), [])
+        code, out, err = run([sys.executable, '-I', '-S', 'tools/run_m2_tests_s1.py', '-q', '--caller', 'wrapper', pattern], dest, self.tmp)
+        self.assertEqual(code, 1, out[-3000:] + err[-2000:])
+        for n in names:
+            self.assertRegex(out, r'(?m)^FILE %s state=COMPLETED .* tests_not_run=0 ' % re.escape(n))
+        self.assertNotIn('SKIPPED_AFTER_FAILURE', out)
+        last = out.strip().splitlines()[-1]
+        self.assertIn(' mode=full ', last)
+        self.assertIn(' files_completed=%d ' % len(names), last)
+        self.assertEqual(E.check_output(evidence(out), code, pins=fp, selected=names), [])
+        # the same runner refuses a mode its caller is not pinned to (F10): --failfast for the wrapper caller
+        code, out, err = run([sys.executable, '-I', '-S', 'tools/run_m2_tests_s1.py', '-q', '--failfast', '--caller', 'wrapper', pattern],
+                             dest, self.tmp)
+        self.assertEqual(code, 2, out[-2000:])
+        self.assertIn('RUN_ERROR RUNNER_MODE_NOT_PINNED run_m2_tests_s1@wrapper mode=failfast pinned=full', out)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -18,9 +18,15 @@ sys.path.insert(0, ROOT)
 import tools.evkit as E  # noqa: E402
 
 TOOL = 'm2_mutants_s1'
-M = E.load_tool_module('m2_mutants', ROOT)
+M = None   # moved into load() under evkit.import_guard (corrective pass 2, C.1)
 RI10_M10 = ('RI10-query-crosses-tenants', 'reference_impl.py', "if t == ctx.tenant_id and k == kind:", "if k == kind:")
 RI10_FIX = ('RI10-query-crosses-tenants', 'reference_impl.py', "if t == tenant and k == kind:", "if k == kind:")
+
+def load():
+    """C.1: the M10 load, and every module-level statement that uses it, after the start checks (evkit.guarded_load)."""
+    global M
+    with E.import_guard('m2_mutants'):
+        M = E.load_tool_module('m2_mutants', ROOT)
 
 
 def mut_list():
@@ -46,4 +52,7 @@ def commands(work, mutant):
 
 
 if __name__ == '__main__':
+    rc = E.guarded_load(TOOL, 'mutation', load)
+    if rc is not None:
+        sys.exit(rc)
     sys.exit(E.mutation_main(TOOL, mutants(), commands, sys.argv[1:], equivalents=M.EQUIV, timeout=300, success_marker='MUTATION RUN OK'))

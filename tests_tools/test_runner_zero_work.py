@@ -171,9 +171,9 @@ class CasesRunners(unittest.TestCase):
             got = [l.split(' ')[1] for l in out.splitlines() if l.startswith('CASE ')]
             self.assertEqual(got, want, tool)
             lines = [l for l in out.splitlines() if l.strip()]
-            self.assertTrue(lines[-1].startswith('RESULT v=2 kind=cases tool=%s ' % tool), tool)
+            self.assertTrue(lines[-1].startswith('RESULT v=3 kind=cases tool=%s ' % tool), tool)
             self.assertRegex(lines[-2], r'^ALL (CONTRACT|CORPUS) CASES PASS$', tool)  # the M10 marker, kept, just before RESULT
-            self.assertEqual(E.check_output(out, code, selected=want), [], tool)
+            self.assertEqual(E.check_output(out, code, pins=inv, selected=want), [], tool)
 
     def test_a_changed_case_inventory_fails_closed(self):
         doc, _ = E.load_pins()
@@ -317,7 +317,7 @@ class SabotageAndFaultRunners(unittest.TestCase):
                     '    return ContractEnv(p, InMemoryRecordStore(p), InMemoryAuditLog(p, c), c.advance)\n')
         code, out, err = run_in(ROOT, 'run_history_contract_s1.py', '--path', cand, '--factory', 'store_adapter:F')
         self.assertEqual(code, 0, out[-2000:] + err[-2000:])
-        self.assertTrue(out.strip().splitlines()[-1].startswith('RESULT v=2 kind=cases tool=run_history_contract_s1 '))
+        self.assertTrue(out.strip().splitlines()[-1].startswith('RESULT v=3 kind=cases tool=run_history_contract_s1 '))
         self.assertEqual(len([l for l in out.splitlines() if l.startswith('CASE record_store_history/RH-')]), 6)
 
 
@@ -367,6 +367,7 @@ class M8CallerModeAndTiers(unittest.TestCase):
     def test_m8t_tiers_omit_only_the_boundary_test_and_are_pinned(self):
         M10 = E.load_tool_module('m8_mutants', ROOT)
         S1 = E.load_tool_module('m8_mutants_s1', ROOT)
+        S1.load()      # corrective pass 2, C.1
         self.assertEqual(M10.TIER1.count('test_m8_boundary'), 1)
         self.assertEqual(S1.TIERS['tier1'], [t for t in M10.TIER1 if t != 'test_m8_boundary'])
         self.assertEqual(S1.TIERS['tier2'], M10.TIER2)
@@ -527,6 +528,7 @@ class WrappersW1A(unittest.TestCase):
         self.assertRegex(out, r'(?m)^CHECK G10 PASS source=wrapper exit=- marker=- ')
         self.assertEqual(E.wrapper_verdict(out, code), 'OK')
         self.assertEqual(out.strip().splitlines()[-2], 'groups 1  failed 0')       # the M10 marker, only with status=OK
+        self.assertEqual(E.check_output(out, code), [], out[-2000:])          # corrective pass 2, E point 25
 
 
 
@@ -598,6 +600,7 @@ class WrappersW1B(unittest.TestCase):
         self.assertEqual(code, 2, out[-2000:] + err[-2000:])
         self.assertIn('RUN_ERROR EXCLUSION_LIST_MISMATCH run_f672_all_s1 pinned 1, table 2', out)
         self.assertRegex(out, r'(?m)^FILE G11 state=NOT_RUN ')
+        self.assertEqual(E.check_output(out, code), [], out[-2000:])          # corrective pass 2, E point 25
 
     def test_pin_accepts_only_the_adopted_v3_files(self):
         work = os.path.join(self.tmp, 'csv')
@@ -611,6 +614,33 @@ class WrappersW1B(unittest.TestCase):
         self.assertEqual(code, 2)
         self.assertTrue(lines[0].startswith('RUN_ERROR PIN_INVALID g.csv is not the adopted file (SHA-256 f559ec57'), lines)
 
+
+
+
+class E25StubbedChildGroups(unittest.TestCase):
+    """Corrective pass 2, E point 25: one stubbed-child group run each of run_m7_all_s1 (G03, a test-file group) and run_m8_all_s1 (G03),
+    their test runner replaced in a temporary copy by a stub that ran no test and exits 0: the group ITEM_ERROR, exit 2, and the output
+    accepted by check_output.  (The --group 0 and --range 5-3 refusals of both wrappers go through check_output in
+    SelectorsThatDoNoWorkExitTwo; run_f672_all_s1 --group 11 and run_f674_all_s1 --group 10 in WrappersW1B.)  BUILDER-EXECUTED: NOT INDEPENDENT."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_e25_')
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def test_a_stubbed_child_group_of_each(self):
+        for wrapper, runners in (('run_m7_all_s1.py', ('run_m2_tests_s1.py', 'run_test_files_s1.py')), ('run_m8_all_s1.py', ('run_m8_tests_s1.py',))):
+            with self.subTest(wrapper=wrapper):
+                t = tree_copy(os.path.join(self.tmp, wrapper))
+                for r in runners:
+                    with open(os.path.join(t, 'tools', r), 'w', encoding='utf-8') as fh:
+                        fh.write(RUNNER_STUB % ('tests 0  failures 0  errors 0', 0))
+                code, out, err = run_in(t, wrapper, '--group', '3')
+                self.assertEqual(code, 2, out[-2000:] + err[-2000:])
+                self.assertRegex(out, r'(?m)^FILE G03 state=ITEM_ERROR ')
+                self.assertTrue(out.strip().splitlines()[-1].endswith(' status=EVIDENCE_ERROR exit=2'))
+                self.assertEqual(E.check_output(out, code), [], out[-2000:])
 
 
 # (block, M10 tool, arguments, M10 exit, a text M10 prints, stub tool for a mutation tool's copy or None)
@@ -688,7 +718,7 @@ def _add_selector_cases():
                     self.assertEqual(code, 2, (tool, args, out[-2000:], err[-1500:]))
                     self.assertRegex(out, r'(?m)^RUN_ERROR (SELECTION_INVALID|TEST_FILE_NOT_IN_PINS) ')
                     last = out.strip().splitlines()[-1]
-                    self.assertTrue(last.startswith('RESULT v=2 ') and last.endswith(' exit=2'), last)
+                    self.assertTrue(last.startswith(('RESULT v=2 ', 'RESULT v=3 ')) and last.endswith(' exit=2'), last)
                     self.assertEqual(E.check_output(out, code), [])
                     if m10_text in ('ALL CONTRACT CASES PASS', 'ALL CORPUS CASES PASS', 'MUTATION RUN OK'):
                         self.assertNotIn(m10_text, out)     # M10's success marker only on exit 0 (§2.4); its count lines are kept
@@ -796,6 +826,290 @@ class WrapperWithAStubTestRunner(unittest.TestCase):
 
 
 
+TWELVE_WRAPPERS = ['run_m3_all', 'run_f67_all', 'run_f673_all', 'run_m71_all', 'run_m72_all', 'run_m73_all', 'run_m91_all', 'run_m92_all',
+                   'run_m93_all', 'run_m94_all', 'run_mie1_all', 'run_mie1_1_all']
+
+MAPPED_STUB = """import sys
+# planted by tests_tools/test_runner_zero_work.py: run_m2_tests_s1 replaced in a temporary copy; it answers per selected file
+TEXTS = %r
+name = sys.argv[-1]
+text, code = TEXTS.get(name, TEXTS['*'])
+print(text)
+sys.exit(code)
+"""
+
+
+def test_groups(m):
+    doc, _ = E.load_pins()
+    _, plan = E.wrapper_plan(m + '_s1', m, ROOT, doc, doc['wrapper_inventories'][m + '_s1']['m10_sha256'])
+    return plan, [g for g in plan if g['class'] == 'S-T']
+
+
+class TheTwelveWrappersWithAStubTestRunner(unittest.TestCase):
+    """Authorisation §4.4 for the 12 successor wrappers that had no test of their own (deviation D10, closed by this class):
+    run_m3_all_s1, run_f67_all_s1, run_f673_all_s1, run_m71/m72/m73_all_s1, run_m91/m92/m93/m94_all_s1, run_mie1_all_s1, run_mie1_1_all_s1.
+    Each is run as the real wrapper on a temporary copy, on its first test-runner (S-T) group, with run_m2_tests_s1.py replaced by a stub:
+      - zero work (prints M10's 'tests 0  failures 0  errors 0', exits 0, no RESULT line) -> the group ITEM_ERROR, exit 2;
+      - killed by a signal with no result -> INDETERMINATE, exit 3;
+      - a valid FAILED line for the group's pinned files -> the group COMPLETED with its failure counted, exit 1, no M10 marker;
+      - a valid OK line from a stub that exits 1 (the line contradicts the exit) -> ITEM_ERROR, exit 2;
+      - a valid OK line, exit 0 -> the group passes, exit 0 (the control case).
+    The checker accepts every output.  P2-B8's M10 half for run_m3_all: with the same zero-work stub as tools/run_m2_tests.py, M10's
+    run_m3_all reports PASS for its test group, which ran no test.  DP-2.3 F5 (wrappers run full): with a failing first group, the next
+    group still runs and is reported."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_twelve_')
+        self.pins, _ = E.load_pins()
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def text(self, files, fail=False):
+        fp = E.test_file_pins(self.pins, files)
+        res = {}
+        for k, rel in enumerate(files):
+            n = os.path.basename(rel)
+            st = ['PASS'] * len(fp[n]['ids'])
+            if fail and k == 0:
+                st[0] = 'FAIL'
+            res[n] = E.FileResult(n, 'COMPLETED', list(zip(fp[n]['ids'], st)), fp[n]['sha256'])
+        lines, code = E.finish_tests('run_m2_tests_s1', 'full', 'r', [os.path.basename(r) for r in files], res, fp)
+        return '\n'.join(lines), code
+
+    def run_group(self, m, name, stub_source, gid):
+        t = tree_copy(os.path.join(self.tmp, '%s_%s' % (m, name)))
+        with open(os.path.join(t, 'tools', 'run_m2_tests_s1.py'), 'w', encoding='utf-8') as fh:
+            fh.write(stub_source)
+        c, out, err = run_in(t, m + '_s1.py', '--group', str(int(gid[1:])))
+        shutil.rmtree(t, ignore_errors=True)
+        self.assertEqual(E.check_output(out, c), [], (m, name, out[-2000:], err[-1500:]))
+        return c, out
+
+    def test_m10_run_m3_all_passes_its_zero_work_test_group(self):
+        t = tree_copy(os.path.join(self.tmp, 'm10_m3'))
+        with open(os.path.join(t, 'tools', 'run_m2_tests.py'), 'w', encoding='utf-8') as fh:
+            fh.write(RUNNER_STUB % ('tests 0  failures 0  errors 0', 0))
+        code, out, err = run_in(t, 'run_m3_all.py', isolated_site=False)
+        self.assertRegex(out, r'(?m)^PASS All unit, adversarial and golden tests .*\[tests 0  failures 0  errors 0\]$')
+
+    def test_wrapper_full_mode_runs_the_next_group_after_a_failing_one(self):
+        plan, st = test_groups('run_m71_all')
+        k = next(i for i in range(len(plan) - 1) if plan[i]['class'] == plan[i + 1]['class'] == 'S-T'
+                 and len(plan[i]['files']) == len(plan[i + 1]['files']) == 1)
+        g1, g2 = plan[k], plan[k + 1]
+        texts = {os.path.basename(g1['files'][0]): self.text(g1['files'], fail=True),
+                 os.path.basename(g2['files'][0]): self.text(g2['files']), '*': ('unexpected', 2)}
+        t = tree_copy(os.path.join(self.tmp, 'cont'))
+        with open(os.path.join(t, 'tools', 'run_m2_tests_s1.py'), 'w', encoding='utf-8') as fh:
+            fh.write(MAPPED_STUB % texts)
+        c, out, err = run_in(t, 'run_m71_all_s1.py', '--range', '%d-%d' % (k + 1, k + 2))
+        self.assertEqual(c, 1, out[-2000:] + err[-1500:])
+        self.assertRegex(out, r'(?m)^FILE %s state=COMPLETED .* failed=[1-9]' % g1['id'])
+        self.assertRegex(out, r'(?m)^FILE %s state=COMPLETED .* failed=0 ' % g2['id'])
+        last = out.strip().splitlines()[-1]
+        self.assertIn(' mode=full ', last)
+        self.assertEqual(E.check_output(out, c), [])
+
+
+def _add_twelve_cases():
+    for m in TWELVE_WRAPPERS:
+        def t(self, m=m):
+            plan, st = test_groups(m)
+            g = ([x for x in st if len(x['files']) == 1] or st)[0]
+            gid = g['id']
+            ok, okc = self.text(g['files'])
+            bad, badc = self.text(g['files'], fail=True)
+            self.assertEqual((okc, badc), (0, 1))
+            for name, src, want, state in (
+                    ('zero', RUNNER_STUB % ('tests 0  failures 0  errors 0', 0), 2, 'ITEM_ERROR'),
+                    ('signal', 'import os, signal\nos.kill(os.getpid(), signal.SIGKILL)\n', 3, 'INDETERMINATE'),
+                    ('failed', RUNNER_STUB % (bad, 1), 1, 'COMPLETED'),
+                    ('contradicts', RUNNER_STUB % (ok, 1), 2, 'ITEM_ERROR'),
+                    ('ok', RUNNER_STUB % (ok, 0), 0, 'COMPLETED')):
+                with self.subTest(case=name):
+                    c, out = self.run_group(m, name, src, gid)
+                    self.assertEqual(c, want, (m, name, out[-2000:]))
+                    self.assertRegex(out, r'(?m)^FILE %s state=%s ' % (gid, state))
+                    self.assertTrue(out.strip().splitlines()[-1].endswith(' exit=%d' % want))
+                    if want:
+                        self.assertNotRegex(out, r'(?m)^ALL \S+ CHECKS PASS$')
+        setattr(TheTwelveWrappersWithAStubTestRunner, 'test_' + m + '_s1', t)
+
+
+_add_twelve_cases()
+
+
+# fault runner: (the module whose reference environment is broken in the copy, the text appended to break it,
+#                the module holding FAULTS or None, the successor-file text changed for a must-fail list that differs from the pin)
+BROKEN_STORE = '\n\ndef _broken(self, *a, **k):\n    raise RuntimeError("broken store")\n\n\nInMemoryRecordStore._atomic = _broken\n'
+FAULT_RUNNERS = {
+    'run_faults_s1': ('apg/reference_impl.py', BROKEN_STORE, 'apg/faulty_impls.py', None),
+    'run_m3_faults_s1': ('apg/ingest/reference_m3.py', '\n\n_orig_file_env = file_env\n\n\ndef file_env(files_cls=InMemoryFileStore, provider_cls=StaticContextProvider):\n    if files_cls is InMemoryFileStore:\n        raise RuntimeError("broken reference")\n    return _orig_file_env(files_cls, provider_cls)\n',
+                         'apg/ingest/faulty_m3.py', None),
+    'run_m5_faults_s1': ('apg/det/reference_m5.py', '\n\n_orig_notify_env = notify_env\n\n\ndef notify_env(notifier_cls=InMemoryNotifier, provider_cls=StaticContextProvider):\n    if notifier_cls is InMemoryNotifier:\n        raise RuntimeError("broken reference")\n    return _orig_notify_env(notifier_cls, provider_cls)\n',
+                         'apg/det/faulty_m5.py', None),
+    'run_m6_faults_s1': ('apg/mkt/reference_m6.py', '\n\n_orig_feed_env = feed_env\n\n\ndef feed_env(feed_cls=InMemoryMarketFeed, provider_cls=StaticContextProvider):\n    if feed_cls is InMemoryMarketFeed:\n        raise RuntimeError("broken reference")\n    return _orig_feed_env(feed_cls, provider_cls)\n',
+                         'apg/mkt/faulty_m6.py', None),
+    'run_history_contract_s1': ('apg/reference_impl.py', BROKEN_STORE, None, ('(H.OutOfRangeReadsLatest, "RH-03")',
+                                                                              '(H.OutOfRangeReadsLatest, "RH-01")')),
+}
+
+
+class EveryFaultRunnerAtToolLevel(unittest.TestCase):
+    """Authorisation §4.5 for each of the five fault runners (deviation D9, closed by this class), each run as the real tool on a temporary
+    copy:
+      - its own reference control fails (the reference environment it runs is broken in the copy): CONTROL start CONTROL_FAIL, every plant
+        NOT_RUN cause=control_start_FAIL, no plant run, exit 3, and no M10 marker;
+      - its preflight: the first fault's must-fail list emptied in the copy (no_must_fail_cases), or, for run_history_contract_s1, whose
+        plants are defined in the successor file, a must-fail case that differs from the pin (must_fail_differs_from_pin): RUN_ERROR
+        PREFLIGHT_INVALID_TARGET, the plant NOT_RUN cause=preflight_failed, no CONTROL line, exit 2.
+    The checker accepts every output.  The fault runners run each plant in their own process and start no child, so the timeout and crash
+    cases of the mutation and sabotage tools do not arise for them."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_faults_')
+        self.pins, _ = E.load_pins()
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+
+def _add_fault_runner_cases():
+    for tool, (ref, broken, faults, differs) in FAULT_RUNNERS.items():
+        def t_control(self, tool=tool, ref=ref, broken=broken):
+            tree = tree_copy(os.path.join(self.tmp, tool + '_ctl'))
+            with open(os.path.join(tree, ref), 'a', encoding='utf-8') as fh:
+                fh.write(broken)
+            code, out, err = run_in(tree, tool + '.py')
+            want = self.pins['plant_lists'][tool]['ids']
+            self.assertEqual(code, 3, out[-2000:] + err[-1500:])
+            self.assertRegex(out, r'(?m)^CONTROL start CONTROL_FAIL cause=\S+ ')
+            self.assertEqual([l for l in out.splitlines() if l.startswith('PLANT ')], ['PLANT %s NOT_RUN cause=control_start_FAIL' % p for p in want])
+            self.assertNotRegex(out, r'(?m)^(CAUGHT|MISSED) ')
+            self.assertIn(' control_start=FAIL started=0 ', out.strip().splitlines()[-1])
+            self.assertNotIn('ALL FAULTS CAUGHT', out)
+            self.assertNotIn('EVERY FAULTY STORE IS CAUGHT', out)
+            self.assertEqual(E.check_output(out, code, selected=want), [])
+
+        def t_preflight(self, tool=tool, faults=faults, differs=differs):
+            tree = tree_copy(os.path.join(self.tmp, tool + '_pre'))
+            first = self.pins['plant_lists'][tool]['ids'][0]
+            if faults:
+                with open(os.path.join(tree, faults), 'a', encoding='utf-8') as fh:
+                    fh.write('\n_k = %r\nFAULTS[_k] = FAULTS[_k][:-1] + ([],)     # planted by tests_tools: an empty must-fail list\n' % first)
+                why = 'no_must_fail_cases'
+            else:
+                p = os.path.join(tree, 'tools', tool + '.py')
+                with open(p, encoding='utf-8') as fh:
+                    src = fh.read()
+                self.assertEqual(src.count(differs[0]), 1)
+                with open(p, 'w', encoding='utf-8') as fh:
+                    fh.write(src.replace(differs[0], differs[1]))
+                why = 'must_fail_differs_from_pin'
+            code, out, err = run_in(tree, tool + '.py', '--ids', first)
+            self.assertEqual(code, 2, out[-2000:] + err[-1500:])
+            self.assertIn('RUN_ERROR PREFLIGHT_INVALID_TARGET %s:%s' % (first, why), out)
+            self.assertIn('PLANT %s NOT_RUN cause=preflight_failed' % first, out)
+            self.assertNotRegex(out, r'(?m)^CONTROL ')
+            self.assertIn(' preflight=FAIL control_start=NOT_RUN started=0 ', out.strip().splitlines()[-1])
+            self.assertEqual(E.check_output(out, code, selected=[first]), [])
+        setattr(EveryFaultRunnerAtToolLevel, 'test_failed_reference_control_' + tool, t_control)
+        setattr(EveryFaultRunnerAtToolLevel, 'test_preflight_' + tool, t_preflight)
+
+
+_add_fault_runner_cases()
+
+
+class SelectionDetails(unittest.TestCase):
+    """Authorisation §4.3 (a partial selection; unknown and duplicate selection ids) and the literal selection details: the selection
+    helper itself (evkit._parse_selection) for a partial, an unknown and a duplicate selection; a duplicate id through a real mutation tool
+    and a real sabotage tool (refused, exit 2, nothing started); P1-F5's 'no_file_matches' detail for run_m2_tests_s1; and selected=0 on
+    the RESULT line of a selection that names nothing."""
+
+    def test_the_selection_helper(self):
+        u = ['A1', 'A2', 'B1', 'B2']
+        sel, errs, opts = E._parse_selection(['--ids', 'B1,A1'], u)
+        self.assertEqual((sel, errs), (['A1', 'B1'], []))           # a partial selection, in the universe's order
+        sel, errs, opts = E._parse_selection(['--only', 'B'], u)
+        self.assertEqual((sel, errs), (['B1', 'B2'], []))
+        sel, errs, opts = E._parse_selection(['--ids', 'A1,A1'], u)
+        self.assertEqual([e.line() for e in errs], ['RUN_ERROR SELECTION_INVALID duplicate ids'])
+        sel, errs, opts = E._parse_selection(['--ids', 'A1,Z9'], u)
+        self.assertEqual([e.line() for e in errs], ['RUN_ERROR SELECTION_INVALID unknown ids Z9'])
+        sel, errs, opts = E._parse_selection(['--only', 'Q'], u)
+        self.assertEqual([e.line() for e in errs], ['RUN_ERROR SELECTION_INVALID only Q selects nothing'])
+
+    def test_a_duplicate_id_through_a_real_tool(self):
+        mid = self_pins()['mutation_lists']['m5_mutants_s1']['ids'][0]
+        for script, item, tag in (('m5_mutants_s1.py', mid, 'MUTANT'), ('sabotage_m7_s1.py', 'S01', 'PLANT')):
+            with self.subTest(tool=script):
+                code, out, err = run_in(ROOT, script, '--ids', '%s,%s' % (item, item))
+                self.assertEqual(code, 2, out[-2000:])
+                self.assertIn('RUN_ERROR SELECTION_INVALID duplicate ids', out)
+                self.assertNotRegex(out, r'(?m)^CONTROL ')
+                self.assertEqual([l for l in out.splitlines() if l.startswith(tag + ' ')], ['%s %s NOT_RUN cause=run_error' % (tag, item)])
+                self.assertIn(' started=0 ', out.strip().splitlines()[-1])
+                self.assertEqual(E.check_output(out, code), [])
+
+    def test_no_file_matches_and_selected_zero(self):
+        code, out, err = run_in(ROOT, 'run_m2_tests_s1.py', '-q', 'nomatch_*.py')
+        self.assertEqual(code, 2)
+        self.assertRegex(out, r'(?m)^RUN_ERROR SELECTION_INVALID no_file_matches$')
+        self.assertIn(' files_selected=0 ', out.strip().splitlines()[-1])
+        code, out, err = run_in(ROOT, 'run_det_corpus_s1.py', '--only', 'NOPE')          # kind=cases: selected=0, no item line
+        self.assertEqual(code, 2)
+        self.assertIn(' selected=0 ', out.strip().splitlines()[-1])
+        self.assertNotRegex(out, r'(?m)^CASE ')
+        self.assertEqual(E.check_output(out, code), [])
+        # kind=mutation (decision (g), owner, 2026-11-02 14:24; this comment corrected in corrective pass 2, mistake 18): every pinned item NOT_RUN cause=run_error, started=0, exit 2
+        code, out, err = run_in(ROOT, 'm5_mutants_s1.py', '--only', 'QQ')
+        self.assertEqual(code, 2)
+        last = out.strip().splitlines()[-1]
+        self.assertIn(' started=0 ', last)
+        self.assertEqual({l.split(' ', 2)[2] for l in out.splitlines() if l.startswith('MUTANT ')}, {'NOT_RUN cause=run_error'})
+        self.assertEqual(E.check_output(out, code), [])
+
+
+def self_pins():
+    return E.load_pins()[0]
+
+
+class TheOtherCaseRunners(unittest.TestCase):
+    """Authorisation §4.4 for the kind=cases tools that CasesRunners does not run: run_guard_contract_s1, run_m6_contracts_s1 and
+    run_m91_contracts_s1, each run in full against its pinned inventory, and run_history_contract_s1 in its candidate mode
+    (--path, --factory) against the reference store; the checker accepts each output with the pinned case list as the selection."""
+
+    def test_each_runs_its_whole_pinned_inventory(self):
+        doc = self_pins()
+        for tool in ('run_guard_contract_s1', 'run_m6_contracts_s1', 'run_m91_contracts_s1'):
+            with self.subTest(tool=tool):
+                code, out, err = run_in(ROOT, tool + '.py')
+                self.assertEqual(code, 0, out[-2000:] + err[-1500:])
+                inv = doc['case_inventories'][tool]
+                want = ['%s/%s' % (s, c) for s in sorted(inv) for c in inv[s]['ids']]
+                self.assertEqual([l.split(' ')[1] for l in out.splitlines() if l.startswith('CASE ')], want)
+                self.assertTrue(out.strip().splitlines()[-1].startswith('RESULT v=3 kind=cases tool=%s ' % tool))
+                self.assertEqual(E.check_output(out, code, pins=inv, selected=want), [])
+
+    def test_the_history_contract_candidate_mode_is_reconciled(self):
+        d = tempfile.mkdtemp(prefix='s1_hist_')
+        try:
+            os.makedirs(os.path.join(d, 'store_adapter'))
+            with open(os.path.join(d, 'store_adapter', '__init__.py'), 'w') as f:
+                f.write('from apg.contracts.framework import ContractEnv\nfrom apg.reference_impl import FakeClock, StaticContextProvider, '
+                        'InMemoryRecordStore, InMemoryAuditLog\n\ndef F():\n    c = FakeClock(); p = StaticContextProvider(c)\n'
+                        '    return ContractEnv(p, InMemoryRecordStore(p), InMemoryAuditLog(p, c), c.advance)\n')
+            code, out, err = run_in(ROOT, 'run_history_contract_s1.py', '--path', d, '--factory', 'store_adapter:F')
+            self.assertEqual(code, 0, out[-2000:] + err[-1500:])
+            got = [l.split(' ')[1] for l in out.splitlines() if l.startswith('CASE ')]
+            self.assertEqual(len(got), 6)
+            self.assertEqual(E.check_output(out, code, selected=got), [])
+            self.assertIn('ALL HISTORY CASES PASS', out)
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
+
+
 class RefusalsEndWithAResultLine(unittest.TestCase):
     """§2.7 and P7-B3 (R4): a run that a successor refuses before any work still ends with its RUN_ERROR line and one RESULT v=2 line
     (every item NOT_RUN cause=run_error, exit 2) that the checker accepts: --batch in the nine mutation tools that refuse it (M10's
@@ -811,9 +1125,841 @@ class RefusalsEndWithAResultLine(unittest.TestCase):
                 self.assertEqual(code, 2, out[-1500:] + err[-1500:])
                 self.assertRegex(out, r'(?m)^RUN_ERROR SELECTION_INVALID %s' % re.escape(text))
                 last = out.strip().splitlines()[-1]
-                self.assertTrue(last.startswith('RESULT v=2 ') and ' started=0 ' in last and last.endswith(' status=EVIDENCE_ERROR exit=2'), last)
+                self.assertTrue(last.startswith(('RESULT v=2 ', 'RESULT v=3 ')) and ' started=0 ' in last and last.endswith(' status=EVIDENCE_ERROR exit=2'), last)
                 self.assertNotRegex(out, r'(?m)^(MUTANT|PLANT) \S+ (?!NOT_RUN)')
                 self.assertEqual(E.check_output(out, code), [])
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Corrective pass 2 (paper 23d2adb9...f0ea5, amendments 1 and 2), at tool level, in temporary copies: B.5 (the fault runners' forked plants
+# and controls), K.2 (the corpus runners' forked cases), AM2-1 (the batch case runners' one harness unit), A.4 (the v=3 cases contract on
+# the real runners), C.2 and C.3 (the guarded imports and their wrapper consumers), F.2 on the other families, and AM2-2 (the 6
+# supervisors with no RESULT line and their consumers).  P's time constants and the two item limits are shortened in each copy.
+# ---------------------------------------------------------------------------------------------------------------------------------------
+import re as _p2re
+import signal as _p2sig
+import subprocess as _p2sp
+import time as _p2t
+
+P2_FAST = [('T_GRACE = 10 ', 'T_GRACE = 1 '), ('T_GRACE_CANCELLED = 2 ', 'T_GRACE_CANCELLED = 1 '), ('T_ESCALATE = 10 ', 'T_ESCALATE = 2 '),
+           ('T_KILL_VERIFY = 5 ', 'T_KILL_VERIFY = 2 '), ('T_EXIT_AFTER_RESULT = 2 ', 'T_EXIT_AFTER_RESULT = 1 '),
+           ('FAULT_ITEM_TIMEOUT_S = 300 ', 'FAULT_ITEM_TIMEOUT_S = 3 '), ('CASE_ITEM_TIMEOUT_S = 300 ', 'CASE_ITEM_TIMEOUT_S = 3 ')]
+
+
+def p2b_copy(dest, edits=()):
+    """A copy of this tree with P's constants shortened; edits: [(relpath, old, new)], each old present exactly once."""
+    shutil.rmtree(dest, ignore_errors=True)
+    shutil.copytree(ROOT, dest, ignore=shutil.ignore_patterns('.git', 'logs', '__pycache__'))
+    for rel, old, new in [('tools/evkit.py', o, n) for o, n in P2_FAST] + list(edits):
+        p = os.path.join(dest, rel)
+        with open(p, encoding='utf-8') as fh:
+            src = fh.read()
+        assert src.count(old) == 1, (rel, old)
+        with open(p, 'w', encoding='utf-8') as fh:
+            fh.write(src.replace(old, new))
+    return dest
+
+
+def p2b_descendants(pid):
+    tab = E.proc_table()
+    kids = {}
+    for p, (st, pp, s) in tab.items():
+        kids.setdefault(pp, []).append(p)
+    out, todo = [], [pid]
+    while todo:
+        x = todo.pop()
+        for c in kids.get(x, ()):
+            if tab[c][0] != 'Z':
+                out.append((c, tab[c][2]))
+            todo.append(c)
+    return out
+
+
+def p2b_run(tree, args, when=None, sig=_p2sig.SIGINT, delay=0.0, timeout=600):
+    """Run python3 -I -S <args> in the tree; optionally send sig once when(tree, descendants) holds.  Returns (code, output, seen)."""
+    tmp = tempfile.mkdtemp(prefix='s1_p2b_')
+    env = {'PATH': '/usr/local/bin:/usr/bin:/bin', 'LANG': 'C.UTF-8', 'LC_ALL': 'C.UTF-8', 'TZ': 'UTC', 'TMPDIR': tmp,
+           'PYTHONDONTWRITEBYTECODE': '1'}
+    p = _p2sp.Popen([sys.executable, '-I', '-S'] + list(args), cwd=tree, env=env, stdin=_p2sp.DEVNULL, stdout=_p2sp.PIPE,
+                    stderr=_p2sp.STDOUT, text=True, start_new_session=True)
+    seen, sent = set(), False
+    t_end = _p2t.monotonic() + timeout
+    try:
+        while p.poll() is None and _p2t.monotonic() < t_end:
+            d = p2b_descendants(p.pid)
+            seen |= set(d)
+            if when is not None and not sent and when(tree, d):
+                _p2t.sleep(delay)
+                seen |= set(p2b_descendants(p.pid))
+                p.send_signal(sig)
+                sent = True
+            _p2t.sleep(0.05)
+        out, _ = p.communicate(timeout=max(1, t_end - _p2t.monotonic()))
+    finally:
+        if p.poll() is None:
+            os.killpg(p.pid, 9)
+            p.wait()
+        shutil.rmtree(tmp, ignore_errors=True)
+    return p.returncode, out, seen
+
+
+def p2b_gone(test, seen):
+    for i in seen:
+        st = E.proc_stat(i[0])
+        test.assertFalse(st is not None and st[2] == i[1], 'a descendant is still present: %r %r' % (i, st))
+
+
+def p2b_mark(name):
+    return lambda tree, d: os.path.exists(os.path.join(tree, '_p2', name))
+
+
+# a behaviour planted into a forked unit's callable: MODE read from the copy's _p2/mode file; the child's own pipe write end is the
+# highest descriptor above 2 (P.2: it keeps only 0, 1, 2 and that one)
+P2_PLANT = r'''
+def _p2_behaviour(where, normal):
+    import os as _o, sys as _s, json as _j, subprocess as _sp, time as _tm
+    d = _o.path.join(%(root)r, '_p2')
+    mode = open(_o.path.join(d, 'mode')).read().strip() if _o.path.exists(_o.path.join(d, 'mode')) else ''
+    if not mode.startswith(where + ':'):
+        return normal()
+    mode = mode.split(':', 1)[1]
+    open(_o.path.join(d, 'started'), 'w').close()
+    def w():
+        return max(int(x) for x in _o.listdir('/proc/self/fd') if int(x) > 2 and _o.path.exists('/proc/self/fd/' + x))
+    def frame(obj, extra=b''):
+        data = _j.dumps(obj).encode()
+        _o.write(w(), len(data).to_bytes(4, 'big') + data + extra)
+    if mode == 'hang':
+        _tm.sleep(60)
+    if mode == 'spawn_hang':
+        _sp.Popen([_s.executable, '-c', 'import time; time.sleep(60)']); _tm.sleep(60)
+    if mode in ('leak', 'child_error_leak', 'malformed_leak'):
+        _sp.Popen([_s.executable, '-c', 'import time; time.sleep(30)'])
+        if mode == 'child_error_leak':
+            frame({'child_error': 'X'}); _o._exit(0)
+        if mode == 'malformed_leak':
+            _o.write(w(), b'\x00\x00\x00\x02{]'); _o._exit(0)
+        return normal()
+    if mode == 'valid_then_hang':
+        frame(normal_message(normal)); _o.close(w()); _tm.sleep(60)
+    if mode == 'crash':
+        _o._exit(1)
+    if mode == 'status70':
+        _o._exit(70)
+    if mode == 'incomplete':
+        _o.write(w(), b'\x00\x00\x01\x00{"fa'); _o._exit(0)
+    if mode == 'malformed':
+        _o.write(w(), b'\x00\x00\x00\x02{]'); _o._exit(0)
+    if mode == 'trailing':
+        frame(normal_message(normal), b'x'); _o._exit(0)
+    if mode == 'kill_writing':
+        _o.write(w(), b'\x00\x00\x01\x00{"'); _o.kill(_o.getpid(), 9)
+    if mode == 'child_error':
+        frame({'child_error': 'X'}); _o._exit(0)
+    if mode == 'raise':
+        raise RuntimeError('planted')
+    if mode == 'too_big':
+        frame({'results': 'x' * (1024 * 1024)}); _o._exit(0)
+    return normal()
+'''
+
+
+class P2FaultRunners(unittest.TestCase):
+    """B.5 on run_faults_s1 (every case) and the hang on each of the other four runners; P.10's valid_result_then_hangs for a plant."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_p2f_')
+        doc, _ = E.load_pins()
+        self.pid0 = doc['plant_lists']['run_faults_s1']['ids'][0]
+        self.case0 = doc['case_inventories']['run_contracts_s1']['record_store']['ids'][0]
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def tree(self, mode):
+        root = os.path.join(self.tmp, mode.replace(':', '_'))
+        plant = P2_PLANT % {'root': root}
+        edits = [('tools/run_faults_s1.py', 'def failed(factory):\n    return {r[1] for r in R.run(factory) if not r[3]}\n',
+                  plant + '\n\ndef normal_message(normal):\n    return {"failed": sorted(normal())}\n\n\n'
+                  'def failed(factory):\n    where = "control" if factory is reference else "plant"\n'
+                  '    if where == "control":\n        import os\n        cf = os.path.join(%r, "_p2", "controls")\n'
+                  '        open(cf, "a").write("x")\n        where = "control_start" if len(open(cf).read()) == 1 else "control_end"\n'
+                  '    return _p2_behaviour(where, lambda: {r[1] for r in R.run(factory) if not r[3]})\n' % root)]
+        p2b_copy(root, edits)
+        os.makedirs(os.path.join(root, '_p2'))
+        with open(os.path.join(root, '_p2', 'mode'), 'w') as fh:
+            fh.write(mode)
+        return root
+
+    def run_f(self, mode, when=None, sig=_p2sig.SIGINT):
+        root = self.tree(mode)
+        code, out, seen = p2b_run(root, ['tools/run_faults_s1.py', '--ids', self.pid0], when=when, sig=sig)
+        self.assertEqual(E.check_output(out, code, selected=[self.pid0]), [], out[-3000:])
+        p2b_gone(self, seen)
+        return code, out
+
+    def plant_is(self, out, state, cause):
+        self.assertRegex(out, r'(?m)^PLANT %s %s cause=%s$' % (_p2re.escape(self.pid0), state, cause))
+
+    def test_plants(self):
+        for mode, state, cause, code in (('plant:hang', 'INDETERMINATE', 'timeout', 3),
+                                         ('plant:spawn_hang', 'INDETERMINATE', 'timeout', 3),
+                                         ('plant:leak', 'INDETERMINATE', 'processes_left', 3),
+                                         ('plant:valid_then_hang', 'INDETERMINATE', 'processes_left', 3),
+                                         ('plant:crash', 'INDETERMINATE', 'crash', 3),
+                                         ('plant:incomplete', 'INDETERMINATE', 'crash', 3),
+                                         ('plant:malformed', 'INDETERMINATE', 'bad_result', 3),
+                                         ('plant:trailing', 'INDETERMINATE', 'bad_result', 3),
+                                         ('plant:kill_writing', 'INDETERMINATE', 'crash', 3),
+                                         ('plant:child_error', 'ITEM_ERROR', 'child_error', 2),
+                                         ('plant:status70', 'ITEM_ERROR', 'child_error', 2),
+                                         ('plant:raise', 'ITEM_ERROR', 'exception_RuntimeError', 2)):
+            with self.subTest(mode=mode):
+                c, out = self.run_f(mode)
+                self.assertEqual(c, code, out[-2000:])
+                self.plant_is(out, state, cause)
+                if cause == 'timeout':
+                    self.assertRegex(out, r'(?m)^TIMEOUT %s cmd=reference limit=3s control_start=\d+\.\d{3}s control_end=\d+\.\d{3}s$'
+                                     % _p2re.escape(self.pid0))
+                if cause == 'processes_left':
+                    self.assertRegex(out, r'(?m)^CLEANUP %s by=run_faults_s1:\d+ ' % _p2re.escape(self.pid0))
+
+    def test_controls(self):
+        for where in ('control_start', 'control_end'):
+            ph = where.split('_')[1]
+            for mode, value, cause in (('hang', 'TIMEOUT', 'timeout'), ('crash', 'FAIL', 'crash'), ('malformed', 'FAIL', 'bad_result'),
+                                       ('leak', 'FAIL', 'processes_left'), ('raise', 'FAIL', 'exception_RuntimeError')):
+                with self.subTest(where=where, mode=mode):
+                    c, out = self.run_f('%s:%s' % (where, mode))
+                    self.assertRegex(out, r'(?m)^CONTROL %s CONTROL_%s cause=%s ' % (ph, value, cause))
+                    self.assertIn(' %s=%s ' % (where, value), out.strip().splitlines()[-1])
+                    self.assertEqual(c, 3, out[-2000:])
+            # an interrupt before the outcome
+            with self.subTest(where=where, mode='interrupt'):
+                c, out = self.run_f('%s:hang' % where, when=p2b_mark('started'))
+                self.assertEqual(c, 3, out[-2000:])
+                if ph == 'start':
+                    self.assertRegex(out, r'(?m)^CONTROL start CONTROL_INTERRUPTED cause=interrupted$')
+                    self.assertIn(' control_start=FAIL ', out.strip().splitlines()[-1])
+                else:
+                    self.assertRegex(out, r'(?m)^CONTROL end CONTROL_NOT_RUN cause=interrupted$')
+                    self.assertIn(' control_end=NOT_RUN ', out.strip().splitlines()[-1])
+                self.assertEqual(out.strip().splitlines()[-2], 'INTERRUPTED signal=SIGINT at=%s received=1' % where)
+
+    def test_f2_sigterm_while_a_plant_runs(self):
+        c, out = self.run_f('plant:hang', when=p2b_mark('started'), sig=_p2sig.SIGTERM)
+        self.assertEqual(c, 3, out[-2000:])
+        self.plant_is(out, 'INDETERMINATE', 'interrupted')
+        self.assertEqual(out.strip().splitlines()[-2], 'INTERRUPTED signal=SIGTERM at=%s received=1' % self.pid0)
+
+    def test_the_hang_on_each_of_the_other_four_runners(self):
+        doc, _ = E.load_pins()
+        for tool, old in (('run_m3_faults_s1', 'def failed_for(kind, factory):\n'), ('run_m5_faults_s1', 'def failed(factory):\n'),
+                          ('run_m6_faults_s1', 'def failed_for(suite, factory):\n'), ('run_history_contract_s1', 'def failed(cls):\n')):
+            with self.subTest(tool=tool):
+                root = os.path.join(self.tmp, tool)
+                p2b_copy(root, [('tools/%s.py' % tool, old, 'def _p2_hang():\n    import time\n    time.sleep(60)\n\n\n' + old +
+                                 '    _p2_hang()\n')])
+                first = doc['plant_lists'][tool]['ids'][0]
+                code, out, seen = p2b_run(root, ['tools/%s.py' % tool, '--ids', first])
+                # the reference control calls the same function in some runners: the start control then times out instead
+                self.assertEqual(code, 3, out[-2000:])
+                self.assertTrue(_p2re.search(r'(?m)^PLANT %s INDETERMINATE cause=timeout$' % _p2re.escape(first), out) or
+                                _p2re.search(r'(?m)^CONTROL start CONTROL_TIMEOUT cause=timeout ', out), out[-2000:])
+                self.assertEqual(E.check_output(out, code, selected=[first]), [], out[-3000:])
+                p2b_gone(self, seen)
+
+
+class P2CaseRunners(unittest.TestCase):
+    """AM2-1 on run_contracts_s1 (every case) and the hang on the other six batch runners; K.2 on run_fin_corpus_s1 and the hang on the
+    other three corpus runners; A.4 on the real runners."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_p2c_')
+        self.doc, _ = E.load_pins()
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def batch_tree(self, mode):
+        root = os.path.join(self.tmp, 'b_' + mode.replace(':', '_'))
+        plant = P2_PLANT % {'root': root}
+        old = ('def batch(cand):\n    return [[s, cid, bool(ok), str(d)] for s, cid, text, ok, d in R.run(cand.get("--factory") or reference)]\n')
+        new = (plant + '\n\ndef normal_message(normal):\n    return {"results": normal()}\n\n\n' + old.replace('def batch(', 'def _batch(') +
+               '\n\ndef batch(cand):\n    rows = _batch(cand)\n    m = open(%r).read().strip()\n'
+               '    if m == "batch:false_row":\n        rows[0][2] = False\n'
+               '    if m == "batch:wrong_type":\n        rows[0][2] = "yes"\n'
+               '    if m == "batch:duplicate":\n        rows.append(list(rows[0]))\n'
+               '    if m == "batch:drop_pinned":\n        rows = [r for r in rows if r[1] != "AL-02"]\n'
+               '    return _p2_behaviour("batch", lambda: rows)\n' % os.path.join(root, '_p2', 'mode'))
+        p2b_copy(root, [('tools/run_contracts_s1.py', old, new)])
+        os.makedirs(os.path.join(root, '_p2'))
+        with open(os.path.join(root, '_p2', 'mode'), 'w') as fh:
+            fh.write(mode)
+        return root
+
+    def run_b(self, mode, args=(), when=None):
+        root = self.batch_tree(mode)
+        code, out, seen = p2b_run(root, ['tools/run_contracts_s1.py'] + list(args), when=when)
+        self.assertEqual(E.check_output(out, code, pins=self.doc['case_inventories']['run_contracts_s1']), [], out[-3000:])
+        p2b_gone(self, seen)
+        return code, out
+
+    def all_cases(self, out, state, cause, n=38):
+        got = _p2re.findall(r'(?m)^CASE \S+ %s cause=%s$' % (state, cause), out)
+        self.assertEqual(len(got), n, out[-2000:])
+
+    def test_am2_1_the_batch_unit(self):
+        for mode, state, cause, code in (('batch:hang', 'INDETERMINATE', 'timeout', 3),
+                                         ('batch:spawn_hang', 'INDETERMINATE', 'timeout', 3),
+                                         ('batch:leak', 'INDETERMINATE', 'processes_left', 3),
+                                         ('batch:valid_then_hang', 'INDETERMINATE', 'processes_left', 3),
+                                         ('batch:crash', 'INDETERMINATE', 'crash', 3),
+                                         ('batch:incomplete', 'INDETERMINATE', 'crash', 3),
+                                         ('batch:kill_writing', 'INDETERMINATE', 'crash', 3),
+                                         ('batch:malformed', 'INDETERMINATE', 'bad_result', 3),
+                                         ('batch:trailing', 'INDETERMINATE', 'bad_result', 3),
+                                         ('batch:wrong_type', 'INDETERMINATE', 'bad_result', 3),
+                                         ('batch:duplicate', 'INDETERMINATE', 'bad_result', 3),
+                                         ('batch:too_big', 'INDETERMINATE', 'bad_result', 3),
+                                         ('batch:child_error', 'ITEM_ERROR', 'child_error', 2),
+                                         ('batch:status70', 'ITEM_ERROR', 'child_error', 2),
+                                         ('batch:child_error_leak', 'ITEM_ERROR', 'child_error', 2),
+                                         ('batch:malformed_leak', 'INDETERMINATE', 'bad_result', 3)):
+            with self.subTest(mode=mode):
+                c, out = self.run_b(mode)
+                self.assertEqual(c, code, out[-2000:])
+                self.all_cases(out, state, cause)
+                if mode.endswith('_leak'):
+                    self.assertRegex(out, r'(?m)^CLEANUP run_contracts_s1:batch by=run_contracts_s1:\d+ ')
+                if cause == 'timeout':
+                    self.assertRegex(out, r'(?m)^TIMEOUT run_contracts_s1:batch cmd=batch limit=3s ')
+        c, out = self.run_b('batch:false_row')
+        self.assertEqual(c, 1)
+        self.assertEqual(len(_p2re.findall(r'(?m)^CASE \S+ FAIL cause=expected_outcome_differs$', out)), 1)
+        c, out = self.run_b('batch:raise')
+        self.assertEqual(c, 2)
+        self.assertRegex(out, r'(?m)^RUN_ERROR CASES_ENUMERATION_FAILED RuntimeError$')
+        self.assertIn(' suites_selected=3 suites=audit_log,record_store,tenant_context ', out.strip().splitlines()[-1])
+        self.all_cases(out, 'NOT_RUN', 'run_error')
+        c, out = self.run_b('batch:hang', when=p2b_mark('started'))
+        self.assertEqual(c, 3)
+        self.all_cases(out, 'INDETERMINATE', 'interrupted')
+        self.assertTrue(out.strip().splitlines()[-2].startswith('INTERRUPTED signal=SIGINT at=audit_log/'))
+        # --only one case: the full inventory is compared all the same (a pinned case missing from the harness's rows is refused)
+        c, out = self.run_b('batch:drop_pinned', args=['--suite', 'record_store', '--only', 'RS-01'])
+        self.assertEqual(c, 2)
+        self.assertRegex(out, r'(?m)^RUN_ERROR CASE_INVENTORY_MISMATCH audit_log ')
+        # the largest real message, unchanged
+        c, out = self.run_b('none:x')
+        self.assertEqual(c, 0, out[-2000:])
+        self.all_cases(out, 'PASS', 'ok')
+        self.assertIn('CLEANUP_SUMMARY units=1 leaked=0 remaining=0', out)
+
+    def test_the_hang_on_the_other_six_batch_runners(self):
+        for tool, old in (('run_guard_contract_s1', 'def batch(cand):\n'), ('run_m3_contracts_s1', 'def batch(cand):\n'),
+                          ('run_m5_contracts_s1', 'def batch(cand):\n'), ('run_m6_contracts_s1', 'def batch(cand):\n'),
+                          ('run_m91_contracts_s1', 'def batch(cand):\n')):
+            with self.subTest(tool=tool):
+                root = os.path.join(self.tmp, tool)
+                p2b_copy(root, [('tools/%s.py' % tool, old, old + '    import time\n    time.sleep(60)\n')])
+                code, out, seen = p2b_run(root, ['tools/%s.py' % tool])
+                self.assertEqual(code, 3, out[-2000:])
+                n = sum(len(v['ids']) for v in self.doc['case_inventories'][tool].values())
+                self.all_cases(out, 'INDETERMINATE', 'timeout', n)
+                self.assertEqual(E.check_output(out, code, pins=self.doc['case_inventories'][tool]), [], out[-3000:])
+                p2b_gone(self, seen)
+        # run_history_contract_s1's case mode: the hang in its batch
+        root = os.path.join(self.tmp, 'hist')
+        p2b_copy(root, [('tools/run_history_contract_s1.py', 'def batch(cand):\n', 'def batch(cand):\n    import time\n    time.sleep(60)\n')])
+        os.makedirs(os.path.join(root, '_cand', 'p2cand'))
+        with open(os.path.join(root, '_cand', 'p2cand', '__init__.py'), 'w') as fh:
+            fh.write('from apg.reference_impl import InMemoryRecordStore as Store\n')
+        code, out, seen = p2b_run(root, ['tools/run_history_contract_s1.py', '--path', '_cand', '--factory', 'p2cand:Store'])
+        self.assertEqual(code, 3, out[-2000:])
+        self.all_cases(out, 'INDETERMINATE', 'timeout', 6)
+
+    def corpus_tree(self, tool, edit):
+        root = os.path.join(self.tmp, 'k_%s_%d' % (tool, len(os.listdir(self.tmp))))
+        p2b_copy(root, [('tools/%s.py' % tool,) + edit])
+        return root
+
+    def test_k2_per_case_on_run_fin_corpus_s1(self):
+        doc = self.doc['case_inventories']['run_fin_corpus_s1']['fin_corpus']['ids']
+        c0 = doc[0]
+        old = "def run_case(cand, suite, cid):\n"
+        for body, state, cause, code in (('    import time\n    time.sleep(60) if cid == %r else None\n', 'INDETERMINATE', 'timeout', 3),
+                                         ('    import os\n    os._exit(1) if cid == %r else None\n', 'INDETERMINATE', 'crash', 3),
+                                         ('    import os\n    os._exit(70) if cid == %r else None\n', 'ITEM_ERROR', 'child_error', 2),
+                                         ('    if cid == %r:\n        raise KeyError("planted")\n', 'FAIL', 'exception_KeyError', 1),
+                                         ('    import subprocess, sys\n    subprocess.Popen([sys.executable, "-c", "import time; time.sleep(30)"]) '
+                                          'if cid == %r else None\n', 'INDETERMINATE', 'processes_left', 3)):
+            with self.subTest(cause=cause):
+                root = self.corpus_tree('run_fin_corpus_s1', (old, old + body % c0))
+                code_, out, seen = p2b_run(root, ['tools/run_fin_corpus_s1.py'])
+                self.assertEqual(code_, code, out[-2000:])
+                self.assertRegex(out, r'(?m)^CASE fin_corpus/%s %s cause=%s$' % (_p2re.escape(c0), state, cause))
+                self.assertEqual(len(_p2re.findall(r'(?m)^CASE fin_corpus/\S+ PASS cause=ok$', out)), len(doc) - 1)
+                self.assertEqual(E.check_output(out, code_, pins=self.doc['case_inventories']['run_fin_corpus_s1']), [], out[-3000:])
+                p2b_gone(self, seen)
+                shutil.rmtree(root, ignore_errors=True)
+        # an interrupt during a case: that case interrupted, the rest NOT_RUN run_stopped
+        root = self.corpus_tree('run_fin_corpus_s1', (old, old + '    import time\n    if cid == %r:\n        open(%r, "w").close()\n'
+                                                      '        time.sleep(60)\n' % (doc[1], '/tmp/.p2_fin_started_%d' % os.getpid())))
+        flag = '/tmp/.p2_fin_started_%d' % os.getpid()
+        code_, out, seen = p2b_run(root, ['tools/run_fin_corpus_s1.py'], when=lambda t, d: os.path.exists(flag))
+        os.path.exists(flag) and os.remove(flag)
+        self.assertEqual(code_, 3, out[-2000:])
+        self.assertRegex(out, r'(?m)^CASE fin_corpus/%s INDETERMINATE cause=interrupted$' % _p2re.escape(doc[1]))
+        self.assertRegex(out, r'(?m)^CASE fin_corpus/%s NOT_RUN cause=run_stopped$' % _p2re.escape(doc[2]))
+        self.assertEqual(out.strip().splitlines()[-2], 'INTERRUPTED signal=SIGINT at=fin_corpus/%s received=1' % doc[1])
+        p2b_gone(self, seen)
+
+    def test_k2_the_hang_on_the_other_three_corpus_runners(self):
+        for tool, old in (('run_det_corpus_s1', 'def run_case(cand, suite, cid):\n'), ('run_ingest_corpus_s1', 'def run_case(cand, suite, cid):\n')):
+            with self.subTest(tool=tool):
+                inv = self.doc['case_inventories'][tool]
+                s, ids = next(iter(inv.items()))
+                ids = ids['ids']
+                root = self.corpus_tree(tool, (old, old + '    import time\n    time.sleep(60) if cid == %r else None\n' % ids[0]))
+                code, out, seen = p2b_run(root, ['tools/%s.py' % tool, '--only', ','.join(ids[:2])])
+                self.assertEqual(code, 3, out[-2000:])
+                self.assertRegex(out, r'(?m)^CASE %s/%s INDETERMINATE cause=timeout$' % (s, _p2re.escape(ids[0])))
+                self.assertEqual(E.check_output(out, code, pins=inv), [], out[-3000:])
+                p2b_gone(self, seen)
+        inv = self.doc['case_inventories']['run_mkt_corpus_s1']
+        s, ids = next(iter(inv.items()))
+        ids = ids['ids']
+        root = self.corpus_tree('run_mkt_corpus_s1', ("'run_case': lambda cand, s, c: K.check_case(CASES[c])}",
+                                                      "'run_case': lambda cand, s, c: __import__('time').sleep(60) if c == %r else "
+                                                      "K.check_case(CASES[c])}" % ids[0]))
+        code, out, seen = p2b_run(root, ['tools/run_mkt_corpus_s1.py', '--only', ','.join(ids[:2])])
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertRegex(out, r'(?m)^CASE %s/%s INDETERMINATE cause=timeout$' % (s, _p2re.escape(ids[0])))
+        p2b_gone(self, seen)
+
+    def test_a4_the_v3_contract_on_the_real_runners(self):
+        pins = self.doc['case_inventories']['run_contracts_s1']
+
+        def run(*args):
+            p = _p2sp.run([sys.executable, '-I', '-S', 'tools/run_contracts_s1.py'] + list(args), cwd=ROOT, capture_output=True,
+                          text=True, timeout=600, stdin=_p2sp.DEVNULL)
+            return p.returncode, p.stdout
+
+        def last(out):
+            return E.parse_result_line(out.strip().splitlines()[-1])[1]
+        code, out = run()
+        f = last(out)
+        self.assertEqual((code, f['suites'], f['suites_selected'], f['selected']), (0, 'audit_log,record_store,tenant_context', 3, 38))
+        self.assertEqual(E.check_output(out, code, pins=pins), [])
+        code, out = run('--suite', 'record_store')
+        self.assertEqual((code, last(out)['suites']), (0, 'record_store'))
+        self.assertEqual(E.check_output(out, code, pins=pins), [])
+        code, out = run('--suite', 'record_store', '--only', 'RS-01')     # more pinned cases than printed
+        self.assertEqual(len([l for l in out.splitlines() if l.startswith('CASE ')]), 1)
+        self.assertEqual(E.check_output(out, code, pins=pins), [])
+        code, out = run('--suite', 'record_store', '--suite', 'audit_log', '--only', 'AL-01')
+        f = last(out)
+        self.assertEqual((f['suites'], f['suites_selected'], f['selected']), ('audit_log,record_store', 2, 1))
+        self.assertEqual(f['case_inventory_sha256'], E.sha256_lines(['%s/%s' % (s, c) for s in ('audit_log', 'record_store')
+                                                                     for c in pins[s]['ids']]))
+        self.assertEqual(E.check_output(out, code, pins=pins), [])
+        for args in (('--suite', 'nope'), ('--only', 'NOPE-99'), ('--suite', 'record_store', '--suite', 'nope'), ('--bogus',)):
+            with self.subTest(args=args):
+                code, out = run(*args)
+                f = last(out)
+                self.assertEqual((code, f['suites'], f['suites_selected'], f['selected']), (2, '-', 0, 0))
+                self.assertEqual(f['case_inventory_sha256'], E.EMPTY_SHA256)
+                self.assertNotRegex(out, r'(?m)^CASE ')
+                self.assertEqual(E.check_output(out, code, pins=pins), [])
+        # step 1 (an early environment refusal: run with site) and step 2 (an unreadable pins file, in a copy): no resolved selection
+        p = _p2sp.run([sys.executable, '-I', 'tools/run_contracts_s1.py'], cwd=ROOT, capture_output=True, text=True, timeout=600)
+        f = last(p.stdout)
+        self.assertEqual((p.returncode, f['suites'], f['selected']), (2, '-', 0))
+        root = os.path.join(self.tmp, 'nopins')
+        p2b_copy(root)
+        with open(os.path.join(root, 'tools', 'expected_counts.json'), 'w') as fh:
+            fh.write('{not json')
+        code, out, seen = p2b_run(root, ['tools/run_contracts_s1.py'])
+        f = last(out)
+        self.assertEqual((code, f['suites'], f['selected']), (2, '-', 0))
+        # a refusal after the selection keeps it: an import failure (C.2)
+        root = os.path.join(self.tmp, 'imp')
+        p2b_copy(root)
+        rp = os.path.join(root, 'apg', 'contracts', 'run.py')
+        with open(rp, encoding='utf-8') as fh:
+            src = fh.read()
+        with open(rp, 'w', encoding='utf-8') as fh:
+            fh.write('raise ImportError("planted")\n' + src)
+        code, out, seen = p2b_run(root, ['tools/run_contracts_s1.py', '--suite', 'audit_log'])
+        f = last(out)
+        self.assertEqual((code, f['suites'], f['suites_selected']), (2, 'audit_log', 1))
+        self.assertRegex(out, r'(?m)^RUN_ERROR IMPORT_FAILED apg.contracts.run ImportError planted$')
+        self.assertEqual(E.check_output(out, code, pins=pins), [])
+
+
+class P2NoResultSupervisors(unittest.TestCase):
+    """Amendment 2, AM2-2: the 5 regression successors and run_cr02_reference_s1, interrupted (the record the last line, exit 3), R03's,
+    R06's and R04's blocked in-process waits stopped by the watcher, a signal after the last step, and the consumers of an interrupted
+    no-kind child (a wrapper's class N CHECK, sabotage_m8_s1, a redirected regression successor)."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_p2n_')
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def copy(self, name, edits=(), prepend=()):
+        root = p2b_copy(os.path.join(self.tmp, name), edits)
+        for rel, text in prepend:
+            p = os.path.join(root, rel)
+            with open(p, encoding='utf-8') as fh:
+                src = fh.read()
+            with open(p, 'w', encoding='utf-8') as fh:
+                fh.write(text + src)
+        return root
+
+    def cmd_running(self, needle):
+        def f(tree, d):
+            for pid, _ in d:
+                try:
+                    if needle in open('/proc/%d/cmdline' % pid, 'rb').read().decode('utf-8', 'replace'):
+                        return True
+                except OSError:
+                    pass
+            return False
+        return f
+
+    def interrupted(self, out, code, step_text=None):
+        lines = [l for l in out.splitlines() if l.strip()]
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertRegex(lines[-1], r'^INTERRUPTED signal=(SIGINT|SIGTERM) at=\S+ received=[1-9][0-9]*$')
+        self.assertTrue(E.is_interrupted_child(code, out))
+        self.assertTrue(any(l.startswith('CLEANUP_SUMMARY ') for l in lines[:-2]))
+        if step_text:
+            self.assertRegex(out, step_text)
+
+    def test_a_child_step_interrupted_by_sigint(self):
+        root = self.copy('r07', prepend=[('tools/make_m8_config.py', 'import time\ntime.sleep(60)\n')])
+        code, out, seen = p2b_run(root, ['tools/run_regression_m8_s1.py', '--step', 'R07'], when=self.cmd_running('make_m8_config.py'))
+        self.interrupted(out, code, r'(?m)^FAIL R07 .*\(INCOMPLETE: interrupted\)')
+        p2b_gone(self, seen)
+
+    def test_r03_blocked_in_process_is_stopped_by_the_watcher(self):
+        root = self.copy('r03', prepend=[('tools/make_m8_registers.py', 'import time\ntime.sleep(60)\n')])
+        t0 = _p2t.monotonic()
+        code, out, seen = p2b_run(root, ['tools/run_regression_m8_s1.py', '--step', 'R03'], when=self.cmd_running('make_m8_registers.py'),
+                                  sig=_p2sig.SIGTERM)
+        self.assertLess(_p2t.monotonic() - t0, 40)
+        self.interrupted(out, code, r'(?m)^FAIL R03 .*\(INCOMPLETE: interrupted\)')
+        p2b_gone(self, seen)
+
+    def r_auif(self, tool, step):
+        old = "[sys.executable, '-I', '-B', os.path.join(root, 'tools', 'verify_package.py'), root]"
+        root = self.copy('auif_' + step, edits=[('apg_auif/dependency.py', old, "[sys.executable, '-c', 'import time; time.sleep(60)']")])
+        code, out, seen = p2b_run(root, ['tools/%s.py' % tool, '--step', step], when=self.cmd_running('time.sleep(60)'),
+                                  sig=_p2sig.SIGTERM)
+        self.interrupted(out, code, r'(?m)^FAIL %s .*\(INCOMPLETE: interrupted\)' % step)
+        p2b_gone(self, seen)
+
+    def test_r06_of_run_regression_m8_blocked_in_the_auif_verification(self):
+        self.r_auif('run_regression_m8_s1', 'R06')
+
+    def test_r04_of_run_regression_m81_blocked_in_the_auif_verification(self):
+        self.r_auif('run_regression_m81_s1', 'R04')
+
+    def selfsig(self, needle_tool, needle_cwd='', when_step=None):
+        """an evkit edit in the copy: the named regression successor sends itself SIGTERM at the start of its first step (its own
+        interrupt, as if signalled from outside), when its working directory contains needle_cwd"""
+        old = '        def step():\n            if CANCEL.set:'
+        new = ('        def step():\n            if tool_self == %r and %r in os.getcwd() and not CANCEL.set:\n'
+               '                os.kill(os.getpid(), _signal.SIGTERM)\n                _time.sleep(0.5)\n            if CANCEL.set:'
+               % (needle_tool, needle_cwd))
+        return [('tools/evkit.py', old, new)]
+
+    def test_between_steps_and_after_the_last_step(self):
+        hold = ('            fixed = CANCEL.fix(last=(k == last_step))\n',
+                '            fixed = CANCEL.fix(last=(k == last_step))\n            if k == "R01":\n'
+                '                open(os.path.join(root, "_p2_after_R01"), "w").close()\n                _time.sleep(3)\n')
+        root = self.copy('between', edits=[('tools/evkit.py',) + hold])
+        code, out, seen = p2b_run(root, ['tools/run_regression_m8_s1.py', '--all'],
+                                  when=lambda t, d: os.path.exists(os.path.join(t, '_p2_after_R01')), sig=_p2sig.SIGTERM)
+        self.interrupted(out, code, r'(?m)^FAIL R02 R02 \(INCOMPLETE: interrupted\)')
+        self.assertNotRegex(out, r'(?m)^\S+ R01 .*INCOMPLETE')        # R01's outcome was fixed before the signal
+        root = self.copy('after', edits=[('tools/evkit.py',) + hold])
+        code, out, seen = p2b_run(root, ['tools/run_regression_m8_s1.py', '--step', 'R01'],
+                                  when=lambda t, d: os.path.exists(os.path.join(t, '_p2_after_R01')), sig=_p2sig.SIGTERM)
+        self.assertNotEqual(code, 3, out[-2000:])
+        self.assertRegex(out, r'(?m)^SIGNAL_AFTER_COMPLETION signal=SIGTERM$')
+        self.assertFalse(out.strip().splitlines()[-1].startswith('INTERRUPTED'))
+
+    def test_cr02_sigterm_during_its_first_child(self):
+        root = self.copy('cr02', prepend=[('reference/cr02/cr02_materiality_tests.py', 'import time\ntime.sleep(60)\n')])
+        code, out, seen = p2b_run(root, ['tools/run_cr02_reference_s1.py'], when=self.cmd_running('cr02_materiality_tests.py'),
+                                  sig=_p2sig.SIGTERM)
+        self.interrupted(out, code)
+        self.assertIn('CR-02 REFERENCE RERUN FAILED', out)       # M10's script read the CompletedProcess(returncode=-15, '' , '')
+        p2b_gone(self, seen)
+
+    def test_consumer_a_wrappers_class_n_check(self):
+        root = self.copy('wrap', edits=self.selfsig('run_regression_m8_s1'))
+        code, out, seen = p2b_run(root, ['tools/run_m8_all_s1.py', '--group', '1'])
+        self.assertRegex(out, r'(?m)^CHECK G01 INDETERMINATE source=child exit=3 ')
+        pins = E.wrapper_check_pins('run_m8_all_s1')          # amendment 3, AM3-4: the class comes with the pins
+        self.assertEqual(E.check_output(out, code, pins=pins), [], out[-3000:])
+        # the checker accepts INDETERMINATE with a child exit only for exit 3 with a marker field (AM2-2 (d)); any other is refused
+        for bad in ('exit=2 marker=absent', 'exit=3 marker=-', 'exit=0 marker=seen'):
+            t = _p2re.sub(r'(?m)^(CHECK G01 INDETERMINATE source=child) exit=3 marker=\S+', r'\1 ' + bad, out)
+            self.assertIn('CHECK G01 outcome INDETERMINATE contradicts %s' % bad, E.check_output(t, code, pins=pins), bad)
+
+    def test_consumer_sabotage_m8_s1_at_a_plant_and_at_each_control(self):
+        M = E.load_tool_module('sabotage_m8', ROOT)
+        pid = next(c[0] for c in M.CASES if c[3][0] == 'tools/run_regression_m8.py' and c[3][1] == '--step')
+        for needle, want in (('/m_', r'(?m)^PLANT %s INDETERMINATE cause=child_interrupted$' % _p2re.escape(pid)),
+                             ('control_start', r'(?m)^CONTROL start CONTROL_FAIL cause=child_interrupted '),
+                             ('control_end', r'(?m)^CONTROL end CONTROL_FAIL cause=child_interrupted ')):
+            with self.subTest(at=needle):
+                root = self.copy('sab_' + needle.strip('/'), edits=self.selfsig('run_regression_m8_s1', needle))
+                code, out, seen = p2b_run(root, ['tools/sabotage_m8_s1.py', '--ids', pid])
+                self.assertRegex(out, want, out[-3000:])
+                self.assertEqual(E.check_output(out, code, selected=[pid]), [], out[-3000:])
+                self.assertNotIn('INTERRUPTED signal', out)          # the tool itself was not interrupted
+
+    def test_consumer_a_redirected_regression_successor(self):
+        root = self.copy('redir', edits=self.selfsig('run_regression_m8_s1'))
+        code, out, seen = p2b_run(root, ['tools/run_regression_m81_s1.py', '--step', 'R08'])
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertRegex(out, r'(?m)^FAIL R08 .*\(INCOMPLETE: interrupted\)')
+        self.assertFalse(out.strip().splitlines()[-1].startswith('INTERRUPTED'))     # the caller was not signalled
+        self.assertFalse(E.is_interrupted_child(code, out))
+
+
+
+class P2Amendment3(unittest.TestCase):
+    """Corrective pass 2, amendment 3 (posted 14:38 on 2026-11-06): AM3-1 (a) the post-load identity check, (b) no load after a failed
+    start check, (c) a case runner's --pin guarded; AM3-2 E point 3 as rewritten; AM3-4 the exit-3 INDETERMINATE CHECK form by pinned
+    class (N and B accepted; another class, a missing class map entry or no class pins refused), with S11's class B form on a real
+    baseline that exits 3.  Each in a temporary copy where it plants anything.  BUILDER-EXECUTED: NOT INDEPENDENT."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_am3_')
+        self.doc = E.load_pins()[0]
+        self.decoy = os.path.join(self.tmp, 'decoy')
+        self.marker = os.path.join(self.tmp, 'DECOY_APG_IMPORTED')
+        shutil.copytree(os.path.join(ROOT, 'apg'), os.path.join(self.decoy, 'apg'), ignore=shutil.ignore_patterns('__pycache__'))
+        with open(os.path.join(self.decoy, 'apg', '__init__.py'), 'a') as fh:
+            fh.write('\nopen(%r, "a").write("x")\n' % self.marker)
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def plant_load(self, tool, body):
+        root = os.path.join(self.tmp, tool + '_' + str(len(os.listdir(self.tmp))))
+        p2b_copy(root, [('tools/%s.py' % tool, 'def load():\n', 'def load():\n' + body)])
+        return root
+
+    def go(self, root, args, cwd=None):
+        tmp = tempfile.mkdtemp(prefix='s1_am3r_')
+        p = _p2sp.run([sys.executable, '-I', '-S', os.path.join(root, 'tools', args[0])] + list(args[1:]), cwd=cwd or root, capture_output=True,
+                      text=True, timeout=1800, env={'PATH': '/usr/local/bin:/usr/bin:/bin', 'LANG': 'C.UTF-8', 'LC_ALL': 'C.UTF-8', 'TZ': 'UTC',
+                                                    'TMPDIR': tmp, 'PYTHONDONTWRITEBYTECODE': '1'})
+        shutil.rmtree(tmp, ignore_errors=True)
+        return p.returncode, p.stdout + p.stderr
+
+    def no_work(self, out):
+        self.assertNotRegex(out, r'(?m)^(CASE|PLANT|MUTANT) \S+ (?!NOT_RUN )')
+        self.assertNotRegex(out, r'(?m)^CONTROL (start|end) CONTROL_(PASS|FAIL|TIMEOUT) ')
+
+    # AM3-1 (a): the decoy harness, refused before any item, on four execution families
+    def test_am3_1_a_a_decoy_harness_is_refused_before_any_item(self):
+        for tool, extra, kw in (('run_contracts_s1', '', {'pins': self.doc['case_inventories']['run_contracts_s1']}),
+                                ('run_fin_corpus_s1', '', {'pins': self.doc['case_inventories']['run_fin_corpus_s1']}),
+                                ('run_faults_s1', '', {}), ('m2_mutants_s1', '    import apg  # planted: an M10 module importing apg\n', {})):
+            with self.subTest(tool=tool):
+                root = self.plant_load(tool, '    import sys as _s; _s.path.insert(0, %r)\n' % self.decoy + extra)
+                code, out = self.go(root, [tool + '.py'])
+                self.assertEqual(code, 2, out[-3000:])
+                self.assertIn('RUN_ERROR IMPORT_OUTSIDE_EXTRACTION apg %s' % os.path.join(self.decoy, 'apg', '__init__.py'), out)
+                self.no_work(out)
+                self.assertTrue(out.strip().splitlines()[-1].endswith(' status=EVIDENCE_ERROR exit=2'))
+                self.assertEqual(E.check_output(out, code, **kw), [], out[-3000:])
+                self.assertTrue(os.path.exists(self.marker))          # AM3-1 (d): the decoy's import-time code did run
+                os.remove(self.marker)
+
+    # AM3-1 (b): a failed start check (a working directory other than the root): load() is never called
+    def test_am3_1_b_no_load_after_a_failed_start_check(self):
+        flag = os.path.join(self.tmp, 'LOAD_CALLED')
+        for tool in ('run_faults_s1', 'm2_mutants_s1'):
+            with self.subTest(tool=tool):
+                root = self.plant_load(tool, '    open(%r, "w").close()\n' % flag)
+                code, out = self.go(root, [tool + '.py'], cwd=self.tmp)
+                self.assertEqual(code, 2, out[-3000:])
+                self.assertRegex(out, r'(?m)^RUN_ERROR ENV_CWD ')
+                self.assertFalse(os.path.exists(flag), 'load() ran after a failed start check')
+                self.no_work(out)
+                last = out.strip().splitlines()[-1]
+                self.assertIn(' preflight=NOT_RUN control_start=NOT_RUN ', last)      # C.1's refusal form: every pinned item NOT_RUN
+                kind = 'mutation' if tool.endswith('_mutants_s1') else 'sabotage'
+                ids = self.doc['mutation_lists' if kind == 'mutation' else 'plant_lists'][tool]['ids']
+                self.assertIn(' selected=%d ' % len(ids), last)
+                self.assertEqual(E.check_output(out, code), [], out[-3000:])
+
+    # AM3-1 (c): a case runner's --pin: the start checks and the post-load check before the harness, and no pin written after a refusal
+    def test_am3_1_c_a_case_runners_pin_is_guarded(self):
+        flag = os.path.join(self.tmp, 'BATCH_RAN')
+        for name, body, cwd, want in (('decoy', '    import sys as _s; _s.path.insert(0, %r)\n' % self.decoy, None,
+                                       'RUN_ERROR IMPORT_OUTSIDE_EXTRACTION apg '),
+                                      ('cwd', '', self.tmp, 'RUN_ERROR ENV_CWD ')):
+            with self.subTest(case=name):
+                root = os.path.join(self.tmp, 'pin_' + name)
+                p2b_copy(root, [('tools/run_contracts_s1.py', 'def load():\n', 'def load():\n' + body),
+                                ('tools/run_contracts_s1.py', 'def batch(cand):\n', 'def batch(cand):\n    open(%r, "w").close()\n' % flag)])
+                pins = os.path.join(root, 'tools', 'expected_counts.json')
+                before = E.sha256_file(pins)
+                code, out = self.go(root, ['run_contracts_s1.py', '--pin', '--reason', 'test', '--cause', 'test'], cwd=cwd)
+                self.assertEqual(code, 2, out[-3000:])
+                self.assertIn(want, out)
+                self.assertFalse(os.path.exists(flag), 'the harness ran')
+                self.assertEqual(E.sha256_file(pins), before, 'the pins were changed')
+                self.assertNotIn('PINS ', out)
+
+    # AM3-2: E point 3 as rewritten, on a real case runner and a real fault runner (on the final candidate)
+    def test_am3_2_e_point_3(self):
+        for args, kw in ((['run_contracts_s1.py'], {'pins': self.doc['case_inventories']['run_contracts_s1']}),
+                         (['run_faults_s1.py', '--ids', self.doc['plant_lists']['run_faults_s1']['ids'][0]],
+                          {'selected': [self.doc['plant_lists']['run_faults_s1']['ids'][0]]})):
+            with self.subTest(tool=args[0]):
+                code, out = self.go(ROOT, args)
+                self.assertEqual(code, 0, out[-3000:])
+                lines = out.splitlines()
+                start = lines[:next(i for i, l in enumerate(lines) if l.startswith('LIMIT '))]
+                self.assertFalse([l for l in start if re.match(r'^IMPORT apg(\.| )', l)], start)
+                self.assertNotRegex(out, r'(?m)^RUN_ERROR ')
+                self.assertIn('IMPORT_END apg %s' % os.path.join(ROOT, 'apg', '__init__.py'), lines)
+                self.assertEqual(E.check_output(out, code, **kw), [], out[-3000:])
+
+    # AM3-4 and S11: class B's W-1A.3 (a) form on a real baseline that exits 3 (run_m7_all_s1 G15), and the class rule
+    def test_am3_4_class_b_a_real_baseline_that_exits_3(self):
+        root = os.path.join(self.tmp, 'b')
+        p2b_copy(root, [('tools/m7_mutants_s1.py', 'timeout=300,', 'timeout=4,')])
+        with open(os.path.join(root, 'tools', 'mut_runner_s1.py'), 'w', encoding='utf-8') as fh:
+            fh.write('import time\ntime.sleep(60)\n')
+        p = os.path.join(root, 'tools', 'expected_counts.json')
+        doc = json.load(open(p, encoding='utf-8'))
+        old = doc['check_lists']['run_m7_all_s1']['G15'].split(' ')
+        doc['check_lists']['run_m7_all_s1']['G15'] = E.check_identity('G15', old[1], old[2], E.sha256_file(os.path.join(root, 'tools', 'm7_mutants_s1.py')), old[4])
+        E.write_pins(doc, 'test: G15 re-pinned in a copy whose baseline times out', 'tests_tools planted fault', [], path=p)
+        code, out = self.go(root, ['run_m7_all_s1.py', '--group', '15'])
+        self.assertEqual(code, 3, out[-3000:])
+        self.assertRegex(out, r'(?m)^CHECK G15 INDETERMINATE source=child exit=3 marker=absent ')
+        pins = E.wrapper_check_pins('run_m7_all_s1', doc)
+        self.assertEqual(pins['classes']['G15'], 'B')
+        self.assertEqual(E.check_output(out, code, pins=pins), [], out[-3000:])
+        self.class_rule(out, code, pins, 'G15')
+
+    def class_rule(self, out, code, pins, gid):
+        need = 'CHECK %s outcome INDETERMINATE exit=3 needs a pinned class N or B' % gid
+        for name, p in (('no pins', None), ('no class map', dict(pins, classes={})),
+                        ('map without the group', dict(pins, classes={k: v for k, v in pins['classes'].items() if k != gid})),
+                        ('class P', dict(pins, classes=dict(pins['classes'], **{gid: 'P'})))):
+            with self.subTest(case=name):
+                self.assertTrue(any(x.startswith(need) for x in E.check_output(out, code, pins=p)), (name, E.check_output(out, code, pins=p)))
+
+    def test_am3_4_class_n_an_interrupted_regression_child(self):
+        t = P2NoResultSupervisors('test_consumer_a_wrappers_class_n_check')
+        t.setUp()
+        try:
+            root = t.copy('wrap_am3', edits=t.selfsig('run_regression_m8_s1'))
+            code, out, seen = p2b_run(root, ['tools/run_m8_all_s1.py', '--group', '1'])
+        finally:
+            t.tearDown()
+        self.assertRegex(out, r'(?m)^CHECK G01 INDETERMINATE source=child exit=3 ')
+        pins = E.wrapper_check_pins('run_m8_all_s1')
+        self.assertEqual(pins['classes']['G01'], 'N')
+        self.assertEqual(E.check_output(out, code, pins=pins), [], out[-3000:])
+        self.class_rule(out, code, pins, 'G01')
+
+
+class P2GuardedImports(unittest.TestCase):
+    """C.2 for each of the 33 runners (its first guarded load made to fail in a temporary copy) and C.3's wrapper consumer paths."""
+
+    BREAK = {   # runner -> the file whose import is made to fail (the first load of its C table)
+        'run_faults_s1': 'apg/contracts/run.py', 'run_history_contract_s1': 'apg/contracts/record_store_history_contract.py',
+        'run_m3_faults_s1': 'apg/ingest/contracts_m3.py', 'run_m5_faults_s1': 'apg/det/contracts_m5.py',
+        'run_m6_faults_s1': 'apg/mkt/contracts_m6.py', 'run_contracts_s1': 'apg/contracts/run.py', 'run_det_corpus_s1': 'apg/det/corpus_det.py',
+        'run_fin_corpus_s1': 'apg/fin/corpus_fin.py', 'run_guard_contract_s1': 'apg/contracts/record_store_guard_contract.py',
+        'run_ingest_corpus_s1': 'apg/ingest/corpus.py', 'run_m3_contracts_s1': 'apg/ingest/contracts_m3.py',
+        'run_m5_contracts_s1': 'apg/det/contracts_m5.py', 'run_m6_contracts_s1': 'apg/mkt/contracts_m6.py',
+        'run_m91_contracts_s1': 'apg/api/contracts_m9.py', 'run_mkt_corpus_s1': 'tests/corpus_mkt.py'}
+    MUTATION = ('f67', 'f671', 'f672', 'f673', 'f674', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm73_store', 'm8', 'm91', 'mie', 'mie11')
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_p2g_')
+        self.doc, _ = E.load_pins()
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def broken(self, rel):
+        root = os.path.join(self.tmp, rel.replace('/', '_'))
+        if not os.path.exists(root):
+            p2b_copy(root)
+            p = os.path.join(root, rel)
+            with open(p, encoding='utf-8') as fh:
+                src = fh.read()
+            with open(p, 'w', encoding='utf-8') as fh:
+                fh.write('raise ImportError("planted by test_runner_zero_work (C.2)")\n' + src)
+        return root
+
+    def refused(self, root, tool, kind, args=()):
+        code, out, seen = p2b_run(root, ['tools/%s.py' % tool] + list(args))
+        lines = [l for l in out.splitlines() if l.strip()]
+        self.assertEqual(code, 2, out[-2000:])
+        self.assertRegex(out, r'(?m)^RUN_ERROR IMPORT_FAILED \S+ ImportError planted by test_runner_zero_work \(C.2\)$')
+        self.assertNotIn('Traceback', out)
+        self.assertRegex(out, r'(?m)^ENV interpreter ')            # the start checks ran first
+        self.assertTrue(lines[-1].startswith('RESULT v=3 kind=%s ' % kind) and lines[-1].endswith(' status=EVIDENCE_ERROR exit=2'))
+        f = E.parse_result_line(lines[-1])[1]
+        self.assertEqual(f['started'], 0)
+        self.assertEqual(f['not_run'], f['selected'])
+        self.assertEqual(E.check_output(out, code), [], out[-3000:])
+        return f
+
+    def test_c2_the_15_runners(self):
+        for tool, rel in sorted(self.BREAK.items()):
+            with self.subTest(tool=tool):
+                root = self.broken(rel)
+                if tool in self.doc['case_inventories'] and tool != 'run_history_contract_s1':
+                    f = self.refused(root, tool, 'cases')
+                    pins = self.doc['case_inventories'][tool]
+                    self.assertEqual((f['suites'], f['selected']), (','.join(sorted(pins)), sum(len(v['ids']) for v in pins.values())))
+                else:
+                    f = self.refused(root, tool, 'sabotage')
+                    self.assertEqual(f['selected'], len(self.doc['plant_lists'][tool]['ids']))
+                    self.assertEqual((f['preflight'], f['control_start']), ('NOT_RUN', 'NOT_RUN'))
+
+    def test_c2_the_18_mutation_and_sabotage_successors(self):
+        for t in self.MUTATION + ('sabotage_m10', 'sabotage_m8'):
+            m10 = t if t.startswith('sabotage_') else t + '_mutants'
+            tool = m10 + '_s1'
+            with self.subTest(tool=tool):
+                root = self.broken('tools/%s.py' % m10)
+                kind = 'sabotage' if t.startswith('sabotage_') else 'mutation'
+                f = self.refused(root, tool, kind)
+                key = 'plant_lists' if kind == 'sabotage' else 'mutation_lists'
+                self.assertEqual(f['selected'], len(set(self.doc[key][tool]['ids'])))
+                self.assertEqual((f['preflight'], f['control_start']), ('NOT_RUN', 'NOT_RUN'))
+
+    def test_c3_the_wrapper_consumer_paths(self):
+        for wrapper, group, rel in (('run_m3_all_s1', '3', 'apg/contracts/run.py'), ('run_m3_all_s1', '4', 'apg/contracts/run.py'),
+                                    ('run_m7_all_s1', '15', 'tools/m7_mutants.py')):
+            with self.subTest(wrapper=wrapper, group=group):
+                root = self.broken(rel)
+                code, out, seen = p2b_run(root, ['tools/%s.py' % wrapper, '--group', group])
+                self.assertEqual(code, 2, out[-2000:])
+                self.assertRegex(out, r'(?m)^(FILE G%02d state=ITEM_ERROR |CHECK G%02d ITEM_ERROR )' % (int(group), int(group)))
+                self.assertEqual(E.check_output(out, code), [], out[-3000:])
+
 
 if __name__ == '__main__':
     unittest.main()

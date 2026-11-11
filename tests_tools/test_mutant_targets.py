@@ -20,6 +20,8 @@ def load_m10_tool(name):
     spec = importlib.util.spec_from_file_location('m10_' + name, os.path.join(ROOT, 'tools', name + '.py'))
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
+    if name.endswith('_s1') and callable(getattr(mod, 'load', None)):
+        mod.load()       # corrective pass 2, C.1: a successor's M10 load runs in load(), not at import
     return mod
 
 
@@ -138,6 +140,7 @@ class EveryTextListOnTheSource(unittest.TestCase):
 
     def test_the_successor_m2_list_has_every_target_exactly_once(self):
         S = E.load_tool_module('m2_mutants_s1', ROOT)
+        S.load()      # corrective pass 2, C.1
         lst = S.mut_list()
         self.assertEqual([m[0] for m in lst], [m[0] for m in literal_list(os.path.join(ROOT, 'tools', 'm2_mutants.py'), 'MUT')])
         errs, _ = E.preflight_text([(mid, os.path.join('apg', f), old, new, None) for mid, f, old, new in lst], ROOT)
@@ -240,6 +243,175 @@ class PreflightFailClosedAtToolLevel(unittest.TestCase):
                 self.assertIn(' not_run=199 control_end=NOT_RUN run_errors=%d ' % n, last)
                 self.assertTrue(last.endswith(' status=EVIDENCE_ERROR exit=2'))
                 self.assertEqual(E.check_output(out, code), [])
+
+AST_TOOLS = ['m3', 'm4', 'm5', 'm6', 'm7', 'm73_store', 'm91', 'f67', 'f671', 'f672', 'f673', 'f674', 'mie', 'mie11']
+MUTATION_TOOLS = ['m2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm73_store', 'm91', 'f67', 'f671', 'f672', 'f673', 'f674', 'mie', 'mie11', 'm8']
+TEXT_SABOTAGE = ['f67', 'f671', 'f672', 'f673', 'f674', 'm7', 'm71', 'm72', 'm73', 'm10', 'mie1', 'mie1_1']
+
+APPLY_FIRST = r"""import importlib.util, json, os, sys
+# run by tests_tools/test_mutant_targets.py in a temporary copy: the tool's first item is applied to its own file, so the copy no longer
+# holds that item's target
+tool, mid = sys.argv[1], sys.argv[2]
+spec = importlib.util.spec_from_file_location('t_' + tool, os.path.join('tools', tool + '.py'))
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+if tool.endswith('_s1') and callable(getattr(mod, 'load', None)):
+    mod.load()       # corrective pass 2, C.1: the successor's M10 load runs in load()
+m = next(x for x in mod.mutants() if x.id == mid)
+p = os.path.join(os.getcwd(), m.relpath)
+with open(p, encoding='utf-8') as fh:
+    src = fh.read()
+with open(p, 'w', encoding='utf-8') as fh:
+    fh.write(m.apply(src))
+print(json.dumps({'text': m.text_old is not None, 'old_still_present': m.text_old is not None and m.text_old in m.apply(src)}))
+"""
+
+
+def _run(tree, args, timeout=900):
+    import subprocess
+    tmpdir = tempfile.mkdtemp(prefix='s1_mt_tmp_')
+    try:
+        p = subprocess.run([sys.executable, '-I', '-S'] + args, cwd=tree, capture_output=True, text=True, timeout=timeout,
+                           env={'PATH': '/usr/local/bin:/usr/bin:/bin', 'LANG': 'C.UTF-8', 'LC_ALL': 'C.UTF-8', 'TZ': 'UTC', 'TMPDIR': tmpdir,
+                                'PYTHONDONTWRITEBYTECODE': '1'})
+        return p.returncode, p.stdout, p.stderr, os.listdir(tmpdir)
+    finally:
+        shutil.rmtree(tmpdir, ignore_errors=True)
+
+
+class MissingTargetAtToolLevel(unittest.TestCase):
+    """Authorisation §4.5, first point ('A missing target is refused'), for every successor mutation tool (16) and every successor sabotage
+    tool with target texts (12), each run as a real tool on a temporary copy whose file no longer holds the target of the selected item:
+      - mutation tools: the item is applied to its own file in the copy (so the pinned target is gone).  A text mutant (m2, m8) is refused
+        in the preflight, PREFLIGHT_INVALID_TARGET <id>:occurrences=0,expected=1; an AST mutant is refused either by the preflight
+        (PREFLIGHT_INVALID_TARGET <id>:site_differs_from_pin) or, when the change alters the enumerated sites, by the pinned-universe check
+        (EXPECTED_COUNT_MISMATCH) before the preflight;
+      - sabotage tools: the plant's target text is removed from its file; refused, PREFLIGHT_INVALID_TARGET <id>:occurrences=0,expected=1,
+        and its human line PREFLIGHT FAILED <id>: ...; a plant that adds a file whose path already exists is refused, <id>:file_exists;
+      - the plants already not exactly once in this tree (NOT_EXACTLY_ONCE, finding F2) are refused when the real tool selects them.
+    In every case: exit 2, the item NOT_RUN, no CONTROL line (no control ran), started=0, no worker directory, and the checker accepts
+    the output.  sabotage_m8_s1's plants are functions with no target text (decision K-1, K17): their preflight is the pinned function
+    source, refused when it differs (test_mutation_timeout.py PreflightBeforeAnyItem)."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_missing_target_')
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def copy(self, name):
+        tree = os.path.join(self.tmp, name)
+        shutil.copytree(ROOT, tree, ignore=shutil.ignore_patterns('.git', 'logs', '__pycache__'))
+        return tree
+
+    def refused(self, out, code, tmpfiles, tag, item, codes):
+        self.assertEqual(code, 2, out[-2000:])
+        self.assertTrue(any(c in out for c in codes), (codes, out[-2000:]))
+        self.assertRegex(out, r'(?m)^%s %s NOT_RUN cause=(preflight_failed|run_error)$' % (tag, item))
+        self.assertNotRegex(out, r'(?m)^%s \S+ (KILLED|SURVIVED|CAUGHT|MISSED|INDETERMINATE|ITEM_ERROR)' % tag)
+        self.assertNotRegex(out, r'(?m)^CONTROL ')
+        self.assertEqual(tmpfiles, [])
+        last = out.strip().splitlines()[-1]
+        self.assertIn(' started=0 ', last)
+        self.assertTrue(last.endswith(' status=EVIDENCE_ERROR exit=2'), last)
+        if 'RUN_ERROR MUTANT_LIST_INVALID ' in out:      # decision (c): the whole pinned list is NOT_RUN, not only the selected item
+            self.assertEqual({l.split(' ', 2)[2] for l in out.splitlines() if l.startswith(tag + ' ')}, {'NOT_RUN cause=run_error'})
+            self.assertEqual(E.check_output(out, code), [])
+        else:
+            self.assertEqual(E.check_output(out, code, selected=[item]), [])
+
+    def test_sabotage_tool_whose_added_file_already_exists(self):
+        M = E.load_tool_module('sabotage_f67', ROOT)
+        cid, what, path, old, new, step = next(c for c in M.CASES if c[2] is None)
+        tree = self.copy('creates')
+        os.makedirs(os.path.dirname(os.path.join(tree, old)), exist_ok=True)
+        with open(os.path.join(tree, old), 'w') as fh:
+            fh.write('# already here\n')
+        code, out, err, tmpfiles = _run(tree, ['tools/sabotage_f67_s1.py', '--ids', cid])
+        self.refused(out, code, tmpfiles, 'PLANT', cid, ['RUN_ERROR PREFLIGHT_INVALID_TARGET %s:file_exists' % cid])
+        self.assertIn('PREFLIGHT FAILED %s: the file it adds already exists' % cid, out)
+
+
+def _add_missing_target_cases():
+    for tool in MUTATION_TOOLS:
+        def t(self, tool=tool):
+            doc, _ = E.load_pins()
+            first = doc['mutation_lists']['%s_mutants_s1' % tool]['ids'][0]
+            tree = self.copy(tool)
+            code, out, err, _ = _run(tree, ['-c', APPLY_FIRST, '%s_mutants_s1' % tool, first])
+            self.assertEqual(code, 0, err[-1500:])
+            import json
+            info = json.loads(out.strip().splitlines()[-1])
+            code, out, err, tmpfiles = _run(tree, ['tools/%s_mutants_s1.py' % tool, '--ids', first])
+            if info['text']:
+                self.assertFalse(info['old_still_present'])
+                codes = ['RUN_ERROR PREFLIGHT_INVALID_TARGET %s:occurrences=0,expected=1' % first]
+                self.assertIn('PREFLIGHT FAILED %s:' % first, out)
+            else:
+                codes = ['RUN_ERROR PREFLIGHT_INVALID_TARGET %s:site_differs_from_pin' % first, 'RUN_ERROR EXPECTED_COUNT_MISMATCH',
+                         'RUN_ERROR MUTANT_LIST_INVALID']
+            self.refused(out, code, tmpfiles, 'MUTANT', first, codes)
+        setattr(MissingTargetAtToolLevel, 'test_mutation_' + tool, t)
+
+        def t_file(self, tool=tool):
+            # the selected mutant's whole file removed from the copy: refused, with its RESULT line, never a crash (exit 1, no RESULT)
+            doc, _ = E.load_pins()
+            first = doc['mutation_lists']['%s_mutants_s1' % tool]['ids'][0]
+            rel = doc['mutation_lists']['%s_mutants_s1' % tool]['sites'][first]['file']
+            tree = self.copy(tool + '_nofile')
+            os.remove(os.path.join(tree, rel))
+            code, out, err, tmpfiles = _run(tree, ['tools/%s_mutants_s1.py' % tool, '--ids', first])
+            self.assertNotIn('Traceback', err)
+            if tool in AST_TOOLS:
+                # decision (c): the tool's own listing fails; refused with MUTANT_LIST_INVALID, every pinned mutant NOT_RUN, exit 2
+                pinned = doc['mutation_lists']['%s_mutants_s1' % tool]['ids']
+                self.assertEqual(code, 2, out[-2000:])
+                self.assertRegex(out, r'(?m)^RUN_ERROR MUTANT_LIST_INVALID ')
+                self.assertEqual([l for l in out.splitlines() if l.startswith('MUTANT ')], ['MUTANT %s NOT_RUN cause=run_error' % m for m in pinned])
+                self.assertNotRegex(out, r'(?m)^CONTROL ')
+                self.assertEqual(tmpfiles, [])
+                last = out.strip().splitlines()[-1]
+                self.assertTrue(last.startswith('RESULT v=3 kind=mutation ') and ' started=0 ' in last, last)
+                self.assertTrue(last.endswith(' status=EVIDENCE_ERROR exit=2'), last)
+                self.assertEqual(E.check_output(out, code, selected=pinned), [])
+            else:
+                self.refused(out, code, tmpfiles, 'MUTANT', first, ['RUN_ERROR PREFLIGHT_INVALID_TARGET %s:file_missing' % first])
+        setattr(MissingTargetAtToolLevel, 'test_mutation_file_missing_' + tool, t_file)
+    for tool in TEXT_SABOTAGE:
+        def t(self, tool=tool):
+            M = E.load_tool_module('sabotage_' + tool, ROOT)
+            bad = {d.split(':')[0] for d in NOT_EXACTLY_ONCE.get('sabotage_' + tool, [])}
+            cid, path = None, None
+            for c in M.CASES:
+                if c[2] is None or c[0] in bad:
+                    continue
+                with open(os.path.join(ROOT, c[2]), encoding='utf-8') as fh:
+                    if fh.read().count(c[3]) == 1:
+                        cid, path, old = c[0], c[2], c[3]
+                        break
+            self.assertIsNotNone(cid)
+            tree = self.copy(tool)
+            p = os.path.join(tree, path)
+            with open(p, encoding='utf-8') as fh:
+                src = fh.read()
+            with open(p, 'w', encoding='utf-8') as fh:
+                fh.write(src.replace(old, '# target removed by tests_tools'))
+            code, out, err, tmpfiles = _run(tree, ['tools/sabotage_%s_s1.py' % tool, '--ids', cid])
+            self.refused(out, code, tmpfiles, 'PLANT', cid, ['RUN_ERROR PREFLIGHT_INVALID_TARGET %s:occurrences=0,expected=1' % cid])
+            self.assertIn('PREFLIGHT FAILED %s:' % cid, out)
+        setattr(MissingTargetAtToolLevel, 'test_sabotage_' + tool, t)
+    for tool, details in NOT_EXACTLY_ONCE.items():
+        if not details:
+            continue
+        def t(self, tool=tool, details=details):
+            cid, why = details[0].split(':')
+            code, out, err, tmpfiles = _run(ROOT, ['tools/%s_s1.py' % tool, '--ids', cid])
+            self.refused(out, code, tmpfiles, 'PLANT', cid, ['RUN_ERROR PREFLIGHT_INVALID_TARGET %s:%s' % (cid, why)])
+        setattr(MissingTargetAtToolLevel, 'test_not_exactly_once_in_this_tree_' + tool, t)
+
+
+_add_missing_target_cases()
+
 
 if __name__ == '__main__':
     unittest.main()

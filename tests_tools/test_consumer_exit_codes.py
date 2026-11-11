@@ -241,7 +241,7 @@ class CheckerRejectsBadOutput(unittest.TestCase):
         self.bad(self.lines[:-1] + [r.replace(' equivalent=0', '')])
         self.bad(self.lines[:-1] + [r + ' extra=1'])
         self.bad(self.lines[:-1] + [r.replace(' ', '  ', 1)])
-        self.bad(self.lines[:-1] + [r.replace('v=2', 'v=3')])
+        self.bad(self.lines[:-1] + [r.replace(r.split(' ')[1], 'v=4')])
 
     def test_counts_contradict_the_item_lines(self):
         r = self.lines[-1]
@@ -284,6 +284,153 @@ class CheckerRejectsBadOutput(unittest.TestCase):
         self.assertEqual(E.classify_child(text(self.lines), 1)[0], 'CHILD_EVIDENCE_ERROR')
 
 
+class CheckerRejectsBadSabotageAndCases(unittest.TestCase):
+    """Authorisation §4.4, 'The checker rejects ... Each case has a test', for kind=sabotage and kind=cases (the mutation, tests and wrapper
+    kinds are above and in WrapperResultW1): a missing, duplicated or changed item line, contradicting counts, a forged status or exit,
+    a missing or duplicated RESULT line, a changed field order, a tampered ids hash, and a selection that differs."""
+
+    def setUp(self):
+        self.psel = ['P1', 'P2', 'P3']
+        self.sab, self.sab_code = E.finish_items('sabotage', 'sabotage_m10_s1', 'r', self.psel, {p: ('CAUGHT', 'f') for p in self.psel})
+        self.csel = ['RS/RS-01', 'RS/RS-02', 'RT/RT-01']
+        self.cas, self.cas_code = E.finish_items('cases', 'run_contracts_s1', 'r', self.csel, {c: ('PASS', 'ok') for c in self.csel},
+                                                 suites_selected=2)
+        self.assertEqual((self.sab_code, self.cas_code), (0, 0))
+        self.assertEqual(E.check_output(text(self.sab), 0, selected=self.psel), [])
+        self.assertEqual(E.check_output(text(self.cas), 0, selected=self.csel), [])
+
+    def bad(self, lines, exit_code=0, **kw):
+        probs = E.check_output(text(lines), exit_code, **kw)
+        self.assertTrue(probs, 'the checker accepted tampered output:\n' + text(lines))
+        return probs
+
+    def both(self):
+        return (('sabotage', self.sab, self.psel, 'PLANT ', ' CAUGHT ', ' MISSED ', 'caught=3', 'caught=2'),
+                ('cases', self.cas, self.csel, 'CASE ', ' PASS ', ' FAIL ', 'passed=3', 'passed=2'))
+
+    def test_item_lines_missing_duplicated_or_changed(self):
+        for kind, lines, sel, tag, good, worse, cnt, cnt_less in self.both():
+            with self.subTest(kind=kind):
+                items = [i for i, l in enumerate(lines) if l.startswith(tag)]
+                self.assertEqual(len(items), 3, lines)
+                self.bad([l for i, l in enumerate(lines) if i != items[0]])                 # an item line missing
+                self.bad(lines[:items[0]] + [lines[items[0]]] + lines[items[0]:])           # an item line duplicated
+                changed = list(lines)
+                changed[items[0]] = changed[items[0]].replace(good, worse)
+                self.bad(changed)                                                            # an item changed without its counts
+
+    def test_counts_contradict_the_item_lines(self):
+        for kind, lines, sel, tag, good, worse, cnt, cnt_less in self.both():
+            with self.subTest(kind=kind):
+                self.assertIn(' %s ' % cnt, lines[-1])
+                self.bad(lines[:-1] + [lines[-1].replace(' %s ' % cnt, ' %s ' % cnt_less)])
+
+    def test_forged_status_or_exit(self):
+        for kind, lines, sel, tag, good, worse, cnt, cnt_less in self.both():
+            with self.subTest(kind=kind):
+                r = lines[-1]
+                self.assertTrue(r.endswith('status=OK exit=0'), r)
+                self.bad(lines[:-1] + [r.replace('status=OK exit=0', 'status=FAILED exit=1')], exit_code=1)
+                self.bad(lines[:-1] + [r.replace('status=OK exit=0', 'status=OK exit=1')], exit_code=1)
+                self.bad(lines, exit_code=1)                                                # printed exit differs from the actual exit
+                changed = list(lines)
+                i = next(i for i, l in enumerate(lines) if l.startswith(tag))
+                changed[i] = changed[i].replace(good, worse)
+                changed[-1] = r.replace(' %s ' % cnt, ' %s ' % cnt_less).replace(' missed=0 ' if kind == 'sabotage' else ' failed=0 ',
+                                                                                  ' missed=1 ' if kind == 'sabotage' else ' failed=1 ')
+                self.bad(changed)                                                            # a miss or failure hidden behind OK
+
+    def test_result_line_missing_duplicated_reordered_or_tampered(self):
+        for kind, lines, sel, tag, good, worse, cnt, cnt_less in self.both():
+            with self.subTest(kind=kind):
+                r = lines[-1]
+                self.bad(lines[:-1])
+                self.assertEqual(self.bad(lines + [r]), ['more than one RESULT line'])
+                self.bad(lines + ['trailing text'])
+                self.bad(lines[:-1] + [r.replace(r.split(' ')[1], 'v=4')])
+                self.bad(lines[:-1] + [r + ' extra=1'])
+                self.bad(lines[:-1] + [r.replace(' ', '  ', 1)])
+                if kind == 'sabotage':
+                    self.bad(lines[:-1] + [r.replace('ids_sha256=' + E.sha256_lines(sel), 'ids_sha256=' + H)])
+                # kind=cases: case_inventory_sha256 is checked against the pinned inventories (decision (a'), CaseInventoryHash below)
+                self.bad(lines, selected=sel[:2])
+
+    def test_no_mode_field_on_a_kind_without_one(self):
+        # DP-2.3 F9: only kind=tests carries a mode; a RESULT line of another kind with a mode field is malformed
+        for kind, lines, sel, tag, good, worse, cnt, cnt_less in self.both():
+            with self.subTest(kind=kind):
+                self.assertNotIn(' mode=', lines[-1])
+                self.bad(lines[:-1] + [lines[-1].replace(' run=r ', ' mode=failfast run=r ')])
+        # and modes are pinned for the test runners only: every pinned caller profile names one of them
+        doc, _ = E.load_pins()
+        runners = {k.split('@')[0] for k in doc['runner_profiles']}
+        self.assertTrue(runners)
+        self.assertLessEqual(runners, set(E.CHILD_TEST_RUNNERS))
+
+
+class CaseInventoryHash(unittest.TestCase):
+    """Decision (a') (owner, 2026-11-02 15:33), on real outputs of run_contracts_s1 (suites audit_log 14, record_store 18, tenant_context 6)
+    and run_det_corpus_s1: given the pinned case inventories, the checker rejects a case_inventory_sha256 that is not the hash of the
+    selected suites' pinned inventories, and accepts every valid form:
+      - a full run (every suite, every case);
+      - a partial --only run whose selected suite has more pinned cases than the CASE records it prints (14 pinned, 1 printed): the case
+        that exposed the first, wrong rule (a), which hashed the printed CASE records;
+      - two selected suites of which only one prints CASE records (--suite record_store --suite audit_log --only AL-01);
+      - a refusal, which prints no CASE record, accepted as the evidence error it is (exit 2).
+    Without the pins the checker cannot verify this field, and a tampered one is not caught: that limitation is stated, not hidden."""
+
+    def run_tool(self, *args):
+        import subprocess, tempfile
+        tmp = tempfile.mkdtemp(prefix='s1_cih_')
+        try:
+            p = subprocess.run([sys.executable, '-I', '-S'] + list(args), cwd=ROOT, capture_output=True, text=True, timeout=600,
+                               env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8', 'LC_ALL': 'C.UTF-8', 'TZ': 'UTC', 'TMPDIR': tmp,
+                                    'PYTHONDONTWRITEBYTECODE': '1'})
+            return p.returncode, p.stdout
+        finally:
+            import shutil
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def tampered(self, out):
+        lines = out.strip().splitlines()
+        f = E.parse_result_line(lines[-1])[1]
+        return '\n'.join(lines[:-1] + [lines[-1].replace('case_inventory_sha256=' + f['case_inventory_sha256'],
+                                                          'case_inventory_sha256=' + H)]) + '\n'
+
+    def test_each_form_with_and_without_the_pins(self):
+        doc, _ = E.load_pins()
+        for tool, args, want_exit in (('run_contracts_s1', [], 0),
+                                      ('run_contracts_s1', ['--suite', 'audit_log', '--only', 'AL-01'], 0),
+                                      ('run_contracts_s1', ['--suite', 'record_store', '--suite', 'audit_log', '--only', 'AL-01'], 0),
+                                      ('run_det_corpus_s1', ['--only', 'B01,B02'], 0),
+                                      ('run_det_corpus_s1', ['--only', 'NOPE'], 2),
+                                      ('run_contracts_s1', ['--suite', 'nope'], 2)):
+            with self.subTest(tool=tool, args=args):
+                pins = doc['case_inventories'][tool]
+                code, out = self.run_tool(os.path.join('tools', tool + '.py'), *args)
+                self.assertEqual(code, want_exit, out[-1500:])
+                printed = [l for l in out.splitlines() if l.startswith('CASE ')]
+                if args[-2:] == ['--only', 'AL-01']:
+                    self.assertEqual(len(printed), 1)                         # 1 printed, 14 (or 14 + 18) pinned
+                    self.assertGreater(len(pins['audit_log']['ids']), len(printed))
+                self.assertEqual(E.check_output(out, code, pins=pins), [], out[-1500:])           # valid: accepted
+                bad = self.tampered(out)
+                self.assertIn('case_inventory_sha256 does not match the pinned inventories of the selected suites',
+                              E.check_output(bad, code, pins=pins))                              # tampered: rejected
+                self.assertNotIn('case_inventory_sha256 does not match the pinned inventories of the selected suites',
+                                 E.check_output(bad, code))                                      # without pins: not verifiable
+                if want_exit == 2:
+                    self.assertTrue(out.strip().splitlines()[-1].endswith(' status=EVIDENCE_ERROR exit=2'))
+
+    def test_a_case_suite_that_is_not_pinned(self):
+        doc, _ = E.load_pins()
+        code, out = self.run_tool(os.path.join('tools', 'run_m5_contracts_s1.py'))
+        self.assertEqual(code, 0)
+        self.assertEqual(E.check_output(out, code, pins=doc['case_inventories']['run_m5_contracts_s1']), [])
+        self.assertIn('CASE suite notification is not in the pinned case inventories',
+                      E.check_output(out, code, pins=doc['case_inventories']['run_m6_contracts_s1']))
+
+
 class SuccessMarkerPosition(unittest.TestCase):
     """§2.4 and §2.7: the M10 success marker is printed verbatim and only on exit 0, immediately before the RESULT line, so the RESULT
     line stays the last non-empty line."""
@@ -298,7 +445,7 @@ class SuccessMarkerPosition(unittest.TestCase):
         lines, code = E.finish_items('cases', 't', 'r', ['S/c1'], {'S/c1': ('PASS', 'ok')}, suites_selected=1)
         out = self.emitted(lines, code)
         self.assertEqual(out[-2], 'ALL CORPUS CASES PASS')
-        self.assertTrue(out[-1].startswith('RESULT v=2 '))
+        self.assertTrue(out[-1].startswith(('RESULT v=2 ', 'RESULT v=3 ')))
         self.assertEqual(E.check_output('\n'.join(out), 0, selected=['S/c1']), [])
         lines, code = E.finish_items('cases', 't', 'r', ['S/c1'], {'S/c1': ('FAIL', 'x')}, suites_selected=1)
         self.assertNotIn('ALL CORPUS CASES PASS', self.emitted(lines, code))
@@ -540,6 +687,272 @@ class AChildInTheWrongModeIsAnItemError(unittest.TestCase):
         self.assertEqual(code, 2, out[-2000:])
         self.assertRegex(out, r'(?m)^FILE G01 state=ITEM_ERROR ')
         self.assertEqual(E.check_output(out, code), [])
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Corrective pass 2 (paper 23d2adb9...f0ea5, amendments 1 and 2): the checker's v=3 rules and the consumer rules, at helper level.
+# A.2 and A.3 (kind=cases v=3, the suites field, the canonical hash, the v=2 reader kept); K.1 and B.4 (control_end and the CONTROL lines,
+# kind=mutation and sabotage v=3); K.3 (dispatch by kind and version, tests and wrapper stay v=2); F.2's records; AM2-2 (d) (an
+# interrupted no-kind child: check_outcome, CHILD_INTERRUPTED, map_mutant); P.3's /proc/<pid>/stat parsing; P.8's message validation.
+# ---------------------------------------------------------------------------------------------------------------------------------------
+
+P2_PINS = {'audit_log': {'ids': ['AL-01', 'AL-02']}, 'record_store': {'ids': ['RS-01']}}
+
+
+def p2_cases_out(sel, outcomes, suites, errs=(), ci=None):
+    if ci is None:
+        ci = E.sha256_lines(['%s/%s' % (s, c) for s in sorted(suites or []) for c in P2_PINS[s]['ids']])
+    out, code = E.finish_items('cases', 'probe', 'r', sel, outcomes, run_errors=list(errs), suites=suites, case_inventory_sha256=ci)
+    return out, code
+
+
+def p2_mut_out(outcomes, sel=('m1', 'm2'), cs='PASS', ce='PASS', errs=(), extra=(), not_run_cause='not_started'):
+    out, code = E.finish_items('mutation', 'probe', 'r', list(sel), outcomes, run_errors=list(errs), control_start=cs, control_end=ce,
+                               not_run_cause=not_run_cause)
+    k = next(i for i, l in enumerate(out) if l.startswith('RUN_ERROR') or l.startswith('RESULT'))
+    return out[:k] + list(extra) + out[k:], code
+
+
+class Pass2CasesV3(unittest.TestCase):
+    def test_full_and_partial_runs_are_accepted_and_the_hash_is_verified(self):
+        sel = ['audit_log/AL-01', 'audit_log/AL-02', 'record_store/RS-01']
+        out, code = p2_cases_out(sel, {s: ('PASS', 'ok') for s in sel}, ['audit_log', 'record_store'])
+        self.assertIn(' suites_selected=2 suites=audit_log,record_store ', out[-1])
+        self.assertTrue(out[-1].startswith('RESULT v=3 kind=cases '))
+        self.assertEqual(E.check_output('\n'.join(out), actual_exit=code, pins=P2_PINS), [])
+        # a partial run (one case of a suite with more pinned cases than printed), the hash still over the whole suite
+        out, code = p2_cases_out(['audit_log/AL-01'], {'audit_log/AL-01': ('PASS', 'ok')}, ['audit_log'])
+        self.assertEqual(E.check_output('\n'.join(out), actual_exit=code, pins=P2_PINS), [])
+        bad = '\n'.join(out).replace(out[-1].split('case_inventory_sha256=')[1].split(' ')[0], '0' * 64)
+        self.assertTrue(any('case_inventory_sha256' in p for p in E.check_output(bad, actual_exit=code, pins=P2_PINS)))
+
+    def test_the_hash_is_canonical_whatever_order_the_suites_were_requested_in(self):
+        # amendment 2 reading 11: finish_items sorts the resolved suites; the hash is over the sorted suites, case ids in pinned order
+        a, _ = p2_cases_out([], {}, ['record_store', 'audit_log'])
+        b, _ = p2_cases_out([], {}, ['audit_log', 'record_store'])
+        self.assertEqual(a[-1], b[-1])
+        self.assertIn('suites=audit_log,record_store', a[-1])
+
+    def test_rejected_forms(self):
+        sel = ['audit_log/AL-01']
+        out, code = p2_cases_out(sel, {sel[0]: ('PASS', 'ok')}, ['audit_log'])
+        line = out[-1]
+        good = '\n'.join(out)
+        for old, new, why in (
+                ('suites=audit_log', 'suites=record_store,audit_log', 'unsorted'),
+                ('suites=audit_log', 'suites=audit_log,audit_log', 'duplicate'),
+                ('suites=audit_log', 'suites=audit_log,', 'malformed'),
+                ('suites=audit_log', 'suites=nosuch', 'unpinned'),
+                ('suites_selected=1', 'suites_selected=2', 'count'),
+        ):
+            with self.subTest(why=why):
+                text = good.replace(line, line.replace(old, new, 1))
+                self.assertNotEqual(E.check_output(text, actual_exit=code, pins=P2_PINS), [], why)
+        # a CASE record's suite missing from suites
+        text = good.replace(line, line.replace('suites=audit_log', 'suites=record_store', 1).replace(
+            line.split('case_inventory_sha256=')[1].split(' ')[0], E.sha256_lines(['record_store/RS-01'])))
+        self.assertTrue(any('not in suites' in p for p in E.check_output(text, actual_exit=code, pins=P2_PINS)))
+        # a v=3 line without suites is rejected (A.2)
+        text = good.replace(line, line.replace(' suites=audit_log', '', 1))
+        self.assertNotEqual(E.check_output(text, actual_exit=code), [])
+
+    def test_no_resolved_selection(self):
+        out, code = p2_cases_out([], {}, None, errs=[E.RunError('SELECTION_INVALID', 'unknown suite x')], ci=E.sha256_lines([]))
+        self.assertIn(' suites_selected=0 suites=- selected=0 ', out[-1])
+        self.assertIn('case_inventory_sha256=' + E.EMPTY_SHA256, out[-1])
+        self.assertEqual(E.check_output('\n'.join(out), actual_exit=code, pins=P2_PINS), [])
+        text = '\n'.join(out).replace('case_inventory_sha256=' + E.EMPTY_SHA256, 'case_inventory_sha256=' + '1' * 64)
+        self.assertTrue(any('empty selection' in p for p in E.check_output(text, actual_exit=code)))
+        text = '\n'.join(out).replace('suites_selected=0 suites=-', 'suites_selected=1 suites=-')
+        self.assertNotEqual(E.check_output(text, actual_exit=code), [])
+
+    def test_the_v2_reader_is_kept_and_never_reads_v3_rules(self):
+        line = ('RESULT v=2 kind=cases tool=probe run=r suites_selected=1 selected=1 started=1 completed=1 passed=1 failed=0 '
+                'indeterminate=0 item_errors=0 not_run=0 run_errors=0 case_inventory_sha256=%s status=OK exit=0'
+                % E.sha256_lines(['audit_log/AL-01', 'audit_log/AL-02']))
+        text = 'CASE audit_log/AL-01 PASS cause=ok\n' + line
+        self.assertEqual(E.check_output(text, actual_exit=0), [])
+        k, f = E.parse_result_line(line)
+        self.assertEqual((k, f['v']), ('cases', 2))
+        self.assertNotIn('suites', f)
+
+    def test_tests_and_wrapper_stay_v2(self):
+        self.assertEqual(E.WRITE_VERSION, {'cases': 3, 'mutation': 3, 'sabotage': 3, 'tests': 2, 'wrapper': 2})
+        for kind in ('tests', 'wrapper'):
+            with self.assertRaises(ValueError):
+                E.parse_result_line('RESULT v=3 kind=%s tool=x' % kind)
+
+
+class Pass2ControlsV3(unittest.TestCase):
+    def check(self, out, code):
+        return E.check_output('\n'.join(out), actual_exit=code)
+
+    def test_completed_runs(self):
+        out, code = p2_mut_out({'m1': ('KILLED', 'c'), 'm2': ('KILLED', 'c')},
+                            extra=['CONTROL start CONTROL_PASS cause=ok', 'CONTROL end CONTROL_PASS cause=ok'])
+        self.assertTrue(out[-1].startswith('RESULT v=3 kind=mutation '))
+        self.assertEqual(self.check(out, code), [])
+        # an end control that completed reports its own outcome: FAIL with a cause, TIMEOUT
+        for v in ('FAIL', 'TIMEOUT'):
+            out, code = p2_mut_out({'m1': ('KILLED', 'c'), 'm2': ('KILLED', 'c')}, ce=v,
+                                extra=['CONTROL start CONTROL_PASS cause=ok', 'CONTROL end CONTROL_%s cause=x' % v])
+            self.assertEqual(self.check(out, code), [], v)
+
+    def test_control_line_value_must_equal_its_field(self):
+        out, code = p2_mut_out({'m1': ('KILLED', 'c'), 'm2': ('KILLED', 'c')}, ce='FAIL',
+                            extra=['CONTROL start CONTROL_PASS cause=ok', 'CONTROL end CONTROL_PASS cause=ok'])
+        self.assertTrue(any('CONTROL end' in p for p in self.check(out, code)))
+
+    def test_not_run_with_no_stop_record_is_rejected(self):
+        # K.1: every item done and the start control passed: control_end=NOT_RUN needs the stop record for that moment
+        out, code = p2_mut_out({'m1': ('KILLED', 'c'), 'm2': ('KILLED', 'c')}, ce='NOT_RUN', extra=['CONTROL start CONTROL_PASS cause=ok'])
+        self.assertTrue(any('K.1' in p for p in self.check(out, code)))
+
+    def test_stopped_after_the_last_item(self):
+        rec = 'INTERRUPTED signal=SIGINT at=control_end received=1'
+        for extra in (['CONTROL start CONTROL_PASS cause=ok', rec],
+                      ['CONTROL start CONTROL_PASS cause=ok', 'CONTROL end CONTROL_NOT_RUN cause=interrupted', rec]):
+            out, code = p2_mut_out({'m1': ('KILLED', 'c'), 'm2': ('KILLED', 'c')}, ce='NOT_RUN', extra=extra)
+            self.assertEqual(self.check(out, code), [], extra)
+        # the disk floor at the end control's copy
+        out, code = p2_mut_out({'m1': ('KILLED', 'c'), 'm2': ('KILLED', 'c')}, ce='NOT_RUN',
+                            errs=[E.RunError('ENV_DISK_BELOW_FLOOR', 'control_end free=1 floor=2')],
+                            extra=['CONTROL start CONTROL_PASS cause=ok', 'CONTROL end CONTROL_NOT_RUN cause=disk_below_floor'])
+        self.assertEqual(self.check(out, code), [])
+        # the wrong cause, a stop record of another phase, and INTERRUPTED at=control_end beside a completed end control
+        out, code = p2_mut_out({'m1': ('KILLED', 'c'), 'm2': ('KILLED', 'c')}, ce='NOT_RUN',
+                            extra=['CONTROL start CONTROL_PASS cause=ok', 'CONTROL end CONTROL_NOT_RUN cause=disk_below_floor', rec])
+        self.assertNotEqual(self.check(out, code), [])
+        out, code = p2_mut_out({'m1': ('KILLED', 'c'), 'm2': ('KILLED', 'c')}, ce='NOT_RUN',
+                            extra=['CONTROL start CONTROL_PASS cause=ok', 'INTERRUPTED signal=SIGINT at=m2 received=1'])
+        self.assertNotEqual(self.check(out, code), [])
+        out, code = p2_mut_out({'m1': ('KILLED', 'c'), 'm2': ('KILLED', 'c')}, ce='PASS',
+                            extra=['CONTROL start CONTROL_PASS cause=ok', 'CONTROL end CONTROL_PASS cause=ok', rec])
+        self.assertNotEqual(self.check(out, code), [])
+
+    def test_stopped_before_the_last_item(self):
+        rec = 'INTERRUPTED signal=SIGTERM at=m1 received=2'
+        out, code = p2_mut_out({'m1': ('INDETERMINATE', 'interrupted')}, ce='NOT_RUN', not_run_cause='run_stopped',
+                            extra=['CONTROL start CONTROL_PASS cause=ok', rec])
+        self.assertEqual(self.check(out, code), [])
+        self.assertIn('status=INDETERMINATE exit=3', out[-1])
+        # an item stopped in flight with no item NOT_RUN still counts as stopped before the last item (reading 6)
+        out, code = p2_mut_out({'m1': ('KILLED', 'c'), 'm2': ('INDETERMINATE', 'interrupted')}, ce='NOT_RUN',
+                            extra=['CONTROL start CONTROL_PASS cause=ok', 'INTERRUPTED signal=SIGTERM at=m2 received=1'])
+        self.assertEqual(self.check(out, code), [])
+
+    def test_start_control_interrupted(self):
+        out, code = p2_mut_out({}, cs='FAIL', ce='NOT_RUN', not_run_cause='run_stopped',
+                            extra=['CONTROL start CONTROL_INTERRUPTED cause=interrupted',
+                                   'INTERRUPTED signal=SIGINT at=control_start received=1'])
+        self.assertEqual(self.check(out, code), [])
+        out, code = p2_mut_out({}, cs='FAIL', ce='NOT_RUN', extra=['CONTROL start CONTROL_INTERRUPTED cause=interrupted'])
+        self.assertTrue(any('CONTROL_INTERRUPTED' in p for p in self.check(out, code)))
+
+    def test_child_interrupted_is_a_completed_failure_not_a_stop(self):
+        # amendment 2, AM2-2 (d): CHILD_INTERRUPTED is a completed child outcome; an end control that gives it is CONTROL_FAIL
+        out, code = p2_mut_out({'m1': ('INDETERMINATE', 'child_interrupted'), 'm2': ('KILLED', 'c')}, ce='FAIL',
+                            extra=['CONTROL start CONTROL_PASS cause=ok', 'CONTROL end CONTROL_FAIL cause=child_interrupted'])
+        self.assertEqual(self.check(out, code), [])
+
+    def test_interrupted_placement_and_counts(self):
+        out, code = p2_mut_out({'m1': ('INDETERMINATE', 'interrupted')}, ce='NOT_RUN', not_run_cause='run_stopped',
+                            extra=['INTERRUPTED signal=SIGTERM at=m1 received=1', 'CONTROL start CONTROL_PASS cause=ok'])
+        self.assertTrue(any('immediately before' in p for p in self.check(out, code)))
+        out, code = p2_mut_out({'m1': ('KILLED', 'c'), 'm2': ('KILLED', 'c')},
+                            extra=['CONTROL start CONTROL_PASS cause=ok', 'CONTROL end CONTROL_PASS cause=ok',
+                                   'INTERRUPTED signal=SIGTERM at=control_end received=1'])
+        self.assertNotEqual(self.check(out, code), [])
+
+    def test_v2_mutation_line_keeps_the_frozen_rule(self):
+        out, code = p2_mut_out({'m1': ('KILLED', 'c'), 'm2': ('KILLED', 'c')})
+        text = '\n'.join(out).replace('RESULT v=3 kind=mutation', 'RESULT v=2 kind=mutation')
+        self.assertEqual(E.check_output(text, actual_exit=code), [])
+
+
+class Pass2InterruptedNoKindChild(unittest.TestCase):
+    def test_record_recognised_only_with_exit_3_and_as_the_last_line(self):
+        rec = 'INTERRUPTED signal=SIGTERM at=R03 received=1'
+        self.assertTrue(E.is_interrupted_child(3, 'PASS R01 x\n\nchecks 1  failed 0\n' + rec + '\n'))
+        self.assertFalse(E.is_interrupted_child(1, 'checks 1  failed 0\n' + rec))
+        self.assertFalse(E.is_interrupted_child(3, rec + '\nchecks 1  failed 0'))
+        self.assertFalse(E.is_interrupted_child(3, 'checks 1  failed 0'))     # exit 3 without the record is not CHILD_INTERRUPTED
+
+    def test_consumers(self):
+        self.assertEqual(E.check_outcome(3, True, interrupted_child=True), ('INDETERMINATE', 3, 'seen'))
+        self.assertEqual(E.check_outcome(3, False), ('ITEM_ERROR', 3, 'absent'))     # every other exit 3 keeps today's mapping
+        cls = E.regression_step_classifier('R01')
+        self.assertEqual(E.classify_exited(['x'], 3, 'checks 1  failed 1\nINTERRUPTED signal=SIGINT at=R01 received=1', classify=cls)[0],
+                         'CHILD_INTERRUPTED')
+        self.assertEqual(E.classify_exited(['x'], 3, 'checks 1  failed 1', classify=cls)[0], 'CRASH_NO_RESULT')
+        self.assertEqual(E.map_mutant('CHILD_INTERRUPTED', None), ('INDETERMINATE', 'child_interrupted'))
+        self.assertEqual(E.map_plant('CHILD_INTERRUPTED', None), ('INDETERMINATE', 'child_interrupted'))
+        self.assertEqual(E.map_mutant('PROCESSES_LEFT', None), ('INDETERMINATE', 'processes_left'))
+        self.assertEqual(E.map_mutant('INTERRUPTED', None), ('INDETERMINATE', 'interrupted'))
+        self.assertEqual(E.map_mutant('STOPPED', None), ('INDETERMINATE', 'run_stopped'))
+
+
+class Pass2ForkedMessage(unittest.TestCase):
+    FORMS = {'failed': lambda v: isinstance(v, list), 'exception': lambda v: isinstance(v, str),
+             'child_error': lambda v: isinstance(v, str)}
+
+    def res(self, how='message', message=None, trailing=False, status=0):
+        return {'how': how, 'message': message, 'trailing': trailing, 'status': status, 'leaked': False}
+
+    def test_validation_steps(self):
+        P = E.parse_forked_message
+        self.assertEqual(P(self.res(message=b'{"failed": []}'), self.FORMS), ('ok', ('failed', [])))
+        self.assertEqual(P(self.res(message=b'{"failed": []}', trailing=True), self.FORMS)[0], 'bad_result')
+        self.assertEqual(P(self.res(message=b'not json'), self.FORMS)[0], 'bad_result')
+        self.assertEqual(P(self.res(message=b'{"failed": [], "x": 1}'), self.FORMS)[0], 'bad_result')
+        self.assertEqual(P(self.res(message=b'{"failed": 3}'), self.FORMS)[0], 'bad_result')
+        self.assertEqual(P(self.res(message=b'\xff'), self.FORMS)[0], 'bad_result')
+        self.assertEqual(P(self.res(how='too_long'), self.FORMS)[0], 'bad_result')
+        self.assertEqual(P(self.res(how='eof', status=70 << 8), self.FORMS)[0], 'child_error')
+        self.assertEqual(P(self.res(how='eof', status=1 << 8), self.FORMS)[0], 'crash')
+        self.assertEqual(P(self.res(how='eof', status=9), self.FORMS)[0], 'crash')
+        self.assertEqual(P(self.res(how='timeout'), self.FORMS)[0], 'timeout')
+        self.assertEqual(P(self.res(how='interrupted'), self.FORMS)[0], 'interrupted')
+
+
+class Pass2ProcStat(unittest.TestCase):
+    def test_command_name_with_spaces_and_parentheses(self):
+        # P.3: the fields are counted after the LAST ')' of the line
+        import shutil
+        import subprocess
+        import tempfile
+        d = tempfile.mkdtemp(prefix='s1_stat_')
+        try:
+            exe = os.path.join(d, 'a b) (c')
+            shutil.copy('/bin/sleep', exe)
+            p = subprocess.Popen([exe, '30'])
+            try:
+                st = E.proc_stat(p.pid)
+                self.assertIsNotNone(st)
+                state, ppid, start = st
+                self.assertEqual(ppid, os.getpid())
+                with open('/proc/%d/stat' % p.pid) as fh:
+                    raw = fh.read()
+                self.assertIn('(a b) (c)', raw)
+                self.assertEqual(start, int(raw[raw.rindex(')') + 2:].split()[19]))
+            finally:
+                p.kill()
+                p.wait()
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
+
+    def test_limit_line(self):
+        self.assertEqual(E.limit_line(300), 'LIMIT item=300s exit_after_result=2s grace=10s grace_cancelled=2s escalate=10s kill_verify=5s')
+        self.assertEqual((E.T_EXIT_AFTER_RESULT, E.T_GRACE, E.T_GRACE_CANCELLED, E.T_ESCALATE, E.T_KILL_VERIFY), (2, 10, 2, 10, 5))
+        self.assertEqual((E.FAULT_ITEM_TIMEOUT_S, E.CASE_ITEM_TIMEOUT_S), (300, 300))
+
+    def test_supervisor_list(self):
+        # AM-6 (c): 71 unique supervisors and 3 leaves
+        self.assertEqual(len(set(E.SUPERVISOR_STEMS)), 71)
+        self.assertEqual(len(E.SUPERVISOR_STEMS), 71)
+        self.assertEqual(sorted(E.LEAF_STEMS), ['mut_runner_s1', 'run_m2_tests_s1', 'run_test_files_s1'])
+        on_disk = {f[:-3] for f in os.listdir(os.path.join(ROOT, 'tools')) if f.endswith('_s1.py')} | {'child_unittest_runner'}
+        self.assertEqual(set(E.SUPERVISOR_STEMS) | set(E.LEAF_STEMS), on_disk)
 
 
 if __name__ == '__main__':

@@ -43,7 +43,11 @@ class Decoy:
                 f.write(code)
         with open(os.path.join(self.dir, 'sitecustomize.py'), 'w') as f:
             f.write(code)
-        with open(os.path.join(self.dir, 'decoy.pth'), 'w') as f:
+        # a .pth file is processed only from a site-packages directory: here the user site of this tree used as PYTHONUSERBASE
+        import sysconfig
+        site_dir = sysconfig.get_path('purelib', 'posix_user', {'userbase': self.dir})
+        os.makedirs(site_dir, exist_ok=True)
+        with open(os.path.join(site_dir, 'decoy.pth'), 'w') as f:
             f.write('import os; open(%r, "a").write("pth\\n")\n' % self.marker)
 
     def imported(self):
@@ -156,6 +160,11 @@ class StartChecksInAChild(unittest.TestCase):
 
     def test_sitecustomize_and_pth_decoys_do_not_run(self):
         env = base_env(self.tmp, PYTHONPATH=self.decoy.dir, PYTHONUSERBASE=self.decoy.dir)
+        # the decoys are live: an interpreter started with site and without -I runs both
+        code, out, err = run([sys.executable, '-c', 'pass'], env=env)
+        with open(self.decoy.marker) as fh:
+            self.assertEqual(sorted(fh.read().split()), ['pth', 'sitecustomize'])
+        os.remove(self.decoy.marker)
         code, out, err = run([sys.executable, '-I', '-S', EVKIT, '--self-check'], env=env)
         self.assertEqual(code, 0, out + err)
         self.assertIn('ENV flags isolated=1 no_site=1', out)
@@ -317,6 +326,136 @@ class RunnerLevelStartChecks(unittest.TestCase):
         self.assertFalse(self.decoy.imported())
         self.refused(out, code, 'ENV_CWD')
 
+    def test_free_disk_below_the_floor_stops_a_runner_and_a_mutation_tool_before_any_work(self):
+        # D5 at runner level: the floor every runner's start sequence applies (evkit.start, 10 GB) is raised in the copy above the free
+        # space; the runner refuses before any file, and a mutation tool before any control or mutant
+        p = os.path.join(self.tree, 'tools', 'evkit.py')
+        with open(p, encoding='utf-8') as fh:
+            src = fh.read()
+        old = 'def start(root=ROOT, allow_site=False, interpreter_sha256=None, disk_floor_bytes=10 * 1024 ** 3, preloaded=None, supervisor=None):'
+        self.assertEqual(src.count(old), 1)
+        with open(p, 'w', encoding='utf-8') as fh:
+            fh.write(src.replace(old, old.replace('10 * 1024 ** 3', '10 ** 18')))
+        code, out, err = self.go('s1', ['-I', '-S'])
+        self.refused(out, code, 'ENV_DISK_BELOW_FLOOR')
+        import json
+        with open(os.path.join(self.tree, 'tools', 'expected_counts.json'), encoding='utf-8') as fh:
+            ids = json.load(fh)['mutation_lists']['m5_mutants_s1']['ids']
+        mid = ids[0]
+        sys.path.insert(0, ROOT)
+        import tools.evkit as E
+        code, out, err = run([sys.executable, '-I', '-S', os.path.join(self.tree, 'tools', 'm5_mutants_s1.py'), '--ids', mid],
+                             env=base_env(self.tmp), cwd=self.tree, timeout=600)
+        self.assertEqual(code, 2, out[-2000:])
+        self.assertIn('ENV_DISK_BELOW_FLOOR', ' '.join(run_errors(out)))
+        self.assertIn('MUTANT %s NOT_RUN cause=run_error' % mid, out)
+        self.assertNotRegex(out, r'(?m)^CONTROL ')
+        # corrective pass 2, amendment 3, AM3-1 (b): a failed start check stops the guarded load, so the selection is not resolved and
+        # the refusal names every pinned item (C.1's form); before, it named the selection (selected=[mid])
+        self.assertIn(' selected=%d ' % len(ids), out.strip().splitlines()[-1])
+        self.assertEqual(E.check_output(out, code, selected=ids), [])
+
+
+class AuifRootAtRunnerLevel(unittest.TestCase):
+    """Authorisation §4.3 (APG_AUIF_ROOT: accepted only as the runner's own verified AUIF copy, the child re-checking the path and the
+    package identity, any other value refused; DP-1.3 (a), P7-B2 (R4), T-E (a)), through the real runners:
+      - an APG_AUIF_ROOT inherited by run_m8_tests_s1 that is not a verified AUIF copy is refused (AUIF_DEPENDENCY_UNVERIFIED, exit 2)
+        and nothing from it is imported;
+      - every child run_m8_tests_s1 starts gets APG_AUIF_ROOT set to exactly the copy the runner verified (its 'AUIF verified_before'
+        line), outside the tree, and nothing inherited (the child environment is the allowlist);
+      - the child runner itself (tools/child_unittest_runner.py) refuses a relative, missing or inside-the-tree value before any test
+        (ENV_AUIF_ROOT_INVALID / ENV_AUIF_ROOT_INSIDE_EXTRACTION, exit 2);
+      - given a path that passes those checks but is a tampered AUIF copy, the child never imports from it."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_auif_rl_')
+        self.decoy = Decoy()
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+        self.decoy.close()
+
+    def check(self, out, code):
+        sys.path.insert(0, ROOT)
+        import tools.evkit as E
+        self.assertEqual(E.check_output(out, code), [], out[-2000:])
+
+    def test_an_inherited_value_that_is_not_a_verified_copy_is_refused(self):
+        code, out, err = run([sys.executable, '-I', '-S', os.path.join('tools', 'run_m8_tests_s1.py'), '--file', 'test_m8_dependency.py'],
+                             env=base_env(self.tmp, APG_AUIF_ROOT=self.decoy.dir), timeout=1800)
+        self.assertEqual(code, 2, out[-2000:])
+        self.assertIn('RUN_ERROR AUIF_DEPENDENCY_UNVERIFIED', out)
+        self.assertRegex(out, r'(?m)^FILE test_m8_dependency\.py state=NOT_RUN ')
+        self.assertFalse(self.decoy.imported())
+        self.check(out, code)
+
+    def test_children_get_only_the_copy_the_runner_verified(self):
+        import json
+        tree = tree_copy(os.path.join(self.tmp, 't'))
+        log = os.path.join(self.tmp, 'children.jsonl')
+        p = os.path.join(tree, 'tools', 'child_unittest_runner.py')
+        with open(p, encoding='utf-8') as f:
+            src = f.read()
+        head, rest = src.split('\n', 1)
+        probe = ("import os as _o, json as _j\nopen(%r, 'a').write(_j.dumps({'auif': _o.environ.get('APG_AUIF_ROOT'), "
+                 "'env': sorted(_o.environ)}) + '\\n')\n" % log)
+        with open(p, 'w', encoding='utf-8') as f:
+            f.write(head + '\n' + probe + rest)
+        code, out, err = run([sys.executable, '-I', '-S', os.path.join('tools', 'run_m8_tests_s1.py'), '--file', 'test_m8_dependency.py'],
+                             env=base_env(self.tmp, PYTHONPATH=self.decoy.dir), cwd=tree, timeout=1800)
+        self.assertEqual(code, 0, out[-2000:])
+        import re
+        m = re.search(r'(?m)^AUIF verified_before .* root=(\S+)$', out)
+        self.assertTrue(m, out[-2000:])
+        with open(log) as fh:
+            kids = [json.loads(l) for l in fh]
+        self.assertTrue(kids)
+        for k in kids:
+            self.assertEqual(k['auif'], os.path.realpath(m.group(1)))
+            self.assertFalse(k['auif'].startswith(tree + os.sep))
+            self.assertEqual(k['env'], sorted(['PATH', 'LANG', 'LC_ALL', 'TZ', 'TMPDIR', 'PYTHONDONTWRITEBYTECODE', 'APG_AUIF_ROOT']))
+
+    def child(self, value, module='tests_m8.test_m8_dependency'):
+        return run([sys.executable, '-I', '-S', os.path.join('tools', 'child_unittest_runner.py'), '--caller', 'run_m8_tests_s1',
+                    '--mode', 'full', module], env=base_env(self.tmp, APG_AUIF_ROOT=value), timeout=1800)
+
+    def test_the_child_refuses_a_bad_path_before_any_test(self):
+        for value, error in (('relative/path', 'ENV_AUIF_ROOT_INVALID'), (os.path.join(self.tmp, 'missing'), 'ENV_AUIF_ROOT_INVALID'),
+                             (ROOT, 'ENV_AUIF_ROOT_INSIDE_EXTRACTION'), (os.path.join(ROOT, 'apg'), 'ENV_AUIF_ROOT_INSIDE_EXTRACTION')):
+            with self.subTest(value=value):
+                code, out, err = self.child(value)
+                self.assertEqual(code, 2, out[-2000:])
+                self.assertIn('RUN_ERROR %s ' % error, out)
+                self.assertRegex(out, r'(?m)^FILE test_m8_dependency\.py state=NOT_RUN ')
+                self.assertNotRegex(out, r'(?m)^TEST ')
+                self.check(out, code)
+
+    def test_the_child_never_imports_from_a_tampered_copy(self):
+        r = subprocess.run([sys.executable, '-I', '-S', '-c', 'import sys; sys.path.insert(0, %r)\nfrom apg_auif import dependency as d\n'
+                            'print(d.extract(sys.argv[1]))' % ROOT, os.path.join(self.tmp, 'auif')], cwd=ROOT, capture_output=True,
+                           text=True, env=base_env(self.tmp), timeout=600)
+        root = r.stdout.strip().splitlines()[-1]
+        with open(os.path.join(root, 'auif', '__init__.py'), 'a') as fh:
+            fh.write('\nopen(%r, "a").write("tampered auif\\n")\n' % self.decoy.marker)
+        code, out, err = self.child(root)
+        # decision (f): a refusal before any test (exit 2), not a test failure; nothing from the copy ran
+        self.assertEqual(code, 2, out[-2000:] + err[-1500:])
+        self.assertIn('RUN_ERROR ENV_AUIF_ROOT_UNVERIFIED %s ' % root, out)
+        self.assertRegex(out, r'(?m)^FILE test_m8_dependency\.py state=NOT_RUN ')
+        self.assertNotRegex(out, r'(?m)^TEST ')
+        self.assertFalse(self.decoy.imported(), 'code from the tampered AUIF copy ran')
+        self.check(out, code)
+
+    def test_the_child_accepts_the_copy_its_runner_verified(self):
+        # the control case for (f): an untouched verified copy is accepted, and the file runs and passes
+        r = subprocess.run([sys.executable, '-I', '-S', '-c', 'import sys; sys.path.insert(0, %r)\nfrom apg_auif import dependency as d\n'
+                            'print(d.extract(sys.argv[1]))' % ROOT, os.path.join(self.tmp, 'auif_ok')], cwd=ROOT, capture_output=True,
+                           text=True, env=base_env(self.tmp), timeout=600)
+        code, out, err = self.child(r.stdout.strip().splitlines()[-1])
+        self.assertEqual(code, 0, out[-2000:] + err[-1500:])
+        self.assertRegex(out, r'(?m)^FILE test_m8_dependency\.py state=COMPLETED ')
+        self.check(out, code)
+
 
 CHILD_PROBE = (
     "import sys as _s, json as _j, atexit as _a\n"
@@ -379,6 +518,10 @@ class ChildrenStartIsolated(unittest.TestCase):
         self.assertRegex(out, r'(?m)^CONTROL end CONTROL_PASS ')
         self.assertRegex(out, r'(?m)^MUTANT ML-01 KILLED cause=\S+$')
         self.assertGreaterEqual(len(kids), 5)          # two tiers per control, and the mutant's first tier
+        # DP-2.3 F7 on the real tiers: every tier child runs in its pinned mode for this caller (failfast)
+        for k in kids:
+            a = k['argv']
+            self.assertEqual((a[a.index('--caller') + 1], a[a.index('--mode') + 1]), ('m8_tier', 'failfast'), a)     # the pinned caller profile child_unittest_runner@m8_tier
 
     def test_sabotage_m10_one_plant(self):
         # V01: a view-model plant whose check is one Python test, run through the child runner
@@ -389,6 +532,61 @@ class ChildrenStartIsolated(unittest.TestCase):
     def test_run_regression_m10_step_r07(self):
         code, out, kids = self.go('run_regression_m10_s1.py', '--step', 'R07')
         self.assertEqual(code, 0, out[-2000:])
+        # DP-2.3 F6: R07's test children run full
+        for k in kids:
+            a = k['argv']
+            self.assertEqual(a[a.index('--mode') + 1], 'full', a)
+
+
+
+class E7ChildIsolationM10Halves(unittest.TestCase):
+    """Corrective pass 2, E point 7: the M10 halves of ChildrenStartIsolated's four cases.  Each M10 tool runs on an M10 view
+    (test_apg_root.m10_view) as its run instruction says (python3 -I), with APG_ROOT and PYTHONPATH pointing at the same decoy as the
+    successor half.  Recorded as found: M10's parent starts isolated, but its children do not (they start without -I), so the decoy's
+    sitecustomize on PYTHONPATH runs in them; in these four runs the decoy apg itself is not imported (each child's working directory, or
+    a path entry ahead of the decoy, supplies the real one).  M10's m8_mutants on the view fails its own control at the stage 1 boundary
+    test (tests_m8.test_m8_boundary.TestNoOtherChange), which is why the successor omits that tier module (decision M8-T).
+    BUILDER-EXECUTED: NOT INDEPENDENT."""
+
+    def setUp(self):
+        sys.path.insert(0, ROOT)
+        from tests_tools.test_apg_root import m10_view
+        self.tmp = tempfile.mkdtemp(prefix='s1_e7_')
+        self.view = m10_view(os.path.join(self.tmp, 'm10'))
+        self.decoy = Decoy()
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+        self.decoy.close()
+
+    def go(self, *args):
+        code, out, err = run([sys.executable, '-I', os.path.join('tools', args[0])] + list(args[1:]), cwd=self.view, timeout=3600,
+                             env=base_env(self.tmp, APG_ROOT=self.decoy.dir, PYTHONPATH=self.decoy.dir))
+        names = open(self.decoy.marker).read().split() if self.decoy.imported() else []
+        self.assertIn('sitecustomize', names, 'the M10 children ran isolated after all: %r' % ((args, out[-1500:]),))
+        self.assertNotIn('apg', names)
+        return code, out, err
+
+    def test_run_m8_tests(self):
+        code, out, err = self.go('run_m8_tests.py', '--file', 'test_m8_dependency.py')
+        self.assertEqual(code, 0, out[-2000:] + err[-1500:])
+        self.assertIn('M8 tests 7 in 1 files, failed files 0', out)
+
+    def test_m8_mutants_controls_and_a_known_kill(self):
+        code, out, err = self.go('m8_mutants.py', '--only', 'ML-01', '--jobs', '1')
+        self.assertEqual(code, 2, out[-2000:] + err[-1500:])
+        self.assertRegex(out, r'(?m)^CONTROL \(unmutated copy\): KILLED tier 1: FAIL: test_every_added_file_is_declared '
+                              r'\(tests_m8\.test_m8_boundary\.TestNoOtherChange\.test_every_added_file_is_declared\)')
+
+    def test_sabotage_m10_one_plant(self):
+        code, out, err = self.go('sabotage_m10.py', '--only', 'V01')
+        self.assertEqual(code, 0, out[-2000:] + err[-1500:])
+        self.assertRegex(out, r'(?m)^CAUGHT V01 ')
+
+    def test_run_regression_m10_step_r07(self):
+        code, out, err = self.go('run_regression_m10.py', '--step', 'R07')
+        self.assertEqual(code, 0, out[-2000:] + err[-1500:])
+        self.assertRegex(out, r'(?m)^PASS R07 ')
 
 
 if __name__ == '__main__':

@@ -208,5 +208,99 @@ class RunnerLevel(unittest.TestCase):
         self.assertIn('RUN_ERROR SELECTION_INVALID a candidate factory needs --path', out)
 
 
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Corrective pass 2, E.15 (paper 23d2adb9..., as amended): the fake harness and the trusted names, on each of the eight runners, every
+# output through check_output.  BUILDER-EXECUTED: NOT INDEPENDENT.
+# ---------------------------------------------------------------------------------------------------------------------------------------
+sys.path.insert(0, ROOT)
+import tools.evkit as E  # noqa: E402
+
+
+class E15FakeHarnessAndTrustedNames(unittest.TestCase):
+    def setUp(self):
+        self.dir = tempfile.mkdtemp(prefix='s1_e15_')
+        self.tmp = tempfile.mkdtemp(prefix='s1_e15_tmp_')
+        self.marker = os.path.join(self.tmp, 'FAKE_HARNESS_RAN')
+        self.pins = E.load_pins()[0]['case_inventories']
+
+    def tearDown(self):
+        shutil.rmtree(self.dir, ignore_errors=True)
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def reset(self):
+        shutil.rmtree(self.dir)
+        os.makedirs(self.dir)
+        if os.path.exists(self.marker):
+            os.remove(self.marker)
+
+    def plant(self, tool):
+        """The fake harness: it returns all-pass (empty) results, and writes the marker if any of its code is executed."""
+        rel, text, others, other_text, opt = FAKE_HARNESS[tool]
+        mark = 'open(%r, "a").write("x")\n' % self.marker
+        for d in ('apg', os.path.dirname(rel)):
+            write(os.path.join(self.dir, d, '__init__.py'), mark)
+        write(os.path.join(self.dir, rel), mark + text)
+        for o in others:
+            write(os.path.join(self.dir, o), mark + other_text)
+        self.adapter()
+        return opt
+
+    def adapter(self):
+        write(os.path.join(self.dir, 'engine_adapter', '__init__.py'), 'def F(*a, **k):\n    raise AssertionError("never called")\n')
+
+    def run_tool(self, script, *args):
+        p = subprocess.run([sys.executable, '-I', '-S', os.path.join('tools', script)] + list(args), cwd=ROOT, capture_output=True,
+                           text=True, timeout=600, env=base_env(self.tmp))
+        return p.returncode, p.stdout, p.stderr
+
+    def refused(self, tool, code, out, err, name):
+        self.assertEqual(code, 2, tool + out[-2000:] + err[-2000:])
+        self.assertIn('RUN_ERROR CANDIDATE_SHADOWS_TRUSTED %s' % name, out, tool)
+        self.assertNotRegex(out, r'(?m)^CASE \S+ (PASS|FAIL|INDETERMINATE|ITEM_ERROR) ', tool)
+        self.assertTrue(out.strip().splitlines()[-1].endswith(' status=EVIDENCE_ERROR exit=2'), tool)
+        self.assertEqual(E.check_output(out, code, pins=self.pins[tool + '_s1']), [], tool + out[-3000:])
+
+    def test_the_fake_harness_m10_runs_it_and_the_successor_refuses_it(self):
+        for tool in FAKE_HARNESS:
+            with self.subTest(tool=tool, side='m10'):
+                opt = self.plant(tool)
+                code, out, err = self.run_tool(tool + '.py', '--path', self.dir, opt, 'engine_adapter:F')
+                self.assertEqual(code, 0, tool + out + err)
+                self.assertRegex(out, r'ALL (CONTRACT|CORPUS) CASES PASS', tool)
+                self.assertTrue(os.path.exists(self.marker), '%s: on M10 the fake harness ran' % tool)
+                self.reset()
+            with self.subTest(tool=tool, side='s1'):
+                opt = self.plant(tool)
+                code, out, err = self.run_tool(tool + '_s1.py', '--path', self.dir, opt, 'engine_adapter:F')
+                self.refused(tool, code, out, err, 'apg')
+                self.assertFalse(os.path.exists(self.marker), '%s: the successor executed none of the fake harness' % tool)
+                self.reset()
+
+    def test_each_trusted_name_as_a_package_and_as_a_module_on_each_runner(self):
+        self.assertEqual(E.TRUSTED_PACKAGES, ('apg', 'apg_auif', 'apg_ui', 'mie', 'auif_m8', 'tests', 'tests_m8', 'tests_m10', 'tools'))
+        for tool in FAKE_HARNESS:
+            opt = FAKE_HARNESS[tool][4]
+            for name in E.TRUSTED_PACKAGES:
+                for form in ('package', 'module'):
+                    with self.subTest(tool=tool, name=name, form=form):
+                        self.adapter()
+                        mark = 'open(%r, "a").write("x")\n' % self.marker
+                        write(os.path.join(self.dir, name, '__init__.py') if form == 'package' else os.path.join(self.dir, name + '.py'), mark)
+                        code, out, err = self.run_tool(tool + '_s1.py', '--path', self.dir, opt, 'engine_adapter:F')
+                        self.refused(tool, code, out, err, name)
+                        self.assertFalse(os.path.exists(self.marker), (tool, name, form))
+                        self.reset()
+
+    def test_a_factory_spec_naming_a_trusted_package_on_each_runner(self):
+        for tool in FAKE_HARNESS:
+            opt = FAKE_HARNESS[tool][4]
+            for name in E.TRUSTED_PACKAGES:
+                with self.subTest(tool=tool, name=name):
+                    self.adapter()
+                    code, out, err = self.run_tool(tool + '_s1.py', '--path', self.dir, opt, '%s.x:F' % name)
+                    self.refused(tool, code, out, err, '%s.x' % name)
+                    self.reset()
+
+
 if __name__ == '__main__':
     unittest.main()

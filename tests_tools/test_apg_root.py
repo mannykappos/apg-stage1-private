@@ -118,6 +118,31 @@ class ApgRootRedirect(unittest.TestCase):
         self.assertEqual(p.returncode, 0, p.stdout[-2000:] + p.stderr[-2000:])
         self.assertRegex(p.stdout, r'(?m)^FILE test_m8_dependency\.py state=COMPLETED ')
 
+    def test_e17_the_p7_b2_run_imports_the_real_apg_in_its_child(self):
+        # corrective pass 2, E point 17 (first half), under the reading proposed as AM3-3: the P7-B2 run imports no apg in its own process
+        # (it prints no apg record on either freeze); its child imports apg through tests_m8/_auif.py.  The child probe of
+        # test_exec_env.ChildrenStartIsolated, prepended to the child runner in a copy, records each child's apg.__file__.
+        import json
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from test_exec_env import CHILD_PROBE
+        tree = os.path.join(self.tmp, 't')
+        shutil.copytree(ROOT, tree, ignore=shutil.ignore_patterns('.git', 'logs', '__pycache__'))
+        log = os.path.join(self.tmp, 'children.jsonl')
+        cp = os.path.join(tree, 'tools', 'child_unittest_runner.py')
+        src = open(cp, encoding='utf-8').read()
+        head, rest = src.split('\n', 1)
+        with open(cp, 'w', encoding='utf-8') as f:
+            f.write(head + '\n' + CHILD_PROBE % log + rest)
+        p = subprocess.run([sys.executable, '-I', '-S', 'tools/run_m8_tests_s1.py', '--file', 'test_m8_dependency.py'], cwd=tree,
+                           capture_output=True, text=True, timeout=900, env=env(self.tmp, APG_ROOT=self.decoy))
+        self.assertEqual(p.returncode, 0, p.stdout[-2000:] + p.stderr[-2000:])
+        self.assertFalse(os.path.exists(self.marker))
+        self.assertNotRegex(p.stdout, r'(?m)^IMPORT(_END)? apg ')          # recorded as found: no apg in the runner's own process
+        with open(log) as fh:
+            kids = [json.loads(l) for l in fh]
+        self.assertEqual(len(kids), 1, kids)
+        self.assertEqual(os.path.realpath(kids[0]['apg']), os.path.realpath(os.path.join(tree, 'apg', '__init__.py')))
+
     def test_successor_early_guard_refuses_an_apg_from_elsewhere(self):
         os.remove(os.path.join(self.decoy, 'apg', '__init__.py'))
         with open(os.path.join(self.decoy, 'apg', '__init__.py'), 'w') as f:
@@ -126,6 +151,57 @@ class ApgRootRedirect(unittest.TestCase):
         p = subprocess.run([sys.executable, '-I', '-S', '-c', code], cwd=ROOT, capture_output=True, text=True, timeout=60, env=env(self.tmp))
         self.assertNotEqual(p.returncode, 0)
         self.assertIn('ImportError: apg resolves outside this package root', p.stderr)
+
+
+
+class E4DecoyWorkingDirectory(unittest.TestCase):
+    """Corrective pass 2, E point 4.  M10 half: M10's run_m2_tests.py, on an M10 view, started -I (its run instruction) from a working
+    directory holding a decoy apg package; a probe appended to the view's tests/test_values.py records which apg the run imported.
+    Recorded as found: M10 imports the view's own apg, never the decoy (with -I the working directory is not on sys.path), so M10 does
+    not have this defect.  Successor half: real runners started from a directory other than the root are refused with ENV_CWD before any
+    work, the decoy never imported, each output through check_output.  BUILDER-EXECUTED: NOT INDEPENDENT."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_e4_')
+        self.decoy = os.path.join(self.tmp, 'decoy')
+        self.marker = os.path.join(self.tmp, 'DECOY_IMPORTED')
+        os.makedirs(os.path.join(self.decoy, 'apg'))
+        with open(os.path.join(self.decoy, 'apg', '__init__.py'), 'w') as f:
+            f.write('open(%r, "a").write("decoy apg imported\\n")\n' % self.marker)
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def test_m10_from_a_decoy_working_directory_imports_its_own_apg(self):
+        view = m10_view(os.path.join(self.tmp, 'm10'))
+        probe = os.path.join(self.tmp, 'APG_FILE')
+        with open(os.path.join(view, 'tests', 'test_values.py'), 'a') as f:
+            f.write('\nimport apg as _probe_apg\nopen(%r, "w").write(_probe_apg.__file__)\n' % probe)
+        p = subprocess.run([sys.executable, '-I', os.path.join(view, 'tools', 'run_m2_tests.py'), '-q', 'test_values.py'], cwd=self.decoy,
+                           capture_output=True, text=True, timeout=300, env=env(self.tmp))
+        self.assertEqual(p.returncode, 0, p.stdout[-2000:] + p.stderr[-2000:])
+        self.assertFalse(os.path.exists(self.marker), 'M10 imported the decoy from its working directory')
+        with open(probe) as f:
+            self.assertEqual(os.path.realpath(f.read()), os.path.realpath(os.path.join(view, 'apg', '__init__.py')))
+
+    def test_successor_runners_refuse_a_working_directory_other_than_the_root(self):
+        sys.path.insert(0, ROOT)
+        import tools.evkit as E
+        pins = E.load_pins()[0]
+        mid = pins['mutation_lists']['m2_mutants_s1']['ids'][0]
+        for cwd in (self.decoy, os.path.join(ROOT, 'tools')):
+            for script, args, kw in (('run_m2_tests_s1.py', ['-q', 'test_values.py'], {}),
+                                     ('run_contracts_s1.py', [], {'pins': pins['case_inventories']['run_contracts_s1']}),
+                                     # amendment 3, AM3-1 (b): a start refusal names every pinned item (C.1's form)
+                                     ('m2_mutants_s1.py', ['--ids', mid], {'selected': pins['mutation_lists']['m2_mutants_s1']['ids']})):
+                with self.subTest(cwd=cwd, script=script):
+                    p = subprocess.run([sys.executable, '-I', '-S', os.path.join(ROOT, 'tools', script)] + args, cwd=cwd, capture_output=True,
+                                       text=True, timeout=600, env=env(self.tmp))
+                    self.assertEqual(p.returncode, 2, p.stdout[-2000:] + p.stderr[-2000:])
+                    self.assertRegex(p.stdout, r'(?m)^RUN_ERROR ENV_CWD ')
+                    self.assertFalse(os.path.exists(self.marker))
+                    self.assertNotRegex(p.stdout, r'(?m)^(CASE \S+ (PASS|FAIL)|MUTANT \S+ (KILLED|SURVIVED)|FILE \S+ state=COMPLETED) ')
+                    self.assertEqual(E.check_output(p.stdout, p.returncode, **kw), [], p.stdout[-3000:])
 
 
 MANIFEST = 'programme/APG-M11-S1_MANIFEST.csv'

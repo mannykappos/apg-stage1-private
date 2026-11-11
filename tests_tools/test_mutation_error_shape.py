@@ -90,6 +90,7 @@ class MutateRaises(unittest.TestCase):
                 code, out, err = run(tree, '%s_mutants_s1.py' % tool, '--ids', mid)
                 self.assertEqual(code, 2, out[-2000:] + err[-2000:])
                 self.assertIn('RUN_ERROR PREFLIGHT_INVALID_TARGET %s:mutate_raised' % mid, out)
+                self.assertIn('PREFLIGHT FAILED %s: mutate raised' % mid, out)          # the human line (P2-S3 (R3), kept)
                 self.assertIn('MUTANT %s NOT_RUN cause=preflight_failed' % mid, out)
                 last = out.strip().splitlines()[-1]
                 self.assertIn(' preflight=FAIL control_start=NOT_RUN started=0 ', last)

@@ -28,9 +28,15 @@ sys.path.insert(0, ROOT)
 import tools.evkit as E  # noqa: E402
 
 TOOL = 'm8_mutants_s1'
-M = E.load_tool_module('m8_mutants', ROOT)
+M = TIERS = None   # moved into load() under evkit.import_guard (corrective pass 2, C.1)
 OMITTED = 'test_m8_boundary'      # decision M8-T
-TIERS = {'tier1': [t for t in M.TIER1 if t != OMITTED], 'tier2': list(M.TIER2)}
+
+def load():
+    """C.1: the M10 load, and every module-level statement that uses it, after the start checks (evkit.guarded_load)."""
+    global M, TIERS
+    with E.import_guard('m8_mutants'):
+        M = E.load_tool_module('m8_mutants', ROOT)
+        TIERS = {'tier1': [t for t in M.TIER1 if t != OMITTED], 'tier2': list(M.TIER2)}
 
 
 def mutants():
@@ -55,18 +61,27 @@ def main(argv):
         return E.mutation_main(TOOL, mutants(), commands, argv, equivalents=M.EQUIVALENT, timeout=600, oracle=TIERS)
     from apg_auif import dependency
     saved_path = list(sys.path)
-    try:
-        dep = dependency.ensure()
-    except dependency.AuifDependencyError as e:
-        return E.refuse_run('mutation', TOOL, [m.id for m in mutants()], E.RunError('AUIF_DEPENDENCY_UNVERIFIED', str(e)[:200].replace(' ', '_')))
+    derr = None
+    with E.owning('run_start') as o_start:     # AM-5 (c): the AUIF verification's children are the run's start
+        try:
+            dep = dependency.ensure()
+        except dependency.AuifDependencyError as e:
+            derr = e
+    if derr is not None:
+        return E.refuse_run('mutation', TOOL, [m.id for m in mutants()], E.RunError('AUIF_DEPENDENCY_UNVERIFIED', str(derr)[:200].replace(' ', '_')))
     sys.path[:] = saved_path      # ensure() appends the AUIF copy to sys.path; this process imports nothing from it, and §2.8 checks sys.path
+    # AM-5 (c): a leak at the run's start refuses the run (RUN_ERROR PROCESSES_LEFT run_start, every mutant NOT_RUN, exit 2)
+    start_errors = [E.RunError('PROCESSES_LEFT', 'run_start')] if o_start.leaked else []
 
     def after():
         a = dependency.reverify(dep['root'])
         return [] if a['core_tree_sha256'] == dependency.CORE_TREE_SHA256 else [E.RunError('AUIF_CHANGED_BY_RUN', a['core_tree_sha256'])]
     return E.mutation_main(TOOL, mutants(), commands, argv, equivalents=M.EQUIVALENT, timeout=600, auif_root=dep['root'], after_check=after,
-                           copy_ignore=E.FULL_TREE_IGNORE, oracle=TIERS)
+                           copy_ignore=E.FULL_TREE_IGNORE, oracle=TIERS, start_errors=start_errors)
 
 
 if __name__ == '__main__':
+    rc = E.guarded_load(TOOL, 'mutation', load)
+    if rc is not None:
+        sys.exit(rc)
     sys.exit(main(sys.argv[1:]))

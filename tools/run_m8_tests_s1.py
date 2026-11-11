@@ -43,6 +43,7 @@ def main(argv):
         i += 1
     preloaded = tuple(k for k in sys.modules if k.split('.')[0] in E.TRUSTED_PACKAGES and k not in ('tools', 'tools.evkit'))
     lines, errs = E.start(ROOT, preloaded=preloaded)
+    lines.append(E.limit_line(3600))
     errs += errors
     fpins, rel = {}, []
     try:
@@ -65,21 +66,33 @@ def main(argv):
     try:
         if not errs and all(n in fpins for n in names):
             from apg_auif import dependency
-            try:
-                dep = dependency.ensure()
-            except dependency.AuifDependencyError as e:
-                errs.append(E.RunError('AUIF_DEPENDENCY_UNVERIFIED', str(e)[:200]))
+            with E.owning('run_start') as o_start:     # AM-5 (c): the AUIF verification's children are the run's start
+                try:
+                    dep = dependency.ensure()
+                except dependency.AuifDependencyError as e:
+                    errs.append(E.RunError('AUIF_DEPENDENCY_UNVERIFIED', str(e)[:200]))
+                    dep = None
+            if o_start.leaked:      # a leak at the start refuses the run: no file runs (AM-5 (c))
+                errs.append(E.RunError('PROCESSES_LEFT', 'run_start'))
                 dep = None
             if dep:
                 extra_lines.append('AUIF verified_before zip=%s tree=%s core=%s files=%d root=%s' % (
                     dep['zip_sha256'], dep['tree_sha256'], dep['core_tree_sha256'], dep['files_checked'], dep['root']))
                 env = E.clean_env(tmp, auif_root=dep['root'])
-                for r, n in zip(rel, names):
+                for k, (r, n) in enumerate(zip(rel, names)):
+                    if E.CANCEL.set:      # F.2: no further file starts; the files not started are NOT_RUN
+                        break
+                    E.set_phase(n)
                     cmd = E.child_cmd(CHILD, ['--caller', TOOL, '--mode', 'full', '--run-id', run_id, r[:-3].replace('/', '.')])
-                    outcome, out, err, secs, kind, fields = E.run_child(cmd, 3600, env, ROOT, pins={n: fpins[n]}, selected=[n])
+                    outcome, out, err, secs, kind, fields = E.run_child(cmd, 3600, env, ROOT, pins={n: fpins[n]}, selected=[n], unit=n,
+                                                                        last=(k == len(names) - 1))
                     results[n] = E.file_result_from_child(n, outcome, out)
                     extra_lines.append('CHILD %s %s %.1fs' % (n, outcome, secs))
-                after = dependency.reverify(dep['root'])
+                E.set_phase('between')
+                with E.owning('run_end') as o_end:       # AM-5 (c): the reverification's children are the run's end
+                    after = dependency.reverify(dep['root'])
+                if o_end.leaked:
+                    errs.append(E.RunError('PROCESSES_LEFT', 'run_end'))
                 same = after['tree_sha256'] == dependency.TREE_SHA256 and after['core_tree_sha256'] == dependency.CORE_TREE_SHA256
                 extra_lines.append('AUIF verified_after %s' % ('unchanged' if same else 'CHANGED'))
                 if not same:

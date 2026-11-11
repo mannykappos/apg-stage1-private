@@ -4,7 +4,7 @@ The mutants are M10's own, unchanged: the same targets, kinds, traversal order a
 which this tool loads from tools/m4_mutants.py; the documented equivalents are M10's EQUIV.  What changes is how they are run and judged
 (R1_REQUIREMENTS.md §2; tools/evkit.mutation_main): a pinned universe and site hashes, a preflight before any mutant, start and end
 controls on the same unparse round trip, each mutant in its own fresh copy, the kill oracle tools/mut_runner_s1.py (mode=failfast, its
-first failing file in M10's order), a timeout or a crash never a kill (DP-2.1 (a)), and kind=mutation evidence with one RESULT v=2 line.
+first failing file in M10's order), a timeout or a crash never a kill (DP-2.1 (a)), and kind=mutation evidence with one RESULT v=3 line.
 Usage (from the package root):  python3 -I -S tools/m4_mutants_s1.py [--list] [--jobs N] [--only PREFIX] [--ids A,B] [--run-id ID]
                                  python3 -I -S tools/m4_mutants_s1.py --pin --reason TEXT --cause TEXT
 Exit codes as §2.4.  The M10 success marker 'MUTATION RUN OK' is printed only on exit 0.     BUILDER-EXECUTED: NOT INDEPENDENT."""
@@ -17,8 +17,14 @@ sys.path.insert(0, ROOT)
 import tools.evkit as E  # noqa: E402
 
 TOOL = 'm4_mutants_s1'
-M = E.load_tool_module('m4_mutants', ROOT)
+M = None   # moved into load() under evkit.import_guard (corrective pass 2, C.1)
 PKG = 'apg/fin'
+
+def load():
+    """C.1: the M10 load, and every module-level statement that uses it, after the start checks (evkit.guarded_load)."""
+    global M
+    with E.import_guard('m4_mutants'):
+        M = E.load_tool_module('m4_mutants', ROOT)
 
 
 def mutants():
@@ -49,4 +55,7 @@ def main(argv):
 
 
 if __name__ == '__main__':
+    rc = E.guarded_load(TOOL, 'mutation', load)
+    if rc is not None:
+        sys.exit(rc)
     sys.exit(main(sys.argv[1:]))
