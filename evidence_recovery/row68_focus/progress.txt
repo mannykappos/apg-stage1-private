@@ -1,0 +1,8 @@
+2026-11-12T06:34:44+11:00 start row68_test_consumer_exit_codes_313 python3.13 test_consumer_exit_codes.py 
+2026-11-12T06:36:12+11:00 end row68_test_consumer_exit_codes_313 rc=0 Ran 91 tests in 87.843s OK 
+2026-11-12T06:36:12+11:00 start row68_test_no_timeout_kill_313 python3.13 test_no_timeout_kill.py 
+2026-11-12T06:37:38+11:00 end row68_test_no_timeout_kill_313 rc=0 Ran 52 tests in 85.099s OK 
+2026-11-12T06:37:38+11:00 start row68_test_consumer_exit_codes_312 python3.12 test_consumer_exit_codes.py 
+2026-11-12T06:39:15+11:00 end row68_test_consumer_exit_codes_312 rc=0 Ran 91 tests in 97.195s OK 
+2026-11-12T06:39:16+11:00 start row68_test_no_timeout_kill_312 python3.12 test_no_timeout_kill.py 
+2026-11-12T06:40:41+11:00 end row68_test_no_timeout_kill_312 rc=0 Ran 52 tests in 85.452s OK 

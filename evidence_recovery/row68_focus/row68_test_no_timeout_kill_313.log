@@ -1,0 +1,180 @@
+P_IDENTITY test=__main__.AM5Supervision.test_row11_equal_start_times_are_recorded_and_never_signalled descendants=-
+P_IDENTITY test=__main__.AM5Supervision.test_row11_equal_start_times_are_recorded_and_never_signalled CLEANUP amb1 by=p2test:690 child=- pgid=- scan=1-31 left=200:60 exited_in_grace=- killed=200:60 sigterm=0 sigkill=0 scans=31 deadline=kill_verify escalated_after=- ambiguous=201:60 remaining=200:60
+P_IDENTITY test=__main__.AM5Supervision.test_row11_equal_start_times_are_recorded_and_never_signalled CLEANUP_AMBIGUOUS 301:70 parent=300:70
+P_IDENTITY test=__main__.AM5Supervision.test_row11_equal_start_times_are_recorded_and_never_signalled CLEANUP_SUMMARY units=2 leaked=1 remaining=1
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/tests_tools/test_no_timeout_kill.py:797: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/tools/evkit.py' mode='r' encoding='utf-8'>
+  tree = ast.parse(open(os.path.join(ROOT, 'tools', 'evkit.py'), encoding='utf-8').read())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.AM5Supervision.test_row15_every_wait_is_on_one_pid_with_wnohang descendants=-
+P_IDENTITY test=__main__.AM5Supervision.test_row15_every_wait_is_on_one_pid_with_wnohang CLEANUP_SUMMARY units=0 leaked=0 remaining=0
+.P_IDENTITY test=__main__.AM5Supervision.test_row19_a_unit_that_forks_repeatedly_during_cleanup descendants=691:28388:691,692:28389:691,693:28394:691,694:28400:691,695:28405:691,696:28410:691,697:28415:691,698:28420:691,699:28425:691,700:28430:691,701:28435:691,702:28440:691,703:28445:691,704:28450:691,705:28455:691,706:28460:691,707:28465:691,708:28470:691,709:28475:691,710:28480:691,711:28485:691,712:28490:691,713:28496:691,714:28501:691,715:28506:691,716:28511:691,717:28516:691,718:28521:691,719:28526:691,720:28531:691,721:28536:691,722:28541:691,723:28546:691,724:28551:691,725:28556:691,726:28561:691,727:28566:691,728:28571:691,729:28576:691,730:28581:691,731:28586:691
+P_IDENTITY test=__main__.AM5Supervision.test_row19_a_unit_that_forks_repeatedly_during_cleanup CLEANUP fk by=p2test:690 child=691:28388 pgid=691 scan=33-45 left=691:28388,692:28389,693:28394,694:28400,695:28405,696:28410,697:28415,698:28420,699:28425,700:28430,701:28435,702:28440,703:28445,704:28450,705:28455,706:28460,707:28465,708:28470,709:28475,710:28480,711:28485 exited_in_grace=- killed=691:28388,692:28389,693:28394,694:28400,695:28405,696:28410,697:28415,698:28420,699:28425,700:28430,701:28435,702:28440,703:28445,704:28450,705:28455,706:28460,707:28465,708:28470,709:28475,710:28480,711:28485,712:28490,713:28496,714:28501,715:28506,716:28511,717:28516,718:28521,719:28526,720:28531,721:28536,722:28541,723:28546,724:28551,725:28556,726:28561,727:28566,728:28571,729:28576,730:28581,731:28586 sigterm=41 sigkill=41 scans=13 deadline=grace escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5Supervision.test_row19_a_unit_that_forks_repeatedly_during_cleanup CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM5Supervision.test_row21_the_cleanup_records_their_fields_and_order descendants=732:28610:732,733:28612:732,734:28751:734,735:28753:734,738:28891:738,739:28893:738
+P_IDENTITY test=__main__.AM5Supervision.test_row21_the_cleanup_records_their_fields_and_order CLEANUP u1 by=p2test:690 child=732:28610 pgid=732 scan=46-48 left=733:28612 exited_in_grace=733:28612 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5Supervision.test_row21_the_cleanup_records_their_fields_and_order CLEANUP u2 by=p2test:690 child=734:28751 pgid=734 scan=49-51 left=735:28753 exited_in_grace=735:28753 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5Supervision.test_row21_the_cleanup_records_their_fields_and_order CLEANUP u3 by=p2test:690 child=738:28891 pgid=738 scan=52-54 left=739:28893 exited_in_grace=739:28893 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5Supervision.test_row21_the_cleanup_records_their_fields_and_order CLEANUP_SUMMARY units=3 leaked=3 remaining=0
+.P_IDENTITY test=__main__.AM5Supervision.test_row23_a_real_nested_supervisor_escalated_and_its_orphans_adopted descendants=740:29032:740,741:29036:741,742:29037:741
+P_IDENTITY test=__main__.AM5Supervision.test_row23_a_real_nested_supervisor_escalated_and_its_orphans_adopted CLEANUP n1 by=p2test:690 child=740:29032 pgid=740 scan=55-77 left=740:29032,741:29036,742:29037 exited_in_grace=- killed=740:29032,741:29036,742:29037 sigterm=1 sigkill=3 scans=23 deadline=grace escalated_after=2.0s ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5Supervision.test_row23_a_real_nested_supervisor_escalated_and_its_orphans_adopted CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/tests_tools/test_no_timeout_kill.py:636: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_abwdsk14/tree/tools/evkit.py' mode='r' encoding='utf-8'>
+  src = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/tests_tools/test_no_timeout_kill.py:638: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_abwdsk14/tree/tools/evkit.py' mode='w' encoding='utf-8'>
+  open(p, 'w').write(src.replace(old, new))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.AM5Supervision.test_row4_each_failing_setup_step_is_a_refusal descendants=-
+P_IDENTITY test=__main__.AM5Supervision.test_row4_each_failing_setup_step_is_a_refusal CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+.P_IDENTITY test=__main__.AM5Supervision.test_row6_a_secret_in_the_parent_never_reaches_a_unit_or_a_record descendants=749:29593:749
+P_IDENTITY test=__main__.AM5Supervision.test_row6_a_secret_in_the_parent_never_reaches_a_unit_or_a_record CLEANUP_SUMMARY units=2 leaked=0 remaining=0
+.P_IDENTITY test=__main__.AM5Supervision.test_row71_row101_a_leaf_reaps_its_exited_orphans_before_its_result descendants=753:29600:689
+.P_IDENTITY test=__main__.AM5Supervision.test_row71_the_hook_registers_each_child_once descendants=754:29601:754
+P_IDENTITY test=__main__.AM5Supervision.test_row71_the_hook_registers_each_child_once CLEANUP_SUMMARY units=2 leaked=0 remaining=0
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/apg_auif/dependency.py:43: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/third_party/auif_rev14/AUIF_Independent_Build_v1.0_rev14.zip.sha256' mode='r' encoding='ascii'>
+  side = open(SIDECAR, encoding='ascii').read().split() if os.path.isfile(SIDECAR) else []
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/tests_tools/test_no_timeout_kill.py:942: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_98py4p33/probe.json' mode='r' encoding='utf-8'>
+  got = _json.load(open(probe))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/tests_tools/test_no_timeout_kill.py:948: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/apg_auif/dependency.py' mode='r' encoding='utf-8'>
+  src = open(os.path.join(ROOT, 'apg_auif', 'dependency.py'), encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.AM5Supervision.test_row72_immutable_codes_children_keep_their_command_environment_and_limit descendants=-
+P_IDENTITY test=__main__.AM5Supervision.test_row72_immutable_codes_children_keep_their_command_environment_and_limit CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+.<string>:3: ResourceWarning: unclosed file <_io.TextIOWrapper name='/proc/self/stat' mode='r' encoding='utf-8'>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<string>:4: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_q40ycjmj/ids.txt' mode='a' encoding='utf-8'>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<string>:3: ResourceWarning: unclosed file <_io.TextIOWrapper name='/proc/self/stat' mode='r' encoding='utf-8'>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<string>:4: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_q40ycjmj/ids.txt' mode='a' encoding='utf-8'>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.AM5Supervision.test_row77_a_grandchild_holding_the_message_pipe descendants=758:29613:757,760:29734:759
+P_IDENTITY test=__main__.AM5Supervision.test_row77_a_grandchild_holding_the_message_pipe CLEANUP d1 by=p2test:690 child=757:29613 pgid=757 scan=83-85 left=758:29613 exited_in_grace=758:29613 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5Supervision.test_row77_a_grandchild_holding_the_message_pipe CLEANUP d2 by=p2test:690 child=759:29734 pgid=759 scan=86-88 left=760:29734 exited_in_grace=760:29734 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5Supervision.test_row77_a_grandchild_holding_the_message_pipe CLEANUP_SUMMARY units=2 leaked=2 remaining=0
+.P_IDENTITY test=__main__.AM5Supervision.test_row90_the_pipe_drain_is_bounded descendants=761:29855:761,762:29857:761
+P_IDENTITY test=__main__.AM5Supervision.test_row90_the_pipe_drain_is_bounded CLEANUP dr by=p2test:690 child=761:29855 pgid=761 scan=89-91 left=762:29857 exited_in_grace=762:29857 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5Supervision.test_row90_the_pipe_drain_is_bounded CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM5Supervision.test_row91_sigterm_goes_to_the_nested_supervisor_alone descendants=763:29998:763,764:30000:763
+P_IDENTITY test=__main__.AM5Supervision.test_row91_sigterm_goes_to_the_nested_supervisor_alone CLEANUP ns by=p2test:690 child=763:29998 pgid=763 scan=92-99 left=763:29998,764:30000 exited_in_grace=763:29998,764:30000 killed=- sigterm=2 sigkill=0 scans=8 deadline=none escalated_after=0.7s ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5Supervision.test_row91_sigterm_goes_to_the_nested_supervisor_alone CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM5Supervision.test_row92_the_grace_ends_early_after_two_empty_scans descendants=765:30169:765,766:30171:765
+P_IDENTITY test=__main__.AM5Supervision.test_row92_the_grace_ends_early_after_two_empty_scans CLEANUP gr by=p2test:690 child=765:30169 pgid=765 scan=100-102 left=766:30171 exited_in_grace=766:30171 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5Supervision.test_row92_the_grace_ends_early_after_two_empty_scans CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM5Supervision.test_row96_an_unowned_child_is_attributed_to_run_end descendants=768:30310:689
+P_IDENTITY test=__main__.AM5Supervision.test_row96_an_unowned_child_is_attributed_to_run_end CLEANUP run_end by=p2test:690 child=768:30310 pgid=- scan=103-105 left=768:30310 exited_in_grace=768:30310 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5Supervision.test_row96_an_unowned_child_is_attributed_to_run_end CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM5Supervision.test_row99_the_summary_counts_the_units_started descendants=769:30341:769,770:30342:770,771:30344:770,772:30483:772
+P_IDENTITY test=__main__.AM5Supervision.test_row99_the_summary_counts_the_units_started CLEANUP s2 by=p2test:690 child=770:30342 pgid=770 scan=107-109 left=771:30344 exited_in_grace=771:30344 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5Supervision.test_row99_the_summary_counts_the_units_started CLEANUP_SUMMARY units=4 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM5Supervision.test_s15_a_phase_in_flight_is_a_leak_for_an_unrecorded_orphan descendants=775:30487:689
+P_IDENTITY test=__main__.AM5Supervision.test_s15_a_phase_in_flight_is_a_leak_for_an_unrecorded_orphan CLEANUP run_start by=p2test:690 child=774:30485 pgid=- scan=112-114 left=775:30487 exited_in_grace=775:30487 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5Supervision.test_s15_a_phase_in_flight_is_a_leak_for_an_unrecorded_orphan CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM5Supervision.test_s15_each_units_record_names_the_conservatively_attributed_orphan descendants=781:30564:778
+P_IDENTITY test=__main__.AM5Supervision.test_s15_each_units_record_names_the_conservatively_attributed_orphan CLEANUP ua by=p2test:690 child=778:30559 pgid=778 scan=115-117 left=781:30564 exited_in_grace=781:30564 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5Supervision.test_s15_each_units_record_names_the_conservatively_attributed_orphan CLEANUP ub by=p2test:690 child=779:30559 pgid=779 scan=118-118 left=781:30564 exited_in_grace=- killed=- sigterm=0 sigkill=0 scans=1 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5Supervision.test_s15_each_units_record_names_the_conservatively_attributed_orphan CLEANUP_SUMMARY units=2 leaked=2 remaining=0
+...../tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/tools/m2_mutants.py:232: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/apg/canon.py' mode='r' encoding='utf-8'>
+  src = open(path, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/tools/m2_mutants.py:237: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_m10_kccpqqgt/CA03-keys-not-sorted/apg/canon.py' mode='w' encoding='utf-8'>
+  open(os.path.join(work, 'apg', fname), 'w', encoding='utf-8').write(src.replace(old, new, 1))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/tools/m2_mutants.py:232: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/apg/canon.py' mode='r' encoding='utf-8'>
+  src = open(path, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/tools/m2_mutants.py:237: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_m10_wa0_4c3i/CA03-keys-not-sorted/apg/canon.py' mode='w' encoding='utf-8'>
+  open(os.path.join(work, 'apg', fname), 'w', encoding='utf-8').write(src.replace(old, new, 1))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.P_IDENTITY test=__main__.P2ForkedUnits.test_forking_needs_a_single_thread descendants=-
+P_IDENTITY test=__main__.P2ForkedUnits.test_forking_needs_a_single_thread CLEANUP_SUMMARY units=0 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2ForkedUnits.test_framing_limit descendants=-
+P_IDENTITY test=__main__.P2ForkedUnits.test_framing_limit CLEANUP f by=p2test:690 child=784:30835 pgid=784 scan=120-122 left=784:30835 exited_in_grace=784:30835 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2ForkedUnits.test_framing_limit CLEANUP_SUMMARY units=2 leaked=1 remaining=0
+.P_IDENTITY test=__main__.P2ForkedUnits.test_message_forms_and_classification descendants=-
+P_IDENTITY test=__main__.P2ForkedUnits.test_message_forms_and_classification CLEANUP f by=p2test:690 child=793:30860 pgid=793 scan=129-131 left=793:30860 exited_in_grace=793:30860 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2ForkedUnits.test_message_forms_and_classification CLEANUP_SUMMARY units=7 leaked=1 remaining=0
+.<string>:3: ResourceWarning: unclosed file <_io.TextIOWrapper name='/proc/self/stat' mode='r' encoding='utf-8'>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<string>:4: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_6ldhu4pn/ids.txt' mode='a' encoding='utf-8'>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.P2ForkedUnits.test_valid_result_then_hangs descendants=794:30981:794
+P_IDENTITY test=__main__.P2ForkedUnits.test_valid_result_then_hangs CLEANUP f by=p2test:690 child=794:30981 pgid=794 scan=132-134 left=794:30981 exited_in_grace=794:30981 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2ForkedUnits.test_valid_result_then_hangs CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.<string>:3: ResourceWarning: unclosed file <_io.TextIOWrapper name='/proc/self/stat' mode='r' encoding='utf-8'>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<string>:4: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_ciiqv7xs/ids.txt' mode='a' encoding='utf-8'>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.P2ForkedUnits.test_valid_result_then_hangs_ignoring_sigterm_is_killed descendants=795:31103:795
+P_IDENTITY test=__main__.P2ForkedUnits.test_valid_result_then_hangs_ignoring_sigterm_is_killed CLEANUP f by=p2test:690 child=795:31103 pgid=795 scan=135-147 left=795:31103 exited_in_grace=- killed=795:31103 sigterm=1 sigkill=1 scans=13 deadline=grace escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2ForkedUnits.test_valid_result_then_hangs_ignoring_sigterm_is_killed CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.P_IDENTITY test=__main__.P2ForkedUnits.test_what_a_forked_child_inherits descendants=-
+P_IDENTITY test=__main__.P2ForkedUnits.test_what_a_forked_child_inherits CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2Identity.test_a_reused_parent_pid_with_a_child_of_its_own_is_not_a_member descendants=-
+P_IDENTITY test=__main__.P2Identity.test_a_reused_parent_pid_with_a_child_of_its_own_is_not_a_member CLEANUP_SUMMARY units=0 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2Identity.test_a_reused_pid_is_never_signalled descendants=-
+P_IDENTITY test=__main__.P2Identity.test_a_reused_pid_is_never_signalled CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2Identity.test_equal_start_times_are_ambiguous_and_recorded descendants=-
+P_IDENTITY test=__main__.P2Identity.test_equal_start_times_are_ambiguous_and_recorded CLEANUP_SUMMARY units=0 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2NestedAndRefusals.test_a_nested_indeterminate_result_is_not_a_pass descendants=-
+P_IDENTITY test=__main__.P2NestedAndRefusals.test_a_nested_indeterminate_result_is_not_a_pass CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2NestedAndRefusals.test_nested_supervisor_cancelled_by_its_parent_finishes_and_a_hung_one_is_killed_at_t_escalate descendants=799:31329:799,800:31449:800
+P_IDENTITY test=__main__.P2NestedAndRefusals.test_nested_supervisor_cancelled_by_its_parent_finishes_and_a_hung_one_is_killed_at_t_escalate CLEANUP n1 by=p2test:690 child=799:31329 pgid=799 scan=150-152 left=799:31329 exited_in_grace=799:31329 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=0.2s ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2NestedAndRefusals.test_nested_supervisor_cancelled_by_its_parent_finishes_and_a_hung_one_is_killed_at_t_escalate CLEANUP n2 by=p2test:690 child=800:31449 pgid=800 scan=153-175 left=800:31449 exited_in_grace=- killed=800:31449 sigterm=1 sigkill=1 scans=23 deadline=grace escalated_after=2.0s ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2NestedAndRefusals.test_nested_supervisor_cancelled_by_its_parent_finishes_and_a_hung_one_is_killed_at_t_escalate CLEANUP_SUMMARY units=2 leaked=2 remaining=0
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/tests_tools/test_no_timeout_kill.py:636: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_yhwg__gc/tree/tools/evkit.py' mode='r' encoding='utf-8'>
+  src = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/tests_tools/test_no_timeout_kill.py:638: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_yhwg__gc/tree/tools/evkit.py' mode='w' encoding='utf-8'>
+  open(p, 'w').write(src.replace(old, new))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.P2NestedAndRefusals.test_refusals_when_containment_cannot_be_set_up descendants=-
+P_IDENTITY test=__main__.P2NestedAndRefusals.test_refusals_when_containment_cannot_be_set_up CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+./tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/tests_tools/test_no_timeout_kill.py:636: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_aqjzcppf/tree/tools/evkit.py' mode='r' encoding='utf-8'>
+  src = open(p).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery/focus/tree_row68_test_no_timeout_kill_313/tests_tools/test_no_timeout_kill.py:638: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_p2_aqjzcppf/tree/tools/evkit.py' mode='w' encoding='utf-8'>
+  open(p, 'w').write(src.replace(old, new))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.P2NestedAndRefusals.test_sigchld_ignored_is_set_back_or_refused descendants=-
+P_IDENTITY test=__main__.P2NestedAndRefusals.test_sigchld_ignored_is_set_back_or_refused CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2NestedAndRefusals.test_the_hook_registers_children_created_by_in_process_code_and_a_phase_owns_them descendants=-
+P_IDENTITY test=__main__.P2NestedAndRefusals.test_the_hook_registers_children_created_by_in_process_code_and_a_phase_owns_them CLEANUP run_start by=p2test:690 child=807:31820 pgid=- scan=176-178 left=807:31820 exited_in_grace=807:31820 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2NestedAndRefusals.test_the_hook_registers_children_created_by_in_process_code_and_a_phase_owns_them CLEANUP_SUMMARY units=2 leaked=1 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_a_member_that_cannot_be_killed_is_cleanup_incomplete descendants=809:31841:809
+P_IDENTITY test=__main__.P2SubprocessUnits.test_a_member_that_cannot_be_killed_is_cleanup_incomplete CLEANUP u1 by=p2test:690 child=809:31841 pgid=809 scan=180-210 left=809:31841 exited_in_grace=- killed=809:31841 sigterm=1 sigkill=0 scans=31 deadline=kill_verify escalated_after=- ambiguous=- remaining=809:31841
+P_IDENTITY test=__main__.P2SubprocessUnits.test_a_member_that_cannot_be_killed_is_cleanup_incomplete CLEANUP_SUMMARY units=1 leaked=1 remaining=1
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_a_member_that_ignores_sigterm_is_killed descendants=810:32648:810
+P_IDENTITY test=__main__.P2SubprocessUnits.test_a_member_that_ignores_sigterm_is_killed CLEANUP u1 by=p2test:690 child=810:32648 pgid=810 scan=231-243 left=810:32648 exited_in_grace=- killed=810:32648 sigterm=1 sigkill=1 scans=13 deadline=grace escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_a_member_that_ignores_sigterm_is_killed CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_concurrent_orphan_attribution_and_an_unrelated_process_survives descendants=819:32875:816
+P_IDENTITY test=__main__.P2SubprocessUnits.test_concurrent_orphan_attribution_and_an_unrelated_process_survives CLEANUP ua by=p2test:690 child=816:32870 pgid=816 scan=245-245 left=819:32875 exited_in_grace=- killed=- sigterm=0 sigkill=0 scans=1 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_concurrent_orphan_attribution_and_an_unrelated_process_survives CLEANUP ub by=p2test:690 child=817:32870 pgid=817 scan=244-247 left=819:32875 exited_in_grace=819:32875 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_concurrent_orphan_attribution_and_an_unrelated_process_survives CLEANUP_SUMMARY units=3 leaked=2 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_hang_timeout_and_setsid_double_fork_are_contained descendants=820:33092:820,821:33094:820,822:33095:821,824:33313:824,825:33314:824,826:33316:825
+P_IDENTITY test=__main__.P2SubprocessUnits.test_hang_timeout_and_setsid_double_fork_are_contained CLEANUP u1 by=p2test:690 child=820:33092 pgid=820 scan=248-250 left=820:33092,822:33095 exited_in_grace=820:33092,822:33095 killed=- sigterm=2 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_hang_timeout_and_setsid_double_fork_are_contained CLEANUP u2 by=p2test:690 child=824:33313 pgid=824 scan=251-253 left=824:33313,826:33316 exited_in_grace=824:33313,826:33316 killed=- sigterm=2 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_hang_timeout_and_setsid_double_fork_are_contained CLEANUP_SUMMARY units=2 leaked=2 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_normal_path_background_grandchild_after_a_passing_result_is_a_leak descendants=827:33433:827,828:33435:827,831:33556:831,832:33558:831
+P_IDENTITY test=__main__.P2SubprocessUnits.test_normal_path_background_grandchild_after_a_passing_result_is_a_leak CLEANUP u1 by=p2test:690 child=827:33433 pgid=827 scan=254-256 left=828:33435 exited_in_grace=828:33435 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_normal_path_background_grandchild_after_a_passing_result_is_a_leak CLEANUP u2 by=p2test:690 child=831:33556 pgid=831 scan=257-259 left=832:33558 exited_in_grace=832:33558 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_normal_path_background_grandchild_after_a_passing_result_is_a_leak CLEANUP_SUMMARY units=2 leaked=2 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_the_registration_race_child_exits_immediately descendants=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_the_registration_race_child_exits_immediately CLEANUP_SUMMARY units=20 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_the_registration_race_with_the_window_widened descendants=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_the_registration_race_with_the_window_widened CLEANUP_SUMMARY units=20 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_the_supervisor_is_a_subreaper_and_supervision_is_available descendants=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_the_supervisor_is_a_subreaper_and_supervision_is_available CLEANUP_SUMMARY units=0 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_wait_ownership_two_concurrent_units_and_an_adopted_zombie descendants=882:36361:879
+P_IDENTITY test=__main__.P2SubprocessUnits.test_wait_ownership_two_concurrent_units_and_an_adopted_zombie CLEANUP ua by=p2test:690 child=879:36359 pgid=879 scan=44363-44363 left=882:36361 exited_in_grace=- killed=- sigterm=0 sigkill=0 scans=1 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_wait_ownership_two_concurrent_units_and_an_adopted_zombie CLEANUP ub by=p2test:690 child=881:36359 pgid=881 scan=44364-44364 left=882:36361 exited_in_grace=- killed=- sigterm=0 sigkill=0 scans=1 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_wait_ownership_two_concurrent_units_and_an_adopted_zombie CLEANUP_SUMMARY units=2 leaked=2 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_what_a_unit_child_inherits descendants=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_what_a_unit_child_inherits CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+.....
+----------------------------------------------------------------------
+Ran 52 tests in 85.099s
+
+OK

@@ -142,3 +142,13 @@ review pack); everything after that is restated here from the conversation recor
   23:21 during T08 (cause not determined: no log line after that). Nothing was evidence yet.
 - 2026-11-12 06:32 Owner's answer: "Add limits, then refreeze". The be0c27b step 5.1 run is abandoned (kept as ev5/run_sets/py313_T, not evidence).
   Next: limits on the 10 helper starts (tests only), focused checks on both Pythons, a new freeze built twice, step 5.1 restarted.
+- 06:33 to 06:34 (11-12) Row 68 change, tests only (branch row68): a time limit on the 10 helper starts (wait(timeout=60), run(...,
+  timeout=60), a bounded cleanup in a finally for two Popen helpers, signal.alarm(120) in the row 77 grandchild); no assertion
+  changed, no test added or removed (commit 417cafb). Pins v102 by evkit.update_pins on the two files (ids and counts unchanged,
+  a57faba); manifest regenerated on an export (e9e11d9, 34e722db...). Row 68 scan (dev run, tset_start_scan_s1.py): 83 sites, 83 with a
+  limit. The scan's alarm pattern was widened to the test's alias _sig before this count (builder tool).
+- 06:34 to 06:40 Focused checks (BUILDER-EXECUTED: NOT INDEPENDENT), fresh exports of row68: test_consumer_exit_codes 91 OK and
+  test_no_timeout_kill 52 OK on Python 3.13 and on 3.12. Logs in evidence_recovery/row68_focus (session id masked).
+- 06:41 main fast-forwarded to e9e11d9. Freeze of e9e11d9 built twice, byte-identical, 1555 files, APG-M11-S1.zip SHA-256
+  ee1ce3ec4be1a76482595688cfd9b41910fa26f4c9fe9a936f8971e86b5e0735; frozen_compare against M10: changed 3, identical 1463, new 89,
+  problems 0. This supersedes be0c27b (67203973..., kept in freezes/be0c27b, no evidence made on it). Step 5.1 restarts on it.
