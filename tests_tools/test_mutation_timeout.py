@@ -1468,7 +1468,7 @@ class AM5F2RemainingPoints(unittest.TestCase):
                 self.assertEqual(code, 3, out[-2000:])
                 self.assertRegex(out, r'(?m)^CONTROL end CONTROL_NOT_RUN cause=interrupted$')
                 self.assertEqual(out.strip().splitlines()[-2], 'INTERRUPTED signal=%s at=control_end received=1' % sig.name)
-                self.assertRegex(out, r'(?m)^PLANT %s (DETECTED|NOT_DETECTED) ' % _re.escape(pid))     # fixed before the signal: kept
+                self.assertRegex(out, r'(?m)^PLANT %s (CAUGHT|MISSED) ' % _re.escape(pid))     # fixed before the signal: kept
                 self.assertEqual(E.check_output(out, code, selected=[pid]), [], out[-3000:])
                 p2_gone(self, seen)
 
@@ -1508,7 +1508,7 @@ class AM5SabotageControls(unittest.TestCase):
         code, out, seen, sent = p2_run(tree, 'sabotage_%s_s1.py' % tool, ['--ids', pid])
         p2_identity_record(self, seen, out)
         shutil.rmtree(tree, ignore_errors=True)
-        self.assertEqual(code, 2, out[-2000:])
+        self.assertEqual(code, 3, out[-2000:])          # a failed control: status INDETERMINATE (B.4), never a pass
         self.assertRegex(out, r'(?m)^CONTROL %s CONTROL_FAIL cause=%s ' % (where, want))
         last = out.strip().splitlines()[-1]
         self.assertIn(' control_%s=FAIL ' % where, last)
@@ -1516,7 +1516,7 @@ class AM5SabotageControls(unittest.TestCase):
             self.assertRegex(out, r'(?m)^PLANT %s NOT_RUN ' % _re.escape(pid))
             self.assertNotRegex(out, r'(?m)^CONTROL end ')
         else:
-            self.assertRegex(out, r'(?m)^PLANT %s DETECTED ' % _re.escape(pid))
+            self.assertRegex(out, r'(?m)^PLANT %s CAUGHT ' % _re.escape(pid))      # its outcome is kept
         self.assertEqual(E.check_output(out, code, selected=[pid]), [], out[-3000:])
         p2_gone(self, seen)
 
