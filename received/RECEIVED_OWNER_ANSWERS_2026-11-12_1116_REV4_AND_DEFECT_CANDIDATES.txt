@@ -1,0 +1,5 @@
+Owner answers received 2026-11-12 (Australia/Melbourne), through the chat question tool, after GPT's scoped check of revision 3.
+Q1 (revision 4): "Yes, fix all 9 (Recommended)" — documentation and design work only; a fresh agent checks it before the owner gets it; no code change.
+Q2 (two possible defects found in the detection code, identical in M10 and unchanged by stage 1: R04B silent when an instruction links to any
+variation record, even held or rejected; LAB counts missing overtime hours as zero): "Log them, stage 1 continues (Recommended)" — record both
+as defect candidates for their own change request; no code change now; step 5 keeps running.
