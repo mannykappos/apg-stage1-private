@@ -535,7 +535,7 @@ SILENT = [
  ('DC-11', 'every detection and M6 rule', 'findings are graded with the pinned detection policy\'s bands whether or not that policy is approved; a stored finding is flagged policy_unapproved when created or updated (a reopened finding keeps its earlier flag), the signal is not', 'grading not set up yet', 'set the grading levels in setup'),
  ('DC-12', 'M4 commitments, R02', 'amendments on an order the commitments figure skips (held, duplicate, unreconciled, without an amount, after the cut-off, status unknown or unmapped) are never examined; the order is listed, its amendments are not', 'amendment on hold, not checked: its order is not counted, with the order\'s reason; never added to a figure until confirmed', 'resolve the order\'s reason'),
 ]
-SILENT.append(('DC-13', 'R01, R04, R04B, R08, R09, AGG, DLY, LAB, DEF, D02, MPD1; MP02, MP03, MP04, MP05, MP09 (orders matched by project)', 'a record whose project cannot be told (chiefly a conflict whose versions name different projects) is pinned into every project\'s run, but these rules use only records certain to belong, so none of them assesses or lists it', 'record not assessed: its project is unknown', 'add or correct the project reference'))
+SILENT.append(('DC-13', 'R01, R04, R04B, R08, R09, AGG, DLY, LAB, DEF, D02, MPD1; MP02, MP03, MP04, MP05, MP09 (orders matched by project)', 'a record whose project cannot be told (chiefly a conflict whose versions name different projects) is pinned into every project\'s run, but these rules use only records certain to belong, so none of them assesses or lists it', 'record not checked: its copies name different jobs (named), or its job is unknown', 'correct the job on the record'))
 
 SKIP = re.compile(r'(corpus|demo_|faulty|golden|reference_|contracts_|ports_)')
 BUILTIN = {'ValueError', 'TypeError', 'KeyError', 'AssertionError', 'RuntimeError', 'NotImplementedError', 'IndexError', 'AttributeError', 'LookupError', 'PermissionError', 'StopIteration'}
@@ -716,7 +716,7 @@ for (nm, t) in sorted(raises):
         m, d = 'the message states it', 'do what the message says, then try again' if a in (P, B) else 'none for the builder'
     row('refusal or error raised (' + nm + ')', t, ' '.join(sorted(raises[(nm, t)])), a, m, d, 'the person acting' if a == P else BK if a == B else SU)
 for dc, rule, today, msg, do in SILENT:
-    row('silent today (' + dc + ')' if dc != 'DC-3' else 'an uncaught error today (DC-3)', msg, rule, B, today, do, '-', 'no message: the ' + ('proposed fix, put to the owner,' if dc == 'DC-13' else 'decided fix') + ' adds it (' + dc + ')')
+    row('silent today (' + dc + ')' if dc != 'DC-3' else 'an uncaught error today (DC-3)', msg, rule, B, today, do, '-', 'no message: the decided fix adds it (' + dc + ')')
 with open(os.path.join(OUT, 'NOT_ASSESSED_MESSAGES.csv'), 'w', newline='') as fh:
     w = csv.DictWriter(fh, fieldnames=list(rows[0]), lineterminator='\n'); w.writeheader(); w.writerows(rows)
 from collections import Counter
