@@ -175,13 +175,13 @@ for i, r in enumerate(contracts):
     kinds = sorted({t for t in re.findall(r'[a-z][a-z_]*[a-z]', r['record kinds and fields']) if t in reg})
     if not ent:
         rows.append({'contract row': i + 2, 'rule or figure': r['rule or figure'], 'kinds named': ' '.join(kinds) or '-', 'entry functions': '-', 'functions on the path': 0,
-                     'fields the code path reads (upper bound)': '-', 'note': 'no entry function named: the row describes a part of another row\'s path'})
+                     'fields the code path reads (kinds the row names)': '-', 'note': 'no entry function named: the row describes a part of another row\'s path'})
         continue
     path = closure(ent)
     s = strings(path)
     read = sorted({'%s.%s' % (k, f) for k in kinds for f in reg[k] if f in s})
     rows.append({'contract row': i + 2, 'rule or figure': r['rule or figure'], 'kinds named': ' '.join(kinds) or '-', 'entry functions': ' '.join('%s:%s' % k for k in ent),
-                 'functions on the path': len(path), 'fields the code path reads (upper bound)': ' '.join(read) or '-', 'note': ''})
+                 'functions on the path': len(path), 'fields the code path reads (kinds the row names)': ' '.join(read) or '-', 'note': ''})
 with open('CODE_READS.csv', 'w', newline='') as fh:
     w = csv.DictWriter(fh, fieldnames=list(rows[0]), lineterminator='\n'); w.writeheader(); w.writerows(rows)
-print('rows', len(rows), 'fields read on the paths', sum(len(x['fields the code path reads (upper bound)'].split()) for x in rows if x['fields the code path reads (upper bound)'] != '-'))
+print('rows', len(rows), 'fields read on the paths', sum(len(x['fields the code path reads (kinds the row names)'].split()) for x in rows if x['fields the code path reads (kinds the row names)'] != '-'))

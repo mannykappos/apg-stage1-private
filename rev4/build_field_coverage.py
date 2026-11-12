@@ -61,8 +61,8 @@ for e in csv.DictReader(open(f'{d}/ENTITY_REGISTER.csv')):
             ENT[k], WAYS[k] = i, e['path status']
 # the fields each row's code path reads (build_code_reads.py, run first): added to the row, so the report no longer rests only on the
 # fields the contract text names (GPT's check of revision 4)
-CODE = {int(x['contract row']): x['fields the code path reads (upper bound)'].split() for x in csv.DictReader(open(f'{d}/CODE_READS.csv'))
-        if x['fields the code path reads (upper bound)'] != '-'}
+CODE = {int(x['contract row']): x['fields the code path reads (kinds the row names)'].split() for x in csv.DictReader(open(f'{d}/CODE_READS.csv'))
+        if x['fields the code path reads (kinds the row names)'] != '-'}
 out, gaps = [], []
 for ri, r in enumerate(R):
     text = r['record kinds and fields']
@@ -212,6 +212,23 @@ for r in R:
                      'release A must still add (PG-DS-AC-12)': 'the setup question, versioned; defaults and ranges approved by the owner, accepted by the builder\'s approver, every change recorded (decision 9)'
                          if e == 'N01' else 'a supplier template checked against a real builder file' if e == 'E20'
                          else 'the setup question through the intake, versioned and approved where the register requires it'})
+# the retention-event fields (E77): a person-entered record with no field definition yet; a route row each, so they are not left out of the
+# field-by-field report (GPT's re-check of revision 4)
+ret = {}
+for r in out:
+    for item in r['other items and what supplies them'].split('; '):
+        if item.startswith('retention_event.'):
+            ret.setdefault(item.split(':')[0].split('.', 1)[1], []).append(r['rule or figure'])
+for fld in sorted(ret):
+    rows.append({'record kind': 'retention_event', 'field': fld, 'read by': '; '.join(sorted(set(ret[fld]))), 'entity': 'E77 ' + NAME['E77'],
+                 'ways in and status (register)': PATHS['E77'],
+                 'built today (exists or partly)': ' '.join(sorted(_built(w) for w in PATHS['E77'].split('; ') if w.split(' ')[-1] in ('exists', 'partly'))) or 'none',
+                 'material in the intake specs (a proxy for S04 s12; a lower bound)': 'not applicable: no record definition yet',
+                 'verification route of each way in (design)': ' | '.join(ROUTE[w.split(' ')[0]] for w in PATHS['E77'].split('; ') if w.split(' ')[0] in ROUTE),
+                 'source authority today': 'not applicable: recorded by a named person, not sourced from a system',
+                 'verification today': 'each event must name the person, role and evidence (fin/cash_states.py check_event); no entry screen, no record definition in the intake',
+                 'release A must still add (PG-DS-AC-12)': 'the record definition and the entry form (E77), with its field-by-field verification'})
+
 # the severity grading levels, a setting the owner decided on 2026-11-12, with its own row (GPT's check of revision 4); the other settings
 # rows group the keys one contract row names (for example instruction_types and min_age_days)
 rows.append({'record kind': 'setting', 'field': 'severity grading levels per grade: a dollar amount, a percentage of the job, or both, the grade applying when either is reached',

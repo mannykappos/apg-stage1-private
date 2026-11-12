@@ -1,0 +1,177 @@
+### APG Data Readiness revision 4 — scoped re-check
+
+I have checked the revised pack, including the production code, the new code-read generator, the generated CSVs, and the change request. I also reran the seven generator commands in the order specified.
+
+The four original blocking gaps appear to be resolved at the contract and field-route level. The key improvement is that the report now has a separate code-read input, rather than relying solely on the contract wording to validate itself.
+
+There is, however, an important distinction in the result: the generator reproduces its output and finds the fields it is designed to find. That does not independently prove that its call-path analysis captures every field read by every rule. I am checking that limitation against the actual source paths before giving the final disposition.
+
+### 1\. The four original blocking items
+
+All four RESOLVED
+
+| Original finding                              | Result                                | Evidence                                                                                                                                                                                                                                                                                                                                                             |
+| --------------------------------------------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Credit-note supplier field                 | RESOLVED                              | RULE_INPUT_CONTRACTS.csv now names credit_note.supplier_ref, alongside the reconciliation check against the invoice supplier. It states that both suppliers must resolve through E20 for the comparison; otherwise SUPPLIER_NOT_CHECKED applies. FIELD_SUPPLY_ROUTES.csv has the corresponding credit-note supplier field.                                           |
+| 2. Project-scope fields and D02 kinds         | RESOLVED                              | The shared project-scoped contract row names project_ref for variation, notice, budget line, CTC line, purchase order, plant hire, delay event, timesheet, work output, defect, material demand and specification requirement. D02's project record kinds are also identified in the relevant contract. The generated routes contain those project-reference fields. |
+| 3. Incomplete M6 contracts                    | RESOLVED                              | The revised comparison, buy-timing, MP01, MP02, MP08 and MP09 rows name the missing inputs. The code-read output now finds the comparison's last-paid inputs, buy-timing coverage inputs, and MP09's demand, order, delivery, quote, reading and import-check inputs.                                                                                                |
+| 4. Field report inheriting contract omissions | RESOLVED, with a disclosed limitation | build_code_reads.py now contributes code-read fields to FIELD_COVERAGE.csv, rather than relying only on the contract text. The field-coverage generator checks fields against their own record kind. It reports 170 field pairs with no kind-level gaps. The scan's limitations are disclosed; it is not a proof that every possible code path is captured.          |
+
+The four original blockers are resolved. The qualification on item 4 is important, but it does not undo the correction: the pack now describes what the scan does and does not establish.
+
+### 2\. The six original should-fix items
+
+All six RESOLVED
+
+| Original finding                        | Result   | Evidence                                                                                                                                                                                                                                                    |
+| --------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. R07 issue date                       | RESOLVED | The R07 contract explicitly says the issue date is not checked and that a quote dated after the assessment date can still be compared. It is stated as a limitation, not silently treated as a validated input.                                             |
+| 2. quote_reading.extractor_kind         | RESOLVED | It is named in the M6 comparison contract and appears in the comparison row of CODE_READS.csv and the field routes.                                                                                                                                         |
+| 3. Buy-timing market-observation fields | RESOLVED | unit_text, source_label_text and geography_text are named in the buy-timing contract and appear in its code-read row and field routes.                                                                                                                      |
+| 4. MPD1 project fields                  | RESOLVED | The shared project-scoped row names the relevant project references, including those for material demand and specification requirements. MPD1's own record-kind scope is also identified.                                                                   |
+| 5. Severity route and settings grouping | RESOLVED | The severity grading levels have their own settings row. The document explains that settings rows group keys by the contract/configuration row and that the setup question is per key. The generator produces 56 settings rows, including the severity row. |
+| 6. DC-1, DC-4 and DC-6 wording          | RESOLVED | The message list now describes the variation-silence behaviour, the GST/tax-treatment condition for the MP09 omission, and the zero-quantity demand-line case more accurately.                                                                              |
+
+The revised message list is now 580 entries. Its generated breakdown is 262 reason codes, 188 plain-language reasons, 4 run/figure states, 113 refusals/errors, 12 silent-today entries and 1 uncaught error.
+
+### 3\. Does `build_code_reads.py` find the fields?
+
+Yes, for the fields you specifically asked me to check.
+
+I checked the generated rows against the contract text, the field register and the supply routes.
+
+| Field or group                                                                            | Found in CODE_READS.csv?         | In FIELD_SUPPLY_ROUTES.csv? |
+| ----------------------------------------------------------------------------------------- | -------------------------------- | --------------------------- |
+| credit_note.supplier_ref                                                                  | Yes                              | Yes                         |
+| Project references for the named detection and M6 record kinds                            | Yes                              | Yes                         |
+| supplier_quote.issue_date                                                                 | Yes, in the M6 paths that use it | Yes                         |
+| supplier_quote.valid_until                                                                | Yes                              | Yes                         |
+| supplier_quote.material_ref                                                               | Yes                              | Yes                         |
+| purchase_order.quantity                                                                   | Yes                              | Yes                         |
+| purchase_order.material_ref                                                               | Yes                              | Yes                         |
+| purchase_order.unit_rate_cents                                                            | Yes                              | Yes                         |
+| quote_reading.extractor_kind                                                              | Yes                              | Yes                         |
+| Market-observation unit_text, source_label_text, geography_text                           | Yes                              | Yes                         |
+| Buy-timing coverage inputs, including purchase-order and delivery quantities/status/dates | Yes                              | Yes                         |
+| MP09 coverage, ranking and import-check inputs                                            | Yes                              | Yes                         |
+
+In particular, the changes to the entry-function lists matter:
+
+* The comparison row now includes `mkt/compare.py last_paid`, so the last-paid purchase-order fields are found.
+
+* The buy-timing row now includes `mkt/demand.py coverage`, so its purchase-order and delivery coverage inputs are found.
+
+* MP09's row now names the comparison-gate and import-check inputs, and its code-read row includes those fields.
+
+I also checked that every field appearing in the generated `CODE_READS.csv` rows has a matching record-kind field route. There are no unmatched code-read fields in the 51 rows the scanner processes.
+
+### Remaining field-level exception: retention events
+
+There is one disclosed exception that should not be mistaken for a complete field route.
+
+`RULE_INPUT_CONTRACTS.csv` has a separate M4 retention-position row for the `retention_event` record. That row has no entry function, so the scanner skips it. The retention calculation does read the event fields:
+
+* `seq`
+
+* `project_ref`
+
+* `from_state`
+
+* `to_state`
+
+* `amount_cents`
+
+* `evidence_ref`
+
+* `actor`
+
+* `actor_kind`
+
+* `actor_roles`
+
+The code is in `fin/cashview.py` (`build_retention`, including its call to `cash_states.events_of`) and `fin/cash_states.py` (`events_of`, `fold` and `check_event`). In particular, `cash_states.py` line 101 reads `project_ref`.
+
+Those nine fields are listed separately in `FIELD_COVERAGE.csv` as person-entered E77 retention-event fields with no field definition yet. They do not have corresponding rows in `FIELD_SUPPLY_ROUTES.csv`. The entity register also says E77 has no entry screen.
+
+This is not a hidden scanner omission: the pack explicitly identifies the skipped row and the missing record definition. But the fields still do not have the same field-by-field supply-route treatment as the 170 fields in the main report.
+
+SHOULD FIX · small/medium
+
+Recommendation: carry the E77 retention-event field definition and route into the Section 18 cascade assessment. It does not prevent the Section 18 assessment from starting because the gap is explicitly disclosed, rather than falsely counted as covered.
+
+### 4\. DC-13: accurate, but its scope is incomplete
+
+PARTLY · SHOULD FIX · small/medium
+
+The central mechanism is now described correctly:
+
+* `fin/snap.py` `project_of()` returns `None` when it cannot establish one project, including when conflicting versions name different projects.
+
+* `det/gather.py` lines 28–30 pins a record with an unknown project into each project's run.
+
+* `mkt/gather.py` lines 46–48 does the same for purchase orders; lines 58–60 do it for project-owned demand and specification records.
+
+* The rules then filter for records that belong to the particular project. An unknown-project record is therefore dropped without being assessed or listed by those rules.
+
+The pack also correctly identifies the principal reachable case today: conflicting versions naming different projects. It says a blank project reference is rejected by the Stage 1 templates.
+
+The remaining problem is which M6 rules DC-13 names.
+
+The DC-13 defect table and `NOT_ASSESSED_MESSAGES.csv` identify the project-scoped detection rules and MPD1. They do not identify the other project-scoped M6 rules that also use project-specific matching:
+
+* MP02
+
+* MP03
+
+* MP04
+
+* MP05
+
+* MP09
+
+The M6 project rule table in `mkt/rules.py` identifies these as project rules. Their purchase-order or coverage paths match by project reference; an unknown-project purchase order can consequently be dropped without the proposed DC-13 message. MPD1 does not make that purchase-order omission visible: its project-held kinds are material demand and specification requirements, not purchase orders.
+
+So the mechanism is right, but the stated scope of the defect is incomplete. Add those M6 rules to the DC-13 description and its message-list entry before the owner decides whether to accept DC-13. This does not reopen the corrected project-field contracts.
+
+### 5\. Generator reproduction and totals
+
+I ran the seven commands in the order specified, from `03_registers/`. All seven returned exit code 0.
+
+| Generated item       | Reproduced result                                                             |
+| -------------------- | ----------------------------------------------------------------------------- |
+| Systems survey       | 18 rows; 16 systems                                                           |
+| Entity register      | 100 entities: 11 covered, 42 partial, 47 missing                              |
+| Rule input contracts | 57 rows covering 43 rules and figures                                         |
+| Chart data           | Counts reproduced                                                             |
+| Code reads           | 51 rows; 455 field mentions across those paths                                |
+| Field coverage       | 57 contract rows; 170 record-kind fields in 33 entities; zero kind-level gaps |
+| Field supply routes  | 170 field rows plus 56 settings rows; 226 rows total                          |
+| Message list         | 580 entries                                                                   |
+
+The authority counts reproduce as 6 / 36 / 17 / 1 / 110. The 34 material fields and 56 settings rows also reproduce.
+
+One small presentation issue remains: the generated `CODE_READS.csv` column is still headed `fields the code path reads (upper bound)`. That wording contradicts the revised explanation that the scan is over-inclusive only within the kinds a row names, and is not an upper bound on all fields the rule may read. The body of the document explains the limitation correctly; the CSV header should be brought into line.
+
+MINOR · small
+
+The generator's reproducibility is established by these runs. It does not independently prove the correctness of the AST call-path analysis; the pack itself correctly disclaims that.
+
+### Final disposition
+
+| Classification | Remaining |
+| -------------- | --------- |
+| BLOCKING       | 0         |
+| SHOULD FIX     | 2         |
+| MINOR          | 1         |
+
+The four original blockers and six original should-fix items are resolved. I find no remaining BLOCKING item within the requested scope.
+
+The two should-fix items are:
+
+* E77 retention-event fields: nine fields are explicitly disclosed separately but do not yet have field-level supply-route rows or a field definition.
+
+* DC-13 scope: add MP02, MP03, MP04, MP05 and MP09 to the defect description/message because they also drop project-unknown purchase-order inputs.
+
+The minor item is the stale `upper bound` heading in `CODE_READS.csv`.
+
+My recommendation: proceed to the Section 18 cascade impact assessment. Carry those two smaller corrections into that work; do not reopen the six resolved points or redesign the data-readiness architecture. This is not production-build authorisation: the change request still correctly says production work awaits the Section 01 Discovery Exit Report and separate owner authorisation.
