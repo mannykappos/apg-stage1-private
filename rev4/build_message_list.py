@@ -1,20 +1,26 @@
-"""Data Readiness revision 4: every message APG's production code can give when it cannot fully do a check or a figure, with what the
-builder is to do (the owner's rule of 2026-11-12: "This feature of telling the builder what apg needs to work should be across the whole
-apg").  Builder work (Claude), not independent.  It states the design; nothing here changes the code.
+"""Data Readiness revision 4: the messages APG's production code gives when it cannot fully do a check or a figure, with what the builder
+is to do (the owner's rule of 2026-11-12: "This feature of telling the builder what apg needs to work should be across the whole apg").
+Builder work (Claude), not independent.  It states the design; nothing here changes the code.
 
-It scans the production modules of apg/fin, apg/det, apg/mkt, apg/ingest and apg/source_authority.py (test, corpus, demo, golden, faulty,
-reference, contract and port modules are left out) for
-  - every upper-case reason code written as a string ('PO_NOT_VISIBLE', 'COMPONENT_MISSING:' ...),
-  - every plain-language reason a detection or M6 rule gives for not assessing an item,
-  - the run states cannot_assess, not_configured and disabled, and M6's missing_parameter,
-and fails if the code gives one that the table below does not cover, or if the table holds one the code no longer gives.  So the list is
-complete for the code it was run on.  It adds the silent cases (DC-3 to DC-11), which give no message today.
+It parses (with Python's ast module) every production module of apg/fin, apg/det, apg/mkt, apg/ingest, plus apg/source_authority.py and
+apg/policy_approval.py (test, corpus, demo, golden, faulty, reference, contract and port modules are left out), and collects:
+  - every string constant that starts with an upper-case code (one word or more, with or without ':'), and pieces the code joins into codes
+    (EXPAND); rule ids and a few non-message words are listed in NOT_CODE;
+  - the reason of every figure 'unknown' input, every exclusion class and every dispute text (fin FigureBuilder);
+  - every text or word given as 'why', 'reason', 'note', 'missing_parameter', 'sample_note' or 'status' (dict keys, assignments, keyword
+    arguments other than audit-log calls), every '(None, text)' a function returns, every 'skipped' reason;
+  - the states of ingest/freshness.py and the provisional and cannot-assess figure states, and the run states of det and mkt;
+  - every text raised by an APG exception class (not Python's own errors, which are programming faults) or refused by policy_approval.py.
+It fails if the code gives one of these that the tables below do not cover, or if a table holds one the code no longer gives.  This is a
+check against the code by those patterns, not a proof: a message built in a way the patterns do not see would be missed.  Each message is
+proven when it is built and tested, first in the defect change request.  It also lists the cases that give no message today (DC-1 to DC-12;
+DC-3 is an uncaught error, the others are silent).
 
 Audience:  builder      - a gap in the builder's data or settings: the message says what to do and who usually does it
-           person       - a check on an action a person is taking (approving, resolving, recording an event): what that person must add
+           person       - a check on an action a person is taking (approving, resolving, recording, verifying): what that person must add
            information  - a label or note that explains a result; no action needed
            system       - an APG integrity or programming fault: nothing for the builder; APG support investigates
-The wording is the design's starting point; the exact text is settled when each message is built (first in the DC change request).
+The wording is the design's starting point; the exact text is settled when each message is built.
 usage: python3 -I build_message_list.py <the apg folder> <output folder>"""
 import csv, os, re, sys
 
@@ -26,7 +32,7 @@ BK, PM, CM, FN, AP, SU = 'bookkeeper', 'project manager', 'commercial manager', 
 # code: (audience, what it means, what to do, who usually does it)
 MSG = {
  'ACTION_REQUIRED': (P, 'a proposed action on a finding was not described', 'describe the proposed action', 'the person proposing it'),
- 'ACTUALS_AFTER_FORECAST_DATE_NOT_ADDED': (I, 'cost recorded after the forecast date is not added to the forecast final cost', 'none; update the forecast to include it', PM),
+ 'ACTUALS_AFTER_FORECAST_DATE_NOT_ADDED': (I, 'cost recorded after the forecast date is not added to the forecast final cost', 'update the forecast if it should include that cost', PM),
  'ACTUAL_COST_FIGURE_PROVISIONAL': (I, 'the budget comparison rests on an actual-cost figure that is provisional', 'resolve what makes actual cost provisional (listed with it)', BK),
  'AMBIGUOUS_LATEST_FORECAST': (B, 'two forecast versions share the latest date, so APG cannot tell which is current', 'mark one forecast version as current, or date them differently', PM),
  'AMBIGUOUS_REVISION': (B, 'two values of the same field arrived and their revision order cannot be told', 'confirm which value is current', BK),
@@ -49,7 +55,7 @@ MSG = {
  'BANK_EVIDENCE_REQUIRED': (P, 'a retention release marked received needs the bank transaction of exactly that amount', 'import the bank transaction, then record the event', FN),
  'BASIS_NOT_IN_TABLE': (B, 'the quote\'s delivery basis is not in the delivery-basis table, so what the rate includes is unknown', 'add the delivery basis to the table in setup', CM),
  'BUDGET_CHANGED_AND_CTC_DERIVED_FROM_IT': (I, 'the forecast moved because the budget changed and the cost to complete is derived from it', 'none; check the budget change was intended', PM),
- 'BUDGET_EXCEEDED_BY': (I, 'cost on this code is above its budget, so a budget-derived cost to complete is not known', 'enter a cost to complete for the code', PM),
+ 'BUDGET_EXCEEDED_BY': (B, 'cost on this code is above its budget, so a budget-derived cost to complete is not known', 'enter a cost to complete for the code', PM),
  'BUDGET_NOT_POSITIVE': (B, 'the cost code\'s budget is zero or negative, so overspend cannot be assessed', 'correct the budget line', PM),
  'CANNOT_ADOPT_A_FORECAST_THAT_CANNOT_BE_ASSESSED': (P, 'a forecast that cannot be assessed cannot be adopted', 'resolve what stops the forecast, then adopt it', PM),
  'CARRYING_NOT_CONFIGURED': (B, 'the carrying-cost method is not set, so carrying cost cannot be assessed', 'set the carrying-cost method in setup', FN),
@@ -75,7 +81,7 @@ MSG = {
  'CREDIT_NOT_LINKED_TO_A_TRUSTED_INVOICE': (B, 'the credit is not linked to an invoice APG can trust', 'link the credit to its invoice, or resolve the invoice\'s hold', BK),
  'CREDIT_SUPPLIER_MISMATCH': (B, 'the credit note\'s supplier differs from the invoice\'s; the credit is held', 'correct the supplier or the invoice reference', BK),
  'CREDIT_TARGET_NOT_VISIBLE': (B, 'the invoice the credit names has not arrived; the credit is held', 'import the invoice, or correct the reference', BK),
- 'CRITICAL_VALUE_MISSING': (B, 'a value the record cannot be used without is missing', 'enter the value', BK),
+ 'CRITICAL_VALUE_MISSING': (B, 'a value is missing that the intake settings do not declare optional, so the record is held', 'enter the value, or have the field declared optional in the intake settings', BK),
  'CTC_METHOD_CHANGED': (I, 'the cost-to-complete method changed between the two forecasts', 'none; check the change was intended', PM),
  'CTC_UNKNOWN': (B, 'the cost to complete for this code is not known, so the forecast is provisional', 'enter the cost to complete for the code', PM),
  'CURRENCY_NOT_CONVERTED': (B, 'the price cannot be converted to the home currency', 'import a current exchange rate for the currency', CM),
@@ -96,9 +102,9 @@ MSG = {
  'EVENT_NOT_LISTED_FOR_RENOTIFICATION': (I, 'this kind of change does not send a new notification', 'none', '-'),
  'EVIDENCE_REQUIRED': (P, 'this step needs a reference to the evidence', 'attach the evidence reference', 'the person acting'),
  'EXPECTED_RELEASE_DATE_PASSED_AND_NOT_RELEASED': (B, 'the retention release date has passed without a release, so a forward cost cannot be estimated', 'record the new expected release date', FN),
- 'EXPIRY_REVIEW': (B, 'a security instrument is close to expiry', 'review the instrument: renew or release it', FN),
+ 'EXPIRY_REVIEW': (B, 'a security instrument has reached its expiry date', 'review the instrument: renew or release it', FN),
  'FACILITY_RECORD_HELD': (B, 'the facility statement is held, so carrying cost cannot be assessed', 'resolve the hold on the facility statement', FN),
- 'FACILITY_STATEMENT_AFTER_AS_OF': (I, 'the facility statement is dated after the assessment date', 'none; or supply a statement for the period', FN),
+ 'FACILITY_STATEMENT_AFTER_AS_OF': (B, 'the only facility statement is dated after the assessment date, so carrying cost cannot be assessed', 'supply a statement for the period', FN),
  'FILE_INTEGRITY': (S, 'a stored file no longer matches its recorded fingerprint', 'none for the builder', SU),
  'FILE_NOT_FOUND': (S, 'a stored file cannot be found', 'none for the builder', SU),
  'FILE_TOO_LARGE': (B, 'the import file is larger than allowed', 'split the file and import the parts', BK),
@@ -108,7 +114,6 @@ MSG = {
  'FORECAST_DOES_NOT_REPRODUCE': (S, 'a forecast run does not reproduce from its stored inputs', 'none for the builder', SU),
  'FORECAST_FINAL_COST_NOT_POSITIVE': (B, 'the forecast final cost is zero or negative, so the margin cannot be assessed', 'check the forecast and cost records', PM),
  'FORECAST_OWNER_REQUIRED': (P, 'adopting a forecast needs a person with the forecast-owner role', 'have the forecast owner adopt it', PM),
- 'FORECAST_REVENUE': (I, 'the result is labelled forecast revenue', 'none', '-'),
  'FORECAST_VERSION_DATES_DISAGREE': (B, 'the lines of the chosen forecast version carry different dates', 'correct the forecast lines\' dates', PM),
  'FORECAST_VERSION_NOT_FOUND': (B, 'the forecast version asked for is not in the data', 'import that version, or choose another', PM),
  'FORMULA_PREFIX': (B, 'a cell starts like a spreadsheet formula; it is flagged', 'check the cell holds a value, not a formula', BK),
@@ -122,7 +127,7 @@ MSG = {
  'HUMAN_ACTOR_REQUIRED': (P, 'this retention step must be recorded by a person', 'have a named person record it', FN),
  'HUMAN_CORRECTION_APPLIED': (I, 'a person\'s correction was applied to the record', 'none', '-'),
  'HUMAN_REQUIRED': (P, 'this step must be done by a person', 'have a named person do it', 'the person acting'),
- 'INPUT_MISSING': (S, 'the policy version a run names is not stored', 'none for the builder', SU),
+ 'PROVISIONAL': (I, 'a total that includes values not yet authoritative is labelled provisional', 'resolve the values listed with it', BK),
  'INSIDE_SUPPRESSION_WINDOW': (I, 'the notification is not re-sent inside the quiet period', 'none', '-'),
  'INSUFFICIENT_IN_POOL': (P, 'the retention event moves more than the state holds', 'correct the event amount', FN),
  'INTERNATIONAL_CHECKS_UNRESOLVED': (B, 'import checks for the international quote are not resolved, so no definitive ranking', 'resolve the import checks listed', CM),
@@ -145,14 +150,14 @@ MSG = {
  'MIXED_BUDGET_REVISIONS': (B, 'budget lines from different revisions are mixed', 'import one complete budget revision', PM),
  'MKT_POLICY_NOT_PINNED': (B, 'no procurement settings are in force, so the M6 rules cannot be assessed', 'set up and approve the procurement settings', AP),
  'NOISE_POLICY_NOT_CONFIGURED': (B, 'notification settings are not set, so only new and reopened findings notify', 'set the notification settings in setup', PM),
- 'NON_ASCII_IDENTIFIER': (B, 'an identifier holds characters other than plain letters and digits; the row is rejected', 'correct the identifier', BK),
+ 'NON_ASCII_IDENTIFIER': (B, 'an identifier holds characters that are not plain ASCII; the row is rejected', 'correct the identifier', BK),
  'NOT_ACTIVE': (P, 'the finding is not active, so this action does not apply', 'none', 'the person acting'),
  'NOT_APPLICABLE_REVENUE_ZERO_OR_NEGATIVE': (B, 'revenue is zero or negative, so a margin percentage does not apply', 'check the contract value and variations', CM),
  'NOT_A_DETECTION_RUN': (S, 'the run given is not a detection run', 'none for the builder', SU),
  'NOT_A_FORECAST': (S, 'the run given is not a forecast', 'none for the builder', SU),
  'NOT_A_SCENARIO_RUN': (S, 'the run given is not a scenario run', 'none for the builder', SU),
  'NOT_BYTES': (S, 'the importer was given something that is not a file', 'none for the builder', SU),
- 'NOT_RECONCILED': (B, 'the order has not been through reconciliation, so it is not used', 'run reconciliation for the order', BK),
+ 'NOT_RECONCILED': (B, 'the order or quote has no reconciliation state, so it is not used', 'have the record reconciled (the intake does this when it runs)', BK),
  'NOT_USABLE': (B, 'the record is held, so it is not used', 'resolve the hold (its reasons are listed)', BK),
  'NO_APPROVED_CHANGE_REFERENCE': (B, 'the order amendment names no approved change', 'link the approved variation', PM),
  'NO_APPROVED_REGISTER': (B, 'there is no approved source-authority register, so the field cannot be trusted; a reviewer cannot clear it', 'set up and approve the source-authority register', AP),
@@ -167,7 +172,7 @@ MSG = {
  'NO_FORECAST_VERSION': (B, 'no forecast version is in the data', 'import a forecast', PM),
  'NO_HEADER': (B, 'the import file has no header row', 'add the header row and import again', BK),
  'NO_RECEIVABLES_DATA': (B, 'client invoices, certificates and receipts are not held, so overdue receivables cannot be assessed', 'supply the receivables data once its way in is built (E13 to E15)', FN),
- 'NO_RECONCILIATION_STATE': (B, 'the record has not been reconciled, so it is held', 'run reconciliation', BK),
+ 'NO_RECONCILIATION_STATE': (B, 'the record has no reconciliation state, so it is held', 'have the record reconciled (the intake does this when it runs)', BK),
  'NO_SUPPRESSION_WINDOW_CONFIGURED': (B, 'the quiet period for notifications is not set', 'set it in setup', PM),
  'NUL_BYTE': (B, 'the file holds binary content', 'export the file again as text', BK),
  'OUTSIDE_PERIOD': (I, 'the record falls outside the period assessed', 'none', '-'),
@@ -182,7 +187,7 @@ MSG = {
  'PO_COST_CODE_MISMATCH': (B, 'the invoice\'s cost code differs from its order\'s; the invoice is held', 'correct the cost code on the invoice or the order', BK),
  'PO_NOT_VISIBLE': (B, 'the order the record names has not arrived; the record is held', 'import the order, or correct the reference', BK),
  'PO_PROJECT_MISMATCH': (B, 'the invoice\'s project differs from its order\'s; the invoice is held', 'correct the project on the invoice or the order', BK),
- 'PO_STATUS_MAP_NOT_CONFIGURED': (B, 'purchase-order statuses are not set up', 'set up the purchase-order statuses (open, committed, closed)', FN),
+ 'PO_STATUS_MAP_NOT_CONFIGURED': (B, 'purchase-order statuses are not set up', 'set up the purchase-order statuses: map each of your order statuses to committed, draft, cancelled or closed', FN),
  'PO_STATUS_UNKNOWN': (B, 'the order has no status, so it is left out of commitments', 'enter the order status', BK),
  'PO_STATUS_UNMAPPED': (B, 'the order\'s status is not in the status settings, so it is left out', 'add the status to the purchase-order status settings', FN),
  'PO_SUPPLIER_MISMATCH': (B, 'the invoice\'s supplier differs from its order\'s; the invoice is held', 'correct the supplier on the invoice or the order', BK),
@@ -199,7 +204,6 @@ MSG = {
  'RATE_IS_A_POLICY_PROXY_NOT_AN_EVIDENCED_FACILITY_RATE': (I, 'carrying cost uses the settings\' rate, not an evidenced facility rate', 'import the facility statement for an evidenced rate', FN),
  'RATE_ONLY_FOR_DUTY': (I, 'this rate is used only for duty', 'none', '-'),
  'RATIONALE_REQUIRED': (P, 'this change of status must record why', 'record the reason', 'the person acting'),
- 'RECOGNISED_REVENUE': (I, 'the result is labelled recognised revenue', 'none', '-'),
  'RECOGNITION_METHOD_NOT_CONFIGURED': (B, 'the revenue recognition method is not set', 'set it in setup', FN),
  'RECORD_MISSING': (S, 'a record a stored run needs is missing', 'none for the builder', SU),
  'RECORD_NO_LONGER_COUNTED': (I, 'a record counted before is no longer counted, so the movement is not explained', 'check why (held, corrected or replaced)', BK),
@@ -208,7 +212,7 @@ MSG = {
  'REJECTED_BY_REVIEW': (I, 'a reviewer rejected the record', 'none, or send a corrected record', BK),
  'RELEASED_AND_RECEIVED': (I, 'the retention was released and the money received', 'none', '-'),
  'RELEASED_PER_LEDGER_CASH_RECEIPT_NOT_EVIDENCED': (B, 'the ledger says released but no bank receipt is held', 'import the bank receipt', FN),
- 'RELEASE_REVIEW_DUE': (B, 'the retention is due for release review', 'review the release and lodge the claim', FN),
+ 'RELEASE_REVIEW_DUE': (B, 'the release date has passed with retention still withheld: a review prompt, not an entitlement', 'review whether release is due and, if so, claim it', FN),
  'REQUIRED_MISSING': (B, 'a required cell is blank; the row is rejected', 'fill the cell and import again', BK),
  'REQUIREMENT_UNAPPROVED': (B, 'the specification requirement is not approved by a person', 'have the requirement approved', 'the specification owner'),
  'RESIDUAL_NOT_ATTRIBUTED': (I, 'part of the cost movement cannot be attributed to a code', 'check the cost records', BK),
@@ -265,24 +269,61 @@ MSG = {
  'UNKNOWN_DENOMINATOR': (S, 'a calculation was asked for with an unknown basis', 'none for the builder', SU),
  'UNKNOWN_STATUS': (S, 'an unknown finding status was named', 'none for the builder', SU),
  'VALUE_MISSING': (B, 'an optional value is missing; the record is used with a warning', 'enter the value if known', BK),
- 'VARIATION_STATUS_MAP_NOT_CONFIGURED': (B, 'variation statuses are not set up', 'set up the variation statuses (approved, submitted, rejected, disputed)', CM),
+ 'VARIATION_STATUS_MAP_NOT_CONFIGURED': (B, 'variation statuses are not set up', 'set up the variation statuses: map each of your variation statuses to approved, unapproved, disputed or rejected', CM),
  'VARIATION_STATUS_UNMAPPED': (B, 'the variation\'s status is not in the status settings, so it is left out', 'add the status to the variation status settings', CM),
  'VERIFICATION_NOT_AVAILABLE': (P, 'a realised outcome needs the Section 05 verification, which is not available', 'none yet', '-'),
+ 'TAX_BASIS_NOT_CONFIGURED': (B, 'the tax basis is not set, so revenue cannot be assessed', 'set the tax basis in setup', FN),
+ 'CTC_METHOD_NOT_CONFIGURED': (B, 'the cost-to-complete method is not set, so the forecast cannot be assessed', 'set the cost-to-complete method in setup', PM),
+ 'FFC_BASIS_NOT_CONFIGURED': (B, 'the forecast-final-cost basis is not set, so the forecast cannot be assessed', 'set the forecast basis in setup', FN),
+ 'A_COMPONENT_CANNOT_BE_ASSESSED': (B, 'a part of the forecast cannot be assessed, so the forecast final margin cannot be either', 'resolve what stops that part (its reasons are listed)', PM),
+ 'A_DEFINED_COMPONENT_CANNOT_BE_ASSESSED': (B, 'a part the cash-adjusted margin is defined to include cannot be assessed', 'resolve what stops that part (its reasons are listed)', FN),
+ 'A_FORECAST_CANNOT_BE_ASSESSED': (B, 'one of the two forecasts being compared cannot be assessed, so the movement is not explained', 'resolve what stops that forecast', PM),
+ 'AMOUNT_COMPARISON_ONLY': (I, 'R03 compares amounts only: invoice quantities and unit rates are not held', 'none', '-'),
+ 'CLEARED': (I, 'a reviewer cleared this hold', 'none', '-'),
+ 'ENCODING': (B, 'the import file is not in the expected text encoding; the file is rejected', 'export the file again in the encoding the template names', BK),
+ 'EXPIRED': (B, 'R07 compared an expired quote or reference, at weak strength', 'get a current quote or reference', CM),
+ 'FRESHNESS': (B, 'the offer is not fresh enough for this decision, so no definitive ranking', 'get a current quote', CM),
+ 'GATE': (I, 'the offer did not pass the comparability gate; the gate codes say why', 'act on the gate codes given with it', CM),
+ 'MISSING': (B, 'fields this M6 record needs are missing', 'enter the fields named', CM),
+ 'RECONCILIATION': (B, 'the record\'s reconciliation outcome does not allow its use', 'resolve the hold (its reasons are listed)', BK),
+ 'STALE': (B, 'an input is older than the freshness limit set for it', 'supply a current one', PM),
+ 'TERMINAL': (P, 'a superseded finding is kept for audit and cannot change', 'none', 'the person acting'),
+ 'RECOGNISED_REVENUE_UNKNOWN': (B, 'recognised revenue is not known, so the margin percentage cannot be assessed', 'resolve what stops the revenue figure', CM),
+ 'FORECAST_REVENUE_UNKNOWN': (B, 'forecast revenue is not known, so the margin percentage cannot be assessed', 'resolve what stops the revenue figure', CM),
+ 'PERCENT_COMPLETE_RESTS_ON_A_FORECAST_THAT_IS_PROVISIONAL': (I, 'percent complete rests on a provisional forecast', 'resolve what makes the forecast provisional', PM),
 }
-# plain-language reasons the rules give (matched by their start)
+# pieces the code joins into codes: each must expand to codes that have an entry above
+EXPAND = {
+ '_NOT_CONFIGURED': ['TAX_BASIS_NOT_CONFIGURED', 'VARIATION_STATUS_MAP_NOT_CONFIGURED', 'CTC_METHOD_NOT_CONFIGURED', 'FFC_BASIS_NOT_CONFIGURED', 'COST_SCOPE_NOT_CONFIGURED'],   # fin/revenue.py, fin/forecast.py: fld.upper() + '_NOT_CONFIGURED'
+ '_UNKNOWN': ['RECOGNISED_REVENUE_UNKNOWN', 'FORECAST_REVENUE_UNKNOWN'],                     # fin/margins.py pct_figure: label + '_UNKNOWN', labels from fin/calc_records.py
+ 'PERCENT_COMPLETE_RESTS_ON_A_FORECAST_THAT_IS_': ['PERCENT_COMPLETE_RESTS_ON_A_FORECAST_THAT_IS_PROVISIONAL'],   # fin/margins.py: + state.upper(); a cannot_assess forecast stops earlier
+}
+# upper-case strings that are not messages
+NOT_CODE = {
+ 'AWAITING_': 'a prefix the code matches codes against', 'CONFLICT_': 'a prefix the code matches codes against',
+ 'RECOGNISED_REVENUE': 'a label joined into RECOGNISED_REVENUE_UNKNOWN', 'FORECAST_REVENUE': 'a label joined into FORECAST_REVENUE_UNKNOWN',
+ 'APG': 'the product name', 'AUD': 'a currency code', 'GST': 'a tax name', 'NFKC': 'a text normalisation form', 'T00': 'part of a time stamp',
+}
+RULE_ID = re.compile(r'(R0\dB?|D0\d|AGG|DEF|DLY|LAB|MP\d\d|MPD1)$')
+# plain-language reasons (matched by their start); 'unknown: <kind>' is a figure's unknown input, 'exclude: <class>' an exclusion class,
+# 'status: <word>' a status value, 'freshness: <state>' a state of ingest/freshness.py
 TEXT = {
  'record not in the store': (B, 'R07: the quote or reference named in the comparable pair is not stored', 'import it, or correct the pair', CM),
  'purchase order has no unit rate': (B, 'R07: the reference order has no unit rate', 'enter the order\'s unit rate', BK),
  'currency %s: conversion is not done here': (I, 'R07: a quote not in AUD is left to M6', 'none', '-'),
  'ex-works quote with no freight': (B, 'R07: an ex-works quote has no freight, so a landed cost cannot be built', 'add the freight to the quote', CM),
  'delivery basis %r needs the landed-cost model': (I, 'R07: this delivery basis is left to M6', 'none', '-'),
+ 'is not usable (held, disputed or duplicate)': (B, 'R07: the quote or reference is held, disputed or a duplicate', 'resolve the hold', BK),
  'the declared pair names different materials': (B, 'R07: the comparable pair names two different materials', 'correct the pair', CM),
  'status %r is not mapped by the financial policy': (B, 'R04: the variation\'s status is not in the status settings', 'add the status to the variation status settings', CM),
- 'invoice for ': (B, 'R03: an invoice for the order is held, so the invoiced total may be higher', 'resolve the invoice\'s hold', BK),
- 'held, disputed, undated or after the as-of date': (B, 'R09: the forecast line is held, disputed, undated or after the date', 'resolve the line (date it, or resolve the hold)', PM),
+ 'status %r is not one of %s': (B, 'M6: an import check\'s status is not one of the allowed values', 'record the check with an allowed status', CM),
+ 'status %r maps to %s': (I, 'M6 coverage: an order whose status is not committed or closed is not counted', 'none, unless the status is wrong', BK),
+ 'invoice for': (B, 'R03: an invoice for the order is held, so the invoiced total may be higher', 'resolve the invoice\'s hold', BK),
+ 'held, disputed, undated or after the as-of date': (B, 'R09: the forecast line is held, disputed, undated or after the date', 'resolve the hold, or date the line', PM),
+ 'held': (B, 'R02: the order amendment is held', 'resolve the amendment\'s hold', BK),
  'not usable (': (B, 'AGG: the order is held', 'resolve the hold', BK),
- 'undated or after the as-of date': (B, 'AGG: the order is undated or after the date', 'enter the order date', BK),
- 'a grouping key is missing: ': (B, 'AGG: a field the split-order check groups by is missing', 'enter the field named', BK),
+ 'undated or after the as-of date': (B, 'AGG: the order is undated, or dated after the assessment date', 'enter the order date if it is missing; a later order is assessed in a later run', BK),
+ 'a grouping key is missing': (B, 'AGG: a field the split-order check groups by is missing', 'enter the field named', BK),
  'hours are not a plain non-negative decimal': (B, 'LAB: the timesheet hours are not a valid number', 'correct the hours', PM),
  'fewer than %d complete weeks with both hours and output': (B, 'LAB: not enough complete weeks of hours and output', 'record hours and output for the missing weeks', PM),
  'the windows are not consecutive weeks': (B, 'LAB: a week is missing or incomplete', 'complete the missing week', PM),
@@ -291,21 +332,137 @@ TEXT = {
  'subcontractor or trade is not recorded': (B, 'DEF: the defect has no subcontractor or trade', 'record the subcontractor and trade', PM),
  'no evidenced need date': (B, 'R08: the plant hire has no need date', 'enter the date the plant is needed until', PM),
  'no end date: an open delay': (B, 'DLY: the delay has no end date', 'enter the end date, or close the delay', PM),
- 'starts after the as-of date or ends before it starts': (B, 'DLY: the delay\'s dates are wrong', 'correct the delay\'s dates', PM),
+ 'starts after the as-of date or ends before it starts': (B, 'DLY: the delay\'s dates are wrong, or it starts after the assessment date', 'correct the dates if they are wrong', PM),
  'uncovered demand but no rankable current quote': (B, 'MP03: demand is not covered and no current quote can be ranked', 'get a comparable current quote', CM),
  'no retention ledger': (B, 'R05: there is no retention ledger for the project', 'import the retention ledger', FN),
- 'held': (B, 'R02: the order amendment is held', 'resolve the amendment\'s hold', BK),
- 'sample_note': (I, 'MP08: too few orders with deliveries to draw a conclusion', 'none', '-'),
+ '%d order(s) with deliveries against a minimum of %d': (I, 'MP08: too few orders with deliveries to draw a conclusion', 'none', '-'),
+ 'mkt_policy': (B, 'M6: no procurement settings are in force, so nothing is assessed', 'set up and approve the procurement settings', AP),
+ 'no record of this check': (B, 'M6: a critical import check is not recorded', 'record the check, with the person, date and evidence', CM),
+ 'recorded as unresolved': (B, 'M6: an import check is recorded as unresolved', 'resolve the check', CM),
+ 'recorded as %s without %s': (B, 'M6: an import check lacks the person, the date or the evidence', 'add what is missing to the check', CM),
+ 'no usable %s rate on or before %s': (B, 'M6: no exchange rate is held for the currency and date', 'import a current exchange rate', CM),
+ 'tax treatments differ (%s and %s) and no GST rate is configured': (B, 'MP09: the quote and the order have different tax bases and the GST rate is not set', 'set the GST rate in the procurement settings', CM),
+ 'no approved register': (B, 'M6: the specification register is not approved', 'set up and approve the specification register', 'the specification owner'),
+ 'no declared conversion from %s to %s': (B, 'M6: no unit conversion is declared between the two units', 'declare the conversion in the specification register', 'the specification owner'),
+ 'a unit is not recorded': (B, 'M6: the unit is not recorded', 'record the unit', CM),
+ 'fewer than two rankable offers have a complete landed cost': (B, 'buy timing: fewer than two comparable offers have a complete landed cost', 'get another comparable quote, or complete the landed costs', CM),
+ 'no explicit future-price paths are configured': (I, 'buy timing: no future-price paths are set, so no rising-price scenario is built', 'set price paths in the procurement settings, if wanted', CM),
+ 'scenarios.context_points is not configured': (B, 'buy timing: the market-context setting is not set', 'set it in the procurement settings', CM),
+ 'scenarios.stage is not configured': (B, 'buy timing: the staged-purchase setting is not set', 'set it in the procurement settings', CM),
+ 'priced per %s but needed per %s': (B, 'buy timing: the quote is priced in a different unit from the need, so no purchase scenario is built', 'declare the unit conversion, or get a quote in the needed unit', CM),
+ 'the latest order date that still meets %s': (I, 'buy timing: the latest order date has passed for the required date', 'none; plan for the delay', PM),
+ 'history of an index, not a price': (I, 'buy timing: an index is shown as history only', 'none', '-'),
+ 'a larger tier lowers the unit rate but the total paid is': (I, 'landed cost: a larger price tier changes the total paid', 'none', '-'),
+ 'quoted rate %s %s%s': (I, 'landed cost: the quoted rate, as a component', 'none', '-'),
+ 'unit rate paid on the order': (I, 'landed cost: an order rate used as a reference', 'none', '-'),
+ 'observed performance on these records': (I, 'MP08: supplier performance is observed, not predicted', 'none', '-'),
+ 'the condition was detected again with changed evidence': (I, 'a finding reopened because the condition came back with changed evidence', 'review the finding', PM),
+ 'a range, not a total': (I, 'the portfolio total is a range, or a sum of separate estimates and records; not a verified figure', 'none', '-'),
+ '%d usable observations, %d wanted': (I, 'buy timing: not enough market observations for context', 'none', '-'),
+ 'the quote records no unit and no verified unit reading exists': (B, 'M6: the offer\'s unit is inferred from the material master, not verified', 'record and verify the unit from the quote', CM),
+ 'conversion declared, but the offered unit is inferred, not verified': (B, 'M6: a conversion exists, but the offer\'s unit is not verified', 'verify the unit reading from the quote', CM),
+ 'the blocking facts no longer exist': (I, 'a hold cleared because its cause no longer exists', 'none', '-'),
+ 'the rule ran and did not raise this condition': (I, 'a finding was not raised again; a person decides whether it is resolved', 'decide whether the finding is resolved', PM),
+ 'approval_invalidated_evidence_changed': (P, 'the evidence changed after approval, so the approval no longer stands', 'approve again', AP),
+ 'after_cutoff': (I, 'a credit dated after the cut-off is not yet applied', 'none', '-'),
+ 'a date written as text is not interpreted by the stand-in': (P, 'document capture: the stand-in reader does not interpret dates written as text', 'the verifier checks the date against the document', 'the verifier'),
+ 'decimal point or thousands separator?': (P, 'document capture: a number is ambiguous', 'the verifier checks the number against the document', 'the verifier'),
+ 'letters inside a number': (P, 'document capture: a number holds letters', 'the verifier checks the number against the document', 'the verifier'),
+ 'more than two decimals': (P, 'document capture: a money value has more than two decimals', 'the verifier checks the value against the document', 'the verifier'),
+ 'not readable as a dollar amount': (P, 'document capture: a value is not readable as a dollar amount', 'the verifier enters the value from the document', 'the verifier'),
+ 'not readable as a whole number': (P, 'document capture: a value is not readable as a whole number', 'the verifier enters the value from the document', 'the verifier'),
+ 'budget lines carry different revision labels': (B, 'M4 budget: budget lines from different revisions are mixed', 'import one complete budget revision', PM),
+ 'contract summary of approved variations (': (B, 'M4 revenue: the contract\'s approved-variations total differs from the variation register', 'reconcile the contract summary with the variation register', CM),
+ 'variation register approved total (': (B, 'M4 revenue: the variation register differs from the contract summary', 'reconcile the two', CM),
+ 'project master contract value': (B, 'M4 revenue: the project master contract value differs from the contract record', 'correct one of them', CM),
+ 'differs from the project master contract value': (B, 'M4 revenue: the contract record differs from the project master contract value', 'correct one of them', CM),
+ 'several different versions of the contract record': (B, 'M4 revenue: conflicting versions of the contract record', 'confirm which version is right', CM),
+ 'several different versions of the variation': (B, 'M4 revenue: conflicting versions of a variation', 'confirm which version is right', CM),
+ 'several different versions of the retention ledger record': (B, 'M4 retention: conflicting versions of the retention ledger', 'confirm which version is right', FN),
+ 'event sequence breaks a rule at seq %d: %s': (B, 'M4 retention: the retention events break the allowed sequence', 'correct the events', FN),
+ 'variation is disputed': (I, 'M4 revenue: the variation is recorded as disputed, so it is kept out of secured revenue', 'none; it is listed beside the figure', '-'),
+ 'derived from budget less actual; budget unchanged': (I, 'forecast movement: explained by actual cost against an unchanged budget', 'none', '-'),
+ 'newly counted:': (I, 'forecast movement: a record newly counted', 'none', '-'),
+ 'variation newly approved:': (I, 'forecast movement: a variation newly approved', 'none', '-'),
+ 'rounding of the policy tax conversion': (I, 'forecast movement: rounding of the tax conversion', 'none', '-'),
+ 'unknown: no_data': (B, 'M4: a record or field a figure needs is not held; the figure names it', 'supply the record or field named', BK),
+ 'unknown: method_not_configured': (B, 'M4: a setting the figure needs is not set; it names the open decision', 'make that setting in setup', FN),
+ 'unknown: stale': (B, 'M4: an input is older than its freshness limit', 'supply a current one', PM),
+ 'unknown: unmapped': (B, 'M4: a status is not in the status settings', 'add the status to the status settings', FN),
+ 'unknown: held': (B, 'M4: an invoice against an order is not resolved, so how much of the commitment it uses is unknown', 'resolve the invoice\'s hold', BK),
+ 'unknown: not_obtained': (B, 'M4: no evidenced facility rate is held; the settings\' rate is used as a proxy', 'import the facility statement', FN),
+ 'unknown: invalid': (B, 'M4: a cost-to-complete entry is not valid', 'correct the forecast line for the code', PM),
+ 'exclude: after_cutoff': (I, 'a record dated after the cut-off is not counted yet', 'none', '-'),
+ 'exclude: duplicate_delivery': (I, 'a repeat delivery of the same record is counted once', 'none', '-'),
+ 'exclude: not_counted': (I, 'a forecast line the method does not use', 'none', '-'),
+ 'exclude: held': (B, 'a record is held, so it is left out of the figure; its codes say why', 'resolve the hold', BK),
+ 'exclude: disputed': (B, 'conflicting versions of a record, so it is left out of the figure', 'confirm which version is right', BK),
+ 'exclude: unattributed': (B, 'a record whose project cannot be told is left out', 'add or correct the project reference', BK),
+ 'exclude: unknown_value': (B, 'a record with an unknown status or amount is left out; its code says which', 'act on the code given with it', BK),
+ 'status: cannot_assess': (B, 'M6 coverage or buy timing cannot be assessed; the reason is given', 'act on the reason given', CM),
+ 'status: not_configured': (B, 'buy timing: a scenario setting is not set', 'set it in the procurement settings', CM),
+ 'status: not_available': (I, 'buy timing: a scenario is not available; the reason is given', 'act on the reason given', CM),
+ 'status: insufficient_history': (I, 'buy timing: not enough market history for context', 'none', '-'),
+ 'status: insufficient_offers': (B, 'M6: fewer than two comparable offers, so no definitive ranking', 'get another comparable quote', CM),
+ 'status: no_offers': (B, 'M6: no offers for the requirement', 'get quotes', CM),
+ 'status: unverified': (B, 'M6: the offer cannot be verified against the specification', 'verify the readings, or approve the register or requirement', CM),
+ 'status: unknown': (B, 'M6: an attribute of the offer is not known', 'record the attribute from the quote', CM),
+ 'status: incompatible': (I, 'M6: the units cannot be converted', 'declare a conversion if one applies', CM),
+ 'status: fail': (I, 'M6: the offer fails a required attribute', 'none, unless the quote or specification is wrong', CM),
+ 'status: indicative': (I, 'M6: the ranking is indicative, not definitive', 'act on the reasons given', CM),
+ 'status: unresolved': (B, 'M6: an import check is unresolved', 'resolve the check', CM),
+ 'status: held': (B, 'a record is held; its reasons are listed', 'resolve the hold', BK),
+ 'status: rejected': (I, 'a reviewer rejected the record', 'send a corrected record, if needed', BK),
+ 'status: pending_reconciliation': (B, 'a credit waits for reconciliation', 'resolve the invoice it is linked to', BK),
+ 'status: file_rejected': (B, 'the import file was rejected; the reasons are listed', 'fix the file and import it again', BK),
+ 'status: not_ingested': (B, 'a stored file has not been ingested', 'import the file', BK),
+ 'status: refused': (B, 'an import job was refused; the reason is given', 'act on the reason given', BK),
+ 'status: missing': (B, 'landed cost: a required component is missing, so the cost is "at least"', 'add the missing component', CM),
+ 'status: partial': (S, 'a scheduled monitoring run partly failed', 'none for the builder', SU),
+ 'status: failed': (S, 'a scheduled monitoring run failed', 'none for the builder', SU),
+ 'freight is in %s and cannot be converted': (B, 'landed cost: the freight is in a currency that cannot be converted', 'import a current exchange rate for that currency', CM),
+ 'required for this kind of purchase; nothing in the quote or the assumptions gives it': (B, 'landed cost: a required component is not given by the quote or the assumptions', 'add the component to the quote or the landed-cost assumptions', CM),
+ 'duty is a share of the purchase cost, which is unknown': (B, 'landed cost: duty cannot be worked out because the purchase cost is unknown', 'complete the purchase cost', CM),
+ 'assumption is in %s and cannot be converted': (B, 'landed cost: an assumption is in a currency that cannot be converted', 'import a current exchange rate for that currency', CM),
+ 'assumption set by %s': (I, 'landed cost: a component taken from a signed assumption', 'none', '-'),
+ 'stated on the quote': (I, 'landed cost: a component stated on the quote', 'none', '-'),
+ 'the %s basis includes it': (I, 'landed cost: the delivery basis includes this component', 'none', '-'),
+ 'not required by the policy and not stated': (I, 'landed cost: a component not required and not stated', 'none', '-'),
+ 'scenarios are not recommendations and no offer is chosen': (I, 'buy timing: scenarios are not recommendations', 'none', '-'),
+ 'status: assumed': (I, 'landed cost: a component comes from an assumption, not the quote', 'none; check the assumption', CM),
+ 'status: no_uncovered_demand': (I, 'buy timing: no uncovered demand, so no scenario is needed', 'none', '-'),
+ 'status: no_rankable_offer': (B, 'buy timing: no offer can be ranked, so no scenario is built', 'get a comparable current quote', CM),
+ 'status: no_scenario_built': (I, 'buy timing: no scenario could be built; the reasons are given', 'act on the reasons given', CM),
+ 'status: dead_letter': (S, 'an import job failed repeatedly and was set aside', 'none for the builder', SU),
+ 'status: unquantified': (I, 'the finding has no amount; it says why', 'supply what it names, if wanted', PM),
+ 'status: over_ordered': (I, 'MP04: more ordered than the demand', 'review the order', PM),
+ 'status: uncovered': (I, 'M6: demand not yet covered by orders', 'none; a purchase decision is due', PM),
+ 'freshness: stale': (B, 'an input is older than its freshness limit', 'supply a current one', PM),
+ 'freshness: missing': (B, 'an input the decision needs has never arrived', 'supply it', BK),
+ 'freshness: unconfigured': (B, 'no freshness limit is set for this use, so it cannot be assessed', 'set the freshness limit in setup', AP),
+ 'freshness: future_dated': (B, 'an input is dated after the assessment date', 'correct the date if it is wrong', BK),
+ 'freshness: cannot_assess': (B, 'the decision cannot be assessed for freshness; the inputs say why', 'act on the inputs\' states', PM),
+ 'freshness: qualified': (I, 'the decision is qualified because an input is stale', 'supply a current input', PM),
 }
+NOT_TEXT = {k: 'a normal state, not a gap' for k in ('status: queued_again', 'status: approved', 'status: included_in_rate', 'status: stated', 'status: not_required', 'status: scenarios', 'status: ok', 'status: same', 'status: converted', 'status: covered', 'status: definitive', 'status: detected', 'status: estimate', 'status: evaluated', 'status: history',
+            'status: ingested', 'status: known', 'status: open', 'status: promoted', 'status: proposed', 'status: quantified', 'status: scenario_only', 'status: succeeded',
+            'freshness: fresh', 'freshness: eligible')}
+NOT_TEXT['notice'] = 'the text of an R04B finding: a finding, not a gap'
 STATES = {
  'cannot_assess': (B, 'the rule or figure cannot be assessed; the reason codes say why', 'act on the reason codes given with it', '-'),
  'not_configured': (B, 'a setting the rule needs is missing; it is named', 'set the setting named, in setup', AP),
  'disabled': (I, 'the rule is switched off in the settings', 'none; switch it on if wanted', AP),
- 'missing_parameter': (B, 'M6: an analysis is not assessed because a setting is missing; it is named', 'set the setting named, in setup', CM),
+ 'provisional': (B, 'a figure is provisional; its reasons are listed with it', 'act on the reasons given', '-'),
 }
-# silent today: no message is given (defect candidates; the owner decided on 2026-11-12 that each gets one)
+# refusals raised to a person taking an action, and integrity errors, by the class that raises them
+RAISE = {'AuthorityError': P, 'PolicyError': P, 'DetPolicyError': P, 'MktPolicyError': P, 'err': P, '_refuse': P, 'call': P, 'SavingNotVerified': P,
+         'NotPermitted': S, 'PayloadInvalid': S, 'EventError': S, 'FigureError': S, 'SignalError': S, 'IngestError': S}
+RAISE_TEXT = {'file larger than the store allows': B, 'file name must be 1-200 characters': B}
+# silent today: no message is given (defect candidates; the owner decided on 2026-11-12 that each gets one; DC-12 is under his rule)
 SILENT = [
- ('DC-3', 'M6 last rate paid', 'a null purchase-order status map stops the whole M6 run with an error', 'purchase-order statuses not set up', 'set up the purchase-order statuses'),
+ ('DC-1', 'R04B', 'an instruction linked to a rejected (or held) variation is silent', 'the client rejected the variation for this work (or: not assessed, the variation is on hold)', 'record the outcome: disputed, at own cost, resubmitted, withdrawn (or approve, reject or correct the variation)'),
+ ('DC-2', 'LAB', 'a missing overtime is counted as 0', 'not assessed: overtime unknown', 'enter the overtime hours (0 if none)'),
+ ('DC-3', 'M6 last rate paid', 'not silent: an uncaught error; a null purchase-order status map stops the whole M6 run', 'purchase-order statuses not set up', 'set up the purchase-order statuses'),
  ('DC-4', 'MP05, MP08, MP10, MP02 reference, MP09', 'without the status map nothing is evaluated, and nothing says so; MP09 drops an opportunity when the GST rate is not set', 'not assessed: purchase-order statuses not set up; GST rate not set', 'set up the purchase-order statuses; set the GST rate'),
  ('DC-5', 'MP01', 'a watched material with no usable quote raises no signal', 'no current quote', 'get a quote, or resolve the held one'),
  ('DC-6', 'M6 comparison', 'a requirement with no positive quantity is reported nowhere', 'not assessed: quantity zero or unusable', 'enter the quantity needed'),
@@ -313,45 +470,119 @@ SILENT = [
  ('DC-8', 'R01', 'cost on a code with no budget line is neither assessed nor listed', 'not assessed: no budget line for this cost code', 'add a budget line, or move the cost to the right code'),
  ('DC-9', 'DEF', 'a partial rework cost is shown as the recorded sum', 'at least $X (n of m defects costed)', 'add the remaining rework costs'),
  ('DC-10', 'MP03, MP04, MP05, MP08, MP10, last rate paid', 'held, unreconciled or zero-quantity orders are left out unlisted', 'order not included, with its reason', 'resolve the hold, reconcile the order, or enter the quantity'),
- ('DC-11', 'every detection and M6 rule', 'findings are graded with settings nobody approved, and do not say so', 'grading not set up yet', 'set the grading levels in setup'),
- ('DC-1', 'R04B', 'an instruction linked to a rejected (or held) variation is silent', 'the client rejected the variation: this work may not be paid (or: not assessed, the variation is on hold)', 'record the outcome: disputed, at own cost, resubmitted, withdrawn (or approve, reject or correct the variation)'),
- ('DC-2', 'LAB', 'a missing overtime is counted as 0', 'not assessed: overtime unknown', 'enter the overtime hours (0 if none)'),
+ ('DC-11', 'every detection and M6 rule', 'findings are graded with severity bands nobody approved; the stored finding is flagged policy_unapproved, the signal is not', 'grading not set up yet', 'set the grading levels in setup'),
+ ('DC-12', 'M4 commitments, R02', 'amendments on an order the commitments figure skips (held, duplicate, after the cut-off, status unknown) are never examined; the order is listed, its amendments are not', 'amendment not assessed: its order is not counted, with the order\'s reason', 'resolve the order\'s reason'),
 ]
 
-CODE = re.compile(r"""['"]([A-Z][A-Z0-9]+(?:_[A-Z0-9]+)+)(?::|['"])""")
-WHY = re.compile(r"""(?:'why': |return None, |why = |why2 = )f?'([a-z][^']{3,})'""")
-files = []
-for top in ('fin', 'det', 'mkt', 'ingest'):
-    for dp, dn, fn in os.walk(os.path.join(APG, top)):
-        if '__pycache__' in dp:
-            continue
-        files += [os.path.join(dp, f) for f in sorted(fn) if f.endswith('.py') and not SKIP.search(f)]
-files.append(os.path.join(APG, 'source_authority.py'))
-where, texts, states = {}, {}, {}
-for f in sorted(files):
-    rel = os.path.relpath(f, APG)
-    src = open(f).read()
-    for m in CODE.finditer(src):
-        where.setdefault(m.group(1), set()).add(rel)
-    if re.search(r'(det/rules_|det/common|mkt/rules|mkt/demand|mkt/suppliers|mkt/analysis)', rel):
-        for m in WHY.finditer(src):
-            texts.setdefault(m.group(1), set()).add(rel)
-        if "or 'no retention ledger'" in src:
-            texts.setdefault('no retention ledger', set()).add(rel)
-        if "'why': 'held'" in src:
-            texts.setdefault('held', set()).add(rel)
-        if "'sample_note'" in src or 'sample_note' in src:
-            texts.setdefault('sample_note', set()).add(rel)
-    for st in STATES:
-        if re.search(r"""['"]%s['"]""" % st, src):
-            states.setdefault(st, set()).add(rel)
+SKIP = re.compile(r'(corpus|demo_|faulty|golden|reference_|contracts_|ports_)')
+BUILTIN = {'ValueError', 'TypeError', 'KeyError', 'AssertionError', 'RuntimeError', 'NotImplementedError', 'IndexError', 'AttributeError', 'LookupError', 'PermissionError', 'StopIteration'}
+CODE = re.compile(r'(_?[A-Z][A-Z0-9_]*[A-Z0-9_])(?=$|:|\s|\()')
+import ast
 
+def consts(n):
+    if isinstance(n, ast.Constant) and isinstance(n.value, str): return [n.value]
+    if isinstance(n, ast.JoinedStr): return [v.value for v in n.values if isinstance(v, ast.Constant) and isinstance(v.value, str)]
+    if isinstance(n, ast.BinOp): return consts(n.left) + consts(n.right)
+    if isinstance(n, ast.BoolOp): return [x for v in n.values for x in consts(v)]
+    if isinstance(n, ast.IfExp): return consts(n.body) + consts(n.orelse)
+    return []
+
+def text(n):
+    c = [x.strip() for x in consts(n) if re.search(r'[a-z]{3}', x)]
+    return c[0] if c else None                          # the first piece with words: the start of the message
+
+def words(n):
+    if isinstance(n, ast.Constant) and isinstance(n.value, str): return [n.value]
+    if isinstance(n, ast.IfExp): return words(n.body) + words(n.orelse)
+    return []
+
+def scan(apg):
+    files = []
+    for top in ('fin', 'det', 'mkt', 'ingest'):
+        for dp, dn, fn in os.walk(os.path.join(apg, top)):
+            if '__pycache__' in dp:
+                continue
+            files += [os.path.join(dp, f) for f in fn if f.endswith('.py') and not SKIP.search(f)]
+    files = sorted(files) + [os.path.join(apg, x) for x in ('source_authority.py', 'policy_approval.py')]
+    codes, texts, raises, states = {}, {}, {}, {}
+    def add(d, k, rel): d.setdefault(k, set()).add(rel)
+    for f in files:
+        rel = os.path.relpath(f, apg)
+        src = open(f).read()
+        for n in ast.walk(ast.parse(src)):
+            if isinstance(n, ast.Constant) and isinstance(n.value, str):
+                m = CODE.match(n.value)
+                if m and len(m.group(1)) >= 3 and (m.group(1) == n.value or n.value[m.end():][:1] in (':', ' ', '(') or '_' in m.group(1)):
+                    add(codes, m.group(1), rel)
+            if isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute):
+                a = n.func.attr
+                if a == 'unknown' and len(n.args) >= 2:
+                    for w in words(n.args[1]): add(texts, 'unknown: ' + w, rel)
+                if a == 'dispute' and len(n.args) >= 2 and text(n.args[1]): add(texts, text(n.args[1]), rel)
+                if a == 'exclude' and len(n.args) >= 2:
+                    for w in words(n.args[1]): add(texts, 'exclude: ' + w, rel)
+                if a == 'append' and isinstance(n.func.value, ast.Name) and n.func.value.id == 'skipped' and n.args and isinstance(n.args[0], ast.Tuple) and len(n.args[0].elts) == 2 and text(n.args[0].elts[1]):
+                    add(texts, text(n.args[0].elts[1]), rel)
+            if isinstance(n, ast.Call) and not (isinstance(n.func, ast.Attribute) and n.func.attr in ('log', '_event')):   # audit-log reasons are records, not messages
+                for kw in n.keywords:
+                    if kw.arg in ('why', 'reason', 'note') and text(kw.value) and text(kw.value)[:1].islower():
+                        add(texts, text(kw.value), rel)
+                    if kw.arg == 'status':
+                        for w in words(kw.value): add(texts, 'status: ' + w, rel)
+            if isinstance(n, ast.Dict):
+                for k, v in zip(n.keys, n.values):
+                    if isinstance(k, ast.Constant) and k.value in ('why', 'reason', 'note', 'missing_parameter', 'sample_note'):
+                        tx = v.value if isinstance(v, ast.Constant) and isinstance(v.value, str) and re.fullmatch(r'[a-z_]+', v.value) else text(v)
+                        if tx and tx[:1].islower():
+                            add(texts, tx, rel)
+                        elif tx and tx[:1] == '%':
+                            add(texts, tx, rel)
+                    if isinstance(k, ast.Constant) and k.value == 'status':
+                        for w in words(v): add(texts, 'status: ' + w, rel)
+            if isinstance(n, ast.Assign):
+                tg = n.targets[0]
+                names = [tg.id] if isinstance(tg, ast.Name) else [e.id for e in tg.elts if isinstance(e, ast.Name)] if isinstance(tg, ast.Tuple) else []
+                vals = n.value.elts if isinstance(n.value, ast.Tuple) else [n.value]
+                if len(names) == len(vals):
+                    for nm, v in zip(names, vals):
+                        if nm in ('why', 'why2', 'reason', 'note'):
+                            tx = text(v)
+                            if tx and tx[:1].islower():
+                                add(texts, tx, rel)
+                        if nm == 'status':
+                            for w in words(v): add(texts, 'status: ' + w, rel)
+                        if rel == os.path.join('ingest', 'freshness.py') and nm.isupper():
+                            for w in words(v): add(texts, 'freshness: ' + w, rel)
+                        if rel == os.path.join('fin', 'figure.py') and nm in ('PROV', 'CANT'):
+                            for w in words(v): add(states, w, rel)
+            if isinstance(n, ast.Return) and isinstance(n.value, ast.Tuple) and len(n.value.elts) == 2 and isinstance(n.value.elts[0], ast.Constant) and n.value.elts[0].value is None and text(n.value.elts[1]):
+                add(texts, text(n.value.elts[1]), rel)
+            if isinstance(n, ast.Raise) and isinstance(n.exc, ast.Call):
+                fn = n.exc.func
+                nm = fn.id if isinstance(fn, ast.Name) else fn.attr if isinstance(fn, ast.Attribute) else 'call'
+                if nm not in BUILTIN and n.exc.args and text(n.exc.args[0]):
+                    add(raises, (nm, text(n.exc.args[0])), rel)
+            if isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and n.func.id == '_refuse' and len(n.args) >= 5 and text(n.args[4]):
+                add(raises, ('_refuse', text(n.args[4])), rel)
+        if re.search(r'(det|mkt)/common\.py$', rel.replace(os.sep, '/')):
+            for st in ('cannot_assess', 'not_configured', 'disabled'):
+                if re.search(r"""\['status'\] = ['"]%s['"]""" % st, src):
+                    add(states, st, rel)
+    return codes, texts, raises, states
+
+codes, texts, raises, states = scan(APG)
+problems = []
+covered = set(MSG) | set(NOT_CODE) | set(EXPAND)
+for c in sorted(codes):
+    if c not in covered and not RULE_ID.match(c):
+        problems.append(('code without an entry', c))
+for piece, full in EXPAND.items():
+    problems += [('expansion without an entry', x) for x in full if x not in MSG]
+expanded = {x for v in EXPAND.values() for x in v}
+problems += [('entry the code no longer gives', c) for c in sorted(MSG) if c not in codes and c not in expanded]
 def match_text(t):
-    hits = [k for k in TEXT if t.startswith(k) or t == k]
+    hits = [k for k in list(TEXT) + list(NOT_TEXT) if t == k or t.startswith(k)]
     return max(hits, key=len) if hits else None
-
-problems = [('code without an entry', c) for c in sorted(where) if c not in MSG]
-problems += [('entry the code no longer gives', c) for c in sorted(MSG) if c not in where]
 used = {}
 for t, fs in texts.items():
     k = match_text(t)
@@ -359,7 +590,8 @@ for t, fs in texts.items():
         problems.append(('reason text without an entry', t))
     else:
         used.setdefault(k, set()).update(fs)
-problems += [('text entry the code no longer gives', k) for k in TEXT if k not in used]
+problems += [('text entry the code no longer gives', k) for k in list(TEXT) + list(NOT_TEXT) if k not in used]
+problems += [('raised by a class without an audience', nm) for nm in sorted({k[0] for k in raises}) if nm not in RAISE]
 problems += [('state entry the code no longer gives', k) for k in STATES if k not in states]
 if problems:
     for p in problems:
@@ -367,23 +599,26 @@ if problems:
     sys.exit('the message list does not match the code')
 
 rows = []
+def row(kind, msg, where, a, m, d, w, today='given by the code'):
+    rows.append({'kind': kind, 'message': msg, 'given by': where, 'audience': a, 'what it means': m,
+                 'what the builder is told to do': d, 'who usually does it': w, 'today': today})
 for c in sorted(MSG):
     a, m, d, w = MSG[c]
-    rows.append({'kind': 'reason code', 'message': c, 'given by': ' '.join(sorted(where[c])), 'audience': a, 'what it means': m,
-                 'what the builder is told to do': d, 'who usually does it': w, 'today': 'given by the code'})
+    src = codes.get(c) or set().union(*[codes.get(p, set()) for p, v in EXPAND.items() if c in v])
+    row('reason code', c, ' '.join(sorted(src)), a, m, d, w)
 for k in sorted(TEXT):
     a, m, d, w = TEXT[k]
-    rows.append({'kind': 'rule reason (plain text)', 'message': k, 'given by': ' '.join(sorted(used[k])), 'audience': a, 'what it means': m,
-                 'what the builder is told to do': d, 'who usually does it': w, 'today': 'given by the code'})
+    row('plain-language reason', k, ' '.join(sorted(used[k])), a, m, d, w)
 for k in sorted(STATES):
     a, m, d, w = STATES[k]
-    rows.append({'kind': 'run state', 'message': k, 'given by': ' '.join(sorted(states[k])), 'audience': a, 'what it means': m,
-                 'what the builder is told to do': d, 'who usually does it': w, 'today': 'given by the code'})
+    row('run or figure state', k, ' '.join(sorted(states[k])), a, m, d, w)
+for (nm, t) in sorted(raises):
+    a = RAISE_TEXT.get(next((x for x in RAISE_TEXT if t.startswith(x)), None), RAISE[nm])
+    row('refusal or error raised (' + nm + ')', t, ' '.join(sorted(raises[(nm, t)])), a, 'the message states it',
+        'do what the message says, then try again' if a in (P, B) else 'none for the builder', 'the person acting' if a == P else BK if a == B else SU)
 for dc, rule, today, msg, do in SILENT:
-    rows.append({'kind': 'silent today (' + dc + ')', 'message': msg, 'given by': rule, 'audience': B, 'what it means': today,
-                 'what the builder is told to do': do, 'who usually does it': '-', 'today': 'no message: the decided fix adds it (' + dc + ')'})
+    row('silent today (' + dc + ')' if dc != 'DC-3' else 'an uncaught error today (DC-3)', msg, rule, B, today, do, '-', 'no message: the decided fix adds it (' + dc + ')')
 with open(os.path.join(OUT, 'NOT_ASSESSED_MESSAGES.csv'), 'w', newline='') as fh:
     w = csv.DictWriter(fh, fieldnames=list(rows[0]), lineterminator='\n'); w.writeheader(); w.writerows(rows)
 from collections import Counter
-print('messages', len(rows), 'codes', len(MSG), 'rule texts', len(TEXT), 'states', len(STATES), 'silent', len(SILENT),
-      'by audience', dict(Counter(r['audience'] for r in rows)))
+print('messages', len(rows), 'by kind', dict(Counter(r['kind'].split(' (')[0] for r in rows)), 'by audience', dict(Counter(r['audience'] for r in rows)))

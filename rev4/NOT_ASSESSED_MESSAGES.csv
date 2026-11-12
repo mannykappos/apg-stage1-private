@@ -1,9 +1,10 @@
 kind,message,given by,audience,what it means,what the builder is told to do,who usually does it,today
 reason code,ACTION_REQUIRED,det/findings.py,person,a proposed action on a finding was not described,describe the proposed action,the person proposing it,given by the code
-reason code,ACTUALS_AFTER_FORECAST_DATE_NOT_ADDED,fin/forecast.py,information,cost recorded after the forecast date is not added to the forecast final cost,none; update the forecast to include it,project manager,given by the code
+reason code,ACTUALS_AFTER_FORECAST_DATE_NOT_ADDED,fin/forecast.py,information,cost recorded after the forecast date is not added to the forecast final cost,update the forecast if it should include that cost,project manager,given by the code
 reason code,ACTUAL_COST_FIGURE_PROVISIONAL,det/rules_cost.py,information,the budget comparison rests on an actual-cost figure that is provisional,resolve what makes actual cost provisional (listed with it),bookkeeper,given by the code
 reason code,AMBIGUOUS_LATEST_FORECAST,fin/forecast.py,builder,"two forecast versions share the latest date, so APG cannot tell which is current","mark one forecast version as current, or date them differently",project manager,given by the code
 reason code,AMBIGUOUS_REVISION,fin/costs.py source_authority.py,builder,two values of the same field arrived and their revision order cannot be told,confirm which value is current,bookkeeper,given by the code
+reason code,AMOUNT_COMPARISON_ONLY,det/rules_cost.py,information,R03 compares amounts only: invoice quantities and unit rates are not held,none,-,given by the code
 reason code,AMOUNT_INVALID,fin/cash_states.py,person,a retention event has an amount that is not valid,enter a valid amount for the event,finance,given by the code
 reason code,AMOUNT_UNKNOWN,fin/costs.py source_authority.py,builder,"the record has no usable amount, so it is left out of the figure",enter or correct the amount,bookkeeper,given by the code
 reason code,APPROVAL_NOT_CURRENT,det/findings.py,person,the approval no longer matches the proposal and evidence on record,approve the action again,the builder's approver,given by the code
@@ -20,16 +21,20 @@ reason code,AUTHORITATIVE_SOURCE_ABSENT,fin/costs.py ingest/reconcile.py source_
 reason code,AUTHORITATIVE_VALUE_UNKNOWN,fin/costs.py ingest/reconcile.py source_authority.py,builder,the authoritative source sent no usable value for this field; a reviewer cannot clear it,correct the value in the authoritative source and send it again,bookkeeper,given by the code
 reason code,AWAITING_HUMAN_APPROVAL,source_authority.py,builder,the authority register says this field needs a person's approval,approve the value,the builder's approver,given by the code
 reason code,AWAITING_HUMAN_VERIFICATION,source_authority.py,builder,the value was read by AI or OCR and waits for a person to verify it,verify the value against the document,the verifier,given by the code
+reason code,A_COMPONENT_CANNOT_BE_ASSESSED,fin/forecast.py,builder,"a part of the forecast cannot be assessed, so the forecast final margin cannot be either",resolve what stops that part (its reasons are listed),project manager,given by the code
+reason code,A_DEFINED_COMPONENT_CANNOT_BE_ASSESSED,fin/cashview.py,builder,a part the cash-adjusted margin is defined to include cannot be assessed,resolve what stops that part (its reasons are listed),finance,given by the code
+reason code,A_FORECAST_CANNOT_BE_ASSESSED,fin/bridge.py,builder,"one of the two forecasts being compared cannot be assessed, so the movement is not explained",resolve what stops that forecast,project manager,given by the code
 reason code,BANK_EVIDENCE_REQUIRED,fin/cash_states.py,person,a retention release marked received needs the bank transaction of exactly that amount,"import the bank transaction, then record the event",finance,given by the code
 reason code,BASIS_NOT_IN_TABLE,mkt/compare.py,builder,"the quote's delivery basis is not in the delivery-basis table, so what the rate includes is unknown",add the delivery basis to the table in setup,commercial manager,given by the code
 reason code,BUDGET_CHANGED_AND_CTC_DERIVED_FROM_IT,fin/bridge.py,information,the forecast moved because the budget changed and the cost to complete is derived from it,none; check the budget change was intended,project manager,given by the code
-reason code,BUDGET_EXCEEDED_BY,fin/forecast.py,information,"cost on this code is above its budget, so a budget-derived cost to complete is not known",enter a cost to complete for the code,project manager,given by the code
+reason code,BUDGET_EXCEEDED_BY,fin/forecast.py,builder,"cost on this code is above its budget, so a budget-derived cost to complete is not known",enter a cost to complete for the code,project manager,given by the code
 reason code,BUDGET_NOT_POSITIVE,det/rules_cost.py,builder,"the cost code's budget is zero or negative, so overspend cannot be assessed",correct the budget line,project manager,given by the code
 reason code,CANNOT_ADOPT_A_FORECAST_THAT_CANNOT_BE_ASSESSED,fin/forecast_book.py,person,a forecast that cannot be assessed cannot be adopted,"resolve what stops the forecast, then adopt it",project manager,given by the code
 reason code,CARRYING_NOT_CONFIGURED,fin/cashview.py,builder,"the carrying-cost method is not set, so carrying cost cannot be assessed",set the carrying-cost method in setup,finance,given by the code
 reason code,CASH_ADJUSTMENT_NOT_CONFIGURED,fin/cashview.py,builder,the cash-adjusted margin settings are not set,set the cash-adjustment settings in setup,finance,given by the code
 reason code,CELL_TOO_LONG,ingest/mapping.py,builder,a cell in the import file is longer than allowed; the row is rejected,shorten the cell and import the file again,bookkeeper,given by the code
 reason code,CHANGE_NOT_APPROVED,fin/commitments.py,builder,"the order amendment has no approved change, so it counts as exposure, not commitment","link the approved variation, or have the change approved",project manager,given by the code
+reason code,CLEARED,ingest/reconcile.py,information,a reviewer cleared this hold,none,-,given by the code
 reason code,CLERK_ROLE_REQUIRED,fin/cash_states.py,person,this retention step needs a person with the clerk role,have the right person record the step,finance,given by the code
 reason code,CLUSTER_WITH_SINGLE_MATERIAL_ORDER,det/rules_cost.py,information,a group of possibly split orders includes one order that is material on its own,none; review the group,project manager,given by the code
 reason code,COMPONENT_MISSING,mkt/compare.py,builder,"a landed-cost component this purchase requires is missing, so the cost is ""at least""","add the missing component (freight, duty or other, as named)",commercial manager,given by the code
@@ -49,8 +54,9 @@ reason code,CREDIT_EXCEEDS_INVOICE,ingest/reconcile.py,builder,credits against t
 reason code,CREDIT_NOT_LINKED_TO_A_TRUSTED_INVOICE,ingest/views.py,builder,the credit is not linked to an invoice APG can trust,"link the credit to its invoice, or resolve the invoice's hold",bookkeeper,given by the code
 reason code,CREDIT_SUPPLIER_MISMATCH,ingest/reconcile.py,builder,the credit note's supplier differs from the invoice's; the credit is held,correct the supplier or the invoice reference,bookkeeper,given by the code
 reason code,CREDIT_TARGET_NOT_VISIBLE,ingest/reconcile.py,builder,the invoice the credit names has not arrived; the credit is held,"import the invoice, or correct the reference",bookkeeper,given by the code
-reason code,CRITICAL_VALUE_MISSING,fin/costs.py fin/intake.py ingest/pipeline.py,builder,a value the record cannot be used without is missing,enter the value,bookkeeper,given by the code
+reason code,CRITICAL_VALUE_MISSING,fin/costs.py fin/intake.py ingest/pipeline.py,builder,"a value is missing that the intake settings do not declare optional, so the record is held","enter the value, or have the field declared optional in the intake settings",bookkeeper,given by the code
 reason code,CTC_METHOD_CHANGED,fin/bridge.py,information,the cost-to-complete method changed between the two forecasts,none; check the change was intended,project manager,given by the code
+reason code,CTC_METHOD_NOT_CONFIGURED,fin/forecast.py fin/revenue.py,builder,"the cost-to-complete method is not set, so the forecast cannot be assessed",set the cost-to-complete method in setup,project manager,given by the code
 reason code,CTC_UNKNOWN,fin/forecast.py,builder,"the cost to complete for this code is not known, so the forecast is provisional",enter the cost to complete for the code,project manager,given by the code
 reason code,CURRENCY_NOT_CONVERTED,mkt/compare.py,builder,the price cannot be converted to the home currency,import a current exchange rate for the currency,commercial manager,given by the code
 reason code,DATED_AFTER_CUTOFF,fin/commitments.py fin/costs.py,information,"the record is dated after the cut-off, so it is not counted yet",none,-,given by the code
@@ -67,12 +73,15 @@ reason code,DUPLICATE_CANDIDATE,fin/costs.py ingest/reconcile.py mkt/common.py,b
 reason code,DUPLICATE_HEADER,ingest/mapping.py,builder,a column name appears twice in the file; the file is rejected,fix the header and import again,bookkeeper,given by the code
 reason code,DUPLICATE_OF,fin/commitments.py fin/costs.py mkt/common.py,information,a repeat delivery of the same record; it is counted once,none,-,given by the code
 reason code,EMPTY_FILE,ingest/mapping.py,builder,the import file is empty,export the file again and import it,bookkeeper,given by the code
+reason code,ENCODING,ingest/mapping.py,builder,the import file is not in the expected text encoding; the file is rejected,export the file again in the encoding the template names,bookkeeper,given by the code
 reason code,EVENT_NOT_LISTED_FOR_RENOTIFICATION,det/noise.py,information,this kind of change does not send a new notification,none,-,given by the code
 reason code,EVIDENCE_REQUIRED,det/findings.py fin/cash_states.py,person,this step needs a reference to the evidence,attach the evidence reference,the person acting,given by the code
 reason code,EXPECTED_RELEASE_DATE_PASSED_AND_NOT_RELEASED,fin/cashview.py,builder,"the retention release date has passed without a release, so a forward cost cannot be estimated",record the new expected release date,finance,given by the code
-reason code,EXPIRY_REVIEW,fin/cashview.py,builder,a security instrument is close to expiry,review the instrument: renew or release it,finance,given by the code
+reason code,EXPIRED,det/rules_commercial.py,builder,"R07 compared an expired quote or reference, at weak strength",get a current quote or reference,commercial manager,given by the code
+reason code,EXPIRY_REVIEW,fin/cashview.py,builder,a security instrument has reached its expiry date,review the instrument: renew or release it,finance,given by the code
 reason code,FACILITY_RECORD_HELD,fin/cashview.py,builder,"the facility statement is held, so carrying cost cannot be assessed",resolve the hold on the facility statement,finance,given by the code
-reason code,FACILITY_STATEMENT_AFTER_AS_OF,fin/cashview.py,information,the facility statement is dated after the assessment date,none; or supply a statement for the period,finance,given by the code
+reason code,FACILITY_STATEMENT_AFTER_AS_OF,fin/cashview.py,builder,"the only facility statement is dated after the assessment date, so carrying cost cannot be assessed",supply a statement for the period,finance,given by the code
+reason code,FFC_BASIS_NOT_CONFIGURED,fin/forecast.py fin/revenue.py,builder,"the forecast-final-cost basis is not set, so the forecast cannot be assessed",set the forecast basis in setup,finance,given by the code
 reason code,FILE_INTEGRITY,ingest/filestore.py,system,a stored file no longer matches its recorded fingerprint,none for the builder,APG support,given by the code
 reason code,FILE_NOT_FOUND,ingest/filestore.py,system,a stored file cannot be found,none for the builder,APG support,given by the code
 reason code,FILE_TOO_LARGE,ingest/mapping.py,builder,the import file is larger than allowed,split the file and import the parts,bookkeeper,given by the code
@@ -82,11 +91,13 @@ reason code,FORECAST_DERIVED_FROM_BUDGET_NO_DECLARED_VERSION,fin/forecast.py,bui
 reason code,FORECAST_DOES_NOT_REPRODUCE,fin/forecast_book.py,system,a forecast run does not reproduce from its stored inputs,none for the builder,APG support,given by the code
 reason code,FORECAST_FINAL_COST_NOT_POSITIVE,fin/margins.py,builder,"the forecast final cost is zero or negative, so the margin cannot be assessed",check the forecast and cost records,project manager,given by the code
 reason code,FORECAST_OWNER_REQUIRED,fin/forecast_book.py,person,adopting a forecast needs a person with the forecast-owner role,have the forecast owner adopt it,project manager,given by the code
-reason code,FORECAST_REVENUE,fin/calc_records.py,information,the result is labelled forecast revenue,none,-,given by the code
+reason code,FORECAST_REVENUE_UNKNOWN,fin/margins.py,builder,"forecast revenue is not known, so the margin percentage cannot be assessed",resolve what stops the revenue figure,commercial manager,given by the code
 reason code,FORECAST_VERSION_DATES_DISAGREE,fin/forecast.py,builder,the lines of the chosen forecast version carry different dates,correct the forecast lines' dates,project manager,given by the code
 reason code,FORECAST_VERSION_NOT_FOUND,fin/forecast.py,builder,the forecast version asked for is not in the data,"import that version, or choose another",project manager,given by the code
 reason code,FORMULA_PREFIX,ingest/mapping.py,builder,a cell starts like a spreadsheet formula; it is flagged,"check the cell holds a value, not a formula",bookkeeper,given by the code
+reason code,FRESHNESS,mkt/compare.py,builder,"the offer is not fresh enough for this decision, so no definitive ranking",get a current quote,commercial manager,given by the code
 reason code,FUTURE_DATED,det/rules_ops.py fin/intake.py ingest/pipeline.py,builder,the record is dated in the future,"correct the date, or wait for it",bookkeeper,given by the code
+reason code,GATE,mkt/compare.py,information,the offer did not pass the comparability gate; the gate codes say why,act on the gate codes given with it,commercial manager,given by the code
 reason code,GST_RATE_NOT_CONFIGURED,fin/revenue.py,builder,the GST rate is not set,set the GST rate in setup,finance,given by the code
 reason code,HELD_SUPPORTING_RECORDS,mkt/compare.py,builder,"records the offer depends on are held, so no definitive ranking",resolve the holds listed,commercial manager,given by the code
 reason code,HELD_WITH_REASON,det/rules_commercial.py fin/cashview.py,information,"the retention is held, with a recorded reason",none,-,given by the code
@@ -96,7 +107,6 @@ reason code,HISTORY_RUN_MISSING,fin/forecast_book.py,system,a run in the forecas
 reason code,HUMAN_ACTOR_REQUIRED,fin/cash_states.py,person,this retention step must be recorded by a person,have a named person record it,finance,given by the code
 reason code,HUMAN_CORRECTION_APPLIED,fin/costs.py,information,a person's correction was applied to the record,none,-,given by the code
 reason code,HUMAN_REQUIRED,det/findings.py,person,this step must be done by a person,have a named person do it,the person acting,given by the code
-reason code,INPUT_MISSING,fin/gather.py,system,the policy version a run names is not stored,none for the builder,APG support,given by the code
 reason code,INSIDE_SUPPRESSION_WINDOW,det/noise.py,information,the notification is not re-sent inside the quiet period,none,-,given by the code
 reason code,INSUFFICIENT_IN_POOL,fin/cash_states.py,person,the retention event moves more than the state holds,correct the event amount,finance,given by the code
 reason code,INTERNATIONAL_CHECKS_UNRESOLVED,mkt/compare.py,builder,"import checks for the international quote are not resolved, so no definitive ranking",resolve the import checks listed,commercial manager,given by the code
@@ -115,18 +125,19 @@ reason code,LINK_INVALID,det/findings.py,person,the link given for a finding is 
 reason code,MALFORMED_CSV,ingest/mapping.py,builder,the import file is not a valid CSV file,export the file again and import it,bookkeeper,given by the code
 reason code,MARGIN_CANNOT_BE_ASSESSED,fin/margins.py,builder,the margin cannot be assessed,resolve what stops it (listed with it),finance,given by the code
 reason code,MATERIAL_VALUE_UNKNOWN,fin/costs.py fin/intake.py ingest/pipeline.py ingest/reconcile.py,builder,a value that decides money is missing or not usable; a reviewer cannot clear it,supply the value from its source,bookkeeper,given by the code
+reason code,MISSING,mkt/common.py,builder,fields this M6 record needs are missing,enter the fields named,commercial manager,given by the code
 reason code,MISSING_COLUMNS,ingest/mapping.py,builder,required columns are missing from the file,add the columns named and import again,bookkeeper,given by the code
 reason code,MIXED_BUDGET_REVISIONS,fin/forecast.py,builder,budget lines from different revisions are mixed,import one complete budget revision,project manager,given by the code
 reason code,MKT_POLICY_NOT_PINNED,mkt/common.py,builder,"no procurement settings are in force, so the M6 rules cannot be assessed",set up and approve the procurement settings,the builder's approver,given by the code
 reason code,NOISE_POLICY_NOT_CONFIGURED,det/noise.py,builder,"notification settings are not set, so only new and reopened findings notify",set the notification settings in setup,project manager,given by the code
-reason code,NON_ASCII_IDENTIFIER,ingest/mapping.py,builder,an identifier holds characters other than plain letters and digits; the row is rejected,correct the identifier,bookkeeper,given by the code
+reason code,NON_ASCII_IDENTIFIER,ingest/mapping.py,builder,an identifier holds characters that are not plain ASCII; the row is rejected,correct the identifier,bookkeeper,given by the code
 reason code,NOT_ACTIVE,det/findings.py,person,"the finding is not active, so this action does not apply",none,the person acting,given by the code
 reason code,NOT_APPLICABLE_REVENUE_ZERO_OR_NEGATIVE,fin/margins.py,builder,"revenue is zero or negative, so a margin percentage does not apply",check the contract value and variations,commercial manager,given by the code
 reason code,NOT_A_DETECTION_RUN,det/findings.py,system,the run given is not a detection run,none for the builder,APG support,given by the code
 reason code,NOT_A_FORECAST,fin/forecast_book.py,system,the run given is not a forecast,none for the builder,APG support,given by the code
 reason code,NOT_A_SCENARIO_RUN,fin/forecast_book.py,system,the run given is not a scenario run,none for the builder,APG support,given by the code
 reason code,NOT_BYTES,ingest/mapping.py,system,the importer was given something that is not a file,none for the builder,APG support,given by the code
-reason code,NOT_RECONCILED,mkt/common.py,builder,"the order has not been through reconciliation, so it is not used",run reconciliation for the order,bookkeeper,given by the code
+reason code,NOT_RECONCILED,mkt/common.py,builder,"the order or quote has no reconciliation state, so it is not used",have the record reconciled (the intake does this when it runs),bookkeeper,given by the code
 reason code,NOT_USABLE,det/common.py fin/forecast.py mkt/common.py,builder,"the record is held, so it is not used",resolve the hold (its reasons are listed),bookkeeper,given by the code
 reason code,NO_APPROVED_CHANGE_REFERENCE,det/rules_cost.py fin/commitments.py,builder,the order amendment names no approved change,link the approved variation,project manager,given by the code
 reason code,NO_APPROVED_REGISTER,ingest/reconcile.py source_authority.py,builder,"there is no approved source-authority register, so the field cannot be trusted; a reviewer cannot clear it",set up and approve the source-authority register,the builder's approver,given by the code
@@ -141,7 +152,7 @@ reason code,NO_FACILITY_STATEMENT,fin/cashview.py,builder,"there is no facility 
 reason code,NO_FORECAST_VERSION,fin/forecast.py,builder,no forecast version is in the data,import a forecast,project manager,given by the code
 reason code,NO_HEADER,ingest/mapping.py,builder,the import file has no header row,add the header row and import again,bookkeeper,given by the code
 reason code,NO_RECEIVABLES_DATA,fin/cashview.py,builder,"client invoices, certificates and receipts are not held, so overdue receivables cannot be assessed",supply the receivables data once its way in is built (E13 to E15),finance,given by the code
-reason code,NO_RECONCILIATION_STATE,fin/commitments.py fin/costs.py fin/forecast.py,builder,"the record has not been reconciled, so it is held",run reconciliation,bookkeeper,given by the code
+reason code,NO_RECONCILIATION_STATE,fin/commitments.py fin/costs.py fin/forecast.py,builder,"the record has no reconciliation state, so it is held",have the record reconciled (the intake does this when it runs),bookkeeper,given by the code
 reason code,NO_SUPPRESSION_WINDOW_CONFIGURED,det/noise.py,builder,the quiet period for notifications is not set,set it in setup,project manager,given by the code
 reason code,NUL_BYTE,ingest/mapping.py,builder,the file holds binary content,export the file again as text,bookkeeper,given by the code
 reason code,OUTSIDE_PERIOD,det/rules_ops.py,information,the record falls outside the period assessed,none,-,given by the code
@@ -150,13 +161,14 @@ reason code,PAYMENT_EXCEEDS_INVOICE,ingest/reconcile.py,builder,payments against
 reason code,PAYMENT_LIMIT_UNCHECKED,ingest/reconcile.py,information,"the invoice total is unknown, so the payment limit is not checked",none; or complete the invoice,bookkeeper,given by the code
 reason code,PAYMENT_TARGET_NOT_VISIBLE,ingest/reconcile.py,builder,the invoice the payment names has not arrived; the payment is held,"import the invoice, or correct the reference",bookkeeper,given by the code
 reason code,PERCENT_COMPLETE_IS_COST_TO_COST_ON_THE_FORECAST_FINAL_COST,fin/margins.py,information,percent complete is cost to date over forecast final cost,none,-,given by the code
+reason code,PERCENT_COMPLETE_RESTS_ON_A_FORECAST_THAT_IS_PROVISIONAL,fin/margins.py,information,percent complete rests on a provisional forecast,resolve what makes the forecast provisional,project manager,given by the code
 reason code,POLICY_NOT_APPROVED,fin/figure.py,builder,"the financial settings are not approved, so the figure is at most provisional",have the financial settings approved,the builder's approver,given by the code
 reason code,POLICY_NOT_PINNED,det/rules_commercial.py fin/cashview.py fin/commitments.py fin/costs.py fin/forecast.py fin/margins.py fin/revenue.py,builder,"no financial settings are in force, so the figure cannot be assessed",set up and approve the financial settings,the builder's approver,given by the code
 reason code,PORTFOLIO_BOUNDARY_APPLIED,mkt/rules.py,information,"some projects that bought the material are outside what the viewer may see, so no portfolio comparison",none,-,given by the code
 reason code,PO_COST_CODE_MISMATCH,ingest/reconcile.py,builder,the invoice's cost code differs from its order's; the invoice is held,correct the cost code on the invoice or the order,bookkeeper,given by the code
 reason code,PO_NOT_VISIBLE,ingest/reconcile.py,builder,the order the record names has not arrived; the record is held,"import the order, or correct the reference",bookkeeper,given by the code
 reason code,PO_PROJECT_MISMATCH,ingest/reconcile.py,builder,the invoice's project differs from its order's; the invoice is held,correct the project on the invoice or the order,bookkeeper,given by the code
-reason code,PO_STATUS_MAP_NOT_CONFIGURED,fin/commitments.py mkt/demand.py,builder,purchase-order statuses are not set up,"set up the purchase-order statuses (open, committed, closed)",finance,given by the code
+reason code,PO_STATUS_MAP_NOT_CONFIGURED,fin/commitments.py mkt/demand.py,builder,purchase-order statuses are not set up,"set up the purchase-order statuses: map each of your order statuses to committed, draft, cancelled or closed",finance,given by the code
 reason code,PO_STATUS_UNKNOWN,fin/commitments.py,builder,"the order has no status, so it is left out of commitments",enter the order status,bookkeeper,given by the code
 reason code,PO_STATUS_UNMAPPED,fin/commitments.py,builder,"the order's status is not in the status settings, so it is left out",add the status to the purchase-order status settings,finance,given by the code
 reason code,PO_SUPPLIER_MISMATCH,ingest/reconcile.py,builder,the invoice's supplier differs from its order's; the invoice is held,correct the supplier on the invoice or the order,bookkeeper,given by the code
@@ -165,6 +177,7 @@ reason code,PROJECT_UNKNOWN_OR_AMBIGUOUS,fin/cashview.py fin/commitments.py fin/
 reason code,PROMOTED_BY_REVIEW,fin/costs.py ingest/reconcile.py,information,a reviewer cleared the record for use,none,-,given by the code
 reason code,PROMOTION_CANNOT_CLEAR,ingest/reconcile.py,builder,a reviewer cannot waive this hold; it needs new evidence,supply the new evidence named,bookkeeper,given by the code
 reason code,PROPOSAL_CHANGED,det/findings.py,person,the proposal on record cannot be identified,propose the action again,the person acting,given by the code
+reason code,PROVISIONAL,source_authority.py,information,a total that includes values not yet authoritative is labelled provisional,resolve the values listed with it,bookkeeper,given by the code
 reason code,QUANTITY_INVALID,mkt/common.py,builder,the quantity is not valid,correct the quantity,commercial manager,given by the code
 reason code,QUANTITY_NOT_POSITIVE,mkt/common.py,builder,the quantity is zero or missing,enter the quantity,commercial manager,given by the code
 reason code,QUOTE_TEXT_UNVERIFIED,mkt/spec.py,builder,the quote's specification text is not verified,verify the reading against the quote,commercial manager,given by the code
@@ -173,8 +186,9 @@ reason code,RAISED_AFTER_AS_OF,fin/revenue.py,information,"the variation was rai
 reason code,RATE_IS_A_POLICY_PROXY_NOT_AN_EVIDENCED_FACILITY_RATE,fin/cashview.py,information,"carrying cost uses the settings' rate, not an evidenced facility rate",import the facility statement for an evidenced rate,finance,given by the code
 reason code,RATE_ONLY_FOR_DUTY,mkt/landed.py,information,this rate is used only for duty,none,-,given by the code
 reason code,RATIONALE_REQUIRED,det/findings.py,person,this change of status must record why,record the reason,the person acting,given by the code
-reason code,RECOGNISED_REVENUE,fin/calc_records.py,information,the result is labelled recognised revenue,none,-,given by the code
+reason code,RECOGNISED_REVENUE_UNKNOWN,fin/margins.py,builder,"recognised revenue is not known, so the margin percentage cannot be assessed",resolve what stops the revenue figure,commercial manager,given by the code
 reason code,RECOGNITION_METHOD_NOT_CONFIGURED,fin/margins.py,builder,the revenue recognition method is not set,set it in setup,finance,given by the code
+reason code,RECONCILIATION,mkt/common.py,builder,the record's reconciliation outcome does not allow its use,resolve the hold (its reasons are listed),bookkeeper,given by the code
 reason code,RECORD_MISSING,det/detect.py fin/calc_records.py mkt/detect.py,system,a record a stored run needs is missing,none for the builder,APG support,given by the code
 reason code,RECORD_NO_LONGER_COUNTED,fin/bridge.py,information,"a record counted before is no longer counted, so the movement is not explained","check why (held, corrected or replaced)",bookkeeper,given by the code
 reason code,REFERENCE_BASIS_UNRECORDED,mkt/compare.py mkt/opportunity.py,information,the order rate's delivery basis and inclusions are not recorded,none; it is a reference only,-,given by the code
@@ -182,7 +196,7 @@ reason code,REFERENCE_ONLY,mkt/compare.py,information,"an order rate is a refere
 reason code,REJECTED_BY_REVIEW,ingest/reconcile.py,information,a reviewer rejected the record,"none, or send a corrected record",bookkeeper,given by the code
 reason code,RELEASED_AND_RECEIVED,fin/cashview.py,information,the retention was released and the money received,none,-,given by the code
 reason code,RELEASED_PER_LEDGER_CASH_RECEIPT_NOT_EVIDENCED,fin/cashview.py,builder,the ledger says released but no bank receipt is held,import the bank receipt,finance,given by the code
-reason code,RELEASE_REVIEW_DUE,det/rules_commercial.py fin/cashview.py,builder,the retention is due for release review,review the release and lodge the claim,finance,given by the code
+reason code,RELEASE_REVIEW_DUE,det/rules_commercial.py fin/cashview.py,builder,"the release date has passed with retention still withheld: a review prompt, not an entitlement","review whether release is due and, if so, claim it",finance,given by the code
 reason code,REQUIRED_MISSING,ingest/mapping.py,builder,a required cell is blank; the row is rejected,fill the cell and import again,bookkeeper,given by the code
 reason code,REQUIREMENT_UNAPPROVED,mkt/spec.py,builder,the specification requirement is not approved by a person,have the requirement approved,the specification owner,given by the code
 reason code,RESIDUAL_NOT_ATTRIBUTED,fin/bridge.py,information,part of the cost movement cannot be attributed to a code,check the cost records,bookkeeper,given by the code
@@ -214,6 +228,7 @@ reason code,SEVERAL_FACILITIES,fin/cashview.py,builder,"there are several facili
 reason code,SIGN_CONVENTION,fin/intake.py ingest/pipeline.py,builder,an amount has the wrong sign for its field,correct the sign,bookkeeper,given by the code
 reason code,SOURCE_NOT_PERMITTED,source_authority.py,information,"a value came from a source the register does not permit, so it is ignored",none; or add the source to the register,the builder's approver,given by the code
 reason code,SPEC_REGISTER_UNAPPROVED,mkt/spec.py,builder,"the specification register is missing or not approved, so nothing is rankable",set up and approve the specification register,the specification owner,given by the code
+reason code,STALE,fin/forecast.py,builder,an input is older than the freshness limit set for it,supply a current one,project manager,given by the code
 reason code,STALE_APPROVAL,det/findings.py,person,the approval names an older version of the finding,read the finding again and approve the current version,the builder's approver,given by the code
 reason code,STALE_PROPOSAL,det/findings.py,person,the proposal is out of date,propose the action again,the person acting,given by the code
 reason code,STORED_EVENTS_INCONSISTENT,fin/cash_states.py,system,stored retention events are inconsistent,none for the builder,APG support,given by the code
@@ -228,7 +243,9 @@ reason code,SUPPLIER_UNVERIFIABLE_NO_MASTER,ingest/reconcile.py,builder,"there i
 reason code,SWITCHED_OFF_IN_POLICY,det/common.py mkt/common.py,information,the rule is switched off in the settings,none; switch it on if wanted,the builder's approver,given by the code
 reason code,TARGET_INVOICE_AFTER_CUTOFF,fin/costs.py,information,the invoice the credit names is after the cut-off,none,-,given by the code
 reason code,TARGET_INVOICE_NOT_COUNTED,fin/costs.py,builder,"the invoice the credit names is not counted, so the credit is not applied",resolve the invoice's hold,bookkeeper,given by the code
+reason code,TAX_BASIS_NOT_CONFIGURED,fin/forecast.py fin/revenue.py,builder,"the tax basis is not set, so revenue cannot be assessed",set the tax basis in setup,finance,given by the code
 reason code,TEMPLATE_INVALID,ingest/mapping.py,system,the import template is not valid,none for the builder,APG support,given by the code
+reason code,TERMINAL,det/findings.py,person,a superseded finding is kept for audit and cannot change,none,the person acting,given by the code
 reason code,TIER_INVALID,mkt/landed.py,builder,"a price tier is not valid, so it is not used",correct the tier,commercial manager,given by the code
 reason code,TOO_MANY_ROWS,ingest/mapping.py,builder,the file has more rows than allowed,split the file,bookkeeper,given by the code
 reason code,TRANSITION_NOT_ALLOWED,det/findings.py fin/cash_states.py,person,this change of status is not allowed,choose an allowed next status,the person acting,given by the code
@@ -239,39 +256,252 @@ reason code,UNIT_UNVERIFIED,mkt/spec.py,builder,the unit of the offer is not ver
 reason code,UNKNOWN_DENOMINATOR,fin/calc_records.py,system,a calculation was asked for with an unknown basis,none for the builder,APG support,given by the code
 reason code,UNKNOWN_STATUS,det/findings.py,system,an unknown finding status was named,none for the builder,APG support,given by the code
 reason code,VALUE_MISSING,fin/intake.py ingest/pipeline.py,builder,an optional value is missing; the record is used with a warning,enter the value if known,bookkeeper,given by the code
-reason code,VARIATION_STATUS_MAP_NOT_CONFIGURED,det/rules_cost.py fin/commitments.py,builder,variation statuses are not set up,"set up the variation statuses (approved, submitted, rejected, disputed)",commercial manager,given by the code
+reason code,VARIATION_STATUS_MAP_NOT_CONFIGURED,det/rules_commercial.py det/rules_cost.py fin/commitments.py,builder,variation statuses are not set up,"set up the variation statuses: map each of your variation statuses to approved, unapproved, disputed or rejected",commercial manager,given by the code
 reason code,VARIATION_STATUS_UNMAPPED,fin/revenue.py,builder,"the variation's status is not in the status settings, so it is left out",add the status to the variation status settings,commercial manager,given by the code
 reason code,VERIFICATION_NOT_AVAILABLE,det/findings.py,person,"a realised outcome needs the Section 05 verification, which is not available",none yet,-,given by the code
-rule reason (plain text),a grouping key is missing: ,det/rules_cost.py,builder,AGG: a field the split-order check groups by is missing,enter the field named,bookkeeper,given by the code
-rule reason (plain text),a window has no output or no hours,det/rules_ops.py,builder,"LAB: a period has hours but no output, or output but no hours",record the missing hours or output,project manager,given by the code
-rule reason (plain text),currency %s: conversion is not done here,det/rules_commercial.py,information,R07: a quote not in AUD is left to M6,none,-,given by the code
-rule reason (plain text),delivery basis %r needs the landed-cost model,det/rules_commercial.py,information,R07: this delivery basis is left to M6,none,-,given by the code
-rule reason (plain text),ex-works quote with no freight,det/rules_commercial.py,builder,"R07: an ex-works quote has no freight, so a landed cost cannot be built",add the freight to the quote,commercial manager,given by the code
-rule reason (plain text),fewer than %d complete weeks with both hours and output,det/rules_ops.py,builder,LAB: not enough complete weeks of hours and output,record hours and output for the missing weeks,project manager,given by the code
-rule reason (plain text),held,det/rules_cost.py,builder,R02: the order amendment is held,resolve the amendment's hold,bookkeeper,given by the code
-rule reason (plain text),"held, disputed, undated or after the as-of date",det/rules_cost.py,builder,"R09: the forecast line is held, disputed, undated or after the date","resolve the line (date it, or resolve the hold)",project manager,given by the code
-rule reason (plain text),hours are not a plain non-negative decimal,det/rules_ops.py,builder,LAB: the timesheet hours are not a valid number,correct the hours,project manager,given by the code
-rule reason (plain text),invoice for ,det/rules_cost.py,builder,"R03: an invoice for the order is held, so the invoiced total may be higher",resolve the invoice's hold,bookkeeper,given by the code
-rule reason (plain text),no end date: an open delay,det/rules_ops.py,builder,DLY: the delay has no end date,"enter the end date, or close the delay",project manager,given by the code
-rule reason (plain text),no evidenced need date,det/rules_ops.py,builder,R08: the plant hire has no need date,enter the date the plant is needed until,project manager,given by the code
-rule reason (plain text),no retention ledger,det/rules_commercial.py,builder,R05: there is no retention ledger for the project,import the retention ledger,finance,given by the code
-rule reason (plain text),not usable (,det/rules_cost.py,builder,AGG: the order is held,resolve the hold,bookkeeper,given by the code
-rule reason (plain text),purchase order has no unit rate,det/rules_commercial.py,builder,R07: the reference order has no unit rate,enter the order's unit rate,bookkeeper,given by the code
-rule reason (plain text),record not in the store,det/rules_commercial.py,builder,R07: the quote or reference named in the comparable pair is not stored,"import it, or correct the pair",commercial manager,given by the code
-rule reason (plain text),sample_note,mkt/rules.py mkt/suppliers.py,information,MP08: too few orders with deliveries to draw a conclusion,none,-,given by the code
-rule reason (plain text),starts after the as-of date or ends before it starts,det/rules_ops.py,builder,DLY: the delay's dates are wrong,correct the delay's dates,project manager,given by the code
-rule reason (plain text),status %r is not mapped by the financial policy,det/rules_commercial.py,builder,R04: the variation's status is not in the status settings,add the status to the variation status settings,commercial manager,given by the code
-rule reason (plain text),subcontractor or trade is not recorded,det/rules_ops.py,builder,DEF: the defect has no subcontractor or trade,record the subcontractor and trade,project manager,given by the code
-rule reason (plain text),the declared pair names different materials,det/rules_commercial.py,builder,R07: the comparable pair names two different materials,correct the pair,commercial manager,given by the code
-rule reason (plain text),the unit of measure changes inside the windows,det/rules_ops.py,builder,LAB: the output unit changes between weeks,use one unit for the work package,project manager,given by the code
-rule reason (plain text),the windows are not consecutive weeks,det/rules_ops.py,builder,LAB: a week is missing or incomplete,complete the missing week,project manager,given by the code
-rule reason (plain text),uncovered demand but no rankable current quote,mkt/rules.py,builder,MP03: demand is not covered and no current quote can be ranked,get a comparable current quote,commercial manager,given by the code
-rule reason (plain text),undated or after the as-of date,det/rules_cost.py,builder,AGG: the order is undated or after the date,enter the order date,bookkeeper,given by the code
-run state,cannot_assess,det/common.py det/rules_commercial.py det/rules_cost.py fin/__init__.py fin/figure.py fin/forecast.py fin/forecast_book.py fin/policy.py ingest/freshness.py mkt/common.py mkt/demand.py mkt/opportunity.py mkt/rules.py mkt/scenarios.py,builder,the rule or figure cannot be assessed; the reason codes say why,act on the reason codes given with it,-,given by the code
-run state,disabled,det/common.py mkt/common.py,information,the rule is switched off in the settings,none; switch it on if wanted,the builder's approver,given by the code
-run state,missing_parameter,mkt/analysis.py mkt/detect.py,builder,M6: an analysis is not assessed because a setting is missing; it is named,"set the setting named, in setup",commercial manager,given by the code
-run state,not_configured,det/common.py mkt/common.py mkt/rules.py mkt/scenarios.py,builder,a setting the rule needs is missing; it is named,"set the setting named, in setup",the builder's approver,given by the code
-silent today (DC-3),purchase-order statuses not set up,M6 last rate paid,builder,a null purchase-order status map stops the whole M6 run with an error,set up the purchase-order statuses,-,no message: the decided fix adds it (DC-3)
+plain-language reason,%d order(s) with deliveries against a minimum of %d,mkt/suppliers.py,information,MP08: too few orders with deliveries to draw a conclusion,none,-,given by the code
+plain-language reason,"%d usable observations, %d wanted",mkt/scenarios.py,information,buy timing: not enough market observations for context,none,-,given by the code
+plain-language reason,a date written as text is not interpreted by the stand-in,ingest/documents.py,person,document capture: the stand-in reader does not interpret dates written as text,the verifier checks the date against the document,the verifier,given by the code
+plain-language reason,a grouping key is missing,det/rules_cost.py,builder,AGG: a field the split-order check groups by is missing,enter the field named,bookkeeper,given by the code
+plain-language reason,a larger tier lowers the unit rate but the total paid is,mkt/landed.py,information,landed cost: a larger price tier changes the total paid,none,-,given by the code
+plain-language reason,"a range, not a total",det/portfolio.py,information,"the portfolio total is a range, or a sum of separate estimates and records; not a verified figure",none,-,given by the code
+plain-language reason,a unit is not recorded,mkt/spec.py,builder,M6: the unit is not recorded,record the unit,commercial manager,given by the code
+plain-language reason,a window has no output or no hours,det/rules_ops.py,builder,"LAB: a period has hours but no output, or output but no hours",record the missing hours or output,project manager,given by the code
+plain-language reason,after_cutoff,fin/costs.py,information,a credit dated after the cut-off is not yet applied,none,-,given by the code
+plain-language reason,approval_invalidated_evidence_changed,det/findings.py,person,"the evidence changed after approval, so the approval no longer stands",approve again,the builder's approver,given by the code
+plain-language reason,assumption is in %s and cannot be converted,mkt/landed.py,builder,landed cost: an assumption is in a currency that cannot be converted,import a current exchange rate for that currency,commercial manager,given by the code
+plain-language reason,assumption set by %s,mkt/landed.py,information,landed cost: a component taken from a signed assumption,none,-,given by the code
+plain-language reason,budget lines carry different revision labels,fin/forecast.py,builder,M4 budget: budget lines from different revisions are mixed,import one complete budget revision,project manager,given by the code
+plain-language reason,contract summary of approved variations (,fin/revenue.py,builder,M4 revenue: the contract's approved-variations total differs from the variation register,reconcile the contract summary with the variation register,commercial manager,given by the code
+plain-language reason,"conversion declared, but the offered unit is inferred, not verified",mkt/spec.py,builder,"M6: a conversion exists, but the offer's unit is not verified",verify the unit reading from the quote,commercial manager,given by the code
+plain-language reason,currency %s: conversion is not done here,det/rules_commercial.py,information,R07: a quote not in AUD is left to M6,none,-,given by the code
+plain-language reason,decimal point or thousands separator?,ingest/documents.py,person,document capture: a number is ambiguous,the verifier checks the number against the document,the verifier,given by the code
+plain-language reason,delivery basis %r needs the landed-cost model,det/rules_commercial.py,information,R07: this delivery basis is left to M6,none,-,given by the code
+plain-language reason,derived from budget less actual; budget unchanged,fin/bridge.py,information,forecast movement: explained by actual cost against an unchanged budget,none,-,given by the code
+plain-language reason,differs from the project master contract value,fin/revenue.py,builder,M4 revenue: the contract record differs from the project master contract value,correct one of them,commercial manager,given by the code
+plain-language reason,"duty is a share of the purchase cost, which is unknown",mkt/landed.py,builder,landed cost: duty cannot be worked out because the purchase cost is unknown,complete the purchase cost,commercial manager,given by the code
+plain-language reason,event sequence breaks a rule at seq %d: %s,fin/cashview.py,builder,M4 retention: the retention events break the allowed sequence,correct the events,finance,given by the code
+plain-language reason,ex-works quote with no freight,det/rules_commercial.py,builder,"R07: an ex-works quote has no freight, so a landed cost cannot be built",add the freight to the quote,commercial manager,given by the code
+plain-language reason,exclude: after_cutoff,fin/commitments.py fin/revenue.py,information,a record dated after the cut-off is not counted yet,none,-,given by the code
+plain-language reason,exclude: disputed,fin/cashview.py fin/revenue.py,builder,"conflicting versions of a record, so it is left out of the figure",confirm which version is right,bookkeeper,given by the code
+plain-language reason,exclude: duplicate_delivery,fin/commitments.py,information,a repeat delivery of the same record is counted once,none,-,given by the code
+plain-language reason,exclude: held,fin/revenue.py,builder,"a record is held, so it is left out of the figure; its codes say why",resolve the hold,bookkeeper,given by the code
+plain-language reason,exclude: not_counted,fin/forecast.py,information,a forecast line the method does not use,none,-,given by the code
+plain-language reason,exclude: unattributed,fin/cashview.py fin/commitments.py fin/costs.py fin/forecast.py fin/revenue.py,builder,a record whose project cannot be told is left out,add or correct the project reference,bookkeeper,given by the code
+plain-language reason,exclude: unknown_value,fin/cashview.py fin/commitments.py fin/revenue.py,builder,a record with an unknown status or amount is left out; its code says which,act on the code given with it,bookkeeper,given by the code
+plain-language reason,fewer than %d complete weeks with both hours and output,det/rules_ops.py,builder,LAB: not enough complete weeks of hours and output,record hours and output for the missing weeks,project manager,given by the code
+plain-language reason,fewer than two rankable offers have a complete landed cost,mkt/scenarios.py,builder,buy timing: fewer than two comparable offers have a complete landed cost,"get another comparable quote, or complete the landed costs",commercial manager,given by the code
+plain-language reason,freight is in %s and cannot be converted,mkt/landed.py,builder,landed cost: the freight is in a currency that cannot be converted,import a current exchange rate for that currency,commercial manager,given by the code
+plain-language reason,freshness: cannot_assess,ingest/freshness.py,builder,the decision cannot be assessed for freshness; the inputs say why,act on the inputs' states,project manager,given by the code
+plain-language reason,freshness: future_dated,ingest/freshness.py,builder,an input is dated after the assessment date,correct the date if it is wrong,bookkeeper,given by the code
+plain-language reason,freshness: missing,ingest/freshness.py,builder,an input the decision needs has never arrived,supply it,bookkeeper,given by the code
+plain-language reason,freshness: qualified,ingest/freshness.py,information,the decision is qualified because an input is stale,supply a current input,project manager,given by the code
+plain-language reason,freshness: stale,ingest/freshness.py,builder,an input is older than its freshness limit,supply a current one,project manager,given by the code
+plain-language reason,freshness: unconfigured,ingest/freshness.py,builder,"no freshness limit is set for this use, so it cannot be assessed",set the freshness limit in setup,the builder's approver,given by the code
+plain-language reason,held,det/rules_cost.py,builder,R02: the order amendment is held,resolve the amendment's hold,bookkeeper,given by the code
+plain-language reason,"held, disputed, undated or after the as-of date",det/rules_cost.py,builder,"R09: the forecast line is held, disputed, undated or after the date","resolve the hold, or date the line",project manager,given by the code
+plain-language reason,"history of an index, not a price",mkt/scenarios.py,information,buy timing: an index is shown as history only,none,-,given by the code
+plain-language reason,hours are not a plain non-negative decimal,det/rules_ops.py,builder,LAB: the timesheet hours are not a valid number,correct the hours,project manager,given by the code
+plain-language reason,invoice for,det/rules_cost.py,builder,"R03: an invoice for the order is held, so the invoiced total may be higher",resolve the invoice's hold,bookkeeper,given by the code
+plain-language reason,"is not usable (held, disputed or duplicate)",det/rules_commercial.py,builder,"R07: the quote or reference is held, disputed or a duplicate",resolve the hold,bookkeeper,given by the code
+plain-language reason,letters inside a number,ingest/documents.py,person,document capture: a number holds letters,the verifier checks the number against the document,the verifier,given by the code
+plain-language reason,mkt_policy,mkt/detect.py,builder,"M6: no procurement settings are in force, so nothing is assessed",set up and approve the procurement settings,the builder's approver,given by the code
+plain-language reason,more than two decimals,ingest/documents.py,person,document capture: a money value has more than two decimals,the verifier checks the value against the document,the verifier,given by the code
+plain-language reason,newly counted:,fin/bridge.py,information,forecast movement: a record newly counted,none,-,given by the code
+plain-language reason,no approved register,mkt/compare.py,builder,M6: the specification register is not approved,set up and approve the specification register,the specification owner,given by the code
+plain-language reason,no declared conversion from %s to %s,mkt/spec.py,builder,M6: no unit conversion is declared between the two units,declare the conversion in the specification register,the specification owner,given by the code
+plain-language reason,no end date: an open delay,det/rules_ops.py,builder,DLY: the delay has no end date,"enter the end date, or close the delay",project manager,given by the code
+plain-language reason,no evidenced need date,det/rules_ops.py,builder,R08: the plant hire has no need date,enter the date the plant is needed until,project manager,given by the code
+plain-language reason,no explicit future-price paths are configured,mkt/scenarios.py,information,"buy timing: no future-price paths are set, so no rising-price scenario is built","set price paths in the procurement settings, if wanted",commercial manager,given by the code
+plain-language reason,no record of this check,mkt/intl.py,builder,M6: a critical import check is not recorded,"record the check, with the person, date and evidence",commercial manager,given by the code
+plain-language reason,no retention ledger,det/rules_commercial.py,builder,R05: there is no retention ledger for the project,import the retention ledger,finance,given by the code
+plain-language reason,no usable %s rate on or before %s,mkt/fx.py,builder,M6: no exchange rate is held for the currency and date,import a current exchange rate,commercial manager,given by the code
+plain-language reason,not readable as a dollar amount,ingest/documents.py,person,document capture: a value is not readable as a dollar amount,the verifier enters the value from the document,the verifier,given by the code
+plain-language reason,not readable as a whole number,ingest/documents.py,person,document capture: a value is not readable as a whole number,the verifier enters the value from the document,the verifier,given by the code
+plain-language reason,not required by the policy and not stated,mkt/landed.py,information,landed cost: a component not required and not stated,none,-,given by the code
+plain-language reason,not usable (,det/rules_cost.py,builder,AGG: the order is held,resolve the hold,bookkeeper,given by the code
+plain-language reason,observed performance on these records,mkt/suppliers.py,information,"MP08: supplier performance is observed, not predicted",none,-,given by the code
+plain-language reason,priced per %s but needed per %s,mkt/scenarios.py,builder,"buy timing: the quote is priced in a different unit from the need, so no purchase scenario is built","declare the unit conversion, or get a quote in the needed unit",commercial manager,given by the code
+plain-language reason,project master contract value,fin/revenue.py,builder,M4 revenue: the project master contract value differs from the contract record,correct one of them,commercial manager,given by the code
+plain-language reason,purchase order has no unit rate,det/rules_commercial.py,builder,R07: the reference order has no unit rate,enter the order's unit rate,bookkeeper,given by the code
+plain-language reason,quoted rate %s %s%s,mkt/landed.py,information,"landed cost: the quoted rate, as a component",none,-,given by the code
+plain-language reason,record not in the store,det/rules_commercial.py,builder,R07: the quote or reference named in the comparable pair is not stored,"import it, or correct the pair",commercial manager,given by the code
+plain-language reason,recorded as %s without %s,mkt/intl.py,builder,"M6: an import check lacks the person, the date or the evidence",add what is missing to the check,commercial manager,given by the code
+plain-language reason,recorded as unresolved,mkt/intl.py,builder,M6: an import check is recorded as unresolved,resolve the check,commercial manager,given by the code
+plain-language reason,required for this kind of purchase; nothing in the quote or the assumptions gives it,mkt/landed.py,builder,landed cost: a required component is not given by the quote or the assumptions,add the component to the quote or the landed-cost assumptions,commercial manager,given by the code
+plain-language reason,rounding of the policy tax conversion,fin/bridge.py,information,forecast movement: rounding of the tax conversion,none,-,given by the code
+plain-language reason,scenarios are not recommendations and no offer is chosen,mkt/scenarios.py,information,buy timing: scenarios are not recommendations,none,-,given by the code
+plain-language reason,scenarios.context_points is not configured,mkt/scenarios.py,builder,buy timing: the market-context setting is not set,set it in the procurement settings,commercial manager,given by the code
+plain-language reason,scenarios.stage is not configured,mkt/scenarios.py,builder,buy timing: the staged-purchase setting is not set,set it in the procurement settings,commercial manager,given by the code
+plain-language reason,several different versions of the contract record,fin/revenue.py,builder,M4 revenue: conflicting versions of the contract record,confirm which version is right,commercial manager,given by the code
+plain-language reason,several different versions of the retention ledger record,fin/cashview.py,builder,M4 retention: conflicting versions of the retention ledger,confirm which version is right,finance,given by the code
+plain-language reason,several different versions of the variation,fin/revenue.py,builder,M4 revenue: conflicting versions of a variation,confirm which version is right,commercial manager,given by the code
+plain-language reason,starts after the as-of date or ends before it starts,det/rules_ops.py,builder,"DLY: the delay's dates are wrong, or it starts after the assessment date",correct the dates if they are wrong,project manager,given by the code
+plain-language reason,stated on the quote,mkt/landed.py,information,landed cost: a component stated on the quote,none,-,given by the code
+plain-language reason,status %r is not mapped by the financial policy,det/rules_commercial.py,builder,R04: the variation's status is not in the status settings,add the status to the variation status settings,commercial manager,given by the code
+plain-language reason,status %r is not one of %s,mkt/intl.py,builder,M6: an import check's status is not one of the allowed values,record the check with an allowed status,commercial manager,given by the code
+plain-language reason,status %r maps to %s,mkt/demand.py,information,M6 coverage: an order whose status is not committed or closed is not counted,"none, unless the status is wrong",bookkeeper,given by the code
+plain-language reason,status: assumed,mkt/landed.py,information,"landed cost: a component comes from an assumption, not the quote",none; check the assumption,commercial manager,given by the code
+plain-language reason,status: cannot_assess,mkt/demand.py mkt/scenarios.py,builder,M6 coverage or buy timing cannot be assessed; the reason is given,act on the reason given,commercial manager,given by the code
+plain-language reason,status: dead_letter,ingest/jobs.py,system,an import job failed repeatedly and was set aside,none for the builder,APG support,given by the code
+plain-language reason,status: fail,mkt/spec.py,information,M6: the offer fails a required attribute,"none, unless the quote or specification is wrong",commercial manager,given by the code
+plain-language reason,status: failed,det/monitor.py,system,a scheduled monitoring run failed,none for the builder,APG support,given by the code
+plain-language reason,status: file_rejected,fin/intake.py ingest/pipeline.py,builder,the import file was rejected; the reasons are listed,fix the file and import it again,bookkeeper,given by the code
+plain-language reason,status: held,ingest/reconcile.py source_authority.py,builder,a record is held; its reasons are listed,resolve the hold,bookkeeper,given by the code
+plain-language reason,status: incompatible,mkt/spec.py,information,M6: the units cannot be converted,declare a conversion if one applies,commercial manager,given by the code
+plain-language reason,status: indicative,mkt/compare.py,information,"M6: the ranking is indicative, not definitive",act on the reasons given,commercial manager,given by the code
+plain-language reason,status: insufficient_history,mkt/scenarios.py,information,buy timing: not enough market history for context,none,-,given by the code
+plain-language reason,status: insufficient_offers,mkt/compare.py,builder,"M6: fewer than two comparable offers, so no definitive ranking",get another comparable quote,commercial manager,given by the code
+plain-language reason,status: missing,mkt/landed.py,builder,"landed cost: a required component is missing, so the cost is ""at least""",add the missing component,commercial manager,given by the code
+plain-language reason,status: no_offers,mkt/compare.py,builder,M6: no offers for the requirement,get quotes,commercial manager,given by the code
+plain-language reason,status: no_rankable_offer,mkt/scenarios.py,builder,"buy timing: no offer can be ranked, so no scenario is built",get a comparable current quote,commercial manager,given by the code
+plain-language reason,status: no_scenario_built,mkt/scenarios.py,information,buy timing: no scenario could be built; the reasons are given,act on the reasons given,commercial manager,given by the code
+plain-language reason,status: no_uncovered_demand,mkt/scenarios.py,information,"buy timing: no uncovered demand, so no scenario is needed",none,-,given by the code
+plain-language reason,status: not_available,mkt/scenarios.py,information,buy timing: a scenario is not available; the reason is given,act on the reason given,commercial manager,given by the code
+plain-language reason,status: not_configured,mkt/scenarios.py,builder,buy timing: a scenario setting is not set,set it in the procurement settings,commercial manager,given by the code
+plain-language reason,status: not_ingested,ingest/filestore.py,builder,a stored file has not been ingested,import the file,bookkeeper,given by the code
+plain-language reason,status: over_ordered,mkt/demand.py,information,MP04: more ordered than the demand,review the order,project manager,given by the code
+plain-language reason,status: partial,det/monitor.py,system,a scheduled monitoring run partly failed,none for the builder,APG support,given by the code
+plain-language reason,status: pending_reconciliation,ingest/views.py,builder,a credit waits for reconciliation,resolve the invoice it is linked to,bookkeeper,given by the code
+plain-language reason,status: refused,ingest/jobs.py,builder,an import job was refused; the reason is given,act on the reason given,bookkeeper,given by the code
+plain-language reason,status: rejected,ingest/reconcile.py,information,a reviewer rejected the record,"send a corrected record, if needed",bookkeeper,given by the code
+plain-language reason,status: uncovered,mkt/demand.py,information,M6: demand not yet covered by orders,none; a purchase decision is due,project manager,given by the code
+plain-language reason,status: unknown,mkt/compare.py mkt/spec.py,builder,M6: an attribute of the offer is not known,record the attribute from the quote,commercial manager,given by the code
+plain-language reason,status: unquantified,det/signal.py,information,the finding has no amount; it says why,"supply what it names, if wanted",project manager,given by the code
+plain-language reason,status: unresolved,mkt/intl.py,builder,M6: an import check is unresolved,resolve the check,commercial manager,given by the code
+plain-language reason,status: unverified,mkt/compare.py mkt/spec.py,builder,M6: the offer cannot be verified against the specification,"verify the readings, or approve the register or requirement",commercial manager,given by the code
+plain-language reason,subcontractor or trade is not recorded,det/rules_ops.py,builder,DEF: the defect has no subcontractor or trade,record the subcontractor and trade,project manager,given by the code
+plain-language reason,tax treatments differ (%s and %s) and no GST rate is configured,mkt/opportunity.py,builder,MP09: the quote and the order have different tax bases and the GST rate is not set,set the GST rate in the procurement settings,commercial manager,given by the code
+plain-language reason,the %s basis includes it,mkt/landed.py,information,landed cost: the delivery basis includes this component,none,-,given by the code
+plain-language reason,the blocking facts no longer exist,ingest/reconcile.py,information,a hold cleared because its cause no longer exists,none,-,given by the code
+plain-language reason,the condition was detected again with changed evidence,det/findings.py,information,a finding reopened because the condition came back with changed evidence,review the finding,project manager,given by the code
+plain-language reason,the declared pair names different materials,det/rules_commercial.py,builder,R07: the comparable pair names two different materials,correct the pair,commercial manager,given by the code
+plain-language reason,the latest order date that still meets %s,mkt/scenarios.py,information,buy timing: the latest order date has passed for the required date,none; plan for the delay,project manager,given by the code
+plain-language reason,the quote records no unit and no verified unit reading exists,mkt/spec.py,builder,"M6: the offer's unit is inferred from the material master, not verified",record and verify the unit from the quote,commercial manager,given by the code
+plain-language reason,the rule ran and did not raise this condition,det/findings.py,information,a finding was not raised again; a person decides whether it is resolved,decide whether the finding is resolved,project manager,given by the code
+plain-language reason,the unit of measure changes inside the windows,det/rules_ops.py,builder,LAB: the output unit changes between weeks,use one unit for the work package,project manager,given by the code
+plain-language reason,the windows are not consecutive weeks,det/rules_ops.py,builder,LAB: a week is missing or incomplete,complete the missing week,project manager,given by the code
+plain-language reason,uncovered demand but no rankable current quote,mkt/rules.py,builder,MP03: demand is not covered and no current quote can be ranked,get a comparable current quote,commercial manager,given by the code
+plain-language reason,undated or after the as-of date,det/rules_cost.py,builder,"AGG: the order is undated, or dated after the assessment date",enter the order date if it is missing; a later order is assessed in a later run,bookkeeper,given by the code
+plain-language reason,unit rate paid on the order,mkt/landed.py,information,landed cost: an order rate used as a reference,none,-,given by the code
+plain-language reason,unknown: held,fin/commitments.py,builder,"M4: an invoice against an order is not resolved, so how much of the commitment it uses is unknown",resolve the invoice's hold,bookkeeper,given by the code
+plain-language reason,unknown: invalid,fin/forecast.py,builder,M4: a cost-to-complete entry is not valid,correct the forecast line for the code,project manager,given by the code
+plain-language reason,unknown: method_not_configured,fin/cashview.py fin/commitments.py fin/figure.py fin/forecast.py,builder,M4: a setting the figure needs is not set; it names the open decision,make that setting in setup,finance,given by the code
+plain-language reason,unknown: no_data,fin/cashview.py fin/commitments.py fin/forecast.py fin/revenue.py,builder,M4: a record or field a figure needs is not held; the figure names it,supply the record or field named,bookkeeper,given by the code
+plain-language reason,unknown: not_obtained,fin/cashview.py,builder,M4: no evidenced facility rate is held; the settings' rate is used as a proxy,import the facility statement,finance,given by the code
+plain-language reason,unknown: stale,fin/cashview.py fin/forecast.py,builder,M4: an input is older than its freshness limit,supply a current one,project manager,given by the code
+plain-language reason,unknown: unmapped,fin/commitments.py fin/revenue.py,builder,M4: a status is not in the status settings,add the status to the status settings,finance,given by the code
+plain-language reason,variation is disputed,fin/revenue.py,information,"M4 revenue: the variation is recorded as disputed, so it is kept out of secured revenue",none; it is listed beside the figure,-,given by the code
+plain-language reason,variation newly approved:,fin/bridge.py,information,forecast movement: a variation newly approved,none,-,given by the code
+plain-language reason,variation register approved total (,fin/revenue.py,builder,M4 revenue: the variation register differs from the contract summary,reconcile the two,commercial manager,given by the code
+run or figure state,cannot_assess,det/common.py fin/figure.py mkt/common.py,builder,the rule or figure cannot be assessed; the reason codes say why,act on the reason codes given with it,-,given by the code
+run or figure state,disabled,det/common.py mkt/common.py,information,the rule is switched off in the settings,none; switch it on if wanted,the builder's approver,given by the code
+run or figure state,not_configured,det/common.py mkt/common.py,builder,a setting the rule needs is missing; it is named,"set the setting named, in setup",the builder's approver,given by the code
+run or figure state,provisional,fin/figure.py,builder,a figure is provisional; its reasons are listed with it,act on the reasons given,-,given by the code
+refusal or error raised (AuthorityError),a correction needs a whole-cent value,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),a different extraction of the same document needs a new document id,ingest/documents.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),a disposition note is required,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),a document is bytes,ingest/documents.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),a new register must name the version it supersedes,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),a note is required,ingest/review.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),a register version cannot be replaced,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),"a verified value must be a whole number (cents or a count) or, for a text field, non-empty text",ingest/documents.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),approver must be a human holding the resolver role,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),approvers must agree on the action and the corrected value,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),approving an alias needs a human entity steward,ingest/review.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),effective dates must be YYYY-MM-DD,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),effective_to is before effective_from,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),first register supersedes nothing,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),nature or on_secondary_disagreement invalid,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),no proposed alias,ingest/review.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),no such extracted field,ingest/documents.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),no such held record,ingest/review.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),no such quarantined record,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),overlapping rules for,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),permitted_secondary must be a tuple that does not repeat the authoritative source,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),register needs a version,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),required_approvals must be an integer of at least 1,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),rule field,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),supplier resolution needs a human holding the entity_steward role,ingest/review.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),the evidence considered and a note are required,ingest/documents.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),the proposer cannot approve their own alias,ingest/review.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),the same person cannot approve twice,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),this document id already holds a different document; register it under a new id,ingest/documents.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),this field takes a whole number,ingest/documents.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),this record has no supplier text to resolve,ingest/review.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),this record has several different values; choose one with a correction or reject it,ingest/review.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),unknown action,source_authority.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),unknown record or supplier,ingest/review.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),unknown supplier,ingest/review.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (AuthorityError),verification needs a human holding the document_verifier role,ingest/documents.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (DetPolicyError),a proposed policy carries no approval; approvals are recorded only through approve_policy by an authorised person,det/policy.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (EventError),an event rests on at least one stored record,mkt/events.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (EventError),effective period,mkt/events.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (EventError),event identity does not match the event,mkt/events.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (EventError),event type,mkt/events.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (EventError),event version,mkt/events.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (EventError),observed_at is required: the time APG learned of the fact,mkt/events.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (EventError),subject,mkt/events.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (FigureError),: a figure that is not authoritative must say why,fin/figure.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (FigureError),": an authoritative figure cannot have exclusions, unknown or disputed inputs or an unapproved policy",fin/figure.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (FigureError),: authoritative figure with a component that is,fin/figure.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (FigureError),: cannot_assess means no value and any other state needs one,fin/figure.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (FigureError),: exclusion class,fin/figure.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (FigureError),: state,fin/figure.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (FigureError),: two values,fin/figure.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (FigureError),a figure has one value,fin/figure.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (FigureError),component,fin/figure.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (FigureError),unknown exclusion class,fin/figure.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (FigureError),unknown state,fin/figure.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (FigureError),values are whole numbers (cents or basis points),fin/figure.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (IngestError),a source identity is required,fin/intake.py ingest/pipeline.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (IngestError),no financial-core intake rules for entity,fin/intake.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (IngestError),no ingestion rules for entity,ingest/pipeline.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (MktPolicyError),a proposed policy carries no approval; approvals are recorded only through approve_policy by an authorised person,mkt/policy.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (MktPolicyError),a proposed specification register carries no approval; approvals are recorded only through approve_spec by an authorised person,mkt/policy.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (NotPermitted),an infected verdict is terminal,ingest/filestore.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (NotPermitted),only the file scanner service may read an unscanned file,ingest/filestore.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (NotPermitted),only the file scanner service may record a scan verdict,ingest/filestore.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (PayloadInvalid),data must be bytes,ingest/filestore.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (PayloadInvalid),file larger than the store allows,ingest/filestore.py,builder,the message states it,"do what the message says, then try again",bookkeeper,given by the code
+refusal or error raised (PayloadInvalid),"file name must be 1-200 characters with no control characters, path separators or ..",ingest/filestore.py,builder,the message states it,"do what the message says, then try again",bookkeeper,given by the code
+refusal or error raised (PayloadInvalid),media_type must be a string,ingest/filestore.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (PayloadInvalid),verdict must be clean or infected,ingest/filestore.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (PolicyError),a proposed policy carries no approval; approvals are recorded only through approve_policy by an authorised person,fin/policy.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (SavingNotVerified),"opportunity %s is an estimate; a realised saving needs an approved comparable baseline, implementation evidence and authorised verification (Section 05), none of which exists here",mkt/opportunity.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (SignalError),"a data-quality, operational or compliance signal does not carry a financial figure as if it were a loss",det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),a quantified signal names its basis and calculation,det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),a quantified signal needs a whole-number gross amount,det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),a signal must rest on at least one stored record,det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),amount label,det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),an unquantified signal says why and carries no amount,det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),evidence reference,det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),evidence strength,det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),"explanation needs observed, expected and reason",det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),"identity does not match rule, scope and subject",det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),interpretation,det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),only an amount taken from a stored calculation can be called an actual loss; anything else is exposure or potential,det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),quantification status,det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),rule identification,det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),scope,det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),severity,det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),signal version,det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),state digest does not match the signal,det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (SignalError),taxonomy,det/signal.py,system,the message states it,none for the builder,APG support,given by the code
+refusal or error raised (_refuse),a %s is approved only by a person with the role %s,policy_approval.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (_refuse),a %s is proposed by a person,policy_approval.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (_refuse),a %s is stored without approvals; approvals are recorded only through approve_policy by an authorised person,policy_approval.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (_refuse),the proposer cannot approve their own %s,policy_approval.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (_refuse),"the proposer must be the person storing the %s (%s), not %r",policy_approval.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (call),"approval NOT CONFIRMED: the approval by %s of %s %s is recorded in the policy but the audit log does not confirm it (the audit write failed: %s), so it does not count; %s can call approve again, which records and confirms a fresh approval",policy_approval.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (err),%s has already approved this version,policy_approval.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (err),%s version %s already exists with different content; a change is a new version (approvals are added only through approve_policy by an authorised person),policy_approval.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (err),no stored %s version %r,policy_approval.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (err),record why the %s is approved,policy_approval.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+refusal or error raised (err),the %s changed while it was being approved; read it again,policy_approval.py,person,the message states it,"do what the message says, then try again",the person acting,given by the code
+silent today (DC-1),"the client rejected the variation for this work (or: not assessed, the variation is on hold)",R04B,builder,an instruction linked to a rejected (or held) variation is silent,"record the outcome: disputed, at own cost, resubmitted, withdrawn (or approve, reject or correct the variation)",-,no message: the decided fix adds it (DC-1)
+silent today (DC-2),not assessed: overtime unknown,LAB,builder,a missing overtime is counted as 0,enter the overtime hours (0 if none),-,no message: the decided fix adds it (DC-2)
+an uncaught error today (DC-3),purchase-order statuses not set up,M6 last rate paid,builder,not silent: an uncaught error; a null purchase-order status map stops the whole M6 run,set up the purchase-order statuses,-,no message: the decided fix adds it (DC-3)
 silent today (DC-4),not assessed: purchase-order statuses not set up; GST rate not set,"MP05, MP08, MP10, MP02 reference, MP09",builder,"without the status map nothing is evaluated, and nothing says so; MP09 drops an opportunity when the GST rate is not set",set up the purchase-order statuses; set the GST rate,-,no message: the decided fix adds it (DC-4)
 silent today (DC-5),no current quote,MP01,builder,a watched material with no usable quote raises no signal,"get a quote, or resolve the held one",-,no message: the decided fix adds it (DC-5)
 silent today (DC-6),not assessed: quantity zero or unusable,M6 comparison,builder,a requirement with no positive quantity is reported nowhere,enter the quantity needed,-,no message: the decided fix adds it (DC-6)
@@ -279,6 +509,5 @@ silent today (DC-7),not assessed: the linked variation is on hold,"M4 commitment
 silent today (DC-8),not assessed: no budget line for this cost code,R01,builder,cost on a code with no budget line is neither assessed nor listed,"add a budget line, or move the cost to the right code",-,no message: the decided fix adds it (DC-8)
 silent today (DC-9),at least $X (n of m defects costed),DEF,builder,a partial rework cost is shown as the recorded sum,add the remaining rework costs,-,no message: the decided fix adds it (DC-9)
 silent today (DC-10),"order not included, with its reason","MP03, MP04, MP05, MP08, MP10, last rate paid",builder,"held, unreconciled or zero-quantity orders are left out unlisted","resolve the hold, reconcile the order, or enter the quantity",-,no message: the decided fix adds it (DC-10)
-silent today (DC-11),grading not set up yet,every detection and M6 rule,builder,"findings are graded with settings nobody approved, and do not say so",set the grading levels in setup,-,no message: the decided fix adds it (DC-11)
-silent today (DC-1),"the client rejected the variation: this work may not be paid (or: not assessed, the variation is on hold)",R04B,builder,an instruction linked to a rejected (or held) variation is silent,"record the outcome: disputed, at own cost, resubmitted, withdrawn (or approve, reject or correct the variation)",-,no message: the decided fix adds it (DC-1)
-silent today (DC-2),not assessed: overtime unknown,LAB,builder,a missing overtime is counted as 0,enter the overtime hours (0 if none),-,no message: the decided fix adds it (DC-2)
+silent today (DC-11),grading not set up yet,every detection and M6 rule,builder,"findings are graded with severity bands nobody approved; the stored finding is flagged policy_unapproved, the signal is not",set the grading levels in setup,-,no message: the decided fix adds it (DC-11)
+silent today (DC-12),"amendment not assessed: its order is not counted, with the order's reason","M4 commitments, R02",builder,"amendments on an order the commitments figure skips (held, duplicate, after the cut-off, status unknown) are never examined; the order is listed, its amendments are not",resolve the order's reason,-,no message: the decided fix adds it (DC-12)

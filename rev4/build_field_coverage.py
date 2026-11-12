@@ -15,7 +15,7 @@ policy E90, rule settings N01, the cost-code map E04, the authority register E03
 the contracts do not name; authority and verification are listed per field in the second output, not tested.
 Second output, FIELD_SUPPLY_ROUTES.csv: one row per record kind and field the contracts read (the checked pairs above), with the entity, its
 ways in and their status (from ENTITY_REGISTER.csv), whether the field is material, the verification route of each way in (design, from the
-Data Supply System draft 6), and what stage 1 does today for source authority and verification (from the intake code: ingest/specs.py SPECS
+Data Supply System draft 7), and what stage 1 does today for source authority and verification (from the intake code: ingest/specs.py SPECS
 are the reference intake's 11 kinds: field authority for the material field of 6 of them, record-level duplicate, supplier or link checks
 on ap_invoice, credit_note, po_amendment, purchase_order and supplier_quote, field validation only for budget_line, fx_rate,
 market_observation and supplier; the other 24 kinds go through fin/intake.py, with no authority or reconciliation).  Corrected after the
