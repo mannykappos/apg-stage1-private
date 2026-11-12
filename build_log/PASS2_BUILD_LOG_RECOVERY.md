@@ -211,3 +211,11 @@ review pack); everything after that is restated here from the conversation recor
 - The owner's decisions on them (2026-11-12, in dialogue): all fixed in one change request after stage 1, with DC-1 and DC-2; nothing silent,
   each case listed with what is missing, why it matters and what the builder must do; the rejected-variation case raises a warning and the
   builder records the outcome. Not stage 1 regressions; no restart.
+- 20:05 The container restarted again (a boot at about 19:56) while m2s_313 ran detached (started 17:09:58; last temp-file write 19:41:59;
+  no end line). Files and repositories survived. Partial console moved to ev5/interrupted/m2s_313_restart2, temp folder (9.6 GB) removed;
+  m2s_313 relaunched detached from the start at 20:05:05. No result was produced, so nothing wrong was recorded; about 3 hours lost.
+- 20:05 Further defect candidate, from answering GPT's check of the data readiness revision 4 (outside the D14 item list); no code change,
+  stage 1 continues on freeze ee1ce3ec. DC-13: the project-scoped detection rules (R01, R04, R04B, R08, R09, AGG, DLY, LAB, DEF, D02) and
+  MPD1 use only the records certain to belong to the project (fin/snap.py Facts.of_project); a record whose project cannot be told is
+  neither assessed nor listed by them. Put to the owner. Also decided by the owner since the last entry: DC-12 (amendments on skipped orders
+  listed and labelled on hold, never added to a figure until confirmed).
