@@ -176,3 +176,11 @@ review pack); everything after that is restated here from the conversation recor
   "e9e11d9 (freeze ee1ce3ec)"); the old file is kept as ev5/recorded_totals_s1.py.before_label_fix. The four totals jobs (b6tot and k2tot on both
   Pythons) will be re-run after step 5.3 finishes, one job at a time, so the evidence carries the right label; the wrong-label outputs are kept.
 - 10:36 STEP52 DONE; step 5.3 (m2) started: m2list_313 "m10 --list: exit 0, 199 ids, RI10 at 51, m2_mutants.py as expected: OK".
+- 11:16 Defect candidates raised by GPT's check of the data readiness revision 3 (outside the D14 item list), logged at the owner's
+  instruction ("Log them, stage 1 continues"); no code change, step 5 continues. Both files are byte-identical in M10 and stage 1
+  (rules_commercial.py ffbe9d122d29, rules_ops.py cd407e323b84):
+  DC-1 apg/det/rules_commercial.py r04b_instruction: an instruction whose linked_variation_ref names any stored variation is silent, whether
+  or not that variation is usable (held, quarantined or rejected variations also suppress the finding).
+  DC-2 apg/det/rules_ops.py LAB (line 142): a missing overtime_hours is counted as 0 (the det intake only warns on it), so a week with unknown
+  overtime is assessed rather than treated as not assessable.
+  To be raised as their own change request; not stage 1 regressions.
