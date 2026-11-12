@@ -520,7 +520,7 @@ RAISE = {'MissingParam': B, 'FileNotFound': S, 'IntegrityError': S, 'ScanInfecte
          'NotPermitted': S, 'PayloadInvalid': S, 'EventError': S, 'FigureError': S, 'SignalError': S, 'IngestError': S}
 RAISE_TEXT = {'file larger than the store allows': B, 'file name must be 1-200 characters': B}
 RAISE_MEANING = {('MissingParam', '(no fixed text: self._path + str(k))'): ('M6: a procurement setting is missing; it is named by its dotted path, and only the analysis that needs it stops', 'set the setting named, in the procurement settings', CM)}
-# silent today: no message is given (defect candidates; the owner decided on 2026-11-12 that DC-1 to DC-11 each get one; DC-12 is put to him)
+# silent today: no message is given (defect candidates; the owner decided on 2026-11-12 that each gets one)
 SILENT = [
  ('DC-1', 'R04B', 'an instruction linked to a rejected (or held) variation is silent', 'the client rejected the variation for this work (or: not assessed, the variation is on hold)', 'record the outcome: disputed, at own cost, resubmitted, withdrawn (or approve, reject or correct the variation)'),
  ('DC-2', 'LAB', 'a missing overtime is counted as 0', 'not assessed: overtime unknown', 'enter the overtime hours (0 if none)'),
@@ -533,7 +533,7 @@ SILENT = [
  ('DC-9', 'DEF', 'a partial rework cost is shown as the recorded sum', 'at least $X (n of m defects costed)', 'add the remaining rework costs'),
  ('DC-10', 'MP03, MP04, MP05, MP08, MP10, last rate paid', 'held, unreconciled or zero-quantity orders are left out unlisted', 'order not included, with its reason', 'resolve the hold, reconcile the order, or enter the quantity'),
  ('DC-11', 'every detection and M6 rule', 'findings are graded with the pinned detection policy\'s bands whether or not that policy is approved; a stored finding is flagged policy_unapproved when created or updated (a reopened finding keeps its earlier flag), the signal is not', 'grading not set up yet', 'set the grading levels in setup'),
- ('DC-12', 'M4 commitments, R02', 'amendments on an order the commitments figure skips (held, duplicate, unreconciled, without an amount, after the cut-off, status unknown or unmapped) are never examined; the order is listed, its amendments are not', 'amendment not assessed: its order is not counted, with the order\'s reason', 'resolve the order\'s reason'),
+ ('DC-12', 'M4 commitments, R02', 'amendments on an order the commitments figure skips (held, duplicate, unreconciled, without an amount, after the cut-off, status unknown or unmapped) are never examined; the order is listed, its amendments are not', 'amendment on hold, not checked: its order is not counted, with the order\'s reason; never added to a figure until confirmed', 'resolve the order\'s reason'),
 ]
 
 SKIP = re.compile(r'(corpus|demo_|faulty|golden|reference_|contracts_|ports_)')
@@ -715,7 +715,7 @@ for (nm, t) in sorted(raises):
         m, d = 'the message states it', 'do what the message says, then try again' if a in (P, B) else 'none for the builder'
     row('refusal or error raised (' + nm + ')', t, ' '.join(sorted(raises[(nm, t)])), a, m, d, 'the person acting' if a == P else BK if a == B else SU)
 for dc, rule, today, msg, do in SILENT:
-    row('silent today (' + dc + ')' if dc != 'DC-3' else 'an uncaught error today (DC-3)', msg, rule, B, today, do, '-', 'no message: the ' + ('proposed fix, pending the owner\'s word,' if dc == 'DC-12' else 'decided fix') + ' adds it (' + dc + ')')
+    row('silent today (' + dc + ')' if dc != 'DC-3' else 'an uncaught error today (DC-3)', msg, rule, B, today, do, '-', 'no message: the decided fix adds it (' + dc + ')')
 with open(os.path.join(OUT, 'NOT_ASSESSED_MESSAGES.csv'), 'w', newline='') as fh:
     w = csv.DictWriter(fh, fieldnames=list(rows[0]), lineterminator='\n'); w.writeheader(); w.writerows(rows)
 from collections import Counter
