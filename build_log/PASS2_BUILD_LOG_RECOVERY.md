@@ -188,3 +188,26 @@ review pack); everything after that is restated here from the conversation recor
   restart). Approved behaviour: DC-1 R04B silent only when the linked variation is usable; a held, quarantined or conflicting linked variation
   makes the instruction 'not assessed' with that reason. DC-2 a timesheet with missing overtime_hours is 'not assessed' (overtime unknown) and
   its week counts as incomplete. No code change until stage 1 is complete; step 5 continues on freeze ee1ce3ec.
+- 13:06 The work container restarted while m2h_120_160_313 ran (started 11:54:17, no end line). Its partial console was moved to
+  ev5/interrupted/m2h_120_160_313_restart, its temp folder removed; no .done mark, so driver523 re-ran it from the start (13:06:43).
+  All files survived the restart. 13:51 m2h_120_160_313 SAME; 14:17 m2h_160_199_313 SAME.
+- 15:07 m2s_313 (started 14:17:00) was stopped with no result when the background run reached its time limit (about 15:06, two hours
+  after the 13:06 relaunch). Mistake 57: driver523 was relaunched as an ordinary background job; the earlier pass's log (11-07 22:37 and
+  11-08 02:08) records that the successor as written takes about 3 h 31 min and was run detached (setsid) for that reason. Partial console
+  moved to ev5/interrupted/m2s_313_timelimit, temp folder removed, no .done mark; relaunched at 15:07, again as an ordinary background job
+  with the longest limit (two hours), which repeated the mistake.
+- 17:09 m2s_313 (started 15:07:50) stopped the same way at about 17:07 (mistake 57 again). Partial console moved to
+  ev5/interrupted/m2s_313_timelimit2, temp folder removed. driver523 now runs detached (setsid), as the earlier pass did; it re-runs
+  m2s_313 from the start (17:09:58) and continues one job at a time, with its 10 GB floor. Both stops left no result, so nothing wrong was
+  recorded; about 3 hours of running were lost. Mistake 58: Claude first told the owner the first stop was "at about 14:47"; it was about 15:06.
+- 17:35 Further defect candidates, from the data readiness revision 4 checks (outside the D14 item list); no code change, stage 1
+  continues on freeze ee1ce3ec. DC-3 (mkt/compare.py last_paid: an explicit None po_status_map, accepted by validation, raises
+  AttributeError and stops the M6 run), DC-4 (MP05, MP08, MP10 evaluate nothing without the PO status map; MP09 drops an opportunity
+  unstated), DC-5 (MP01 silent on a watched material with no usable quote), DC-6 (a zero-quantity requirement reported nowhere), DC-7
+  (a held variation mapped to approved counts as approved in M4 commitments; R02 silent), DC-8 (R01 never looks at cost on a code with no
+  budget line), DC-9 (DEF's partial rework cost not labelled a minimum), DC-10 (held, unreconciled or zero-quantity orders left out of
+  M6 coverage unlisted), DC-11 (findings graded with unapproved severity bands without saying so), and the DC-1 scope question (a usable
+  linked variation the client rejected).
+- The owner's decisions on them (2026-11-12, in dialogue): all fixed in one change request after stage 1, with DC-1 and DC-2; nothing silent,
+  each case listed with what is missing, why it matters and what the builder must do; the rejected-variation case raises a warning and the
+  builder records the outcome. Not stage 1 regressions; no restart.
