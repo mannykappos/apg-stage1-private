@@ -1,0 +1,10 @@
+Owner direction 2026-11-12 11:16 (Australia/Melbourne), in chat: "The second question. I think we need to fix the problem not leave it"
+(about defect candidates DC-1 and DC-2). Follow-up answers through the chat question tool:
+Where: "Own change request, right after stage 1 (Recommended)" — stage 1 finishes on today's freeze; the two fixes follow as a small separate
+change with their own tests and evidence; no restart.
+Behaviour: "Approve this behaviour (Recommended)" —
+DC-1: R04B stays silent only when the linked variation is usable; if the linked variation is held, quarantined or conflicting, the instruction
+is listed as 'not assessed' with that reason, never silently dropped.
+DC-2: a timesheet with missing overtime hours is listed as 'not assessed' (overtime unknown) and its week counts as incomplete, so LAB never
+treats unknown overtime as zero.
+This supersedes the earlier answer "Log them, stage 1 continues" only as to the outcome (fix, not leave): stage 1 still continues unchanged.
