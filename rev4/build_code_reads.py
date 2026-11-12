@@ -2,16 +2,21 @@
 the input contracts can be checked against the code and not only against themselves.  Builder work (Claude), not independent.
 
 For every row of RULE_INPUT_CONTRACTS.csv whose 'code' column names entry functions (rows starting 'every' state shared behaviour and
-are skipped), it parses the production modules of apg/fin, apg/det, apg/mkt, apg/ingest and apg/snap-style helpers with Python's ast
-module and follows the code path:
+are skipped), it parses the production modules with Python's ast
+module and follows the code path (the modules are those of fin, det, mkt and ingest, plus source_authority.py, policy_approval.py and
+materiality.py):
   - the entry functions named in the 'code' column, and every function they call, transitively: a call by name resolves to a function
     of the same module or one it imports; a call through a module alias resolves to that module; a method call (x.name(...)) resolves to
     every function or method of that name in the scanned modules, unless the name is a common built-in method (GENERIC);
   - an attribute read of the M6 context (ctx.quotes, ctx.pos) adds the view functions Ctx.__init__ builds it with;
-  - a module-level name a function on the path uses (for example SPECS) adds that assignment's string constants.
+  - a module-level name a function on the path uses, its own or imported (for example SPECS, DET_SPECS), adds that assignment's string
+    constants.
 On that path, every string constant that is a field name of a record kind the row names is a field the path reads (FIELD_REGISTER.csv
-gives each kind's fields).  This is an upper bound: a shared helper on the path (a view of every purchase order, say) counts every field
-it reads for every row that reaches it.  It is a check against the code by these rules, not a proof.
+gives each kind's fields).  Within the kinds a row names it over-includes: a shared helper on the path (a view of every purchase order,
+say) counts every field it reads for every row that reaches it.  It does not count kinds the row's text does not name, and it skips the
+rows that name no entry function (the 'every' rows and five rows that describe part of another row's path).  It is a check against the
+code by these rules, not a proof.  GENERIC lists common method names a call is never resolved to; function-local imports are not
+followed (none matters today).
 It writes CODE_READS.csv (one row per contract row that names entry functions: the kinds named, the entry functions found, how many
 functions the path holds, and the fields the path reads) and fails if an entry function cannot be found.  build_field_coverage.py then
 adds every field the path reads to the field-level report, so the report no longer rests only on the fields the contract text names.
@@ -132,6 +137,8 @@ def strings(keys):
                 out.add(c.value)
             if isinstance(c, ast.Name) and (m, c.id) in modconst:
                 out |= modconst[(m, c.id)]
+            if isinstance(c, ast.Name) and c.id in imported[m] and imported[m][c.id] in modconst:      # an imported constant (SPECS, DET_SPECS)
+                out |= modconst[imported[m][c.id]]
             if isinstance(c, ast.Attribute) and isinstance(c.value, ast.Name) and c.value.id in alias[m] and (alias[m][c.value.id], c.attr) in modconst:
                 out |= modconst[(alias[m][c.value.id], c.attr)]
     return out

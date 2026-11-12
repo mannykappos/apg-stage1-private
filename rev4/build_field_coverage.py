@@ -54,7 +54,7 @@ for e in csv.DictReader(open(f'{d}/ENTITY_REGISTER.csv')):
     m = re.match(r'\s*(?:partial|covered|partly):\s*([a-z_]+)', e['APG today (record kind: fields)'])
     if m and m.group(1) in reg and m.group(1) not in ENT:
         ENT[m.group(1)] = e['id']; WAYS[m.group(1)] = e['path status']
-OWN = {'purchase_order': 'E21', 'notice': 'E10', 'ap_invoice': 'E23', 'payment': 'E25'}   # kinds another entity also mentions: the entity the kind belongs to
+OWN = {'purchase_order': 'E21', 'notice': 'E10', 'ap_invoice': 'E23', 'payment': 'E25', 'pm_invoice': 'E23'}   # kinds another entity also mentions: the entity the kind belongs to
 for e in csv.DictReader(open(f'{d}/ENTITY_REGISTER.csv')):
     for k, i in OWN.items():
         if e['id'] == i:
@@ -131,6 +131,8 @@ NO_MATERIAL = {'fx_rate', 'market_observation', 'supplier'}
 RECORD_CHECKS = {'ap_invoice', 'credit_note', 'po_amendment', 'purchase_order', 'supplier_quote'}
 
 def authority_today(k, f):
+    if (k, f) == ('pm_invoice', 'amount_ex_gst_cents'):
+        return 'reference intake: a second source that field authority compares with the ap_invoice amount (source_authority.resolve_field); not resolved as a field of its own'
     if (k, f) in AUTH_RESOLVED:
         return 'field authority resolved by the reference intake (source_authority.resolve_field)'
     if k in RECORD_CHECKS:
