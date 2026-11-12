@@ -184,3 +184,7 @@ review pack); everything after that is restated here from the conversation recor
   DC-2 apg/det/rules_ops.py LAB (line 142): a missing overtime_hours is counted as 0 (the det intake only warns on it), so a week with unknown
   overtime is assessed rather than treated as not assessable.
   To be raised as their own change request; not stage 1 regressions.
+- 11:19 Owner: DC-1 and DC-2 are to be FIXED, as their own change request right after stage 1 (not inside stage 1; no
+  restart). Approved behaviour: DC-1 R04B silent only when the linked variation is usable; a held, quarantined or conflicting linked variation
+  makes the instruction 'not assessed' with that reason. DC-2 a timesheet with missing overtime_hours is 'not assessed' (overtime unknown) and
+  its week counts as incomplete. No code change until stage 1 is complete; step 5 continues on freeze ee1ce3ec.
