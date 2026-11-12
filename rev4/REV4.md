@@ -1,0 +1,295 @@
+# APG Data Readiness Change Request (revision 4)
+
+Nov 12, 2026 · @Emmanuel (product owner) · drafted by Claude
+
+APG must state exactly what data each insight needs, know which systems a builder uses and what they supply, and have its own way to supply everything those systems do not, whatever the share turns out to be. Revision 4 answers GPT's scoped check of revision 3 (NOT READY: 3 blocking items, 5 should-fix; the owner directed on 2026-11-12 that all of them be fixed) and records the owner's approval in principle of the 12 data supply decisions (2026-11-12). A fresh independent agent checked this revision before it went to GPT (28 findings, all addressed), and a scoped re-check followed (0 blocking, 5 should fix, 16 minor, all addressed; both are in `AUDIT.txt`). Those checks, and Claude's own check of their findings, found nine more behaviours of the kind DC-1 and DC-2 are. On 2026-11-12 the owner decided how all eleven are fixed, and set a rule for the whole of APG: whenever APG cannot fully do a check or a figure, it tells the builder what is missing, why it matters and what to do.
+
+**Status:** design direction only. It authorises no production feature code or integration work: under S04 §20 that waits for the Section 01 Discovery Exit Report and the owner's separate authorisation. Approval in principle is not formal approval: the Section 18 cascade impact assessment comes first (S18 §6).
+
+**What changed since revision 3:**
+
+- **The input contracts match the code.** The three contracts GPT found inexact (M4 actual cost, R04B, LAB) and the three it asked to clarify (DEF, R07, security carrying cost) are corrected against the code. Two of them expose real behaviour the owner has decided to change (defect candidates DC-1 and DC-2, below).
+- **The M6 market figures are covered.** Landed cost, comparison and ranking, buy timing, and the eleven procurement rules (MP01 to MP10, MPD1) now have contracts. The register holds 56 contract rows for 43 rules and figures; five rows state behaviour shared by four groups (every M4 figure, in two rows; every reference-intake record; every detection rule; every M6 figure and rule).
+- **A field-level coverage report.** Every field the contracts name (155 record-kind fields in 33 entities, plus 55 settings rows) is mapped to its entity, the entity's ways in and their status, whether it is material, the verification route of each way in, and what stage 1 does today for source authority and verification (`FIELD_SUPPLY_ROUTES.csv`).
+- **One entity added.** N01, the rule settings (detection-rule thresholds, the procurement policy and the specification register), which the data supply design found missing. The register is 100 entities: 11 covered, 42 partial, 47 missing.
+- **The survey separates "holds" from "feeds".** A system holding a kind of data is not a confirmed APG feed; Procore's quality records, HammerTech's labour fields and the Microsoft Project format are marked as not established.
+- **The pack carries the code it cites:** the intake specifications and `ingest/` files, `ingest/documents.py`, `source_authority.py`, `policy_approval.py`, the M6 code, and the shared modules the contracts depend on (`fin/figure.py`, `fin/snap.py`, `fin/fmath.py`, `det/common.py`, `det/signal.py`, `det/detect.py`, `materiality.py`). Revision 2 is in the pack too.
+- **The owner's decisions of 2026-11-12 are folded in.** All eleven defect candidates (DC-1 to DC-11) are decided and go into one change request after stage 1; the rule that APG tells the builder what it needs, and what to do, applies to the whole of APG, with a generated list of every message in the code (`NOT_ASSESSED_MESSAGES.csv`); extras and variations get their own panel; the builder sets the severity grading at setup. See "The owner's decisions of 2026-11-12" below.
+- **Document capture counted honestly.** It is marked partly built only for quotes, quote readings and the document record, where code exists; for the 14 other document types it was marked partly built in error and is now proposed.
+
+**The honest answer to the owner's question.** The design gives every entity, and every field the current rules read, a way in that depends on no builder system. The code does not yet deliver it. Every one of the 155 fields is accepted today by a built way in, but only by an import template whose layout is synthetic; document capture accepts none of them into the intake yet. Field authority is resolved for only 6 of them (the material amounts of the reference intake); 33 more get the reference intake's record-level duplicate, supplier or link checks, 15 get its field validation only, and 101 go through a second intake loop that checks no authority. The material fields cannot yet be verified by a person through the intake, and no setting has a builder setup question. So no field yet meets the release A field-coverage criterion (PG-DS-AC-12, a criterion of the data supply design, approved in principle, not a locked blueprint ID). At entity level, 38 entities have a built path for the fields APG already holds (11 complete, 27 partial), 37 of them through a synthetic template; 10 more are partly built, and 52 have no built path (5 of those 52 are partial: their present fields sit on another entity's record or in code).
+
+## The requirement and the design principle
+
+The owner's requirement (2026-11-11, restated 2026-11-12): APG must have the features to get the right data it needs to work, from whatever the builder's systems supply plus its own capture, at whatever split that turns out to be.
+
+**The design principle: every entity and every required field has an APG way in.** For each of the 100 entities, at least one designed way to supply it inside APG does not depend on the builder's software: an import template (a CSV or spreadsheet file, which a builder can fill without any particular system), document or email capture with a person confirming the values, an entry screen, a setup question, or a record APG calculates; phone site capture is a Level 2 accelerator for site facts. An integration with the builder's software reduces effort, but no insight depends on it. GPT's condition on decision 1, adopted by the owner, makes this field-level: every field in every insight's input contract needs a way in that carries it, with its authority and verification requirement met, not merely an entity-level route. The field-level report below is how that is checked.
+
+"Fail-proof on our end" keeps the two guarantees, which GPT found resolved:
+
+1. **No result beyond its evidence.** Each insight is shown only at the eligibility its blueprint gate allows (eligible, qualified, blocked or unavailable); a gap is never treated as satisfied, and an estimate is never shown as a fact.
+2. **A way to supply every gap.** For each missing input, APG names it, says who normally holds it, and offers a working way to supply it inside APG; where that way is not built yet, it says so plainly.
+
+## What APG needs: 100 entities
+
+APG needs 100 logical entities; 11 are covered today, 42 partly and 47 are missing. They follow the 8-layer data contracts §11.2 (including FinancialRecord), all nine quality records of Section 13 §3, Section 03 §2 (work package, milestone, calculation run) and Section 07 for the programme; GPT checked the 99 of revision 3 and found the entity split resolved. N01 is new in this revision. A row is "covered" only when it lists no gap.
+
+| Class | What it is | Entities | Covered | Partial | Missing |
+| --- | --- | --- | --- | --- | --- |
+| Builder-source | facts the builder's systems or people hold | 60 | 9 | 27 | 24 |
+| APG internal | records APG creates and maintains | 20 | 1 | 7 | 12 |
+| Configuration and policy | set once by the builder, then versioned (N01 added) | 10 | 0 | 4 | 6 |
+| Developer (optional) | the owner's developer capability; not in the locked blueprint | 5 | 0 | 0 | 5 |
+| Evidence and documents | documents that support facts | 3 | 1 | 2 | 0 |
+| External reference | market and FX data | 2 | 0 | 2 | 0 |
+| **Total** |  | **100** | **11** | **42** | **47** |
+
+The row-by-row register is `ENTITY_REGISTER.csv`: the blueprint section, the required field groups, the fields APG holds today, the gap, the systems the survey supports and those only judged likely, the APG supply paths with each path's status, the likely data owner, and the entities each row links to.
+
+**N01, rule settings.** The thresholds and windows each detection rule reads (for example R01's tolerance, R04's unresolved days, LAB's baseline weeks), the procurement policy the M6 figures read (home currency, delivery-basis table, freshness per decision, scenario settings), and the specification register every M6 comparison needs (material families and attributes, match rules, the catalogue specification of each material, declared unit conversions; approved by the specification owner; if it is missing or unapproved, no offer can be ranked). Today they are held as versioned policy records, counted as approved only once an audited approval exists (`det/policy.py` and `mkt/policy.py` hold the schema and the approval logic and choose no value), on the same basis as the financial policy E90; there is no builder setup question and there are no owner-approved defaults or allowed ranges. Status: partial; its way in, a setup question, is partly built. Decision 9 sets how it is governed: defaults and allowed ranges approved by the owner, accepted by the builder's approver at onboarding, every later change recorded with who and when; R04B's instruction types and R07's comparable pairs come from the builder. For the severity grading the owner decided on 2026-11-12 that there are no defaults: the builder sets the levels at setup (see the owner's decisions below).
+
+The largest holes:
+
+- **Claims and payments:** client progress claims, payment schedules and receivables (E13 to E15), and subcontractor claims, assessments and payments (E17 to E19) have no record kind; a subcontract (E16) exists only as a purchase order.
+- **Programme:** versions, activities, dependencies, calendars, progress and milestones are missing (E47 to E51, E99), so delay cost stays unquantified and critical-path analysis stays behind the S07 §4.1 gate.
+- **Quality lifecycle:** observations, rework events, causes, rectification, quality cost, closure and prevention are missing (E65, E67 to E72, E97); only the defect record exists.
+- **Cost completeness:** accruals, overhead allocation, labour rates and on-costs are missing (E42, E43, E59, E60), so actual cost is supplier invoices only (finding F-17).
+
+## Exactly what each insight reads
+
+Every detection rule (R01 to R09, R04B, AGG, D01, D02, DLY, LAB, DEF), every M4 financial figure and, new in this revision, every M6 market figure and procurement rule has its inputs read from the code in `apg/det/`, `apg/fin/` and `apg/mkt/`, not inferred from its name; the source files are in the pack. Each contract lists the record kinds and fields read, what the code does when one is missing (its own reason codes), the configuration it needs, and the known limit with the entity that closes it. The full list is `RULE_INPUT_CONTRACTS.csv` (56 rows, 43 rules and figures). The code is the stage 1 code under audit (freeze ee1ce3ec); the files these contracts cite are unchanged since revision 3.
+
+The rows GPT found inexact or incomplete, as corrected (and corrected again after the agent check):
+
+| Rule or figure | What the code does (corrected) |
+| --- | --- |
+| M4 actual cost: credits | Reconciliation links each live credit to the invoice its against_invoice_ref names (the invoice's lineage credits), and the figure applies the credits in that lineage. The named invoice not visible: the credit is held (CREDIT_TARGET_NOT_VISIBLE); credits above the invoice amount: all held (CREDIT_EXCEEDS_INVOICE); a different supplier: held (CREDIT_SUPPLIER_MISMATCH). A linked credit is applied only when its reconciliation outcome is authoritative and it has an amount and a date; otherwise its invoice is held out (LINKED_CREDIT_UNRESOLVED). The code calls the lineage "information only", yet the figure nets it: a comment for the code owner. |
+| M4 security carrying cost | POLICY_NOT_PINNED if no policy is pinned; CARRYING_NOT_CONFIGURED if the carrying method is not set; with both set, always cannot be assessed: NO_CASH_MARGIN_EVIDENCE (face value is not collateral). |
+| R04B instruction without variation | A linked variation reference naming any stored variation silences the instruction, whatever that variation's state, held or rejected included (DC-1). A link to a variation not in the store gives an instruction_link_unresolved finding. The approved DC-1 fix covers held, quarantined and conflicting variations and, decided on 2026-11-12, a usable variation the client rejected, which raises a warning (below). |
+| R07 quote above reference | An expired quote or reference is still compared, at weak signal strength, with an EXPIRED limit recorded; it is not excluded. |
+| LAB output per hour falling | A missing overtime_hours is counted as 0; the det intake only warns on it (DC-2). |
+| DEF repeat defects | No rework cost on any defect: the finding is made, unquantified. A cost on only some: the finding is quantified at the sum of the recorded costs and labelled as recorded, not as a lower bound; the finding's text already says rework cost is not known for every defect, so what is missing is a lower-bound label on the amount (DC-9). |
+
+**Defect candidates, and the owner's decisions.** Correcting the contracts, and the two agent checks of this revision, exposed eleven behaviours of one kind: a rule that stays silent, or a figure that is understated, when an input is missing, without saying so; one of them (DC-3) is an error that stops a run. DC-1 and DC-2 came from correcting the contracts; DC-4 to DC-9 from the first agent check; DC-3 from Claude's check of that check's findings (reproduced by a direct call); DC-10 and DC-11 from the scoped re-check. The owner decided on 2026-11-12 (`07_decisions/OWNER_DECISIONS_2026-11-12.md`) to fix all of them in one change request immediately after stage 1, without reopening stage 1, under one rule: nothing is silent, and nothing is shown as complete when it is not; each case is listed with what is missing, why it matters, and what the builder must do. The exact wording is settled in the fix. Until that change is made, the contracts describe today's code, and each limit is stated against its rule.
+
+| Candidate | Rule or figure | Today's behaviour (code) | The decided fix (and what the builder is told to do) |
+| --- | --- | --- | --- |
+| DC-1 | R04B | an instruction linked to any stored variation is silent, whatever that variation's state | a held, quarantined or conflicting linked variation: not assessed, with the reason (approve, reject or correct the variation); a usable linked variation the client rejected: a warning that the work may not be paid; the builder records the outcome (disputed, at his own cost, resubmitted, withdrawn), and the warning stays open until he does; APG records a dispute and does not judge it (S11 §11) |
+| DC-2 | LAB | a missing overtime_hours is counted as 0; the det intake only warns | the timesheet is not assessed (overtime unknown) and its week counts as incomplete (enter the overtime hours, 0 if none) |
+| DC-3 | M6 last rate paid (MP02, MP09, the comparison's reference) | the pinned financial policy holds po_status_map as an explicit null (None), which validation accepts; whenever an order for the requirement's project and material has a rate, a date and a status, `mkt/compare.py` last_paid raises AttributeError; nothing catches it, so the whole M6 run stops | a null map is treated as not set up; the run continues, and what needs the map is not assessed: purchase-order statuses not set up (set up the purchase-order statuses) |
+| DC-4 | MP05, MP08, MP10; MP02's reference; MP09 | without the PO status map, MP05, MP08 and MP10 find no qualifying order and evaluate nothing, the run status still "evaluated"; MP02 still evaluates, against the cheapest like-for-like offer, but loses its last-paid reference; MP09 finds no opportunity, and drops one unstated when the tax treatments differ and the GST rate is not set | each is not assessed, with the reason (set up the purchase-order statuses; set the GST rate) |
+| DC-5 | MP01 | a watched material with no usable quote (none recorded, or all held) raises no quote signal; held quotes are listed by MPD1 | "no current quote", with the reason (get a quote, or resolve the held one) |
+| DC-6 | M6 comparison | a demand line or specification requirement that is not usable is left out of the requirements; one with no positive quantity is reported nowhere | listed as not assessed: quantity zero or unusable (enter the quantity needed) |
+| DC-7 | M4 commitments and R02 | a held linked variation whose status maps to approved makes its amendment committed, and R02 stays silent | a held variation is not counted as approved; the amendment is not assessed: its variation is on hold (approve, reject or correct the variation) |
+| DC-8 | R01 | actual cost on a cost code with no budget line, "(no cost code)" included, is neither assessed nor listed | listed as not assessed: no budget line for this cost code (add a budget line, or move the cost to the right code) |
+| DC-9 | DEF | a cost on only some defects is reported as the recorded sum, labelled as recorded; the text says cost is not known for every defect | the amount is labelled a minimum, for example "at least $18,400 (6 of 9 defects costed)" (add the remaining rework costs) |
+| DC-10 | MP03 and MP04 coverage; MP05, MP08, MP10; the last rate paid | an order held at intake, not reconciled, or with no positive quantity is left out without being listed (`mkt/common.py` po_view; MPD1 does not list purchase orders) | each left-out order is listed with its reason (resolve the hold, reconcile the order, or enter the quantity) |
+| DC-11 | every detection rule and every M6 rule | the run record says whether the detection policy is approved; individual findings do not, and severity uses the pinned policy's bands even when it is not approved (`det/detect.py`, `mkt/detect.py`; `det/signal.py` says severity stays unrated until an approved band applies) | the builder sets the grading levels at setup; until he has, each finding still shows, marked "grading not set up yet" (set the grading levels in setup); see the owner's decisions below |
+
+A note, not a candidate: a supplier quote with no validity date cannot reach M6 through the stage 1 templates. TPL-BZ-QUOTES marks valid_until as required, a blank required cell is rejected at mapping (`ingest/mapping.py`), and the default IngestPolicy holds any missing optional value (`ingest/specs.py`). If a real builder's template marked it optional and the intake policy tolerated a missing date, the first failure would be `mkt/fresh.py` quote_state, which every ranking, MP01, MP02, MP03 and MP09 call, as well as MP06 and buy timing. The check of the templates against real exports (decision 5) must keep valid_until required, or the fix must treat a missing date as not current.
+
+The main rows, for reading without the register:
+
+| Rule or figure | Reads | When an input or setting is missing | Known limit (entity that closes it) |
+| --- | --- | --- | --- |
+| Every reference-intake record | its material amount; its supplier | no approved authority register, no rule for the field, or no value from the authoritative source: held, and a reviewer cannot clear it; no supplier list: held where the intake requires one | fx rates, market observations, suppliers and budget lines (apart from the budget amount) get field validation only: no duplicate, supplier, link or field-authority check |
+| M4 actual cost | supplier invoices (reconciled amount, date, cost code), credit notes linked by against\_invoice\_ref through reconciliation, reconciliation state | held or unknown invoices are listed out and the figure is provisional; an uncoded invoice counts under "no cost code"; COST\_SCOPE\_NOT\_CONFIGURED stops it | supplier invoices only: labour, plant, accruals, contingency and overhead excluded, F-17 (E57, E64, E42, E43) |
+| M4 commitments | orders (amount, date, status, cost code), amendments (delta, approved change), the invoices that name each order | PO\_STATUS\_MAP\_NOT\_CONFIGURED stops it; an unknown or unmapped status excludes the order; an amendment without an approved change is exposure; a held variation mapped to approved counts as approved (DC-7) | goods received but not invoiced are unknown (E29); no order approval state (E21) |
+| M4 revenue | contract value, approved variations, variation status | TAX\_BASIS or VARIATION\_STATUS\_MAP not configured stops it; an unmapped status keeps the variation out | no claimed or certified amounts (E13, E14) |
+| M4 cost to complete, forecast final margin | CTC lines (code, version, date, amount, basis, reason), budget, actual cost, revenue | CTC\_METHOD, FFC\_BASIS or COST\_SCOPE not configured stops it; an unknown code makes it provisional | no forecast owner, approval or tax and currency basis (E41) |
+| M4 recognised margin | forecast final cost and revenue, actual cost | RECOGNITION\_METHOD\_NOT\_CONFIGURED stops it | inherits the forecast's limits |
+| M4 retention, carrying cost, cash-adjusted margin | retention ledger and events, the bank receipt, the facility statement | carrying not configured, no due date, or no single facility: cannot; security carrying as in the table above; overdue receivables always cannot | no retention from trades, receivables, payables due dates, payroll or statutory outflows (E76, E13 to E15, E79 to E81) |
+| Every detection rule | the detection policy (N01) | no policy pinned: cannot be assessed (DET\_POLICY\_NOT\_PINNED); a rule switched off: disabled (SWITCHED\_OFF\_IN\_POLICY); a parameter missing: not configured, naming it; findings do not say whether the policy is approved, and severity uses its bands even when it is not (DC-11) | |
+| R01 actual over budget | M4 actual cost and budget by cost code | actual cost cannot be assessed: the rule cannot run; cost on a code with no budget line is not assessed or listed (DC-8) | F-17 scope; budget revision approval unknown (E39) |
+| R02 amendment without approved change | the amendments in M4 commitments | commitments cannot be assessed (PO status map) or no variation status map: cannot run; silent on DC-7's amendments | amendments on orders the commitments figure skips are never examined |
+| R03 invoiced above order | committed, approved amendments and invoiced amount per order | commitments cannot be assessed: cannot run; held invoices listed | amount only: invoice quantity and unit rate not ingested, F-09 (E23 lines) |
+| R04 variation unresolved | variation raised date, status, value | no variation status map: cannot run; status not mapped: not assessed; no value: unquantified | whether the work was done (E51); client correspondence (E10) |
+| R04B instruction without variation | notice type, date, linked variation | not an instruction type or undated: silent; any stored linked variation: silent (DC-1); link to no stored variation: a finding | an instruction never recorded cannot be found (E10) |
+| R05 retention release overdue | M4 retention: due date, held, released, hold reason | policy not pinned: cannot run; position unknown: not assessed | release conditions and claim lodged (E08, E75) |
+| R06 compliance expired | evidence type, expiry, supplier | held: not assessed | a missing certificate is not detected (E82, E16) |
+| R07 quote above reference | quote rate, currency (AUD only), delivery basis, freight, validity; reference rate | non-AUD, ex-works without freight: not assessed; expired: compared at weak strength | no unit of measure or quantity on quotes (E30) |
+| R08 hire beyond need | on-hire, off-hire, need date, daily rate | no need date: not assessed | hire invoices not checked; on-site confirmation (E64) |
+| R09 unexplained forecast movement | CTC line code, amount, date, version, movement reason | undated or held: not assessed | the M4 movement bridge is not consulted |
+| DLY overlapping delays | delay start, end, activity, cause, holding rate | no end date: not assessed | no counterfactual, no network, calendar days only (E47 to E50) |
+| LAB output per hour | timesheet hours (overtime counted as 0 when missing, DC-2), package, rate; output quantity, week, unit | too few complete weeks or unit changes: not assessed | conditions and acceptance unverified (E63, E61) |
+| DEF repeat defects | defect date, subcontractor, trade, rework cost | no subcontractor or trade: not assessed; no cost: unquantified; some costs: the recorded sum (DC-9) | cause and responsibility not concluded (E68 to E72) |
+| Every M6 figure and rule | the procurement policy and the specification register (N01) | no policy pinned: cannot be assessed (MKT\_POLICY\_NOT\_PINNED); a rule switched off: disabled; a parameter missing: not configured, naming it; register missing or unapproved: every offer unverified, so nothing is rankable; findings do not say whether the settings are approved, and severity uses the detection policy's bands even when it is not approved (DC-11) | |
+| M6 landed cost | quote rate, currency, delivery basis, freight, FX used; price tiers and terms by quote; landed-cost assumptions; FX reference rates; the policy's required components and international bases | every component has a status (included, stated, assumed, missing), never a silent zero; a missing one makes the cost "at least"; an unsigned assumption or invalid tier is not used; no reference rate: not converted | assumption approvals are asserted by the file, not governed (E33); no unit of measure on quotes (E30) |
+| M6 comparison and ranking | the requirement (demand or specification), offers with supplier, specification text, landed cost, freshness and quote readings (verified only when the verifier is not the extractor), orders with their unit as reference only, the specification register | each offer passes or fails the comparability gate; only two or more comparable offers give a definitive ranking; each failure has its reason code (listed in the register); an unusable requirement is left out, and one with no positive quantity is not reported (DC-6); the last rate paid used as a reference can stop the whole run (DC-3) | quote readings' verification is asserted by the file, not tied to the documents.py control (E35) |
+| M6 buy timing | demand date and uncovered quantity; quote validity and lead time; quote terms (payment days, deposit, minimum order, pack size); market observations as history only | each status is stated (no uncovered demand, no rankable offer, no scenario built); the wait and stage scenarios cannot be assessed without their settings; an unknown lead time is stated; unrecorded payment terms: payment taken at delivery, listed as a gap | scenarios rest on stated assumptions, not a forecast |
+| MP01 to MP10, MPD1 | quotes, observations, demand, orders, deliveries, import checks, FX rates; the procurement policy (N01); the PO status map (E90) | a missing setting: not configured, named; coverage not assessable: not assessed; orders in another unit: not assessed (UNIT\_MISMATCH); the silent cases are DC-4, DC-5 and DC-10; DC-3 is an error that stops the whole run | per row: for example no promised delivery dates (E29), no demand reference on orders (E21, E28), check approvals asserted by the file (E34) |
+
+These contracts give the exact fields underneath revision 2's insight contracts (per insight: blueprint gate, completeness, freshness, verification and behaviour below the gate), which remain in force; revision 2 is in the pack (`06_previous`). Each contract will be confirmed against the rule's tests when the rules are next changed.
+
+## Field-level coverage
+
+GPT asked for every required input field to be mapped to its supply method and its verification and authority route (its finding 4.1). Two generated files do this, from the contracts and the register, with no hand-entered rows:
+
+- `FIELD_COVERAGE.csv`, one row per contract row (56): each field a contract names is checked against its own record kind's fields in the intake inventory (`FIELD_REGISTER.csv`), never against all kinds pooled. 155 record-kind fields are named, in 33 entities; none is missing from its kind. The fields of retention events, which have no record definition yet, are listed separately.
+- `FIELD_SUPPLY_ROUTES.csv`, one row per field (155) and one row per contract row that names configuration, per settings entity (55 rows: the rule settings N01, the financial policy E90, the authority register E03, the supplier list E20, the cost-code map E04). For each: the rules and figures that read it, its entity, the entity's ways in and their status, whether the intake specifications mark it material, the verification route of each way in, and what stage 1 does today for source authority and verification.
+
+| What the report shows | Count |
+| --- | --- |
+| Fields the current rules and figures read (as the contracts name them) | 155, in 33 entities |
+| accepted today by a built way in | 155, all by a synthetic import template; document capture accepts none of them into the intake yet (a stand-in quote extractor and the verification control exist, not linked to the intake; the file marks D on the 19 quote and quote-reading fields as partly built, not linked) |
+| marked material in the intake specifications (a proxy for S04 §12, and a lower bound: `documents.py`'s own quote list also counts the validity date and supplier) | 33 |
+| field authority resolved today | 6: the material amounts of the reference intake (invoice, credit note, order and amendment amounts, the quote rate, the budget amount) |
+| reference intake: record-level duplicate, supplier or link checks, no field authority | 33 (invoices, credit notes, orders, order amendments, supplier quotes) |
+| reference intake: field validation only | 15 (the other 4 budget-line fields; fx rates 3, market observations 7 and suppliers 1, which have no material field) |
+| second delivery loop, no authority check | 101 |
+| settings rows | 55; N01 and E90 are versioned policy records, counted as approved only once an audited approval exists, with no builder setup question; E03 is an in-code object; E20 is the supplier records, through the reference intake; E04 has nothing |
+| fields meeting PG-DS-AC-12 today (a built way in that carries the field, with its authority and verification requirement met) | none |
+
+The conclusion holds because every template is synthetic, field authority is resolved for 6 fields only, and no setting has a setup question. What release A must add for a field to pass, as the last column of the file states per row: one intake with authority and reconciliation for every kind (101 fields); field authority through the approved register (149 fields); the template checked against a real builder's file (all 155); for a material value that comes from a document, document capture linked into the intake, with a person verifying it (S04 §12 applies to values read from documents, not to a system's export file); and a versioned, approved setup question for each setting. These are the release A gates of the data supply design (decision 5); this report is the field-coverage report that gate names, run on today's code.
+
+**What the report does not do.** It covers the fields the contracts name. The agent check found fields the code reads that the contracts did not name (for example the invoice number and supplier that decide duplicates, the quote terms buy timing reads, the reference that ties a reading to its quote); they are now named, but a field the code reads and no contract names would still be missed, and is found only by checking the contracts against the code. Fields no current rule reads wait for the rule that will read them (the release rule, decision 4). The report lists authority and verification routes and today's state, from the design and the code; it does not test them.
+
+## What builders' and developers' systems provide
+
+No single system holds everything APG needs, and the cited sources support only 33 of the 65 builder and developer entities. For the other 32, where the data usually sits is Claude's judgement, recorded in its own register column and to be checked with pilot builders' sample exports. Searched 2026-11-12; `SYSTEMS_SURVEY.csv` lists only what each source supports.
+
+**Holding is not a feed.** A system that holds a kind of data does not make it an APG feed: that needs a documented way to get the data out, field by field, confirmed on a real builder's export. The survey's entity column is headed accordingly, and each row's evidence level and "how data can be got out" say how far its source goes.
+
+| System | What it is | What the source says the system holds | How data gets out | Evidence |
+| --- | --- | --- | --- | --- |
+| [Procore](https://procore.github.io/documentation/tutorial-financial-tools) | project management and financials, large commercial | projects, prime contracts, commitments, change events, subcontractor invoices, payment applications, payments; on the [AU page](https://www.procore.com/en-au/commercial): variations, progress claims, inspections, defect tracking | API (financials). Quality and defect records are on the vendor page only: their extraction is not established. Variations and progress claims match the API's change events and payment applications by name only, to confirm in a sample export | developer docs; vendor page |
+| [Payapps](https://www.payapps.com/features/) | progress claims, head contract and subcontract | claims, payment schedules, variations, retention, compliance documents | integrations with Xero, MYOB, Jobpac, Procore; no API or export described | vendor page |
+| [Jobpac Connect](https://info.viewpoint.com/Jobpac-Brand_01-Landing-Page.html) | construction ERP (AU, NZ) | job and labour costing, forecasting, payroll, payables, receivables; per [Mastt](https://www.mastt.com/glossary/what-is-jobpac): variations, progress claims, subcontractor payments, purchase orders | not stated | vendor page; third-party |
+| [Oracle Aconex](https://help.aconex.com/apis/mail-api-developer-guide/) | document control and correspondence | that a Mail API exists; what its mail holds is to confirm | API | developer docs (existence only) |
+| [Xero](https://developers.apideck.com/apis/accounting/xero/resources) | accounting | invoices, bills, credits, payments, bank transactions, purchase orders; aged debtors and creditors in beta | API | third-party |
+| [MYOB](https://www.apideck.com/blog/how-to-integrate-with-the-myob-api) | accounting | invoices, bills, payments | API | third-party |
+| [Buildxact](https://developer.buildxact.com/getting-started) | estimating and job management, residential | estimates, catalogues, jobs | API with partner approval | developer docs |
+| [Databuild](https://www.softwareadvice.com.au/software/275036/databuild-estimating-software) | estimating and job management | estimates, orders, budgets | not established | third-party |
+| [RIB CostX](https://www.capterra.com.au/software/75416/costx) | takeoff and estimating | estimates and quantities | Excel integration | third-party |
+| [Oracle Primavera (P6 XML and XER)](https://docs.oracle.com/cd/E80480_01/help/en/user/234146.htm) | programme | activities, relationships, calendars, WBS, baselines | XER and XML files | developer docs |
+| [HammerTech](https://www.hammertech.com/en-au/integration-partners/procore) | safety, inductions, site | labour hours by trade partner, worker counts, site diaries (synced to Procore) | Procore sync; it covers labour hours and worker counts, not every field of E55 or E57 | vendor page |
+| [EstateMaster](https://www.mastt.com/glossary/estatemaster) | development feasibility (developers) | feasibility, actual costs and revenues against it | not established | third-party |
+| Microsoft Project | programme | not checked | XML file: an assumption, not verified until a sample file or the vendor's documentation confirms it | not checked |
+| [Employment Hero (KeyPay)](https://www.keypay.com.au/feature/integration) | payroll and timesheets | not checked | integrations and an API advertised | not checked |
+| Excel and Google Sheets | spreadsheets | budgets, forecasts, registers (common practice, not sourced) | file import | not sourced |
+| Email and documents | correspondence | contracts, claims, schedules, quotes, invoices, certificates | forwarding or upload, confirmed by a person | APG design |
+
+Two consequences for the design. First, claims and payment schedules are documented only in Payapps, Procore and Jobpac, and otherwise arrive by email, so document capture is the way in that would work for every builder, once it is built. Second, no source checked documents site-level records (progress, crews, work allocation, accepted output, rework, conditions); they likely sit in site diaries and spreadsheets (judgement), so APG's own entry screens and templates are the Level 1 way in, with phone site capture (CR-05 in the owner's change-request list) as the Level 2 accelerator.
+
+## The features APG needs to fill any gap
+
+APG's own supply paths are mostly not built: 52 of the 100 entities have no built path, and 10 more are partly built. Five of the 52 are partial, because their present fields sit on another entity's record or in code (the authority register and the organisation in code; the subcontract as an order; the holding-cost rate on a delay; the work package as a reference on timesheets and output). The 38 with a built path have it only for the fields APG already holds (11 complete, 27 partial), and 37 of them rely on an import template whose layout is synthetic. These counts take any built path; the data supply design counts only each entity's minimum way in (47 built or partly built, 53 not), so the two figures differ by design.
+
+[chart: entities each APG supply path serves, built today vs not built; data: CHART_DATA_PATHS.csv]
+
+| Way in | Entities: built (exists or partly) | Entities: not built |
+| --- | --- | --- |
+| Entry screens | 0 | 47 |
+| Import templates | 37 | 29 |
+| Integrations | 0 | 24 |
+| Phone site capture | 0 | 14 |
+| Setup questions | 2 | 12 |
+| Records APG calculates | 8 | 9 |
+| Document capture | 3 | 20 |
+
+An entity with several ways in is counted under each, so the rows overlap. Setup questions now serve 14 entities, with N01, which is partly built like the financial policy. Document capture is partly built for 3 entities only (quotes, quote readings and the document record); revision 3 and this revision's first draft counted 17, wrongly marking 14 document types partly built where no code exists for them.
+
+What each way in is, and the rule it must keep (every way in passes the same Section 04 controls, S04 §18):
+
+- **Entry screens:** small, frequent facts (one forecast line, one variation, one delay, a programme activity); each value carries the person and needs approval where the register says so.
+- **Import templates:** bulk data from a CSV or spreadsheet file, or a system's export file; each builder's layout mapped once and checked, with row-level errors. Today's 36 templates are synthetic layouts (29 Builder Zero, 6 M6 supplements, 1 example), all marked "draft - unverified against any real export". The 37 entities with a built template path are therefore **not** validated builder import coverage: the real layouts, mappings and validation behaviour stay unproven until pilot builders' sample exports are tested, which is a release A gate (decision 5). `FIELD_REGISTER.csv` (215 fields) and `TEMPLATE_REGISTER.csv` are an inventory of what the templates accept today, not a validated schema register; that register, with validation rules and tests, is a build task.
+- **Integrations through AUIF:** recurring feeds from the builder's systems, each with a versioned source profile (S04 §4); marked proposed on every row, after the Section 01 discovery; CR-07 builds the connectors.
+- **Phone site capture (CR-05), Level 2:** progress, delays, defects with photos, deliveries, crews and conditions, with the person, time and place recorded. Decision 6 makes it Level 2 with an early discovery gate: every site fact also has an entry screen or template; a fact entered after the event is marked retrospective and the insight is qualified; if discovery shows a first-pilot insight depends on timely site capture, that capture is brought forward.
+- **Setup questions:** policies, maps, rates and rule settings (the cost-code map, the financial policy, N01, labour rates, holding-cost rates, work packages), versioned and approved where the register requires it.
+- **Records APG calculates:** baselines, assessments, findings, alerts, the readiness record.
+- **Document and email capture:** claims, schedules, quotes, invoices and certificates, with material values confirmed by a person (S04 §12). Partly built in `apg/ingest/documents.py`, now in the pack: a document store and a control under which values stay unverified until a person with the verifier role confirms them, with one stand-in extractor, for quotes (quantity, rate, validity date, supplier); it is not linked to the intake, and a date a person verifies is kept as text and does not reach the authority logic.
+
+Each entity marks each of its paths as exists, partly or proposed, so no row presents an unbuilt path as a working one.
+
+## Readiness, intake and estimates
+
+Revision 2's readiness, intake and estimating design stands, as GPT found it resolved, and so do its insight contracts and source profiles; the data supply design (draft 7) builds on it. Everything here is designed behaviour, not current code.
+
+**Three separate states.** The ingestion state of each record (accepted, accepted with warnings, pending reconciliation, quarantined, rejected; S04 §8); the readiness of each insight (eligible, qualified, blocked, unavailable, from its own gate); and action eligibility (whether a finding may drive a recommendation). Readiness will be reassessed at setup, after every intake, on a schedule, and whenever a record is corrected, quarantined, superseded or revoked (S06 §10, with the freshness tracking of S04 §14).
+
+**Evidence states kept distinct.** For each gap, readiness says which it is: missing, present but unverified, conflicting with another source, stale, not authoritative, or verified and eligible (GPT's condition on the decisions). A fresh-looking overall status never hides an old critical input.
+
+**Nudges name the period, the field and the fix.** For example: "3 May invoices from Acme Electrical have no cost code. Add the code on each invoice (bookkeeper)." Every money figure in a nudge will come from a traceable calculation, labelled with its basis; a data gap is never called confirmed leakage (S06 §4).
+
+**Fix-first order uses more than money.** Gaps will be ranked by money at risk together with urgency, confidence in the amount, whether the person can act on it now, and what else depends on it (S10 §4).
+
+**A rule that needs capture APG lacks stays qualified.** R04B can only find instructions that were recorded. Until document or site capture of instructions (E10) is built, its results will be labelled "recorded instructions only", and an absence of findings will never be shown as "no unclaimed instructions". The same will apply to any rule whose contract names an input with no built way in.
+
+**Freshness: starting values, approved in principle (decision 10).** These are maximum ages, after which the insight is qualified. They are defaults to revisit with pilot data; the insight using the data decides whether its age matters, and bank, timesheet and delay limits are flagged to test in the pilot. The code already reads the forecast, budget and facility settings (`freshness_days`).
+
+| Data | Good | Qualified after |
+| --- | --- | --- |
+| Variations and order amendments | 30 days | 60 days |
+| Cost-to-complete forecast | the current month | one month-end missed |
+| Budget revision | the current month | two month-ends |
+| Supplier invoices and credits | the last month-end | two month-ends |
+| Bank transactions | 7 days | 31 days (pilot to test) |
+| Facility statement | the last month | two months |
+| Claims and payment schedules | the current claim period | one period missed |
+| Programme | the last update | one monthly update missed |
+| Timesheets | the last week | two weeks (pilot to test) |
+| Delays, defects, plant hire | weekly | monthly (pilot to test) |
+| Compliance evidence | before expiry | at expiry |
+| Market and quote data | S08 §7.1 per decision | S08 §7.1 per decision |
+
+**One intake contract.** Every way in passes the same Section 04 controls (S04 §18). Coverage of each input is recorded in five steps: capture available, validation available, authority established, reconciliation available, decision-eligible. A template that accepts a value does not make it correct.
+
+**Estimates.** APG may estimate a derived result from disclosed assumptions; it never invents a missing authoritative fact. Builder forecasts, deterministic calculations from evidenced inputs and scenarios are allowed; holding cost, landed cost and indicative market comparisons only when their blueprint gates are met; a run-rate projection of a stale cost to complete only as a labelled provisional estimate the builder accepts or overrides. Progress inferred from claims, labour cost from generic award rates, and AI-inferred contract values, claims, approvals, deadlines or entitlements are not allowed. Carrying cost from face value alone is not allowed either.
+
+## Decisions: approved in principle
+
+On 2026-11-12 the owner approved in principle the 12 decisions of the data supply design (the decisions document, after GPT's and Gemini's opinions), with GPT's conditions. They replace revision 3's six decisions:
+
+| Revision 3 decision | Where it now stands |
+| --- | --- |
+| 1. The design principle and the two guarantees | Decision 1, approved, made field-level |
+| 2. The data scope (99 entities, developer entities optional) | Decision 2, approved for 99 plus N01, developer entities optional; formal approval needs this revision's independent check |
+| 3. Required features, phone site capture included | Decisions 3 and 6: one intake, many ways in; phone site capture at Level 2 with an early discovery gate |
+| 4. Builder-confirmed cost-code map | Decision 8, approved: mandatory before any figure that groups by cost code |
+| 5. Freshness values | Decision 10, approved as starting values |
+| 6. Numbering and the relation to CR-07 | Decision 11: one change request for this revision and the data supply design; CR-07 builds the connectors; the number is given at formal approval |
+
+**Blueprint changes this needs.** The new record kinds and N01 amend locked sections, so they go through Section 18's controlled change process (S18 §6): the cascade impact assessment, then formal approval and numbering. The developer entities need a further change, because the locked blueprint does not yet cover the developer capability.
+
+**Required before production** (decided as each part is designed): the ten shared financial foundation decisions (8-layer 02 §2.11); the Source Authority Register and its approver; baseline and assessment governance; the commitment policy, including the PO and variation status maps the code stops without; labour data privacy and role permissions (S09 §14); retention and security state handling; the handling of corrected and disputed data (what APG first received, what changed, who changed it, and whether a shown insight needs reassessment; a backdated entry never silently rewrites a result already shown).
+
+**Next steps** (all within the S04 §20 gate):
+
+- The Section 18 cascade impact assessment for this revision and the data supply design together, then formal approval.
+- Confirm the systems survey with two or three pilot builders' sample exports, field by field; it is documentation-level today.
+- Map one real builder export (the profit autopsy data) into a first source profile and check the templates against it.
+- Generate the field-level schema register with validation rules and tests.
+- Cross-check the 100 entities against every row of the Master Requirements Traceability Matrix (in the pack; not yet done).
+- After stage 1: one change request for DC-1 to DC-11 as the owner decided on 2026-11-12, with its tests, evidence and an independent audit; it is the first place the tell-the-builder rule is built.
+
+## The owner's decisions of 2026-11-12
+
+Taken in a question-by-question dialogue with the owner; his words are quoted in `07_decisions/OWNER_DECISIONS_2026-11-12.md`. None authorises a build; each design item goes through the Section 18 cascade impact assessment with the data supply design.
+
+1. **The defect candidates (DC-1 to DC-11)** are fixed in one change request after stage 1, as the table above states.
+2. **APG tells the builder what it needs, across the whole of APG.** The owner: "This feature of telling the builder what apg needs to work should be across the whole apg." Whenever APG cannot fully do a check or a figure, it tells the builder what is missing, why it matters and what to do. It becomes decision 13 of the data supply design (draft 7). `NOT_ASSESSED_MESSAGES.csv`, generated from the code by `build_message_list.py`, lists every reason code and every not-assessed message the production modules can give, each with what it means, who sees it and what the builder is to do; the script fails if the code gives a message the list does not cover, so none is missed. It also lists the silent cases (DC-1 to DC-11), which give no message today. It holds 283 entries: 243 reason codes, 25 plain-language reasons the rules give, 4 run states and 11 silent cases; 178 are for the builder (a gap in his data or settings), 31 for a person taking an action (approving, resolving, recording an event), 48 are information only, and 26 are APG faults with nothing for the builder to do. Test, demonstration and reference modules are left out. The list states the design; the first build is the DC change request. How a message reaches the builder (a screen, a to-do list, an e-mail) belongs to the data supply design.
+3. **Extras and variations in their own panel.** The owner: "anything extra like that should be seperate from the original build so the builder can see it and how it affects the profits of the original build", "Like a seperate panel or something for the extras and variations". The original build's budget and profit stand on their own; each extra or variation shows its value, its status, what it has cost so far, and its effect on the job's profit; the two are never blended. The locked blueprint already keeps the money in separate (S11 §3, §4, §8.1 and PG-CR-AC-09; S03 §5 and §6.1; S05 §3.2 and §7), and stage 1's revenue figure lists disputed and rejected variations beside the figure, never in it. What is not built is the cost of each extra: today costs are recorded only against cost codes. The new data need is **the cost of extra work, recorded against its instruction or variation** (on the variation E09 and the instruction E10, and on the cost records: supplier invoices E23, timesheets E57 with labour rates E59, and plant hire E64); the Section 18 assessment confirms whether Section 11 needs a clarification for the panel.
+4. **Severity grading is set by the builder at setup.** The owner: "Grading severity is up to the builder at set up stage"; "No suggested because builders have very different budgets of money some couple mil some 100mil"; "I think offer both at setup. % and $"; "Whichever hits first because that is the limit he sets regardless". For each grade the builder may set a dollar amount, a percentage of the job, or both; with both set, the grade applies as soon as either is reached; APG suggests no levels; his setting them is the approval. Until he has, findings still show, marked "grading not set up yet". This is a builder setup question for N01 (none exists today), and for the severity bands it replaces decision 9's owner-approved defaults. The code already measures against the job's size (`materiality.py`: contract value, forecast final cost or forecast margin).
+
+## Responses to GPT's check of revision 3
+
+Every point GPT raised, and every item it found partly resolved, with where revision 4 answers it. Items it found resolved stand as they were.
+
+| Item | The point | Where answered |
+| --- | --- | --- |
+| Blocking: contract accuracy | M4 actual cost (credits), R04B (any stored variation silences it), LAB (missing overtime counted as 0) | Corrected against the code, including how reconciliation links credits; R04B and LAB raised as DC-1 and DC-2, the owner's fix decided (exactly what each insight reads) |
+| Blocking: M6 contracts | the market figures had no input contracts | 14 rows (landed cost, comparison and ranking, buy timing, MP01 to MP10, MPD1) and one row for every M6 figure and rule (policy pinning, switch-off, the specification register), with their reason codes |
+| Blocking: field-level coverage (4.1) | entity-level paths do not prove every field has a route with verification and authority | `FIELD_SUPPLY_ROUTES.csv`: 155 fields and 55 settings rows, each with its ways in, material flag, verification route and today's authority and verification; none meets PG-DS-AC-12 today, and what release A must add is stated per row |
+| Should fix: DEF, R07, security carrying | missing cost, expired quotes, the configuration order | corrected rows above |
+| Should fix: survey (4.2) | system capability is not a confirmed feed | entity column renamed ("holds", not "a confirmed APG feed"); Procore quality records and HammerTech's fields marked not established; "holding is not a feed" |
+| Should fix: Microsoft Project (4.3) | XML format not checked | marked an unverified assumption |
+| Should fix: document capture (4.4) | `ingest/documents.py` not in the pack | in `04_code_read`, with the intake specifications, `source_authority.py`, the M6 code and the shared modules; what it does is stated under the features, and document capture is now marked partly built only where code exists |
+| Should fix: templates (4.5) | built template paths are not validated coverage | stated under import templates; a release A gate |
+| Partly: New 8 | the owner's change-request list is not in the pack | the list is the owner's own record (CR-01 to CR-08, CR-10, as the owner stated them), summarised in `00_README.txt`; not a blueprint document; the owner's decisions of 2026-11-12 are recorded in `07_decisions` and in the data supply design |
+| Partly: B5 | schema register, validation and tests | still future work; a build task, listed in the next steps |
+| Partly: S3 | the financial foundation decisions | still required before production, listed above |
+| Partly: S19 | connector detail | waits for the Section 01 discovery |
+| Partly: Gemini evidence 5 | the full Master RTM cross-check | still a next step |
+| Partly: New 2 | exact rule inputs | the contract-accuracy and M6 rows above |
+| Partly: B3, S4, S6 | field-level contracts | the field-level coverage row above |
+| Partly: agent audit | no fresh post-fix audit shown | this revision was checked by a fresh independent agent before it went to GPT: 28 findings (8 blocking, 10 should fix, 10 minor), all addressed; a scoped re-check of the fixes followed: 0 blocking, 5 should fix, 16 minor, all addressed; both reports and the fix for each are in `AUDIT.txt`; the further defect candidates (DC-3 to DC-11) are decided by the owner |

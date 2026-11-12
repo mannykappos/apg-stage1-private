@@ -1,0 +1,57 @@
+rule or figure,reads records,entities,minimum way in not fully built,not through the S04 reference intake today,needs detection-rule settings (N01),needs financial-policy fields (E90),release of what it reads
+every M4 figure,yes,E90,E90 setup question partly,-,-,-,A
+every reference-intake record,yes,E03 E20 N01,E03 setup question proposed; N01 setup question partly,E03,yes,-,A
+every detection rule,yes,N01,N01 setup question partly,-,yes,-,A
+every M6 figure and rule,yes,N01,N01 setup question partly,-,yes,-,A
+every M4 figure,yes,E07,-,E07,-,-,A
+M4 actual cost,yes,E23 E90,E90 setup question partly,-,-,cost_scope,A
+M4 actual cost,yes,E04 E23,E04 setup question proposed,-,-,-,A
+M4 actual cost,yes,E23,-,-,-,-,A
+M4 actual cost,yes,E24,-,-,-,-,A
+M4 commitments,yes,E21 E90,E90 setup question partly,-,-,po_status_map,A
+M4 commitments,yes,E22 E90,E90 setup question partly,-,-,variation_status_map,A
+M4 commitments,yes,E23 E90,E90 setup question partly,-,-,credit_reopens_commitment,A
+M4 budget,yes,E38 E90,E90 setup question partly,-,-,freshness_days,A
+M4 cost to complete,yes,E41 E90,E90 setup question partly,E41,-,ctc_method,A
+M4 forecast final margin,yes,E90,E90 setup question partly,-,-,"cost_scope, ctc_method, ffc_basis, freshness_days",A
+M4 revenue,yes,E08 E90,E90 setup question partly,E08,-,"gst_rate_bps, tax_basis, variation_status_map",A
+M4 revenue,yes,E09 E90,E90 setup question partly,E09,-,variation_status_map,A
+M4 recognised margin,yes,E90,E90 setup question partly,-,-,recognition_method,A
+M4 retention position,yes,E75,-,E75,-,-,A
+M4 retention position,yes,E77,E77 entry screen proposed,E77,-,-,A
+M4 retention position,yes,E73,-,E73,-,-,A
+M4 security,yes,E78,-,E78,-,-,A
+M4 retention carrying cost,yes,E74 E90,E90 setup question partly,E74,-,"carrying, freshness_days",A
+M4 security carrying cost,no,E78 E90,E90 setup question partly,-,-,carrying,A
+M4 overdue receivables cost,no,E15,E15 import template proposed,-,-,-,B
+M4 cash-position-adjusted margin,yes,E90,E90 setup question partly,-,-,cash_adjustment,A
+R01 actual cost over budget,yes,N01,N01 setup question partly,-,yes,-,A
+R02 amendment without approved change,yes,E22 E90,E90 setup question partly,-,-,"po_status_map, variation_status_map",A
+R03 invoiced above order,yes,E21 E90 N01,E90 setup question partly; N01 setup question partly,-,yes,po_status_map,A
+R09 unexplained forecast movement,yes,E41 N01,N01 setup question partly,E41,yes,-,A
+AGG split orders,yes,E21 N01,N01 setup question partly,-,yes,-,A
+D01 held cost records,yes,-,-,-,-,-,-
+R04 variation unresolved,yes,E09 E90 N01,E90 setup question partly; N01 setup question partly,E09,yes,variation_status_map,A
+R04B instruction without variation,yes,E10 N01,N01 setup question partly,E10,yes,-,A
+R05 retention release overdue,yes,E75 N01,N01 setup question partly,E75,yes,-,A
+R06 compliance expired or expiring,yes,E82 N01,N01 setup question partly,E82,yes,-,A
+R07 quote above reference,yes,E30 N01,N01 setup question partly,-,yes,-,A
+R08 hire beyond need,yes,E64 N01,N01 setup question partly,E64,yes,-,A
+DLY overlapping delays,yes,E52 N01,N01 setup question partly,E52,yes,-,A
+LAB output per hour falling,yes,E57 E61 N01,N01 setup question partly,E57 E61,yes,-,A
+DEF repeat defects,yes,E66 N01,N01 setup question partly,E66,yes,-,A
+D02 held detection inputs,yes,-,-,-,-,-,-
+M6 landed cost,yes,E30 E31 E32 E33 E37 N01,N01 setup question partly,E31 E32 E33,yes,-,A
+M6 comparison and ranking,yes,E21 E26 E27 E28 E30 E34 E35 N01,E35 document capture partly; N01 setup question partly,E26 E27 E28 E34 E35,yes,-,A
+M6 buy timing (scenarios),yes,E28 E30 E36 N01,N01 setup question partly,E28,yes,-,A
+MP01 market evidence stale or unavailable,yes,E30 E36 N01,N01 setup question partly,-,yes,-,A
+MP02 cheaper but not comparable,yes,E21 E27 E28 E30 E35 E90 N01,E35 document capture partly; E90 setup question partly; N01 setup question partly,E27 E28 E35,yes,po_status_map,A
+MP03 purchase decision due,yes,E21 E28 E29 E30 E90 N01,E90 setup question partly; N01 setup question partly,E28 E29,yes,po_status_map,A
+MP04 ordered above demand,yes,E21 E28 E29 E90 N01,E90 setup question partly; N01 setup question partly,E28 E29,yes,po_status_map,A
+MP05 possible duplicate order,yes,E21 E90 N01,E90 setup question partly; N01 setup question partly,-,yes,po_status_map,A
+MP06 FX stale or diverging,yes,E30 E37 N01,N01 setup question partly,-,yes,-,A
+MP07 international checks unresolved,yes,E30 E34 N01,N01 setup question partly,E34,yes,-,A
+MP08 supplier performance below level,yes,E20 E21 E29 E90 N01,E90 setup question partly; N01 setup question partly,E29,yes,po_status_map,A
+MP09 saving opportunity (estimate),yes,E21 E28 E30 E90 N01,E90 setup question partly; N01 setup question partly,E28,yes,po_status_map,A
+MP10 portfolio rate gap,yes,E21 E90 N01,E90 setup question partly; N01 setup question partly,-,yes,po_status_map,A
+MPD1 held procurement inputs,yes,-,-,-,-,-,-

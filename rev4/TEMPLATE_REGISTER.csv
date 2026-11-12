@@ -1,0 +1,37 @@
+template,folder,record_kind,source_category,source_label,columns,natural_key,gst,status
+TPL-BZ-COMPLIANCE,det_templates,compliance,SRC-06,Builder Zero supplier compliance evidence (synthetic),3,"supplier_id,evidence_type",not_applicable,draft - unverified against any real export
+TPL-BZ-DEFECTS,det_templates,defect,SRC-08,Builder Zero defects (synthetic),8,defect_id,not_applicable,draft - unverified against any real export
+TPL-BZ-DELAY-EVENTS,det_templates,delay_event,SRC-04,Builder Zero delay events (synthetic),8,event_id,not_applicable,draft - unverified against any real export
+TPL-BZ-NOTICES,det_templates,notice,SRC-07,Builder Zero commercial notices (synthetic),6,notice_id,not_applicable,draft - unverified against any real export
+TPL-BZ-PLANT-HIRE,det_templates,plant_hire,SRC-13,Builder Zero plant hire (synthetic),7,hire_id,not_applicable,draft - unverified against any real export
+TPL-BZ-TIMESHEETS,det_templates,timesheet,SRC-12,"Builder Zero timesheets, pseudonymised (synthetic)",8,entry_id,not_applicable,draft - unverified against any real export
+TPL-BZ-WORK-OUTPUT,det_templates,work_output,SRC-12,Builder Zero completed quantities by week (synthetic),5,"project_id,work_package,week_start",not_applicable,draft - unverified against any real export
+TPL-BZ-BANK,fin_templates,bank_txn,SRC-14,Builder Zero bank transactions (synthetic),4,txn_id,not_applicable,draft - unverified against any real export
+TPL-BZ-CONTRACTS,fin_templates,contract,SRC-07,Builder Zero contracts (synthetic),3,project_id,not_applicable,draft - unverified against any real export
+TPL-BZ-CTC-FORECASTS,fin_templates,ctc_line,SRC-02,Builder Zero cost-to-complete forecast lines (synthetic),7,"project_id,cost_code,forecast_version",not_applicable,draft - unverified against any real export
+TPL-BZ-FACILITY,fin_templates,facility,SRC-14,Builder Zero funding facility statement (synthetic),5,facility_id,not_applicable,draft - unverified against any real export
+TPL-BZ-PROJECTS,fin_templates,project,SRC-02,Builder Zero project master (synthetic),5,project_id,not_applicable,draft - unverified against any real export
+TPL-BZ-RETENTION,fin_templates,retention,SRC-09,Builder Zero retention ledger (synthetic),5,project_id,not_applicable,draft - unverified against any real export
+TPL-BZ-SECURITY,fin_templates,security,SRC-09,Builder Zero security instruments (synthetic),5,instrument_id,not_applicable,draft - unverified against any real export
+TPL-BZ-VARIATIONS,fin_templates,variation,SRC-07,Builder Zero variations (synthetic),6,variation_id,not_applicable,draft - unverified against any real export
+TPL-BZ-AP-INVOICES,import_templates,ap_invoice,SRC-01,Builder Zero accounting export (synthetic),11,invoice_id,separate_column,draft - unverified against any real export
+TPL-BZ-PURCHASE-ORDERS,import_templates,purchase_order,SRC-03,Builder Zero procurement export (synthetic),11,po_id,not_applicable,draft - unverified against any real export
+TPL-BZ-QUOTES,import_templates,supplier_quote,SRC-03,Builder Zero quotes export (synthetic),14,quote_id,not_applicable,draft - unverified against any real export
+TPL-EX-ACCOUNTING-DOLLARS,import_templates,ap_invoice,SRC-01,Example only: a different layout with DD/MM/YYYY dates and dollar amounts (synthetic),5,Ref,inclusive_total_column,draft - unverified against any real export
+TPL-BZ-BUDGET-LINES,ingest_templates,budget_line,SRC-02,Builder Zero job-costing budget lines (synthetic),5,"project_id,cost_code",not_applicable,draft - unverified against any real export
+TPL-BZ-CREDIT-NOTES,ingest_templates,credit_note,SRC-01,Builder Zero accounting credit notes (synthetic),6,credit_id,separate_column,draft - unverified against any real export
+TPL-BZ-FX-RATES,ingest_templates,fx_rate,SRC-10,Builder Zero exchange rates (synthetic),3,"fx_date,pair",not_applicable,draft - unverified against any real export
+TPL-BZ-MARKET-OBSERVATIONS,ingest_templates,market_observation,SRC-10,Builder Zero market observations (synthetic),8,obs_id,not_applicable,draft - unverified against any real export
+TPL-BZ-PAYMENTS,ingest_templates,payment,SRC-01,Builder Zero accounting payments (synthetic),4,payment_id,not_applicable,draft - unverified against any real export
+TPL-BZ-PM-INVOICES,ingest_templates,pm_invoice,SRC-04,Builder Zero project-management system invoice export (synthetic),5,invoice_ref,not_applicable,draft - unverified against any real export
+TPL-BZ-PO-AMENDMENTS,ingest_templates,po_amendment,SRC-03,Builder Zero procurement PO amendments (synthetic),6,amendment_id,not_applicable,draft - unverified against any real export
+TPL-BZ-SUPPLIERS,ingest_templates,supplier,SRC-06,Builder Zero supplier list (synthetic),3,supplier_id,not_applicable,draft - unverified against any real export
+TPL-BZ-DELIVERIES,mkt_templates,delivery,SRC-05,Builder Zero delivery dockets (synthetic),6,docket_id,not_applicable,draft - unverified against any real export
+TPL-BZ-MATERIAL-DEMAND,mkt_templates,material_demand,SRC-05,Builder Zero material demand (synthetic),6,demand_id,not_applicable,draft - unverified against any real export
+TPL-BZ-MATERIALS,mkt_templates,material,SRC-05,Builder Zero material master (synthetic),3,material_id,not_applicable,draft - unverified against any real export
+TPL-MKT-IMPORT-CHECKS,mkt_templates,import_check,SRC-03,M6 synthetic supplement: import and compliance check outcomes a person recorded,6,"quote_id,check",not_applicable,draft - unverified against any real export
+TPL-MKT-LANDED-ASSUMPTIONS,mkt_templates,landed_assumption,SRC-03,M6 synthetic supplement: landed-cost component assumptions a person set,9,"quote_id,component",not_applicable,draft - unverified against any real export
+TPL-MKT-QUOTE-READINGS,mkt_templates,quote_reading,SRC-03,M6 synthetic supplement: readings of quote text (extraction and its human verification),7,"quote_id,attribute",not_applicable,draft - unverified against any real export
+TPL-MKT-QUOTE-TERMS,mkt_templates,quote_term,SRC-03,M6 synthetic supplement: quote terms,3,"quote_id,term",not_applicable,draft - unverified against any real export
+TPL-MKT-QUOTE-TIERS,mkt_templates,quote_tier,SRC-03,M6 synthetic supplement: quote quantity tiers,3,"quote_id,min_qty",not_applicable,draft - unverified against any real export
+TPL-MKT-SPEC-REQUIREMENTS,mkt_templates,spec_requirement,SRC-05,M6 synthetic supplement: specification requirements a person approved,6,requirement_id,not_applicable,draft - unverified against any real export
