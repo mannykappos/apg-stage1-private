@@ -1,0 +1,303 @@
+Worked for 9m 33s
+
+The first important result is that revision 4 has fixed much of the revision 3 work, but I have found a remaining exact-input problem in the M4 credit contract.
+
+For example, the credit reconciliation code reads `credit_note.supplier_ref` and the linked invoice's supplier identity to detect `CREDIT_SUPPLIER_MISMATCH`; it also reads the invoice and credit `amount_ex_gst_cents` values to detect `CREDIT_EXCEEDS_INVOICE`. The revised credit row names the link, amount and date, and describes both outcomes, but it does not list all the fields that produce them. That means the field-coverage report, which is generated from the contracts, cannot independently establish coverage of those omitted fields.
+
+### 1\. Contract accuracy
+
+PARTLY RESOLVED — BLOCKING REMAINS
+
+The six rows you specifically asked me to recheck are not all exact yet.
+
+| Contract                  | Verdict               | Remaining problem                                                                           |
+| ------------------------- | --------------------- | ------------------------------------------------------------------------------------------- |
+| M4 actual cost — credits  | Not exact             | credit_note.supplier_ref is missing from the listed fields.                                 |
+| R04B                      | Not exact             | notice.project_ref is missing.                                                              |
+| LAB                       | Not exact             | timesheet.project_ref and work_output.project_ref are missing.                              |
+| DEF                       | Not exact             | defect.project_ref is missing.                                                              |
+| R07                       | Substantially correct | The expiry behaviour is right, but one further limit needs stating.                         |
+| M4 security carrying cost | Resolved              | Policy pinning, carrying configuration and NO_CASH_MARGIN_EVIDENCE are correctly described. |
+
+### M4 actual cost — credits
+
+The revised contract correctly explains the credit lineage and the conditions under which credits are applied.
+
+However, `ingest/reconcile.py` also compares the supplier identities of the credit and its linked invoice. The relevant code is lines 205–207, which can produce `CREDIT_SUPPLIER_MISMATCH`.
+
+The contract describes the different-supplier outcome but does not name `credit_note.supplier_ref`. The corresponding `FIELD_SUPPLY_ROUTES.csv` also has no `credit_note.supplier_ref` row.
+
+BLOCKING — small cost. Add the field and its supplier-resolution/verification route.
+
+The credit amount itself is covered: the contract's amount alias maps to `amount_ex_gst_cents`, which appears in the field report.
+
+### R04B, LAB and DEF — project ownership
+
+This is a common omission, not three unrelated guesses.
+
+`fin/snap.py`'s `project_of()` reads `project_ref` for ordinary project-owned records (lines 34–44). `Facts.of_project()` uses that function to decide which records belong to a project (lines 80–90).
+
+The relevant rules call it:
+
+* R04B: `rules_commercial.py`, line 64, for `notice`.
+
+* LAB: `rules_ops.py`, lines 129 and 155, for `timesheet` and `work_output`.
+
+* DEF: `rules_ops.py`, line 219, for `defect`.
+
+The contract rows omit those project fields, and the field report consequently omits them.
+
+The same problem also affects other project-scoped rules:
+
+* R04 — `variation.project_ref`.
+
+* R08 — `plant_hire.project_ref`.
+
+* DLY — `delay_event.project_ref`.
+
+* R01 — `budget_line.project_ref` as used by the detection rule.
+
+* R09 — `ctc_line.project_ref`.
+
+* D02 — the project ownership fields of the detection record kinds it scans.
+
+R04's `variation.project_ref` and R09's `ctc_line.project_ref` happen to appear elsewhere in the field report, but that does not make the corresponding detection contracts complete.
+
+BLOCKING — medium cost. Add a shared project-scope contract or explicitly add these fields to the relevant rule contracts. D02 also needs to identify the actual record kinds it scans, rather than merely saying “held records of the detection kinds”.
+
+### R07
+
+The expired-quote behaviour is correctly described: the code compares an expired quote at weak strength and records an `EXPIRED` limit.
+
+One additional known limit is missing: `_landed()` in `rules_commercial.py` does not check `issue_date`. A future-dated quote can therefore be compared if its other fields pass the checks. The row should disclose that it does not test whether the quote has actually been issued as of the assessment date.
+
+SHOULD FIX — small cost.
+
+### 2\. M6 contracts
+
+PARTLY RESOLVED — BLOCKING REMAINS
+
+The M6 work is a substantial improvement. The 14 individual figure/rule rows are present, and the shared row covers policy pinning, switching off and the specification register.
+
+However, several rows still describe calculated outputs or broad groups of information instead of listing the underlying fields that the code reads.
+
+### Remaining missing or insufficient entries
+
+| Contract row              | Missing or insufficient fields / detail                                                                                                                                                                                                                                                                            | Class / cost       |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------ |
+| M6 comparison and ranking | The quote's issue_date and valid_until are read by the freshness calculation (compare.py, lines 83–86). They are not named in this contract row or the landed-cost row.                                                                                                                                            | BLOCKING — small   |
+| M6 comparison and ranking | The purchase-order reference is described only as unit_rate_cents and unit_of_measure. The code also needs project_ref, material_ref, order_date, source_status and a positive quantity for the last-paid reference.                                                                                               | BLOCKING — small   |
+| M6 comparison and ranking | quote_reading.extractor_kind is read and carried into the reading record by spec.py, line 39. It is omitted from the listed fields.                                                                                                                                                                                | SHOULD FIX — small |
+| M6 buy timing             | The contract says uncovered quantity comes from coverage, but does not name the purchase-order and delivery inputs used to calculate that coverage. These include purchase-order project, material, quantity, unit, date and status; and delivery order reference, date, delivered quantity and accepted quantity. | BLOCKING — medium  |
+| M6 buy timing             | market_context() also reads and presents market-observation unit_text, source_label_text and geography_text (scenarios.py, lines 122–135). They are not listed.                                                                                                                                                    | SHOULD FIX — small |
+| MP01                      | supplier_quote.material_ref is missing. The evidence register groups quotes by material; analysis.py uses that field when building the watched-material evidence.                                                                                                                                                  | BLOCKING — small   |
+| MP02                      | purchase_order.quantity is missing. po_view() excludes orders without a positive quantity before the last-paid lookup can use them (common.py, lines 149–169).                                                                                                                                                     | BLOCKING — small   |
+| MP08                      | purchase_order.material_ref and unit_rate_cents are missing. suppliers.py, lines 45–48, uses both to calculate price movement by material.                                                                                                                                                                         | BLOCKING — small   |
+| MP09                      | “A comparable current quote's landed unit cost; the last rate paid and its date; the uncovered quantity” is not an exact input contract. It does not identify the underlying demand, order, delivery and quote fields used by opportunity.py through coverage, ranking and last-paid calculations.                 | BLOCKING — medium  |
+| MPD1                      | Project-scoped checks use F.of_project() for demand and specification requirements. Their project ownership fields are not listed in the row.                                                                                                                                                                      | SHOULD FIX — small |
+
+### Other M6 rows
+
+The following are substantially sound against the included code:
+
+* M6 landed cost: the listed quote, tier, term, assumption and FX fields broadly match `landed.py` and `fx.py`.
+
+* MP03 and MP04: the main demand, order and delivery inputs are identified; the missing-order behaviour is correctly exposed as DC-10.
+
+* MP05: the duplicate-order inputs and the status-map limitation are substantially right.
+
+* MP06 and MP07: the FX and import-check inputs and their main limits are identified.
+
+* MP10: the project, material, unit, rate, quantity, date and status inputs are identified.
+
+* M6 shared policy row: policy pinning, disabled rules, missing parameters and the specification-register gate are correctly described.
+
+The issue is not that the M6 contracts are absent. It is that some of them still do not meet the stated standard of identifying the fields actually read.
+
+### 3\. Field-level coverage
+
+PARTLY RESOLVED — BLOCKING REMAINS
+
+The report is well structured, and I verified the generator results. It produces:
+
+* 155 record-kind fields across 33 entities.
+
+* 55 settings rows.
+
+* 210 total rows in `FIELD_SUPPLY_ROUTES.csv`.
+
+The generators reproduce their CSVs when run from the register directory. The field-coverage script reports no gaps between the fields named in the contracts and the corresponding record kinds in `FIELD_REGISTER.csv`.
+
+But there is an important limitation in what that proves.
+
+The generator's own description says it checks the fields named in `RULE_INPUT_CONTRACTS.csv` against the field register. It does not check whether the contracts themselves include every field read by the code. It also explicitly says that fields the contracts do not name are outside that first check.
+
+That is why the missing `credit_note.supplier_ref` and project ownership fields are not caught. The report is internally consistent with the contracts, but the contracts are not yet complete against the code.
+
+BLOCKING — medium cost. Correct the contracts first, then regenerate the coverage report. It must include the omitted fields and their routes.
+
+### Are the “today” statements supported?
+
+Broadly, yes. The report's descriptions of the current intake paths are consistent with the included intake code:
+
+| Current position                                                                      | Assessment                                                    |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| 6 fields with field authority resolved                                                | Supported for the material amounts identified                 |
+| 33 fields with record-level duplicate, supplier or link checks but no field authority | Supported                                                     |
+| 15 fields with field validation only                                                  | Supported                                                     |
+| 101 fields in the second delivery loop with no authority check                        | Supported                                                     |
+| Material values from document capture not yet linked into intake                      | Supported by the included ingest/documents.py and intake code |
+
+The 155 fields being accepted through templates must be understood as synthetic-template coverage, not validated coverage of real builder exports. Revision 4 states that accurately.
+
+### Is “none meets PG-DS-AC-12 today” fair?
+
+Yes. The conclusion is fair.
+
+A field appearing in a synthetic template does not prove that its source authority is resolved, its verification requirement is met, or its import mapping works against a real builder export.
+
+The report also correctly identifies that document capture has a verification control but is not connected to intake, and that the second delivery loop has no authority check.
+
+The Release A actions are directionally right, but they need to include the fields omitted from the contracts. Otherwise the coverage report will still be incomplete after its regeneration.
+
+### One further settings issue
+
+The 55 settings rows are generated per contract configuration entry, not as one row per individual setting key. For example, `instruction_types` and `min_age_days` can appear together in one row.
+
+Also, the new severity-grading settings are included in N01's entity definition but do not appear as their own setting route in `FIELD_SUPPLY_ROUTES.csv`.
+
+SHOULD FIX — medium cost. Give the new severity setup its own explicit route and verification/approval treatment, and make clear which settings are grouped in the existing rows.
+
+### 4\. Verdict table — revision 3 findings
+
+Each row of revision 4's final response table is assessed below.
+
+| Revision 4 table item                              | Verdict  | Reason                                                                                                                                |
+| -------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Blocking: contract accuracy                        | PARTLY   | Credit supplier and project-scope fields remain omitted.                                                                              |
+| Blocking: M6 contracts                             | PARTLY   | Multiple M6 rows still omit actual fields read by the code.                                                                           |
+| Blocking: field-level coverage                     | PARTLY   | The report is generated correctly but inherits omissions in the contracts.                                                            |
+| Should fix: DEF, R07, security carrying            | RESOLVED | The original missing-cost, expiry and configuration-order points are addressed. R07 has the additional future-date limit noted above. |
+| Should fix: systems survey                         | RESOLVED | “Holds” is distinguished from a confirmed APG feed; the uncertain Procore and HammerTech extraction claims are labelled.              |
+| Should fix: Microsoft Project format               | RESOLVED | XML is clearly marked as an unverified assumption.                                                                                    |
+| Should fix: document capture evidence              | RESOLVED | ingest/documents.py and its dependencies are included; its limits are disclosed.                                                      |
+| Should fix: template inventory                     | RESOLVED | Synthetic templates are explicitly unverified against real exports and remain a Release A gate.                                       |
+| Partly: New 8 — owner change-request list          | RESOLVED | 00_README.txt identifies CR-01 to CR-08 and CR-10 and explains the list's status.                                                     |
+| Partly: B5 — schema register, validation and tests | PARTLY   | Correctly acknowledged as future work, not completed.                                                                                 |
+| Partly: S3 — financial foundation decisions        | PARTLY   | Still required before production.                                                                                                     |
+| Partly: S19 — connector detail                     | PARTLY   | Correctly deferred to discovery.                                                                                                      |
+| Partly: Gemini evidence 5 — Master RTM cross-check | PARTLY   | Still a next step.                                                                                                                    |
+| Partly: New 2 — exact rule inputs                  | PARTLY   | The remaining discrepancies above prevent full resolution.                                                                            |
+| Partly: B3, S4, S6 — field-level contracts         | PARTLY   | The report exists, but it does not yet cover every field the code reads.                                                              |
+| Partly: agent audit                                | PARTLY   | The four reports are present, but the fixes after the fourth check are builder-executed and not independently rechecked.              |
+
+### 5\. Defect candidates and message list
+
+### DC-1 to DC-12
+
+The twelve candidates are generally described accurately against today's code. The contracts also make the important distinction that they describe today's behaviour until the approved post-Stage 1 change request is implemented.
+
+| Candidate                      | Assessment                                                                                                                                                                    |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DC-1 — R04B                    | Accurate in the main document. Any stored linked variation silences the instruction today, regardless of state.                                                               |
+| DC-2 — LAB                     | Accurate. Missing overtime is counted as zero today; the intake warns.                                                                                                        |
+| DC-3 — M6 last rate paid       | Accurate. An explicit null PO status map can cause the uncaught AttributeError and stop the M6 run.                                                                           |
+| DC-4 — PO status map and GST   | Accurate in the main document. The different effects on MP02, MP05, MP08, MP09 and MP10 are explained there.                                                                  |
+| DC-5 — MP01                    | Accurate. No usable quote can produce no quote signal today.                                                                                                                  |
+| DC-6 — M6 requirements         | Accurate in the main document. Unusable requirements and zero-quantity demand can disappear from assessment.                                                                  |
+| DC-7 — M4 commitments and R02  | Accurate. A held variation mapped as approved can make its amendment committed.                                                                                               |
+| DC-8 — R01                     | Accurate. Actual cost on a code with no budget line is not assessed or listed.                                                                                                |
+| DC-9 — DEF                     | Accurate. Partial rework costs are summed and presented as recorded, not as a minimum.                                                                                        |
+| DC-10 — M6 orders              | Accurate. Held, unreconciled and zero-quantity orders can be left out without being exposed in the affected findings.                                                         |
+| DC-11 — severity               | Accurate. Severity uses pinned detection-policy bands even when approval is not confirmed; the finding flag can also be stale after reopening or keeping a finding dismissed. |
+| DC-12 — commitments amendments | Accurate. Amendments on orders skipped by the commitments figure are not examined or listed.                                                                                  |
+
+### `NOT_ASSESSED_MESSAGES.csv`
+
+REPRODUCIBLE, WITH LIMITATIONS
+
+I ran the supplied generator. It produces 579 entries, with the stated breakdown of 262 reason codes, 188 plain-language reasons, 4 states, 113 refusals/errors and 12 silent/error cases.
+
+The script passes its own defined AST-pattern coverage check. However, its own documentation correctly says this is not proof of completeness: a message constructed in a way its patterns do not detect could be missed. Therefore, whether absolutely every message the production code can give is included is not verifiable from the pack. The first independent tests of each message when built remain necessary.
+
+I found three wording problems in the DC entries:
+
+* DC-1: the message list says “an instruction linked to a rejected (or held) variation is silent”. Today's code silences an instruction linked to any stored variation, not just rejected or held variations. SHOULD FIX — small.
+
+* DC-4: the message list says “without the status map nothing is evaluated”. That is too broad: MP02 still evaluates and can compare against the cheapest like-for-like offer, although it loses its last-paid reference. SHOULD FIX — small.
+
+* DC-6: the message list says “a requirement with no positive quantity is reported nowhere”. The positive-quantity issue applies to demand lines; a standing specification requirement does not have a demand quantity. SHOULD FIX — small.
+
+The action lines are broadly appropriate, but those three descriptions should be made precise.
+
+### Owner's later decisions
+
+I checked revision 4 against `DATA_SUPPLY_SYSTEM_DRAFT7.md`.
+
+* Decision 13 / PG-DS-AC-14: consistent. APG-wide, with the missing information, why it matters and what the builder must do.
+
+* Extras and variations panel: consistent. The original build's budget and profit remain separate; extra work has its own value, status, cost and profit effect.
+
+* Verified-first figures: consistent. Verified and approved amounts remain in the main figures; waiting, on-hold, disputed and rejected items are shown separately with their potential effects.
+
+* Severity setup: consistent. The builder sets dollar levels, percentage levels or both; where both are used, whichever threshold is reached first applies. No suggested defaults are offered.
+
+These remain design decisions, not build authorisation. The document and draft 7 preserve that boundary.
+
+### 6\. The owner's question
+
+Does revision 4 now give APG the design the owner asked for?
+
+It gives APG the right overall architecture: every entity and most identified fields have an APG supply route that does not depend on a builder's software. However, it does not yet prove that every field the code reads has been captured in the contracts and supply routes; the missing fields identified above are material to that promise. The message inventory, separate extras panel, verified-first figures and builder-set severity design are directionally consistent, but some details still need to be carried into the field and message registers. Once the blocking omissions are corrected, the design can proceed to the Section 18 cascade assessment; that assessment must settle the remaining blueprint impacts before formal approval.
+
+### Separate list — outstanding blueprint matters
+
+These are not new defects in the revision 4 registers, but they remain matters for the Section 18 assessment and the controlled blueprint change:
+
+* The ten shared financial foundation decisions in 8-layer §2.11.
+
+* The Source Authority Register and its approver.
+
+* Baseline and assessment governance.
+
+* The commitment policy, including PO and variation status maps.
+
+* Labour privacy and role permissions under S09 §14.
+
+* Retention and security-state handling.
+
+* Corrected and disputed data lifecycle and reassessment.
+
+* How extra-work costs are linked to their instruction or variation.
+
+* Whether Section 11 needs clarification for the extras and variations panel.
+
+* How builder-set severity settings receive the required approval.
+
+* The retention, archiving and retrieval question after project close-out/customer exit, which the pack itself identifies as a possible blueprint gap.
+
+### 7\. Totals and final disposition
+
+Consolidated findings from this revision 4 review. Related field omissions are grouped to avoid double-counting the same root cause.
+
+| Class    | Count | Cost                        |
+| -------- | ----- | --------------------------- |
+|          | 4     | 1 small, 2 medium, 1 medium |
+|          | 6     | 5 small, 1 medium           |
+| OPTIONAL | 0     | —                           |
+| MINOR    | 0     | —                           |
+| Total    | 10    |                             |
+
+The four blocking work items are:
+
+* Add the missing credit-note supplier field and route.
+
+* Add project-scope fields to the affected detection contracts and routes, and identify D02's record kinds.
+
+* Correct the incomplete M6 contracts, including the comparison, buy-timing, MP01, MP02, MP08 and MP09 inputs.
+
+* Regenerate the field-level coverage report after those corrections, so it actually covers every field read by the code.
+
+NOT READY — BLOCKING ITEMS REMAIN
+
+My recommendation: do not proceed to the Section 18 assessment yet. The architecture and owner decisions are sound, and I would not redesign them. But the central claim is that APG knows exactly what data every insight needs and how to obtain it; the remaining contract and coverage omissions mean that claim is not yet demonstrated. Fix these four items first.

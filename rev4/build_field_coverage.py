@@ -59,8 +59,12 @@ for e in csv.DictReader(open(f'{d}/ENTITY_REGISTER.csv')):
     for k, i in OWN.items():
         if e['id'] == i:
             ENT[k], WAYS[k] = i, e['path status']
+# the fields each row's code path reads (build_code_reads.py, run first): added to the row, so the report no longer rests only on the
+# fields the contract text names (GPT's check of revision 4)
+CODE = {int(x['contract row']): x['fields the code path reads (upper bound)'].split() for x in csv.DictReader(open(f'{d}/CODE_READS.csv'))
+        if x['fields the code path reads (upper bound)'] != '-'}
 out, gaps = [], []
-for r in R:
+for ri, r in enumerate(R):
     text = r['record kinds and fields']
     toks = re.findall(r'[a-z][a-z_]*[a-z]', text)
     cur, checked, other = None, [], {}
@@ -96,7 +100,10 @@ for r in R:
             checked.append(f'{cur}.{ALIAS[(cur, t)]} ("{t}")')
         elif t in KNOWN:                                  # a one-word known item (moq), scoped re-check M6
             other[t] = KNOWN[t]
-    kinds_named = sorted({t for t in toks if t in reg})
+    named_pairs = {x.split(' ')[0] for x in checked if '.' in x.split(' ')[0]}
+    from_code = [x for x in CODE.get(ri + 2, []) if x not in named_pairs]
+    checked += [x + ' (read on the code path)' for x in from_code]
+    kinds_named = sorted({t for t in toks if t in reg} | {x.split('.')[0] for x in from_code})
     pairs = [x.split(' ')[0] for x in checked if '.' in x.split(' ')[0]]
     mat = sorted({x for x in pairs if x.split('.')[1] in MATERIAL.get(x.split('.')[0], set())})
     out.append({'rule or figure': r['rule or figure'], 'record kinds named': ' '.join(kinds_named) or '-',
@@ -104,6 +111,7 @@ for r in R:
                 'material fields (a person verifies them if read from a document, S04 s12)': ' '.join(mat) or '-',
                 'fields checked against their own kind': '; '.join(dict.fromkeys(checked)) or '-',
                 'other items and what supplies them': '; '.join(f'{k}: {v}' for k, v in other.items()) or '-',
+                'read on the code path but not named in the text (build_code_reads.py)': ' '.join(from_code) or '-',
                 'reads records': 'no' if text.strip() == '-' else 'yes'})
 with open('FIELD_COVERAGE.csv', 'w', newline='') as fh:
     w = csv.DictWriter(fh, fieldnames=list(out[0]), lineterminator='\n'); w.writeheader(); w.writerows(out)
@@ -202,6 +210,16 @@ for r in R:
                      'release A must still add (PG-DS-AC-12)': 'the setup question, versioned; defaults and ranges approved by the owner, accepted by the builder\'s approver, every change recorded (decision 9)'
                          if e == 'N01' else 'a supplier template checked against a real builder file' if e == 'E20'
                          else 'the setup question through the intake, versioned and approved where the register requires it'})
+# the severity grading levels, a setting the owner decided on 2026-11-12, with its own row (GPT's check of revision 4); the other settings
+# rows group the keys one contract row names (for example instruction_types and min_age_days)
+rows.append({'record kind': 'setting', 'field': 'severity grading levels per grade: a dollar amount, a percentage of the job, or both, the grade applying when either is reached',
+             'read by': 'every detection rule; every M6 figure and rule', 'entity': 'N01 ' + NAME['N01'], 'ways in and status (register)': PATHS['N01'],
+             'built today (exists or partly)': ' '.join(sorted(_built(w) for w in PATHS['N01'].split('; ') if w.split(' ')[-1] in ('exists', 'partly'))) or 'none',
+             'material in the intake specs (a proxy for S04 s12; a lower bound)': 'no',
+             'verification route of each way in (design)': 'S: set by the builder at setup, with no suggested levels (owner, 2026-11-12); how it is approved is settled in the Section 18 assessment',
+             'source authority today': 'not applicable: a setting is approved, not sourced',
+             'verification today': 'dollar bands only, held in the detection policy (det/policy.py severity_of) and applied whether or not the policy is approved (DC-11); no builder setup question',
+             'release A must still add (PG-DS-AC-12)': 'the builder\'s setup question; the percentage-of-the-job basis is new design and new code'})
 with open('FIELD_SUPPLY_ROUTES.csv', 'w', newline='') as fh:
     w = csv.DictWriter(fh, fieldnames=list(rows[0]), lineterminator='\n'); w.writeheader(); w.writerows(rows)
 M = 'material in the intake specs (a proxy for S04 s12; a lower bound)'

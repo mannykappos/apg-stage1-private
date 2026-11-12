@@ -2,6 +2,7 @@ rule or figure,reads records,entities,minimum way in not fully built,not through
 every M4 figure,yes,E90,E90 setup question partly,-,-,-,A
 every reference-intake record,yes,E03 E20 N01,E03 setup question proposed; N01 setup question partly,E03,yes,-,A
 every detection rule,yes,N01,N01 setup question partly,-,yes,-,A
+every project-scoped detection and M6 rule,yes,E07,-,E07,-,-,A
 every M6 figure and rule,yes,N01,N01 setup question partly,-,yes,-,A
 every M4 figure,yes,E07,-,E07,-,-,A
 M4 actual cost,yes,E23 E90,E90 setup question partly,-,-,cost_scope,A
