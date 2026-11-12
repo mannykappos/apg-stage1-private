@@ -219,3 +219,12 @@ review pack); everything after that is restated here from the conversation recor
   MPD1 use only the records certain to belong to the project (fin/snap.py Facts.of_project); a record whose project cannot be told is
   neither assessed nor listed by them. Put to the owner. Also decided by the owner since the last entry: DC-12 (amendments on skipped orders
   listed and labelled on hold, never added to a figure until confirmed).
+- 2026-11-13 08:36 The detached m2s_313 run (started 20:05:05) stopped overnight with no end line; its last temp-file write was 20:29:02,
+  three minutes after the session's last reply (20:26), and the container was found freshly restarted at 08:35. A detached process does not
+  outlive an idle session. Partial console moved to ev5/interrupted/m2s_313_idle, temp folder removed, no .done mark; m2s_313 relaunched
+  detached from the start at 08:36:08, with a background waiter kept running beside it so the session stays active, renewed each time it
+  ends (renewed 10:36). No result was produced, so nothing wrong was recorded; about 12 hours of elapsed time lost (one run of about 3.5 h).
+- 2026-11-13 DC-13 decided by the owner (listed as not checked, naming the jobs the copies disagree on, with what to do). Its scope, widened
+  after GPT's re-check of the data readiness revision 4: the M6 project rules that match orders by project (MP02, MP03, MP04, MP05, MP09)
+  also drop an order whose project cannot be told, unlisted; MPD1 does not list purchase orders. No code change; stage 1 continues on
+  freeze ee1ce3ec.
