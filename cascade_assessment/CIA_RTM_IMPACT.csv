@@ -1,0 +1,798 @@
+change item,section,RTM ID or source anchor,relation,text begins
+C16,01,APG-S01-L0089,insertion point (text added after it; its own wording unchanged),"Backup, restore and recovery procedures."
+"C07, C08",02,S02 table 3 row 25 (no RTM row),insertion point (text added after it; its own wording unchanged),PG-FR-025 | Support finance-controller review and appropriate segregation of duties for material financial app
+C01,02,S02 table 3 row 25 (no RTM row),insertion point (text added after it; its own wording unchanged),PG-FR-025 | Support finance-controller review and appropriate segregation of duties for material financial app
+C05,03,S03 table 1 row 20 (no RTM row),insertion point (text added after it; its own wording unchanged),Outcome record | Evidence of the realised financial or operational result following an action.
+"C05, C06",03,APG-S03-C0012,insertion point (text added after it; its own wording unchanged),Use existing Anchor primitives where suitable. Do not create duplicate canonical entities solely because Profi
+C20,03,S03 table 2 row 14 (no RTM row),insertion point (text added after it; its own wording unchanged),schema_version | Version of the canonical representation where needed.
+C13,03,APG-S03-L0072,insertion point (text added after it; its own wording unchanged),Verified cost savings.
+C07,04,APG-S04-L0122,insertion point (text added after it; its own wording unchanged),Keep data-quality warnings visible and traceable to the affected calculation or recommendation.
+C09,04,APG-S04-L0122,insertion point (text added after it; its own wording unchanged),Keep data-quality warnings visible and traceable to the affected calculation or recommendation.
+C08,04,APG-S04-L0122,insertion point (text added after it; its own wording unchanged),Keep data-quality warnings visible and traceable to the affected calculation or recommendation.
+C01,04,APG-S04-L0148,insertion point (text added after it; its own wording unchanged),Manual entry must not be a bypass around approval or audit requirements.
+C20,04,APG-S04-L0148,insertion point (text added after it; its own wording unchanged),Manual entry must not be a bypass around approval or audit requirements.
+C03,04,APG-S04-L0148,insertion point (text added after it; its own wording unchanged),Manual entry must not be a bypass around approval or audit requirements.
+C19,04,APG-S04-L0148,insertion point (text added after it; its own wording unchanged),Manual entry must not be a bypass around approval or audit requirements.
+C15,04,APG-S04-L0148,insertion point (text added after it; its own wording unchanged),Manual entry must not be a bypass around approval or audit requirements.
+C04,04,APG-S04-L0148,insertion point (text added after it; its own wording unchanged),Manual entry must not be a bypass around approval or audit requirements.
+C01,04,PG-DI-AC-18,insertion point (text added after it; its own wording unchanged),PG-DI-AC-18: The baseline test and evidence reports distinguish specification acceptance from proof of live im
+C20,04,PG-DI-AC-18,insertion point (text added after it; its own wording unchanged),PG-DI-AC-18: The baseline test and evidence reports distinguish specification acceptance from proof of live im
+C04,04,PG-DI-AC-18,insertion point (text added after it; its own wording unchanged),PG-DI-AC-18: The baseline test and evidence reports distinguish specification acceptance from proof of live im
+C03,04,PG-DI-AC-18,insertion point (text added after it; its own wording unchanged),PG-DI-AC-18: The baseline test and evidence reports distinguish specification acceptance from proof of live im
+C07,04,PG-DI-AC-18,insertion point (text added after it; its own wording unchanged),PG-DI-AC-18: The baseline test and evidence reports distinguish specification acceptance from proof of live im
+C06,04,PG-DI-AC-18,insertion point (text added after it; its own wording unchanged),PG-DI-AC-18: The baseline test and evidence reports distinguish specification acceptance from proof of live im
+C08,04,PG-DI-AC-18,insertion point (text added after it; its own wording unchanged),PG-DI-AC-18: The baseline test and evidence reports distinguish specification acceptance from proof of live im
+C02,04,APG-S04-L0175,insertion point (text added after it; its own wording unchanged),"Do not claim an integration, security control or acceptance criterion passed without reproducible evidence."
+"C06, C21",04,APG-S04-L0175,insertion point (text added after it; its own wording unchanged),"Do not claim an integration, security control or acceptance criterion passed without reproducible evidence."
+C14,05,APG-S05-L0034,insertion point (text added after it; its own wording unchanged),A commitment is not automatically an additional cost on top of a forecast; determine whether it is already rep
+C13,05,APG-S05-L0089,insertion point (text added after it; its own wording unchanged),Keep unresolved differences visible; do not force them into a clean-looking total.
+C10,06,APG-S06-C0040,insertion point (text added after it; its own wording unchanged),"Each rule requires a stable identifier, version, purpose, inputs, evaluation logic, thresholds, exceptions, se"
+C11,06,APG-S06-C0087,insertion point (text added after it; its own wording unchanged),"Keep severity, urgency and confidence separate. A high-severity finding with weak evidence warrants careful ve"
+C13,11,S11 paragraph 52 (no RTM row),insertion point (text added after it; its own wording unchanged),"Disputed/rejected amount: Value subject to dispute, rejection or unresolved review."
+C13,11,APG-S11-C0055,insertion point (text added after it; its own wording unchanged),"Potential, estimated, submitted, approved/certified, recognised, invoiced and collected values must remain dis"
+C01,04,APG-S04-H0021,"dependent: reviewed, no text change (every way in uses these stages and controls)",3. Logical ingestion pipeline
+C01,04,APG-S04-C0022,"dependent: reviewed, no text change (every way in uses these stages and controls)","The implementation must provide the following logical stages, mapping each stage to existing Anchor/AUIF conve"
+C01,04,APG-S04-L0023,"dependent: reviewed, no text change (every way in uses these stages and controls)",Source registration and connector authentication/authorisation.
+C01,04,APG-S04-L0024,"dependent: reviewed, no text change (every way in uses these stages and controls)","Receive and identify the source message, document, record or batch."
+C01,04,APG-S04-L0025,"dependent: reviewed, no text change (every way in uses these stages and controls)",Idempotency and duplicate checks.
+C01,04,APG-S04-L0026,"dependent: reviewed, no text change (every way in uses these stages and controls)",Transport/security and structural validation.
+C01,04,APG-S04-L0027,"dependent: reviewed, no text change (every way in uses these stages and controls)","Preserve the original source payload or durable evidence reference, source identifiers and provenance."
+C01,04,APG-S04-L0028,"dependent: reviewed, no text change (every way in uses these stages and controls)","Canonical mapping and normalisation with explicit units, currencies, tax treatment and time semantics."
+C01,04,APG-S04-L0029,"dependent: reviewed, no text change (every way in uses these stages and controls)",Entity matching and reconciliation against related records.
+C01,04,APG-S04-L0030,"dependent: reviewed, no text change (every way in uses these stages and controls)","Classify outcome as accepted, accepted with warnings, pending reconciliation, quarantined or rejected, subject"
+C01,04,APG-S04-L0031,"dependent: reviewed, no text change (every way in uses these stages and controls)",Publish a governed canonical change and associated event only when allowed by the applicable rules.
+C01,04,APG-S04-L0032,"dependent: reviewed, no text change (every way in uses these stages and controls)","Record downstream processing status, errors, retries, replay and final disposition."
+C01,04,APG-S04-H0055,"dependent: reviewed, no text change (every way in uses these stages and controls)","6. Authentication, authorisation and source trust"
+C01,04,APG-S04-L0056,"dependent: reviewed, no text change (every way in uses these stages and controls)",Authenticate sources and authorise access using least privilege and tenant-scoped permissions.
+C01,04,APG-S04-L0057,"dependent: reviewed, no text change (every way in uses these stages and controls)","Validate tenant, organisation, project and entity scope on every ingestion path, including asynchronous worker"
+C01,04,APG-S04-L0058,"dependent: reviewed, no text change (every way in uses these stages and controls)",Do not trust payload-supplied tenant or organisation identifiers without validating them against the authentic
+C01,04,APG-S04-L0059,"dependent: reviewed, no text change (every way in uses these stages and controls)",Record the source identity and trust level; trust must be field/domain-specific rather than a blanket assumpti
+C01,04,APG-S04-L0060,"dependent: reviewed, no text change (every way in uses these stages and controls)",Protect secrets and sensitive payloads according to discovered platform security and retention conventions.
+C01,04,APG-S04-H0067,"dependent: reviewed, no text change (every way in uses these stages and controls)",8. Validation layers and outcomes
+C01,04,APG-S04-L0068,"dependent: reviewed, no text change (every way in uses these stages and controls)","Transport/security validation: authentication, authorisation, tenant scope, payload integrity and permitted si"
+C01,04,APG-S04-L0069,"dependent: reviewed, no text change (every way in uses these stages and controls)","Structural validation: schema, required fields, data types, identifier formats and supported versions."
+C01,04,APG-S04-L0070,"dependent: reviewed, no text change (every way in uses these stages and controls)","Semantic validation: units, currencies, sign conventions, dates, tax fields, project/entity scope and domain c"
+C01,04,APG-S04-L0071,"dependent: reviewed, no text change (every way in uses these stages and controls)","Reconciliation validation: relationships and consistency with purchase orders, invoices, credits, contracts, v"
+C01,04,APG-S04-L0072,"dependent: reviewed, no text change (every way in uses these stages and controls)",Outcome classification: accepted; accepted with warnings; pending reconciliation; quarantined; rejected. Map t
+C01,04,APG-S04-C0073,"dependent: reviewed, no text change (every way in uses these stages and controls)","Quarantine is mandatory where a record is materially ambiguous, conflicting, suspicious, incomplete, or fails "
+C01,04,APG-S04-H0074,"dependent: reviewed, no text change (every way in uses these stages and controls)",9. Quarantine versus provisional use — mandatory isolation
+C01,04,APG-S04-C0075,"dependent: reviewed, no text change (every way in uses these stages and controls)",Ambiguous or conflicting financial records must be excluded from authoritative financial calculations. They mu
+C01,04,APG-S04-L0076,"dependent: reviewed, no text change (every way in uses these stages and controls)",Authoritative views must never silently consume quarantined or provisional records.
+C01,04,APG-S04-L0077,"dependent: reviewed, no text change (every way in uses these stages and controls)","Provisional views must identify the affected figures, unverified records, unresolved conflicts, assumptions an"
+C01,04,APG-S04-L0078,"dependent: reviewed, no text change (every way in uses these stages and controls)",Users must be able to compare authoritative and provisional outcomes without confusing their status.
+C01,04,APG-S04-L0079,"dependent: reviewed, no text change (every way in uses these stages and controls)","Promotion from quarantine/provisional to authoritative requires resolution of the blocking issue, required app"
+C01,04,APG-S04-L0080,"dependent: reviewed, no text change (every way in uses these stages and controls)","A reviewer must be able to accept, correct, reject, merge or retain a conflict for further investigation where"
+C01,04,APG-S04-L0081,"dependent: reviewed, no text change (every way in uses these stages and controls)",Promotion must not create duplicate financial effects or erase the original source evidence and previous decis
+C01,04,APG-S04-H0130,"dependent: reviewed, no text change (every way in uses these stages and controls)",16. Tenant isolation and security boundary
+C01,04,APG-S04-C0131,"dependent: reviewed, no text change (every way in uses these stages and controls)","Tenant isolation applies to the full data lifecycle: credentials, connector configuration, inbound payloads, o"
+C01,04,APG-S04-C0132,"dependent: reviewed, no text change (every way in uses these stages and controls)",A demonstrated tenant-isolation defect blocks release of Profit Guardian into any environment that exposes the
+C01,04,APG-S04-H0133,"dependent: reviewed, no text change (every way in uses these stages and controls)",17. Operational observability and audit trail
+C01,04,APG-S04-L0135,"dependent: reviewed, no text change (every way in uses these stages and controls)","Source, tenant, organisation, project and source record identifiers."
+C01,04,APG-S04-L0136,"dependent: reviewed, no text change (every way in uses these stages and controls)","Receipt time, source/effective time, payload hash or durable evidence reference, and schema/mapping versions."
+C01,04,APG-S04-L0137,"dependent: reviewed, no text change (every way in uses these stages and controls)","Validation results, warnings, duplicate decisions, entity matches and reconciliation status."
+C01,04,APG-S04-L0138,"dependent: reviewed, no text change (every way in uses these stages and controls)",Authority rule applied and relevant register version.
+C01,04,APG-S04-L0139,"dependent: reviewed, no text change (every way in uses these stages and controls)","Quarantine reason, reviewer actions, corrections, approvals and final disposition."
+C01,04,APG-S04-L0140,"dependent: reviewed, no text change (every way in uses these stages and controls)","Canonical changes/events produced, downstream processing results and retry/replay history."
+C01,04,APG-S04-L0141,"dependent: reviewed, no text change (every way in uses these stages and controls)","Errors, latency, backlog, freshness, failure rates and operational alerts."
+C01,04,APG-S04-C0142,"dependent: reviewed, no text change (every way in uses these stages and controls)","Logs must avoid unnecessary sensitive payload exposure and must follow the discovered platform's access, reten"
+C01,04,APG-S04-H0143,"dependent: reviewed, no text change (every way in uses these stages and controls)",18. Manual uploads and controlled entry
+C01,04,APG-S04-L0144,"dependent: reviewed, no text change (every way in uses these stages and controls)","Manual uploads must pass the same tenant, schema, validation, provenance, reconciliation and authority control"
+C01,04,APG-S04-L0145,"dependent: reviewed, no text change (every way in uses these stages and controls)","Record uploader, upload time, source description, project scope, file identity/hash where feasible, and any ma"
+C01,04,APG-S04-L0146,"dependent: reviewed, no text change (every way in uses these stages and controls)","Apply file-type, size, malware and content-handling controls according to platform security standards."
+C01,04,APG-S04-L0147,"dependent: reviewed, no text change (every way in uses these stages and controls)","Spreadsheet imports must define column mapping, units, currency, date interpretation, duplicate policy and row"
+C01,04,APG-S04-L0148,"dependent: reviewed, no text change (every way in uses these stages and controls)",Manual entry must not be a bypass around approval or audit requirements.
+C01,02,APG-S02-H0034,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",4. Core user workflows
+C01,02,APG-S02-H0035,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Workflow A — Connect and establish the project baseline
+C01,02,APG-S02-L0036,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Connect authorised data sources.
+C01,02,APG-S02-L0037,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Validate and normalise incoming records.
+C01,02,APG-S02-L0038,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Reconcile records against canonical project and business entities.
+C01,02,APG-S02-L0039,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Flag missing, contradictory, stale or low-quality data for correction."
+C01,02,APG-S02-L0040,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Establish a verified baseline when required data quality thresholds are met.
+C01,02,APG-S02-L0041,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Calculate the current financial position using versioned deterministic logic.
+C01,02,APG-S02-L0042,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Activate monitoring and expose any known coverage limitations.
+C01,02,APG-S02-C0043,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","The baseline must distinguish approved budgets, estimates, actual costs, commitments, forecasts and scenarios."
+C01,02,APG-S02-H0044,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Workflow B — Detect leakage and create an actionable finding
+C01,02,APG-S02-L0045,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Process a source event or scheduled refresh.
+C01,02,APG-S02-L0046,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Validate evidence, provenance and freshness."
+C01,02,APG-S02-L0047,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Evaluate relevant financial and operational rules.
+C01,02,APG-S02-L0048,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Determine whether a material issue or opportunity exists.
+C01,02,APG-S02-L0049,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Calculate potential impact and uncertainty where inputs permit.
+C01,02,APG-S02-L0050,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Check for duplicate or related findings sharing the same underlying exposure.
+C01,02,APG-S02-L0051,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Prioritise the finding and assign an authorised owner.
+C01,02,APG-S02-L0052,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Notify the appropriate user and preserve the evidence trail.
+C01,02,APG-S02-C0053,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",The system should detect issues before they become final losses wherever available data permits. It must also 
+C01,02,APG-S02-H0054,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Workflow C — Evaluate a profit-improvement opportunity
+C01,02,APG-S02-L0055,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Identify the opportunity and supporting evidence.
+C01,02,APG-S02-L0056,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Establish the current baseline and relevant constraints.
+C01,02,APG-S02-L0057,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Calculate estimated gross benefit, implementation cost and net benefit."
+C01,02,APG-S02-L0058,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Identify uncertainty, timing, dependencies and downside risk."
+C01,02,APG-S02-L0059,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Compare realistic alternatives.
+C01,02,APG-S02-L0060,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Recommend an action and specify the required approver.
+C01,02,APG-S02-L0061,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Record the decision and the baseline used.
+C01,02,APG-S02-L0062,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Track execution and measure the realised outcome.
+C01,02,APG-S02-C0063,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Do not report the same benefit as both avoided cost and realised savings, or count a cost reduction twice thro"
+C01,02,APG-S02-H0064,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Workflow D — Materials purchase timing
+C01,02,APG-S02-L0065,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Identify the required material, specification, quantity and required-on-site date."
+C01,02,APG-S02-L0066,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Compare project demand with ordered, delivered, consumed, returned, damaged, wasted and remaining quantities w"
+C01,02,APG-S02-L0067,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Retrieve available supplier quotations and supported market signals.
+C01,02,APG-S02-L0068,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Normalise comparable prices and calculate landed cost where relevant.
+C01,02,APG-S02-L0069,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Compare buy-now, wait, staged-purchase and negotiation scenarios."
+C01,02,APG-S02-L0070,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Account for lead time, quote expiry, schedule risk, storage, financing, availability and specification."
+C01,02,APG-S02-L0071,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Present a recommendation with assumptions and a break-even threshold where calculable.
+C01,02,APG-S02-L0072,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Obtain authorised human approval before placing an order.
+C01,02,APG-S02-L0073,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Compare the eventual purchase and delivery outcome with the original recommendation.
+C01,02,APG-S02-H0075,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Workflow E — Delay and holding-cost exposure
+C01,02,APG-S02-L0076,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Detect a schedule deviation or emerging delay risk from available evidence.
+C01,02,APG-S02-L0077,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Identify affected milestones and dependent work.
+C01,02,APG-S02-L0078,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Estimate incremental time-related costs.
+C01,02,APG-S02-L0079,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Separate observed costs from modelled exposure.
+C01,02,APG-S02-L0080,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Identify feasible mitigation options and their costs.
+C01,02,APG-S02-L0081,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Compare the expected net effect of each option.
+C01,02,APG-S02-L0082,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Assign the action to an authorised owner.
+C01,02,APG-S02-L0083,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Monitor the schedule and update the estimate as evidence changes.
+C01,02,APG-S02-L0084,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Compare forecast exposure with actual outcomes.
+C01,02,APG-S02-C0085,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Do not automatically attribute delay to a party or assert a contractual entitlement without supporting evidenc
+C01,02,APG-S02-H0086,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Workflow F — Retentions, security and post-completion"
+C01,02,APG-S02-L0087,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Record practical completion and relevant documented contractual milestones.
+C01,02,APG-S02-L0088,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Track retention balances and their evidenced status.
+C01,02,APG-S02-L0089,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Register applicable security instruments, costs, expiry dates and release conditions."
+C01,02,APG-S02-L0090,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Track defects, responsible parties, rectification costs and maintenance periods."
+C01,02,APG-S02-L0091,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Link open defects to relevant retention or security conditions where evidence supports the relationship.
+C01,02,APG-S02-L0092,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Highlight approaching dates, blocked releases, unresolved closeout items and capital remaining tied up."
+C01,02,APG-S02-L0093,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Recommend evidence gathering, follow-up or review by an authorised person."
+C01,02,APG-S02-L0094,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Track release, recovery, rectification and final closure."
+C01,02,APG-S02-L0095,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Reconcile the final financial outcome without counting a single underlying exposure multiple times.
+C01,02,APG-S02-C0096,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Monitoring must continue after practical completion until relevant obligations are closed, explicitly transfer"
+C01,02,APG-S02-H0097,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Workflow G — Subcontractor and trade compliance exposure
+C01,02,APG-S02-L0098,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Identify subcontractors and trades associated with projects, scopes and active work."
+C01,02,APG-S02-L0099,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Record available licensing, insurance, safety accreditation and relevant statutory or industrial compliance ev"
+C01,02,APG-S02-L0100,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Flag missing, expired, conflicting or unverified evidence without falsely declaring legal non-compliance where"
+C01,02,APG-S02-L0101,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Assess documented operational and financial consequences, such as possible work interruption, replacement cost"
+C01,02,APG-S02-L0102,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Assign the issue to an authorised compliance, commercial or project owner for verification and action."
+C01,02,APG-S02-L0103,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Track evidence refresh, human decisions and the resulting operational or financial outcome."
+C01,02,APG-S02-H0105,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Workflow H — Validate realised benefit
+C01,02,APG-S02-L0106,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Original estimate and assumptions.
+C01,02,APG-S02-L0107,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Approved action and decision date.
+C01,02,APG-S02-L0108,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Execution evidence.
+C01,02,APG-S02-L0109,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Actual financial result.
+C01,02,APG-S02-L0110,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Difference between estimated and realised benefit.
+C01,02,APG-S02-L0111,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))",Reasons for material differences.
+C01,02,APG-S02-L0112,"dependent: reviewed, no text change (workflow A (connect, validate, reconcile, flag gaps))","Outcome classification: realised, partially realised, avoided, reversed or unverified."
+C01,15,APG-S15-H0028,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","15.3 Identity, authentication and session security"
+C01,15,APG-S15-C0029,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",The platform must establish the identity of users and authorised service actors before granting protected acce
+C01,15,APG-S15-L0030,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Secure authentication and session management using the approved identity architecture.
+C01,15,APG-S15-L0031,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Secure password handling where passwords are supported.
+C01,15,APG-S15-L0032,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Appropriate multi-factor authentication for privileged or otherwise high-risk access, according to approved po"
+C01,15,APG-S15-L0033,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Session expiry, revocation and reauthentication controls appropriate to risk."
+C01,15,APG-S15-L0034,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Protection against credential theft, session fixation, brute-force attempts and account enumeration."
+C01,15,APG-S15-L0035,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Secure account recovery and controlled administrator-assisted recovery.
+C01,15,APG-S15-L0036,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Distinct identities for human users, integrations, service accounts and automated processes."
+C01,15,APG-S15-L0037,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Explicit treatment of disabled, suspended, expired or revoked identities."
+C01,15,APG-S15-L0038,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Secure management of authentication secrets, signing keys and service credentials."
+C01,15,APG-S15-H0040,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",15.4 Authorisation and least privilege
+C01,15,APG-S15-C0041,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Authorisation must be enforced by trusted backend services and data-access boundaries. Hiding a button or rest
+C01,15,APG-S15-L0042,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Organisation and tenant membership.
+C01,15,APG-S15-L0043,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Project-level access and role-based permissions.
+C01,15,APG-S15-L0044,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Resource-specific restrictions where needed.
+C01,15,APG-S15-L0045,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Distinct read, create, update, approve, export and administer permissions."
+C01,15,APG-S15-L0046,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Restricted access to financial, commercial, workforce and sensitive evidence records."
+C01,15,APG-S15-L0047,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Separate approval authority for consequential actions.
+C01,15,APG-S15-L0048,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Explicit permissions for integrations and automated workflows.
+C01,15,APG-S15-L0049,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Time-bounded or revocable privileged access where appropriate.
+C01,15,APG-S15-C0050,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Permissions must be checked on every relevant request and action. The system must fail closed when required au
+C01,15,APG-S15-H0051,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",15.5 Tenant isolation and cross-tenant protection
+C01,15,APG-S15-C0052,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Tenant isolation is a foundational security requirement. The platform must prevent one customer organisation f
+C01,15,APG-S15-L0053,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Projects, entities and operational records."
+C01,15,APG-S15-L0054,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Financial calculations, forecasts and scenarios."
+C01,15,APG-S15-L0055,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Contracts, invoices, claims, quotes and supplier records."
+C01,15,APG-S15-L0056,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Defect records, workforce information and quality evidence."
+C01,15,APG-S15-L0057,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Documents, uploaded files, generated reports and exports."
+C01,15,APG-S15-L0058,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","AI conversation context, retrieval results, embeddings and memory."
+C01,15,APG-S15-L0059,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Notifications, audit records and integration credentials."
+C01,15,APG-S15-L0060,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Cached data, background-job payloads and derived analytical outputs."
+C01,15,APG-S15-C0061,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Isolation must be enforced across database queries, APIs, search and retrieval, background processing, file st"
+C01,15,APG-S15-C0062,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Tenant identifiers supplied by a client must not be trusted as proof of access. The backend must independently
+C01,15,APG-S15-C0063,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Testing must include attempts to access another tenant's resources by changing identifiers, replaying requests"
+C01,15,APG-S15-C0064,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Cross-tenant learning or benchmarking must not occur merely because data is available. Any future shared-learn
+C01,15,APG-S15-H0115,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",15.10 Integration and external-system security
+C01,15,APG-S15-L0116,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Approved authentication and credential-handling mechanisms.
+C01,15,APG-S15-L0117,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Explicit scopes and minimum permissions for each integration.
+C01,15,APG-S15-L0118,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Validation of inbound payloads, signatures and source identity where supported."
+C01,15,APG-S15-L0119,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Validation and normalisation before data enters authoritative workflows.
+C01,15,APG-S15-L0120,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Protection against replay, duplicate delivery and malicious payloads where relevant."
+C01,15,APG-S15-L0121,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)","Rate limits, timeouts, retry policies and controlled failure handling."
+C01,15,APG-S15-L0122,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Separation of inbound observations from authorised outbound effects.
+C01,15,APG-S15-L0123,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Audit records for material inbound and outbound operations.
+C01,15,APG-S15-L0124,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Credential revocation and incident procedures for compromised integrations.
+C01,15,APG-S15-L0125,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Human approval for consequential actions as required by locked domain specifications.
+C01,15,APG-S15-C0126,"dependent: reviewed, no text change (identity, authorisation, tenant isolation and integration security on each new channel)",Integration access must not grant broader authority than intended. Preserve governance rules of the Anchor eng
+C01,16,APG-S16-H0072,"dependent: reviewed, no text change (integration degradation: a stopped feed falls back to its file)",9. Integration Degradation and Recovery
+C01,16,APG-S16-L0074,"dependent: reviewed, no text change (integration degradation: a stopped feed falls back to its file)","Record the affected source, last successful sync, failure class, retry schedule, missing coverage and required"
+C01,16,APG-S16-L0075,"dependent: reviewed, no text change (integration degradation: a stopped feed falls back to its file)","Do not interpret a failed or partial sync as proof that there are no new transactions, changes, risks or oblig"
+C01,16,APG-S16-L0076,"dependent: reviewed, no text change (integration degradation: a stopped feed falls back to its file)","Keep unaffected capabilities available where safe, while qualifying results that depend on the unavailable int"
+C01,16,APG-S16-L0077,"dependent: reviewed, no text change (integration degradation: a stopped feed falls back to its file)",Credential renewal and access restoration must follow least privilege and must not expose secrets in logs or u
+C01,16,APG-S16-L0078,"dependent: reviewed, no text change (integration degradation: a stopped feed falls back to its file)","After recovery, perform controlled catch-up and reconciliation with duplicate and out-of-order handling before"
+C01,16,APG-S16-L0079,"dependent: reviewed, no text change (integration degradation: a stopped feed falls back to its file)",External systems remain authoritative for their own transaction outcomes where applicable; local connector sta
+C02,04,APG-S04-H0045,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)",5. Source authority register — mandatory field-level precedence
+C02,04,APG-S04-C0046,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)","Before a source can update an authoritative financial or contractual fact, a formally approved Source Authorit"
+C02,04,APG-S04-L0047,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)","Record the field/fact, domain/entity, authoritative source, permitted secondary sources, precedence rule, effe"
+C02,04,APG-S04-L0048,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)","Define how revisions, cancellations, late-arriving records and corrections are handled."
+C02,04,APG-S04-L0049,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)","Define whether a field is source-owned, derived deterministically, human-approved, or provisional."
+C02,04,APG-S04-L0050,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)",Define conflict outcomes and the role authorised to resolve each material conflict.
+C02,04,APG-S04-L0051,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)","Use field-level precedence where appropriate—for example, posted actual payments may be governed by an account"
+C02,04,APG-S04-L0052,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)","Do not treat the newest timestamp as automatically correct; apply source authority, revision lineage, effectiv"
+C02,04,APG-S04-L0053,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)","Changes to the register must be versioned, approved and auditable. Historical records must retain the authorit"
+C02,04,APG-S04-H0090,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)",11. Entity resolution and reconciliation
+C02,04,APG-S04-C0091,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)","Resolve incoming records against canonical projects, organisations, suppliers, subcontractors, contracts, purc"
+C02,04,APG-S04-L0092,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)","Invoice-to-PO matching, including partial invoices, multiple deliveries, price/quantity variance and unapprove"
+C02,04,APG-S04-L0093,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)","Credits, reversals, replacement invoices and amended purchase orders, preserving lineage."
+C02,04,APG-S04-L0094,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)",Invoice received before its PO or commitment is visible: do not discard it or fabricate a match; hold and reco
+C02,04,APG-S04-L0095,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)","Supplier aliases, legal-entity differences, project/cost-code mismatches and duplicate candidates."
+C02,04,APG-S04-L0096,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)","Retention amount/rate conflicts, security expiry/release discrepancies and DLP/defect links."
+C02,04,APG-S04-L0097,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)",Programme revision conflicts and late-arriving progress or delay evidence.
+C02,04,APG-S04-L0098,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)","Material specification, grade, unit, quantity and substitution mismatches."
+C02,04,APG-S04-L0099,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)","Partial, missing or inconsistent records where reconciliation cannot be completed automatically."
+C02,04,APG-S04-C0100,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)",Reconciliation outcomes must be explicit and auditable. The system must distinguish a genuine mismatch from a 
+C02,04,APG-S04-H0110,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)","13. Source revisions, conflicts and corrections"
+C02,04,APG-S04-L0111,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)","Maintain source revision/version, received time, effective time where available, and relationship to supersede"
+C02,04,APG-S04-L0112,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)",Apply the approved field-level Source Authority Register and do not resolve conflict using recency alone.
+C02,04,APG-S04-L0113,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)",Preserve prior values and decisions in the audit trail; corrections must be represented as governed changes ra
+C02,04,APG-S04-L0114,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)",Route unresolved material conflicts to authorised review and prevent them from changing authoritative financia
+C02,04,APG-S04-L0115,"dependent: reviewed, no text change (authority, entity resolution and corrections applied to the 24 kinds that today skip them)",Define a documented correction/replay path when an upstream source corrects a previously accepted record.
+C02,05,APG-S05-H0120,"dependent: reviewed, no text change (reproducibility: the regression baseline and explained differences)",13. Reproducibility and immutable calculation versioning — mandatory
+C02,05,APG-S05-C0121,"dependent: reviewed, no text change (reproducibility: the regression baseline and explained differences)",Every material calculation must preserve its formula/rule version and an immutable input snapshot or equivalen
+C02,05,APG-S05-L0122,"dependent: reviewed, no text change (reproducibility: the regression baseline and explained differences)","Record calculation ID/type, project/entity/reporting period and as-of time."
+C02,05,APG-S05-L0123,"dependent: reviewed, no text change (reproducibility: the regression baseline and explained differences)","Preserve input record identities, immutable versions or snapshot references, source authority/reconciliation s"
+C02,05,APG-S05-L0124,"dependent: reviewed, no text change (reproducibility: the regression baseline and explained differences)","Record formula/rule version, currency, units, tax and rounding policy, assumptions, exclusions and calculation"
+C02,05,APG-S05-L0125,"dependent: reviewed, no text change (reproducibility: the regression baseline and explained differences)","Record result, quality status, prior result/version, recalculation reason and downstream use."
+C02,05,APG-S05-L0126,"dependent: reviewed, no text change (reproducibility: the regression baseline and explained differences)",Distinguish changed inputs from changed rules and explicit corrections.
+C02,05,APG-S05-L0127,"dependent: reviewed, no text change (reproducibility: the regression baseline and explained differences)","Define retention, access and integrity controls for snapshots/references consistent with platform security and"
+C02,05,APG-S05-L0128,"dependent: reviewed, no text change (reproducibility: the regression baseline and explained differences)","Verify historical replay/reconstruction using the recorded versions, without silently rewriting the originally"
+C02,05,APG-S05-C0129,"dependent: reviewed, no text change (reproducibility: the regression baseline and explained differences)",Historical results must not drift silently when an underlying record or formula changes.
+C02,14,APG-S14-H0162,"dependent: reviewed, no text change (change control and regression protection)",14.13 Change control and regression protection
+C02,14,APG-S14-C0163,"dependent: reviewed, no text change (change control and regression protection)",Changes to locked requirements require controlled amendment rather than silent implementation drift. Each prop
+C02,14,APG-S14-L0164,"dependent: reviewed, no text change (change control and regression protection)",Why the change is necessary.
+C02,14,APG-S14-L0165,"dependent: reviewed, no text change (change control and regression protection)",Affected locked requirements.
+C02,14,APG-S14-L0166,"dependent: reviewed, no text change (change control and regression protection)","Financial, safety, contractual, privacy and architectural implications."
+C02,14,APG-S14-L0167,"dependent: reviewed, no text change (change control and regression protection)",Dependencies and affected jobs.
+C02,14,APG-S14-L0168,"dependent: reviewed, no text change (change control and regression protection)",Required specification and test changes.
+C02,14,APG-S14-L0169,"dependent: reviewed, no text change (change control and regression protection)",Approval decision and responsible reviewer.
+C02,14,APG-S14-L0170,"dependent: reviewed, no text change (change control and regression protection)",New version and historical record.
+C02,14,APG-S14-C0171,"dependent: reviewed, no text change (change control and regression protection)","Bug fixes that preserve requirements must document the defect, correction, regression test and evidence. No sh"
+C02,17,APG-S17-H0045,"dependent: reviewed, no text change (financial-core correctness, fixture control and replay tests on the migrated kinds)",5. Financial-Core Correctness and Immutable Fixtures
+C02,17,APG-S17-C0046,"dependent: reviewed, no text change (financial-core correctness, fixture control and replay tests on the migrated kinds)","Any change affecting financial formulas, cost allocation, rounding, tax treatment, currency conversion, margin"
+C02,17,APG-S17-L0047,"dependent: reviewed, no text change (financial-core correctness, fixture control and replay tests on the migrated kinds)","Maintain a controlled, versioned and immutable-in-use fixture set containing approved inputs, expected outputs"
+C02,17,APG-S17-L0048,"dependent: reviewed, no text change (financial-core correctness, fixture control and replay tests on the migrated kinds)","Test boundary values, negative/zero values where valid, missing values, precision and rounding boundaries, tax"
+C02,17,APG-S17-L0049,"dependent: reviewed, no text change (financial-core correctness, fixture control and replay tests on the migrated kinds)","Assert invariants and classifications, not just example totals: authoritative forecast remains distinct from s"
+C02,17,APG-S17-L0050,"dependent: reviewed, no text change (financial-core correctness, fixture control and replay tests on the migrated kinds)",Retain the formula/rule version and immutable input snapshot or equivalent reconstructable references for auth
+C02,17,APG-S17-L0051,"dependent: reviewed, no text change (financial-core correctness, fixture control and replay tests on the migrated kinds)",Run mutation testing against the financial core at an approved scope. Mutations must include meaningful arithm
+C02,17,APG-S17-L0052,"dependent: reviewed, no text change (financial-core correctness, fixture control and replay tests on the migrated kinds)","A non-reproducible result, unexplained fixture drift, or financial invariant failure blocks acceptance of the "
+C02,17,APG-S17-H0069,"dependent: reviewed, no text change (financial-core correctness, fixture control and replay tests on the migrated kinds)","8. Replay, Idempotency and Concurrency Test Harness"
+C02,17,APG-S17-L0071,"dependent: reviewed, no text change (financial-core correctness, fixture control and replay tests on the migrated kinds)","Cover duplicate webhooks, repeated file imports, retry after timeout, process restart, concurrent delivery, la"
+C02,17,APG-S17-L0072,"dependent: reviewed, no text change (financial-core correctness, fixture control and replay tests on the migrated kinds)","Assert exactly the permitted business effect, not merely that a handler returned success. Where exactly-once d"
+C02,17,APG-S17-L0073,"dependent: reviewed, no text change (financial-core correctness, fixture control and replay tests on the migrated kinds)",Test external success with lost acknowledgement: record an unknown outcome and reconcile against the external 
+C02,17,APG-S17-L0074,"dependent: reviewed, no text change (financial-core correctness, fixture control and replay tests on the migrated kinds)","Test out-of-order dependent events, such as an invoice arriving before its purchase order is reconciled. Hold,"
+C02,17,APG-S17-L0075,"dependent: reviewed, no text change (financial-core correctness, fixture control and replay tests on the migrated kinds)","Capture event IDs, idempotency keys, worker/concurrency configuration, state transitions, external outcome evi"
+C02,17,APG-S17-L0076,"dependent: reviewed, no text change (financial-core correctness, fixture control and replay tests on the migrated kinds)",Any demonstrated duplicate financial/contractual effect or unhandled concurrency invariant failure is release-
+C03,04,APG-S04-H0101,"dependent: reviewed, no text change (documents and extracted values)",12. AI-extracted documents — mandatory human verification for material facts
+C03,04,APG-S04-C0102,"dependent: reviewed, no text change (documents and extracted values)","AI/OCR-extracted values from invoices, contracts, supplier quotations, delivery dockets and other documents mu"
+C03,04,APG-S04-L0103,"dependent: reviewed, no text change (documents and extracted values)","Retain the original document or evidence reference, extraction output, model/tool version where available, ext"
+C03,04,APG-S04-L0104,"dependent: reviewed, no text change (documents and extracted values)","Identify extracted fields, page/region or source location where supported, and any unresolved ambiguity."
+C03,04,APG-S04-L0105,"dependent: reviewed, no text change (documents and extracted values)","Require verification for material values such as amounts, quantities, rates, tax, dates, contractual terms, re"
+C03,04,APG-S04-L0106,"dependent: reviewed, no text change (documents and extracted values)",Do not use model confidence alone as a substitute for human verification of material facts.
+C03,04,APG-S04-L0107,"dependent: reviewed, no text change (documents and extracted values)",Keep unverified extracted values in quarantine or clearly labelled provisional analysis.
+C03,04,APG-S04-L0108,"dependent: reviewed, no text change (documents and extracted values)","Record reviewer identity, timestamp, value confirmed or corrected, evidence considered and disposition."
+C03,04,APG-S04-L0109,"dependent: reviewed, no text change (documents and extracted values)","Non-material extraction may follow a separately defined risk-based policy, but may not bypass other validation"
+C03,15,APG-S15-H0102,"dependent: reviewed, no text change (AI and extraction trust boundary for document capture)",15.9 AI security and trust boundaries
+C03,15,APG-S15-L0104,"dependent: reviewed, no text change (AI and extraction trust boundary for document capture)",AI must not bypass backend authorisation or tenant isolation.
+C03,15,APG-S15-L0105,"dependent: reviewed, no text change (AI and extraction trust boundary for document capture)","Retrieved documents and external content are untrusted data, not instructions overriding system governance."
+C03,15,APG-S15-L0106,"dependent: reviewed, no text change (AI and extraction trust boundary for document capture)",Prompt injection and malicious instructions embedded in uploaded documents must be included in the threat mode
+C03,15,APG-S15-L0107,"dependent: reviewed, no text change (AI and extraction trust boundary for document capture)","AI outputs must not silently modify authoritative financial records, permissions, policies or approval states."
+C03,15,APG-S15-L0108,"dependent: reviewed, no text change (AI and extraction trust boundary for document capture)","AI-generated facts, classifications, root-cause hypotheses and extracted values must carry the verification st"
+C03,15,APG-S15-L0109,"dependent: reviewed, no text change (AI and extraction trust boundary for document capture)",Tools and integrations available to AI workflows must be restricted to minimum necessary capabilities.
+C03,15,APG-S15-L0110,"dependent: reviewed, no text change (AI and extraction trust boundary for document capture)",Consequential actions must pass deterministic policy checks and required human approval.
+C03,15,APG-S15-L0111,"dependent: reviewed, no text change (AI and extraction trust boundary for document capture)",AI requests and outputs must not expose confidential information across tenants or to unauthorised users.
+C03,15,APG-S15-L0112,"dependent: reviewed, no text change (AI and extraction trust boundary for document capture)","Model failures, unavailable services and low-confidence outputs must produce controlled failure or qualified r"
+C03,15,APG-S15-L0113,"dependent: reviewed, no text change (AI and extraction trust boundary for document capture)",AI logging and evaluation must avoid unnecessary retention of sensitive source content.
+C03,16,APG-S16-H0044,"dependent: reviewed, no text change (background processing and retries for email and upload intake)","6. Background Processing, Retries, Idempotency and Unknown Outcomes"
+C03,16,APG-S16-C0045,"dependent: reviewed, no text change (background processing and retries for email and upload intake)",Every material background operation must have explicit lifecycle states and durable enough tracking to identif
+C03,16,APG-S16-L0046,"dependent: reviewed, no text change (background processing and retries for email and upload intake)",Retries must be bounded and use an appropriate backoff and failure classification. Permanent validation or aut
+C03,16,APG-S16-L0047,"dependent: reviewed, no text change (background processing and retries for email and upload intake)","Idempotency keys, deduplication or an equivalent control must be applied wherever repeated delivery or executi"
+C03,16,APG-S16-L0048,"dependent: reviewed, no text change (background processing and retries for email and upload intake)","Webhook and event handling must account for duplicates, late arrival, out-of-order delivery and replay. The co"
+C03,16,APG-S16-L0049,"dependent: reviewed, no text change (background processing and retries for email and upload intake)","A timeout, lost connection or worker crash does not prove that an external operation failed. If an external ou"
+C03,16,APG-S16-L0050,"dependent: reviewed, no text change (background processing and retries for email and upload intake)","Do not automatically repeat a purchase order, payment-related instruction, external commitment, supplier chang"
+C03,16,APG-S16-L0051,"dependent: reviewed, no text change (background processing and retries for email and upload intake)","Dead-letter and intervention queues must have ownership, inspection, replay and closure controls. Replay must "
+C03,16,APG-S16-L0052,"dependent: reviewed, no text change (background processing and retries for email and upload intake)",Cancellation and timeout behaviour must be explicit. A local task stopping does not establish that an external
+C03,16,APG-S16-L0053,"dependent: reviewed, no text change (background processing and retries for email and upload intake)",Inspect the actual Anchor Universal Integration Framework (AUIF) and Governor contracts and implementation bef
+C04,04,APG-S04-H0034,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)",4. Source registry and connector contract
+C04,04,APG-S04-L0036,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)","Source system/provider, tenant and organisation scope, connector identity and environment."
+C04,04,APG-S04-L0037,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)","Data domains and fields supplied, expected direction of flow and source identifiers."
+C04,04,APG-S04-L0038,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)","Authentication method, permissions, secret-handling requirements and rotation/expiry controls."
+C04,04,APG-S04-L0039,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)","Transport mode, expected cadence, pagination/batch behaviour, rate limits and documented freshness."
+C04,04,APG-S04-L0040,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)","Schema/version information, mapping version and effective dates."
+C04,04,APG-S04-L0041,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)","Idempotency keys, duplicate policy, retry policy, backoff, dead-letter/error handling and replay capability."
+C04,04,APG-S04-L0042,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)","Known limitations, reliability characteristics, source authority by field, owner and escalation contact."
+C04,04,APG-S04-L0043,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)","Last successful receipt, last successful reconciliation, lag, error state and operational health."
+C04,04,APG-S04-C0044,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)","Connector implementation must use discovered Anchor Engine, Governor and AUIF contracts where appropriate. No "
+C04,04,APG-S04-H0045,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)",5. Source authority register — mandatory field-level precedence
+C04,04,APG-S04-C0046,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)","Before a source can update an authoritative financial or contractual fact, a formally approved Source Authorit"
+C04,04,APG-S04-L0047,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)","Record the field/fact, domain/entity, authoritative source, permitted secondary sources, precedence rule, effe"
+C04,04,APG-S04-L0048,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)","Define how revisions, cancellations, late-arriving records and corrections are handled."
+C04,04,APG-S04-L0049,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)","Define whether a field is source-owned, derived deterministically, human-approved, or provisional."
+C04,04,APG-S04-L0050,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)",Define conflict outcomes and the role authorised to resolve each material conflict.
+C04,04,APG-S04-L0051,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)","Use field-level precedence where appropriate—for example, posted actual payments may be governed by an account"
+C04,04,APG-S04-L0052,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)","Do not treat the newest timestamp as automatically correct; apply source authority, revision lineage, effectiv"
+C04,04,APG-S04-L0053,"dependent: reviewed, no text change (source registry and Source Authority Register built through setup questions)","Changes to the register must be versioned, approved and auditable. Historical records must retain the authorit"
+C04,05,APG-S05-H0041,"dependent: reviewed, no text change (canonical calculation inputs: the financial policy and status maps)",4. Canonical calculation inputs
+C04,05,APG-S05-L0042,"dependent: reviewed, no text change (canonical calculation inputs: the financial policy and status maps)","Contract/revenue: approved, recognised, submitted, disputed and scenario-only amounts."
+C04,05,APG-S05-L0043,"dependent: reviewed, no text change (canonical calculation inputs: the financial policy and status maps)","Actual costs: validated authoritative transactions, reversals and corrections."
+C04,05,APG-S05-L0044,"dependent: reviewed, no text change (canonical calculation inputs: the financial policy and status maps)","Commitments: open, fulfilled, cancelled and amended commitments; avoid overlap with actuals and forecasts."
+C04,05,APG-S05-L0045,"dependent: reviewed, no text change (canonical calculation inputs: the financial policy and status maps)","Cost-to-complete: estimate basis, owner, date, assumptions, confidence and revisions."
+C04,05,APG-S05-L0046,"dependent: reviewed, no text change (canonical calculation inputs: the financial policy and status maps)","Accruals: period, basis, status and reconciliation to actuals."
+C04,05,APG-S05-L0047,"dependent: reviewed, no text change (canonical calculation inputs: the financial policy and status maps)","Variations/claims: approval state, value, evidence and overlap status."
+C04,05,APG-S05-L0048,"dependent: reviewed, no text change (canonical calculation inputs: the financial policy and status maps)","Schedule/productivity: financial effects only through explicit, evidenced rules."
+C04,05,APG-S05-L0049,"dependent: reviewed, no text change (canonical calculation inputs: the financial policy and status maps)","Material/procurement exposure: purchase price, expected future price, freight, duties, tax and other applicabl"
+C04,05,APG-S05-L0050,"dependent: reviewed, no text change (canonical calculation inputs: the financial policy and status maps)",Retentions/security: face value and release conditions separate from incremental carrying cost.
+C04,05,APG-S05-L0051,"dependent: reviewed, no text change (canonical calculation inputs: the financial policy and status maps)",Defects/DLP: evidenced rectification and carrying impacts with linked exposure identities.
+C04,05,APG-S05-L0052,"dependent: reviewed, no text change (canonical calculation inputs: the financial policy and status maps)","Risks/opportunities: estimated exposure separate from booked costs, recognised revenue and realised savings."
+C04,05,APG-S05-C0053,"dependent: reviewed, no text change (canonical calculation inputs: the financial policy and status maps)","Every material input must have source, status, effective date where available, provenance and applicable autho"
+C04,02,APG-S02-H0024,"dependent: reviewed, no text change (actors and permissions: who approves each setting)",3. Actors and permissions
+C04,02,APG-S02-C0025,"dependent: reviewed, no text change (actors and permissions: who approves each setting)",The following are logical roles. Section 01 must establish actual Anchor identity and authorisation convention
+C04,02,APG-S02-H0026,"dependent: reviewed, no text change (actors and permissions: who approves each setting)",3.1 Permission and segregation principles
+C04,02,APG-S02-L0027,"dependent: reviewed, no text change (actors and permissions: who approves each setting)","Access is scoped to the authorised organisation, projects and functions."
+C04,02,APG-S02-L0028,"dependent: reviewed, no text change (actors and permissions: who approves each setting)",A recommendation does not grant permission to execute the recommended action.
+C04,02,APG-S02-L0029,"dependent: reviewed, no text change (actors and permissions: who approves each setting)",Approval rights are explicit and configurable within the platform's verified authorisation model.
+C04,02,APG-S02-L0030,"dependent: reviewed, no text change (actors and permissions: who approves each setting)","Sensitive commercial, supplier and financial information must not be exposed to unauthorised users or tenants."
+C04,02,APG-S02-L0031,"dependent: reviewed, no text change (actors and permissions: who approves each setting)",Administrative access must not silently alter financial history.
+C04,02,APG-S02-L0032,"dependent: reviewed, no text change (actors and permissions: who approves each setting)","Where practical and supported by policy, preparation of financial data and approval of consequential financial"
+C04,02,APG-S02-L0033,"dependent: reviewed, no text change (actors and permissions: who approves each setting)",The AI component cannot grant itself permissions or override deterministic governance.
+C05,03,APG-S03-H0247,"dependent: reviewed, no text change (instructions to map the logical model to existing Anchor entities)",16. Claude implementation instructions
+C05,03,APG-S03-L0248,"dependent: reviewed, no text change (instructions to map the logical model to existing Anchor entities)",Map the logical model to existing Anchor entities and data contracts.
+C05,03,APG-S03-L0249,"dependent: reviewed, no text change (instructions to map the logical model to existing Anchor entities)",Reuse suitable existing canonical entities rather than create duplicates.
+C05,03,APG-S03-L0250,"dependent: reviewed, no text change (instructions to map the logical model to existing Anchor entities)",Identify gaps and propose the smallest coherent extensions that satisfy the requirements.
+C05,03,APG-S03-L0251,"dependent: reviewed, no text change (instructions to map the logical model to existing Anchor entities)","Define schemas, relationships, constraints and lifecycle rules in accordance with established platform convent"
+C05,03,APG-S03-L0252,"dependent: reviewed, no text change (instructions to map the logical model to existing Anchor entities)",Document authoritative source and precedence rules for each financial fact.
+C05,03,APG-S03-L0253,"dependent: reviewed, no text change (instructions to map the logical model to existing Anchor entities)","Define calculation inputs, outputs, versions and invariants."
+C05,03,APG-S03-L0254,"dependent: reviewed, no text change (instructions to map the logical model to existing Anchor entities)","Create tests for financial classification, reconciliation, state transitions, currency/unit handling, margin v"
+C05,03,APG-S03-L0255,"dependent: reviewed, no text change (instructions to map the logical model to existing Anchor entities)",Record unresolved decisions in a domain-model decision register.
+C05,03,APG-S03-L0256,"dependent: reviewed, no text change (instructions to map the logical model to existing Anchor entities)",Preserve backward compatibility or document and test approved migrations.
+C05,03,APG-S03-L0257,"dependent: reviewed, no text change (instructions to map the logical model to existing Anchor entities)",Submit the model and test evidence for independent review before treating it as implemented.
+C05,03,APG-S03-C0258,"dependent: reviewed, no text change (instructions to map the logical model to existing Anchor entities)",This section does not override the Section 01 discovery freeze. Production implementation remains subject to t
+C05,00,APG-S00-H0110,"dependent: reviewed, no text change (required control artefacts: data dictionary and entity contracts)",00.12 Required control artefacts
+C05,00,APG-S00-L0111,"dependent: reviewed, no text change (required control artefacts: data dictionary and entity contracts)",Versioned product requirements and architecture specifications.
+C05,00,APG-S00-L0112,"dependent: reviewed, no text change (required control artefacts: data dictionary and entity contracts)","Architecture decision records documenting alternatives, rationale, consequences and status."
+C05,00,APG-S00-L0113,"dependent: reviewed, no text change (required control artefacts: data dictionary and entity contracts)",Requirements Traceability Matrix mapping requirement → design → implementation → test → evidence → status.
+C05,00,APG-S00-L0114,"dependent: reviewed, no text change (required control artefacts: data dictionary and entity contracts)","Data dictionary, canonical entity/state contracts and integration schemas."
+C05,00,APG-S00-L0115,"dependent: reviewed, no text change (required control artefacts: data dictionary and entity contracts)",Formula catalogue with worked examples and independent arithmetic checks.
+C05,00,APG-S00-L0116,"dependent: reviewed, no text change (required control artefacts: data dictionary and entity contracts)",Source coverage/freshness register and data quality contracts.
+C05,00,APG-S00-L0117,"dependent: reviewed, no text change (required control artefacts: data dictionary and entity contracts)",Threat model and security/tenant-isolation test matrix.
+C05,00,APG-S00-L0118,"dependent: reviewed, no text change (required control artefacts: data dictionary and entity contracts)","Test plan, acceptance criteria, regression evidence and mutation-testing results where applicable."
+C05,00,APG-S00-L0119,"dependent: reviewed, no text change (required control artefacts: data dictionary and entity contracts)","Assumptions, dependencies, risks, defects and DB-dependent/deferred-closure registers."
+C05,00,APG-S00-L0120,"dependent: reviewed, no text change (required control artefacts: data dictionary and entity contracts)","Implementation log, independent audit report, release checklist and version/hash manifest."
+C06,17,APG-S17-H0022,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)",3. Requirements Traceability Matrix (RTM)
+C06,17,APG-S17-C0023,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)",Every material requirement in Sections 00–18 must have a stable unique identifier and traceable links from the
+C06,17,APG-S17-L0024,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)",Minimum fields: requirement ID; source section/checkpoint; requirement text or controlled reference; risk/crit
+C06,17,APG-S17-L0025,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)",One requirement may require multiple tests and evidence types. A test passing does not close unrelated require
+C06,17,APG-S17-L0026,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)","Any changed or deleted requirement, implementation path or test mapping must be traceable and reviewed."
+C06,17,APG-S17-L0027,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)","The RTM must reject closure when a mandatory test is failed, skipped, blocked, missing, stale, tied to a diffe"
+C06,17,APG-S17-L0028,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)",Section completion is permitted only when all mandatory requirements are closed or an explicitly authorised ex
+C06,17,APG-S17-H0029,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)",4. Test Strategy and Required Test Classes
+C06,17,APG-S17-C0030,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)","Claude must select and document test methods according to risk and architecture. At minimum, the test strategy"
+C06,17,APG-S17-L0031,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)","Unit tests for isolated deterministic rules, formulas, validation and state transitions."
+C06,17,APG-S17-L0032,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)","Property-based and boundary tests for financial arithmetic, allocations, rounding, dates, currencies and invar"
+C06,17,APG-S17-L0033,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)",Immutable regression-fixture tests for approved financial calculation examples and edge cases.
+C06,17,APG-S17-L0034,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)","Mutation testing to establish whether the financial-core suite detects deliberate arithmetic, rounding, tax-tr"
+C06,17,APG-S17-L0035,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)","API, connector and contract tests for authentication, authorization, payload schemas, error handling and exter"
+C06,17,APG-S17-L0036,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)","Real database tests for constraints, transactions, concurrency, migrations, locking, idempotency and persisten"
+C06,17,APG-S17-L0037,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)","Integration tests across ingestion, reconciliation, financial calculations, intelligence findings, approvals, "
+C06,17,APG-S17-L0038,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)","Cross-domain regression tests for overlap, causal provenance and deduplicated net economic impact."
+C06,17,APG-S17-L0039,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)",End-to-end tests for material user workflows and consequential approval paths.
+C06,17,APG-S17-L0040,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)","Security tests for tenant isolation, least privilege, direct API attempts, data access boundaries, prompt inje"
+C06,17,APG-S17-L0041,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)","Fault-injection and resilience tests for outages, partial failures, timeouts, retries, worker restarts, dead l"
+C06,17,APG-S17-L0042,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)",Performance/capacity tests where required by approved operational objectives.
+C06,17,APG-S17-L0043,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)","User acceptance, operational runbook, recovery and release verification tests where applicable."
+C06,17,APG-S17-C0044,"dependent: reviewed, no text change (RTM fields and test classes for the field-coverage gate)","Mocks and stubs are useful for isolated behaviour and failure simulation, but cannot replace verification of d"
+C07,04,APG-S04-H0116,"dependent: reviewed, no text change (freshness, completeness and data quality)","14. Freshness, completeness and data quality"
+C07,04,APG-S04-L0118,"dependent: reviewed, no text change (freshness, completeness and data quality)","Record expected update cadence, last receipt, last successful processing, last reconciliation and current lag."
+C07,04,APG-S04-L0119,"dependent: reviewed, no text change (freshness, completeness and data quality)","Define decision-aware freshness thresholds—for example, a market quote may require a tighter freshness window "
+C07,04,APG-S04-L0120,"dependent: reviewed, no text change (freshness, completeness and data quality)","Expose stale, missing, partial and degraded-source states to users and downstream intelligence."
+C07,04,APG-S04-L0121,"dependent: reviewed, no text change (freshness, completeness and data quality)","Suppress, qualify or downgrade recommendations when required inputs are stale or missing; do not imply real-ti"
+C07,04,APG-S04-L0122,"dependent: reviewed, no text change (freshness, completeness and data quality)",Keep data-quality warnings visible and traceable to the affected calculation or recommendation.
+C07,06,APG-S06-H0097,"dependent: reviewed, no text change (noise control and reassessment triggers reused for gaps and nudges)",9.1 Alert noise control — mandatory
+C07,06,APG-S06-C0098,"dependent: reviewed, no text change (noise control and reassessment triggers reused for gaps and nudges)",Repeated detections of the same unresolved condition must update the existing finding rather than generate dup
+C07,06,APG-S06-H0099,"dependent: reviewed, no text change (noise control and reassessment triggers reused for gaps and nudges)",10. Continuous monitoring and reassessment
+C07,06,APG-S06-L0100,"dependent: reviewed, no text change (noise control and reassessment triggers reused for gaps and nudges)",New/revised source record or changed canonical state.
+C07,06,APG-S06-L0101,"dependent: reviewed, no text change (noise control and reassessment triggers reused for gaps and nudges)","Approved forecast, commitment, invoice, credit or variation change."
+C07,06,APG-S06-L0102,"dependent: reviewed, no text change (noise control and reassessment triggers reused for gaps and nudges)",Schedule revision or delay event.
+C07,06,APG-S06-L0103,"dependent: reviewed, no text change (noise control and reassessment triggers reused for gaps and nudges)",New quote or changed market observation.
+C07,06,APG-S06-L0104,"dependent: reviewed, no text change (noise control and reassessment triggers reused for gaps and nudges)",Supplier/subcontractor compliance status change.
+C07,06,APG-S06-L0105,"dependent: reviewed, no text change (noise control and reassessment triggers reused for gaps and nudges)",Defect or retention state transition.
+C07,06,APG-S06-L0106,"dependent: reviewed, no text change (noise control and reassessment triggers reused for gaps and nudges)",Missed deadline or expected release date.
+C07,06,APG-S06-L0107,"dependent: reviewed, no text change (noise control and reassessment triggers reused for gaps and nudges)",Source becoming stale/unavailable.
+C07,06,APG-S06-L0108,"dependent: reviewed, no text change (noise control and reassessment triggers reused for gaps and nudges)",Periodic reassessment of open risks/opportunities.
+C07,06,APG-S06-C0109,"dependent: reviewed, no text change (noise control and reassessment triggers reused for gaps and nudges)",Use discovered event/workflow contracts. Scheduled sweeps must detect persistent conditions that do not genera
+C07,10,APG-S10-H0015,"dependent: reviewed, no text change (eligibility before ranking and separate ranking factors)",3. Finding eligibility before ranking
+C07,10,APG-S10-C0016,"dependent: reviewed, no text change (eligibility before ranking and separate ranking factors)","Before prioritisation, assess evidence sufficiency, data freshness, duplication/overlap, financial status (aut"
+C07,10,APG-S10-C0017,"dependent: reviewed, no text change (eligibility before ranking and separate ranking factors)",A finding with unresolved critical evidence must not be presented as an unrestricted ready-to-execute recommen
+C07,10,APG-S10-H0018,"dependent: reviewed, no text change (eligibility before ranking and separate ranking factors)",4. Explainable multi-factor prioritisation
+C07,10,APG-S10-C0019,"dependent: reviewed, no text change (eligibility before ranking and separate ranking factors)",The engine must not collapse every consideration into one unexplained score. Expose dimensions separately:
+C07,10,APG-S10-C0027,"dependent: reviewed, no text change (eligibility before ranking and separate ranking factors)","Dependencies: Other decisions, people or work packages required."
+C07,10,APG-S10-C0028,"dependent: reviewed, no text change (eligibility before ranking and separate ranking factors)",Risk and constraints: Potential adverse effects and required approvals.
+C07,10,APG-S10-C0029,"dependent: reviewed, no text change (eligibility before ranking and separate ranking factors)",Confidence must not be confused with magnitude. A large low-confidence estimate is not automatically superior 
+C07,16,APG-S16-H0036,"dependent: reviewed, no text change (operational freshness and completeness states)","5. Data Freshness, Completeness and Operational Confidence"
+C07,16,APG-S16-L0038,"dependent: reviewed, no text change (operational freshness and completeness states)","Freshness thresholds must be defined by decision and data type, with a documented owner and rationale; there i"
+C07,16,APG-S16-L0039,"dependent: reviewed, no text change (operational freshness and completeness states)","A late or unavailable source must cause affected findings, forecasts and recommendations to be marked stale, i"
+C07,16,APG-S16-L0040,"dependent: reviewed, no text change (operational freshness and completeness states)","A recent ingestion timestamp does not prove that the source data itself is current, complete, correct or recon"
+C07,16,APG-S16-L0041,"dependent: reviewed, no text change (operational freshness and completeness states)",Partial imports must not be presented as complete snapshots. Failed or interrupted ingestion must preserve the
+C07,16,APG-S16-L0042,"dependent: reviewed, no text change (operational freshness and completeness states)","The system must distinguish unavailable data from a confirmed zero, no activity, no risk or no finding."
+C07,16,APG-S16-L0043,"dependent: reviewed, no text change (operational freshness and completeness states)","When freshness or completeness is insufficient for a consequential conclusion, the result must be qualified or"
+C07,14,APG-S14-H0048,"dependent: reviewed, no text change (phase 1 includes shared data-quality status)",14.4 Phase 1 — Establish the control foundations
+C07,14,APG-S14-L0049,"dependent: reviewed, no text change (phase 1 includes shared data-quality status)",Canonical entity and financial data model.
+C07,14,APG-S14-L0050,"dependent: reviewed, no text change (phase 1 includes shared data-quality status)",Source Authority Register and field-level provenance.
+C07,14,APG-S14-L0051,"dependent: reviewed, no text change (phase 1 includes shared data-quality status)","Ingestion, normalisation, reconciliation and quarantine."
+C07,14,APG-S14-L0052,"dependent: reviewed, no text change (phase 1 includes shared data-quality status)",Controlled financial-state transitions.
+C07,14,APG-S14-L0053,"dependent: reviewed, no text change (phase 1 includes shared data-quality status)",Calculation versioning and reproducible inputs.
+C07,14,APG-S14-L0054,"dependent: reviewed, no text change (phase 1 includes shared data-quality status)","Authentication, authorisation and tenant isolation."
+C07,14,APG-S14-L0055,"dependent: reviewed, no text change (phase 1 includes shared data-quality status)",Immutable or appropriately tamper-evident audit history.
+C07,14,APG-S14-L0056,"dependent: reviewed, no text change (phase 1 includes shared data-quality status)","Finding lifecycle, deduplication and controlled reopening."
+C07,14,APG-S14-L0057,"dependent: reviewed, no text change (phase 1 includes shared data-quality status)",Human approval mechanisms for consequential actions.
+C07,14,APG-S14-L0058,"dependent: reviewed, no text change (phase 1 includes shared data-quality status)","Shared error handling, data-quality status and uncertainty representation."
+C07,14,APG-S14-C0059,"dependent: reviewed, no text change (phase 1 includes shared data-quality status)","Gate 1: Relevant foundation requirements have mapped implementation evidence, tests and documented unresolved "
+C08,05,APG-S05-H0074,"dependent: reviewed, no text change (qualified forecasts expose what is missing)",5.2 Provisional and qualified forecasts — mandatory
+C08,05,APG-S05-C0075,"dependent: reviewed, no text change (qualified forecasts expose what is missing)","Where material cost-to-complete inputs are missing, stale, incomplete or unresolved, the engine may calculate "
+C08,05,APG-S05-L0076,"dependent: reviewed, no text change (qualified forecasts expose what is missing)",Never silently present a qualified forecast as complete or authoritative.
+C08,05,APG-S05-L0077,"dependent: reviewed, no text change (qualified forecasts expose what is missing)","Display which values are evidenced, estimated, stale, missing or scenario-derived."
+C08,05,APG-S05-L0078,"dependent: reviewed, no text change (qualified forecasts expose what is missing)","Where a defensible numeric impact range cannot be calculated, state that limitation rather than inventing a ra"
+C08,05,APG-S05-L0079,"dependent: reviewed, no text change (qualified forecasts expose what is missing)",Apply decision-aware freshness thresholds and downgrade or suppress dependent recommendations when necessary.
+C08,05,APG-S05-L0080,"dependent: reviewed, no text change (qualified forecasts expose what is missing)",Record how and when the forecast can be reconciled or upgraded.
+C08,06,PG-AI-AC-04,"dependent: reviewed, no text change (missing data creates a qualification; findings without an amount)",PG-AI-AC-04: Missing/unreliable data creates a qualification or data-quality finding.
+C08,06,PG-AI-AC-07,"dependent: reviewed, no text change (missing data creates a qualification; findings without an amount)",PG-AI-AC-07: Findings can exist without a defensible financial amount.
+C08,07,APG-S07-H0090,"dependent: reviewed, no text change (schedule data quality and freshness)","13. Data quality, freshness and confidence"
+C08,07,APG-S07-L0091,"dependent: reviewed, no text change (schedule data quality and freshness)",Age of latest schedule revision and progress update.
+C08,07,APG-S07-L0092,"dependent: reviewed, no text change (schedule data quality and freshness)","Missing actual start/finish dates, inconsistent activity identifiers and missing/invalid dependencies."
+C08,07,APG-S07-L0093,"dependent: reviewed, no text change (schedule data quality and freshness)",Contradictory dates across systems and unexplained forecast completion changes.
+C08,07,APG-S07-L0094,"dependent: reviewed, no text change (schedule data quality and freshness)","Unverified resource rates, missing cost evidence and incomplete delay-event records."
+C08,07,APG-S07-C0095,"dependent: reviewed, no text change (schedule data quality and freshness)","When data is inadequate, qualify the result, identify missing evidence and avoid false precision. Do not claim"
+C08,08,APG-S08-H0077,"dependent: reviewed, no text change (procurement finding and source governance)",14. Finding and source governance
+C08,08,APG-S08-C0079,"dependent: reviewed, no text change (procurement finding and source governance)",Freshness thresholds depend on decision type. Expired quotes or stale market data may remain historical eviden
+C08,09,APG-S09-H0071,"dependent: reviewed, no text change (labour data quality and uncertainty)",15. Data quality and uncertainty
+C08,11,APG-S11-H0035,"dependent: reviewed, no text change (missing claim evidence must be visible)",6. Claim evidence and substantiation
+C08,11,APG-S11-C0037,"dependent: reviewed, no text change (missing claim evidence must be visible)",Missing evidence must be visible. The engine may recommend obtaining or organising evidence but must not fabri
+C08,12,APG-S12-H0037,"dependent: reviewed, no text change (cash inputs, provenance and gaps)","12.4 Data inputs, provenance, and reconciliation"
+C08,12,APG-S12-L0039,"dependent: reviewed, no text change (cash inputs, provenance and gaps)","Bank transactions, reconciled cash balances, cashbook entries, and funding-facility statements."
+C08,12,APG-S12-L0040,"dependent: reviewed, no text change (cash inputs, provenance and gaps)","Accounts receivable/payable ledgers, invoices, credit notes, remittances, deductions, and payment evidence."
+C08,12,APG-S12-L0041,"dependent: reviewed, no text change (cash inputs, provenance and gaps)","Progress claims, certification records, payment schedules, contract payment terms, and variation/claim states."
+C08,12,APG-S12-L0042,"dependent: reviewed, no text change (cash inputs, provenance and gaps)","Supplier/subcontractor commitments, payment terms, payroll, plant/equipment costs, taxes, statutory liabilitie"
+C08,12,APG-S12-L0043,"dependent: reviewed, no text change (cash inputs, provenance and gaps)","Retention ledgers, release milestones, defect obligations, final-account records, and dispute status."
+C08,12,APG-S12-L0044,"dependent: reviewed, no text change (cash inputs, provenance and gaps)","Guarantees, bonds, security instruments, issuer/beneficiary details, fees, collateral, cash margins, expiry da"
+C08,12,APG-S12-L0045,"dependent: reviewed, no text change (cash inputs, provenance and gaps)","Funding rates, facility limits, utilisation, fees, day-count conventions, and documented financing assumptions"
+C08,12,APG-S12-L0046,"dependent: reviewed, no text change (cash inputs, provenance and gaps)","Source identifiers, source timestamps, extraction timestamps, effective dates, confidence/verification state, "
+C08,12,APG-S12-C0047,"dependent: reviewed, no text change (cash inputs, provenance and gaps)",All material fields must follow Section 04's approved field-level Source Authority Register. Newest timestamp 
+C08,13,APG-S13-H0043,"dependent: reviewed, no text change (quality evidence and classification)","13.4 Evidence, severity and classification"
+C08,13,APG-S13-L0045,"dependent: reviewed, no text change (quality evidence and classification)",Safety and potential harm.
+C08,13,APG-S13-L0046,"dependent: reviewed, no text change (quality evidence and classification)",Regulatory or mandatory-standard implications.
+C08,13,APG-S13-L0047,"dependent: reviewed, no text change (quality evidence and classification)","Structural, functional and durability implications."
+C08,13,APG-S13-L0048,"dependent: reviewed, no text change (quality evidence and classification)","Water ingress, fire performance, weatherproofing or other material building-performance risks where applicable"
+C08,13,APG-S13-L0049,"dependent: reviewed, no text change (quality evidence and classification)",Workmanship and finish.
+C08,13,APG-S13-L0050,"dependent: reviewed, no text change (quality evidence and classification)","Inspection, testing or commissioning failures."
+C08,13,APG-S13-L0051,"dependent: reviewed, no text change (quality evidence and classification)","Handover, warranty and future maintenance implications."
+C08,13,APG-S13-L0052,"dependent: reviewed, no text change (quality evidence and classification)","Financial magnitude, recurrence and schedule exposure."
+C08,13,APG-S13-C0053,"dependent: reviewed, no text change (quality evidence and classification)",Financial prioritisation must never override safety or mandatory quality requirements. A low-cost defect may s
+C08,13,APG-S13-C0054,"dependent: reviewed, no text change (quality evidence and classification)","Where evidence is incomplete, the finding must retain an explicit unverified or qualified state. AI-generated "
+C09,04,APG-S04-L0119,"dependent: reviewed, no text change (decision-aware freshness thresholds)","Define decision-aware freshness thresholds—for example, a market quote may require a tighter freshness window "
+C09,04,PG-DI-AC-13,"dependent: reviewed, no text change (decision-aware freshness thresholds)",PG-DI-AC-13: Freshness and completeness are visible and influence decision eligibility.
+C09,16,APG-S16-L0038,"dependent: reviewed, no text change (thresholds by decision and data type, with an owner and rationale)","Freshness thresholds must be defined by decision and data type, with a documented owner and rationale; there i"
+C09,08,APG-S08-C0079,"dependent: reviewed, no text change (procurement freshness depends on decision type)",Freshness thresholds depend on decision type. Expired quotes or stale market data may remain historical eviden
+C10,06,PG-AI-AC-01,"dependent: reviewed, no text change (rules configurable, versioned, regression-tested)","PG-AI-AC-01: Deterministic rules can be configured, versioned, executed and tested."
+C10,06,PG-AI-AC-19,"dependent: reviewed, no text change (rules configurable, versioned, regression-tested)",PG-AI-AC-19: Rule/model changes are versioned and regression-tested.
+C10,02,APG-S02-H0024,"dependent: reviewed, no text change (permission and segregation principles)",3. Actors and permissions
+C10,02,APG-S02-C0025,"dependent: reviewed, no text change (permission and segregation principles)",The following are logical roles. Section 01 must establish actual Anchor identity and authorisation convention
+C10,02,APG-S02-H0026,"dependent: reviewed, no text change (permission and segregation principles)",3.1 Permission and segregation principles
+C10,02,APG-S02-L0027,"dependent: reviewed, no text change (permission and segregation principles)","Access is scoped to the authorised organisation, projects and functions."
+C10,02,APG-S02-L0028,"dependent: reviewed, no text change (permission and segregation principles)",A recommendation does not grant permission to execute the recommended action.
+C10,02,APG-S02-L0029,"dependent: reviewed, no text change (permission and segregation principles)",Approval rights are explicit and configurable within the platform's verified authorisation model.
+C10,02,APG-S02-L0030,"dependent: reviewed, no text change (permission and segregation principles)","Sensitive commercial, supplier and financial information must not be exposed to unauthorised users or tenants."
+C10,02,APG-S02-L0031,"dependent: reviewed, no text change (permission and segregation principles)",Administrative access must not silently alter financial history.
+C10,02,APG-S02-L0032,"dependent: reviewed, no text change (permission and segregation principles)","Where practical and supported by policy, preparation of financial data and approval of consequential financial"
+C10,02,APG-S02-L0033,"dependent: reviewed, no text change (permission and segregation principles)",The AI component cannot grant itself permissions or override deterministic governance.
+C11,06,APG-S06-H0038,"dependent: reviewed, no text change (severity mapping, thresholds approved, severity kept separate)",5.1 Deterministic-first strategy — mandatory
+C11,06,APG-S06-C0039,"dependent: reviewed, no text change (severity mapping, thresholds approved, severity kept separate)",The initial implementation must establish a tested deterministic rules baseline before relying on statistical 
+C11,06,APG-S06-C0040,"dependent: reviewed, no text change (severity mapping, thresholds approved, severity kept separate)","Each rule requires a stable identifier, version, purpose, inputs, evaluation logic, thresholds, exceptions, se"
+C11,06,S06 paragraph 85 (no RTM row),"dependent: reviewed, no text change (severity mapping, thresholds approved, severity kept separate)","Prioritisation may consider financial materiality, evidence strength, time sensitivity, preventable loss, time"
+C11,06,PG-AI-AC-08,"dependent: reviewed, no text change (severity mapping, thresholds approved, severity kept separate)","PG-AI-AC-08: Severity, urgency and confidence remain separate."
+C11,10,PG-RS-AC-02,"dependent: reviewed, no text change (magnitude, urgency and confidence distinct)","PG-RS-AC-02: Financial magnitude, urgency and confidence remain distinct."
+C11,02,APG-S02-H0024,"dependent: reviewed, no text change (segregation of preparation and approval (PG-FR-025))",3. Actors and permissions
+C11,02,APG-S02-C0025,"dependent: reviewed, no text change (segregation of preparation and approval (PG-FR-025))",The following are logical roles. Section 01 must establish actual Anchor identity and authorisation convention
+C11,02,APG-S02-H0026,"dependent: reviewed, no text change (segregation of preparation and approval (PG-FR-025))",3.1 Permission and segregation principles
+C11,02,APG-S02-L0027,"dependent: reviewed, no text change (segregation of preparation and approval (PG-FR-025))","Access is scoped to the authorised organisation, projects and functions."
+C11,02,APG-S02-L0028,"dependent: reviewed, no text change (segregation of preparation and approval (PG-FR-025))",A recommendation does not grant permission to execute the recommended action.
+C11,02,APG-S02-L0029,"dependent: reviewed, no text change (segregation of preparation and approval (PG-FR-025))",Approval rights are explicit and configurable within the platform's verified authorisation model.
+C11,02,APG-S02-L0030,"dependent: reviewed, no text change (segregation of preparation and approval (PG-FR-025))","Sensitive commercial, supplier and financial information must not be exposed to unauthorised users or tenants."
+C11,02,APG-S02-L0031,"dependent: reviewed, no text change (segregation of preparation and approval (PG-FR-025))",Administrative access must not silently alter financial history.
+C11,02,APG-S02-L0032,"dependent: reviewed, no text change (segregation of preparation and approval (PG-FR-025))","Where practical and supported by policy, preparation of financial data and approval of consequential financial"
+C11,02,APG-S02-L0033,"dependent: reviewed, no text change (segregation of preparation and approval (PG-FR-025))",The AI component cannot grant itself permissions or override deterministic governance.
+C11,02,S02 table 3 row 25 (no RTM row),"dependent: reviewed, no text change (segregation of preparation and approval (PG-FR-025))",PG-FR-025 | Support finance-controller review and appropriate segregation of duties for material financial app
+C13,11,APG-S11-H0016,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)",3. Contract and commercial baseline
+C13,11,APG-S11-C0018,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)","Preserve original contract values and approved changes historically. Draft variations, proposed claims and una"
+C13,11,APG-S11-H0019,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)",4. Variation and scope-change intelligence
+C13,11,APG-S11-L0021,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)",Work apparently outside recorded scope.
+C13,11,APG-S11-L0022,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)",Instructions or design changes without linked commercial assessment.
+C13,11,APG-S11-L0023,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)",Approved changes not reflected in contract-value records.
+C13,11,APG-S11-L0024,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)",Differences between site records and variation registers.
+C13,11,APG-S11-L0025,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)",Variations completed but not valued or submitted.
+C13,11,APG-S11-L0026,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)",Repeated scope changes affecting productivity or procurement.
+C13,11,APG-S11-L0027,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)",Unresolved commercial assumptions.
+C13,11,APG-S11-L0028,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)","Changes with schedule, labour, material or quality consequences."
+C13,11,APG-S11-H0030,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)",4.1 Commercial entitlement gate — mandatory
+C13,11,APG-S11-C0031,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)",Detected scope changes and potential claims remain analytical opportunities until the relevant evidence and co
+C13,11,APG-S11-H0044,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)",8. Revenue and commercial-value states
+C13,11,APG-S11-H0054,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)",8.1 Commercial lifecycle separation — mandatory
+C13,11,APG-S11-C0055,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)","Potential, estimated, submitted, approved/certified, recognised, invoiced and collected values must remain dis"
+C13,11,APG-S11-H0056,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)",9. Revenue leakage and margin exposure
+C13,11,APG-S11-H0059,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)",10. Integration with finance and cash flow
+C13,11,APG-S11-H0062,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)","11. Disputes, deductions and commercial exceptions"
+C13,11,APG-S11-C0064,"dependent: reviewed, no text change (baseline, variations, commercial states, leakage, finance link, disputes)",Distinguish a recorded dispute from a determination about who is correct. Summarise evidence and identify gaps
+C13,03,APG-S03-H0054,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)",6.1 Revenue concepts
+C13,03,APG-S03-L0055,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)",Contracted or approved revenue.
+C13,03,APG-S03-L0056,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)",Approved variations.
+C13,03,APG-S03-L0057,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)",Submitted but unapproved variations.
+C13,03,APG-S03-L0058,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)","Claims submitted, certified, disputed or rejected."
+C13,03,APG-S03-L0059,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)",Forecast additional revenue.
+C13,03,APG-S03-L0060,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)",Revenue at risk.
+C13,03,APG-S03-L0061,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)","Amounts invoiced, received and outstanding."
+C13,03,APG-S03-L0062,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)",Retention withheld from payments.
+C13,03,APG-S03-L0063,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)",Final-account adjustments.
+C13,03,APG-S03-C0064,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)",These states must not be collapsed into one revenue field. A submitted variation is not approved revenue merel
+C13,03,APG-S03-H0081,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)",6.4 No mixed-basis calculations
+C13,03,APG-S03-L0082,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)",Do not silently combine cash-received revenue with incurred costs.
+C13,03,APG-S03-L0083,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)",Do not combine budget values from one revision with actuals for an incompatible scope.
+C13,03,APG-S03-L0084,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)",Do not mix tax-inclusive costs and tax-exclusive revenue without normalisation.
+C13,03,APG-S03-L0085,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)",Do not count committed costs and actual costs where actuals already replace the same commitment.
+C13,03,APG-S03-L0086,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)",Do not combine historical prices and current quotations without dates and comparability adjustments.
+C13,03,APG-S03-L0087,"dependent: reviewed, no text change (revenue concepts; no mixed-basis calculations)","If a comparable calculation cannot be produced reliably, report the limitation instead of inventing a result."
+C13,05,APG-S05-H0028,"dependent: reviewed, no text change (forecast final margin; leakage calculations)",3.2 Forecast final margin
+C13,05,APG-S05-C0030,"dependent: reviewed, no text change (forecast final margin; leakage calculations)","Where supported by the project's approved model, Forecast Final Cost = Cost Recognised to Date + Forecast Cost"
+C13,05,APG-S05-L0031,"dependent: reviewed, no text change (forecast final margin; leakage calculations)","Distinguish approved contract revenue, approved variations, submitted/unresolved claims, disputed revenue, spe"
+C13,05,APG-S05-L0032,"dependent: reviewed, no text change (forecast final margin; leakage calculations)","Distinguish actuals, commitments, accruals, remaining work, risk allowances and scenario-only costs."
+C13,05,APG-S05-L0033,"dependent: reviewed, no text change (forecast final margin; leakage calculations)","Do not silently treat unapproved variations, disputed claims or speculative recoveries as secured revenue."
+C13,05,APG-S05-L0034,"dependent: reviewed, no text change (forecast final margin; leakage calculations)",A commitment is not automatically an additional cost on top of a forecast; determine whether it is already rep
+C13,05,APG-S05-H0090,"dependent: reviewed, no text change (forecast final margin; leakage calculations)",7. Profit leakage and exposure calculations
+C13,05,APG-S05-C0092,"dependent: reviewed, no text change (forecast final margin; leakage calculations)",Each exposure must have a unique identity and documented relationships to related exposures. Record gross esti
+C13,17,APG-S17-C0046,"dependent: reviewed, no text change (a cost-allocation change triggers the financial-core suite; fixture changes reviewed)","Any change affecting financial formulas, cost allocation, rounding, tax treatment, currency conversion, margin"
+C13,17,APG-S17-L0047,"dependent: reviewed, no text change (a cost-allocation change triggers the financial-core suite; fixture changes reviewed)","Maintain a controlled, versioned and immutable-in-use fixture set containing approved inputs, expected outputs"
+C14,05,APG-S05-H0067,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)",5.1 One authoritative forecast — mandatory
+C14,05,APG-S05-C0068,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)",Each project must have one formally approved Authoritative Forecast for the applicable scope and as-of state. 
+C14,05,APG-S05-L0069,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)","Record the authorised forecast ID, version, approval status, owner, scope, as-of time and applicable calculati"
+C14,05,APG-S05-L0070,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)",Preserve previous approved versions and the reason for each replacement.
+C14,05,APG-S05-L0071,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)","Scenario outputs must reference a base forecast but remain isolated until an authorised, auditable workflow ap"
+C14,05,APG-S05-L0072,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)",Enforce a single active authoritative forecast for the defined project/scope through the appropriate repositor
+C14,05,APG-S05-L0073,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)","Do not silently promote a scenario, draft or recalculation into the authoritative forecast."
+C14,05,APG-S05-H0074,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)",5.2 Provisional and qualified forecasts — mandatory
+C14,05,APG-S05-C0075,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)","Where material cost-to-complete inputs are missing, stale, incomplete or unresolved, the engine may calculate "
+C14,05,APG-S05-L0076,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)",Never silently present a qualified forecast as complete or authoritative.
+C14,05,APG-S05-L0077,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)","Display which values are evidenced, estimated, stale, missing or scenario-derived."
+C14,05,APG-S05-L0078,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)","Where a defensible numeric impact range cannot be calculated, state that limitation rather than inventing a ra"
+C14,05,APG-S05-L0079,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)",Apply decision-aware freshness thresholds and downgrade or suppress dependent recommendations when necessary.
+C14,05,APG-S05-L0080,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)",Record how and when the forecast can be reconciled or upgraded.
+C14,05,APG-S05-H0108,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)",11. Scenario calculations
+C14,05,APG-S05-L0110,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)",Preserve base-case reference and version.
+C14,05,APG-S05-L0111,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)","Record changed assumptions, rule version, input provenance/freshness, owner and creation time."
+C14,05,APG-S05-L0112,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)","Show gross/net effects, uncertainty and limitations."
+C14,05,APG-S05-L0113,"dependent: reviewed, no text change (one authoritative forecast; qualified forecasts; scenarios)",Keep scenario outputs isolated from authoritative actuals and approved forecasts unless an authorised workflow
+C14,03,APG-S03-H0043,"dependent: reviewed, no text change (required view metadata)",5.4 Required view metadata
+C14,03,APG-S03-L0044,"dependent: reviewed, no text change (required view metadata)",Canonical view identifier and version.
+C14,03,APG-S03-L0045,"dependent: reviewed, no text change (required view metadata)",Reporting period and effective timestamp.
+C14,03,APG-S03-L0046,"dependent: reviewed, no text change (required view metadata)",Revenue and cost recognition basis.
+C14,03,APG-S03-L0047,"dependent: reviewed, no text change (required view metadata)",Included and excluded categories.
+C14,03,APG-S03-L0048,"dependent: reviewed, no text change (required view metadata)",Source records and reconciliation status.
+C14,03,APG-S03-L0049,"dependent: reviewed, no text change (required view metadata)",Currency and tax treatment.
+C14,03,APG-S03-L0050,"dependent: reviewed, no text change (required view metadata)","Treatment of unapproved claims, retention and security."
+C14,03,APG-S03-L0051,"dependent: reviewed, no text change (required view metadata)","Assumptions, limitations and confidence indicators where relevant."
+C14,03,APG-S03-C0052,"dependent: reviewed, no text change (required view metadata)",The same project may legitimately show different values across these views. The interface must label the views
+C14,04,APG-S04-H0074,"dependent: reviewed, no text change (compare authoritative and provisional outcomes without confusing them)",9. Quarantine versus provisional use — mandatory isolation
+C14,04,APG-S04-C0075,"dependent: reviewed, no text change (compare authoritative and provisional outcomes without confusing them)",Ambiguous or conflicting financial records must be excluded from authoritative financial calculations. They mu
+C14,04,APG-S04-L0076,"dependent: reviewed, no text change (compare authoritative and provisional outcomes without confusing them)",Authoritative views must never silently consume quarantined or provisional records.
+C14,04,APG-S04-L0077,"dependent: reviewed, no text change (compare authoritative and provisional outcomes without confusing them)","Provisional views must identify the affected figures, unverified records, unresolved conflicts, assumptions an"
+C14,04,APG-S04-L0078,"dependent: reviewed, no text change (compare authoritative and provisional outcomes without confusing them)",Users must be able to compare authoritative and provisional outcomes without confusing their status.
+C14,04,APG-S04-L0079,"dependent: reviewed, no text change (compare authoritative and provisional outcomes without confusing them)","Promotion from quarantine/provisional to authoritative requires resolution of the blocking issue, required app"
+C14,04,APG-S04-L0080,"dependent: reviewed, no text change (compare authoritative and provisional outcomes without confusing them)","A reviewer must be able to accept, correct, reject, merge or retain a conflict for further investigation where"
+C14,04,APG-S04-L0081,"dependent: reviewed, no text change (compare authoritative and provisional outcomes without confusing them)",Promotion must not create duplicate financial effects or erase the original source evidence and previous decis
+C14,10,APG-S10-H0056,"dependent: reviewed, no text change (scenario isolation)",7.1 Scenario isolation — mandatory
+C14,10,APG-S10-C0057,"dependent: reviewed, no text change (scenario isolation)",Scenarios must remain isolated from the authoritative forecast until changes pass required approval and calcul
+C15,09,APG-S09-H0060,"dependent: reviewed, no text change (worker privacy and access control for site capture)","14. Worker privacy, fairness and appropriate use"
+C15,09,APG-S09-L0061,"dependent: reviewed, no text change (worker privacy and access control for site capture)",Use authorised data for legitimate project/operational purposes and apply least-privilege access and tenant is
+C15,09,APG-S09-L0062,"dependent: reviewed, no text change (worker privacy and access control for site capture)",Limit personally identifiable information where not required.
+C15,09,APG-S09-L0063,"dependent: reviewed, no text change (worker privacy and access control for site capture)","Avoid unsupported inferences about an individual's honesty, effort, health or intent."
+C15,09,APG-S09-L0064,"dependent: reviewed, no text change (worker privacy and access control for site capture)",Distinguish operational indicators from disciplinary conclusions.
+C15,09,APG-S09-L0065,"dependent: reviewed, no text change (worker privacy and access control for site capture)",Preserve provenance and limitations of performance measures.
+C15,09,APG-S09-L0066,"dependent: reviewed, no text change (worker privacy and access control for site capture)",Require authorised human review before consequential decisions.
+C15,09,APG-S09-L0067,"dependent: reviewed, no text change (worker privacy and access control for site capture)","Verify applicable privacy, employment, industrial and contractual requirements for each deployment."
+C15,09,APG-S09-C0068,"dependent: reviewed, no text change (worker privacy and access control for site capture)",Worker-level intelligence must not become an unreviewed automated ranking or disciplinary mechanism. The syste
+C15,09,APG-S09-H0069,"dependent: reviewed, no text change (worker privacy and access control for site capture)","14.1 Quality, safety and competence gate — mandatory"
+C15,09,APG-S09-C0070,"dependent: reviewed, no text change (worker privacy and access control for site capture)","No productivity or cost-improvement recommendation may bypass required safety, quality, competence, inspection"
+C15,09,PG-LR-AC-16,"dependent: reviewed, no text change (worker privacy and access control for site capture)",PG-LR-AC-16: Personal and commercially sensitive data are access-controlled.
+C15,15,APG-S15-H0065,"dependent: reviewed, no text change (data classification and minimisation of location and photos)","15.6 Data classification, minimisation and retention"
+C15,15,APG-S15-L0067,"dependent: reviewed, no text change (data classification and minimisation of location and photos)",Public or externally approved information.
+C15,15,APG-S15-L0068,"dependent: reviewed, no text change (data classification and minimisation of location and photos)",Internal operational information.
+C15,15,APG-S15-L0069,"dependent: reviewed, no text change (data classification and minimisation of location and photos)",Confidential commercial and financial information.
+C15,15,APG-S15-L0070,"dependent: reviewed, no text change (data classification and minimisation of location and photos)","Restricted personal, workforce or otherwise sensitive information."
+C15,15,APG-S15-L0071,"dependent: reviewed, no text change (data classification and minimisation of location and photos)",Security credentials and secrets requiring dedicated handling.
+C15,15,APG-S15-C0074,"dependent: reviewed, no text change (data classification and minimisation of location and photos)","Retention and deletion rules must account for legitimate contractual, accounting, dispute-resolution and recor"
+C15,15,APG-S15-C0075,"dependent: reviewed, no text change (data classification and minimisation of location and photos)",This specification does not itself determine every legal retention period or establish that a particular legal
+C16,01,APG-S01-H0010,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",2. Mandatory discovery gates
+C16,01,APG-S01-H0011,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Gate 01-A — Core Platform Contract Inspection
+C16,01,APG-S01-C0012,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Claude must locate and inspect the existing Anchor platform contracts before designing new services or adapter
+C16,01,APG-S01-L0013,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Central Anchor Engine API wrappers, service interfaces and authentication boundaries."
+C16,01,APG-S01-L0014,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Event bus, event schemas, delivery semantics and consumer registration."
+C16,01,APG-S01-L0015,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Governor modules, authorisation flow, adapter contracts, policy enforcement and failure handling."
+C16,01,APG-S01-L0016,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","AUIF and existing connector, module-client and Governor-adapter interfaces, where present."
+C16,01,APG-S01-L0017,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Entity, organisation, project and state-management conventions."
+C16,01,APG-S01-L0018,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Workflow execution, notification and audit-log interfaces."
+C16,01,APG-S01-L0019,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",AI orchestration boundaries and deterministic calculation conventions.
+C16,01,APG-S01-L0020,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","API versioning, error envelopes, correlation identifiers and compatibility requirements."
+C16,01,APG-S01-C0021,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","For each relevant interface, record its repository location, public contract, dependencies, callers, tests, fa"
+C16,01,APG-S01-H0022,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Gate 01-B — Tenant and Data Isolation Verification
+C16,01,APG-S01-C0023,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Claude must establish how multi-tenancy is actually enforced. Inspect and verify, as applicable:"
+C16,01,APG-S01-L0024,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Tenant and organisation identification at authentication and request boundaries.
+C16,01,APG-S01-L0025,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Database schema, tenant keys and relationship constraints."
+C16,01,APG-S01-L0026,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","PostgreSQL Row-Level Security policies, if used."
+C16,01,APG-S01-L0027,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Application-level tenant filtering and authorisation checks.
+C16,01,APG-S01-L0028,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Background jobs, event consumers, scheduled tasks and integration callbacks."
+C16,01,APG-S01-L0029,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Object storage, caches, search indexes and other persistence layers."
+C16,01,APG-S01-L0030,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Cross-tenant access controls for projects, suppliers, subcontractors, materials, documents and market intellig"
+C16,01,APG-S01-L0031,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Administrative access, service accounts and system-level privileges."
+C16,01,APG-S01-C0032,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Do not assume a tenant header, ORM filter or frontend restriction provides sufficient isolation. Required outp"
+C16,01,APG-S01-C0033,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Release rule: a demonstrated tenant-isolation defect blocks deployment of Profit Guardian to any environment w
+C16,01,APG-S01-H0034,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Gate 01-C — Audit Logging and State Machine Conventions
+C16,01,APG-S01-L0036,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Audit event schemas and persistence.
+C16,01,APG-S01-L0037,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Actor identity, tenant, timestamp, correlation ID and source provenance."
+C16,01,APG-S01-L0038,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","State-transition rules, invariants and invalid-transition handling."
+C16,01,APG-S01-L0039,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","User approvals, rejections, overrides and reversals."
+C16,01,APG-S01-L0040,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Financial calculation inputs, versions, outputs and reproducibility."
+C16,01,APG-S01-L0041,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Event ordering, duplicate handling and concurrent updates."
+C16,01,APG-S01-L0042,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Immutable or append-only guarantees, if implemented."
+C16,01,APG-S01-L0043,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Permissions governing audit access and supported retention/export mechanisms.
+C16,01,APG-S01-C0044,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Distinguish between an audit log that records activity and a mechanism that technically prevents historical re
+C16,01,APG-S01-H0045,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Gate 01-D — Integration Surface Mapping
+C16,01,APG-S01-L0047,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Webhook handlers, authentication and signature verification."
+C16,01,APG-S01-L0048,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Connector registration and credential management.
+C16,01,APG-S01-L0049,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Idempotency keys and duplicate-event protection.
+C16,01,APG-S01-L0050,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Retry policies, backoff, dead-letter handling and replay."
+C16,01,APG-S01-L0051,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Queue processing, concurrency and stale-message behaviour."
+C16,01,APG-S01-L0052,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Rate limits, timeouts, cancellation and partial failures."
+C16,01,APG-S01-L0053,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Pagination, incremental synchronisation and historical backfills."
+C16,01,APG-S01-L0054,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Data validation, schema changes and malformed-source handling."
+C16,01,APG-S01-L0055,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Reconciliation of external records against canonical Anchor entities.
+C16,01,APG-S01-L0056,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Observability, alerting and failed-ingestion recovery."
+C16,01,APG-S01-C0057,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)","Map existing and potential source categories, including accounting, job costing, estimating, scheduling, procu"
+C16,01,APG-S01-H0113,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",7. Discovery exit criteria
+C16,01,APG-S01-C0114,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Section 01 can be recommended for closure only when:
+C16,01,APG-S01-L0115,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",All mandatory discovery gates have been investigated.
+C16,01,APG-S01-L0116,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Each gate has evidence-backed findings or explicitly documented blockers.
+C16,01,APG-S01-L0117,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Platform reuse decisions are justified.
+C16,01,APG-S01-L0118,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Tenant-isolation risks have been tested where the environment permits.
+C16,01,APG-S01-L0119,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Audit and state-machine conventions are understood or their gaps recorded.
+C16,01,APG-S01-L0120,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Integration behaviour and source-freshness constraints are documented.
+C16,01,APG-S01-L0121,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Financial and post-completion domain reuse is mapped.
+C16,01,APG-S01-L0122,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Baseline test results and environmental limitations are recorded.
+C16,01,APG-S01-L0123,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Assumptions and DB-dependent work are tracked.
+C16,01,APG-S01-L0124,"dependent: reviewed, no text change (discovery gates and exit criteria the new questions join)",Architecture implications are ready to inform Section 02.
+C17,14,APG-S14-H0028,"dependent: reviewed, no text change (implementation phases the releases map onto)",14.3 Phase 0 — Repository discovery and baseline
+C17,14,APG-S14-L0030,"dependent: reviewed, no text change (implementation phases the releases map onto)","Repository structure, branches, commit state and uncommitted changes."
+C17,14,APG-S14-L0031,"dependent: reviewed, no text change (implementation phases the releases map onto)","Backend/frontend entry points, service boundaries and domain modules."
+C17,14,APG-S14-L0032,"dependent: reviewed, no text change (implementation phases the releases map onto)","Database schemas, migrations, models and relationships."
+C17,14,APG-S14-L0033,"dependent: reviewed, no text change (implementation phases the releases map onto)","Authentication, authorisation, tenant isolation and role enforcement."
+C17,14,APG-S14-L0034,"dependent: reviewed, no text change (implementation phases the releases map onto)",Canonical financial calculations and current sources of truth.
+C17,14,APG-S14-L0035,"dependent: reviewed, no text change (implementation phases the releases map onto)","Event, workflow, notification and audit-log behaviour."
+C17,14,APG-S14-L0036,"dependent: reviewed, no text change (implementation phases the releases map onto)","AI orchestration, prompts, model interfaces and data access."
+C17,14,APG-S14-L0037,"dependent: reviewed, no text change (implementation phases the releases map onto)","External integrations, credentials/configuration and failure handling."
+C17,14,APG-S14-L0038,"dependent: reviewed, no text change (implementation phases the releases map onto)","Existing unit, integration, regression, security and mutation tests."
+C17,14,APG-S14-L0039,"dependent: reviewed, no text change (implementation phases the releases map onto)","Current defects, incomplete features, technical debt and documented assumptions."
+C17,14,APG-S14-C0040,"dependent: reviewed, no text change (implementation phases the releases map onto)","Establish a reproducible baseline using repository-supported tests and checks. Previous summaries, intended ar"
+C17,14,APG-S14-C0041,"dependent: reviewed, no text change (implementation phases the releases map onto)",Required outputs:
+C17,14,APG-S14-L0042,"dependent: reviewed, no text change (implementation phases the releases map onto)",Current-State Implementation Inventory.
+C17,14,APG-S14-L0043,"dependent: reviewed, no text change (implementation phases the releases map onto)",Repository and Environment Baseline Report.
+C17,14,APG-S14-L0044,"dependent: reviewed, no text change (implementation phases the releases map onto)",Existing Test and Quality Report.
+C17,14,APG-S14-L0045,"dependent: reviewed, no text change (implementation phases the releases map onto)",Preliminary Requirement-to-Code Traceability Matrix.
+C17,14,APG-S14-L0046,"dependent: reviewed, no text change (implementation phases the releases map onto)",Initial Risk and Dependency Register.
+C17,14,APG-S14-L0047,"dependent: reviewed, no text change (implementation phases the releases map onto)","Initial DB-Dependent Closure Register, where applicable."
+C17,14,APG-S14-H0048,"dependent: reviewed, no text change (implementation phases the releases map onto)",14.4 Phase 1 — Establish the control foundations
+C17,14,APG-S14-L0049,"dependent: reviewed, no text change (implementation phases the releases map onto)",Canonical entity and financial data model.
+C17,14,APG-S14-L0050,"dependent: reviewed, no text change (implementation phases the releases map onto)",Source Authority Register and field-level provenance.
+C17,14,APG-S14-L0051,"dependent: reviewed, no text change (implementation phases the releases map onto)","Ingestion, normalisation, reconciliation and quarantine."
+C17,14,APG-S14-L0052,"dependent: reviewed, no text change (implementation phases the releases map onto)",Controlled financial-state transitions.
+C17,14,APG-S14-L0053,"dependent: reviewed, no text change (implementation phases the releases map onto)",Calculation versioning and reproducible inputs.
+C17,14,APG-S14-L0054,"dependent: reviewed, no text change (implementation phases the releases map onto)","Authentication, authorisation and tenant isolation."
+C17,14,APG-S14-L0055,"dependent: reviewed, no text change (implementation phases the releases map onto)",Immutable or appropriately tamper-evident audit history.
+C17,14,APG-S14-L0056,"dependent: reviewed, no text change (implementation phases the releases map onto)","Finding lifecycle, deduplication and controlled reopening."
+C17,14,APG-S14-L0057,"dependent: reviewed, no text change (implementation phases the releases map onto)",Human approval mechanisms for consequential actions.
+C17,14,APG-S14-L0058,"dependent: reviewed, no text change (implementation phases the releases map onto)","Shared error handling, data-quality status and uncertainty representation."
+C17,14,APG-S14-C0059,"dependent: reviewed, no text change (implementation phases the releases map onto)","Gate 1: Relevant foundation requirements have mapped implementation evidence, tests and documented unresolved "
+C17,14,APG-S14-H0060,"dependent: reviewed, no text change (implementation phases the releases map onto)",14.5 Phase 2 — Implement the authoritative financial core
+C17,14,APG-S14-L0062,"dependent: reviewed, no text change (implementation phases the releases map onto)",Canonical financial classifications and calculation semantics.
+C17,14,APG-S14-L0063,"dependent: reviewed, no text change (implementation phases the releases map onto)","Actuals, commitments, forecasts and scenarios kept distinct."
+C17,14,APG-S14-L0064,"dependent: reviewed, no text change (implementation phases the releases map onto)",Recognised margin and forecast final margin.
+C17,14,APG-S14-L0065,"dependent: reviewed, no text change (implementation phases the releases map onto)",Cash-position-adjusted margin as a distinct measure.
+C17,14,APG-S14-L0066,"dependent: reviewed, no text change (implementation phases the releases map onto)",Authoritative forecast selection and isolation of alternative scenarios.
+C17,14,APG-S14-L0067,"dependent: reviewed, no text change (implementation phases the releases map onto)","Qualified forecasts for missing, stale or uncertain inputs."
+C17,14,APG-S14-L0068,"dependent: reviewed, no text change (implementation phases the releases map onto)",Calculation versioning and reconstructable input snapshots.
+C17,14,APG-S14-L0069,"dependent: reviewed, no text change (implementation phases the releases map onto)",Evidence-based verification of realised savings and net benefits.
+C17,14,APG-S14-C0070,"dependent: reviewed, no text change (implementation phases the releases map onto)",The authoritative financial engine must not rely on an AI-generated narrative as the source of arithmetic. Cal
+C17,14,APG-S14-C0071,"dependent: reviewed, no text change (implementation phases the releases map onto)","Gate 2: Calculations are reproducible, material state transitions are controlled, and acceptance tests demonst"
+C17,14,APG-S14-H0072,"dependent: reviewed, no text change (implementation phases the releases map onto)",14.6 Phase 3 — Implement and integrate domain intelligence
+C17,14,APG-S14-L0073,"dependent: reviewed, no text change (implementation phases the releases map onto)","Section 06 — Active intelligence: finding lifecycle, leakage detection and cross-domain overlap controls."
+C17,14,APG-S14-L0074,"dependent: reviewed, no text change (implementation phases the releases map onto)","Section 07 — Schedule intelligence: delay events, schedule evidence and qualified holding-cost analysis."
+C17,14,APG-S14-L0075,"dependent: reviewed, no text change (implementation phases the releases map onto)","Section 08 — Procurement intelligence: comparable sourcing, landed cost and market-data freshness."
+C17,14,APG-S14-L0076,"dependent: reviewed, no text change (implementation phases the releases map onto)","Section 09 — Labour intelligence: productivity baselines, rework exposure, privacy and fairness."
+C17,14,APG-S14-L0077,"dependent: reviewed, no text change (implementation phases the releases map onto)","Section 10 — Recommendations and scenarios: explainable prioritisation, isolated scenarios, approvals and outc"
+C17,14,APG-S14-L0078,"dependent: reviewed, no text change (implementation phases the releases map onto)","Section 11 — Commercial intelligence: claims, variations, certification, invoicing, recognition and collection"
+C17,14,APG-S14-L0079,"dependent: reviewed, no text change (implementation phases the releases map onto)","Section 12 — Cash and capital: cash forecasting, working capital, financing cost, retentions and security."
+C17,14,APG-S14-L0080,"dependent: reviewed, no text change (implementation phases the releases map onto)","Section 13 — Quality intelligence: defect lifecycle, rework costs, root-cause evidence and verified improvemen"
+C18,03,APG-S03-H0137,"dependent: reviewed, no text change (retention record)",10.1 Retention record
+C18,03,APG-S03-L0138,"dependent: reviewed, no text change (retention record)",Associated contract and project.
+C18,03,APG-S03-L0139,"dependent: reviewed, no text change (retention record)",Relevant contractual clause or evidence reference.
+C18,03,APG-S03-L0140,"dependent: reviewed, no text change (retention record)",Retention basis and calculation method.
+C18,03,APG-S03-L0141,"dependent: reviewed, no text change (retention record)","Amounts withheld, claimed for release, approved, released and outstanding."
+C18,03,APG-S03-L0142,"dependent: reviewed, no text change (retention record)",Relevant milestone and documented due/review date.
+C18,03,APG-S03-L0143,"dependent: reviewed, no text change (retention record)","Conditions, disputes and linked defects."
+C18,03,APG-S03-L0144,"dependent: reviewed, no text change (retention record)","Source system, revision and last verification."
+C18,03,APG-S03-C0145,"dependent: reviewed, no text change (retention record)",Distinguish a balance withheld from an amount confirmed due for release. Do not infer a contractual release da
+C18,12,APG-S12-H0075,"dependent: reviewed, no text change (retention intelligence)",12.8 Retention intelligence
+C18,12,APG-S12-L0077,"dependent: reviewed, no text change (retention intelligence)","Amounts withheld, cumulative balance, currency, project/scope, and source records."
+C18,12,APG-S12-L0078,"dependent: reviewed, no text change (retention intelligence)","Contractual release milestones and conditions, with the supporting clause/record and interpretation status."
+C18,12,APG-S12-L0079,"dependent: reviewed, no text change (retention intelligence)","Amounts claimed for release, approved, disputed, released, and actually received as separate states."
+C18,12,APG-S12-L0080,"dependent: reviewed, no text change (retention intelligence)","Defects, inspections, certificates, final-account requirements, close-out obligations, and disputes that may a"
+C18,12,APG-S12-L0081,"dependent: reviewed, no text change (retention intelligence)","Expected release dates and assumptions, clearly distinguished from confirmed eligibility and actual cash recei"
+C18,12,APG-S12-C0082,"dependent: reviewed, no text change (retention intelligence)",A forecast date passing does not prove that retention is recoverable or that conditions are satisfied. The sys
+C18,05,APG-S05-H0097,"dependent: reviewed, no text change (retentions, security and DLP calculations)","9. Retentions, security and DLP"
+C18,05,APG-S05-C0100,"dependent: reviewed, no text change (retentions, security and DLP calculations)",Retention or bank-guarantee face value is not itself a profit loss. If an open defect delays retention release
+C19,04,APG-S04-H0101,"dependent: reviewed, no text change (human verification of document values)",12. AI-extracted documents — mandatory human verification for material facts
+C19,04,APG-S04-C0102,"dependent: reviewed, no text change (human verification of document values)","AI/OCR-extracted values from invoices, contracts, supplier quotations, delivery dockets and other documents mu"
+C19,04,APG-S04-L0103,"dependent: reviewed, no text change (human verification of document values)","Retain the original document or evidence reference, extraction output, model/tool version where available, ext"
+C19,04,APG-S04-L0104,"dependent: reviewed, no text change (human verification of document values)","Identify extracted fields, page/region or source location where supported, and any unresolved ambiguity."
+C19,04,APG-S04-L0105,"dependent: reviewed, no text change (human verification of document values)","Require verification for material values such as amounts, quantities, rates, tax, dates, contractual terms, re"
+C19,04,APG-S04-L0106,"dependent: reviewed, no text change (human verification of document values)",Do not use model confidence alone as a substitute for human verification of material facts.
+C19,04,APG-S04-L0107,"dependent: reviewed, no text change (human verification of document values)",Keep unverified extracted values in quarantine or clearly labelled provisional analysis.
+C19,04,APG-S04-L0108,"dependent: reviewed, no text change (human verification of document values)","Record reviewer identity, timestamp, value confirmed or corrected, evidence considered and disposition."
+C19,04,APG-S04-L0109,"dependent: reviewed, no text change (human verification of document values)","Non-material extraction may follow a separately defined risk-based policy, but may not bypass other validation"
+C19,04,PG-DI-AC-07,"dependent: reviewed, no text change (human verification of document values)",PG-DI-AC-07: Material AI/OCR-extracted values cannot become authoritative before authorised human verification
+C19,15,APG-S15-L0105,"dependent: reviewed, no text change (uploaded documents are untrusted; prompt injection in the threat model)","Retrieved documents and external content are untrusted data, not instructions overriding system governance."
+C19,15,APG-S15-L0106,"dependent: reviewed, no text change (uploaded documents are untrusted; prompt injection in the threat model)",Prompt injection and malicious instructions embedded in uploaded documents must be included in the threat mode
+C20,04,APG-S04-H0110,"dependent: reviewed, no text change (source revisions, conflicts and corrections)","13. Source revisions, conflicts and corrections"
+C20,04,APG-S04-L0111,"dependent: reviewed, no text change (source revisions, conflicts and corrections)","Maintain source revision/version, received time, effective time where available, and relationship to supersede"
+C20,04,APG-S04-L0112,"dependent: reviewed, no text change (source revisions, conflicts and corrections)",Apply the approved field-level Source Authority Register and do not resolve conflict using recency alone.
+C20,04,APG-S04-L0113,"dependent: reviewed, no text change (source revisions, conflicts and corrections)",Preserve prior values and decisions in the audit trail; corrections must be represented as governed changes ra
+C20,04,APG-S04-L0114,"dependent: reviewed, no text change (source revisions, conflicts and corrections)",Route unresolved material conflicts to authorised review and prevent them from changing authoritative financia
+C20,04,APG-S04-L0115,"dependent: reviewed, no text change (source revisions, conflicts and corrections)",Define a documented correction/replay path when an upstream source corrects a previously accepted record.
+C20,05,PG-PC-AC-17,"dependent: reviewed, no text change (reproduction after corrections; input and rule changes distinguishable)",PG-PC-AC-17: Historical results can be reproduced after source records or calculation rules change.
+C20,05,PG-PC-AC-18,"dependent: reviewed, no text change (reproduction after corrections; input and rule changes distinguishable)","PG-PC-AC-18: Input changes, rule changes and corrections are distinguishable."
+C21,00,APG-S00-H0110,"dependent: reviewed, no text change (control artefacts the registers satisfy)",00.12 Required control artefacts
+C21,00,APG-S00-L0111,"dependent: reviewed, no text change (control artefacts the registers satisfy)",Versioned product requirements and architecture specifications.
+C21,00,APG-S00-L0112,"dependent: reviewed, no text change (control artefacts the registers satisfy)","Architecture decision records documenting alternatives, rationale, consequences and status."
+C21,00,APG-S00-L0113,"dependent: reviewed, no text change (control artefacts the registers satisfy)",Requirements Traceability Matrix mapping requirement → design → implementation → test → evidence → status.
+C21,00,APG-S00-L0114,"dependent: reviewed, no text change (control artefacts the registers satisfy)","Data dictionary, canonical entity/state contracts and integration schemas."
+C21,00,APG-S00-L0115,"dependent: reviewed, no text change (control artefacts the registers satisfy)",Formula catalogue with worked examples and independent arithmetic checks.
+C21,00,APG-S00-L0116,"dependent: reviewed, no text change (control artefacts the registers satisfy)",Source coverage/freshness register and data quality contracts.
+C21,00,APG-S00-L0117,"dependent: reviewed, no text change (control artefacts the registers satisfy)",Threat model and security/tenant-isolation test matrix.
+C21,00,APG-S00-L0118,"dependent: reviewed, no text change (control artefacts the registers satisfy)","Test plan, acceptance criteria, regression evidence and mutation-testing results where applicable."
+C21,00,APG-S00-L0119,"dependent: reviewed, no text change (control artefacts the registers satisfy)","Assumptions, dependencies, risks, defects and DB-dependent/deferred-closure registers."
+C21,00,APG-S00-L0120,"dependent: reviewed, no text change (control artefacts the registers satisfy)","Implementation log, independent audit report, release checklist and version/hash manifest."
+C21,05,APG-S05-H0152,"dependent: reviewed, no text change (calculation catalogue listing each metric's inputs)",15. Claude implementation instructions
+C21,05,APG-S05-L0153,"dependent: reviewed, no text change (calculation catalogue listing each metric's inputs)",Do not begin production feature code or core integration logic until Section 01 Discovery Exit Report is signe
+C21,05,APG-S05-L0154,"dependent: reviewed, no text change (calculation catalogue listing each metric's inputs)","Map calculations to actual repository/canonical models and inspect existing financial arithmetic, aggregation,"
+C21,05,APG-S05-L0155,"dependent: reviewed, no text change (calculation catalogue listing each metric's inputs)","Produce a calculation catalogue listing each metric, formula, inputs, authority requirements, versioning rules"
+C21,05,APG-S05-L0156,"dependent: reviewed, no text change (calculation catalogue listing each metric's inputs)",Separate deterministic financial calculations from AI interpretation and recommendations.
+C21,05,APG-S05-L0157,"dependent: reviewed, no text change (calculation catalogue listing each metric's inputs)","Implement one-authoritative-forecast control, qualified/provisional forecast states, realised-benefit verifica"
+C21,05,APG-S05-L0158,"dependent: reviewed, no text change (calculation catalogue listing each metric's inputs)","Test arithmetic, financial state transitions, double counting, precision, historical reconstruction, replay an"
+C21,05,APG-S05-L0159,"dependent: reviewed, no text change (calculation catalogue listing each metric's inputs)",Provide calculation-level evidence and requirement traceability.
+C21,05,APG-S05-L0160,"dependent: reviewed, no text change (calculation catalogue listing each metric's inputs)","Record database, source, integration and policy blockers in the DB-Dependent Closure Register."
+C21,05,APG-S05-L0161,"dependent: reviewed, no text change (calculation catalogue listing each metric's inputs)","Do not claim production readiness solely from unit tests; include integration, reconciliation and regression e"
+M11,15,APG-S15-H0065,"dependent: reviewed, no text change (retention period, archive and deletion per data category (close-out and customer exit))","15.6 Data classification, minimisation and retention"
+M11,15,APG-S15-L0067,"dependent: reviewed, no text change (retention period, archive and deletion per data category (close-out and customer exit))",Public or externally approved information.
+M11,15,APG-S15-L0068,"dependent: reviewed, no text change (retention period, archive and deletion per data category (close-out and customer exit))",Internal operational information.
+M11,15,APG-S15-L0069,"dependent: reviewed, no text change (retention period, archive and deletion per data category (close-out and customer exit))",Confidential commercial and financial information.
+M11,15,APG-S15-L0070,"dependent: reviewed, no text change (retention period, archive and deletion per data category (close-out and customer exit))","Restricted personal, workforce or otherwise sensitive information."
+M11,15,APG-S15-L0071,"dependent: reviewed, no text change (retention period, archive and deletion per data category (close-out and customer exit))",Security credentials and secrets requiring dedicated handling.
+M11,15,APG-S15-C0074,"dependent: reviewed, no text change (retention period, archive and deletion per data category (close-out and customer exit))","Retention and deletion rules must account for legitimate contractual, accounting, dispute-resolution and recor"
+M11,15,APG-S15-C0075,"dependent: reviewed, no text change (retention period, archive and deletion per data category (close-out and customer exit))",This specification does not itself determine every legal retention period or establish that a particular legal
+M11,15,S15 paragraph 71 (no RTM row),"dependent: reviewed, no text change (retention period, archive and deletion per data category (close-out and customer exit))","For each material data category, define approved collection/processing purpose, permitted users/services/integ"
