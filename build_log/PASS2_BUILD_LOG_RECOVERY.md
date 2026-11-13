@@ -232,3 +232,12 @@ review pack); everything after that is restated here from the conversation recor
   temp-file write 11:12:33; no end line). Files and repositories survived. Partial console moved to ev5/interrupted/m2s_313_restart3,
   temp folder (9.6 GB) removed, no .done mark; m2s_313 relaunched detached from the start at 11:15:44, waiter renewed. No result was
   produced, so nothing wrong was recorded; about 2 h 37 min lost. A container restart cannot be prevented from inside the session.
+- 2026-11-13 13:20-17:46 Step 5.3 finished (ev5/progress523.txt), all results as expected. Python 3.13: m2s_313 (started 11:15:44, 2 h 05 min)
+  RESULT m2s SAME; m2eq1_313 every EQUIV id SURVIVED (supports the AM5-3 allowance); m2c_313 RESULT m2 SAME. Python 3.12: m2list_312 OK
+  (exit 0, 199 ids, RI10 at 51); the five harness slices m2h 0-40, 40-80, 80-120, 120-160, 160-199 all SAME; m2s_312 (15:33:56-17:40:26)
+  SAME; m2eq1_312 every EQUIV id SURVIVED; m2c_312 SAME. STEP53 DONE 17:46:56. BUILDER-EXECUTED: NOT INDEPENDENT.
+- 2026-11-13 17:47 Mistake 56 re-run: the four recorded-totals jobs (b6tot and k2tot, both Pythons) run again one at a time (ev5/driver_m56.sh,
+  same job() and 10 GB floor as driver523) with the corrected label. All four SAME, 0 DIFFERENT; each output is identical to its wrong-label
+  run apart from the label. The wrong-label outputs, consoles and marks are kept in ev5/compare_py313/ and compare_py312/wrong_label_m56/.
+- 2026-11-13 17:48:49 Step 5.4 (driver54.sh) launched detached, with a waiter beside it: historical on both Pythons, the static checks, the
+  audits from a fresh extraction with env -i and five names, the child-start scan and the tset start scan.
