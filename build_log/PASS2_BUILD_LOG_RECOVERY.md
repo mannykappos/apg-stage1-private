@@ -285,3 +285,31 @@ review pack); everything after that is restated here from the conversation recor
 - 2026-11-13 18:34 The owner chose "Fix them, then re-run" (recovery/received/RECEIVED_OWNER_ANSWER_2026-11-13_1834_STEP6_FIX.txt):
   the missing test pieces, the builder's tools and records fixed, no product or successor-tool logic change; one new freeze, the full
   evidence again, a fresh re-mapping, then step 7.
+
+## 2026-11-13 fix 6 (owner 18:34, "Fix them, then re-run") - BUILDER-EXECUTED: NOT INDEPENDENT
+- 18:45 to 19:05 Tests written on branch fix6 (from main e9e11d9), tests only, in four existing tests_tools files, each run focused on
+  Python 3.13 while written (commit cb7bf7b, pins v103: test_exec_env 42 -> 44, test_mutation_timeout 200 -> 206,
+  test_no_timeout_kill 52 -> 56, test_runner_zero_work 166 -> 181; 727 tests in tests_tools). No product or successor-tool logic
+  changed. The change record has a fix 6 entry and the pin history of the rebuilt tree (D6-2). Row by row: rows 4, 11, 12, 21, 22,
+  29, 30, 41, 42/121 (pgids noted while alive, D6-7; records from P2MutationFamily, P2FaultRunners, P2CaseRunners,
+  P2NoResultSupervisors), 46, 51 to 53 and 66, 71, 73 with D6-3, 75 (finding 13 classes 2 to 6, P_PROBE lines), 85, 91, 96, 99;
+  D17 renamed. Test faults found and fixed while writing (none in the product): a between-items hold placed after the loop's cancel
+  check; a planted leftover not yet ignoring SIGTERM when the cleanup reached it (now it marks itself once it ignores it, and the
+  plant waits for that); an expectation that run_m8_tests_s1's file is CHILD_OK although the planted AUIF edit reaches the child's own
+  verification too; the first chain plant missing the leaf's non-supervisor path; a pid ordering assumption in row 11's test.
+- Row 21's test states the builder reading that a unit's id order is its creation order (evkit final_lines' docstring); disclosed.
+- Builder tools: tset_start_scan_s1.py (D6-1: aliases read from each file's own imports, so _p2sp is matched; a leaf-invocation table,
+  AM-2's "parent, limit and leaf"); development run on the fix6 tree: 102 sites, 102 with a limit, NONE 0 (the 83 of step 5.4 was an
+  undercount, the class of mistake 31; disclosed as mistake 60). audit_outside_services_s1.py (row 6: P.2's stop, a secret-bearing
+  name in a unit's environment ends the audit with exit 3, by name only; --demo-planted-secret plants one in the labelled control to
+  show the stop; development runs: rc 0 normal, rc 3 demonstration, the planted value in no output). Every builder tool and the fix 6
+  drivers copied to builder_tools/current_fix6 with SHA256.txt (D6-4).
+- D6-6 correction: the 03:15 entry of the earlier log (records/PASS2_BUILD_LOG.md:87) and amendment 5 Appendix A part 3 say the
+  "02:45 entry" was corrected; the "same as 11-05" text is in the 02:15-02:43 entry (line 82). The log stays append-only; this entry
+  is the correction.
+- MISTAKE 60 (disclosed): the row 68 scanner of 2026-11-11 matched only module names containing "subprocess" or sp/_sp, though its
+  docstring said "any alias"; it missed the _p2sp alias in test_runner_zero_work.py, so step 5.4's "sites 83" was an undercount
+  (found by the step 6 agent, D6-1). Every missed site read has a limit.
+- MISTAKE 61 (disclosed, data supply work, not stage 1): the morning's heading-level M15 check reported 2 missing entities and 4 field
+  gaps; the row-level check of all 2,712 RTM rows found 430 rows whose data the register does not carry. Recorded in the cascade
+  assessment's records.
