@@ -27,14 +27,16 @@ def summary():
     for r in imp:
         ids[r['section']].add(r['RTM ID or source anchor'])
         for it in r['change item'].split(', '):
-            items[r['section']].add(it)
-    out = ['| Section | Title (as the section itself is titled) | Disposition | Additions | Existing IDs or anchors touched | Change items |', '| --- | --- | --- | --- | --- | --- |']
+            if it.startswith('C'):
+                items[r['section']].add(it)
+    out = ['| Section | Title (as the section itself is titled) | Disposition | Additions (reworded lines) | Locked items touched | Change items |', '| --- | --- | --- | --- | --- | --- |']
     for s in sorted(set(ids) | set(amended) | {'18'}):
         if s == '18':
-            out.append('| 18 | %s | reviewed; no text change; its package assets change (section 6.7) | 0 | none (S18 has no RTM rows, by design) | C21 |' % TITLE[s])
+            out.append('| 18 | %s | reviewed; no text change; its package assets change (section 6.7) | 0 | none (S18 has no RTM rows: section 13) | C21 |' % TITLE[s])
             continue
-        disp = 'amended: v1.0 to v1.1, additions only' if s in amended else 'dependent: reviewed, no text change'
-        out.append('| %s | %s | %s | %d | %d | %s |' % (s, TITLE[s], disp, amended.get(s, 0), len(ids[s]), ', '.join(sorted(items[s]))))
+        disp = 'amended: v1.0 to v1.1; additions, and the version line reworded' if s in amended else 'dependent: reviewed, no text change'
+        add = sum(1 for p in prop if p['section'] == s and p['change'] == 'added after'); rw = sum(1 for p in prop if p['section'] == s and p['change'] != 'added after')
+        out.append('| %s | %s | %s | %d (%d) | %d | %s |' % (s, TITLE[s], disp, add, rw, len(ids[s]), ', '.join(sorted(items[s]))))
     return '\n'.join(out)
 
 def proposed():
@@ -44,20 +46,19 @@ def proposed():
         out.append('')
         last = None
         for p in [x for x in prop if x['section'] == s]:
-            if p['inserted after'] != last:
+            key = (p['change'], p['anchor'])
+            if key != last:
                 if last is not None:
                     out.append('')
-                out.append('Inserted after **%s**, which reads: "%s…"' % (p['inserted after'], p['which reads'].rstrip()))
+                lt = p['locked text there'].replace('\n', ' ').strip()
+                lt = (lt[:160] + '…') if len(lt) > 160 else lt
+                if p['change'] == 'added after':
+                    out.append('Added after **%s**, which reads: "%s"' % (p['anchor'], lt))
+                else:
+                    out.append('Reworded: **%s**, which reads today: "%s"' % (p['anchor'], lt))
                 out.append('')
-                last = p['inserted after']
-            text = p['proposed text']
-            if p['kind'] == 'table rows':
-                out.append('- **%s** (%s; change item %s):' % (p['proposed ID'], p['kind'], p['change item']))
-                for row in text.split(' ; '):
-                    a, b = row.split(' | ', 1)
-                    out.append('    - %s: %s' % (a.strip(), b.strip()))
-            else:
-                out.append('- **%s** (%s; change item %s): %s' % (p['proposed ID'], p['kind'], p['change item'], text))
+                last = key
+            out.append('- **%s** (%s; change item %s): %s' % (p['proposed ID'], p['kind'], p['change item'], p['proposed text']))
         out.append('')
     return '\n'.join(out)
 

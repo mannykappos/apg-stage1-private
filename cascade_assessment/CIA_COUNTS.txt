@@ -1,18 +1,19 @@
-Proposed additions: 59 (14 new acceptance criteria PG-DS-AC-01 to 14, 2 new functional requirements PG-FR-026 and 027)
+Proposed additions: 81 (38 paragraphs or bullets, 7 headings, 15 table rows, 14 acceptance criteria PG-DS-AC-01 to 14); each is one new RTM row
+Locked text reworded: 10 version lines (two in each of S01, S02 and S03, one in each of S04, S05, S06 and S11); nothing else
 Sections amended (v1.0 -> v1.1): 01, 02, 03, 04, 05, 06, 11
-Impact rows: 797 (31 insertion points, 766 dependent requirements reviewed with no text change), 679 distinct RTM IDs or anchors
+Impact rows: 1360; distinct locked items touched: 1071 (888 with an RTM ID, 112 paragraphs and 71 table rows the RTM does not map); insertion points: 24 distinct anchors
 Sections reviewed as dependents only: 00, 07, 08, 09, 10, 12, 13, 14, 15, 16, 17
 
-Existing RTM rows whose paragraph-index anchor moves (they sit after the first inserted paragraph; their IDs do not change):
-  S01: 61 of 139 rows (after paragraph 88)
-  S02: none (table rows only)
+Existing RTM rows whose paragraph-index anchor moves (they sit after the first inserted paragraph; their IDs are kept):
+  S01: 61 of 139 rows (after paragraph 89)
+  S02: 0 of 161 rows (after paragraph 175)
   S03: 251 of 256 rows (after paragraph 11)
   S04: 65 of 179 rows (after paragraph 121)
   S05: 129 of 156 rows (after paragraph 33)
   S06: 125 of 158 rows (after paragraph 39)
   S11: 52 of 84 rows (after paragraph 52)
 
-Pre-existing observation (outside this change request): locked paragraphs and table rows the RTM does not map, Sections 00-17
+Pre-existing observation (outside this change request): locked text the RTM does not map, Sections 00-18
   S00: 11 paragraphs not mapped (of 155 non-empty), 0 table body rows not mapped
   S01: 16 paragraphs not mapped (of 155 non-empty), 10 table body rows not mapped
   S02: 15 paragraphs not mapped (of 176 non-empty), 60 table body rows not mapped
@@ -31,4 +32,5 @@ Pre-existing observation (outside this change request): locked paragraphs and ta
   S15: 22 paragraphs not mapped (of 210 non-empty), 0 table body rows not mapped
   S16: 14 paragraphs not mapped (of 157 non-empty), 0 table body rows not mapped
   S17: 46 paragraphs not mapped (of 223 non-empty), 0 table body rows not mapped
-  total: 401 paragraphs (cover lines and lock-record lines included), 125 table body rows
+  S18: 140 paragraphs not mapped (of 140 non-empty), 0 table body rows not mapped
+  total: 541 paragraphs (cover lines and lock-record lines included; all 140 of Section 18), 125 table body rows
