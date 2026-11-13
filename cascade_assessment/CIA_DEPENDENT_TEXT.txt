@@ -1276,3 +1276,67 @@ APG-S02-L0133	No unverified market claims: coverage, forecasts and expected purc
 APG-S02-L0134	No autonomous expansion of authority: AI cannot bypass platform permissions or governance rules.
 APG-S02-C0135	The human-approval-only boundary is a permanent default for the initial release, not a temporary implementation convenience. Any later proposal to change this boundary requires a separately reviewed and explicitly approved governance change; it cannot be enabled by model behaviour or configuration alone.
 S02 table 2 row 24 (no RTM row)	PG-FR-024 | Support developer/principal and portfolio-level views of capital exposure, milestones, holding costs and project outcomes subject to permissions.
+S18 paragraph 39 (no RTM row)	5. Automated Cross-Section Terminology and Conflict Review
+S18 paragraph 40 (no RTM row)	The package build must run a repeatable cross-section terminology/conflict check and produce a report. The check should use a controlled glossary of canonical terms and definitions, including but not limited to recognised margin, forecast final margin, cash-position-adjusted margin, authoritative forecast, provisional/qualified value, commitment, scenario, realised saving, recovered revenue, retention/security face value and incremental carrying cost.
+S18 paragraph 41 (no RTM row)	Where the same canonical term appears in multiple sections, compare the defined meaning and authoritative source references against the controlled glossary.
+S18 paragraph 42 (no RTM row)	Detect spelling/alias variations, inconsistent definitions, conflicting state transitions and terminology collisions across source sections.
+S18 paragraph 43 (no RTM row)	Flag conflicts between the core financial semantics in Sections 03 and 05 and downstream sections, including cash flow, commercial, procurement, quality and intelligence specifications.
+S18 paragraph 44 (no RTM row)	Treat automated term checks as a detection aid, not a proof of semantic consistency. Require documented human review of flagged and high-risk term families.
+S18 paragraph 45 (no RTM row)	Unresolved material conflicts in authoritative financial rules, permissions, approvals, source authority or financial classifications block final handoff.
+S18 paragraph 64 (no RTM row)	8. Explicit Claude Handoff Protocol
+S18 paragraph 65 (no RTM row)	The ZIP root must contain CLAUDE_HANDOFF_INSTRUCTIONS.md. It must direct Claude to follow this sequence:
+S18 paragraph 66 (no RTM row)	Phase 0 — Repository discovery and baseline: inspect repository structure, current branch/commit, working tree, runtime/tool versions, dependency files, test commands, application entry points, database schema/migrations, authorization and tenant boundaries, audit logging, integration connectors, AUIF, Governor, background workers, CI/CD and deployment configuration. Record commands executed and actual outputs; do not assume a guessed path or command exists.
+S18 paragraph 67 (no RTM row)	Phase 0 exit gate: deliver a baseline inventory, current test results, existing failures, architecture map, requirement-to-code observations, access/tooling blockers and DB-Dependent Closure Register. No material code changes until the baseline is recorded, except an explicitly approved emergency correction.
+S18 paragraph 68 (no RTM row)	Phase 1 — Control foundations: identity, tenant isolation, permissions, audit, canonical entities, ingestion/source authority and durable state invariants.
+S18 paragraph 69 (no RTM row)	Phase 2 — Authoritative financial core: canonical calculations, calculation versioning, immutable/reconstructable inputs, fixtures and mutation/regression suite.
+S18 paragraph 70 (no RTM row)	Phase 3 — Domain intelligence: implement domain capabilities against the locked contracts, retaining deterministic financial authority and AI boundaries.
+S18 paragraph 71 (no RTM row)	Phase 4 — Cross-domain integration: verify overlap controls, deduplicated net impact, linked provenance, dependency handling and portfolio aggregation.
+S18 paragraph 72 (no RTM row)	Phase 5 — Security, reliability and recovery: verify the mandatory Section 15–17 gates in the actual architecture and target environments.
+S18 paragraph 73 (no RTM row)	Phase 6 — Acceptance and release evidence: complete RTM status/evidence, required staging/database checks, release-blocker review, and authorised sign-off.
+S18 paragraph 74 (no RTM row)	At every phase, update RTM entries, tests, defects, evidence references, statuses and DB blockers. Keep specified, implemented, locally tested, integration tested, staging verified, operationally verified, accepted and closed distinct.
+S18 paragraph 75 (no RTM row)	Never claim production readiness from the locked blueprint, code presence, mocks, local tests alone, a successful deployment command or a high pass count. Preserve blockers and report limitations honestly.
+S18 paragraph 76 (no RTM row)	The handoff file must include repository-adaptive commands as examples with a requirement to verify each command/path before execution. Do not invent repository paths or claim that commands were executed in advance.
+S18 paragraph 89 (no RTM row)	10. Mandatory Acceptance Tests
+S18 paragraph 90 (no RTM row)	T18-01 — Corrupted section detection
+S18 paragraph 91 (no RTM row)	Setup: Alter one byte in a copied section document inside a test archive without updating the manifest.
+S18 paragraph 92 (no RTM row)	Expected outcome: Fresh-extraction verification recalculates SHA-256, reports the precise mismatch and rejects the package.
+S18 paragraph 93 (no RTM row)	Evidence: validator output, build/package identity, test ID, relevant manifest/RTM/register entries and recorded disposition.
+S18 paragraph 94 (no RTM row)	T18-02 — Orphaned/missing RTM entry
+S18 paragraph 95 (no RTM row)	Setup: Remove a controlled requirement ID or consolidation-assigned requirement anchor from the master RTM.
+S18 paragraph 96 (no RTM row)	Expected outcome: RTM validation reports the missing mapping and fails the completeness gate.
+S18 paragraph 97 (no RTM row)	Evidence: validator output, build/package identity, test ID, relevant manifest/RTM/register entries and recorded disposition.
+S18 paragraph 98 (no RTM row)	T18-03 — Cascade impact failure
+S18 paragraph 99 (no RTM row)	Setup: Submit a CR changing a canonical financial definition without updating dependent section references and tests.
+S18 paragraph 100 (no RTM row)	Expected outcome: CR validation flags downstream dependencies and prevents approval until the assessment and required updates are complete.
+S18 paragraph 101 (no RTM row)	Evidence: validator output, build/package identity, test ID, relevant manifest/RTM/register entries and recorded disposition.
+S18 paragraph 102 (no RTM row)	T18-04 — DB blocker retention
+S18 paragraph 103 (no RTM row)	Setup: Package a register containing an open cash-flow database migration item.
+S18 paragraph 104 (no RTM row)	Expected outcome: The item remains Blocked in the register and RTM, with Amir instructions and required staging evidence preserved.
+S18 paragraph 105 (no RTM row)	Evidence: validator output, build/package identity, test ID, relevant manifest/RTM/register entries and recorded disposition.
+S18 paragraph 106 (no RTM row)	T18-05 — ZIP extraction verification
+S18 paragraph 107 (no RTM row)	Setup: Build the package, extract into a fresh temporary directory and run the validator.
+S18 paragraph 108 (no RTM row)	Expected outcome: All required files are present/readable, all digests match, manifest and archive inventory align, and RTM/terminology gates report results.
+S18 paragraph 109 (no RTM row)	Evidence: validator output, build/package identity, test ID, relevant manifest/RTM/register entries and recorded disposition.
+S18 paragraph 110 (no RTM row)	T18-06 — Closed DB item without evidence
+S18 paragraph 111 (no RTM row)	Setup: Change a DB-dependent item to Closed while staging logs or approval ID are absent.
+S18 paragraph 112 (no RTM row)	Expected outcome: Register validation fails and the item cannot be accepted as closed.
+S18 paragraph 113 (no RTM row)	Evidence: validator output, build/package identity, test ID, relevant manifest/RTM/register entries and recorded disposition.
+S18 paragraph 114 (no RTM row)	T18-07 — Term conflict
+S18 paragraph 115 (no RTM row)	Setup: Introduce an inconsistent definition for a canonical financial term in a test copy of a downstream document/glossary.
+S18 paragraph 116 (no RTM row)	Expected outcome: Terminology validation flags the collision and handoff acceptance is blocked until reviewed and resolved.
+S18 paragraph 117 (no RTM row)	Evidence: validator output, build/package identity, test ID, relevant manifest/RTM/register entries and recorded disposition.
+S18 paragraph 118 (no RTM row)	T18-08 — Unapproved locked-section edit
+S18 paragraph 119 (no RTM row)	Setup: Alter a locked section without a linked approved CR and new hash/version record.
+S18 paragraph 120 (no RTM row)	Expected outcome: Pre-package validation detects the source hash mismatch or absent approved change record and rejects the altered file.
+S18 paragraph 121 (no RTM row)	Evidence: validator output, build/package identity, test ID, relevant manifest/RTM/register entries and recorded disposition.
+S18 paragraph 122 (no RTM row)	11. Locked Checkpoint Decisions
+S18 paragraph 123 (no RTM row)	A — Automated ZIP reopening and hash verification
+S18 paragraph 124 (no RTM row)	ACCEPTED — Mandatory. The final ZIP must be programmatically extracted into a fresh location and all controlled file hashes verified against the internal master manifest before handoff acceptance.
+S18 paragraph 125 (no RTM row)	B — Mandatory cascade impact analysis
+S18 paragraph 126 (no RTM row)	ACCEPTED — Mandatory. Every amendment to a locked section requires documented downstream impact analysis across dependent sections, RTM entries, tests, fixtures, terminology and package metadata.
+S18 paragraph 127 (no RTM row)	C — Strict RTM completeness
+S18 paragraph 128 (no RTM row)	ACCEPTED — Mandatory. Handoff is blocked if any controlled requirement ID or material requirement anchor from Sections 00–17 is missing, duplicated, orphaned or unmapped in the consolidated RTM.
+S18 paragraph 129 (no RTM row)	D — Specification/build boundary
+S18 paragraph 130 (no RTM row)	ACCEPTED — Mandatory. Section 18 lock and final ZIP packaging mean specification-package completion only; they must never be represented as code implementation, database verification or production readiness.
+S18 paragraph 131 (no RTM row)	E — Immutable DB-dependent closure tracking
+S18 paragraph 132 (no RTM row)	ACCEPTED — Mandatory. The DB-Dependent Closure Register remains included and active in the final ZIP; open blockers and exact closure evidence requirements are preserved.

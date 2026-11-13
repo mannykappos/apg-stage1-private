@@ -1,12 +1,12 @@
 """Section 18 cascade impact assessment, data supply design (draft 7) and Data Readiness CR revision 4: the requirement-level tables.
-Builder work (Claude): BUILDER-EXECUTED: NOT INDEPENDENT.   Version 2 (after the first independent check).
+Builder work (Claude): BUILDER-EXECUTED: NOT INDEPENDENT.   Version 3 (after the third independent check).
 
 From the locked package (the Master RTM and the 19 section documents, v1.0) and the change items defined below, it writes:
   CIA_PROPOSED_TEXT.csv   every paragraph, bullet, table row and acceptance criterion this change request proposes to add, and the version
                           lines it rewords (the only locked text it rewords), with the proposed ID, the section, the anchor it follows
                           (RTM ID; or paragraph index, or table and row, where the RTM has none), the locked text there, and the new text.
   CIA_RTM_IMPACT.csv      every locked paragraph and table row each change item touches, as an insertion point, a reworded version line,
-                          or a dependent reviewed with no text change.  Tables and rows are numbered from 0, as python-docx counts them, like paragraph indices.  Spans are read from the section documents themselves (paragraphs
+                          or a dependent reviewed with no text change.  Tables and rows are numbered from 0, as python-docx counts them, like paragraph indices; row 0 is a table's header row, so body rows start at 1.  Spans are read from the section documents themselves (paragraphs
                           and table rows between a heading and the next heading of the same or a higher level), so locked text the RTM
                           does not map is listed too, as "Sxx paragraph N (no RTM row)" or "Sxx table T row R (no RTM row)".
   CIA_DEPENDENT_TEXT.txt  the full locked text of every dependent, for the reviewer.

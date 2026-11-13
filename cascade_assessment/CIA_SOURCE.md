@@ -1,4 +1,4 @@
-# APG change request: Data Supply System and Data Readiness, cascade impact assessment (draft 3)
+# APG change request: Data Supply System and Data Readiness, cascade impact assessment (draft 4)
 
 Nov 13, 2026 · prepared by Claude (builder) for Emmanuel (product owner)
 
@@ -8,7 +8,7 @@ Nov 13, 2026 · prepared by Claude (builder) for Emmanuel (product owner)
 
 It is design only. It authorises no build, changes no locked file, and claims nothing is implemented, accepted or ready for production. Stage 2 stays not authorised, and under S04 §20 no production feature code starts before the Section 01 Discovery Exit Report is signed off. It is the builder's work (BUILDER-EXECUTED: NOT INDEPENDENT).
 
-Draft 3 answers two independent checks (INDEPENDENT READ-ONLY (agent)): the first, of draft 1, found 5 blocking, 19 should fix and 21 minor; the second, a scoped re-check of draft 2, found 36 of those fixed, 9 partly, and 2 blocking, 11 should fix and 20 minor new points. A fix is claimed for each, listed in `CHECK1_FIXES_CIA.md` and `CHECK2_FIXES_CIA.md`; the fixes of the second check have not yet been checked independently.
+Draft 4 answers three independent checks (INDEPENDENT READ-ONLY (agent)): the first, of draft 1, found 5 blocking, 19 should fix and 21 minor; the second, a scoped re-check of draft 2, found 2 blocking, 11 should fix and 20 minor new points; the third, a focused check of draft 3, found no blocking point, and 6 should fix and 7 minor wording points. A fix is claimed for each (`CHECK1_FIXES_CIA.md`, `CHECK2_FIXES_CIA.md`, `CHECK3_FIXES_CIA.md`). The third check's fixes are wording only and have not been checked independently; to avoid a fourth round, they go to GPT with the rest.
 
 ## 1. In plain words
 
@@ -20,23 +20,23 @@ The locked blueprint (Sections 00 to 18, version 1.0) already says most of what 
 What it does not yet say is how APG makes sure it can always get the data, and how it tells the builder what it needs. This change request adds that.
 
 - **What changes in the blueprint.** 81 pieces of text are added to 7 of the 19 sections (01, 02, 03, 04, 05, 06 and 11), which go from version 1.0 to 1.1. The full proposed wording is in section 12.
-  - Most of it goes into Section 04, the intake: the ways of supplying data; the readiness record that tells the builder what is missing; the rule that every message says what to do; setup questions; and 14 new acceptance criteria (PG-DS-AC-01 to 14), the tests each part must pass.
-  - The only locked words that change are the version lines ("Version 1.0" becomes "Version 1.1") in the seven sections. Nothing else already locked is reworded or removed.
-- **What it does not change.** No existing financial definition: recognised margin, forecast final margin and the others keep their meaning. No approval or check is weakened.
+    - Most of it goes into Section 04, the intake: the ways of supplying data; the readiness record that tells the builder what is missing; the rule that every message says what to do; setup questions; and 14 new acceptance criteria (PG-DS-AC-01 to 14), the tests each part must pass.
+    - The only locked words that change are the version lines ("Version 1.0" becomes "Version 1.1") in the seven sections. Nothing else already locked is reworded or removed.
+- **What it does not change.** No existing financial definition: recognised margin, forecast final margin and the others keep their meaning. No approval or check is weakened (if the owner chooses Option B of question 1, that is a stated exception for one-person builders).
 - **Two things that do change results, later, each under its own build:** the builder's own severity levels change how findings are graded (every rule has a severity mapping, S06 §5.1); and moving all records onto one intake (C02) changes which records some rules can use, so some results will change. Both are explained in section 4.
 - **What is new money logic.** One addition is a new way of showing a figure: the extras and variations panel splits the job's one main profit figure into the original build and each extra, and the parts add up exactly to it. That needs its own tests (section 4) and your confirmation (question 3).
-- **What else it touches.** Every locked paragraph and table row that the changes bear on was read for knock-on effects: 1,278 of them, in Sections 00 to 18, each listed by its ID or position. None needs new wording.
+- **What else it touches.** Every locked paragraph and table row that the changes bear on was read for knock-on effects: 1,342 of them, in Sections 00 to 18, each listed by its ID or position. None needs new wording.
 - **The package around the blueprint needs work after approval:**
-  - the requirements matrix (RTM), the master list that gives every requirement an ID;
-  - the terminology register;
-  - the manifest, the list of files with their fingerprints (hashes);
-  - the package checker, which today rejects any section that is not version 1.0 (shown in section 6.7).
+    - the requirements matrix (RTM), the master list that gives every requirement an ID;
+    - the terminology register;
+    - the manifest, the list of files with their fingerprints (hashes);
+    - the package checker, which today rejects any section that is not version 1.0 (shown in section 6.7).
 - **Four questions for you** (section 11), each with an example:
-  1. Can a builder who is the only person using APG approve his own settings?
-  2. What is "a percentage of the job" a percentage of?
-  3. What do the main budget and profit include, and how does the extras panel split them?
-  4. Is it right that the builder's dollar and percentage levels grade only the money side of a finding, and never its safety side?
-- **Next.** A scoped independent check of what changed in draft 2, then one GPT pass listing every problem at once, then your formal approval. Only after approval are the version 1.1 files made, and each build still needs its own authorisation.
+    1. Can a builder who is the only person using APG approve his own settings?
+    2. What is "a percentage of the job" a percentage of?
+    3. What do the main budget and profit include, and how does the extras panel split them?
+    4. Is it right that the builder's dollar and percentage levels grade only the money side of a finding, and never its safety side?
+- **Next.** One GPT pass listing every problem at once; alongside it, the 100 entities are cross-checked against the requirements matrix (M15); then your formal approval. Only after approval are the version 1.1 files made, and each build still needs its own authorisation.
 
 ## 2. Change request identification
 
@@ -50,7 +50,7 @@ What it does not yet say is how APG makes sure it can always get the data, and h
 | Affected locked sections (dependents, no text change) | Sections 00, 07, 08, 09, 10, 12, 13, 14, 15, 16 and 17. Section 18 too: its text is unchanged, but its package assets change. |
 | Package assets affected | `MASTER_REQUIREMENTS_TRACEABILITY_MATRIX.csv`, `CROSS_SECTION_TERMINOLOGY_REGISTER.md`, `manifest.json`, `validate_handoff_package.py`, `README_HANDOFF.md`, `CLAUDE_HANDOFF_INSTRUCTIONS.md`, `SOURCE_SECTION_INVENTORY.json`, `PACKAGE_VALIDATION_REPORT.txt`, and a new controlled change register (section 6.7). |
 | Related, outside the locked blueprint | The 8-layer design blueprint v0.1 is a design baseline, not locked; its 02 §2.11 and 11 §11.2 and §11.6 are dependents. The owner's own change requests CR-02, CR-05, CR-07, CR-08 and CR-10 (section 6.3). The defect change request for DC-1 to DC-13, raised after stage 1. |
-| Exact requirement IDs | `CIA_RTM_IMPACT.csv` lists every insertion point, reworded line and dependent: by RTM ID, or by paragraph or table row where the RTM has no row. It has 1,633 rows over 1,278 distinct locked items: 1,009 with an RTM ID, 184 paragraphs and 85 table rows without one (tables and rows are numbered from 0). `build_cia.py` reads the spans from the section documents themselves, not only from the RTM. It fails if an anchor is wrong, or if an insertion point is not the true end of its block. |
+| Exact requirement IDs | `CIA_RTM_IMPACT.csv` lists every insertion point, reworded line and dependent: by RTM ID, or by paragraph or table row where the RTM has no row. It has 1,732 rows over 1,342 distinct locked items: 1,009 with an RTM ID, 248 paragraphs and 85 table rows without one (tables and rows are numbered from 0, as python-docx counts them; row 0 is a table's header, so body rows start at 1). `build_cia.py` reads the spans from the section documents themselves, not only from the RTM. It fails if an anchor is wrong, or if an insertion point is not the true end of its block. |
 
 The locked package was checked before use:
 - every file's SHA-256 matches its manifest;
@@ -91,9 +91,9 @@ Each item names what it adds and where. The full wording of every addition, and 
 | C11 | Severity levels for the money side of a finding, set by the builder at setup: an amount, a percentage of the job, or both, whichever is reached first. No defaults. Safety and quality classification stays separate. | S06 §8 (new paragraph) | addition (new design and new code); questions 1, 2 and 4 | owner record items 7 and 9 |
 | C12 | (Folded into C04.) | | | |
 | C13 | Extras and variations shown separately, as a breakdown of the one authoritative forecast. The cost of extra work is attributed to its instruction or variation and counted once. The builder records what happens after a variation is rejected. | S11 §8 and §8.2 (new); S05 §3.2 and §6; S03 §6.2 | addition, including one new financial view (section 4); question 3 | owner record items 4 and 5 |
-| C14 | The authoritative forecast's budget and profit first; each item that is not final beside them, by category, with its what-if effect never added in. | S05 §3.2 (new bullet) | addition (new presentation across budget and profit); question 3 | owner record item 11 |
+| C14 | The approved budget and the authoritative forecast's final cost and margin first; each item that is not final beside them, by category, with its what-if effect never added in. | S05 §3.2 (new bullet) | addition (new presentation across budget and profit); question 3 | owner record item 11 |
 | C15 | Site capture devices enrolled; the shared-phone user recorded; the place not assumed reliable; workers see what was recorded about them; its privacy settled before it is built. | S04 §18.2 | addition; its privacy design waits for CR-05 | draft 7, Level 2 |
-| C16 | Data supply questions added to Section 01 discovery, including the early site-capture gate. | S01 §3.7 (new) | addition | draft 7, "What discovery must answer" |
+| C16 | Data supply questions added to Section 01 discovery, including site capture as an early discovery item. | S01 §3.7 (new) | addition | draft 7, "What discovery must answer" |
 | C17 | How the data releases fit the build phases. | none (section 6.3) | no text change | draft 7, "Not proven yet" |
 | C18 | Retention events through the intake, with a field definition. | the field register and Appendix B | addition to a controlled register | GPT's re-check of revision 4 |
 | C19 | A value a person keys from an uploaded document, where no extraction exists, is confirmed by a second person with the verifier role. | S04 §18.2 | addition, stricter than S04 §18 | draft 7, release A item 4 |
@@ -110,40 +110,40 @@ Section 18 asks for extra care where a change touches a canonical financial defi
 
 - **No existing canonical financial definition changes.** Recognised margin, forecast final margin, cash-position-adjusted margin, the authoritative forecast, the revenue lifecycle states, realised saving and source authority all keep their locked meaning (section 6.6).
 - **One new financial view is added (C13).** The extras and variations view (S05 DS002, S11 DS003) is a breakdown of the one authoritative forecast final margin, not a second margin:
-  - each instruction or variation gets its approved revenue, and the actual cost, commitments and forecast cost to complete attributed to it;
-  - the original scope is the remainder;
-  - the parts add up exactly to the authoritative figure.
+    - each instruction or variation gets its approved revenue and its share of forecast final cost (cost recognised to date plus forecast cost to complete, with an attributed commitment counted once inside the forecast cost to complete);
+    - the original scope is the remainder;
+    - the parts add up exactly to the authoritative figure.
 
   This is new financial semantics, so it is treated as such. It is labelled with its definition as S03 §5 requires for every view. It triggers the financial-core regression suite (S17 §5) and the overlap suite (S17 §6). It needs its own fixtures and tests (section 6.4). How accruals and overhead are shared with an extra must be specified before it is built (S03 §6.3 already requires that for overhead allocation). Question 3 confirms it with the owner. It meets the canonical separation rules: the approved budget stays separate from the forecast (S03 §4.1, "A forecast is not an approved budget"; S05 DS001 shows both, each named); the breakdown is of the adopted authoritative forecast, so it is not a scenario (S03 §4.1, "A scenario is not the current expected result unless explicitly adopted"); each extra's forecast cost to complete is a component of the one forecast, worked out by whatever method S05 §5 selects after discovery, and classified as S05 §5 requires; and the split follows S05 §12's rounding rules, with any rounding difference shown.
 - **The financial part of severity is new design (C11), and it stays the financial part only.** S06 §5.1 requires "thresholds ... configurable within approved governance boundaries"; S06 §8 requires them "documented, testable and approved". Levels the builder sets, which are then approved, meet that. But severity is not only money:
-  - S13 §13.4 grades quality findings on safety, regulation, structure and building performance;
-  - S13 §13.4 also says "financial prioritisation must never override safety or mandatory quality requirements";
-  - PG-RS-AC-05 says a score never bypasses safety, quality or approval constraints.
+    - S13 §13.4 grades quality findings on safety, regulation, structure and building performance;
+    - S13 §13.4 also says "financial prioritisation must never override safety or mandatory quality requirements";
+    - PG-RS-AC-05 says a score never bypasses safety, quality or approval constraints.
 
-  So S06 DS002 limits the builder's levels to the money part. A finding's safety, quality, contractual and compliance classification is assessed on its own and is never lowered by a small or missing amount. A finding with no defensible amount (PG-AI-AC-07) shows that classification, marked as having no amount. Findings show "ungraded" until the levels are set and approved; that is a labelled state, not a default. Questions 1, 2 and 4 cover the open points.
+  So S06 DS002 limits the builder's levels to the money part. A finding's safety, quality, contractual and compliance classification is assessed on its own and is never lowered by a small or missing amount. A finding with no defensible amount (PG-AI-AC-07) shows that classification, marked as having no amount. Until the levels are set and approved, a finding's money grade shows "ungraded" and its non-financial classification still applies; that is a labelled state, not a default. For quality findings that classification is S13 §13.4's; for other findings (an expired insurance certificate, say) no locked scheme exists yet, so one must be designed and approved before C11 is built (M17). Questions 1, 2 and 4 cover the open points.
 - **C02, the move to one intake, changes no text but changes results.** The locked Section 04 already requires reconciliation, authority and entity resolution for every record kind; stage 1 does not yet meet that for 24 kinds. When the move is built, the rules see only reconciled records of those kinds, so some results will change. That is why the move has its own change request, with a saved baseline of today's results and every difference explained and signed off (S04 DS028). PG-DS-AC-03 ("a new way in changes no rule") says in its own words that it does not govern this move.
 - **C10 says how "approved" is met for the detection defaults.** The defaults are documented, visible to the builder and accepted by his approver, so nothing is substituted silently (S04 §10, PG-DI-AC-11).
 - **C13 adds no new revenue state.** S11 §8's "Disputed/rejected amount" stays one state. In S05 DS001 it is shown in two columns, disputed and rejected, by its recorded status. After a rejection the builder records what happens next:
-  - "disputed", "at his own cost" and "withdrawn" (nil value, history kept) are recorded statuses of the rejected state, not new states;
-  - "resubmitted" is a change of state back to submitted, made through the process S11 §8.1 requires, with its own record (S11 DS001).
+    - "disputed", "at his own cost" and "withdrawn" (nil value, history kept) are recorded statuses of the rejected state, not new states;
+    - "resubmitted" is a change of state back to submitted, made through the process S11 §8.1 requires, with its own record (S11 DS001).
 
   An item carried at the builder's own cost shows no what-if. The cost attribution (S03 DS014, S05 DS003) groups costs already counted; it never counts them twice (S03 §6.4, S05 §6, PG-PC-AC-02, PG-CR-AC-10).
 - **C14 follows the locked rules and adds a presentation.** The locked rules it follows:
-  - S05 §5.1 already requires one authoritative forecast;
-  - S05 §3.2 already forbids treating unapproved variations or disputed claims as secured revenue;
-  - S04 §9 already requires authoritative and provisional outcomes to be compared "without confusing their status";
-  - S10 §7.1 isolates scenarios.
+    - S05 §5.1 already requires one authoritative forecast;
+    - S05 §3.2 already forbids treating unapproved variations or disputed claims as secured revenue;
+    - S04 §9 already requires authoritative and provisional outcomes to be compared "without confusing their status";
+    - S10 §7.1 isolates scenarios.
 
   The new part is the per-category columns across budget and profit, each with the effect the item would have if it went through. Those effects are what-if values: labelled, isolated, and never added in. For records on hold, they follow S04 §9's rules for provisional views (S05 DS001).
 - **"Switched on" is new wording; it is not a new limit.** Onboarding asks only what the insights a builder switches on need (draft 7, "Setup questions"; data supply decision 5, the middle path, approved in principle). S02 §2.1's mandatory functional domains are product-level, and they stay. S04 DS002 adds that an insight not switched on, or not yet set up, is shown as such, never as "no issue" (S06 §3: "the absence of an alert is not proof").
 - **One control is stricter than the locked text:** a value a person keys from an uploaded document needs a second person's confirmation (S04 DS022). Three additions restate locked controls for the new channels:
-  - email never sets the organisation from the address alone (S04 §6);
-  - a held record is corrected only through the review workflow (S04 §9);
-  - a backdated entry never rewrites a result already shown (S04 §13, S05 §13).
+    - email never sets the organisation from the address alone (S04 §6);
+    - a held record is corrected only through the review workflow (S04 §9);
+    - a backdated entry never rewrites a result already shown (S04 §13, S05 §13).
 - **Scope widens, as the owner directed.**
-  - Section 01 discovery gains the data supply questions (C16).
-  - Section 04 gains the readiness record and the message rule.
-  - Site capture lets workers see what was recorded about them. That needs an actor S02 §3 does not list yet; it is settled before site capture is built (S04 DS023).
+    - Section 01 discovery gains the data supply questions (C16).
+    - Section 04 gains the readiness record and the message rule.
+    - Site capture lets workers see what was recorded about them. That needs an actor S02 §3 does not list yet; it is settled before site capture is built (S04 DS023).
 
   These are the owner's directions of 2026-11-11 and 12, approved in principle on 2026-11-12 (owner record item 1). This assessment is the step Section 18 requires before they are formally approved.
 
@@ -182,19 +182,19 @@ The M6 input contracts of revision 4 are approved with this change request as an
 ### 6.2 The requirements matrix (RTM)
 
 - **New rows:** 81, one for each addition: paragraphs, bullets, headings, each table row separately, and the 14 acceptance criteria. Each has status "Specified — implementation status unverified", as every locked RTM row does.
-  - New IDs use a series of their own (for example APG-S04-DS001), so they never collide with the RTM's numbered IDs.
-  - The 14 acceptance criteria keep their own IDs (PG-DS-AC-01 to 14), as do PG-FR-026 and 027.
-  - A table row is anchored as `table_index=T; row_index=R`, a new anchor form the RTM does not use yet.
+    - New IDs use a series of their own (for example APG-S04-DS001), so they never collide with the RTM's numbered IDs.
+    - The 14 acceptance criteria keep their own IDs (PG-DS-AC-01 to 14), as do PG-FR-026 and 027.
+    - A table row is anchored as `table_index=T; row_index=R`, a new anchor form the RTM does not use yet; both are numbered from 0, as paragraph indices are, so a table's first body row is row 1.
 - **Existing IDs are kept.** Each consolidation ID today is its paragraph index plus one (for example APG-S04-L0122 is paragraph 121). Inserted paragraphs move later paragraphs, so a fresh run of the same numbering would renumber them. The RTM is therefore regenerated by matching each existing row to its text and old index: it keeps the ID, updates only the anchor, and fails if any old ID would change. The rows affected are counted below.
 - **Rows the RTM lacks.** The locked RTM has no row for some locked text this change request touches:
-  - S02's functional requirements and actors tables (PG-FR-001 to 025 are not in the RTM);
-  - S03's entity, common-field and lifecycle tables;
-  - S06 §8's first paragraph;
-  - S11 §8's state definitions;
-  - S15 §15.6's retention paragraph;
-  - the version lines.
+    - S02's functional requirements and actors tables (PG-FR-001 to 025 are not in the RTM);
+    - S03's entity, common-field and lifecycle tables;
+    - S06 §8's first paragraph;
+    - S11 §8's state definitions;
+    - S15 §15.6's retention paragraph;
+    - the version lines.
 
-  The change request proposes adding an RTM row for each of the 269 such items it touches (184 paragraphs and 85 table rows), in the forms above, with id_type "Change-request-assigned ID (APG-CR-DSR)" for the new series and the existing consolidation scheme for backfilled paragraphs. The wider gap is a pre-existing observation (section 13).
+  The change request proposes adding an RTM row for each of the 269 such items it touches (184 paragraphs and 85 table rows), in the forms above, with id_type "Change-request-assigned ID (APG-CR-DSR)" for the new series, the existing consolidation scheme for backfilled paragraphs, "Source-explicit ID" for table rows that carry one (PG-FR-001 to 025), and a consolidation-assigned table-row ID (for example APG-S03-T0101 for table 1, row 1) for the others. The wider gap is a pre-existing observation (section 13).
 
 <<COUNTS>>
 
@@ -216,7 +216,7 @@ The M6 input contracts of revision 4 are approved with this change request as an
 - **Section 18 §8:** phase 5 is security, reliability and recovery; phase 6 is acceptance.
 - **Section 14:** phase 5 (§14.8) is interface and user workflows; phase 6 (§14.9) is verification; phase 7 (§14.10) is database and integration closure.
 
-This assessment uses Section 14's numbering, with Section 18's in brackets, and replaces draft 7's "phases 1 to 3 … phase 4 to 6". Every release starts after Phase 0 and the Discovery Exit Report. The first release's work falls in:
+This assessment uses Section 14's numbering, with Section 18's in brackets where they differ (phases 0 to 4 are numbered the same in both), and replaces draft 7's "phases 1 to 3 … phase 4 to 6". Every release starts after Phase 0 and the Discovery Exit Report. The first release's work falls in:
 - **Phase 1:** the intake, source authority, identity, and the readiness record's shared data-quality status (§14.4).
 - **Phase 2:** the financial policy.
 - **Phase 3:** the domain rules' use of the readiness record.
@@ -241,24 +241,24 @@ Section 17 §5 governs every fixture change: review, rationale, versioning and a
 
 **New tests each build must add.** They are named here so the RTM rows can point to them; IDs are given when they are built.
 - PG-DS-AC-01 to 14:
-  - the same fact through two ways in gives the same result (02);
-  - a new way in changes no rule test result (03);
-  - no direct write to the store (01);
-  - provenance on every value (04);
-  - setup answers take effect only after approval (05);
-  - tenant isolation, verification and quarantine on every way in (06);
-  - malicious and malformed files are rejected (07);
-  - an entry form cannot edit a held record (08);
-  - readiness is reassessed on each trigger and is never eligible with a missing input (09);
-  - gap identity, lifecycle and suppression (10);
-  - a way in that isn't built is never offered (11);
-  - the field-coverage report fails on a gap (12);
-  - a partial intake is shown as partial (13);
-  - every message carries what to do, and the message list fails on an uncovered message (14).
+    - the same fact through two ways in gives the same result (02);
+    - a new way in changes no rule test result (03);
+    - no direct write to the store (01);
+    - provenance on every value (04);
+    - setup answers take effect only after approval (05);
+    - tenant isolation, verification and quarantine on every way in (06);
+    - malicious and malformed files are rejected (07);
+    - an entry form cannot edit a held record (08);
+    - readiness is reassessed on each trigger and is never eligible with a missing input (09);
+    - gap identity, lifecycle and suppression (10);
+    - a way in that isn't built is never offered (11);
+    - the field-coverage report fails on a gap (12);
+    - a partial intake is shown as partial (13);
+    - every message carries what to do, and the message list fails on an uncovered message (14).
 - **The extras breakdown:** it adds up exactly to the authoritative forecast final margin, and a cost attributed to a variation is counted once (financial-core and overlap suites, with new fixtures).
 - **The what-if columns:** a what-if amount never enters the main figure; a held record's what-if is visible only to authorised reviewers.
 - **Severity:** graded by amount, by percentage, and by both, whichever is reached first; ungraded when not set; amount levels only when the base is missing; a safety classification never lowered by a small or missing amount.
-- **Variations:** a resubmitted or withdrawn variation changes state only through the S11 §8.1 process.
+- **Variations:** a resubmitted variation changes state back to submitted only through the S11 §8.1 process; disputed, own-cost and withdrawn are recorded statuses of the one Disputed/rejected state, and an own-cost or withdrawn item shows no what-if.
 - **Document values:** a keyed value from an uploaded document counts only after a second person confirms it.
 - **Retrospective entries:** a backdated entry leaves a shown result and its records intact, and marks the insight for reassessment.
 
@@ -279,7 +279,7 @@ Each term in `CROSS_SECTION_TERMINOLOGY_REGISTER.md` was checked against the add
 | Authoritative forecast | unchanged; S05 DS001 shows it first, and DS002 breaks it down |
 | Provisional/qualified value | unchanged; the readiness states (eligible, qualified, blocked, unavailable) use it; held records' what-if values follow it |
 | Realised saving / net benefit | unchanged |
-| Potential, estimated, approved, recognised, invoiced and collected revenue | unchanged; S11 DS001 records the builder's next step after a rejection; resubmission and withdrawal go through the lifecycle process |
+| Potential, estimated, approved, recognised, invoiced and collected revenue | unchanged; S11 DS001 records the builder's next step after a rejection; resubmission goes through the lifecycle process; withdrawal is a recorded status |
 | Cash, scheduled receipts and payments, scenarios | unchanged; a what-if value is a scenario-only value |
 | Source authority | unchanged; S04 DS015 restates that the register decides, never the latest arrival |
 | Cross-domain overlap / net impact | unchanged; S05 DS003 applies it to costs attributed to variations |
@@ -295,11 +295,11 @@ After approval, and only then:
 - **The validator must change first.** `validate_handoff_package.py` looks only for files named `..._v1.0_LOCKED.docx`. A copy of the locked package with Section 04 renamed to version 1.1, and its manifest updated, was run through it; it failed with "REQUIRED SECTION DOCUMENT MISSING: 04". It must be amended to take each section's current version from the manifest, and to accept the history files the manifest lists. That amendment is tested itself (T18-05, T18-08).
 - **A controlled change register.** S18 §2 requires one, and the package today holds only the CR template. A change register is created, and this change request is entered in it with its assessment, approval and closure.
 - **Manifest and hashes.** New entries for:
-  - the seven version 1.1 files and the history files;
-  - the controlled data-supply registers and the M6 input contracts;
-  - this assessment and its tables;
-  - the decision records (the owner's decisions record and the data supply decisions document);
-  - the independent check reports.
+    - the seven version 1.1 files and the history files;
+    - the controlled data-supply registers and the M6 input contracts;
+    - this assessment and its tables;
+    - the decision records (the owner's decisions record and the data supply decisions document);
+    - the independent check reports.
 
   Then a new manifest digest and validation report, and the package rebuilt and reopened from a fresh extraction (S18 checkpoint A).
 - **Handoff instructions.** `README_HANDOFF.md` and `CLAUDE_HANDOFF_INSTRUCTIONS.md` add the controlled data-supply registers to the reading list; `SOURCE_SECTION_INVENTORY.json` lists the new versions.
@@ -312,29 +312,29 @@ After approval, and only then:
 | Paragraph comparison of each version 1.1 file with its version 1.0 | each differs only by the additions and the reworded version lines in `CIA_PROPOSED_TEXT.csv`, word for word; nothing else is reworded or removed | T18-08 |
 | RTM regeneration and validation | all 2,712 existing IDs kept (by text and old index); 81 new rows plus the backfilled rows; no blank, duplicate or orphaned ID | T18-02 |
 | Fresh extraction and hash check | every controlled file's digest matches the new manifest; the history files are listed | T18-01, T18-05 |
-| Terminology review | the new terms added; no collision with a canonical term | T18-07 |
+| Terminology review | the new terms added; no collision with a canonical term; documented human review of the flagged term families (S18 §5) | T18-07 |
 | Cascade check | every new requirement has an RTM row and a named test to come; no dependent left unreviewed | T18-03 |
 | Independent review of the version 1.1 texts | the texts match this assessment as approved | S18 §6 |
 
 ## 8. Review, approval, versioning and verification after the change
 
 - **Reviews so far.**
-  - The design and revision 4 went through: five independent agent checks of revision 4; GPT's check and scoped re-check of revision 4; three agent checks of the design; and a GPT and a Gemini review of the design. Every finding was fixed or answered (in the packs). The three small points from GPT's re-check were fixed by Claude and have not been re-checked independently.
-  - This assessment: an independent agent check of draft 1 (5 blocking, 19 should fix, 21 minor) and a scoped re-check of draft 2 (2 blocking, 11 should fix, 20 minor new points, and 9 earlier findings only partly fixed). A fix is claimed for each (`CHECK1_FIXES_CIA.md`, `CHECK2_FIXES_CIA.md`).
+    - The design and revision 4 went through: five independent agent checks of revision 4; GPT's check and scoped re-check of revision 4; three agent checks of the design; and a GPT and a Gemini review of the design. Every finding was fixed or answered (in the packs). The three small points from GPT's re-check were fixed by Claude and have not been re-checked independently.
+    - This assessment: an independent agent check of draft 1 (5 blocking, 19 should fix, 21 minor) and a scoped re-check of draft 2 (2 blocking, 11 should fix, 20 minor new points, and 9 earlier findings only partly fixed), then a focused check of draft 3 (no blocking point; 6 should fix, 7 minor, all wording). A fix is claimed for each (`CHECK1_FIXES_CIA.md`, `CHECK2_FIXES_CIA.md`, `CHECK3_FIXES_CIA.md`).
 - **Reviews before approval.**
-  1. A focused independent check of the items changed in draft 3, with every finding fixed.
-  2. The 100 entities cross-checked against every row of the Master RTM (M15), before the entity register can become an annex.
-  3. One GPT pass, listing every problem at once.
-  4. Gemini only if the owner wants a design view.
-  5. The overlap with the owner's CR-10 (verified profit ledger) checked against its text.
+    1. Done: a focused independent check of draft 3 (no blocking point; its wording points fixed in draft 4, not re-checked).
+    2. The 100 entities cross-checked against every row of the Master RTM (M15), before the entity register can become an annex.
+    3. One GPT pass, listing every problem at once.
+    4. Gemini only if the owner wants a design view.
+    5. The overlap with the owner's CR-10 (verified profit ledger) checked against its text.
 - **Approval authority.** Emmanuel, product owner. The dispositions open to him: approve; approve with conditions; send back for changes; reject.
 - **Versioning.** The seven sections become version 1.1, each with its reworded version line and an amendment record naming this change request and its approval. Version 1.0 and its hash are kept.
 - **After the change:**
-  1. Produce the version 1.1 files from the approved wording only.
-  2. Run the checks in section 7.
-  3. Have them checked independently.
-  4. Update the RTM, terminology register, change register, manifest and validation report.
-  5. Record the result and close the change request (section 9).
+    1. Produce the version 1.1 files from the approved wording only.
+    2. Run the checks in section 7.
+    3. Have them checked independently.
+    4. Update the RTM, terminology register, change register, manifest and validation report.
+    5. Record the result and close the change request (section 9).
 
 ## 9. Traceability and closure record
 
@@ -367,6 +367,8 @@ Change request APG-CR-DSR (number to come) → this assessment and its tables (`
 | M13 DC-13's scope | GPT's re-check | Fixed in revision 4 by Claude (MP02, MP03, MP04, MP05 and MP09 named); not re-checked independently. |
 | M14 The code-read report's column heading | GPT's re-check | Fixed in revision 4 by Claude; not re-checked independently. |
 | M15 The 100 entities cross-checked against every row of the Master RTM | revision 4's next steps | Not done. Needed before the controlled entity register becomes an annex (S03 DS009), so it is a step before approval (section 8, item 2). |
+| M17 The non-financial classification scheme for findings outside Section 13 | check 2 | To be designed and approved before C11 is built (S06 DS002; S06 §8: documented, testable and approved). Open. |
+| M18 A builder's recognition policy | check 3 | Which recognition policy Profit Guardian supports is product-level (M01, decision 2); which supported policy applies to a builder's business or project is recorded for it and approved as other settings are (S04 DS026, S03 §5.1). |
 | M16 The code-read scan is not a proof | GPT's re-check | The field-coverage report (PG-DS-AC-12, S04 DS029) rests on a scan that "does not independently prove" the call-path analysis. So each rule's inputs are confirmed by that rule's tests when the rule is next changed, and the report is never cited as proof on its own. |
 
 **Outside this change request:**
@@ -384,7 +386,7 @@ Change request APG-CR-DSR (number to come) → this assessment and its tables (`
 - **Option A:** a second person (for example a bookkeeper added as an approver) must approve. Until then, everything that depends on the setting shows "not approved yet".
 - **Option B:** where the builder has only one authorised person, he may approve his own settings. Each such setting, and every figure that uses it, is permanently marked "approved by the person who entered it". With two or more people, the two-person rule applies.
 
-S02 §3.1 says preparing and approving "should be separated" "where practical and supported by policy", so Option B is open to the owner as a policy. Two more locked rules bear on it: S15 §15.4 asks for "separate approval authority for consequential actions", and S15 §15.11 counts changes to authoritative financial rules as consequential actions needing approval. With Option B the one person is that authority, and every such approval is recorded and marked. It loosens the check the code has today, so it needs the owner's yes. Claude suggests Option B, so a one-person builder is not locked out. Asked of the owner on 2026-11-13 and corrected the same morning (owner record item 15); answer pending.
+S02 §3.1 says preparing and approving "should be separated" "where practical and supported by policy", so Option B is open to the owner as a policy. Two more locked rules bear on it: S15 §15.4 asks for "separate approval authority for consequential actions", and S15 §15.11 counts changes to authoritative financial rules as consequential actions needing approval. Option B is a stated policy exception, for one-person builders only, to the separation of preparing and approving. S02 §3.1 allows it ("where practical and supported by policy"). It relaxes, for that case, the segregation of duties PG-FR-025 asks for and the code's F-67 check, and it reads S15 §15.4's "separate approval authority" as a separate approve permission rather than a separate person. Every such approval is recorded and marked. Because it loosens a check, it needs the owner's yes. Claude suggests Option B, so a one-person builder is not locked out. Asked of the owner on 2026-11-13 and corrected the same morning (owner record item 15); answer pending.
 
 **Question 2. A percentage of what?** "2% of the job" needs a base. Claude suggests the current approved contract value: the original contract plus approved variations. For example, on a $5,000,000 job with $100,000 of approved variations, 2% is $102,000. Where the base is missing (no contract value recorded yet), only the dollar levels apply, and the finding says so. Other possible bases are the forecast final cost or the forecast profit.
 
@@ -395,9 +397,9 @@ First, part of any job's profit is the forecast of what is still to be spent: an
 For example:
 - **Main figures:** approved budget $4,600,000 (the builder's approved cost allowance). Contract $5,000,000 plus one approved variation of $200,000, so revenue is $5,200,000. Spent and invoiced, $3,100,000; approved forecast to finish, $1,600,000; so forecast final cost $4,700,000 and main profit $500,000, labelled as a forecast.
 - **The extras panel splits that $500,000:**
-  - the variation: $200,000 revenue less $150,000 cost attributed to it, so $50,000 profit;
-  - the original build: the other $450,000.
-- **Beside the main figures, never in them:** a variation waiting for approval, +$80,000 to profit if approved; a disputed claim of $20,000, +$20,000 if won; a budget revision waiting for approval, +$60,000 to the budget if approved; a $40,000 purchase order on hold, shown beside the forecast cost.
+    - the variation: $200,000 revenue less $150,000 cost attributed to it, so $50,000 profit;
+    - the original build: the other $450,000.
+- **Beside the main figures, never in them:** a variation waiting for approval, +$80,000 revenue and profit if approved (its cost is already in the forecast to finish); a disputed claim of $20,000, +$20,000 if won; a budget revision waiting for approval, +$60,000 to the budget if approved; a $40,000 purchase order on hold (not yet reconciled) for work already in the forecast to finish, so no change to forecast cost when it clears.
 
 Claude suggests: the main figure uses only approved and verified records plus the approved forecast to finish, labelled as a forecast; approved variations are in it; the panel is a split of it that adds up exactly; and everything not final sits beside it. Is that what you mean? (This also settles, for the main figure, how variations are treated in management reporting: decision 7 of the ten in M01; how cost to complete is worked out stays decision 6.)
 
@@ -405,13 +407,13 @@ Claude suggests: the main figure uses only approved and verified records plus th
 
 For example: a subcontractor's insurance has expired. There is no dollar amount, but it is serious. Or a cheap defect lets water into a wall.
 
-Claude's design: the builder's dollar and percentage levels grade how much money is at stake. A safety or quality problem is graded on its own and is never made "low" because the amount is small or unknown. Is that right?
+Claude's design: the builder's dollar and percentage levels grade how much money is at stake. A safety or quality problem is graded on its own and is never made "low" because the amount is small or unknown. For quality problems the blueprint already has a grading (S13 §13.4). For other problems, like the expired insurance, a grading still has to be designed and approved before this is built. Is that right?
 
 **Also at approval:** the number for this change request in your list.
 
 ## 12. Proposed wording, section by section
 
-Every addition and every reworded line, with its ID and the locked text it follows. Square brackets mark the points waiting for questions 1 to 3 and the approval details. The same content is in `CIA_PROPOSED_TEXT.csv`.
+Every addition and every reworded line, with its ID and the locked text it follows. Square brackets mark the points waiting for questions 1 to 4 and the approval details. The same content is in `CIA_PROPOSED_TEXT.csv`.
 
 <<PROPOSED_TEXT>>
 
@@ -420,11 +422,11 @@ Every addition and every reworded line, with its ID and the locked text it follo
 These were found while doing this assessment. None is changed here; each is reported so the owner can decide whether it needs its own change request.
 
 - **The RTM does not map every locked paragraph.** Comparing each section document with the RTM: in Sections 00 to 17, 401 non-empty paragraphs (cover and lock-record lines included) and 125 table rows have no RTM row. Among them:
-  - S02's functional requirements PG-FR-001 to 025;
-  - S03's entity table;
-  - S04 §14's opening sentence ("Track freshness and completeness by source, project, domain and decision use");
-  - S05 §3.2's formula line;
-  - S11 §8's revenue state definitions.
+    - S02's functional requirements PG-FR-001 to 025;
+    - S03's entity table;
+    - S04 §14's opening sentence ("Track freshness and completeness by source, project, domain and decision use");
+    - S05 §3.2's formula line;
+    - S11 §8's revenue state definitions.
 
   Section 18 has no RTM rows at all, though S18 §4 requires the RTM to trace "the handoff-specific requirements in Section 18". Section 18 checkpoint C blocks handoff if a material requirement is unmapped. The counts are in section 6.2.
 - **Section 00 §11 names sections differently from the sections themselves.** This affects every section from 09 to 18, and also 06 and 10. For example, it calls Section 09 "Opportunity Discovery" and Section 11 "Alerts, Dashboard, Reporting"; the files are "Labour, Productivity & Resource Intelligence" and "Commercial & Revenue Intelligence". This assessment uses the titles of the section files.
@@ -434,8 +436,8 @@ These were found while doing this assessment. None is changed here; each is repo
 ## Appendix A. Files and how to reproduce
 
 - `build_cia.py` with its data file `cia_data.py`, run as `python3 -I build_cia.py <extracted locked package> <output folder>`, writes `CIA_PROPOSED_TEXT.csv`, `CIA_RTM_IMPACT.csv`, `CIA_DEPENDENT_TEXT.txt` and `CIA_COUNTS.txt`.
-  - It reads the Master RTM and the 19 section documents, paragraphs and table rows in document order.
-  - It fails if an anchor, heading or proposed ID is wrong, or if an insertion point is not the true end of its block (amendment records are exempt: they go after the last lock-record line, before any closing "next section" line).
+    - It reads the Master RTM and the 19 section documents, paragraphs and table rows in document order.
+    - It fails if an anchor, heading or proposed ID is wrong, or if an insertion point is not the true end of its block (amendment records are exempt: they go after the last lock-record line, before any closing "next section" line).
 - `assemble.py` puts those tables into this document.
 - Both are builder tools (BUILDER-EXECUTED: NOT INDEPENDENT).
 - The locked package used: `Anchor_Profit_Guardian_Blueprint_v1.0.zip` (SHA-256 487becabdf47796800937d13a706a19b63b7b8230ecc5354b2f01a647ae5d960; manifest digest dad3fa91cb1da822779e041bb66279e08b6598861bb222b5e6e709e967f2d89c).
@@ -464,14 +466,14 @@ The mapping of its states to S03 §13's illustrative retention lifecycle is sett
 ## Appendix C. The cost of extra work: proposed data design
 
 - **What is new:** the records that can carry an extra's cost gain an optional reference to the instruction (E10) or variation (E09) the cost was incurred for:
-  - supplier invoice lines (E23; today APG calculates invoice lines from the invoice, so the line needs the reference);
-  - timesheet entries (E57), priced with the labour rate (E59);
-  - plant hire (E64);
-  - purchase orders (E21) and subcontracts (E16, second release), for committed cost.
+    - supplier invoice lines (E23; today APG calculates invoice lines from the invoice, so the line needs the reference);
+    - timesheet entries (E57), priced with the labour rate (E59);
+    - plant hire (E64);
+    - purchase orders (E21) and subcontracts (E16, second release), for committed cost.
 - **One line, one place:** a cost line is attributed to at most one instruction or variation, or split between them by amounts that add up to the line. Whatever is not attributed stays with the original scope. The cost is counted once in actual cost or commitments (S05 DS003).
 - **Forecast cost to complete:** the builder may forecast the cost still to come on an extra. Whatever is not forecast against an extra stays with the original scope.
 - **Who sets it:** the person who supplies the line, or the person who later attributes it through the review workflow. A later attribution is a governed change, recorded with who, when and why (S04 §13).
 - **What the extras view shows:** for each extra or variation, its value in each commercial state (S11 §8), its status, the cost attributed so far, and its share of the job's profit. The original build is the remainder, and the parts add up to the authoritative forecast final margin (S05 DS002).
 - **Not decided here:**
-  - how an accrual or overhead allocation is shared with an extra (to be specified before it is built, as S03 §6.3 requires; second-release data);
-  - how a builder's own system marks such costs (discovery, with sample exports).
+    - how an accrual or overhead allocation is shared with an extra (to be specified before it is built, as S03 §6.3 requires; second-release data);
+    - how a builder's own system marks such costs (discovery, with sample exports).
