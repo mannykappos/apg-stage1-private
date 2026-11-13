@@ -32,6 +32,10 @@ Revision 4 listed 100 entities. Its next steps, and the cascade impact assessmen
 - **Release placements.** No rule or figure in the current code reads any added field. The field-coverage report regenerated on revision 4.1 is unchanged: 170 field pairs checked, no gap. So every change sits in "later", and the first data release is unchanged.
 - **The other registers.** The rule input contracts and the systems survey are unchanged. The supply-route list changes only in E64's new name. The paths chart counts more not-built paths, because of the new entities.
 
+## The data supply design's counts
+
+The data supply design (draft 7) still counts revision 4's 100 entities in its supply plan and figures. Those counts are superseded by this register's 114. The 14 new entities (E100 to E113) are later-release scope, and each has its supply path here. (Added after GPT's targeted confirmation of the cascade impact assessment, draft 5, finding S4. Draft 7 itself is not edited.)
+
 ## Checks
 
 1. **First re-check** of all 482 flagged rows by a fresh agent (`m15recheck/out/`): 401 carried, 81 still gaps. It also flagged:
@@ -39,7 +43,9 @@ Revision 4 listed 100 entities. Its next steps, and the cascade impact assessmen
     - E05 mixing a platform-held part into a builder entity, now split out as E113;
     - E102's double role.
 2. **Claude widened the changes and added E113**, plus field groups on E09, E13 and E16.
-3. **A scoped second re-check** of those 81 rows by a fresh agent: <<RECHECK2>>
+3. **A scoped second re-check** of those 81 rows by a fresh agent (`m15recheck2/out/`): 67 carried, 14 still gaps. Six of the 14 were the quality-improvement baseline fields of S13 s13.6, which E44 lacked.
+4. **Claude closed the 14.** Each named field is now in the register, checked by the builder row by row (BUILDER-EXECUTED: NOT INDEPENDENT). E05 now keeps only the tenant: its users and roles are recorded on E113.
+5. **No further agent round.** The fixes are named fields, checked against the 14 rows. To avoid a loop of re-checks, GPT's targeted confirmation of draft 5 covers this register.
 
 ## For discovery
 

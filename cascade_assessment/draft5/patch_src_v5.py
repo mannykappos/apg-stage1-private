@@ -238,5 +238,11 @@ rep2("to questions 1 to 6 and eight further decisions (owner record items 15 to 
 rep2("this assessment's questions and decisions (items 15 to 28)", "this assessment's questions and decisions (items 15 to 30)")
 rep2("**Every question is answered** (owner record items 15 to 28, 2026-11-13): six questions, the CR-10 decision (item 19), the platform-held records (item 22), and six more (A to F) from the independent check of draft 5.",
      "**Every question is answered** (owner record items 15 to 30, 2026-11-13): six questions, the CR-10 decision (item 19), the platform-held records (item 22), six more (A to F) from the independent check of draft 5, and two (G and H) from its re-check.")
+# GPT's targeted confirmation of draft 5: S3 and m1
+rep2("a builder with only one person allowed to approve may approve his own settings, budget and retention steps and confirm the values he keyed, each marked as done by the person who entered it (questions 1, 5, C, D and E),",
+     "where exactly one person is authorised for the relevant kind of record, that person may approve his own settings, budget and retention steps and confirm the values he keyed, each marked as done by the person who entered it (questions 1, 5, C, D, E and G),")
+rep2("06_change_request_sources/APG_8_LAYER_DESIGN_BLUEPRINT_v0.1/", "06_change_request_sources/8_layer_v0.1/")
+rep2("Still to come: GPT's targeted confirmation of the fixes (the one-person exception and the relaxations, the two reworded sentences, the retention definition, the M15 register revision 4.1), as GPT advised.",
+     "Done: GPT's targeted confirmation of draft 5, the last review round by the owner's decision (owner record item 31): 0 blocking, 4 should fix, 2 minor, and \"ready for the owner's formal approval once the four SHOULD FIX and two MINOR corrections are made; no further GPT or agent review is warranted\" (`GPT_REVIEW_DRAFT5.md`). The builder made those corrections without further review (`GPT5_FIXES_CIA.md`). Still to come: the owner's formal approval.")
 open('CIA_SOURCE.md', 'w').write(s)
 print('patched')

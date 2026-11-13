@@ -1,5 +1,5 @@
 """Revision 4.1 (2026-11-13: the M15 row-level cross-check, register_rev41.py; class P added: held by the Anchor platform, to be confirmed in discovery). Revision 4 (revision 3, corrected after its independent agent audit and GPT's check, and again after revision 4's agent check): the entity register, one row per logical entity.
-Classes: B builder-source, C configuration/policy, I APG internal, D evidence/document, X external reference, V developer (optional).
+Classes: B builder-source, C configuration/policy, I APG internal, D evidence/document, X external reference, V developer (optional), P held by the Anchor platform (revision 4.1, owner record item 22; to be confirmed in discovery).
 Status: covered (every required field group present, no gap listed), partial (a record kind or field exists, with gaps), missing.
 Systems: 'supported by the survey' is computed from SYSTEMS_SURVEY.csv (only what the cited sources support); 'likely also' is Claude's
 judgement, unverified, to be checked with pilot builders.
@@ -9,7 +9,7 @@ after the Section 01 discovery and AUIF).  Path status per path: exists, partly,
 D is 'partly' only where code exists for that document type: quotes (E30: the stand-in quote extractor in ingest/documents.py), quote
 readings (E35: the verification control) and the document record itself (E83).  Elsewhere D is 'proposed' (revision 4 agent check, finding 5).
 Blueprint references use the section's own numbering: 'S12 s8' = Section 12 heading 12.8."""
-import csv, collections
+import csv, os, collections
 
 ROWS = [
 # id, domain, entity, class, blueprint, required field groups, APG today, gap, likely held in (judgement), paths, path status, owner, links to
@@ -142,7 +142,8 @@ def status(today):
 
 
 SUP = collections.defaultdict(set)
-for s in csv.DictReader(open('SYSTEMS_SURVEY.csv')):
+_SURVEY = 'SYSTEMS_SURVEY.csv' if os.path.exists('SYSTEMS_SURVEY.csv') else os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'rev4_registers', 'SYSTEMS_SURVEY.csv')   # GPT draft 5 review m2: the unchanged revision 4 input
+for s in csv.DictReader(open(_SURVEY)):
     for e in s['APG entities the cited source says the system holds (ids in ENTITY_REGISTER.csv; holding is not a confirmed APG feed)'].split():
         SUP[e].add(s['code'])
 ROWS.sort(key=lambda r: int(r[0][1:]))
