@@ -1,0 +1,17 @@
+RECEIVED OWNER ANSWER, 2026-11-13 about 18:34 (Australia/Sydney, UTC+11), through the question tool. Filed by the builder
+(BUILDER-EXECUTED: NOT INDEPENDENT).
+
+Question (builder's wording, summarised): the step 6 re-mapping found 37 closed, 28 partly addressed, 0 open (v4 on 303b6414:
+56 / 8 / 0), a stop condition of the recovery authorisation, and eight new discrepancies D6-1 to D6-8. How should stage 1 handle
+the 28 partly addressed items and the 8 new problems?
+Options offered: "Fix them, then re-run (Recommended)" - add the missing test pieces, fix the builder's tools and records, no
+product logic changes; then a new freeze, the full evidence again and a fresh re-mapping (about 1.5-2 days, mostly run time).
+"Package now, disclose". "Fix the real gaps only".
+
+Answer (verbatim choice label): "Fix them, then re-run (Recommended)".
+
+Builder's reading of the scope, as offered: test code (tests_tools/), test helpers and the pins for changed test files; the
+builder's own tools and their documentation; the change record and the build log; then one new freeze built twice, the full
+evidence in AM5-6 order on it (one job at a time, 10 GB floor), a fresh-agent scoped re-mapping, then step 7. No product logic
+and no successor-tool logic changes. If a new test fails or shows behaviour the paper did not expect, or anything would need a
+logic change, work stops under paper H and the builder reports it. All other terms of the recovery authorisation stay.

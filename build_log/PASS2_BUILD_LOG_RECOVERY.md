@@ -282,3 +282,6 @@ review pack); everything after that is restated here from the conversation recor
   79 (3.13) and 0 (3.12), not 83 (D6-8).
 - 2026-11-13 18:33 STOP (recovery authorisation: "the re-mapping finds more partly addressed or open items than on 303b6414"; and new
   defects, paper H). Step 7 not started. Reported to the owner with options; nothing changed in the tree or the evidence.
+- 2026-11-13 18:34 The owner chose "Fix them, then re-run" (recovery/received/RECEIVED_OWNER_ANSWER_2026-11-13_1834_STEP6_FIX.txt):
+  the missing test pieces, the builder's tools and records fixed, no product or successor-tool logic change; one new freeze, the full
+  evidence again, a fresh re-mapping, then step 7.
