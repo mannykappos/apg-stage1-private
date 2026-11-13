@@ -228,3 +228,7 @@ review pack); everything after that is restated here from the conversation recor
   after GPT's re-check of the data readiness revision 4: the M6 project rules that match orders by project (MP02, MP03, MP04, MP05, MP09)
   also drop an order whose project cannot be told, unlisted; MPD1 does not list purchase orders. No code change; stage 1 continues on
   freeze ee1ce3ec.
+- 2026-11-13 11:15 The container restarted at 11:13:17 while m2s_313 ran detached (started 08:36:08, with the waiter beside it; last
+  temp-file write 11:12:33; no end line). Files and repositories survived. Partial console moved to ev5/interrupted/m2s_313_restart3,
+  temp folder (9.6 GB) removed, no .done mark; m2s_313 relaunched detached from the start at 11:15:44, waiter renewed. No result was
+  produced, so nothing wrong was recorded; about 2 h 37 min lost. A container restart cannot be prevented from inside the session.
