@@ -1,0 +1,774 @@
+# APG change request: Data Supply System and Data Readiness, cascade impact assessment (draft 5)
+
+Nov 13, 2026 · prepared by Claude (builder) for Emmanuel (product owner)
+
+**Status.** This is the Section 18 §6 cascade impact assessment for one change request, made of two parts that go through Section 18 together (data supply decision 11 in the decisions document `APG_Data_Supply_Decisions`):
+- the data supply design (draft 7);
+- the Data Readiness Change Request (revision 4).
+
+It is design only. It authorises no build, changes no locked file, and claims nothing is implemented, accepted or ready for production. Stage 2 stays not authorised, and under S04 §20 no production feature code starts before the Section 01 Discovery Exit Report is signed off. It is the builder's work (BUILDER-EXECUTED: NOT INDEPENDENT).
+
+Draft 5 answers GPT's review of draft 4 (4 blocking, 3 should fix, 1 minor; each finding and its fix in `GPT_FIXES_CIA.md`) and carries the owner's answers of 2026-11-13 to questions 1 to 4 (owner record items 15 to 18). Draft 4 answered three independent checks (INDEPENDENT READ-ONLY (agent)): the first, of draft 1, found 5 blocking, 19 should fix and 21 minor; the second, a scoped re-check of draft 2, found 2 blocking, 11 should fix and 20 minor new points; the third, a focused check of draft 3, found no blocking point, and 6 should fix and 7 minor wording points. A fix is claimed for each (`CHECK1_FIXES_CIA.md`, `CHECK2_FIXES_CIA.md`, `CHECK3_FIXES_CIA.md`). GPT reviewed those fixes with the rest of draft 4.
+
+## 1. In plain words
+
+The locked blueprint (Sections 00 to 18, version 1.0) already says most of what the data supply design needs:
+- one intake with strict controls;
+- nothing invented when data is missing;
+- warnings when data is stale.
+
+What it does not yet say is how APG makes sure it can always get the data, and how it tells the builder what it needs. This change request adds that.
+
+- **What changes in the blueprint.** 86 pieces of text are added to 7 of the 19 sections (01, 02, 03, 04, 05, 06 and 11), which go from version 1.0 to 1.1. The full proposed wording is in section 12.
+    - Most of it goes into Section 04, the intake: the ways of supplying data; the readiness record that tells the builder what is missing; the rule that every message says what to do; setup questions; and 17 new acceptance criteria (PG-DS-AC-01 to 17), the tests each part must pass.
+    - The locked words that change are the version lines ("Version 1.0" becomes "Version 1.1") in the seven sections, and one sentence of Section 06 §11: dismissing a finding no longer needs a reason (your decision on question 4). Nothing else already locked is reworded or removed.
+- **What it does not change.** No existing financial definition: recognised margin, forecast final margin and the others keep their meaning. Two locked checks are loosened, each by your decision and stated as such (section 4): a builder who is the only person using APG may approve his own settings, each marked "approved by the person who entered it" (question 1); and a builder may ignore a warning without giving a reason, with who and when still recorded (question 4). No other approval or check is weakened.
+- **Two things that do change results, later, each under its own build:** the builder's own severity levels change how findings are graded (every rule has a severity mapping, S06 §5.1); and moving all records onto one intake (C02) changes which records some rules can use, so some results will change. Both are explained in section 4.
+- **What is new money logic.** One addition is a new way of showing a figure: the extras and variations panel splits the job's one main profit figure into the original build and each extra, and the parts add up exactly to it. That needs its own tests (section 4); you confirmed it (question 3).
+- **What else it touches.** Every locked paragraph and table row that the changes bear on was read for knock-on effects: 1,347 of them, in Sections 00 to 18, each listed by its ID or position. None needs new wording.
+- **The package around the blueprint needs work after approval:**
+    - the requirements matrix (RTM), the master list that gives every requirement an ID;
+    - the terminology register;
+    - the manifest, the list of files with their fingerprints (hashes);
+    - the package checker, which today rejects any section that is not version 1.0 (shown in section 6.7).
+- **Your answers** (section 11). Questions 1 to 4 are answered. Two more came out of GPT's review and your answers, and are answered too: a one-person builder accepts APG's standard settings himself, with the same marker (question 5); a whole-job percentage is of the job's approved budget (question 6). CR-10 has no text yet, so its overlap is checked when it is written (your decision).
+- **Next.** Questions 5 and 6 answered; the M15 row-level cross-check and the CR-10 comparison recorded; GPT's targeted confirmation of the fixes; then your formal approval. Only after approval are the version 1.1 files made, and each build still needs its own authorisation.
+
+## 2. Change request identification
+
+| Field (Section 18 §6 and the package's CR template) | Entry |
+| --- | --- |
+| Change Request ID | Provisional reference APG-CR-DSR. The owner gives it its number in his change-request list at formal approval. His list uses CR-01 to CR-08 and CR-10. |
+| Requester | Emmanuel, product owner: the data readiness direction of 2026-11-11 and the one-data-supply-system direction of 2026-11-12. Prepared by Claude (builder). |
+| Date | 2026-11-13 (draft 5). |
+| What it rests on | The data supply design, draft 7 (2026-11-12). The Data Readiness Change Request, revision 4, with its registers. Revision 4 passed GPT's scoped re-check with nothing blocking; its three smaller points were fixed by Claude afterwards and have not been checked independently since. The owner's decisions record of 2026-11-12 and 13 (`OWNER_DECISIONS_2026-11-12.md`, "owner record item N" below), with his answers to this assessment's questions (items 15 to 18). GPT's review of draft 4. The data supply decisions document (`APG_Data_Supply_Decisions`, "data supply decision N" below). |
+| Affected locked sections (amended) | Sections 01, 02, 03, 04, 05, 06 and 11, each version 1.0 LOCKED, to become 1.1 (hashes below). |
+| Affected locked sections (dependents, no text change) | Sections 00, 07, 08, 09, 10, 12, 13, 14, 15, 16 and 17. Section 18 too: its text is unchanged, but its package assets change. |
+| Package assets affected | `MASTER_REQUIREMENTS_TRACEABILITY_MATRIX.csv`, `CROSS_SECTION_TERMINOLOGY_REGISTER.md`, `manifest.json`, `validate_handoff_package.py`, `README_HANDOFF.md`, `CLAUDE_HANDOFF_INSTRUCTIONS.md`, `SOURCE_SECTION_INVENTORY.json`, `PACKAGE_VALIDATION_REPORT.txt`, and a new controlled change register (section 6.7). |
+| Related, outside the locked blueprint | The 8-layer design blueprint v0.1 is a design baseline, not locked; its 02 §2.11 and 11 §11.2 and §11.6 are dependents (the blueprint is in the pack, `06_change_request_sources/APG_8_LAYER_DESIGN_BLUEPRINT_v0.1/`). The owner's own change requests CR-02, CR-05, CR-07, CR-08 and CR-10 (section 6.3). The defect change request for DC-1 to DC-13, raised after stage 1. |
+| Exact requirement IDs | `CIA_RTM_IMPACT.csv` lists every insertion point, reworded line and dependent: by RTM ID, or by paragraph or table row where the RTM has no row. It has 1,806 rows over 1,347 distinct locked items: 1,013 with an RTM ID, 249 paragraphs and 85 table rows without one (tables and rows are numbered from 0, as python-docx counts them; row 0 is a table's header, so body rows start at 1). `build_cia.py` reads the spans from the section documents themselves, not only from the RTM. It fails if an anchor is wrong, or if an insertion point is not the true end of its block. |
+
+The locked package was checked before use:
+- every file's SHA-256 matches its manifest;
+- the manifest digest (dad3fa91…d89c) matches the package's validation report;
+- `validate_handoff_package.py` passes (27 files, 19 sections, 2,712 RTM rows);
+- the package archive `Anchor_Profit_Guardian_Blueprint_v1.0.zip` has SHA-256 487becab…d960.
+
+| Section | Locked file version | SHA-256 (first 16 characters) |
+| --- | --- | --- |
+| 01 | v1.0 LOCKED | 5964235f08c0ee6a |
+| 02 | v1.0 LOCKED | 794b1e1a51786cf2 |
+| 03 | v1.0 LOCKED | 0870a3fd72e8d755 |
+| 04 | v1.0 LOCKED | 322546fc9f2444ad |
+| 05 | v1.0 LOCKED | d73364a7ba398735 |
+| 06 | v1.0 LOCKED | f152c1f6d4a8d497 |
+| 11 | v1.0 LOCKED | 6b2913b6f8bc4d38 |
+
+## 3. The change items
+
+Each item names what it adds and where. The full wording of every addition, and the locked text it follows, is in section 12.
+
+- **Addition:** new text that adds a requirement without changing an existing one.
+- **Clarification:** new text that says how an existing requirement is met.
+- **Implementation obligation:** the locked text already requires it, and the change request only records it.
+
+| Item | What it adds | Where | Nature | From |
+| --- | --- | --- | --- | --- |
+| C01 | One intake for every way in. A Level 1 way in for every entity this blueprint governs, needing no builder software. A new way in never changes a rule. A way in that isn't built is never offered. | S04 §18.1 (new); PG-DS-AC-01, 02, 03, 06, 11; S02 PG-FR-027 | addition | draft 7, "Purpose and the rule", "Architecture" |
+| C02 | Bring the 24 kinds of the second delivery loop under the Section 04 intake. A regression baseline is taken first, and the move has its own change request. The two direct writes and the in-code authority register enter the intake as new record kinds (first-release items 3 and 4) without waiting for the move. | S04 §20 (new bullet) | implementation obligation: S04 §3, §5, §8, §9, §11 and PG-DI-AC-01 to 06 already require it | draft 7, release A item 1 |
+| C03 | Controls for each new channel: email sender checks; file scanning and safe parsing; entry screens that never edit a held record. | S04 §18.2 (new); PG-DS-AC-07, 08, 13 | addition | draft 7, intake stage table |
+| C04 | Setup questions for the source registry, the Source Authority Register, the cost-code map (each match confirmed by a person), users and roles, the financial policy settings a builder owns, and the rule settings. Each is versioned and approved. Where the builder has exactly one authorised person, he approves his own settings, each permanently marked "approved by the person who entered it". | S04 §18.3 (new); S04 DS017; PG-DS-AC-05, 15 | addition, with one owner-approved relaxation: the separation of preparing and approving (PG-FR-025, F-67) for one-person builders' own settings (section 4) | draft 7, "Setup questions"; data supply decision 8; owner record item 15 |
+| C05 | Eight logical entities and a data-gap lifecycle added to the domain model; the controlled entity register as an annex. | S03 §2 and §13 (table rows), S03 §2 (paragraph) | addition | revision 4, entity register |
+| C06 | The field register and the field-coverage report, as a gate. | S03 §2 (paragraph), S04 §20, PG-DS-AC-12 | addition | revision 4, field-level coverage |
+| C07 | The readiness record (and its scope), the onboarding data checklist, the missing-data list, nudges, the life of a data gap, and how an insight that is not switched on is shown. | S04 §14.1 (new); PG-DS-AC-09, 10; S02 PG-FR-026 | addition | draft 7, "Data readiness" |
+| C08 | Decision 13: whenever a check or figure cannot be fully done, say what is missing, why it matters and what to do. | S04 §14.2 (new); PG-DS-AC-14; S02 PG-FR-026 | addition | owner record item 6 |
+| C09 | Freshness limits per insight, starting from owner-approved thresholds, each with an owner and rationale. | S04 §14.1 | clarification of S04 §14 ("decision-aware freshness thresholds") and S16 §5 | data supply decision 10 |
+| C10 | Detection-rule thresholds ship with owner-approved defaults, visible to the builder, which his approver accepts (question 5: whether a one-person builder accepts them himself). | S06 §5.1 (new paragraph) | clarification of S06 §5.1 ("configurable within approved governance boundaries") | data supply decision 9 |
+| C11 | Severity levels for the money side of a finding, set by the builder at setup: an amount, a percentage, or both, whichever is reached first. The builder chooses whether a percentage is measured against the whole job, the part of the job the finding sits in, or both; the parts are those of his own budget breakdown (by stage, trade or area), which add up to the whole-job budget. No defaults. Safety and quality classification stays separate. | S06 §8 (new paragraph); S05 §3.3 (new paragraph) | addition (new design and new code); question 6 | owner record items 7, 9 and 16 |
+| C12 | (Folded into C04.) | | | |
+| C13 | Extras and variations shown separately, as a breakdown of the one authoritative forecast. The cost of extra work is attributed to its instruction or variation and counted once. The builder records what happens after a variation is rejected. | S11 §8 and §8.2 (new); S05 §3.2 and §6; S03 §6.2 | addition, including one new financial view (section 4); confirmed by the owner (question 3) | owner record items 4, 5 and 17 |
+| C14 | The approved budget and the authoritative forecast's final cost and margin first; each item that is not final beside them, by category, with its what-if effect never added in. | S05 §3.2 (new bullet) | addition (new presentation across budget and profit); confirmed by the owner (question 3) | owner record items 11 and 17 |
+| C15 | Site capture devices enrolled; the shared-phone user recorded; the place not assumed reliable; workers see what was recorded about them; its privacy settled before it is built. | S04 §18.2 | addition; its privacy design waits for CR-05 | draft 7, Level 2 |
+| C16 | Data supply questions added to Section 01 discovery, including site capture as an early discovery item. | S01 §3.7 (new) | addition | draft 7, "What discovery must answer" |
+| C17 | How the data releases fit the build phases. | none (section 6.3) | no text change | draft 7, "Not proven yet" |
+| C18 | Retention events through the intake, with a field definition that adds the currency and the associated contract (S03 §11.1, §10.1) and maps the states to S03 §13. | the field register and Appendix B; PG-DS-AC-17 | addition to a controlled register | GPT's re-check of revision 4; GPT's review of draft 4 |
+| C19 | A value a person keys from an uploaded document, where no extraction exists, is confirmed by a second person with the verifier role. | S04 §18.2 | addition, stricter than S04 §18 | draft 7, release A item 4 |
+| C20 | Who supplies, checks, corrects and approves each kind of record; the way in and supplier on every value; retrospective entries never rewrite a result already shown. | S04 §18.1, §18.2; S03 §3 (table rows); PG-DS-AC-04 | addition | draft 7, "Data supply governance and lifecycle" |
+| C21 | The data supply registers and the M6 input contracts become controlled package artefacts; the version lines and amendment records of the seven sections. | S04 §20; the version line and lock record of each amended section; the package (section 6.7) | addition; version lines reworded | revision 4, registers; S18 §6 |
+| C22 | Profit Guardian advises and never blocks: the builder may ignore (dismiss) any finding in one tap, with a reason optional; who and when are recorded; the finding is kept and raised again only when something material changes. | S06 §11 (one sentence reworded, one paragraph added); PG-DS-AC-16 | owner-approved relaxation of S06 §11 ("must record rationale"), section 4 | owner record item 18 |
+
+By section:
+
+| Section | Title (as the section itself is titled) | Disposition | Additions (reworded lines) | Locked items touched | Change items |
+| --- | --- | --- | --- | --- | --- |
+| 00 | Control & Product Charter | dependent: reviewed, no text change | 0 (0) | 14 | C05, C21 |
+| 01 | Discovery, Current-State Inventory & Assumptions Register | amended: v1.0 to v1.1; additions, and the version line reworded | 7 (2) | 65 | C16, C21 |
+| 02 | Product Requirements, Actors & Workflows | amended: v1.0 to v1.1; additions, and the version line reworded | 3 (2) | 145 | C01, C04, C05, C07, C08, C10, C11, C15, C21, C22 |
+| 03 | Domain Model & Canonical Financial Semantics | amended: v1.0 to v1.1; additions, and the version line reworded | 16 (2) | 189 | C01, C05, C06, C07, C11, C13, C14, C18, C20, C21 |
+| 04 | Data Ingestion, Normalisation & Reconciliation | amended: v1.0 to v1.1; additions, and the version line reworded | 47 (1) | 115 | C01, C02, C03, C04, C06, C07, C08, C09, C10, C14, C15, C18, C19, C20, C21, C22 |
+| 05 | Profitability Calculation Engine | amended: v1.0 to v1.1; additions, and the version line reworded | 5 (1) | 108 | C02, C04, C08, C11, C13, C14, C18, C20, C21 |
+| 06 | Active Intelligence & Profit Leakage Detection | amended: v1.0 to v1.1; additions, and the version line reworded | 4 (2) | 83 | C07, C08, C10, C11, C21, C22 |
+| 07 | Schedule, Delay & Holding-Cost Intelligence | dependent: reviewed, no text change | 0 (0) | 14 | C05, C08 |
+| 08 | Materials, Global Markets & Procurement Intelligence | dependent: reviewed, no text change | 0 (0) | 47 | C08, C09, C21 |
+| 09 | Labour, Productivity & Resource Intelligence | dependent: reviewed, no text change | 0 (0) | 28 | C05, C08, C15 |
+| 10 | Recommendations, Prioritisation & Scenario Engine | dependent: reviewed, no text change | 0 (0) | 20 | C07, C11, C14, C22 |
+| 11 | Commercial & Revenue Intelligence | amended: v1.0 to v1.1; additions, and the version line reworded | 4 (1) | 49 | C05, C08, C13, C14, C21 |
+| 12 | Cash Flow, Working Capital, Retentions & Security | dependent: reviewed, no text change | 0 (0) | 31 | C08, C14, C18 |
+| 13 | Quality, Rework & Defect Intelligence | dependent: reviewed, no text change | 0 (0) | 12 | C08, C11, C22 |
+| 14 | Implementation Plan, Dependency Sequencing & Claude Handoff | dependent: reviewed, no text change | 0 (0) | 115 | C02, C07, C13, C14, C17 |
+| 15 | Security, Privacy, Access Control & Governance | dependent: reviewed, no text change | 0 (0) | 98 | C01, C03, C04, C15, C19, C20 |
+| 16 | Operational Reliability, Monitoring, Resilience & Recovery | dependent: reviewed, no text change | 0 (0) | 26 | C01, C03, C07, C09 |
+| 17 | Testing, Acceptance, Verification & Release Readiness | dependent: reviewed, no text change | 0 (0) | 63 | C02, C03, C06, C13 |
+| 18 | Final Blueprint Handoff, Consolidation & Controlled Change Governance | dependent: reviewed, no text change | 0 (0) | 125 | C02, C07, C17, C21 |
+
+## 4. Does any locked meaning change?
+
+Section 18 asks for extra care where a change touches a canonical financial definition. The owner's standing rule is that anything that changes a claim's meaning, relaxes a condition or widens scope comes to him first. Here is the answer, item by item.
+
+- **No existing canonical financial definition changes.** Recognised margin, forecast final margin, cash-position-adjusted margin, the authoritative forecast, the revenue lifecycle states, realised saving and source authority all keep their locked meaning (section 6.6).
+- **One new financial view is added (C13).** The extras and variations view (S05 DS002, S11 DS003) is a breakdown of the one authoritative forecast final margin, not a second margin:
+    - each instruction or variation gets its approved revenue and its share of forecast final cost (cost recognised to date plus forecast cost to complete, with an attributed commitment counted once inside the forecast cost to complete);
+    - the original scope is the remainder;
+    - the parts add up exactly to the authoritative figure.
+
+  This is new financial semantics, so it is treated as such. It is labelled with its definition as S03 §5 requires for every view. It triggers the financial-core regression suite (S17 §5) and the overlap suite (S17 §6). It needs its own fixtures and tests (section 6.4). How accruals and overhead are shared with an extra must be specified before it is built (S03 §6.3 already requires that for overhead allocation). The owner confirmed it (question 3, owner record item 17). It meets the canonical separation rules: the approved budget stays separate from the forecast (S03 §4.1, "A forecast is not an approved budget"; S05 DS001 shows both, each named); the breakdown is of the adopted authoritative forecast, so it is not a scenario (S03 §4.1, "A scenario is not the current expected result unless explicitly adopted"); each extra's forecast cost to complete is a component of the one forecast, worked out by whatever method S05 §5 selects after discovery, and classified as S05 §5 requires; and the split follows S05 §12's rounding rules, with any rounding difference shown.
+- **The financial part of severity is new design (C11), and it stays the financial part only.** S06 §5.1 requires "thresholds ... configurable within approved governance boundaries"; S06 §8 requires them "documented, testable and approved". Levels the builder sets, which are then approved, meet that. But severity is not only money:
+    - S13 §13.4 grades quality findings on safety, regulation, structure and building performance;
+    - S13 §13.4 also says "financial prioritisation must never override safety or mandatory quality requirements";
+    - PG-RS-AC-05 says a score never bypasses safety, quality or approval constraints.
+
+  So S06 DS002 limits the builder's levels to the money part. A finding's safety, quality, contractual and compliance classification is assessed on its own and is never lowered by a small or missing amount. A finding with no defensible amount (PG-AI-AC-07) shows that classification, marked as having no amount. Until the levels are set and approved, a finding's money grade shows "ungraded" and its non-financial classification still applies; that is a labelled state, not a default. For quality findings that classification is S13 §13.4's; for other findings (an expired insurance certificate, say) no locked scheme exists yet, so one must be designed and approved before C11 is built (M17). The owner settled what a percentage is measured against (question 2): the builder chooses the whole job, the part of the job the finding sits in, or both, the parts being those of his own budget breakdown (S05 DS006), which add up to the whole-job budget; a finding not tied to a part is graded on the amount and the whole job only, and says so. Question 6 confirms the whole-job base.
+- **C02, the move to one intake, changes no text but changes results.** The locked Section 04 already requires reconciliation, authority and entity resolution for every record kind; stage 1 does not yet meet that for 24 kinds. When the move is built, the rules see only reconciled records of those kinds, so some results will change. That is why the move has its own change request, with a saved baseline of today's results and every difference explained and signed off (S04 DS028). PG-DS-AC-03 ("a new way in changes no rule") says in its own words that it does not govern this move.
+- **C10 says how "approved" is met for the detection defaults.** The defaults are documented, visible to the builder and accepted by his approver, so nothing is substituted silently (S04 §10, PG-DI-AC-11). Question 5 asks whether a one-person builder accepts them himself, under the one-person exception below.
+- **C13 adds no new revenue state.** S11 §8's "Disputed/rejected amount" stays one state. In S05 DS001 it is shown in two columns, disputed and rejected, by its recorded status. After a rejection the builder records what happens next:
+    - "disputed", "at his own cost" and "withdrawn" (nil value, history kept) are recorded statuses of the rejected state, not new states;
+    - "resubmitted" is a change of state back to submitted, made through the process S11 §8.1 requires, with its own record (S11 DS001).
+
+  An item carried at the builder's own cost shows no what-if. The cost attribution (S03 DS014, S05 DS003) groups costs already counted; it never counts them twice (S03 §6.4, S05 §6, PG-PC-AC-02, PG-CR-AC-10).
+- **C14 follows the locked rules and adds a presentation.** The locked rules it follows:
+    - S05 §5.1 already requires one authoritative forecast;
+    - S05 §3.2 already forbids treating unapproved variations or disputed claims as secured revenue;
+    - S04 §9 already requires authoritative and provisional outcomes to be compared "without confusing their status";
+    - S10 §7.1 isolates scenarios.
+
+  The new part is the per-category columns across budget and profit, each with the effect the item would have if it went through. Those effects are what-if values: labelled, isolated, and never added in. For records on hold, they follow S04 §9's rules for provisional views (S05 DS001).
+- **Two locked conditions are relaxed, each by the owner's decision of 2026-11-13, and stated as such.**
+    - **The one-person exception (C04; question 1, owner record item 15).** S02 §3.1 asks for preparing and approving to be separated "where practical and supported by policy", and PG-FR-025 for "appropriate segregation of duties". The code enforces it today: F-67 (`apg/policy_approval.py`) refuses an approval by the person who proposed the setting. The owner's decision supplies the policy S02 §3.1 allows for. Where a builder has exactly one authorised person, that person may approve the builder's own settings (S04 DS026), and each such setting, and every figure, finding and report that uses it, is permanently marked "approved by the person who entered it". With two or more authorised people, the two-person rule applies. The exception is limited to the builder's own settings of S04 DS026. It does not cover consequential actions, which still need human approval (S15 §15.11), the second-person check of a keyed value (S04 DS022), or any other record kind (S04 DS017). S15 §15.4's "separate approval authority" is met by a separate approve permission, approval record and audit event, kept distinct even when one person holds both roles. F-67's code changes under the build's own change request, with tests (PG-DS-AC-15).
+    - **Dismissing a finding without a reason (C22; question 4, owner record item 18).** S06 §11 says "Dismissal/deferment of material findings must record rationale". The owner decided that Profit Guardian advises and does not block: the builder may ignore any warning in one tap, and a reason is optional. The sentence is reworded (S06 DS005): who dismissed or deferred the finding, and when, is still recorded, and the rationale where one is given. The evidence is kept, the finding can be reassessed, and it is raised again on a material change (S06 DS006). PG-AI-AC-13 (dismissal is auditable) and S06 §11's "retain evidence and allow future reassessment" keep their meaning. S06 §8's disposition field "rationale" stays, left empty when none is given. A dismissal is a person's decision, not financial prioritisation overriding safety (S13 §13.4), and the finding's own safety or quality grade is never lowered.
+- **"Switched on" is new wording; it is not a new limit.** Onboarding asks only what the insights a builder switches on need (draft 7, "Setup questions"; data supply decision 5, the middle path, approved in principle). S02 §2.1's mandatory functional domains are product-level, and they stay. S04 DS002 adds that an insight not switched on, or not yet set up, is shown as such, never as "no issue" (S06 §3: "the absence of an alert is not proof").
+- **One control is stricter than the locked text:** a value a person keys from an uploaded document needs a second person's confirmation (S04 DS022). Three additions restate locked controls for the new channels:
+    - email never sets the organisation from the address alone (S04 §6);
+    - a held record is corrected only through the review workflow (S04 §9);
+    - a backdated entry never rewrites a result already shown (S04 §13, S05 §13).
+- **Scope widens, as the owner directed.**
+    - Section 01 discovery gains the data supply questions (C16).
+    - Section 04 gains the readiness record and the message rule.
+    - Site capture lets workers see what was recorded about them. That needs an actor S02 §3 does not list yet; it is settled before site capture is built (S04 DS023).
+
+  These are the owner's directions of 2026-11-11 and 12, approved in principle on 2026-11-12 (owner record item 1). This assessment is the step Section 18 requires before they are formally approved.
+
+## 5. Risk and impact
+
+| Area | What could go wrong | How the change request controls it |
+| --- | --- | --- |
+| Financial correctness | The move to one intake (C02) changes which records the rules use. | Its own change request; a saved baseline of today's results; every difference explained and signed off; nothing in the first release relies on the move until it passes. |
+| Financial correctness | The extras breakdown does not add up to the main figure, or a cost is counted in both the original scope and an extra. | Defined as a breakdown that must add up exactly (S05 DS002); counted once (S05 DS003); financial-core and overlap suites (S17 §5, §6); PG-PC-AC-02 and PG-CR-AC-10 tests. |
+| Financial correctness | A what-if amount leaks into the main figure, or looks definitive. | Never added in, labelled, isolated (S05 DS001, S10 §7.1); PG-PC-AC-12 and PG-DI-AC-05 tests; S14 §14.8 ("an uncertain estimate must not appear definitive"). |
+| Financial correctness and safety | A money level is read as the whole severity, so a cheap but dangerous defect is ranked low. | S06 DS002 limits the levels to the money part; safety and quality classification stays separate and is never lowered by a small amount (S13 §13.4, PG-RS-AC-05). |
+| Financial correctness | The percentage uses the wrong base, or no base exists; a part's budget does not add up with the others to the job's. | A defined base: the builder's choice of whole job, part or both (question 2), the whole-job base confirmed by question 6; without a base only the levels that can be measured apply and the finding says so; the parts must add up to the whole-job budget, and Profit Guardian says when they do not (S05 DS006). |
+| Security | New channels (email, uploads, phones) bring spoofed senders, malicious files, prompt injection in documents and lost devices. | S04 DS019 to DS023; PG-DS-AC-07; S15 §15.3 to 15.5, §15.9 and §15.10 apply to every new path; a nudge's link opens the form only after sign-in (S04 DS008). |
+| Privacy | Site capture records people, places and photos. | Level 2, not in the first release; S09 §14 applies; its privacy design, including a worker's access to his own records, is settled before it is built (S04 DS023, CR-05); S15 §15.6 classifies the data. |
+| Tenant isolation | A new path lets one builder's data reach another, for example through an email address. | The organisation is never taken from an address; PG-DS-AC-06 requires PG-DI-AC-14's isolation tests on every way in. |
+| Approvals | Settings take effect without the right approval; a one-person builder cannot use APG at all; or the one-person exception spreads to other approvals. | PG-DS-AC-05 and 15: every setting versioned and approved before it takes effect; a one-person builder approves his own settings, each permanently marked, and the marker carried to every figure that uses them; the exception covers settings only, never consequential actions (S15 §15.11) or keyed values (S04 DS022); the approval keeps its own permission, record and audit event. |
+| Auditability | A value cannot be traced to who supplied it, how and when. | PG-DS-AC-04; S03 DS010 to DS013 (channel, supplied_by, verified_by, retrospective); originals kept (S04 §10, DS019). |
+| Auditability and safety | A builder ignores a serious warning with no reason, and it is lost. | The warning keeps its own grade; who and when are recorded; the finding and its evidence are kept and can be reopened; it is raised again on a material change (S06 DS005, DS006; PG-DS-AC-16; PG-AI-AC-13). Whether to act is the builder's decision (owner record item 18). |
+| Operational resilience | Readiness reassessment floods the system or the builder; a stopped feed looks like no news. | Reassessment combined for large batches (S04 DS005); gap identity and noise control as S06 §9.1; PG-DS-AC-13 shows a failed or partial intake as such; the export-file way in stays available when an integration is not (S04 DS014; S16 §9 requires failed syncs never be read as "no change"). |
+| Delivery | Builders don't supply data that takes too long to give; no extraction vendor is chosen yet. | Onboarding asks only what switched-on insights need; the pilot measures completion and effort; until extraction exists, values are keyed and confirmed by a second person. |
+
+## 6. Downstream effects
+
+### 6.1 Sections and requirements
+
+`CIA_RTM_IMPACT.csv` lists every locked item the change items touch. Each is one of:
+- an **insertion point**: text is added after it, and its own wording is unchanged;
+- a **reworded line**: a version line, or S06 §11's one sentence on dismissal (an owner-approved relaxation); the only locked text that changes;
+- a **dependent**: read for knock-on effects, with no change needed.
+
+Spans are read from the section documents, so text the RTM does not map is included. `CIA_DEPENDENT_TEXT.txt` holds the full text of every dependent.
+
+No dependent needs new wording. Where an existing requirement already covers a new channel (for example S15 §15.5 tenant isolation, or S04 §12 human verification), the new channel is simply held to it through PG-DS-AC-06.
+
+The M6 input contracts of revision 4 are approved with this change request as an accurate description of how today's code reads its inputs, with their stated limits. A stated limit is not accepted as meeting Section 08. For example, R07 does not check a quote's issue date, which S08 §5 asks to capture. Each limit stays recorded against its rule.
+
+### 6.2 The requirements matrix (RTM)
+
+- **New rows:** 86, one for each addition: paragraphs, bullets, headings, each table row separately, and the 17 acceptance criteria. Each has status "Specified — implementation status unverified", as every locked RTM row does.
+    - New IDs use a series of their own (for example APG-S04-DS001), so they never collide with the RTM's numbered IDs.
+    - The 17 acceptance criteria keep their own IDs (PG-DS-AC-01 to 17), as do PG-FR-026 and 027.
+    - The reworded S06 §11 sentence keeps its RTM ID (APG-S06-C0112); its summary is updated to the new wording.
+    - A table row is anchored as `table_index=T; row_index=R`, a new anchor form the RTM does not use yet; both are numbered from 0, as paragraph indices are, so a table's first body row is row 1.
+- **Existing IDs are kept.** Each consolidation ID today is its paragraph index plus one (for example APG-S04-L0122 is paragraph 121). Inserted paragraphs move later paragraphs, so a fresh run of the same numbering would renumber them. The RTM is therefore regenerated by matching each existing row to its text and old index: it keeps the ID, updates only the anchor, and fails if any old ID would change. The rows affected are counted below.
+- **Rows the RTM lacks.** The locked RTM has no row for some locked text this change request touches:
+    - S02's functional requirements and actors tables (PG-FR-001 to 025 are not in the RTM);
+    - S03's entity, common-field and lifecycle tables;
+    - S06 §8's first paragraph;
+    - S11 §8's state definitions;
+    - S15 §15.6's retention paragraph;
+    - the version lines.
+
+  The change request proposes adding an RTM row for each of the 269 such items it touches (184 paragraphs and 85 table rows), in the forms above, with id_type "Change-request-assigned ID (APG-CR-DSR)" for the new series, the existing consolidation scheme for backfilled paragraphs, "Source-explicit ID" for table rows that carry one (PG-FR-001 to 025), and a consolidation-assigned table-row ID (for example APG-S03-T0101 for table 1, row 1) for the others. The wider gap is a pre-existing observation (section 13).
+
+- Proposed additions: 86 (40 paragraphs or bullets, 7 headings, 15 table rows, 17 acceptance criteria PG-DS-AC-01 to 17, 7 amendment records); each is one new RTM row
+- Locked text reworded: 10 version lines (two in each of S01, S02 and S03, one in each of S04, S05, S06 and S11), and 1 sentence(s) reworded as an owner-approved relaxation (S06 APG-S06-C0112); nothing else
+- Sections amended (v1.0 -> v1.1): 01, 02, 03, 04, 05, 06, 11
+- Impact rows: 1806; distinct locked items touched: 1347 (1013 with an RTM ID, 249 paragraphs and 85 table rows the RTM does not map); insertion points: 26 distinct anchors
+- Sections reviewed as dependents only: 00, 07, 08, 09, 10, 12, 13, 14, 15, 16, 17, 18
+
+- Existing RTM rows whose paragraph-index anchor moves (they sit after the first inserted paragraph; their IDs are kept):
+- S01: 61 of 139 rows (after paragraph 89)
+- S02: 0 of 161 rows (after paragraph 175)
+- S03: 251 of 256 rows (after paragraph 11)
+- S04: 65 of 179 rows (after paragraph 121)
+- S05: 129 of 156 rows (after paragraph 33)
+- S06: 125 of 158 rows (after paragraph 39)
+- S11: 52 of 84 rows (after paragraph 52)
+
+- Pre-existing observation (outside this change request): locked text the RTM does not map, Sections 00-18
+- S00: 11 paragraphs not mapped (of 155 non-empty), 0 table body rows not mapped
+- S01: 16 paragraphs not mapped (of 155 non-empty), 10 table body rows not mapped
+- S02: 15 paragraphs not mapped (of 176 non-empty), 60 table body rows not mapped
+- S03: 22 paragraphs not mapped (of 278 non-empty), 55 table body rows not mapped
+- S04: 10 paragraphs not mapped (of 189 non-empty), 0 table body rows not mapped
+- S05: 21 paragraphs not mapped (of 177 non-empty), 0 table body rows not mapped
+- S06: 16 paragraphs not mapped (of 174 non-empty), 0 table body rows not mapped
+- S07: 23 paragraphs not mapped (of 148 non-empty), 0 table body rows not mapped
+- S08: 27 paragraphs not mapped (of 128 non-empty), 0 table body rows not mapped
+- S09: 38 paragraphs not mapped (of 123 non-empty), 0 table body rows not mapped
+- S10: 24 paragraphs not mapped (of 115 non-empty), 0 table body rows not mapped
+- S11: 29 paragraphs not mapped (of 113 non-empty), 0 table body rows not mapped
+- S12: 19 paragraphs not mapped (of 164 non-empty), 0 table body rows not mapped
+- S13: 24 paragraphs not mapped (of 191 non-empty), 0 table body rows not mapped
+- S14: 24 paragraphs not mapped (of 235 non-empty), 0 table body rows not mapped
+- S15: 22 paragraphs not mapped (of 210 non-empty), 0 table body rows not mapped
+- S16: 14 paragraphs not mapped (of 157 non-empty), 0 table body rows not mapped
+- S17: 46 paragraphs not mapped (of 223 non-empty), 0 table body rows not mapped
+- S18: 140 paragraphs not mapped (of 140 non-empty), 0 table body rows not mapped
+- total: 541 paragraphs (cover lines and lock-record lines included; all 140 of Section 18), 125 table body rows
+
+
+### 6.3 Implementation tasks (none authorised by this change request)
+
+| Task | What it is | Governed by |
+| --- | --- | --- |
+| Defect change request | DC-1 to DC-13 fixed after stage 1, with their messages; the first place decision 13 is built. Most of it rests on requirements already locked (PG-AI-AC-04, PG-PC-AC-04 and 15). One part rests on this change request: DC-1's fix has the builder record what happens after a rejected variation, which is S11 DS001. That part waits for this approval, or carries the requirement itself. | its own change request, raised after stage 1 |
+| First release, item 1 | One intake for every kind (C02) | its own change request, with its regression baseline |
+| First release, items 2 to 6 | Import made real; the general entry feature for setup and retention events; retention events and quote readings through the intake; readiness for the builder | each authorised by the owner by milestone, after the Discovery Exit Report; the M6 input contracts (item 5) are approved with this change request (section 6.1) |
+| Second release and later | Data that lifts known limits of today's rules, each with its own rule change. Subcontractor claims, assessments and payments (E17 to E19) move to the front of the second release with the back-to-back claim check (data supply decision 7). | each its own change request |
+| Owner's CR-05 | Phone site capture (Level 2), including its privacy design and workers' access to their own records | CR-05 |
+| Owner's CR-07 | Integrations through AUIF (Level 3) | CR-07 |
+| Owner's CR-02 | Financial integrity completion. Its materiality model, still a reference draft and not an implementation, is one possible base for a severity percentage. | CR-02 |
+| Owner's CR-08 | Pilot and acceptance scenarios; the discovery questions of C16 feed it | CR-08 |
+| Owner's CR-10 | Verified profit ledger. It overlaps C14 (verified figures first) and C13 (the breakdown). CR-10 exists in the programme records only as a name, with Section 20 reserved for it; no text was written (owner, 2026-11-13). By the owner's decision (owner record item 19), the overlap is recorded as a dependency: CR-10, when drafted, is checked against C13 and C14 as approved, or changes them through its own Section 18 §6 cascade impact assessment. | CR-10 |
+| The approval code (F-67) | `apg/policy_approval.py` refuses an approval by the proposer. The one-person exception (C04) changes it, with the tests of PG-DS-AC-15. | the build that implements C04, under its own change request |
+
+**How releases fit the phases (C17).** The design calls its scopes of data "releases" (A, B, later). Sections 14 and 18 number the build phases differently:
+- **Section 18 §8:** phase 5 is security, reliability and recovery; phase 6 is acceptance.
+- **Section 14:** phase 5 (§14.8) is interface and user workflows; phase 6 (§14.9) is verification; phase 7 (§14.10) is database and integration closure.
+
+This assessment uses Section 14's numbering, with Section 18's in brackets where they differ (phases 0 to 4 are numbered the same in both), and replaces draft 7's "phases 1 to 3 … phase 4 to 6". Every release starts after Phase 0 and the Discovery Exit Report. The first release's work falls in:
+- **Phase 1:** the intake, source authority, identity, and the readiness record's shared data-quality status (§14.4).
+- **Phase 2:** the financial policy.
+- **Phase 3:** the domain rules' use of the readiness record.
+- **Phase 5 (Section 18 §8 has no interface phase of its own):** the user-facing parts: entry screens, setup questions, the missing-data list and nudges, the extras panel and the verified-first display (§14.8).
+
+No release reaches production use without the evidence of phases 4, 6 and 7 (Section 18 §8: phases 4, 5 and 6; the handoff instructions follow Section 18's numbering). No text change is needed. The numbering difference is reported in section 13.
+
+### 6.4 Tests, regression suites and immutable fixtures
+
+This change request changes no code and no test. The table names the stage 1 tests and fixtures each later build will touch (freeze ee1ce3ec), so the build change requests carry them.
+
+| Change item | Stage 1 tests the build will touch | Fixtures |
+| --- | --- | --- |
+| C02, C03, C19 | test_ingest_pipeline, _reconcile, _mapping, _contracts, _boundaries, _adversarial, _support, _golden; test_fin_intake, test_det_intake, test_mkt_intake; test_fin_corpus, test_det_corpus, test_mkt_corpus; test_tenancy | regression/GOLDEN_M2, GOLDEN_M3, GOLDEN_FIN, GOLDEN_DET, GOLDEN_MKT and every BASELINE file. The move to one intake needs a new, separately approved baseline; today's files are kept, never overwritten. |
+| C04 | test_source_authority; test_f67_policy_approval and test_f671 to f674 (the one-person exception changes F-67's rule); test_status_model | none |
+| C09 | test_mkt_fx_fresh, test_mkt_policy | GOLDEN_MKT |
+| C10, C11 | test_det_policy, test_det_policy_bounds, test_det_detect, test_det_findings, test_det_noise, test_det_signal, test_det_golden, test_mkt_detect, test_mkt_golden, test_materiality_engine | GOLDEN_DET and GOLDEN_MKT (severity values change under the defect change request and again under the C11 build) |
+| C13, C14 | test_det_rules_commercial (R04B, DC-1, S11 DS001), test_fin_revenue, test_fin_commitments, test_fin_costs, test_fin_forecast, test_fin_bridge_book, test_fin_golden | GOLDEN_FIN, BASELINE_M4 |
+| C18 | test_fin_cash, test_fin_intake | none today; new synthetic fixtures: one project with two contracts in AUD, and an event in another currency (rejected) |
+| C22 | test_det_findings, test_det_noise (dismissal and re-notification) | none |
+
+Section 17 §5 governs every fixture change: review, rationale, versioning and a regression impact assessment, and expected results are never changed to make a failing build pass. A change to cost allocation or to a margin view (C13) triggers the financial-core regression suite. APG-M8.1, the earlier audited packages and the M10 archive stay untouched.
+
+**New tests each build must add.** They are named here so the RTM rows can point to them; IDs are given when they are built.
+- PG-DS-AC-01 to 17:
+    - the same fact through two ways in gives the same result (02);
+    - a new way in changes no rule test result (03);
+    - no direct write to the store (01);
+    - provenance on every value (04);
+    - setup answers take effect only after approval (05);
+    - tenant isolation, verification and quarantine on every way in (06);
+    - malicious and malformed files are rejected (07);
+    - an entry form cannot edit a held record (08);
+    - readiness is reassessed on each trigger and is never eligible with a missing input (09);
+    - gap identity, lifecycle and suppression (10);
+    - a way in that isn't built is never offered (11);
+    - the field-coverage report fails on a gap (12);
+    - a partial intake is shown as partial (13);
+    - every message carries what to do, and the message list fails on an uncovered message (14);
+    - the one-person exception and its limits: self-approval with the marker on every dependent figure, the two-person rule with two or more people, the approval's own audit record, and no exception for consequential actions or keyed values (15);
+    - a finding dismissed in one tap with no reason, who and when recorded, kept, reopenable, and raised again on a material change (16);
+    - a retention event without a currency, with another currency, or without its contract is rejected; pools are kept per contract and project (17).
+- **The extras breakdown:** it adds up exactly to the authoritative forecast final margin, and a cost attributed to a variation is counted once (financial-core and overlap suites, with new fixtures).
+- **The what-if columns:** a what-if amount never enters the main figure; a held record's what-if is visible only to authorised reviewers.
+- **Severity:** graded by amount, by percentage, and by both, whichever is reached first; against the whole job, the finding's part, or both, as set; ungraded when not set; only the measurable levels when a base is missing; a finding not tied to a part graded on the whole job only; budget parts that do not add up to the whole are reported; a safety classification never lowered by a small or missing amount.
+- **Variations:** a resubmitted variation changes state back to submitted only through the S11 §8.1 process; disputed, own-cost and withdrawn are recorded statuses of the one Disputed/rejected state, and an own-cost or withdrawn item shows no what-if.
+- **Document values:** a keyed value from an uploaded document counts only after a second person confirms it.
+- **Retrospective entries:** a backdated entry leaves a shown result and its records intact, and marks the insight for reassessment.
+
+### 6.5 Acceptance criteria
+
+PG-DS-AC-01 to 17 are new; they sit in S04 §19 after PG-DI-AC-18. No existing acceptance criterion changes.
+- PG-DS-AC-06 ties every way in to PG-DI-AC-01 to 18, so the existing intake criteria apply to each new channel.
+- PG-DS-AC-14 is how PG-AI-AC-04 ("missing data creates a qualification") and PG-PC-AC-04 and 15 reach the builder as an instruction.
+
+### 6.6 Terminology
+
+Each term in `CROSS_SECTION_TERMINOLOGY_REGISTER.md` was checked against the additions:
+
+| Term | Effect |
+| --- | --- |
+| Recognised margin; cash-position-adjusted margin | unchanged |
+| Forecast final margin | unchanged; the extras view is a breakdown of it, labelled as such, adding up to it exactly |
+| Authoritative forecast | unchanged; S05 DS001 shows it first, and DS002 breaks it down |
+| Provisional/qualified value | unchanged; the readiness states (eligible, qualified, blocked, unavailable) use it; held records' what-if values follow it |
+| Realised saving / net benefit | unchanged |
+| Potential, estimated, approved, recognised, invoiced and collected revenue | unchanged; S11 DS001 records the builder's next step after a rejection; resubmission goes through the lifecycle process; withdrawal is a recorded status |
+| Cash, scheduled receipts and payments, scenarios | unchanged; a what-if value is a scenario-only value |
+| Source authority | unchanged; S04 DS015 restates that the register decides, never the latest arrival |
+| Cross-domain overlap / net impact | unchanged; S05 DS003 applies it to costs attributed to variations |
+| Unknown external outcome; closed database-dependent item | unchanged |
+
+**New terms to add, each with its section:** way in (and Level 1, 2, 3); readiness record; data gap; nudge; retrospective record; setup question; switched on (an insight a builder has set up and turned on); ungraded finding; what-if value (a scenario-only value); extras and variations view (a breakdown of forecast final margin); verifier role (a permission, to be mapped to an S02 §3 actor); product owner (as the approver of the detection defaults); data release (a scope of data, distinct from a build phase and from Section 17's release gates); controlled data-supply registers; "approved by the person who entered it" (the one-person marker); ignore (dismiss) a finding; budget breakdown and budget part (a stage, trade or area of the approved budget).
+
+### 6.7 Handoff instructions, manifest, hashes, change register and closure register
+
+After approval, and only then:
+
+- **Section files.** Sections 01, 02, 03, 04, 05, 06 and 11 are issued as version 1.1. Each has its version line reworded and an amendment record added to its lock record, as worded in section 12. Each version 1.0 file and its hash is kept as history (S18 §6), in a history folder of the package.
+- **The validator must change first.** `validate_handoff_package.py` looks only for files named `..._v1.0_LOCKED.docx`. A copy of the locked package with Section 04 renamed to version 1.1, and its manifest updated, was run through it; it failed with "REQUIRED SECTION DOCUMENT MISSING: 04". It must be amended to take each section's current version from the manifest, and to accept the history files the manifest lists. That amendment is tested itself (T18-05, T18-08).
+- **A controlled change register.** S18 §2 requires one, and the package today holds only the CR template. A change register is created, and this change request is entered in it with its assessment, approval and closure.
+- **Manifest and hashes.** New entries for:
+    - the seven version 1.1 files and the history files;
+    - the controlled data-supply registers and the M6 input contracts;
+    - this assessment and its tables;
+    - the decision records (the owner's decisions record and the data supply decisions document);
+    - the independent check reports.
+
+  Then a new manifest digest and validation report, and the package rebuilt and reopened from a fresh extraction (S18 checkpoint A).
+- **Handoff instructions.** `README_HANDOFF.md` and `CLAUDE_HANDOFF_INSTRUCTIONS.md` add the controlled data-supply registers to the reading list; `SOURCE_SECTION_INVENTORY.json` lists the new versions.
+- **DB-dependent closure register: no rows added by this change request.** Two needs are recorded here for the build change requests: the intake's persistence for every kind after the move (C02), and the readiness record's persistence and reassessment under concurrency (C07). The first overlaps the existing DB-APG-002. Section 18 §7, S14 §14.10 and the handoff instructions require each register row to carry instructions for the person who runs the database work. So the rows are written only when a build is authorised, and the owner decides then who carries them out.
+
+## 7. Tests and evidence to validate the amendment itself
+
+| Check | What it shows | Section 18 test |
+| --- | --- | --- |
+| Paragraph comparison of each version 1.1 file with its version 1.0 | each differs only by the additions, the reworded version lines and S06's one reworded sentence in `CIA_PROPOSED_TEXT.csv`, word for word; nothing else is reworded or removed | T18-08 |
+| RTM regeneration and validation | all 2,712 existing IDs kept (by text and old index; APG-S06-C0112 with its reworded summary); 86 new rows plus the backfilled rows; no blank, duplicate or orphaned ID | T18-02 |
+| Fresh extraction and hash check | every controlled file's digest matches the new manifest; the history files are listed | T18-01, T18-05 |
+| Terminology review | the new terms added; no collision with a canonical term; documented human review of the flagged term families (S18 §5) | T18-07 |
+| Cascade check | every new requirement has an RTM row and a named test to come; no dependent left unreviewed | T18-03 |
+| Independent review of the version 1.1 texts | the texts match this assessment as approved | S18 §6 |
+
+## 8. Review, approval, versioning and verification after the change
+
+- **Reviews so far.**
+    - The design and revision 4 went through: five independent agent checks of revision 4; GPT's check and scoped re-check of revision 4; three agent checks of the design; and a GPT and a Gemini review of the design. Every finding was fixed or answered (in the packs). The three small points from GPT's re-check were fixed by Claude and have not been re-checked independently.
+    - This assessment: an independent agent check of draft 1 (5 blocking, 19 should fix, 21 minor) and a scoped re-check of draft 2 (2 blocking, 11 should fix, 20 minor new points, and 9 earlier findings only partly fixed), then a focused check of draft 3 (no blocking point; 6 should fix, 7 minor, all wording). A fix is claimed for each (`CHECK1_FIXES_CIA.md`, `CHECK2_FIXES_CIA.md`, `CHECK3_FIXES_CIA.md`).
+    - GPT's review of draft 4 (4 blocking, 3 should fix, 1 minor). It re-ran the build and got byte-identical tables and text. Its findings are fixed in draft 5 (`GPT_FIXES_CIA.md`). It advised one targeted confirmation of the fixes, not another full round.
+- **Reviews before approval.**
+    1. Done: a focused independent check of draft 3.
+    2. In progress: the 100 entities cross-checked against every row of the Master RTM (M15), by four independent agents reading the 2,712 rows; before the entity register can become an annex.
+    3. Done: GPT's review of draft 4. Still to come: GPT's targeted confirmation of draft 5's fixes (the Option B wording, the retention definition, the M15 evidence and the CR-10 comparison), as GPT advised.
+    4. Gemini only if the owner wants a design view.
+    5. Decided (owner record item 19): CR-10 has no text yet, so the overlap with C13 and C14 is checked when CR-10 is drafted, as a recorded dependency of this approval, not a check made now.
+- **Approval conditions.** The owner approves a final text: no square brackets are left in the proposed wording except the change request's number and the approval details. Questions 5 and 6, which came out of GPT's review and the owner's answers, are answered (owner record items 20 and 21), so no bracket for them remains. The CR-10 overlap is a recorded dependency of the approval (owner record item 19), not a check made before it.
+- **Approval authority.** Emmanuel, product owner. The dispositions open to him: approve; approve with conditions; send back for changes; reject.
+- **Versioning.** The seven sections become version 1.1, each with its reworded version line and an amendment record naming this change request and its approval. Version 1.0 and its hash are kept.
+- **After the change:**
+    1. Produce the version 1.1 files from the approved wording only.
+    2. Run the checks in section 7.
+    3. Have them checked independently.
+    4. Update the RTM, terminology register, change register, manifest and validation report.
+    5. Record the result and close the change request (section 9).
+
+## 9. Traceability and closure record
+
+Change request APG-CR-DSR (number to come) → this assessment and its tables (`CIA_PROPOSED_TEXT.csv`, `CIA_RTM_IMPACT.csv`, `CIA_DEPENDENT_TEXT.txt`, `CIA_COUNTS.txt`, generated by `build_cia.py` from the locked package) → the approved wording → the version 1.1 files and their hashes → the regenerated RTM, terminology register, change register and manifest → the validation runs → the closure record.
+
+| Closure field (CR template) | Entry |
+| --- | --- |
+| Independent reviewer | [the agent checks and GPT pass that review this assessment] |
+| Authorised approver and decision | [Emmanuel; disposition; date] |
+| Revised versions and new hashes | [Sections 01, 02, 03, 04, 05, 06, 11 v1.1; SHA-256 of each; new manifest digest] |
+| Verification results and defects | [section 7 checks: results, defects, retests] |
+| Closure decision, owner and date | [ ] |
+
+## 10. Matters carried from earlier reviews
+
+| Matter | Raised by | Where it stands |
+| --- | --- | --- |
+| M01 The ten shared financial foundation decisions (8-layer 02 §2.11) | GPT | Open owner decisions, not settled here; they are product-level, not builder setup answers (S04 DS026). Needed before the first release's financial policy is built: the cost taxonomy (decision 3, with the cost-code map), how committed cost and cost to complete are worked out (6), how variations are treated (7), and who approves a baseline (8). Freshness (9) is approved in principle (data supply decision 10). The rest are needed before the financial core is built. |
+| M02 The Source Authority Register and its approver | GPT | The register is built through setup questions and approved before it takes effect (S04 DS026). Who approves it is an owner decision before first-release item 3. Claude's suggestion: the finance controller (S02 §3, "financial controls"; PG-FR-025). |
+| M03 Baseline and assessment governance | GPT | Baselines: locked in S05 §5.1 and §10 and 8-layer decision 8; nothing added here; settled before baselines are built ("later"). Assessments (calculation runs) are first-release records; they are governed by S03 §14.3 and S05 §13 (reproducibility, immutable inputs), which this change request keeps; who may start, rerun or supersede a run is settled before item 6 is built. |
+| M04 The commitment policy and status maps | GPT | Supplied through setup questions as builder-owned settings of the financial policy (C04). Their content follows M01's decisions 6 and 7. DC-7 shows why a held variation must not map to approved. |
+| M05 Labour data privacy (S09 §14) | GPT | Applies to site capture; settled in CR-05 before it is built (S04 DS023). The first release has no site capture. |
+| M06 Retention and security state handling | GPT | Settled in Appendix B: the retention event gains its currency (S03 §11.1) and its associated contract (S03 §10.1), and its states are mapped to S03 §13's illustrative lifecycle; PG-DS-AC-17 tests them. Security instruments stay as S03 §10.2 says. |
+| M07 Corrected and disputed data | GPT | S04 §13 already governs corrections. The additions keep what was first received, mark retrospective entries, and never rewrite a shown result (S04 DS024). |
+| M08 How the cost of extra work links to its instruction or variation | owner, Claude | Proposed in Appendix C; S03 DS014 and S05 DS002, DS003; question 3. |
+| M09 Whether Section 11 needs a clarification for the extras panel | owner, Claude | Yes: S11 DS001 to DS003. |
+| M10 How the builder's settings are approved | owner, Claude | Decided: Option B (owner record item 15). S04 DS017 and DS026, PG-DS-AC-05 and 15; section 4. |
+| M11 Data retention and archiving after close-out, and when a customer leaves | GPT | Checked against Sections 09 and 15 to 17. S15 §15.6 already requires, for each data category, a retention period or rule, archiving and deletion, and legal holds; S16 §8 covers backups. So close-out is covered. What export a leaving customer receives is not stated. No change request now; it is settled with the platform's conventions in discovery. |
+| M12 The retention-event (E77) field definition | GPT's re-check | Done: Appendix B. |
+| M13 DC-13's scope | GPT's re-check | Fixed in revision 4 by Claude (MP02, MP03, MP04, MP05 and MP09 named); not re-checked independently. |
+| M14 The code-read report's column heading | GPT's re-check | Fixed in revision 4 by Claude; not re-checked independently. |
+| M15 The 100 entities cross-checked against every row of the Master RTM | revision 4's next steps | In progress. A heading-level check found 2 missing entities and 4 field gaps (`M15_ENTITY_CROSSCHECK.md`); the row-level check of all 2,712 rows is running. Needed before the controlled entity register becomes an annex (S03 DS009), so it is a step before approval (section 8, item 2). |
+| M17 The non-financial classification scheme for findings outside Section 13 | check 2 | To be designed and approved before C11 is built (S06 DS002; S06 §8: documented, testable and approved). Open. |
+| M18 A builder's recognition policy | check 3 | Which recognition policy Profit Guardian supports is product-level (M01, decision 2); which supported policy applies to a builder's business or project is recorded for it and approved as other settings are (S04 DS026, S03 §5.1). |
+| M19 The locked text the RTM does not map (541 paragraphs and 125 table rows in Sections 00 to 18) | GPT's review of draft 4 | A separate, mandatory work item for package acceptance, outside this change request. Owner: Emmanuel. Closure evidence: a consolidated RTM validation reporting zero missing, duplicate, orphaned or unmapped items, with the manual semantic review documented (S18 §9, checkpoint C). The version 1.1 package cannot pass S18 §9 until it is closed. This change request backfills only the 269 items it touches (section 6.2), and does not claim the S18 §9 gate. |
+| M20 The 8-layer design blueprint v0.1 | GPT's review of draft 4 | Now in the pack (`06_change_request_sources/`), so the dependents named in section 2 and M01 can be checked. |
+| M16 The code-read scan is not a proof | GPT's re-check | The field-coverage report (PG-DS-AC-12, S04 DS029) rests on a scan that "does not independently prove" the call-path analysis. So each rule's inputs are confirmed by that rule's tests when the rule is next changed, and the report is never cited as proof on its own. |
+
+**Outside this change request:**
+- the five developer entities E91 to E95 (not in the locked blueprint; listed in the register for information only; their own change request). The developer and principal views the blueprint already requires (PG-FR-024) are unchanged;
+- the reviewers' further ideas: back-to-back claim checks, adjudication evidence packs, statutory declaration checks, a learning cost-code map (each its own change request);
+- sharing data between related companies or joint ventures (its own decision, weighed against tenant isolation);
+- the DC fixes;
+- stage 2.
+
+## 11. Questions for the owner
+
+**All six questions are answered** (owner record items 15 to 18, 20 and 21, 2026-11-13). The proposed wording carries each answer.
+
+| Question | The owner's answer | Where it goes |
+| --- | --- | --- |
+| 1. Can a builder who is the only person using APG approve his own settings? | Yes, Option B: where the builder has exactly one authorised person, he may approve his own settings, each such setting and every figure using it permanently marked "approved by the person who entered it"; with two or more people the two-person rule applies. | S04 DS017, DS026; PG-DS-AC-05, 15; section 4 (a stated relaxation) |
+| 2. A percentage of what? | The builder chooses how his budget is broken down (by stage, trade or cost code, area, or a mix); the parts add up to the whole-job budget, which is always there; the breakdown comes from his own system where it has one. He chooses whether his percentages are measured against the whole job, the part a finding sits in, or both, alongside his dollar amounts; a finding not tied to a part is graded on the dollar amount and the whole job only. Commercial builds are covered the same way, the parts being whatever the builder budgets by. | S05 DS006; S06 DS002; Appendix C |
+| 3. What do the main budget and profit include, and how does the extras panel split them? | Yes, as suggested: the main figures use only approved and verified records plus the builder's approved forecast to finish, labelled as a forecast; approved variations count in them; the extras panel is a split of them that adds up exactly; everything not final sits beside them. | S05 DS001, DS002 |
+| 4. Do the dollar and percentage levels grade the money side only? | Yes, and a warning is advisory: it always shows, graded on its own seriousness; the builder decides, and may press Ignore in one tap; a reason is optional (Option B of the follow-up question); who and when are recorded; the warning is kept and raised again only if something material changes. | S06 DS002, DS005 (a reworded sentence: a stated relaxation of S06 §11), DS006; PG-DS-AC-16 |
+| 5. Can a one-person builder accept APG's standard rule settings himself? (from GPT's review) | Yes, with the same marker: accepting a default is an approval of the builder's own setting, so the one-person exception applies (owner record item 20). | S06 DS001 |
+| 6. When a percentage is measured against the whole job, a percentage of what? | The job's approved budget, so the whole job and its parts (each part's own budget) are measured the same way: on a $4,600,000 budget, 2% is $92,000 (owner record item 21). | S06 DS002 |
+
+**A correction, kept for the record.** When question 1 was first put to the owner, Claude said every setting in APG only counts once a second person approves it. That was not fully true: the code refuses an approval by the person who entered a setting (F-67), but grades findings with severity levels whether or not they are approved, flagging them "not approved" (defect candidate DC-11). The question was corrected the same morning, before the owner answered.
+
+
+**Also at approval:** the number for this change request in your list.
+
+## 12. Proposed wording, section by section
+
+Every addition and every reworded line, with its ID and the locked text it follows. Square brackets mark only the approval details (the change request's number, approver and date). The same content is in `CIA_PROPOSED_TEXT.csv`.
+
+### Section 01 (Discovery, Current-State Inventory & Assumptions Register)
+
+Added after **S01 paragraph 89 (no RTM row)**, which reads: "Record which checks can run immediately and which require unavailable services or access."
+
+- **APG-S01-DS001** (heading 2; change item C16): 3.7 Data supply readiness
+- **APG-S01-DS002** (bullet; change item C16): Which systems the pilot builders use for each kind of data, with a sample export from each, to confirm the systems survey of the data readiness change request.
+- **APG-S01-DS003** (bullet; change item C16): For each file the first release relies on, whether the pilot builder can actually produce it; where it cannot, the readiness record shows the gap and its fallback.
+- **APG-S01-DS004** (bullet; change item C16): What site staff record today, on what device, and whether site capture must work offline; this is an early discovery item, and if a first-pilot insight depends on site facts recorded as they happen, that capture is brought forward.
+- **APG-S01-DS005** (bullet; change item C16): How often each kind of data changes, which sets the case for each integration.
+- **APG-S01-DS006** (bullet; change item C16): Whether users and roles come from the Anchor platform, and how organisations, legal entities and projects are represented in its tenant model.
+
+Added after **APG-S01-C0155**, which reads: "Evidence boundary: this lock approves the discovery mandate, not the live repository's compliance with it. Repository findings, test results, security status an…"
+
+- **APG-S01-DS007** (amendment record; change item C21): Version 1.1 amendment record: amended by change request APG-CR-DSR [number to be given at approval], approved by [approver] on [date], after its Section 18 §6 cascade impact assessment. The amendment adds text and rewords the version line(s); every change is listed in that change request. The lock record above stays as the record of version 1.0. Version 1.0 and its SHA-256 are kept as history.
+
+Reworded: **S01 paragraph 3 (no RTM row)**, which reads today: "VERSION 1.0 — LOCKED"
+
+- **APG-S01-DS008** (version line; change item C21): VERSION 1.1 — LOCKED (amended by change request APG-CR-DSR [number to be given at approval]; version 1.0 kept as history)
+
+Reworded: **S01 paragraph 151 (no RTM row)**, which reads today: "Version: 1.0"
+
+- **APG-S01-DS009** (version line; change item C21): Version: 1.1 (see the amendment record below)
+
+### Section 02 (Product Requirements, Actors & Workflows)
+
+Added after **S02 table 2 row 25 (no RTM row)**, which reads: "PG-FR-025 | Support finance-controller review and appropriate segregation of duties for material financial approvals, retention/security decisions and working-c…"
+
+- **PG-FR-026** (table row; change item C07, C08): PG-FR-026 | For each insight, tell the builder what data it needs, what is missing, who usually holds it and how to supply it; whenever a check or figure cannot be fully done, say what is missing, why it matters and what the builder is to do.
+- **PG-FR-027** (table row; change item C01): PG-FR-027 | Provide, for every data entity this blueprint governs, at least one way to supply it that does not depend on the builder's software; adding a way in never changes a detection rule or financial figure.
+
+Added after **APG-S02-C0176**, which reads: "Evidence boundary: this lock approves the intended product requirements and governance boundaries. It does not establish that any source integration, platform r…"
+
+- **APG-S02-DS001** (amendment record; change item C21): Version 1.1 amendment record: amended by change request APG-CR-DSR [number to be given at approval], approved by [approver] on [date], after its Section 18 §6 cascade impact assessment. The amendment adds text and rewords the version line(s); every change is listed in that change request. The lock record above stays as the record of version 1.0. Version 1.0 and its SHA-256 are kept as history.
+
+Reworded: **S02 paragraph 3 (no RTM row)**, which reads today: "VERSION 1.0 — LOCKED"
+
+- **APG-S02-DS002** (version line; change item C21): VERSION 1.1 — LOCKED (amended by change request APG-CR-DSR [number to be given at approval]; version 1.0 kept as history)
+
+Reworded: **S02 paragraph 172 (no RTM row)**, which reads today: "Version: 1.0"
+
+- **APG-S02-DS003** (version line; change item C21): Version: 1.1 (see the amendment record below)
+
+### Section 03 (Domain Model & Canonical Financial Semantics)
+
+Added after **S03 table 0 row 20 (no RTM row)**, which reads: "Outcome record | Evidence of the realised financial or operational result following an action."
+
+- **APG-S03-DS001** (table row; change item C05): Variation and instruction | Client variation, site instruction or direction, with its commercial states (Section 11 §8) and the cost attributed to it (Section 05 §6).
+- **APG-S03-DS002** (table row; change item C05): Programme activity and progress | Activity, relationship, calendar and progress record of a programme version, approved or working (Section 07 §3).
+- **APG-S03-DS003** (table row; change item C05): Payment claim and certificate | Progress claim, payment schedule or certificate and its states (Section 11 §5).
+- **APG-S03-DS004** (table row; change item C05): Labour record and rate | Timesheet entry, work allocation and labour rate (Section 09 §3), subject to Section 09 §14.
+- **APG-S03-DS005** (table row; change item C05): Document | Original file or message kept as evidence, with its hash.
+- **APG-S03-DS006** (table row; change item C05): Policy and settings record | Versioned, approved configuration: source registry entry, source authority rule, cost-code map, the financial policy settings a builder owns, and rule settings.
+- **APG-S03-DS007** (table row; change item C05): Readiness record | Per insight and the scope it applies to, the state of each input and each data gap (Section 04 §14.1).
+- **APG-S03-DS008** (table row; change item C05): Data gap | A missing, unverified, conflicting, stale or non-authoritative input, with its identity and lifecycle (Section 04 §14.1).
+
+Added after **APG-S03-C0012**, which reads: "Use existing Anchor primitives where suitable. Do not create duplicate canonical entities solely because Profit Guardian needs a different view. Repository insp…"
+
+- **APG-S03-DS009** (paragraph; change item C05, C06): The controlled entity register, an annex to this section, lists every entity Profit Guardian needs under this blueprint, its blueprint basis, its required field groups, its ways in and their state; it is a data inventory, mapped to existing Anchor entities in Section 01 discovery, not a database schema. It also lists, for information only and not governed by this blueprint, the developer entities this blueprint does not cover. A field register gives each entity's fields; it becomes the validated schema register before any entry screen is generated from it.
+
+Added after **S03 table 1 row 14 (no RTM row)**, which reads: "schema_version | Version of the canonical representation where needed."
+
+- **APG-S03-DS010** (table row; change item C20): channel | The way in that supplied the record (import file, document or email, entry screen, setup question, site capture, integration); source_system still names the originating system.
+- **APG-S03-DS011** (table row; change item C20): supplied_by | The person or system that supplied the fact, and its trust level; created_by / updated_by still record who or what wrote the record.
+- **APG-S03-DS012** (table row; change item C20): verified_by / verified_at | The person who verified a material value, and when, where verification is required.
+- **APG-S03-DS013** (table row; change item C20): retrospective | Set when the record was entered after the event it describes.
+
+Added after **APG-S03-L0072**, which reads: "Verified cost savings."
+
+- **APG-S03-DS014** (bullet; change item C13): Cost of extra work: actual cost or commitments attributed to the instruction or variation they were incurred for; a grouping of costs already counted, not a separate cost (Section 05 §6).
+
+Added after **S03 table 3 row 8 (no RTM row)**, which reads: "Outcome | Pending Verification → Partially Realised / Realised / Not Realised / Reversed"
+
+- **APG-S03-DS015** (table row; change item C07): Data gap | Open → Assigned → Awaiting Evidence → Resolved / Suppressed / Superseded, with Reopened (Section 04 §14.1).
+
+Added after **APG-S03-C0278**, which reads: "Evidence boundary: this lock approves the semantic specification. It does not establish that existing Anchor services, schemas, accounting conventions or data f…"
+
+- **APG-S03-DS016** (amendment record; change item C21): Version 1.1 amendment record: amended by change request APG-CR-DSR [number to be given at approval], approved by [approver] on [date], after its Section 18 §6 cascade impact assessment. The amendment adds text and rewords the version line(s); every change is listed in that change request. The lock record above stays as the record of version 1.0. Version 1.0 and its SHA-256 are kept as history.
+
+Reworded: **S03 paragraph 3 (no RTM row)**, which reads today: "VERSION 1.0 — LOCKED"
+
+- **APG-S03-DS017** (version line; change item C21): VERSION 1.1 — LOCKED (amended by change request APG-CR-DSR [number to be given at approval]; version 1.0 kept as history)
+
+Reworded: **S03 paragraph 274 (no RTM row)**, which reads today: "Version: 1.0"
+
+- **APG-S03-DS018** (version line; change item C21): Version: 1.1 (see the amendment record below)
+
+### Section 04 (Data Ingestion, Normalisation & Reconciliation)
+
+Added after **APG-S04-L0122**, which reads: "Keep data-quality warnings visible and traceable to the affected calculation or recommendation."
+
+- **APG-S04-DS001** (heading 2; change item C07): 14.1 Data readiness — mandatory
+- **APG-S04-DS002** (paragraph; change item C07): Maintain a readiness record for each insight (detection rule, financial figure, market figure and any later insight) and the scope it applies to: a project, the organisation, a supplier, the portfolio or external data. It states the insight's state from its own gate (eligible, qualified, blocked or unavailable) and, for each input, how far it has reached: capture available, validation available, authority established, reconciliation available, decision-eligible. An insight is never shown as eligible while an input it needs is missing, unverified or stale; a conflicting or non-authoritative input counts as not verified (§5, §9). An insight that is not switched on, or not yet set up, is shown as such, never as finding no issue (Section 06 §3).
+- **APG-S04-DS003** (bullet; change item C07): For each gap, record the entity and field, the period, the source, the reason (missing, unverified, conflicting, stale, not authoritative, or the underlying record does not exist), the likely holder, the action owner, the approver where one is needed, and the way in that supplies it, saying plainly when that way in is not built.
+- **APG-S04-DS004** (bullet; change item C07): Give each gap a stable identity (entity, field, period and source) and a lifecycle: open, assigned, awaiting evidence, resolved, suppressed, reopened, superseded. A gap found again updates its existing record and nudge; suppression windows and re-notification rules follow Section 06 §9.1.
+- **APG-S04-DS005** (bullet; change item C07): Reassess readiness at setup, after each intake batch or material change of state (combined for a large batch, but prompt), on a schedule, and whenever a record is corrected, quarantined, superseded or revoked. Raise a shared missing setting once, with the projects it affects.
+- **APG-S04-DS006** (bullet; change item C09): An insight may set a tighter freshness limit than its source's default for the inputs it depends on; an overall fresh status never hides a stale critical input. Starting thresholds are owner-approved parameters, each with a documented owner and rationale (Section 16 §5), reviewed in the pilot.
+- **APG-S04-DS007** (bullet; change item C07): Show gaps with their factors side by side, as Section 10 §4 requires for findings: the amount affected, urgency, confidence in that amount, whether the person can act now, and what depends on it. A gap is never called a loss or confirmed leakage; any amount comes from a traceable Section 05 calculation or is labelled an estimate.
+- **APG-S04-DS008** (bullet; change item C07): A nudge names the period, the field and the fix, and links to the way in that fixes it only after sign-in; no link lets anyone approve or change data without signing in.
+- **APG-S04-DS009** (bullet; change item C07): At onboarding, show the builder a data checklist: for the systems he uses, which data their export files and a template can supply and which must come another way, with the way in for each; where that is a judgement and not a confirmed sample export, say so.
+- **APG-S04-DS010** (heading 2; change item C08): 14.2 Telling the builder what is needed — mandatory
+- **APG-S04-DS011** (paragraph; change item C08): Whenever a rule, figure or other insight cannot fully do a check or produce a figure, it must say so: what is missing, why it matters and what the builder is to do. No case may be silent, and nothing may be shown as complete when it is not. Each such message is proven by a test when it is built. A list of the messages, generated by scanning the code, is kept as a controlled artefact and fails when the code gives a message it does not cover.
+
+Added after **APG-S04-L0148**, which reads: "Manual entry must not be a bypass around approval or audit requirements."
+
+- **APG-S04-DS012** (heading 2; change item C01): 18.1 Ways of supplying data — mandatory
+- **APG-S04-DS013** (paragraph; change item C01): Every fact a person or system supplies, through any way in (import file, document or email, entry screen, setup question, site capture, integration), enters through the intake this section defines, with the same envelope (organisation, project, channel, the person or system, and the time) and the same control checkpoints; nothing writes a supplied fact to the store directly. Records Profit Guardian calculates are written by their calculation runs, with the run recorded (Section 03 §14.3).
+- **APG-S04-DS014** (bullet; change item C01): Every entity in the controlled entity register that this blueprint governs has at least one Level 1 way in that needs no particular builder software: an import template, document or email capture, an entry screen, a setup question, or a record Profit Guardian calculates. Site capture (Level 2) and integrations (Level 3) reduce effort; neither is ever the only way in, and a source system's export file through a template stays available when its integration is not.
+- **APG-S04-DS015** (bullet; change item C01): Adding a way in, or a builder changing systems, may change the intake; it must not change any detection rule or financial figure, its logic or its test results. Teaching a rule or figure to use data it does not read today is a change to that rule under its own change request. Where two ways in supply the same field, the Source Authority Register decides which governs, never the most recent arrival.
+- **APG-S04-DS016** (bullet; change item C01): A way in that is not built is never offered to the builder as available.
+- **APG-S04-DS017** (bullet; change item C20): For each kind of record, name its supplier, checker, corrector, approver and the owner accountable if it stays missing. Each role is recorded separately, also where one person holds more than one. Preparing and approving stay separated as Section 02 §3.1 and PG-FR-025 require; the only exception this section makes is for the builder's own settings where the builder has exactly one authorised person (§18.3). The second-person check of a keyed value (§18.2) has no exception.
+- **APG-S04-DS018** (heading 2; change item C03): 18.2 Channel controls — mandatory
+- **APG-S04-DS019** (bullet; change item C03): Email capture verifies the sender and never takes the organisation from the address alone (§6); a verified sender does not make a document genuine or authorised (§5 and §12 still apply). Original messages and attachments are kept.
+- **APG-S04-DS020** (bullet; change item C03): Every uploaded file, attachment and photo is scanned and parsed in isolation within size, archive and resource limits before it is read, and treated as untrusted content (Section 15 §15.9); a malformed or unsupported file is rejected with a reason.
+- **APG-S04-DS021** (bullet; change item C03): Entry screens and setup questions carry the signed-in person, pass the same validation as an imported row, and need approval where the register requires. They never edit a held record: correcting a quarantined or pending record goes through the review workflow (§9, §13).
+- **APG-S04-DS022** (bullet; change item C19): Where a person keys a material value from an uploaded document because no extraction is available, a second person with the verifier role confirms it before it counts. Each value keeps its own confirmation and provenance, also when confirmation is done in batches.
+- **APG-S04-DS023** (bullet; change item C15): Site capture devices are enrolled to the organisation; on a shared device the signed-in user is recorded; the time is checked against the server; each record says how its place was established, and the device location is not assumed reliable. Workers can see what was recorded about them, and a disputed record goes through the correction route (§13). Site capture's privacy requirements follow Section 09 §14; they, and the access of a worker (an actor Section 02 §3 does not yet list) to his own records, are settled before site capture is built.
+- **APG-S04-DS024** (bullet; change item C20): A record entered after the event it describes is marked retrospective. A backdated entry never rewrites a result already shown: the earlier result and the records it used stay on record, and the affected insight is reassessed and labelled.
+- **APG-S04-DS025** (heading 2; change item C04): 18.3 Setup questions — mandatory
+- **APG-S04-DS026** (paragraph; change item C04): Policies, maps, rates and settings the builder sets (the source registry, the Source Authority Register, the cost-code map, users and roles where the platform does not supply them, the financial policy settings the builder owns, namely its status maps, and the rule settings) are supplied through setup questions, versioned, submitted through the intake, and take effect only after approval by the required role. Approval is its own act, with its own permission, approval record and audit event, also where the approver is the person who entered the setting. Where the builder has two or more authorised people, the person who entered a setting cannot approve it. Where the builder has exactly one authorised person, that person may approve the builder's own settings: a stated policy exception, approved by the owner, to the separation of preparing and approving (Section 02 §3.1, PG-FR-025). Each setting so approved, and every figure, finding and report that uses it, permanently carries the marker "approved by the person who entered it". Settings approved under the exception keep their marker; once there are two or more authorised people, every new setting or change follows the two-person rule. The exception covers the builder's own settings in this paragraph only: it does not cover the human approval of consequential actions (Section 15 §15.11), the second-person check of a keyed value (§18.2), or any other record. Onboarding asks only what the insights the builder switches on need. Which calculation methods Profit Guardian supports is product-level policy (Section 05 §3.1 and §5), not a builder setup answer; which supported recognition policy applies to a builder's business or project (Section 03 §5.1) is recorded for it and approved as other settings are.
+- **APG-S04-DS027** (bullet; change item C04): The cost-code map is required before any figure that groups by cost code; Profit Guardian suggests matches and a person confirms each one. A record whose cost code is not mapped yet is accepted with warnings (§8), held only from the figures that need the code, and listed for the person who owns the mapping.
+
+Added after **PG-DI-AC-18**, which reads: "PG-DI-AC-18: The baseline test and evidence reports distinguish specification acceptance from proof of live implementation."
+
+- **PG-DS-AC-01** (acceptance criterion; change item C01): Every fact a person or system supplies enters through the Section 04 intake; nothing writes a supplied fact to the store directly. Records APG calculates are written by its calculation runs, with the run recorded.
+- **PG-DS-AC-02** (acceptance criterion; change item C01): Two inputs that describe the same source fact (the same values, units, currency, date and time and tax basis) and meet the same authority and verification conditions, supplied through any two ways in, are mapped to identical field values and give the same rule outcome; only the provenance differs. Shown by a test.
+- **PG-DS-AC-03** (acceptance criterion; change item C01): Adding a way in changes no detection rule or financial figure logic and no rule test result. Changes to the intake code are allowed. (The one-off move of today's 24 kinds onto the reconciled intake is governed by its own change request.)
+- **PG-DS-AC-04** (acceptance criterion; change item C20): Every value records its channel, the person or system that supplied it, and the time.
+- **PG-DS-AC-05** (acceptance criterion; change item C04): No manual way in (templates, documents, entry screens, site capture, setup answers) bypasses validation, approval or audit (§18). Setup answers are versioned and take effect only after approval by the required role: with two or more authorised people, never by the person who entered them; with exactly one, by that person, with the marker "approved by the person who entered it" on the setting and on every figure, finding and report that uses it (§18.3).
+- **PG-DS-AC-06** (acceptance criterion; change item C01): Every way in meets PG-DI-AC-01 to 18, including tenant isolation tested on that path (PG-DI-AC-14), human verification of extracted values (PG-DI-AC-07) and quarantine isolation (PG-DI-AC-03 to 05).
+- **PG-DS-AC-07** (acceptance criterion; change item C03): Every uploaded file, email attachment and photo is scanned and parsed in isolation within size, archive and resource limits before it is read; a malformed or unsupported file is rejected with a reason.
+- **PG-DS-AC-08** (acceptance criterion; change item C03): A held record is corrected only through the review queue, never by an entry form.
+- **PG-DS-AC-09** (acceptance criterion; change item C07): The readiness record is reassessed at setup, after each intake batch or material state change, on its schedule, and when a record is corrected, quarantined, superseded or revoked; an insight is never shown as eligible while an input it needs is missing, unverified or stale.
+- **PG-DS-AC-10** (acceptance criterion; change item C07): Each data gap has a stable identity (entity, field, period, source) and moves through open, assigned, awaiting evidence, resolved, suppressed, reopened and superseded; a gap found again updates its existing nudge instead of creating a new one; suppression windows and re-notification rules are defined and tested (Section 06 §9.1).
+- **PG-DS-AC-11** (acceptance criterion; change item C01): A way in that is not built is never offered to the builder as available.
+- **PG-DS-AC-12** (acceptance criterion; change item C06): Every field a current rule or figure reads, including setting fields, has at least one built way in that carries it, with its authority and verification requirement met; and each way in, when built, carries every field of the entities it serves. Shown by a generated field-coverage report that fails on a gap; a gate of the first data release.
+- **PG-DS-AC-13** (acceptance criterion; change item C03): A partly failed or failed intake (a batch with rejected rows, an unreadable document, a stopped feed, an unmatched record) is shown as such, with its count and reasons, and never as a successful intake.
+- **PG-DS-AC-14** (acceptance criterion; change item C08): Whenever a rule or figure cannot fully do a check or a figure, it says so: what is missing, why it matters and what the builder is to do. No case is silent, and nothing is shown as complete when it is not. Each message is proven by a test when it is built; a list generated by scanning the code holds every message the scan finds and fails if the code gives one it does not cover.
+- **PG-DS-AC-15** (acceptance criterion; change item C04): Tests show the one-person exception and its limits: a builder with exactly one authorised person approves his own setting, and the setting and each figure, finding and report using it carry the marker "approved by the person who entered it"; with two or more authorised people, the person who entered a setting cannot approve it; in both cases the approval is recorded with its own permission and audit event; the exception does not let that person approve a consequential action (Section 15 §15.11) or confirm his own keyed value (§18.2).
+- **PG-DS-AC-16** (acceptance criterion; change item C22): A finding can be dismissed in one tap with no reason; the dismissal records who and when; the finding and its evidence stay on record and can be reopened; it is raised again only when something material changes. Shown by tests.
+- **PG-DS-AC-17** (acceptance criterion; change item C18): A retention event (Section 03 §10.1) carries its currency and its associated contract as well as its project; an event with no currency, a currency other than its pool's, or no contract is rejected with a reason; retention pools are kept per contract and project. Shown by tests on synthetic fixtures with two contracts in one project.
+
+Added after **APG-S04-L0175**, which reads: "Do not claim an integration, security control or acceptance criterion passed without reproducible evidence."
+
+- **APG-S04-DS028** (bullet; change item C02): Bring the record kinds checked today only inside the calculations under this section's intake; take a regression baseline of today's rule and figure results first, explain and sign off every difference, and do it under its own change request. The records written straight to the store today and the in-code authority register enter the intake as new record kinds, without waiting for that move.
+- **APG-S04-DS029** (bullet; change item C06, C21): Keep the controlled data-supply registers (entity, field, rule input contracts, field coverage, supply routes, messages) current, and regenerate the field-coverage report for each way in as it is built; the report fails on a gap. The report rests on a scan of the code, which is not a proof: each rule's inputs are also confirmed by that rule's tests when the rule is next changed.
+
+Added after **APG-S04-C0188**, which reads: "This lock approves the specification baseline only. It is not a declaration that connectors, source registers, quarantine controls, verification workflows, tena…"
+
+- **APG-S04-DS030** (amendment record; change item C21): Version 1.1 amendment record: amended by change request APG-CR-DSR [number to be given at approval], approved by [approver] on [date], after its Section 18 §6 cascade impact assessment. The amendment adds text and rewords the version line(s); every change is listed in that change request. The lock record above stays as the record of version 1.0. Version 1.0 and its SHA-256 are kept as history.
+
+Reworded: **S04 paragraph 2 (no RTM row)**, which reads today: "Version 1.0 | LOCKED SPECIFICATION BASELINE"
+
+- **APG-S04-DS031** (version line; change item C21): Version 1.1 | LOCKED SPECIFICATION BASELINE (amended by change request APG-CR-DSR [number to be given at approval]; version 1.0 kept as history)
+
+### Section 05 (Profitability Calculation Engine)
+
+Added after **APG-S05-L0034**, which reads: "A commitment is not automatically an additional cost on top of a forecast; determine whether it is already represented."
+
+- **APG-S05-DS001** (bullet; change item C14): Show the approved budget (§3.3) and the authoritative forecast's final cost and final margin (§5.1) first. Beside them, show each item that is not final in its own column, mapped to the locked states: awaiting approval (on the revenue side, Section 11 §8 draft or submitted values and submitted or unresolved claims; on the cost side, purchase orders and subcontracts not yet approved (Section 03 §13: draft or submitted, so not yet commitments, Section 03 §4) and budget revisions not yet approved (§3.3: approved changes)); on hold (records pending reconciliation or quarantined); disputed and rejected (both Section 11's one "Disputed/rejected amount" state, in two columns by its recorded status; budget revisions are mapped to §3.3's approved changes, as they have no state of their own); each with its amount and the effect it would have on the budget, the forecast cost or the margin if it went through; for a cost item, the effect on forecast cost is only the part not already represented in the forecast cost to complete (above). Potential, estimated and speculative values are not shown in these columns: they stay analytical opportunities (Section 11 §4.1). Items the builder records as carried at his own cost or withdrawn sit in the rejected column, with no what-if. These effects are what-if values: labelled, isolated as Section 10 §7.1 requires, and never added into the authoritative figure. For held records they follow Section 04 §9's rules for provisional views: shown to authorised reviewers and traceable to the unverified records.
+- **APG-S05-DS002** (bullet; change item C13): The extras and variations view (Section 11 §8.2) is a breakdown of the authoritative forecast final margin, not a separate margin: for each instruction or variation, its approved revenue and its share of forecast final cost under the decomposition above (cost recognised to date plus forecast cost to complete, with an attributed commitment counted once, inside the forecast cost to complete); the original scope is the remainder. Amounts are in whole cents and the original scope is the remainder, so the parts add up exactly to the authoritative figure; any percentage shown follows §12. The view is labelled as a breakdown with its definition (Section 03 §5.4). Items whose approval or commercial state is not final are shown beside it as above, never in it.
+
+Added after **APG-S05-C0037**, which reads: "Record budget baseline ID/version, scope, reporting period, currency, tax treatment, approved changes, effective dates, calculation timestamp and exclusions. Do…"
+
+- **APG-S05-DS006** (paragraph; change item C11): The builder chooses how the approved budget is broken down: by stage, by trade or cost code, by area, or a mix (the work packages and cost codes of Section 03 §2). The parts add up to the whole-job approved budget, which is always kept; where they do not, Profit Guardian says so and by how much, and a figure for a part is not shown as complete. The breakdown is taken from the builder's own system or file where it holds one, and the builder is asked only for what is missing. It is a setting, approved as other settings are (Section 04 §18.3).
+
+Added after **APG-S05-L0089**, which reads: "Keep unresolved differences visible; do not force them into a clean-looking total."
+
+- **APG-S05-DS003** (bullet; change item C13): Where a cost is attributed to an instruction or variation, it stays exactly once in cost recognised to date or in forecast cost to complete; the attribution groups it and never adds it a second time. A cost, or forecast cost to complete, that is not attributed stays with the original scope.
+
+Added after **APG-S05-C0176**, which reads: "This lock approves the specification baseline only. It does not claim that the live repository, database, calculation engine, forecast controls, benefit verific…"
+
+- **APG-S05-DS004** (amendment record; change item C21): Version 1.1 amendment record: amended by change request APG-CR-DSR [number to be given at approval], approved by [approver] on [date], after its Section 18 §6 cascade impact assessment. The amendment adds text and rewords the version line(s); every change is listed in that change request. The lock record above stays as the record of version 1.0. Version 1.0 and its SHA-256 are kept as history.
+
+Reworded: **S05 paragraph 2 (no RTM row)**, which reads today: "Version 1.0 | LOCKED SPECIFICATION BASELINE"
+
+- **APG-S05-DS005** (version line; change item C21): Version 1.1 | LOCKED SPECIFICATION BASELINE (amended by change request APG-CR-DSR [number to be given at approval]; version 1.0 kept as history)
+
+### Section 06 (Active Intelligence & Profit Leakage Detection)
+
+Added after **APG-S06-C0040**, which reads: "Each rule requires a stable identifier, version, purpose, inputs, evaluation logic, thresholds, exceptions, severity mapping and test cases. Thresholds must be …"
+
+- **APG-S06-DS001** (paragraph; change item C10): Rule thresholds and windows ship with defaults approved by the product owner; the builder's authorised approver accepts them at onboarding and may adjust them within the approved ranges. Accepting a default is an approval of the builder's own setting (Section 04 §18.3): where the builder has exactly one authorised person, he accepts it himself, and it carries the marker "approved by the person who entered it". Each default is documented and visible to the builder; nothing is applied silently (Section 04 §10). A setting with no sensible default (the builder's own categories, or pairs a person declares) is supplied by the builder when the rule is switched on.
+
+Added after **APG-S06-C0087**, which reads: "Keep severity, urgency and confidence separate. A high-severity finding with weak evidence warrants careful verification, not presentation as a confirmed loss. …"
+
+- **APG-S06-DS002** (paragraph; change item C11): The financial part of a finding's severity is graded against levels the builder sets at setup: for each grade an amount, a percentage, or both; the grade applies as soon as any level set for it is reached. The builder chooses what a percentage is measured against: the whole job, the part of the job the finding sits in (a stage, trade or area of his budget breakdown, Section 05 §3.3), or both. For the whole job, the percentage is of the job's approved budget; for a part, of that part's approved budget (Section 05 §3.3). A finding not tied to a part, or a cost not tagged to one, is graded on the amount and the whole job only, and says so. Where a value a percentage needs is missing, only the levels that can be measured apply and the finding says so; a grade with only percentage levels then does not apply. No default or suggested levels are supplied. The levels are approved as other settings are (Section 04 §18.3). Until they are set and approved, findings still show; their money grade is marked ungraded, with what to do, and their non-financial classification still applies. A finding's safety, quality, contractual and compliance classification is assessed on its own and is never lowered by a small or missing amount: for quality findings by Section 13 §13.4, and for other findings by an approved, documented scheme (§8: documented, testable and approved), to be defined before it is built. A finding with no defensible amount is shown with that classification and marked as having no amount.
+
+Added after **APG-S06-C0112**, which reads: "Distinguish detected signal from confirmed finding, recommendation from approved action, and implemented action from verified outcome. Dismissal/deferment of ma…"
+
+- **APG-S06-DS006** (paragraph; change item C22): Profit Guardian advises; it does not block. A finding always shows, graded on its own seriousness (§8). The builder decides what to do, and may ignore (dismiss) any finding in one tap; quick reasons are offered and may be skipped. The dismissal is recorded with who dismissed it and when (PG-AI-AC-13); the finding and its evidence stay on record and can be reopened; it is raised again only when something material changes, under §9.1's re-notification rules.
+
+Added after **APG-S06-C0173**, which reads: "This lock approves the specification only. It does not claim that live detection rules, models, workflows, connectors or controls have been implemented, tested …"
+
+- **APG-S06-DS003** (amendment record; change item C21): Version 1.1 amendment record: amended by change request APG-CR-DSR [number to be given at approval], approved by [approver] on [date], after its Section 18 §6 cascade impact assessment. The amendment adds text and rewords the version line(s); it also rewords one sentence of §11, on recording the rationale for dismissing a finding, as a relaxation the owner approved; every change is listed in that change request. The lock record above stays as the record of version 1.0. Version 1.0 and its SHA-256 are kept as history.
+
+Reworded: **S06 paragraph 2 (no RTM row)**, which reads today: "Version 1.0 | LOCKED SPECIFICATION BASELINE"
+
+- **APG-S06-DS004** (version line; change item C21): Version 1.1 | LOCKED SPECIFICATION BASELINE (amended by change request APG-CR-DSR [number to be given at approval]; version 1.0 kept as history)
+
+Reworded: **APG-S06-C0112**, which reads today: "Distinguish detected signal from confirmed finding, recommendation from approved action, and implemented action from verified outcome. Dismissal/deferment of ma…"
+
+- **APG-S06-DS005** (relaxation; change item C22): Distinguish detected signal from confirmed finding, recommendation from approved action, and implemented action from verified outcome. Dismissal/deferment of material findings must record who dismissed or deferred it and when, and the rationale where the person gives one; retain evidence and allow future reassessment.
+
+### Section 11 (Commercial & Revenue Intelligence)
+
+Added after **S11 paragraph 52 (no RTM row)**, which reads: "Disputed/rejected amount: Value subject to dispute, rejection or unresolved review."
+
+- **APG-S11-DS001** (paragraph; change item C13): For a rejected variation, the builder records what happens next: disputed, carried at the builder's own cost, resubmitted, or withdrawn. Disputed, own cost and withdrawn (the builder abandons the claim: nil value, history kept) are recorded statuses of the one Disputed/rejected state, not new states. A resubmission is a change of state back to submitted, made through the process §8.1 requires, with its own record. Profit Guardian records the outcome and does not judge the dispute (§11); the cost already incurred stays visible.
+
+Added after **APG-S11-C0055**, which reads: "Potential, estimated, submitted, approved/certified, recognised, invoiced and collected values must remain distinct, with no silent transition between states. E…"
+
+- **APG-S11-DS002** (heading 2; change item C13): 8.2 Extras and variations view — mandatory
+- **APG-S11-DS003** (paragraph; change item C13): Show each extra or variation separately from the original contract scope: its value in each state, its status, the cost attributed to it so far, and its effect on the job's profit, as the breakdown Section 05 §3.2 defines. The original scope and the extras are never blended, and no state is added into another.
+
+Added after **APG-S11-C0112**, which reads: "This lock approves the specification only. It does not claim commercial integrations, claim workflows, deadline intelligence or production controls have been im…"
+
+- **APG-S11-DS004** (amendment record; change item C21): Version 1.1 amendment record: amended by change request APG-CR-DSR [number to be given at approval], approved by [approver] on [date], after its Section 18 §6 cascade impact assessment. The amendment adds text and rewords the version line(s); every change is listed in that change request. The lock record above stays as the record of version 1.0. Version 1.0 and its SHA-256 are kept as history.
+
+Reworded: **S11 paragraph 2 (no RTM row)**, which reads today: "Version 1.0 | LOCKED SPECIFICATION BASELINE"
+
+- **APG-S11-DS005** (version line; change item C21): Version 1.1 | LOCKED SPECIFICATION BASELINE (amended by change request APG-CR-DSR [number to be given at approval]; version 1.0 kept as history)
+
+
+## 13. Pre-existing observations in the locked package (outside this change request)
+
+These were found while doing this assessment. None is changed here; each is reported so the owner can decide whether it needs its own change request.
+
+- **The RTM does not map every locked paragraph.** Comparing each section document with the RTM: in Sections 00 to 17, 401 non-empty paragraphs (cover and lock-record lines included) and 125 table rows have no RTM row. Among them:
+    - S02's functional requirements PG-FR-001 to 025;
+    - S03's entity table;
+    - S04 §14's opening sentence ("Track freshness and completeness by source, project, domain and decision use");
+    - S05 §3.2's formula line;
+    - S11 §8's revenue state definitions.
+
+  Section 18 has no RTM rows at all, though S18 §4 requires the RTM to trace "the handoff-specific requirements in Section 18". Section 18 checkpoint C blocks handoff if a material requirement is unmapped. The counts are in section 6.2. This is now matter M19: a mandatory work item for package acceptance, outside this change request.
+- **Section 00 §11 names sections differently from the sections themselves.** This affects every section from 09 to 18, and also 06 and 10. For example, it calls Section 09 "Opportunity Discovery" and Section 11 "Alerts, Dashboard, Reporting"; the files are "Labour, Productivity & Resource Intelligence" and "Commercial & Revenue Intelligence". This assessment uses the titles of the section files.
+- **Sections 14 and 18 number the build phases differently** (section 6.3).
+- **The validator accepts only version 1.0 files** (section 6.7), so no approved change request could pass it as it stands.
+
+## Appendix A. Files and how to reproduce
+
+- `build_cia.py` with its data file `cia_data.py`, run as `python3 -I build_cia.py <extracted locked package> <output folder>`, writes `CIA_PROPOSED_TEXT.csv`, `CIA_RTM_IMPACT.csv`, `CIA_DEPENDENT_TEXT.txt` and `CIA_COUNTS.txt`.
+    - It reads the Master RTM and the 19 section documents, paragraphs and table rows in document order.
+    - It fails if an anchor, heading or proposed ID is wrong, or if an insertion point is not the true end of its block (amendment records are exempt: they go after the last lock-record line, before any closing "next section" line).
+- `assemble.py` puts those tables into this document.
+- Both are builder tools (BUILDER-EXECUTED: NOT INDEPENDENT).
+- The locked package used: `Anchor_Profit_Guardian_Blueprint_v1.0.zip` (SHA-256 487becabdf47796800937d13a706a19b63b7b8230ecc5354b2f01a647ae5d960; manifest digest dad3fa91cb1da822779e041bb66279e08b6598861bb222b5e6e709e967f2d89c).
+
+## Appendix B. Retention event (E77): proposed field definition
+
+Taken from the stage 1 code (`fin/cash_states.py`: `record_event`, `check_event`, `fold`, `events_of`). Today the event is written straight to the store; under C18 it comes through the intake, from the first release's entry form.
+
+| Field | Supplied by | Meaning and rule (today's, unless marked new) |
+| --- | --- | --- |
+| project_ref | the person | the project whose retention pool moves |
+| contract_ref | the person | **new:** the associated contract (S03 §10.1): the head contract (E08) or the subcontract the retention is held under; required; the pool is kept per contract and project |
+| currency | the person, checked by APG | **new:** the ISO 4217 code of amount_cents (S03 §11.1); required; it must equal the currency of the pool it moves; a retention event never converts currency |
+| from_state, to_state | the person | one of the allowed moves: withheld to claimed; claimed to approved or disputed; approved to released or disputed; disputed to claimed or approved; released to received |
+| amount_cents | the person | a positive whole number of cents, no more than the pool it leaves holds |
+| evidence_ref | the person | required; for "received", a stored bank transaction of exactly this amount |
+| note | the person | optional text |
+| seq | APG | the next number in the project's sequence; events are append-only |
+| actor, actor_kind, actor_roles | APG, from the signed-in person | a named person, never a service; "approved", "released" and "received" need the retention approver role, the others the clerk or approver role |
+| at | APG | when it was recorded |
+
+**The two locked obligations, now in the definition (M06).**
+- **A currency** (S03 §11.1: "every monetary value must have an explicit currency"). Today the event has none and assumes the project's; the definition adds `currency`, which must equal the currency of the pool it moves.
+- **The associated contract** (S03 §10.1: "associated contract and project"). Today the event moves a project-level pool with no contract link; the definition adds `contract_ref`, and the pool is kept per contract and project. For a project with one head contract, the pool is the same as today's.
+
+Both are design changes for the build that brings retention events into the intake (first release, item 4); today's code changes then, under that build's own change request.
+
+**The states, mapped to S03 §13's illustrative retention lifecycle** ("Withheld → Release Claimed → Under Review → Approved → Released / Disputed"):
+
+| S03 §13 | The event's state | Note |
+| --- | --- | --- |
+| Withheld | withheld | money held back from a payment |
+| Release Claimed | claimed | a release has been claimed |
+| Under Review | claimed | no separate state: a claimed release is under review until it is approved or disputed; views label it "release claimed, under review" |
+| Approved | approved | needs the retention approver role; approval is not release (S03 §13: "A retention is not released merely because release was requested or approved") |
+| Released | released | needs the retention approver role and evidence |
+| Disputed | disputed | from claimed or approved; it goes back to claimed or approved when settled |
+| (none) | received | an extra step after Released: the money is in the bank, matched to a stored bank transaction of exactly the amount; S03 §13's rule that status needs evidence |
+
+**Tests (PG-DS-AC-17, C18):**
+- an event without a currency, with a currency other than its pool's, or without its contract is rejected with a reason;
+- two contracts in one project keep separate pools;
+- each state shows its S03 §13 label;
+- "approved" does not count as released, and "received" needs its matching bank transaction;
+- synthetic fixtures only: one project with two contracts in AUD, and an event in another currency.
+
+## Appendix C. The cost of extra work: proposed data design
+
+- **What is new:** the records that can carry an extra's cost gain an optional reference to the instruction (E10) or variation (E09) the cost was incurred for:
+    - supplier invoice lines (E23; today APG calculates invoice lines from the invoice, so the line needs the reference);
+    - timesheet entries (E57), priced with the labour rate (E59);
+    - plant hire (E64);
+    - purchase orders (E21) and subcontracts (E16, second release), for committed cost.
+- **One line, one place:** a cost line is attributed to at most one instruction or variation, or split between them by amounts that add up to the line. Whatever is not attributed stays with the original scope. The cost is counted once in actual cost or commitments (S05 DS003).
+- **Forecast cost to complete:** the builder may forecast the cost still to come on an extra. Whatever is not forecast against an extra stays with the original scope.
+- **Who sets it:** the person who supplies the line, or the person who later attributes it through the review workflow. A later attribution is a governed change, recorded with who, when and why (S04 §13).
+- **What the extras view shows:** for each extra or variation, its value in each commercial state (S11 §8), its status, the cost attributed so far, and its share of the job's profit. The original build is the remainder, and the parts add up to the authoritative forecast final margin (S05 DS002).
+- **Budget parts (question 2, owner record item 16):** each budget line (E38) carries the part of the job it belongs to: a stage, a trade or cost code, or an area, as the builder breaks his budget down (the work packages of E98, S03 §2). Each cost carries its part too, through its cost code (the cost-code map) or its own tag. A cost with no part counts for the whole job only. The parts add up to the whole-job approved budget (S05 DS006).
+- **Not decided here:**
+    - how an accrual or overhead allocation is shared with an extra (to be specified before it is built, as S03 §6.3 requires; second-release data);
+    - how a builder's own system marks such costs (discovery, with sample exports).

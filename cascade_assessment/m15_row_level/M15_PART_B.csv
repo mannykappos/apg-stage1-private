@@ -1,0 +1,619 @@
+requirement_id,data_need,data_named,entities,verdict,note
+PG-DI-AC-01,Y,approved field-level authority rule,E03,COVERED,-
+PG-DI-AC-02,Y,"versioned, auditable authority rules",E03,GAP,E03 has no version or approval history. Fix B6.
+PG-DI-AC-03,N,-,,NO-DATA-NEED,Behaviour (state in E01).
+PG-DI-AC-04,N,-,,NO-DATA-NEED,Behaviour.
+PG-DI-AC-05,Y,provisional analysis labelled and traceable,E45;E46;E01,COVERED,-
+PG-DI-AC-06,Y,documented resolution and approval,E87,COVERED,-
+PG-DI-AC-07,Y,verification of material extracted values,E35,GAP,Quote-only today. Fix B8.
+PG-DI-AC-08,N,-,,NO-DATA-NEED,Behaviour.
+PG-DI-AC-09,Y,"lineage of revisions, credits, cancellations",E01;E24,COVERED,-
+PG-DI-AC-10,Y,versioned transformation rules,N01;E90;E33,COVERED,Per-record trace of the rule applied is the B1/B4 gap at L0084.
+PG-DI-AC-11,N,-,,NO-DATA-NEED,Behaviour.
+PG-DI-AC-12,N,-,,NO-DATA-NEED,Behaviour.
+PG-DI-AC-13,Y,freshness and completeness states,E02;E89,COVERED,-
+PG-DI-AC-14,N,-,,NO-DATA-NEED,Test rule.
+PG-DI-AC-15,Y,"audit trace: validation, reconciliation, authority decision, canonical outcome",E01,GAP,"Fixes B1, B2, B3."
+PG-DI-AC-16,N,-,,NO-DATA-NEED,Implementation rule.
+PG-DI-AC-17,N,-,,NO-DATA-NEED,Test rule.
+PG-DI-AC-18,N,-,,NO-DATA-NEED,Evidence-reporting rule.
+APG-S04-C0004,N,-,,NO-DATA-NEED,Lock status statement.
+APG-S04-H0005,N,-,,NO-DATA-NEED,Heading.
+APG-S04-C0007,Y,"source evidence, provenance, unverified/isolated state",E01;E83,COVERED,"E01 source, revision, ingestion state, verification; E83 holds the source document. Per-record lineage detail is judged at s10, s13, s17 rows."
+APG-S04-H0008,N,-,,NO-DATA-NEED,Heading.
+APG-S04-L0009,Y,"posted invoices, credits, payments, receipts, journals, account balances",E23;E24;E25;E15;E73;E96,COVERED-BY-PROPOSED,"Invoices, credits, payments, receipts covered. Journals and account balances only by M15 fix 6 (E73 account and reconciled balance; E96 posted journal reference)."
+APG-S04-L0010,Y,"budgets, estimates, cost codes, forecasts, CTC inputs",E38;E40;E04;E41,COVERED,-
+APG-S04-L0011,Y,"POs, subcontract orders, amendments, quotes, delivery commitments",E21;E16;E22;E30,GAP,All covered except delivery commitments: E21 has no promised/forecast delivery date and E29 holds only actual deliveries. Fix B25.
+APG-S04-L0012,Y,"programme dates, activities, progress, dependencies, delay events, completion forecasts",E47;E48;E49;E51;E52;E99,GAP,Activities hold planned and actual dates only; forecast dates and forecast completion are not in E48 or E47. Fix B23.
+APG-S04-L0013,Y,"demand, specifications, quantities, stock, substitutions, deliveries, material movements",E28;E27;E29;E26,COVERED-BY-PROPOSED,Stock and material movements by M15 fix 1 (E100); substitutions by M15 fix 3 (E27). Rest covered.
+APG-S04-L0014,Y,"supplier identity, commercial terms, delivery/performance evidence, licences, insurance, safety, statutory compliance",E20;E16;E29;E82,COVERED,"Compliance evidence in E82 (type, holder, coverage, dates, verification)."
+APG-S04-L0015,Y,"contract values, claims, variations, notices, approvals, revenue events, disputed items",E08;E13;E17;E09;E11;E87;E96;E15,COVERED,Disputed via E96 value status and E15/E79 disputed amounts.
+APG-S04-L0016,Y,"inspections, non-conformances, rework, defect responsibility, rectification, completion, DLP evidence",E65;E66;E67;E70;E72;E08,COVERED-BY-PROPOSED,Quality records covered (E65 to E72). DLP period itself only by M15 fix 4 (E08 defects liability period). Note: inspections/test results are carried only as E65 observations.
+APG-S04-L0017,Y,"retention balances, release conditions, due dates, guarantees, bonds, expiry, release/cancellation evidence",E75;E76;E77;E78,GAP,Retention events with evidence exist (E77) but nothing records release or cancellation of a security instrument with its evidence; E78 has dates and release conditions only. Fix B11.
+APG-S04-L0018,Y,"market prices, indices, FX, freight, duties, lead times, availability",E36;E37;E33;E30,COVERED,-
+APG-S04-L0019,Y,"uploaded documents (invoices, quotes, contracts, dockets, spreadsheets, emails, forms)",E83,COVERED,-
+APG-S04-C0020,Y,record of supported sources,E02,COVERED,Recording the discovered sources is E02.
+APG-S04-H0021,N,-,,NO-DATA-NEED,Heading.
+APG-S04-C0022,N,-,,NO-DATA-NEED,Introduces the pipeline stage list.
+APG-S04-L0023,N,-,,NO-DATA-NEED,Pipeline stage (process). Registration data judged at s4 rows.
+APG-S04-L0024,N,-,,NO-DATA-NEED,Pipeline stage (process).
+APG-S04-L0025,N,-,,NO-DATA-NEED,Pipeline stage (process); idempotency key is on E96 and source id on E01.
+APG-S04-L0026,N,-,,NO-DATA-NEED,Pipeline stage (process).
+APG-S04-L0027,Y,"original payload or evidence reference, source identifiers, provenance",E01;E83,COVERED,-
+APG-S04-L0028,N,-,,NO-DATA-NEED,Pipeline stage (process); normalisation data judged at s10 rows.
+APG-S04-L0029,N,-,,NO-DATA-NEED,Pipeline stage (process); matching data judged at s11 rows.
+APG-S04-L0030,Y,"outcome classification (accepted, warnings, pending, quarantined, rejected)",E01,COVERED,E01 ingestion state.
+APG-S04-L0031,N,-,,NO-DATA-NEED,Pipeline stage (process).
+APG-S04-L0032,Y,"downstream processing status, errors, retries, replay, final disposition",-,GAP,No entity holds per-receipt processing history; E01 holds only the current ingestion state. Fix B2.
+APG-S04-H0034,N,-,,NO-DATA-NEED,Heading.
+APG-S04-L0036,Y,"source provider, tenant/org scope, connector identity, environment",E02;E05,GAP,E02 has source; connector identity and environment are not in its field groups. Fix B5.
+APG-S04-L0037,Y,"data domains, fields supplied, direction of flow, source identifiers",E02,GAP,Fields supplied covered; direction of flow not in E02. Fix B5.
+APG-S04-L0038,Y,"authentication method, permissions, secret handling, rotation/expiry controls",E02,GAP,No field group for connector authentication metadata or credential rotation/expiry dates (the secrets themselves need not be in the register). Fix B5.
+APG-S04-L0039,Y,"transport mode, cadence, pagination/batch, rate limits, documented freshness",E02,GAP,"Cadence and limits covered; transport mode, batch behaviour and documented freshness missing. Fix B5."
+APG-S04-L0040,Y,"schema version, mapping version, effective dates",E02,GAP,Schema version covered; mapping version and effective dates missing. Fix B5 (and B4 for the mapping rules).
+APG-S04-L0041,Y,"idempotency keys, duplicate, retry, backoff, dead-letter, replay policy",E02,GAP,No field group for the connector duplicate/retry/replay policy. Fix B5.
+APG-S04-L0042,Y,"known limitations, reliability, authority by field, owner, escalation contact",E02;E03,GAP,"Limits, health and E03 covered; owner and escalation contact missing from E02. Fix B5."
+APG-S04-L0043,Y,"last receipt, last reconciliation, lag, error state, health",E02,COVERED,Taken as E02 health. Recommend the field group name these items explicitly.
+APG-S04-C0044,N,-,,NO-DATA-NEED,Implementation constraint.
+APG-S04-H0045,N,-,,NO-DATA-NEED,Heading.
+APG-S04-C0046,Y,"approved Source Authority Register, field-level governing source",E03,COVERED,"E03 field, authoritative source, fallback, approver."
+APG-S04-L0047,Y,"authority entry: field, domain/entity, source, secondaries, precedence rule, effective period, owner, evidence basis, approval history",E03,GAP,"E03 lacks domain/entity, precedence rule, effective period, owner, evidence basis and approval history. Fix B6."
+APG-S04-L0048,Y,"revision, cancellation, late-record and correction handling per field",E03,GAP,Not in E03. Fix B6.
+APG-S04-L0049,Y,"field governance class (source-owned, derived, human-approved, provisional)",E03,GAP,Not in E03. Fix B6.
+APG-S04-L0050,Y,conflict outcomes and authorised resolver role,E03,GAP,Not in E03. Fix B6.
+APG-S04-L0051,Y,field-level precedence by source,E03,COVERED,Illustrative; carried by E03 field and authoritative source.
+APG-S04-L0052,N,-,,NO-DATA-NEED,Resolution rule using E01 and E03 data.
+APG-S04-L0053,Y,register version and approval history; authority/mapping version used on each historical record,E03;E01,GAP,E03 has no version or approval history; E01 does not record which authority or mapping version was applied. Fixes B6 and B1.
+APG-S04-H0055,N,-,,NO-DATA-NEED,Heading.
+APG-S04-L0056,N,-,,NO-DATA-NEED,Security behaviour.
+APG-S04-L0057,N,-,,NO-DATA-NEED,Validation behaviour.
+APG-S04-L0058,N,-,,NO-DATA-NEED,Validation behaviour.
+APG-S04-L0059,Y,source identity and field/domain trust level,E02;E03,GAP,Source identity covered; no trust level per field or domain. Fix B6.
+APG-S04-L0060,N,-,,NO-DATA-NEED,Security behaviour.
+APG-S04-H0061,N,-,,NO-DATA-NEED,Heading.
+APG-S04-C0062,Y,"stable source ids, idempotency keys, composite identity policy",E01;E96;E02,COVERED,"E01 source record id, E96 idempotency key; the composite identity and ambiguity policy is part of fix B5 (duplicate policy)."
+APG-S04-L0063,Y,source revision vs duplicate delivery,E01,COVERED,E01 revision.
+APG-S04-L0064,Y,"lineage originals, revisions, cancellations, replacements",E01,COVERED,E01 revision and supersession.
+APG-S04-L0065,N,-,,NO-DATA-NEED,Processing behaviour.
+APG-S04-L0066,Y,duplicate candidates sent to reconciliation,-,GAP,No reconciliation/quarantine case entity to hold the candidate pair and its outcome. Fix B3.
+APG-S04-H0067,N,-,,NO-DATA-NEED,Heading.
+APG-S04-L0068,N,-,,NO-DATA-NEED,Validation layer (process); results judged at L0137.
+APG-S04-L0069,N,-,,NO-DATA-NEED,Validation layer (process).
+APG-S04-L0070,N,-,,NO-DATA-NEED,Validation layer (process).
+APG-S04-L0071,N,-,,NO-DATA-NEED,Validation layer (process).
+APG-S04-L0072,Y,outcome classification,E01,COVERED,E01 ingestion state.
+APG-S04-C0073,Y,"quarantine/rejection state, explicit warnings",E01,COVERED,E01 ingestion state; warnings per receipt fall under fix B2.
+APG-S04-H0074,N,-,,NO-DATA-NEED,Heading.
+APG-S04-C0075,Y,quarantined records under investigation; labelled provisional analysis traceable to unverified inputs,E01;E45;E46,GAP,"Provisional analysis covered (E45/E46 with E01 state), but no entity holds the investigation/reconciliation case. Fix B3."
+APG-S04-L0076,N,-,,NO-DATA-NEED,Isolation behaviour.
+APG-S04-L0077,Y,"affected figures, unverified records, conflicts, assumptions, timestamps",E45;E89;E01,COVERED,-
+APG-S04-L0078,N,-,,NO-DATA-NEED,UI behaviour.
+APG-S04-L0079,Y,"resolution, approvals, recorded disposition",E87;E01,COVERED,"E87 decision (subject, decision, by whom, when, basis)."
+APG-S04-L0080,Y,"reviewer action (accept, correct, reject, merge, retain)",E87,COVERED,-
+APG-S04-L0081,N,-,,NO-DATA-NEED,Behaviour; lineage via E01.
+APG-S04-H0082,N,-,,NO-DATA-NEED,Heading.
+APG-S04-L0083,Y,original source values and evidence reference,E01;E83,COVERED,-
+APG-S04-L0084,Y,mapping rule/version and transformations applied,E01,GAP,No mapping rule register and E01 does not record the mapping version or transformations applied. Fixes B4 and B1.
+APG-S04-L0085,Y,"versioned normalisation rules (currency, units, dates, tax, rounding, sign)",N01;E90,COVERED,E90 rounding/currency/tax basis; N01 FX method and unit conversions; both versioned.
+APG-S04-L0086,Y,"source vs converted currency and amount, FX source, effective date, method",E96;E37;N01,GAP,E96 holds one amount and currency; source and converted amounts and the rate used are not both held. Fix B9.
+APG-S04-L0087,Y,landed-cost components kept separate,E33,COVERED,-
+APG-S04-L0088,Y,missing critical inputs marked,E89,COVERED,E89 gaps.
+APG-S04-L0089,N,-,,NO-DATA-NEED,Behaviour; source kept via E83/E01.
+APG-S04-H0090,N,-,,NO-DATA-NEED,Heading.
+APG-S04-C0091,Y,"approved cross-reference tables, composite match rules",E01;N01,GAP,E01 holds one source id per record; no entity holds approved cross-references between source ids/aliases and canonical entities. Fix B7.
+APG-S04-L0092,Y,"invoice-to-PO lines, deliveries, variances, unapproved changes",E23;E21;E29;E22,COVERED,-
+APG-S04-L0093,Y,"credits, reversals, replacements, amended POs with lineage",E24;E22;E01,COVERED,-
+APG-S04-L0094,Y,invoice held pending reconciliation,E01;E23,COVERED,E01 ingestion state (pending reconciliation).
+APG-S04-L0095,Y,"supplier aliases, legal-entity differences, project/cost-code mismatches, duplicate candidates",E20;E06;E04,GAP,Cost codes via E04; no home for supplier aliases or duplicate-candidate cases. Fixes B7 and B3.
+APG-S04-L0096,Y,"retention amount/rate conflicts, security discrepancies, DLP/defect links",E75;E76;E78;E08,GAP,E76 links trade retention to defects but client retention E75 has no defect link; DLP period needs M15 fix 4. Fix B12.
+APG-S04-L0097,Y,"programme revisions, late progress/delay evidence",E47;E51;E52;E01,COVERED,-
+APG-S04-L0098,Y,"specification, grade, unit, quantity, substitution mismatches",E27;E26;N01,COVERED-BY-PROPOSED,"Spec and units covered (E27, N01 specification register); substitutions only by M15 fix 3."
+APG-S04-L0099,Y,records whose reconciliation cannot complete,-,GAP,No reconciliation case entity. Fix B3.
+APG-S04-C0100,Y,"explicit, auditable reconciliation outcomes; mismatch vs timing difference",-,GAP,No reconciliation case/outcome entity. Fix B3.
+APG-S04-H0101,N,-,,NO-DATA-NEED,Heading.
+APG-S04-C0102,Y,"AI/OCR-extracted values from invoices, contracts, quotes, dockets and their verification",E35;E83,GAP,"E35 covers quote readings only. Extracted values from invoices, contracts, dockets have no entity. Fix B8."
+APG-S04-L0103,Y,"document ref, extraction output, model/tool version, timestamp, confidence",E35;E83,GAP,"E35 lacks model/tool version, extraction time and confidence, and is quote-only. Fix B8."
+APG-S04-L0104,Y,"extracted fields, page/region, unresolved ambiguity",E35,GAP,Not in E35. Fix B8.
+APG-S04-L0105,Y,verification of material extracted values,E35,GAP,Quote values only. Fix B8.
+APG-S04-L0106,N,-,,NO-DATA-NEED,Control rule.
+APG-S04-L0107,Y,unverified extracted values held in quarantine/provisional,E35;E01,GAP,"State is available through E01, but non-quote extracted values have no entity to sit in. Fix B8."
+APG-S04-L0108,Y,"reviewer, timestamp, value confirmed or corrected, evidence considered, disposition",E35,GAP,"E35 has verified by (and verified on today); corrected value, evidence considered and disposition missing. Fix B8."
+APG-S04-L0109,N,-,,NO-DATA-NEED,Policy definition.
+APG-S04-H0110,N,-,,NO-DATA-NEED,Heading.
+APG-S04-L0111,Y,"source revision, received time, effective time, superseded link",E01;E83,GAP,Revision and supersession covered; received and effective time are not on E01 (E83 has received for documents only). Fix B1.
+APG-S04-L0112,N,-,,NO-DATA-NEED,Resolution rule.
+APG-S04-L0113,Y,prior values and decisions preserved,E01;E87,COVERED,-
+APG-S04-L0114,Y,unresolved conflicts routed to review,-,GAP,No reconciliation/conflict case entity. Fix B3.
+APG-S04-L0115,N,-,,NO-DATA-NEED,Process definition.
+APG-S04-H0116,N,-,,NO-DATA-NEED,Heading.
+APG-S04-L0118,Y,"cadence, last receipt, last processing, last reconciliation, lag",E02,COVERED,E02 cadence and health. Recommend naming these in the field group.
+APG-S04-L0119,Y,decision-aware freshness thresholds,N01,COVERED,N01 freshness thresholds per decision.
+APG-S04-L0120,Y,"stale, missing, partial, degraded states",E02;E89,COVERED,-
+APG-S04-L0121,N,-,,NO-DATA-NEED,Behaviour using E89.
+APG-S04-L0122,Y,data-quality warnings traced to calculation,E45;E84,COVERED,E45 warnings.
+APG-S04-H0123,N,-,,NO-DATA-NEED,Heading.
+APG-S04-L0124,N,-,,NO-DATA-NEED,Implementation convention.
+APG-S04-L0125,Y,processing state and correlation ids across stages,-,GAP,No processing record. Fix B2.
+APG-S04-L0126,N,-,,NO-DATA-NEED,Processing behaviour.
+APG-S04-L0127,N,-,,NO-DATA-NEED,Replay behaviour.
+APG-S04-L0128,N,-,,NO-DATA-NEED,Processing rule.
+APG-S04-L0129,Y,record-level partial batch success/failure,-,GAP,No batch/receipt record. Fix B2.
+APG-S04-H0130,N,-,,NO-DATA-NEED,Heading.
+APG-S04-C0131,N,-,,NO-DATA-NEED,Isolation requirement.
+APG-S04-C0132,N,-,,NO-DATA-NEED,Release-gate rule.
+APG-S04-H0133,N,-,,NO-DATA-NEED,Heading.
+APG-S04-L0135,Y,"source, tenant, org, project, source record ids",E01;E05;E07,COVERED,-
+APG-S04-L0136,Y,"receipt time, effective time, payload hash/evidence ref, schema/mapping versions",E01;E83,GAP,Hash and received time on E83 for documents only; not on records from connectors. Fix B1.
+APG-S04-L0137,Y,"validation results, warnings, duplicate decisions, entity matches, reconciliation status",E01,GAP,Only current ingestion state on E01. Fixes B2 and B3.
+APG-S04-L0138,Y,authority rule applied and register version,E01;E03,GAP,Not recorded per record. Fix B1.
+APG-S04-L0139,Y,"quarantine reason, reviewer actions, corrections, approvals, disposition",E87;E01,GAP,"Decisions via E87, but quarantine reason has no home. Fix B3."
+APG-S04-L0140,Y,"canonical changes/events produced, downstream results, retry/replay history",-,GAP,Fix B2.
+APG-S04-L0141,Y,"errors, latency, backlog, freshness, failure rates, operational alerts",E02,COVERED,Taken as E02 health; telemetry may sit in platform monitoring.
+APG-S04-C0142,N,-,,NO-DATA-NEED,Logging control.
+APG-S04-H0143,N,-,,NO-DATA-NEED,Heading.
+APG-S04-L0144,N,-,,NO-DATA-NEED,Control rule.
+APG-S04-L0145,Y,"uploader, upload time, source description, project scope, file hash, manual transformations",E83,GAP,"E83 has type, source, received, hash, links; uploader identity and manual transformations not named. Fix B10."
+APG-S04-L0146,N,-,,NO-DATA-NEED,Security control.
+APG-S04-L0147,Y,"spreadsheet column mapping, units, currency, dates, duplicate policy, row-level errors",-,GAP,Column mappings need fix B4; row-level errors need fix B2.
+APG-S04-L0148,N,-,,NO-DATA-NEED,Control rule.
+APG-S04-H0149,N,-,,NO-DATA-NEED,Heading.
+APG-S04-H0168,N,-,,NO-DATA-NEED,Heading.
+APG-S04-L0169,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S04-L0170,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S04-L0171,N,-,,NO-DATA-NEED,"Delivery instruction (registers it names are judged at s4, s5, s10, s14 rows)."
+APG-S04-L0172,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S04-L0173,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S04-L0174,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S04-L0175,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S04-H0176,N,-,,NO-DATA-NEED,Heading.
+APG-S04-C0177,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S04-L0178,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S04-L0179,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S04-L0180,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S04-L0181,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S04-L0182,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S04-L0183,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S04-L0184,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S04-L0185,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S04-H0186,N,-,,NO-DATA-NEED,Heading.
+APG-S04-C0187,N,-,,NO-DATA-NEED,Lock record.
+APG-S04-C0188,N,-,,NO-DATA-NEED,Lock record.
+PG-PC-AC-01,N,-,,NO-DATA-NEED,Behaviour.
+PG-PC-AC-02,Y,"separate actuals, commitments, accruals, forecasts, exposures, opportunities, realised benefits",E96;E42;E84;E88,GAP,All but realised benefits covered; benefit state missing. Fix B17.
+PG-PC-AC-03,Y,one authoritative forecast; isolated scenarios and versions,E44;E46,COVERED,-
+PG-PC-AC-04,Y,qualified forecast with gaps,E45;E89,COVERED,-
+PG-PC-AC-05,N,-,,NO-DATA-NEED,Behaviour.
+PG-PC-AC-06,Y,"lineage of credits, reversals, revisions",E01;E24,COVERED,-
+PG-PC-AC-07,N,-,,NO-DATA-NEED,Reconciliation rule.
+PG-PC-AC-08,N,-,,NO-DATA-NEED,Reconciliation rule.
+PG-PC-AC-09,N,-,,NO-DATA-NEED,Behaviour.
+PG-PC-AC-10,Y,explicit holding rates and eligible durations,E53;E52,COVERED,-
+PG-PC-AC-11,N,-,,NO-DATA-NEED,Behaviour.
+PG-PC-AC-12,N,-,,NO-DATA-NEED,Behaviour.
+PG-PC-AC-13,Y,"benefit baseline, implementation evidence, verification",E88,GAP,Fix B17.
+PG-PC-AC-14,Y,"reproducible currency, unit, tax, rounding rules",E90;N01,COVERED,-
+PG-PC-AC-15,N,-,,NO-DATA-NEED,Behaviour.
+PG-PC-AC-16,Y,formula version and immutable input snapshot,E45;E44,COVERED,-
+PG-PC-AC-17,N,-,,NO-DATA-NEED,Test rule.
+PG-PC-AC-18,Y,cause of recalculation,E45,COVERED,E45 trigger.
+PG-PC-AC-19,N,-,,NO-DATA-NEED,Test rule.
+PG-PC-AC-20,Y,provenance of a result,E45;E01,COVERED,-
+PG-PC-AC-21,N,-,,NO-DATA-NEED,Evidence rule.
+APG-S05-H0005,N,-,,NO-DATA-NEED,Heading.
+APG-S05-C0006,N,-,,NO-DATA-NEED,Purpose.
+APG-S05-C0007,N,-,,NO-DATA-NEED,Principle.
+APG-S05-H0008,N,-,,NO-DATA-NEED,Heading.
+APG-S05-L0009,N,-,,NO-DATA-NEED,Principle (determinism).
+APG-S05-L0010,Y,"separate actual, committed, forecast, exposure, opportunity values",E96;E84,COVERED,E96 value status.
+APG-S05-L0011,N,-,,NO-DATA-NEED,Principle.
+APG-S05-L0012,Y,"trace of inputs, methods, versions, timestamps",E45;E44,COVERED,E45 calculation version and input set.
+APG-S05-L0013,Y,"transaction, effective, posting, forecast and as-of times",E96;E45;E41,GAP,E96 has effective date only; transaction date and posting date (with accounting period) are not a shared field group. Fix B9.
+APG-S05-L0014,N,-,,NO-DATA-NEED,Principle (no double counting).
+APG-S05-L0015,Y,qualification of results by incomplete/stale evidence,E45;E89,COVERED,-
+APG-S05-L0016,N,-,,NO-DATA-NEED,Principle (distinct margin views; outputs are E45 measures).
+APG-S05-H0017,N,-,,NO-DATA-NEED,Heading.
+APG-S05-H0018,N,-,,NO-DATA-NEED,Heading.
+APG-S05-C0020,N,-,,NO-DATA-NEED,Formula and zero-denominator rule.
+APG-S05-L0021,Y,"revenue and cost recognition policy, reporting period",E90;E07,COVERED,E90 revenue basis; E07 reporting calendar.
+APG-S05-L0022,Y,posted vs unposted status,E96,COVERED,E96 value status.
+APG-S05-L0023,Y,accounting period and calculation cut-off,E96;E45;E07,GAP,No accounting period on financial records and no cut-off/as-of on E45. Fixes B9 and B18.
+APG-S05-L0024,Y,accounting records to reconcile to (ledger),E96;E73,COVERED-BY-PROPOSED,Needs ledger journals and account balances: M15 fix 6.
+APG-S05-L0025,Y,"adjustments, reversals, credits, restatements",E24;E42;E01;E96,COVERED,-
+APG-S05-L0026,N,-,,NO-DATA-NEED,Principle.
+APG-S05-H0028,N,-,,NO-DATA-NEED,Heading.
+APG-S05-C0030,N,-,,NO-DATA-NEED,Formula.
+APG-S05-L0031,Y,"approved, variation, submitted, disputed, speculative, scenario-only revenue",E08;E09;E13;E96,COVERED,"E96 value status (claimed, disputed, potential, scenario)."
+APG-S05-L0032,Y,"actuals, commitments, accruals, remaining work, risk allowances, scenario costs",E96;E42;E41;E90;E46,COVERED,Risk allowances via E90 contingencies.
+APG-S05-L0033,N,-,,NO-DATA-NEED,Rule.
+APG-S05-L0034,N,-,,NO-DATA-NEED,Rule.
+APG-S05-H0035,N,-,,NO-DATA-NEED,Heading.
+APG-S05-C0037,Y,"budget baseline id/version, scope, period, currency, tax, approved changes, effective dates, timestamp, exclusions",E38;E39;E44;E45;E96,COVERED,-
+APG-S05-H0038,N,-,,NO-DATA-NEED,Heading.
+APG-S05-C0040,N,-,,NO-DATA-NEED,Presentation rule.
+APG-S05-H0041,N,-,,NO-DATA-NEED,Heading.
+APG-S05-L0042,Y,contract/revenue amounts by state,E08;E09;E13;E14;E96,COVERED,-
+APG-S05-L0043,Y,"validated actual cost transactions, reversals, corrections",E23;E24;E42;E57;E96;E01,COVERED,-
+APG-S05-L0044,Y,"commitments open, fulfilled, cancelled, amended",E21;E22;E16,COVERED,-
+APG-S05-L0045,Y,"CTC basis, owner, date, assumptions, confidence, revisions",E41;E44,GAP,"E41 has basis, owner, date, version; assumptions and confidence are not named. Fix B13."
+APG-S05-L0046,Y,"accrual period, basis, status, reconciliation to actuals",E42,GAP,"E42 has period, cost code, amount, reversal; basis, status and the reconciling actual are missing. Fix B14."
+APG-S05-L0047,Y,"variation/claim approval state, value, evidence, overlap status",E09;E13,GAP,Overlap status (whether already represented elsewhere) is not held. Fix B15.
+APG-S05-L0048,N,-,,NO-DATA-NEED,Rule on how effects enter.
+APG-S05-L0049,Y,"purchase price, expected price, freight, duties, tax",E21;E30;E33;E36,COVERED,-
+APG-S05-L0050,Y,retention/security face value and release conditions,E75;E78,COVERED,-
+APG-S05-L0051,Y,defect rectification and carrying impacts with linked exposures,E66;E70;E71;E76;E84,COVERED,-
+APG-S05-L0052,Y,risk/opportunity estimated exposure,E84;E96,COVERED,E96 value status potential.
+APG-S05-C0053,Y,"per input: source, status, effective date, provenance, authority rule applied",E01;E96;E03,GAP,The authority rule applied to each input is not recorded. Fix B1.
+APG-S05-H0054,N,-,,NO-DATA-NEED,Heading.
+APG-S05-C0055,N,-,,NO-DATA-NEED,Method statement.
+APG-S05-L0056,Y,remaining committed work,E21;E16;E41,COVERED,-
+APG-S05-L0057,Y,remaining uncommitted scope,E40;E38;E41,COVERED,-
+APG-S05-L0058,Y,labour and productivity costs,E57;E59;E62;E41,COVERED,-
+APG-S05-L0059,Y,material quantities and procurement costs,E28;E30;E21,COVERED,-
+APG-S05-L0060,Y,"plant, equipment, logistics, site overhead",E64;E43;E33,COVERED-BY-PROPOSED,Hired plant and overhead covered; owned plant and equipment only by M15 fix 5.
+APG-S05-L0061,Y,schedule holding costs,E52;E53,COVERED,-
+APG-S05-L0062,Y,"quality, rework, rectification exposure",E66;E67;E71,COVERED,-
+APG-S05-L0063,Y,approved changes and unresolved exposures,E09;E22;E84,COVERED,-
+APG-S05-L0064,Y,risk allowances and scenario adjustments,E90;E46;E96,COVERED,-
+APG-S05-L0065,Y,forecast change vs prior forecast,E41;E44,COVERED,-
+APG-S05-C0066,Y,"component class: actual, committed, estimated, risk-adjusted, scenario-only",E96;E41,GAP,E96 value status has no risk-adjusted value. Fix B9.
+APG-S05-H0067,N,-,,NO-DATA-NEED,Heading.
+APG-S05-C0068,Y,one approved authoritative forecast per scope and as-of; alternatives separate,E44;E41;E46,COVERED,-
+APG-S05-L0069,Y,"forecast id, version, approval status, owner, scope, as-of, rule versions",E41;E44,COVERED,-
+APG-S05-L0070,Y,previous approved versions and reason for each replacement,E44;E41,GAP,E44 has the prior-baseline chain but no replacement reason. Fix B13.
+APG-S05-L0071,Y,"scenario referencing base forecast, isolated",E46,COVERED,-
+APG-S05-L0072,Y,single active authoritative forecast,E44,COVERED,E44 approval.
+APG-S05-L0073,N,-,,NO-DATA-NEED,Rule.
+APG-S05-H0074,N,-,,NO-DATA-NEED,Heading.
+APG-S05-C0075,Y,"qualified forecast: missing components, stale sources, conflicts, assumptions, uncertainty",E45;E89;E44,COVERED,-
+APG-S05-L0076,N,-,,NO-DATA-NEED,Presentation rule.
+APG-S05-L0077,Y,"per value: evidenced, estimated, stale, missing, scenario",E96;E01;E89,COVERED,-
+APG-S05-L0078,N,-,,NO-DATA-NEED,Rule.
+APG-S05-L0079,Y,decision-aware freshness thresholds,N01,COVERED,-
+APG-S05-L0080,Y,how and when a qualified forecast can be upgraded,E89,GAP,E89 holds gaps and owners but not the resolution path or expected date. Fix B19.
+APG-S05-H0081,N,-,,NO-DATA-NEED,Heading.
+APG-S05-C0082,Y,classified forecast movements vs prior version,E41;E44,COVERED,E41 movement reason. Recommend coding it to the S05 s5.3 categories.
+APG-S05-C0083,N,-,,NO-DATA-NEED,Reconciliation rule.
+APG-S05-H0084,N,-,,NO-DATA-NEED,Heading.
+APG-S05-L0086,Y,invoice to PO transition,E23;E21,COVERED,E23 order line link.
+APG-S05-L0087,Y,"partial invoices/deliveries, amendments, credits, cancellations, supplier retentions, accruals, unapproved orders, disputes, quantity differences",E23;E29;E22;E24;E21;E42;E19;E79,COVERED,-
+APG-S05-L0088,N,-,,NO-DATA-NEED,Rule.
+APG-S05-L0089,N,-,,NO-DATA-NEED,Presentation rule.
+APG-S05-H0090,N,-,,NO-DATA-NEED,Heading.
+APG-S05-C0092,Y,"exposure: identity, relationships, amount, method, evidence, confidence, time window, currency, classification, overlap status, owner, review state, resolution",E84;E87;E88,GAP,"E84 has rule, evidence, quantification, confidence, limits; no relationships, time window, classification, overlap status, owner or review state. Fix B15."
+APG-S05-H0094,N,-,,NO-DATA-NEED,Heading.
+APG-S05-H0097,N,-,,NO-DATA-NEED,Heading.
+APG-S05-C0100,Y,link between open defect and delayed client retention release,E75;E66;E76,GAP,E76 links trade retention to defects; client-held retention E75 has no defect link or hold reason. Fix B12.
+APG-S05-H0101,N,-,,NO-DATA-NEED,Heading.
+APG-S05-C0104,Y,"saving evidence: comparable baseline, scope/spec, quantity, timing, landed cost, outcome evidence",E86;E88,GAP,"No entity holds a benefit with its baseline, comparability basis and outcome evidence. Fix B17."
+APG-S05-H0105,N,-,,NO-DATA-NEED,Heading.
+APG-S05-C0107,Y,benefit non-realised state; verification evidence,E88,GAP,No benefit state or verification record. Fix B17.
+APG-S05-H0108,N,-,,NO-DATA-NEED,Heading.
+APG-S05-L0110,Y,base-case reference and version,E46,COVERED,-
+APG-S05-L0111,Y,"scenario assumptions, rule version, input freshness, owner, creation time",E46;E01,GAP,"E46 has assumptions; owner, rule version and input freshness are not named. Fix B20."
+APG-S05-L0112,Y,"scenario gross/net effects, uncertainty, limitations",E46,GAP,Outputs covered; uncertainty and limitations not named. Fix B20.
+APG-S05-L0113,Y,scenario isolation,E46,COVERED,-
+APG-S05-H0114,N,-,,NO-DATA-NEED,Heading.
+APG-S05-L0115,Y,"precision, rounding, unit conversion, tax, FX source, allocations",E90;N01;E37,COVERED,-
+APG-S05-L0116,N,-,,NO-DATA-NEED,Implementation rule.
+APG-S05-L0117,N,-,,NO-DATA-NEED,Implementation rule.
+APG-S05-L0118,N,-,,NO-DATA-NEED,Test rule.
+APG-S05-L0119,N,-,,NO-DATA-NEED,Rule.
+APG-S05-H0120,N,-,,NO-DATA-NEED,Heading.
+APG-S05-C0121,Y,"formula/rule version, immutable input snapshot",E45;E44,COVERED,-
+APG-S05-L0122,Y,"calculation id/type, project/entity/period, as-of time",E45,GAP,"E45 does not name calculation type, scope, reporting period or as-of time. Fix B18."
+APG-S05-L0123,Y,"input identities, versions/snapshots, authority/reconciliation state, timestamps",E45;E01,COVERED,E45 input set; state via E01.
+APG-S05-L0124,Y,"formula version, currency/units/tax/rounding policy, assumptions, exclusions, timestamp",E45;E90;E44,GAP,"Exclusions, policy versions used and calculation timestamp are not on E45. Fix B18."
+APG-S05-L0125,Y,"result, quality status, prior result, recalculation reason, downstream use",E45,GAP,"Measures, warnings, trigger covered; prior result link and downstream use missing. Fix B18."
+APG-S05-L0126,Y,changed inputs vs changed rules vs corrections,E45,COVERED,E45 trigger.
+APG-S05-L0127,N,-,,NO-DATA-NEED,Control definition.
+APG-S05-L0128,N,-,,NO-DATA-NEED,Test rule.
+APG-S05-C0129,N,-,,NO-DATA-NEED,Rule.
+APG-S05-H0130,N,-,,NO-DATA-NEED,Heading.
+APG-S05-H0152,N,-,,NO-DATA-NEED,Heading.
+APG-S05-L0153,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S05-L0154,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S05-L0155,N,-,,NO-DATA-NEED,Delivery instruction (calculation catalogue is a document).
+APG-S05-L0156,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S05-L0157,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S05-L0158,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S05-L0159,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S05-L0160,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S05-L0161,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S05-H0162,N,-,,NO-DATA-NEED,Heading.
+APG-S05-L0163,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S05-L0164,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S05-L0165,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S05-L0166,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S05-L0167,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S05-L0168,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S05-L0169,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S05-L0170,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S05-L0171,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S05-L0172,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S05-C0173,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S05-H0174,N,-,,NO-DATA-NEED,Heading.
+APG-S05-C0175,N,-,,NO-DATA-NEED,Lock record.
+APG-S05-C0176,N,-,,NO-DATA-NEED,Lock record.
+PG-AI-AC-01,Y,"configurable, versioned rules",N01,COVERED,-
+PG-AI-AC-02,N,-,,NO-DATA-NEED,Behaviour.
+PG-AI-AC-03,N,-,,NO-DATA-NEED,Behaviour.
+PG-AI-AC-04,Y,qualification or data-quality finding,E84;E89,COVERED,-
+PG-AI-AC-05,Y,finding provenance and rule/model version,E84;E01;N01,COVERED,-
+PG-AI-AC-06,Y,amount from S05 calculation or labelled estimate,E84;E45;E96,COVERED,-
+PG-AI-AC-07,N,-,,NO-DATA-NEED,Behaviour.
+PG-AI-AC-08,Y,"separate severity, urgency, confidence",E84;E85,GAP,Fix B15.
+PG-AI-AC-09,Y,"dedup identity, notification history, reopening",E84;E85;N01,GAP,Fixes B15 and B16.
+PG-AI-AC-10,Y,linked findings and overlap,E84,GAP,Fix B15.
+PG-AI-AC-11,Y,suspected vs proven cause,E84,GAP,Fix B15.
+PG-AI-AC-12,Y,grounded vs hypothesis label,E84,GAP,Fix B15.
+PG-AI-AC-13,Y,"auditable dismissal, deferral, confirmation, approval, resolution",E87;E01,COVERED,-
+PG-AI-AC-14,Y,human approval of consequential actions,E87,COVERED,-
+PG-AI-AC-15,N,-,,NO-DATA-NEED,Behaviour.
+PG-AI-AC-16,Y,opportunity estimate vs verified realised saving,E88;E86,GAP,Fix B17.
+PG-AI-AC-17,Y,sharing permissions,E05,GAP,Fix B21.
+PG-AI-AC-18,Y,failed monitoring runs; stale data,E45;E02,GAP,Stale data via E02; run failure not held. Fix B18.
+PG-AI-AC-19,Y,versioned rules/models,N01,COVERED,-
+PG-AI-AC-20,N,-,,NO-DATA-NEED,Test rule.
+APG-S06-H0005,N,-,,NO-DATA-NEED,Heading.
+APG-S06-C0007,N,-,,NO-DATA-NEED,Purpose.
+APG-S06-H0009,N,-,,NO-DATA-NEED,Heading.
+APG-S06-C0011,N,-,,NO-DATA-NEED,Architectural boundary.
+APG-S06-H0012,N,-,,NO-DATA-NEED,Heading.
+APG-S06-L0013,N,-,,NO-DATA-NEED,Operating step (process).
+APG-S06-L0014,N,-,,NO-DATA-NEED,Operating step (process).
+APG-S06-L0015,Y,supporting and contradictory evidence,E84,COVERED,E84 evidence.
+APG-S06-L0016,Y,quantified implications,E84;E45,COVERED,E84 quantification.
+APG-S06-L0017,Y,"finding, priority, owner",E84;E85,GAP,Finding and priority covered; no owner on E84 or E85. Fix B15.
+APG-S06-L0018,Y,recommended action,E86,COVERED,-
+APG-S06-L0019,Y,"review, decision, implementation, outcome tracking",E87;E88;E86,GAP,Decision and outcome covered; no action implementation state. Fix B17.
+APG-S06-L0020,Y,"close, downgrade, reopen, supersede with audit trail",E84;E01;E87,GAP,"Supersession via E01 and decisions via E87, but E84 has no lifecycle status. Fix B15."
+APG-S06-C0021,Y,monitoring run records incl. failed runs,E45,GAP,E45 is a calculation run with no run status or failure; scheduled detection sweeps have no record. Fix B18.
+APG-S06-H0022,N,-,,NO-DATA-NEED,Heading.
+APG-S06-L0023,Y,"unpriced scope changes, unsubmitted variations, disputed revenue, missed credits",E09;E10;E15;E24;E84,COVERED,Taxonomy family; inputs exist.
+APG-S06-L0024,Y,"forecast overruns, duplicated exposure, commitment growth, cost movements",E41;E21;E22;E38;E84,COVERED,Duplicated exposure needs the overlap group in fix B15 (judged at L0078).
+APG-S06-L0025,Y,"price variance, quotes, quantity mismatch, delivery risk, buying timing",E30;E36;E21;E23;E29;E28,COVERED,-
+APG-S06-L0026,Y,"productivity, hours, rework labour, output variance",E57;E61;E62;E67,COVERED,-
+APG-S06-L0027,Y,"delay, critical path, hire costs, site overhead",E52;E48;E49;E64;E53;E43,COVERED,-
+APG-S06-L0028,Y,"repeat defects, rework cost, unresolved DLP obligations, defect-linked cash delays",E66;E67;E71;E76;E75;E08,COVERED-BY-PROPOSED,DLP obligations need the defects liability period: M15 fix 4.
+APG-S06-L0029,Y,"supplier pricing, delivery consistency, quality, compliance evidence",E20;E30;E29;E66;E82,COVERED,-
+APG-S06-L0030,Y,"design changes, avoidable rework, spec inconsistencies",E09;E10;E63;E27;E67,COVERED,"Design changes enter as variations, instructions or E63 conditions; the text names no design-document register."
+APG-S06-L0031,Y,"idle equipment, duplicated hire, deliveries, storage and handling costs",E64;E29;E33,COVERED-BY-PROPOSED,Idle owned equipment needs M15 fix 5 (E64 widened to owned plant).
+APG-S06-L0032,Y,"overdue receivables, retention release, financing costs, security renewal",E15;E75;E74;E78,COVERED,-
+APG-S06-L0033,Y,"commodity, FX, freight, supply observations",E36;E37;E33,COVERED,-
+APG-S06-L0034,Y,"cross-project loss patterns, supplier issues",E84;E20,COVERED,-
+APG-S06-L0035,Y,"conflicts, missing inputs, duplicates, stale data",E01;E02;E89;E84,COVERED,-
+APG-S06-C0036,Y,data-integrity vs financial-leakage classification,E84,GAP,E84 has no financial interpretation class. Fix B15.
+APG-S06-H0037,N,-,,NO-DATA-NEED,Heading.
+APG-S06-H0038,N,-,,NO-DATA-NEED,Heading.
+APG-S06-C0039,N,-,,NO-DATA-NEED,Build-order rule.
+APG-S06-C0040,Y,"rule id, version, inputs, thresholds, exceptions, severity mapping; approved boundaries",N01;E84,GAP,N01 holds versioned thresholds and severity grading; allowed ranges (approved boundaries) and rule exceptions are not named in its field groups. Rule logic and test cases live in the detection catalogue/code. Fix B16.
+APG-S06-H0041,N,-,,NO-DATA-NEED,Heading.
+APG-S06-L0042,Y,actual cost vs budget/forecast tolerance,E23;E38;E41;N01,COVERED,-
+APG-S06-L0043,Y,commitment increase without approved change,E21;E22;E09,COVERED,E22 approved change ref.
+APG-S06-L0044,Y,invoice qty/rate vs order,E23;E21;N01,COVERED,-
+APG-S06-L0045,Y,variation unpriced beyond threshold,E09;N01,COVERED,-
+APG-S06-L0046,Y,"retention release date, release evidence, explained hold",E75;E77,COVERED,Release evidence via E77. Hold reason exists in APG today but is not in E75's required field groups; see fix B12.
+APG-S06-L0047,Y,insurance/licence expiry,E82,COVERED,-
+APG-S06-L0048,Y,quote vs comparable reference after landed cost,E30;E33;E36;N01,COVERED,-
+APG-S06-L0049,Y,hire beyond evidenced need,E64,COVERED,E64 need date and usage evidence.
+APG-S06-L0050,Y,forecast change without movement bridge,E41;E44,COVERED,-
+APG-S06-H0051,N,-,,NO-DATA-NEED,Heading.
+APG-S06-C0052,Y,trend inputs incl. payment/approval/retention delays and operating conditions,E57;E61;E62;E66;E30;E36;E29;E41;E14;E15;E75;E63,COVERED,-
+APG-S06-H0053,N,-,,NO-DATA-NEED,Heading.
+APG-S06-C0054,Y,cross-domain evidence chain and related findings,E84,GAP,Evidence covered; finding-to-finding relationships not held. Fix B15.
+APG-S06-H0055,N,-,,NO-DATA-NEED,Heading.
+APG-S06-L0056,Y,comparison baseline/population,E84;E62,COVERED,Held as finding evidence (E62 for productivity).
+APG-S06-L0057,Y,explanation of deviation,E84,GAP,"E84 has no explanation (observed, expected, reason). Fix B15."
+APG-S06-L0058,Y,data-quality and sample-size limitations,E84,COVERED,E84 limits.
+APG-S06-L0059,N,-,,NO-DATA-NEED,Rule.
+APG-S06-L0060,N,-,,NO-DATA-NEED,Process.
+APG-S06-L0061,Y,false-positive and drift monitoring,E84;E87,COVERED,Derived from finding dispositions (E87).
+APG-S06-C0062,N,-,,NO-DATA-NEED,Rule.
+APG-S06-H0063,N,-,,NO-DATA-NEED,Heading.
+APG-S06-C0064,N,-,,NO-DATA-NEED,AI boundary rule.
+APG-S06-C0065,Y,"assertion basis label (evidenced, inference, hypothesis, unverified)",E84,GAP,No such label on E84 (E68 hypothesis covers quality only). Fix B15.
+APG-S06-H0066,N,-,,NO-DATA-NEED,Heading.
+APG-S06-L0067,Y,"finding id, project/portfolio scope, version",E84;E01,GAP,Version via E01 revision; scope not on E84. Fix B15.
+APG-S06-L0068,Y,"taxonomy family, subtype, detection method",E84,GAP,Not on E84. Fix B15.
+APG-S06-L0069,Y,finding status (detected to superseded),E84;E85,GAP,E85 state is the alert's; E84 has no lifecycle status. Fix B15.
+APG-S06-L0070,Y,"evidence refs, timestamps, provenance, reconciliation status",E84;E01,COVERED,-
+APG-S06-L0071,Y,"rule/model id, version, parameters",E84;N01,COVERED,E84 rule; versioned parameters in N01.
+APG-S06-L0072,Y,"observed condition, expected condition, reason",E84,GAP,Fix B15.
+APG-S06-L0073,Y,financial interpretation class,E84;E96,GAP,Fix B15.
+APG-S06-L0074,Y,"gross, incremental, net amount, currency, calculation ref, assumptions",E84;E45,COVERED,E84 quantification.
+APG-S06-L0075,Y,"evidence strength, missing information, alternatives",E84,COVERED,E84 confidence and limits.
+APG-S06-L0076,Y,"severity, urgency, time sensitivity, impact",E85;N01,GAP,E85 holds one priority; severity and urgency are not held separately. Fix B15.
+APG-S06-L0077,Y,"responsible role, reviewer, next review date",E84,GAP,Fix B15.
+APG-S06-L0078,Y,"linked findings, root-cause hypotheses, overlap groups",E84;E68,GAP,E68 is quality-only; no general relationship or overlap group. Fix B15.
+APG-S06-L0079,Y,"decision, rationale, evidence, approver, outcome, timestamps, history",E87;E88;E01,COVERED,-
+APG-S06-H0081,N,-,,NO-DATA-NEED,Heading.
+APG-S06-C0083,N,-,,NO-DATA-NEED,Presentation rule.
+APG-S06-C0084,N,-,,NO-DATA-NEED,Worked example.
+APG-S06-H0085,N,-,,NO-DATA-NEED,Heading.
+APG-S06-C0087,Y,"separate severity, urgency, confidence; approved thresholds and weights",E84;E85;N01,GAP,Thresholds via N01; urgency not separate from severity. Fix B15.
+APG-S06-H0088,N,-,,NO-DATA-NEED,Heading.
+APG-S06-L0090,Y,deduplication identity,E84,GAP,No dedup key on E84. Fix B15.
+APG-S06-L0091,Y,finding updates with history,E84;E01,COVERED,-
+APG-S06-L0092,Y,linked new finding,E84,GAP,Fix B15.
+APG-S06-L0093,Y,"symptom-cause links, suspected vs confirmed",E84;E68;E69,GAP,Quality-only today. Fix B15.
+APG-S06-L0094,Y,overlap groups for portfolio aggregation,E84,GAP,Fix B15.
+APG-S06-L0095,Y,dismissed and superseded findings retained,E84;E87;E01,COVERED,-
+APG-S06-L0096,Y,reopened status,E84;E87,GAP,No lifecycle status on E84. Fix B15.
+APG-S06-H0097,N,-,,NO-DATA-NEED,Heading.
+APG-S06-C0098,Y,"notification history, dedup identity, suppression window, re-notification rules",E85;E84;N01,GAP,Notification history via E85 rows; dedup identity (B15) and suppression/re-notification settings (B16) missing.
+APG-S06-H0099,N,-,,NO-DATA-NEED,Heading.
+APG-S06-L0100,Y,new/revised source record,E01,COVERED,Trigger uses existing state.
+APG-S06-L0101,Y,"forecast, commitment, invoice, credit, variation change",E41;E21;E23;E24;E09,COVERED,-
+APG-S06-L0102,Y,schedule revision or delay event,E47;E52,COVERED,-
+APG-S06-L0103,Y,new quote or market observation,E30;E36,COVERED,-
+APG-S06-L0104,Y,compliance status change,E82,COVERED,-
+APG-S06-L0105,Y,defect or retention state transition,E66;E75;E77,COVERED,-
+APG-S06-L0106,Y,missed deadline or release date,E12;E75,COVERED,-
+APG-S06-L0107,Y,source stale/unavailable,E02,COVERED,E02 health.
+APG-S06-L0108,Y,open risks/opportunities,E84,COVERED,-
+APG-S06-C0109,Y,monitoring run records incl. failures,E45,GAP,Fix B18.
+APG-S06-H0110,N,-,,NO-DATA-NEED,Heading.
+APG-S06-C0112,Y,"signal vs confirmed finding, approved vs implemented action, verified outcome, dismissal rationale",E84;E86;E87;E88,GAP,Dismissal rationale via E87; finding status (B15) and action/benefit states (B17) missing.
+APG-S06-H0113,N,-,,NO-DATA-NEED,Heading.
+APG-S06-H0116,N,-,,NO-DATA-NEED,Heading.
+APG-S06-C0118,Y,"data-sharing eligibility, permitted fields, privacy limits for aggregation",E05,GAP,No entity holds aggregation/sharing permissions. Fix B21.
+APG-S06-H0119,N,-,,NO-DATA-NEED,Heading.
+APG-S06-L0120,Y,"findings by method, confirmation/dismissal, reopened, late/missed",E84;E87,GAP,"Needs detection method, lifecycle status and a late/missed marker. Fix B15."
+APG-S06-L0121,Y,"time to review/resolution, estimated vs verified outcomes, rule-revision effects",E84;E88,GAP,Needs lifecycle timestamps (B15) and verified benefit (B17).
+APG-S06-L0122,N,-,,NO-DATA-NEED,Interpretation rule.
+APG-S06-L0123,N,-,,NO-DATA-NEED,Interpretation rule.
+APG-S06-L0124,Y,rule/model versions,N01;E84,COVERED,Release decision is governance (S14).
+APG-S06-H0125,N,-,,NO-DATA-NEED,Heading.
+APG-S06-H0146,N,-,,NO-DATA-NEED,Heading.
+APG-S06-L0147,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S06-L0148,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S06-L0149,N,-,,NO-DATA-NEED,Delivery instruction (detection catalogue is a document).
+APG-S06-L0150,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S06-L0151,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S06-L0152,N,-,,NO-DATA-NEED,"Delivery instruction (finding data judged at s6, s9 rows)."
+APG-S06-L0153,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S06-L0154,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S06-L0155,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S06-L0156,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S06-H0157,N,-,,NO-DATA-NEED,Heading.
+APG-S06-L0158,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S06-L0159,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S06-L0160,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S06-L0161,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S06-L0162,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S06-L0163,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S06-L0164,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S06-L0165,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S06-L0166,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S06-L0167,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S06-L0168,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S06-L0169,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S06-C0170,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S06-H0171,N,-,,NO-DATA-NEED,Heading.
+APG-S06-C0172,N,-,,NO-DATA-NEED,Lock record.
+APG-S06-C0173,N,-,,NO-DATA-NEED,Lock record.
+PG-SD-AC-01,Y,baselines and revisions distinguishable and preserved,E47;E01,GAP,Fix B22.
+PG-SD-AC-02,Y,working forecasts/scenarios vs approved baselines,E47;E46,GAP,Fix B22.
+PG-SD-AC-03,N,-,,NO-DATA-NEED,Behaviour.
+PG-SD-AC-04,Y,qualified output,E45;E89,COVERED,-
+PG-SD-AC-05,Y,"observed event, suspected cause, supported cause, contractual responsibility",E52,COVERED,E52 attribution state.
+PG-SD-AC-06,Y,"counterfactual, rates, duration, overlap checks",E46;E53;E52;E84,GAP,Overlap check result not held. Fix B15.
+PG-SD-AC-07,N,-,,NO-DATA-NEED,Calculation rule.
+PG-SD-AC-08,N,-,,NO-DATA-NEED,Calculation rule.
+PG-SD-AC-09,Y,productivity comparison basis,E62,COVERED,E62 comparability basis.
+PG-SD-AC-10,Y,delivery risks linked to activities/milestones,E28;E21;E48;E99,GAP,No material-demand-to-activity link. Fix B25.
+PG-SD-AC-11,Y,"mitigation time benefit, cost, trade-offs, uncertainty",E46,GAP,Uncertainty not on E46. Fix B20.
+PG-SD-AC-12,Y,scenario isolation,E46,COVERED,-
+PG-SD-AC-13,Y,deadline evidence and human review,E12;E11;E87,COVERED,-
+PG-SD-AC-14,Y,"retention, security, DLP links",E75;E76;E78;E66;E08,COVERED-BY-PROPOSED,DLP needs M15 fix 4; client-retention-to-defect link is fix B12 (see S05 C0100).
+PG-SD-AC-15,Y,post-completion obligations,E75;E78;E66;E99;E08,COVERED-BY-PROPOSED,Needs the defects liability period: M15 fix 4.
+PG-SD-AC-16,Y,"stale, missing, conflicting schedule data",E89;E01;E02,COVERED,-
+PG-SD-AC-17,Y,finding updates with history,E84;E01,COVERED,-
+PG-SD-AC-18,Y,schedule calculation provenance and version,E45,COVERED,-
+PG-SD-AC-19,N,-,,NO-DATA-NEED,Test rule.
+PG-SD-AC-20,N,-,,NO-DATA-NEED,Evidence rule.
+APG-S07-H0005,N,-,,NO-DATA-NEED,Heading.
+APG-S07-C0007,Y,"schedule evidence linked to overheads, hire, labour, storage, subcontractors, financing, revenue timing, contractual exposure, quality, retention",E52;E53;E64;E57;E33;E16;E74;E13;E15;E11;E12;E66;E75,COVERED,"Inputs exist; link-level data judged at s6, s9, s12 rows."
+APG-S07-C0008,N,-,,NO-DATA-NEED,Analysis principle.
+APG-S07-H0009,N,-,,NO-DATA-NEED,Heading.
+APG-S07-C0010,N,-,,NO-DATA-NEED,Architectural boundary.
+APG-S07-C0012,N,-,,NO-DATA-NEED,Implementation rule.
+APG-S07-H0013,N,-,,NO-DATA-NEED,Heading.
+APG-S07-L0014,Y,"programme identity, version, approval status, baseline date, scope",E07;E47,GAP,"E47 has version, data date, approval; no baseline date, scope or baseline/revision designation. Fix B22."
+APG-S07-L0015,Y,"activity ids/descriptions, planned/actual/forecast dates, dependencies, relationship types",E48;E49,GAP,E48 holds planned and actual dates only; forecast dates and description missing. Fix B23.
+APG-S07-L0016,Y,"calendars, working days/holidays, duration, remaining duration",E50;E48,GAP,Calendar and duration covered; remaining-duration estimate missing. Fix B23.
+APG-S07-L0017,Y,"progress measures and source, resource/subcontractor dependencies, milestones, contractual dates",E51;E99;E98;E16,GAP,Progress and milestones covered; no activity-level resource or subcontractor assignment. Fix B23.
+APG-S07-L0018,Y,"data timestamp, provenance, freshness, approved changes, revision history",E47;E01;E02,COVERED,-
+APG-S07-C0019,Y,"original programme, approved revisions, working forecasts, scenarios kept distinct",E47;E46;E01,GAP,E47 has no version type. Fix B22.
+APG-S07-C0020,Y,"programme change classification (approved revision, forecast update, correction, proposal)",E47,GAP,Fix B22.
+APG-S07-H0021,N,-,,NO-DATA-NEED,Heading.
+APG-S07-L0022,Y,planned vs actual progress,E48;E51,COVERED,-
+APG-S07-L0023,Y,planned vs forecast dates,E48,GAP,No forecast dates. Fix B23.
+APG-S07-L0024,Y,"remaining duration, forecast completion",E48;E47,GAP,Fix B23.
+APG-S07-L0025,Y,"milestone variance, dependency exposure",E99;E49,COVERED,-
+APG-S07-L0026,Y,criticality and float,E48;E49;E50;E45,COVERED,Derived from the network; stored as calculation output.
+APG-S07-L0027,Y,schedule data quality,E01;E89;E51,COVERED,-
+APG-S07-C0028,N,-,,NO-DATA-NEED,Rule.
+APG-S07-H0029,N,-,,NO-DATA-NEED,Heading.
+APG-S07-C0030,Y,"qualified simpler assessment, missing links, assumptions",E45;E89,COVERED,-
+APG-S07-H0031,N,-,,NO-DATA-NEED,Heading.
+APG-S07-L0032,Y,delay cause: late material delivery,E52;E29;E28,COVERED,E52 recorded cause.
+APG-S07-L0033,Y,delay cause: supplier/subcontractor,E52;E20;E16,COVERED,-
+APG-S07-L0034,Y,delay cause: labour availability/productivity,E52;E57;E62,COVERED,-
+APG-S07-L0035,Y,delay cause: design information/approval,E52;E63,COVERED,Held as recorded cause.
+APG-S07-L0036,Y,delay cause: late variation/scope decision,E52;E09,COVERED,-
+APG-S07-L0037,Y,delay cause: access/site readiness,E52;E63,COVERED,-
+APG-S07-L0038,Y,delay cause: plant availability,E52;E64,COVERED,-
+APG-S07-L0039,Y,delay cause: inspection/testing/quality failure,E52;E65;E66,COVERED,-
+APG-S07-L0040,Y,delay cause: rework and rectification,E52;E67;E70,COVERED,-
+APG-S07-L0041,Y,delay cause: weather/external,E52;E63,COVERED,-
+APG-S07-L0042,Y,delay cause: client decision dependency,E52;E10,COVERED,-
+APG-S07-L0043,Y,multiple interacting causes,E52,COVERED,Assumes E52 recorded cause can hold more than one cause; recommend stating it.
+APG-S07-L0044,Y,data-quality issue preventing assessment,E52;E89,COVERED,-
+APG-S07-H0046,N,-,,NO-DATA-NEED,Heading.
+APG-S07-C0048,Y,contractual conclusions subject to human review,E52;E87,COVERED,E52 attribution state; E87 decision.
+APG-S07-H0049,N,-,,NO-DATA-NEED,Heading.
+APG-S07-C0052,N,-,,NO-DATA-NEED,Calculation principle.
+APG-S07-H0053,N,-,,NO-DATA-NEED,Heading.
+APG-S07-C0054,Y,"counterfactual baseline, evidenced rates, eligible duration, overlap checks",E46;E47;E53;E52;E45;E84,GAP,All covered except the recorded overlap check result. Fix B15.
+APG-S07-L0055,Y,"reference programme/scenario, affected activities and period",E46;E47;E48;E52,COVERED,-
+APG-S07-L0056,Y,resource/cost rates with source and effective period,E53;E59,GAP,"E53 has category, rate, basis, source; no effective period. Fix B24."
+APG-S07-L0057,N,-,,NO-DATA-NEED,Calculation rule.
+APG-S07-L0058,Y,"avoided/reduced costs, alternative causes",E84,COVERED,E84 quantification and confidence/limits.
+APG-S07-L0059,Y,assumptions and uncertainty,E84;E46;E45,COVERED,-
+APG-S07-L0060,Y,qualified estimate or unquantified finding,E84,COVERED,-
+APG-S07-H0061,N,-,,NO-DATA-NEED,Heading.
+APG-S07-C0063,N,-,,NO-DATA-NEED,Calculation rule.
+APG-S07-H0064,N,-,,NO-DATA-NEED,Heading.
+APG-S07-H0067,N,-,,NO-DATA-NEED,Heading.
+APG-S07-C0068,Y,"required-on-site dates, forecast delivery dates, lead times, affected activities, substitutions, storage and delivery costs",E28;E21;E30;E27;E33;E29,GAP,Forecast/promised delivery date missing from E21 and E28 has no link to an activity or work package (fix B25). Substitutions need M15 fix 3.
+APG-S07-H0070,N,-,,NO-DATA-NEED,Heading.
+APG-S07-L0072,Y,scenario reference and version,E46;E47,COVERED,-
+APG-S07-L0073,Y,activities and dependencies changed,E46,COVERED,E46 assumptions.
+APG-S07-L0074,Y,"duration, resource, productivity assumptions",E46,COVERED,-
+APG-S07-L0075,Y,direct implementation cost,E46,COVERED,E46 outputs.
+APG-S07-L0076,Y,holding costs avoided or added,E46,COVERED,-
+APG-S07-L0077,Y,"quality, safety, operational constraints requiring review",E46,GAP,Not in E46. Fix B20.
+APG-S07-L0078,Y,forecast completion/milestone changes,E46,COVERED,-
+APG-S07-L0079,Y,"uncertainty, evidence gaps, responsible reviewer",E46,GAP,Fix B20.
+APG-S07-H0081,N,-,,NO-DATA-NEED,Heading.
+APG-S07-C0083,Y,"avoided cost, incremental mitigation cost, net benefit",E46,COVERED,E46 outputs.
+APG-S07-H0084,N,-,,NO-DATA-NEED,Heading.
+APG-S07-C0086,Y,"generated deadline: source, clause/rule, assumptions, review status",E12;E87,GAP,"E12 has source clause, trigger, date, verification; assumptions not named. Fix B26."
+APG-S07-H0087,N,-,,NO-DATA-NEED,Heading.
+APG-S07-H0090,N,-,,NO-DATA-NEED,Heading.
+APG-S07-L0091,Y,age of schedule revision and progress update,E47;E51,COVERED,-
+APG-S07-L0092,Y,"missing dates, inconsistent ids, invalid dependencies",E48;E49;E89,COVERED,-
+APG-S07-L0093,Y,"contradictory dates, unexplained completion changes",E01;E03;E47;E89,COVERED,-
+APG-S07-L0094,Y,"unverified rates, missing cost evidence, incomplete delay records",E53;E59;E52;E89,COVERED,-
+APG-S07-C0095,Y,qualification and missing evidence,E45;E89,COVERED,-
+APG-S07-H0096,N,-,,NO-DATA-NEED,Heading.
+APG-S07-H0099,N,-,,NO-DATA-NEED,Heading.
+APG-S07-H0120,N,-,,NO-DATA-NEED,Heading.
+APG-S07-L0121,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S07-L0122,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S07-L0123,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S07-L0124,N,-,,NO-DATA-NEED,Delivery instruction (data dictionary is a document).
+APG-S07-L0125,N,-,,NO-DATA-NEED,Delivery instruction (calculation catalogue is a document).
+APG-S07-L0126,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S07-L0127,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S07-L0128,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S07-L0129,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S07-L0130,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S07-L0131,N,-,,NO-DATA-NEED,Delivery instruction.
+APG-S07-H0132,N,-,,NO-DATA-NEED,Heading.
+APG-S07-L0133,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S07-L0134,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S07-L0135,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S07-L0136,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S07-L0137,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S07-L0138,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S07-L0139,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S07-L0140,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S07-L0141,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S07-L0142,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S07-L0143,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S07-C0144,N,-,,NO-DATA-NEED,Audit instruction.
+APG-S07-H0145,N,-,,NO-DATA-NEED,Heading.
+APG-S07-C0146,N,-,,NO-DATA-NEED,Lock record.
+APG-S07-C0147,N,-,,NO-DATA-NEED,Lock record.

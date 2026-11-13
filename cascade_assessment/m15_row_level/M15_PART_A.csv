@@ -1,0 +1,701 @@
+requirement_id,data_need,data_named,entities,verdict,note
+APG-S00-H0004,N,,,NO-DATA-NEED,Heading.
+APG-S00-C0005,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-H0007,N,,,NO-DATA-NEED,Heading.
+APG-S00-C0010,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-H0011,N,,,NO-DATA-NEED,Heading.
+APG-S00-H0012,N,,,NO-DATA-NEED,Heading.
+APG-S00-L0013,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0014,Y,contributing conditions and root-cause hypotheses of findings,E84;E68,GAP,"E84 has rule, evidence, quantification, confidence, limits but no cause field; E68 is defect-only. G6: E84 gains affected scope (project, package), time horizon and intervention window (latest useful intervention time), contributing conditions and root-cause hypotheses, lifecycle status with resolution reason, and links to related findings sharing a cause or exposure (overlap marker)"
+APG-S00-L0015,Y,"exposure, affected project/package, time horizon, intervention window, evidence",E84,GAP,"Exposure and evidence covered by E84 quantification/evidence; scope, horizon and intervention window are not. G6: E84 gains affected scope (project, package), time horizon and intervention window (latest useful intervention time), contributing conditions and root-cause hypotheses, lifecycle status with resolution reason, and links to related findings sharing a cause or exposure (overlap marker)"
+APG-S00-L0016,Y,"leakage evidence: labour, rework, idle resources, delay, waste, procurement, variations, supplier, defects",E57;E61;E62;E67;E64;E52;E53;E21;E23;E09;E10;E29;E66;E100,COVERED-BY-PROPOSED,Material waste needs proposed E100 (M15 fix 1); idle owned equipment needs M15 fix 5 (E64). Rest covered.
+APG-S00-L0017,Y,"exposure resolution state (prevented, mitigated, realised, dismissed, unresolved) with reasons and evidence",E84;E87;E88;E83,GAP,"No entity holds the resolution state or reason; E88 holds only realised result. G6: E84 gains affected scope (project, package), time horizon and intervention window (latest useful intervention time), contributing conditions and root-cause hypotheses, lifecycle status with resolution reason, and links to related findings sharing a cause or exposure (overlap marker); G9: E88 gains outcome classification (realised, partially realised, avoided, reversed, not realised, unverified), baseline used, estimated-versus-realised difference and reasons for material differences"
+APG-S00-H0018,N,,,NO-DATA-NEED,Heading.
+APG-S00-L0019,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0020,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0021,Y,"explicit baseline; alternatives with costs, risk, schedule consequences",E44;E46,COVERED,"Baseline E44; alternatives as E46 scenarios (assumptions, outputs)."
+APG-S00-L0022,Y,"ranking criteria: net benefit, confidence, urgency, feasibility, time to benefit, downside, reversibility",E84;E85;E86,GAP,"Confidence (E84) and priority (E85) exist; net benefit, feasibility, time to benefit, downside and reversibility are not held. G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated)"
+APG-S00-L0023,Y,reassessment triggers and prior recommendation versions,E45;E01,COVERED,E45 trigger; E01 revision/supersession.
+APG-S00-L0024,Y,opportunity lifecycle discovery to outcome; projected vs realised benefit,E84;E86;E87;E88,GAP,"Chain of entities exists but no lifecycle status or projected-benefit field. G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated); G9: E88 gains outcome classification (realised, partially realised, avoided, reversed, not realised, unverified), baseline used, estimated-versus-realised difference and reasons for material differences"
+APG-S00-H0025,N,,,NO-DATA-NEED,Heading.
+APG-S00-C0026,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0027,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0028,Y,"event provenance, freshness, tenant/project scope, data quality",E01;E02,COVERED,E01 source/ingestion state/verification; E02 health. Generic tenant/project scope field is part of G1 (judged at S03 C0014).
+APG-S00-L0029,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0030,Y,versioned rules and calculation versions,E45;N01,COVERED,E45 calculation version; N01 rule settings.
+APG-S00-L0031,Y,"evidence, assumptions, uncertainty, net financial impact, trade-offs, latest useful intervention time",E84;E86;E46,GAP,"Evidence/confidence on E84, assumptions on E46; net impact and latest useful intervention time not held. G6: E84 gains affected scope (project, package), time horizon and intervention window (latest useful intervention time), contributing conditions and root-cause hypotheses, lifecycle status with resolution reason, and links to related findings sharing a cause or exposure (overlap marker); G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated)"
+APG-S00-L0032,Y,routed alert/work item; approve/reject/defer; owner assignment; action tracking,E85;E87,GAP,"E85 has recipient and state, E87 the decision; no owner, deferral or action tracking. G7: E85 gains assigned owner (person or role), assignment history, deferral (defer-until and reason) and action-tracking state"
+APG-S00-L0033,Y,prior recommendations preserved; reason for material change,E01;E45,COVERED,E01 supersession keeps prior versions; E45 trigger records why it was reassessed.
+APG-S00-C0034,Y,"per-source update method, freshness target, latency measurement, outage behaviour",E02;E90;N01,COVERED,"E02 cadence, limits, health; freshness targets in E90/N01."
+APG-S00-H0035,N,,,NO-DATA-NEED,Heading.
+APG-S00-L0036,Y,"variations, instructions, claims, payment timing, notices, time bars",E09;E10;E11;E12;E13;E14;E15,COVERED,
+APG-S00-L0037,Y,"budget, actuals, commitments, POs, invoices, quote changes, ETC, forecast final cost",E38;E96;E21;E22;E23;E30;E41;E45,COVERED,
+APG-S00-L0038,Y,"material identity/spec/quantities, pricing, landed cost, lead times, waste, stock reuse, approved alternatives",E26;E27;E28;E30;E36;E33;E100,COVERED-BY-PROPOSED,"Waste, shortages and stock reuse need E100 (M15 fix 1); approved alternatives need M15 fix 3 (E27)."
+APG-S00-L0039,Y,"labour cost, rework, idle time, overtime, productivity, utilisation, allocation",E57;E59;E60;E61;E62;E58;E63;E67,COVERED,
+APG-S00-L0040,Y,"schedule slippage, dependencies, critical path, handover timing, holding costs",E47;E48;E49;E52;E53;E99,COVERED,
+APG-S00-L0041,Y,"defects, rework drivers, rectification, warranty exposure, DLP obligations, responsibility, prevention",E65;E66;E68;E69;E70;E71;E97;E08,COVERED-BY-PROPOSED,DLP/maintenance-period obligations need M15 fix 4 (E08 defects liability period).
+APG-S00-L0042,Y,"supplier/subcontractor price, quality, lead time, reliability, adherence, disputes",E20;E16;E30;E29;E66;E79,COVERED,
+APG-S00-L0043,Y,"specifications, coordination issues, alternative methods/materials with approvals",E27;E65;E87,COVERED-BY-PROPOSED,Approved alternative materials need M15 fix 3 (E27 substitutions).
+APG-S00-L0044,Y,"equipment utilisation, hire vs own, deliveries, storage, idle resources",E64;E29;E33,COVERED-BY-PROPOSED,Hire-versus-own needs owned equipment: M15 fix 5 (E64).
+APG-S00-L0045,Y,"payment timing, working capital, finance costs, retentions, security, tied-up capital, scenarios",E15;E79;E74;E53;E75;E76;E78;E46,COVERED,Covered by existing entities; a time-phased view would use proposed E101 but the row does not require it.
+APG-S00-L0046,Y,"material indicators, FX, supply availability, freight, energy",E36;E37;E02,COVERED,E36 is keyed on material; freight/energy indices fit only if its material field admits an indicator family (minor).
+APG-S00-L0047,Y,"cross-project patterns, capacity allocation, shared procurement, comparability",E84;E58;E28;N01,COVERED,
+APG-S00-H0048,N,,,NO-DATA-NEED,Heading.
+APG-S00-C0049,Y,"post-completion obligations tracked until closed, transferred or waived",E75;E76;E78;E66;E87,GAP,"Retention, security and defects exist, but closeout obligations and their closed/transferred/waived state are not held. G5: new entity Closeout obligation (project, obligation type, source clause or document, due date, owner, status open/closed/transferred/waived/resolved, authorising decision E87, evidence)"
+APG-S00-L0050,Y,"retention withheld/claimed/approved/released/outstanding, caps, milestones, due dates, conditions, disputes, evidence",E75;E76;E77;E08;E99,COVERED,Caps via E08 retention terms/E75 basis; disputes and evidence via E77 events.
+APG-S00-L0051,Y,"security instruments: value, beneficiary, issuer, dates, fees/collateral, release conditions, dependencies, owner, source",E78;E01,GAP,"E78 lacks collateral, dependencies, owner. G2: E78 gains currency of face value, collateral, capital or facility usage (link to E74), internal owner, status (active, approaching expiry, release review, released, renewed, disputed) and linked obligations/disputes"
+APG-S00-L0052,Y,"practical completion, DLP dates, defect notices, severity, responsibility, deadlines, inspections, sign-offs, costs, recovery",E99;E66;E11;E12;E70;E72;E71;E08,COVERED-BY-PROPOSED,DLP/maintenance-period dates need M15 fix 4 (E08).
+APG-S00-L0053,Y,links between unresolved defects and retention/security conditions,E66;E75;E78,GAP,"Only E76 (trade retention) links defects; E75 and E78 have no defect link. G3: E66 gains operational impact and links to the affected retention (E75/E76) and security (E78) conditions, with the portion of the balance demonstrably affected"
+APG-S00-L0054,Y,possible release vs verified entitlement; expiry/release review flag,E75;E78;E84;E01,COVERED,E75 claimed vs approved; E01 verification; review flag as E84 finding.
+APG-S00-L0055,Y,"declared rates, periods, assumptions; overlap of balances, fees and defect exposures across findings",E53;E74;E45;E84,GAP,"Rates and periods covered (E53, E74, E45); overlap across findings needs links. G6: E84 gains affected scope (project, package), time horizon and intervention window (latest useful intervention time), contributing conditions and root-cause hypotheses, lifecycle status with resolution reason, and links to related findings sharing a cause or exposure (overlap marker)"
+APG-S00-H0056,N,,,NO-DATA-NEED,Heading.
+APG-S00-L0058,Y,"versioned materials register incl. consumed/returned/damaged/wasted quantities, remaining need",E26;E27;E28;E21;E29;E30;E100,COVERED-BY-PROPOSED,"Consumed, returned, damaged, wasted quantities need E100 (M15 fix 1)."
+APG-S00-L0059,Y,"ingested BOQ, estimates, schedules, POs, invoices, quotes, dockets, site records, changes; provenance",E40;E28;E21;E23;E30;E29;E83;E09;E01,COVERED,
+APG-S00-L0060,Y,domestic supplier prices and international indicators,E30;E36;E02,COVERED,
+APG-S00-L0061,Y,"normalisation attributes: spec, unit, quantity breaks, geography, currency, tax, freight, validity, lead time, availability",E30;E31;E32;E36;N01,COVERED,Availability and tax basis of quotes via E32 terms.
+APG-S00-L0062,Y,"landed cost components incl. FX, freight, duties, compliance, MOQ, supplier risk",E33;E34;E37;E31;E30;E20,COVERED,
+APG-S00-L0063,Y,buy/wait/stage/requote/negotiate/transfer stock/substitute options,E46;E100;E27,COVERED-BY-PROPOSED,Stock transfer/reuse needs E100 (fix 1); approved substitutes need fix 3 (E27).
+APG-S00-L0064,Y,"break-even future price and carrying, shortage, delay costs",E46,COVERED,Scenario outputs.
+APG-S00-L0065,Y,"future price estimates with horizon, evidence, uncertainty, confidence, freshness",E46;E36;E02,COVERED,S08 treats future prices as scenarios (E46 assumptions/outputs); not stored as facts.
+APG-S00-L0066,Y,"market coverage gaps by material category, geography, specification, freshness",E02;E89,GAP,"E02 is per source and E89 per insight; no coverage slice by category/geography/spec. G13: E02 gains market coverage by material category, geography and specification, with freshness per slice"
+APG-S00-H0067,N,,,NO-DATA-NEED,Heading.
+APG-S00-L0068,Y,"separation of actual, committed, forecast, scenario, opportunity, avoided cost, net benefit, realised outcome",E96;E84;E86;E88,GAP,"E96 value status covers actual..scenario; expected net benefit and avoided-vs-realised classification not held. G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated); G9: E88 gains outcome classification (realised, partially realised, avoided, reversed, not realised, unverified), baseline used, estimated-versus-realised difference and reasons for material differences"
+APG-S00-L0069,Y,"trace to source records, timestamps, units, transformations, assumptions, versions",E01;E45;E84,GAP,"Sources, versions, assumptions covered; E01 has no timestamps. G1: E01 gains the S03 s3/s11.3 time and actor fields (effective/event time, source-reported time, observed time, recorded/persisted time, valid from/to, created/updated by, organisation and project scope, schema version)"
+APG-S00-L0070,Y,versioned deterministic calculations,E45,COVERED,
+APG-S00-L0071,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0072,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0073,Y,"overlap between causes, interventions, packages, scenarios marked explicitly",E84,GAP,"G6: E84 gains affected scope (project, package), time horizon and intervention window (latest useful intervention time), contributing conditions and root-cause hypotheses, lifecycle status with resolution reason, and links to related findings sharing a cause or exposure (overlap marker)"
+APG-S00-L0074,Y,"uncertainty, data quality, freshness, limitations",E84;E89;E02,COVERED,
+APG-S00-L0075,Y,"auditable baseline; decisions, overrides, action history, outcome evidence",E44;E87;E88;E83,GAP,"Baseline, decisions/overrides and outcome evidence covered; action history not held. G7: E85 gains assigned owner (person or role), assignment history, deferral (defer-until and reason) and action-tracking state; G11: new entity Audit event (actor, tenant, time, correlation id, action, subject record, prior and new values or state, access to sensitive data); may map to the platform-native audit mechanism found under S01 Gate 01-C"
+APG-S00-L0076,Y,evidence supporting realised saving or causal impact,E88;E83;E01,COVERED,Realised result plus linked documents and E01 verification.
+APG-S00-H0077,N,,,NO-DATA-NEED,Heading.
+APG-S00-C0078,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-H0080,N,,,NO-DATA-NEED,Heading.
+APG-S00-C0081,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-C0082,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-H0083,N,,,NO-DATA-NEED,Heading.
+APG-S00-L0084,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0085,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0086,Y,provenance and access records for sensitive data,E01,GAP,"Provenance in E01; access records not held by any entity. G11: new entity Audit event (actor, tenant, time, correlation id, action, subject record, prior and new values or state, access to sensitive data); may map to the platform-native audit mechanism found under S01 Gate 01-C"
+APG-S00-L0087,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0088,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0089,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-H0090,N,,,NO-DATA-NEED,Heading.
+APG-S00-L0091,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0092,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0093,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0094,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0095,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0096,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0097,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0098,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0099,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0100,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0101,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0102,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0103,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0104,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0105,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0106,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0107,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0108,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0109,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-H0110,N,,,NO-DATA-NEED,Heading.
+APG-S00-L0111,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0112,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0113,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0114,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0115,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0116,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0117,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0118,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0119,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0120,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-H0121,N,,,NO-DATA-NEED,Heading.
+APG-S00-L0122,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0123,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0124,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0125,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0126,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0127,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0128,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-H0129,N,,,NO-DATA-NEED,Heading.
+APG-S00-L0130,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0131,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0132,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0133,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0134,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0135,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0136,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-H0137,N,,,NO-DATA-NEED,Heading.
+APG-S00-C0138,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-H0140,N,,,NO-DATA-NEED,Heading.
+APG-S00-L0141,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0142,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0143,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0144,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0145,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0146,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0147,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0148,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0149,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0150,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0151,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-L0152,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S00-H0153,N,,,NO-DATA-NEED,Heading.
+APG-S01-H0007,N,,,NO-DATA-NEED,Heading.
+APG-S01-C0008,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-C0009,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0010,N,,,NO-DATA-NEED,Heading.
+APG-S01-H0011,N,,,NO-DATA-NEED,Heading.
+APG-S01-C0012,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0013,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0014,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0015,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0016,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0017,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0018,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0019,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0020,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-C0021,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0022,N,,,NO-DATA-NEED,Heading.
+APG-S01-C0023,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0024,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0025,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0026,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0027,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0028,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0029,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0030,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0031,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-C0032,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-C0033,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0034,N,,,NO-DATA-NEED,Heading.
+APG-S01-L0036,N,,,NO-DATA-NEED,"Discovery target (Gate 01-C); audit data need judged at S00 L0086, S03 L0200 (G11)."
+APG-S01-L0037,N,,,NO-DATA-NEED,Discovery target (Gate 01-C); actor/time fields judged at S03 C0014 (G1).
+APG-S01-L0038,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0039,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0040,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0041,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0042,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0043,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-C0044,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0045,N,,,NO-DATA-NEED,Heading.
+APG-S01-L0047,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0048,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0049,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0050,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0051,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0052,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0053,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0054,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0055,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0056,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-C0057,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0058,N,,,NO-DATA-NEED,Heading.
+APG-S01-H0059,N,,,NO-DATA-NEED,Heading.
+APG-S01-L0060,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0061,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0062,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0063,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0064,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0065,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0066,N,,,NO-DATA-NEED,Heading.
+APG-S01-C0068,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0069,N,,,NO-DATA-NEED,Heading.
+APG-S01-H0071,N,,,NO-DATA-NEED,Heading.
+APG-S01-C0072,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0073,N,,,NO-DATA-NEED,Heading.
+APG-S01-L0075,N,,,NO-DATA-NEED,"Discovery target (S01 3.5 Investigate); the data need is judged at S00 00.5.1, S02 Workflow F and S03 s10 rows."
+APG-S01-L0076,N,,,NO-DATA-NEED,"Discovery target (S01 3.5 Investigate); the data need is judged at S00 00.5.1, S02 Workflow F and S03 s10 rows."
+APG-S01-L0077,N,,,NO-DATA-NEED,"Discovery target (S01 3.5 Investigate); the data need is judged at S00 00.5.1, S02 Workflow F and S03 s10 rows."
+APG-S01-L0078,N,,,NO-DATA-NEED,"Discovery target (S01 3.5 Investigate); the data need is judged at S00 00.5.1, S02 Workflow F and S03 s10 rows."
+APG-S01-L0079,N,,,NO-DATA-NEED,"Discovery target (S01 3.5 Investigate); the data need is judged at S00 00.5.1, S02 Workflow F and S03 s10 rows."
+APG-S01-L0080,N,,,NO-DATA-NEED,"Discovery target (S01 3.5); final account and closeout are judged at S03 L0063 and S02 Workflow F (G4, G5)."
+APG-S01-C0081,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0082,N,,,NO-DATA-NEED,Heading.
+APG-S01-L0083,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0084,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0085,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0086,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0087,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0088,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0089,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0091,N,,,NO-DATA-NEED,Heading.
+APG-S01-C0092,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-C0093,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0094,N,,,NO-DATA-NEED,Heading.
+APG-S01-C0095,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0096,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0097,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0098,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0099,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0100,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0101,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0102,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-C0103,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0104,N,,,NO-DATA-NEED,Heading.
+APG-S01-C0105,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0106,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0107,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0108,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0109,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0110,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0111,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0113,N,,,NO-DATA-NEED,Heading.
+APG-S01-C0114,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0115,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0116,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0117,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0118,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0119,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0120,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0121,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0122,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0123,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0124,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0126,N,,,NO-DATA-NEED,Heading.
+APG-S01-C0127,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0128,N,,,NO-DATA-NEED,Heading.
+APG-S01-C0129,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0130,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0131,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0132,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0133,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0134,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0135,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0136,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0137,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-C0138,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0139,N,,,NO-DATA-NEED,Heading.
+APG-S01-L0140,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0141,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0142,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0143,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0144,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0145,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0146,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-L0147,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-C0148,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0149,N,,,NO-DATA-NEED,Heading.
+APG-S01-C0150,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-H0151,N,,,NO-DATA-NEED,Heading.
+APG-S01-C0154,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S01-C0155,N,,,NO-DATA-NEED,Discovery or delivery instruction; no product data.
+APG-S02-C0006,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-H0007,N,,,NO-DATA-NEED,Heading.
+APG-S02-C0008,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-C0009,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-H0010,N,,,NO-DATA-NEED,Heading.
+APG-S02-H0011,N,,,NO-DATA-NEED,Heading.
+APG-S02-C0012,Y,"compliance source, status, expiry/review date, verification provenance",E82;E01,COVERED,
+APG-S02-H0013,N,,,NO-DATA-NEED,Heading.
+APG-S02-L0014,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0015,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0016,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0017,Y,financial exposure and potential benefit,E84;E86,GAP,"Exposure in E84 quantification; potential benefit not held. G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated)"
+APG-S02-L0018,Y,"priority by materiality, urgency, confidence, actionability",E85;E84,COVERED,
+APG-S02-L0019,Y,"recommendation evidence, assumptions, trade-offs, deadlines",E86;E84;E46,GAP,"Evidence/assumptions via E84/E46; recommendation deadline not held. G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated)"
+APG-S02-L0020,Y,scenario comparison,E46,COVERED,
+APG-S02-L0021,Y,human approval and auditable record of consequential actions,E87,COVERED,
+APG-S02-L0022,Y,actual outcome vs original estimate,E88;E86,GAP,"Original benefit estimate and difference not held. G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated); G9: E88 gains outcome classification (realised, partially realised, avoided, reversed, not realised, unverified), baseline used, estimated-versus-realised difference and reasons for material differences"
+APG-S02-L0023,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-H0024,N,,,NO-DATA-NEED,Heading.
+APG-S02-C0025,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-H0026,N,,,NO-DATA-NEED,Heading.
+APG-S02-L0027,Y,"access scope by organisation, project, function",E05,COVERED,E05 users and roles; project scoping of role assignments assumed within E05 roles (platform identity).
+APG-S02-L0028,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0029,Y,configurable approval rights,E90;E05,COVERED,E90 approval roles.
+APG-S02-L0030,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0031,Y,record that administrative changes did not silently alter financial history,E01,GAP,"E01 revision/supersession keeps versions but not who changed what. G11: new entity Audit event (actor, tenant, time, correlation id, action, subject record, prior and new values or state, access to sensitive data); may map to the platform-native audit mechanism found under S01 Gate 01-C"
+APG-S02-L0032,Y,preparer vs approver identity,E87;E90;E01,GAP,"Approver in E87; preparer (created by) not held on records. G1: E01 gains the S03 s3/s11.3 time and actor fields (effective/event time, source-reported time, observed time, recorded/persisted time, valid from/to, created/updated by, organisation and project scope, schema version)"
+APG-S02-L0033,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-H0034,N,,,NO-DATA-NEED,Heading.
+APG-S02-H0035,N,,,NO-DATA-NEED,Heading.
+APG-S02-L0036,Y,connected sources,E02,COVERED,
+APG-S02-L0037,Y,validation/normalisation state,E01,COVERED,
+APG-S02-L0038,Y,reconciliation to canonical entities,E01;E04,COVERED,
+APG-S02-L0039,Y,"flags for missing, contradictory, stale, low-quality data",E01;E89,COVERED,E01 ingestion state/verification; E89 gaps.
+APG-S02-L0040,Y,verified baseline,E44,COVERED,
+APG-S02-L0041,Y,current financial position from versioned logic,E45,COVERED,
+APG-S02-L0042,Y,monitoring coverage limitations,E89;E02,COVERED,
+APG-S02-C0043,Y,"approved budgets, estimates, actuals, commitments, forecasts, scenarios distinguished",E38;E40;E96;E21;E41;E46,COVERED,
+APG-S02-H0044,N,,,NO-DATA-NEED,Heading.
+APG-S02-L0045,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0046,Y,evidence provenance and freshness,E01;E02,COVERED,
+APG-S02-L0047,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0048,Y,finding (issue or opportunity),E84,COVERED,
+APG-S02-L0049,Y,impact and uncertainty,E84,COVERED,Quantification and confidence.
+APG-S02-L0050,Y,related findings sharing an exposure,E84,GAP,"G6: E84 gains affected scope (project, package), time horizon and intervention window (latest useful intervention time), contributing conditions and root-cause hypotheses, lifecycle status with resolution reason, and links to related findings sharing a cause or exposure (overlap marker)"
+APG-S02-L0051,Y,finding priority and authorised owner,E85,GAP,"Priority on E85; owner not held. G7: E85 gains assigned owner (person or role), assignment history, deferral (defer-until and reason) and action-tracking state"
+APG-S02-L0052,Y,notification and evidence trail,E85;E84,COVERED,
+APG-S02-C0053,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-H0054,N,,,NO-DATA-NEED,Heading.
+APG-S02-L0055,Y,opportunity and evidence,E84,COVERED,
+APG-S02-L0056,Y,current baseline and constraints,E44,COVERED,
+APG-S02-L0057,Y,"gross benefit, implementation cost, net benefit",E86,GAP,"G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated)"
+APG-S02-L0058,Y,"uncertainty, timing, dependencies, downside risk",E86;E46;E84,GAP,"Uncertainty via E84/E46; timing and downside of the recommendation not held. G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated)"
+APG-S02-L0059,Y,alternatives,E46,COVERED,
+APG-S02-L0060,Y,recommended action and required approver,E86;E90,COVERED,Action on E86; required approver derived from E90 approval roles.
+APG-S02-L0061,Y,decision and baseline used,E87;E44,COVERED,
+APG-S02-L0062,Y,execution tracking and realised outcome,E86;E88,GAP,"Realised result on E88; execution status not held. G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated)"
+APG-S02-C0063,Y,avoided vs realised classification; linked findings,E88;E84,GAP,"G9: E88 gains outcome classification (realised, partially realised, avoided, reversed, not realised, unverified), baseline used, estimated-versus-realised difference and reasons for material differences; G6: E84 gains affected scope (project, package), time horizon and intervention window (latest useful intervention time), contributing conditions and root-cause hypotheses, lifecycle status with resolution reason, and links to related findings sharing a cause or exposure (overlap marker)"
+APG-S02-H0064,N,,,NO-DATA-NEED,Heading.
+APG-S02-L0065,Y,"material, specification, quantity, required-on-site date",E26;E27;E28,COVERED,
+APG-S02-L0066,Y,"ordered, delivered, consumed, returned, damaged, wasted, remaining quantities",E28;E21;E29;E100,COVERED-BY-PROPOSED,Consumed/returned/damaged/wasted/remaining need E100 (M15 fix 1).
+APG-S02-L0067,Y,supplier quotations and market signals,E30;E36,COVERED,
+APG-S02-L0068,Y,normalised prices and landed cost,E33;E37;E30;E45,COVERED,
+APG-S02-L0069,Y,buy/wait/stage/negotiate scenarios,E46,COVERED,
+APG-S02-L0070,Y,"lead time, expiry, schedule risk, storage, financing, availability, spec",E30;E32;E33;E28;E48;N01,COVERED,
+APG-S02-L0071,Y,"recommendation, assumptions, break-even",E86;E46,COVERED,
+APG-S02-L0072,Y,approval before order,E87,COVERED,
+APG-S02-L0073,Y,eventual purchase/delivery vs recommendation,E88;E21;E29;E46,COVERED,
+APG-S02-H0075,N,,,NO-DATA-NEED,Heading.
+APG-S02-L0076,Y,schedule deviation evidence,E47;E48;E51;E52,COVERED,
+APG-S02-L0077,Y,affected milestones and dependent work,E99;E49;E48,COVERED,
+APG-S02-L0078,Y,time-related costs,E53;E52;E45,COVERED,
+APG-S02-L0079,Y,observed vs modelled cost,E96,COVERED,E96 value status.
+APG-S02-L0080,Y,mitigation options and costs,E46;E86,COVERED,
+APG-S02-L0081,Y,net effect per option,E46,COVERED,
+APG-S02-L0082,Y,action owner,E85;E86,GAP,"G7: E85 gains assigned owner (person or role), assignment history, deferral (defer-until and reason) and action-tracking state; accountable role also in G8"
+APG-S02-L0083,Y,updated estimate as evidence changes,E45;E01,COVERED,
+APG-S02-L0084,Y,forecast exposure vs actual outcome,E84;E88;E96,COVERED,
+APG-S02-C0085,Y,delay attribution only with evidence,E52,COVERED,Attribution state and evidence.
+APG-S02-H0086,N,,,NO-DATA-NEED,Heading.
+APG-S02-L0087,Y,practical completion and contractual milestones,E99,COVERED,
+APG-S02-L0088,Y,retention balances and evidenced status,E75;E76;E77,COVERED,
+APG-S02-L0089,Y,"security instruments, costs, expiry, release conditions",E78,COVERED,
+APG-S02-L0090,Y,"defects, responsible parties, rectification costs, maintenance periods",E66;E71;E08,COVERED-BY-PROPOSED,Maintenance periods need M15 fix 4 (E08 DLP).
+APG-S02-L0091,Y,links between open defects and retention/security conditions,E66;E75;E78,GAP,"G3: E66 gains operational impact and links to the affected retention (E75/E76) and security (E78) conditions, with the portion of the balance demonstrably affected"
+APG-S02-L0092,Y,"approaching dates, blocked releases, unresolved closeout items, tied-up capital",E75;E78;E45,GAP,"Dates and capital covered; closeout items not held. G5: new entity Closeout obligation (project, obligation type, source clause or document, due date, owner, status open/closed/transferred/waived/resolved, authorising decision E87, evidence)"
+APG-S02-L0093,Y,recommended follow-up,E86,COVERED,
+APG-S02-L0094,Y,"release, recovery, rectification, final closure",E77;E71;E70;E72,GAP,"Final closure of obligations not held. G5: new entity Closeout obligation (project, obligation type, source clause or document, due date, owner, status open/closed/transferred/waived/resolved, authorising decision E87, evidence)"
+APG-S02-L0095,Y,final financial outcome reconciled without double counting,E08;E84,GAP,"No final-account record and no shared-exposure link. G4: E08 gains a final-account group (agreed final contract sum, final-account adjustments, status, date agreed); G6: E84 gains affected scope (project, package), time horizon and intervention window (latest useful intervention time), contributing conditions and root-cause hypotheses, lifecycle status with resolution reason, and links to related findings sharing a cause or exposure (overlap marker)"
+APG-S02-C0096,Y,"obligations open until closed, transferred or resolved with evidence",E87;E83,GAP,"G5: new entity Closeout obligation (project, obligation type, source clause or document, due date, owner, status open/closed/transferred/waived/resolved, authorising decision E87, evidence)"
+APG-S02-H0097,N,,,NO-DATA-NEED,Heading.
+APG-S02-L0098,Y,"subcontractors/trades by project, scope, active work",E16;E20;E98;E58,COVERED,
+APG-S02-L0099,Y,"licensing, insurance, accreditation, compliance evidence with provenance and dates",E82,COVERED,
+APG-S02-L0100,Y,missing/expired/conflicting/unverified evidence flags,E82;E84,COVERED,
+APG-S02-L0101,Y,operational and financial consequences,E84,COVERED,Quantification.
+APG-S02-L0102,Y,issue owner,E85,GAP,"G7: E85 gains assigned owner (person or role), assignment history, deferral (defer-until and reason) and action-tracking state"
+APG-S02-L0103,Y,"evidence refresh, decisions, outcome",E82;E01;E87;E88,COVERED,
+APG-S02-H0105,N,,,NO-DATA-NEED,Heading.
+APG-S02-L0106,Y,original estimate and assumptions,E86;E46,GAP,"Assumptions via E46; the estimated benefit is not held. G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated)"
+APG-S02-L0107,Y,approved action and decision date,E87,COVERED,
+APG-S02-L0108,Y,execution evidence,E83;E88,COVERED,Documents link to any record.
+APG-S02-L0109,Y,actual financial result,E88,COVERED,
+APG-S02-L0110,Y,difference between estimated and realised benefit,E88,GAP,"G9: E88 gains outcome classification (realised, partially realised, avoided, reversed, not realised, unverified), baseline used, estimated-versus-realised difference and reasons for material differences"
+APG-S02-L0111,Y,reasons for material differences,E88,GAP,"G9: E88 gains outcome classification (realised, partially realised, avoided, reversed, not realised, unverified), baseline used, estimated-versus-realised difference and reasons for material differences"
+APG-S02-L0112,Y,outcome classification,E88,GAP,"G9: E88 gains outcome classification (realised, partially realised, avoided, reversed, not realised, unverified), baseline used, estimated-versus-realised difference and reasons for material differences"
+APG-S02-H0114,N,,,NO-DATA-NEED,Heading.
+APG-S02-H0115,N,,,NO-DATA-NEED,Heading.
+APG-S02-L0117,Y,"finding: what, where, when",E84,GAP,"Where (scope) not held on E84. G6: E84 gains affected scope (project, package), time horizon and intervention window (latest useful intervention time), contributing conditions and root-cause hypotheses, lifecycle status with resolution reason, and links to related findings sharing a cause or exposure (overlap marker)"
+APG-S02-L0118,Y,"evidence: source records, calculations, timestamps, limitations",E84;E45;E01,GAP,"Timestamps not held. G1: E01 gains the S03 s3/s11.3 time and actor fields (effective/event time, source-reported time, observed time, recorded/persisted time, valid from/to, created/updated by, organisation and project scope, schema version)"
+APG-S02-L0119,Y,"financial effect: exposure, gross benefit, net benefit, basis",E84;E86,GAP,"G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated)"
+APG-S02-L0120,Y,action and accountable role,E86,GAP,"Accountable role not held. G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated)"
+APG-S02-L0121,Y,"alternatives with cost, timing, downside",E46,COVERED,
+APG-S02-L0122,Y,"uncertainty: confidence, assumptions, sensitivity, missing information",E84;E46;E89,COVERED,
+APG-S02-L0123,Y,"decision: approval requirements, status, decision-maker, timestamp",E87;E90,COVERED,
+APG-S02-L0124,Y,outcome: execution evidence and measured result,E88;E83,COVERED,
+APG-S02-C0125,Y,recommendation withdrawn/superseded/invalidated; history kept,E86;E01,GAP,"Supersession via E01; withdrawn/invalidated status not held. G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated)"
+APG-S02-H0126,N,,,NO-DATA-NEED,Heading.
+APG-S02-L0127,Y,versioned calculation logic,E45,COVERED,
+APG-S02-L0128,Y,stale/incomplete data disclosed,E89;E84,COVERED,
+APG-S02-L0129,Y,verified human approval before consequential action,E87,COVERED,
+APG-S02-L0130,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0131,Y,entitlement and delay responsibility review state,E52;E09;E01,COVERED,
+APG-S02-L0132,Y,linked findings sharing an exposure,E84,GAP,"G6: E84 gains affected scope (project, package), time horizon and intervention window (latest useful intervention time), contributing conditions and root-cause hypotheses, lifecycle status with resolution reason, and links to related findings sharing a cause or exposure (overlap marker)"
+APG-S02-L0133,Y,market coverage and limits evidence,E02;E36,COVERED,
+APG-S02-L0134,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-C0135,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-H0136,N,,,NO-DATA-NEED,Heading.
+APG-S02-L0138,Y,financial materiality,E84,COVERED,
+APG-S02-L0139,Y,time sensitivity / proximity to deadline,E84;E12,GAP,"Contract deadlines in E12; finding intervention window not held. G6: E84 gains affected scope (project, package), time horizon and intervention window (latest useful intervention time), contributing conditions and root-cause hypotheses, lifecycle status with resolution reason, and links to related findings sharing a cause or exposure (overlap marker)"
+APG-S02-L0140,Y,confidence,E84,COVERED,
+APG-S02-L0141,Y,reversibility of proposed action,E86,GAP,"G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated)"
+APG-S02-L0142,Y,cost of inaction,E84,COVERED,Exposure quantification.
+APG-S02-L0143,Y,cost and risk of intervention,E86,GAP,"G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated)"
+APG-S02-L0144,Y,source freshness and evidence completeness,E02;E89,COVERED,
+APG-S02-C0145,Y,"alert grouping, escalation thresholds, notification frequency settings",N01;E84,GAP,"No setting holds escalation or notification frequency; grouping needs G6 links. G10: N01 gains alert settings (grouping rules, escalation thresholds, notification frequency, approved by)"
+APG-S02-H0146,N,,,NO-DATA-NEED,Heading.
+APG-S02-H0148,N,,,NO-DATA-NEED,Heading.
+APG-S02-L0150,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0151,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0152,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0153,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0154,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0155,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0156,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0157,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-C0158,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-H0159,N,,,NO-DATA-NEED,Heading.
+APG-S02-L0160,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0161,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0162,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0163,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0164,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0165,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0166,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0167,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0168,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0169,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0170,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-L0171,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S02-H0172,N,,,NO-DATA-NEED,Heading.
+APG-S02-C0176,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-C0006,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-H0007,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0008,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-H0010,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0012,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-H0013,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0014,Y,"S03 s3 common fields: observed/effective/recorded times, validity, status, actor, evidence refs, schema version",E01;E83,GAP,"Row anchors the s3 field table. E01 has source, record id, revision, ingestion state, verification, supersession only; evidence refs via E83 links. G1: E01 gains the S03 s3/s11.3 time and actor fields (effective/event time, source-reported time, observed time, recorded/persisted time, valid from/to, created/updated by, organisation and project scope, schema version)"
+APG-S03-H0015,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0016,Y,source record vs canonical entity,E01,COVERED,
+APG-S03-L0017,Y,external ids scoped to source and tenant,E01;E02,COVERED,
+APG-S03-L0018,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0019,Y,ambiguous match flag,E01,COVERED,Ingestion state.
+APG-S03-L0020,Y,source revisions,E01,COVERED,
+APG-S03-L0021,Y,history to reconstruct calculations and decisions,E01;E45;E87,COVERED,
+APG-S03-H0022,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0023,Y,distinct financial categories,E96,COVERED,Value status.
+APG-S03-H0024,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0025,Y,estimate vs actual,E40;E96,COVERED,
+APG-S03-L0026,Y,commitment vs incurred cost vs payment,E96;E21;E25,COVERED,
+APG-S03-L0027,Y,forecast vs approved budget,E41;E38,COVERED,
+APG-S03-L0028,Y,scenario vs adopted forecast,E46,COVERED,Isolation from the authoritative forecast.
+APG-S03-L0029,Y,opportunity vs saving,E84;E88,COVERED,Separate entities.
+APG-S03-L0030,Y,avoided cost vs reduced recorded expenditure,E88,GAP,"G9: E88 gains outcome classification (realised, partially realised, avoided, reversed, not realised, unverified), baseline used, estimated-versus-realised difference and reasons for material differences"
+APG-S03-L0031,Y,retention balance not a loss,E75;E96,COVERED,
+APG-S03-L0032,Y,guarantee face value vs expense,E78,COVERED,Face value and fees separate.
+APG-S03-L0033,Y,potential vs actual delay cost,E96,COVERED,
+APG-S03-L0034,Y,estimated benefit vs realised benefit,E86;E88,GAP,"Estimated benefit not held. G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated)"
+APG-S03-H0035,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0036,Y,"named views with definition, inputs, time basis, assumptions, exclusions, calc version",E90;E45,GAP,"Exclusions per view not held. G12: E90 gains per-margin-view definition: included and excluded categories and treatment of unapproved claims, retention and security"
+APG-S03-H0037,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0038,Y,recognition policy and source data,E90;E45,COVERED,
+APG-S03-H0039,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0040,Y,"EAC approach, CTC, commitments, commercial changes, risks, unapproved claims classified",E41;E90;E21;E09;E84;E96,COVERED,Documented risks via E90 contingencies and E84 exposures.
+APG-S03-H0041,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0042,Y,"cash collection, overdue payments, disputed variations, withheld retention, payment timing",E15;E79;E09;E75;E74;E90,COVERED,
+APG-S03-H0043,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0044,Y,view id and version,E45;E90,COVERED,
+APG-S03-L0045,Y,reporting period and effective timestamp,E45;E07;E01,GAP,"Period via E07 reporting calendar; effective timestamp not held. G1: E01 gains the S03 s3/s11.3 time and actor fields (effective/event time, source-reported time, observed time, recorded/persisted time, valid from/to, created/updated by, organisation and project scope, schema version)"
+APG-S03-L0046,Y,revenue and cost recognition basis,E90,COVERED,
+APG-S03-L0047,Y,included and excluded categories,E90,GAP,"G12: E90 gains per-margin-view definition: included and excluded categories and treatment of unapproved claims, retention and security"
+APG-S03-L0048,Y,source records and reconciliation status,E45;E01,COVERED,
+APG-S03-L0049,Y,currency and tax treatment,E90;E96,COVERED,
+APG-S03-L0050,Y,"treatment of unapproved claims, retention, security",E90,GAP,"E90 variation treatment covers unapproved variations/claims only. G12: E90 gains per-margin-view definition: included and excluded categories and treatment of unapproved claims, retention and security"
+APG-S03-L0051,Y,"assumptions, limitations, confidence",E45;E44,COVERED,
+APG-S03-C0052,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-H0053,N,,,NO-DATA-NEED,Heading.
+APG-S03-H0054,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0055,Y,contracted/approved revenue,E08,COVERED,
+APG-S03-L0056,Y,approved variations,E09,COVERED,
+APG-S03-L0057,Y,submitted unapproved variations,E09,COVERED,
+APG-S03-L0058,Y,"claims submitted, certified, disputed, rejected",E13;E14;E15;E11,COVERED,
+APG-S03-L0059,Y,forecast additional revenue,E09;E96,COVERED,
+APG-S03-L0060,Y,revenue at risk,E84;E96,COVERED,
+APG-S03-L0061,Y,"invoiced, received, outstanding",E15,COVERED,
+APG-S03-L0062,Y,retention withheld,E75;E13,COVERED,
+APG-S03-L0063,Y,final-account adjustments,E08;E14,GAP,"No final-account record. G4: E08 gains a final-account group (agreed final contract sum, final-account adjustments, status, date agreed)"
+APG-S03-C0064,Y,revenue states kept separate,E09;E96,COVERED,
+APG-S03-H0065,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0066,Y,original estimate and current approved budget,E40;E38;E39,COVERED,
+APG-S03-L0067,Y,revised estimate and CTC,E40;E41,COVERED,
+APG-S03-L0068,Y,"actuals, commitments, accruals",E96;E21;E42,COVERED,
+APG-S03-L0069,Y,risk-adjusted or scenario cost,E46;E96,COVERED,
+APG-S03-L0070,Y,unapproved cost exposure,E10;E09;E96,COVERED,
+APG-S03-L0071,Y,expected rectification cost,E71,COVERED,
+APG-S03-L0072,Y,verified cost savings,E88;E01,COVERED,
+APG-S03-C0073,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-H0074,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0080,Y,"zero/negative revenue handling; treatment of accruals, claims, contingency, overhead, tax",E90;E43;E42,COVERED,
+APG-S03-H0081,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0082,Y,cash vs incurred basis,E96;E90,COVERED,
+APG-S03-L0083,Y,budget revision vs scope,E38,COVERED,Revision label.
+APG-S03-L0084,Y,tax-inclusive/exclusive basis,E96,COVERED,
+APG-S03-L0085,Y,commitment replaced by actual,E23;E21,COVERED,Order line link.
+APG-S03-L0086,Y,price dates for comparability,E36;E30,COVERED,
+APG-S03-L0087,Y,calculation limitation,E45,COVERED,Warnings.
+APG-S03-H0088,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0090,Y,PO revisions and approval history,E21;E22,COVERED,
+APG-S03-L0091,Y,"traceable changes to scope, quantity, price, status",E22;E01,COVERED,
+APG-S03-L0092,Y,partial fulfilment,E21;E29,COVERED,
+APG-S03-L0093,Y,actuals vs remaining commitments,E23;E21,COVERED,
+APG-S03-L0094,Y,cancelled commitments,E21,COVERED,Status.
+APG-S03-L0095,Y,invoice-to-PO link,E23,COVERED,
+APG-S03-L0096,Y,credits and reversals linked to originals,E24;E42;E01,COVERED,
+APG-S03-L0097,Y,duplicate event protection,E96;E01,COVERED,Idempotency key.
+APG-S03-H0098,N,,,NO-DATA-NEED,Heading.
+APG-S03-H0099,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0100,Y,material identity and category,E26;N01,COVERED,Category via N01 material families.
+APG-S03-L0101,Y,"grade, class, rating, dimensions, tolerances",E26;N01,COVERED,Specification register attributes.
+APG-S03-L0102,Y,"standards, certification, compliance requirements",E27;E26;E34,COVERED,
+APG-S03-L0103,Y,brand or approved-equivalent constraints,E27,COVERED-BY-PROPOSED,M15 fix 3 (E27 approved equivalents and substitutions).
+APG-S03-L0104,Y,"unit, packaging, order multiples",E26;N01;E31;E32,COVERED,Packaging/order multiples via N01 declared unit conversions and quote tiers/terms; not named on E26 (minor).
+APG-S03-L0105,Y,required quality and delivery conditions,E27;E30;E32,COVERED,
+APG-S03-L0106,Y,specification source and revision,E01,COVERED,
+APG-S03-C0107,Y,comparability of material prices,N01,COVERED,Match rules.
+APG-S03-H0108,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0109,Y,quantity states connected by movements,E28;E30;E21;E29;E100,COVERED-BY-PROPOSED,M15 fix 1 (E100).
+APG-S03-H0110,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0111,Y,supplier unit price and extended value,E30,COVERED,
+APG-S03-L0112,Y,contracted purchase price,E21,COVERED,
+APG-S03-L0113,Y,freight and handling,E30;E33,COVERED,
+APG-S03-L0114,Y,"insurance, duties, taxes",E33;E23,COVERED,
+APG-S03-L0115,Y,currency conversion,E37;E30,COVERED,
+APG-S03-L0116,Y,storage and financing costs,E33;N01,COVERED,
+APG-S03-L0117,Y,expected waste or yield loss,E33,COVERED,As a landed-cost component (minor: not named).
+APG-S03-L0118,Y,delivery and schedule-related costs,E33;E53,COVERED,
+APG-S03-L0119,Y,total landed cost,E33;E45,COVERED,
+APG-S03-C0120,Y,disclosed omitted components,N01;E45,COVERED,Required components and warnings.
+APG-S03-H0121,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0122,Y,required-on-site date; quote and expiry,E28;E30,COVERED,
+APG-S03-L0123,Y,"delivery time, availability, substitution constraints",E30;E32;E27,COVERED-BY-PROPOSED,Substitution constraints need M15 fix 3 (E27).
+APG-S03-L0124,Y,price assumptions and source timestamps,E36;E30;E46,COVERED,
+APG-S03-L0125,Y,early-purchase storage and capital costs,E33;N01;E46,COVERED,
+APG-S03-L0126,Y,waiting risks,E46,COVERED,
+APG-S03-L0127,Y,"scenario assumptions, uncertainty, approval requirements",E46;E87;E90,COVERED,
+APG-S03-C0128,Y,"late delivery, storage, financing, damage, obsolescence, quantity-change risk",E46;E53;E33,COVERED,
+APG-S03-H0129,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0130,Y,"planned, forecast, actual dates; dependencies; progress; delay events; revisions; ROS dates",E47;E48;E49;E51;E52;E99;E28,COVERED,Forecast dates = planned dates in the latest E47 version; E48/E99 name only planned and actual (minor: name forecast explicitly).
+APG-S03-L0132,Y,calculation basis and time window,E45;E53;E52,COVERED,
+APG-S03-L0133,Y,deviation vs responsibility,E52,COVERED,Attribution state.
+APG-S03-L0134,Y,causation/entitlement evidence and review,E52;E87,COVERED,
+APG-S03-L0135,Y,overlapping delay days,E52,COVERED,Dates per event.
+APG-S03-H0136,N,,,NO-DATA-NEED,Heading.
+APG-S03-H0137,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0138,Y,retention contract and project,E75;E76;E08;E16,COVERED,
+APG-S03-L0139,Y,clause or evidence reference,E75,COVERED,
+APG-S03-L0140,Y,retention basis and method,E75,COVERED,
+APG-S03-L0141,Y,"withheld, claimed, approved, released, outstanding",E75,COVERED,
+APG-S03-L0142,Y,milestone and due/review date,E75;E99,COVERED,Due date on E75; milestone via conditions (minor: no explicit milestone link).
+APG-S03-L0143,Y,"retention conditions, disputes, linked defects",E75;E77;E66,GAP,"Conditions on E75, disputes as E77 events; client retention has no defect link. G3: E66 gains operational impact and links to the affected retention (E75/E76) and security (E78) conditions, with the portion of the balance demonstrably affected"
+APG-S03-L0144,Y,"source, revision, last verification",E01,COVERED,
+APG-S03-C0145,Y,withheld vs confirmed due,E75,COVERED,
+APG-S03-H0146,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0147,Y,instrument type and issuer,E78,COVERED,
+APG-S03-L0148,Y,contract and beneficiary,E78;E08,COVERED,
+APG-S03-L0149,Y,face value and currency,E78,GAP,"No currency on E78. G2: E78 gains currency of face value, collateral, capital or facility usage (link to E74), internal owner, status (active, approaching expiry, release review, released, renewed, disputed) and linked obligations/disputes"
+APG-S03-L0150,Y,issue and expiry dates,E78,COVERED,
+APG-S03-L0151,Y,release or reduction conditions,E78,COVERED,
+APG-S03-L0152,Y,fees and renewal costs,E78,COVERED,
+APG-S03-L0153,Y,capital or facility usage,E78;E74,GAP,"G2: E78 gains currency of face value, collateral, capital or facility usage (link to E74), internal owner, status (active, approaching expiry, release review, released, renewed, disputed) and linked obligations/disputes"
+APG-S03-L0154,Y,"status, verification evidence, linked obligations/disputes/defects",E78;E01;E66,GAP,"Verification via E01; status and links not held. G2: E78 gains currency of face value, collateral, capital or facility usage (link to E74), internal owner, status (active, approaching expiry, release review, released, renewed, disputed) and linked obligations/disputes; G3: E66 gains operational impact and links to the affected retention (E75/E76) and security (E78) conditions, with the portion of the balance demonstrably affected"
+APG-S03-H0156,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0157,Y,"defect id, description, location, work package",E66;E65,COVERED,
+APG-S03-L0158,Y,discovery date and evidence,E65;E66,COVERED,
+APG-S03-L0159,Y,severity and operational impact,E66,GAP,"Severity held; operational impact not. G3: E66 gains operational impact and links to the affected retention (E75/E76) and security (E78) conditions, with the portion of the balance demonstrably affected"
+APG-S03-L0160,Y,responsible party,E66,COVERED,
+APG-S03-L0161,Y,rectification estimate and actual cost,E71;E67,COVERED,
+APG-S03-L0162,Y,rectification status and verification,E66;E70;E72,COVERED,
+APG-S03-L0163,Y,defect liability or maintenance period,E08,COVERED-BY-PROPOSED,M15 fix 4 (E08 DLP). Trade DLP under E16 may also be needed (see summary).
+APG-S03-L0164,Y,contractual obligations and source references,E08;E83;E01,COVERED,
+APG-S03-L0165,Y,links to retention or security conditions,E66;E75;E78,GAP,"G3: E66 gains operational impact and links to the affected retention (E75/E76) and security (E78) conditions, with the portion of the balance demonstrably affected"
+APG-S03-H0166,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0167,Y,face value vs carrying cost,E75;E78;E45,COVERED,
+APG-S03-C0168,Y,"carrying-cost principal, window, rate, rate source, day count, method; actual vs estimated",E53;E74;E45;E96,COVERED,
+APG-S03-C0169,Y,versioned carrying-cost convention,E45,COVERED,
+APG-S03-H0171,N,,,NO-DATA-NEED,"Heading; its body (linked defect/retention/carrying cost, affected portion) is not an RTM row: see G3."
+APG-S03-H0173,N,,,NO-DATA-NEED,"Heading; its body (obligations open until closed/transferred/waived; final-account items) is not an RTM row: see G4, G5."
+APG-S03-H0175,N,,,NO-DATA-NEED,Heading.
+APG-S03-H0176,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0177,Y,"currency on every amount; conversion source/target, rate source, rate, time, method, fees, rate kind",E37;E96;E30,GAP,"E37 has pair, date, rate, source; method, fees and rate kind not held, and converted records do not keep the conversion. G14: E37 gains rate kind (actual, quoted, contractual, scenario); E96 gains conversion details (original currency and amount, target currency, rate used, rate source and time, method, included fees)"
+APG-S03-H0178,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0179,Y,explicit units and conversion rules,E26;N01,COVERED,
+APG-S03-H0180,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0181,Y,"effective, source-reported, observed, persisted, calculation times; calendars and time zones",E01;E50;E07;E12,GAP,"Calendars via E50/E07; the five time kinds not held. G1: E01 gains the S03 s3/s11.3 time and actor fields (effective/event time, source-reported time, observed time, recorded/persisted time, valid from/to, created/updated by, organisation and project scope, schema version)"
+APG-S03-H0182,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0183,Y,"tax treatment, freight, duties, discounts, rebates, unknown inclusions",E96;E30;E33;E32;E24,COVERED,
+APG-S03-H0184,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0186,Y,findings reference evidence and calculations,E84;E45,GAP,Evidence covered; finding-to-calculation-run reference not held. G15: E45 gains references to the findings and recommendations it produced; E84 gains a reference to the calculation run behind its quantification
+APG-S03-L0187,Y,recommendations reference findings,E86,COVERED,
+APG-S03-L0188,Y,"decision actor, time, recommendation version",E87;E01,COVERED,
+APG-S03-L0189,Y,approved vs proposed actions,E86;E87,COVERED,Distinguished by an E87 decision.
+APG-S03-L0190,Y,outcomes vs estimated benefits,E88;E86,GAP,"Estimated benefit not held. G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated)"
+APG-S03-L0191,Y,superseded findings traceable,E01,COVERED,
+APG-S03-L0192,Y,"links to shared causes, transactions, obligations, exposures",E84,GAP,"G6: E84 gains affected scope (project, package), time horizon and intervention window (latest useful intervention time), contributing conditions and root-cause hypotheses, lifecycle status with resolution reason, and links to related findings sharing a cause or exposure (overlap marker)"
+APG-S03-L0193,Y,portfolio aggregation without double counting,E84,GAP,"Needs the shared-exposure links. G6: E84 gains affected scope (project, package), time horizon and intervention window (latest useful intervention time), contributing conditions and root-cause hypotheses, lifecycle status with resolution reason, and links to related findings sharing a cause or exposure (overlap marker)"
+APG-S03-L0194,Y,reproducible historical results,E45,COVERED,
+APG-S03-H0195,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0197,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0198,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0199,Y,retries not duplicating transitions or effects,E96;E01,COVERED,Idempotency key.
+APG-S03-L0200,Y,state changes preserve provenance and prior values,E01,GAP,"No state-transition history. G11: new entity Audit event (actor, tenant, time, correlation id, action, subject record, prior and new values or state, access to sensitive data); may map to the platform-native audit mechanism found under S01 Gate 01-C"
+APG-S03-L0201,Y,corrections and reversals traceable,E01;E24;E42,COVERED,
+APG-S03-L0202,Y,approval vs execution of a recommendation,E86;E87,GAP,"No executed state. G8: E86 gains estimated financial effect (current exposure ref, gross benefit, implementation cost, expected net benefit, calculation basis), accountable role, timing (deadline, time to benefit), feasibility, reversibility and downside, and lifecycle status (proposed, under review, approved, rejected, executed, withdrawn, superseded, invalidated)"
+APG-S03-L0203,Y,task completion vs verified resolution,E70;E72,COVERED,
+APG-S03-L0204,Y,retention release evidence,E77,COVERED,
+APG-S03-H0205,N,,,NO-DATA-NEED,Heading.
+APG-S03-H0206,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0207,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0208,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0209,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0210,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0211,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0212,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0213,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-H0214,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0215,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0216,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0217,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0218,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0219,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-C0220,Y,validation of AI-extracted information,E35;E01,COVERED,Extractor and verified by.
+APG-S03-H0221,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0222,Y,calculation id and version,E45,COVERED,
+APG-S03-L0223,Y,input record ids and revisions,E45;E01,COVERED,
+APG-S03-L0224,Y,source timestamps of inputs,E45;E01,GAP,"G1: E01 gains the S03 s3/s11.3 time and actor fields (effective/event time, source-reported time, observed time, recorded/persisted time, valid from/to, created/updated by, organisation and project scope, schema version)"
+APG-S03-L0225,Y,formula or rule id,E45,COVERED,
+APG-S03-L0226,Y,assumptions and scenario parameters,E45;E44;E46,COVERED,
+APG-S03-L0227,Y,output values and currency,E45,COVERED,Measures.
+APG-S03-L0228,Y,warnings and limitations,E45,COVERED,
+APG-S03-L0229,Y,execution timestamp; refs to resulting findings/recommendations,E45,GAP,G15: E45 gains references to the findings and recommendations it produced; E84 gains a reference to the calculation run behind its quantification; execution time via G1
+APG-S03-C0230,Y,reproducibility from recorded inputs,E45,COVERED,
+APG-S03-H0231,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0232,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0233,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0234,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0235,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0236,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0237,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0238,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0239,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0240,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0241,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0242,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0243,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0244,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0245,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0246,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-H0247,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0248,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0249,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0250,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0251,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0252,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0253,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0254,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0255,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0256,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0257,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-C0258,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-H0259,N,,,NO-DATA-NEED,Heading.
+APG-S03-L0260,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0261,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0262,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0263,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0264,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0265,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0266,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0267,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0268,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0269,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0270,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0271,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-L0272,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-C0273,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-H0274,N,,,NO-DATA-NEED,Heading.
+APG-S03-C0277,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."
+APG-S03-C0278,N,,,NO-DATA-NEED,"Principle, scope, process or acceptance/delivery instruction; no new data."

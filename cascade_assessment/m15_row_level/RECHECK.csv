@@ -1,0 +1,483 @@
+requirement_id,verdict,entity,change,note
+APG-S00-L0014,CARRIED,E84,R41-17,contributing conditions and root-cause hypotheses
+APG-S00-L0015,CARRIED,E84,R41-17,"scope, time horizon, intervention window; exposure and evidence existing"
+APG-S00-L0016,CARRIED,E100; E64,R41-48; R41-51,"waste in E100 movement types; owned equipment in E64 (R41-51 adds scope only, no owned-cost rate)"
+APG-S00-L0017,CARRIED,E84; E88,R41-17; R41-20,lifecycle with resolution reason; outcome classification and implementation evidence
+APG-S00-L0022,CARRIED,E86,R41-19,"ranking factors held separately, net benefit, timing, feasibility, reversibility and downside; confidence on E84"
+APG-S00-L0024,CARRIED,E86; E87; E88,R41-19; R41-20,"recommendation lifecycle, estimated effect vs benefit state"
+APG-S00-L0031,CARRIED,E84; E86,R41-17; R41-19,"intervention window; net benefit, downside"
+APG-S00-L0032,CARRIED,E85,R41-18,"owner, deferral, action tracking; decision on E87"
+APG-S00-L0038,CARRIED,E100; E27,R41-48; R41-50,
+APG-S00-L0041,CARRIED,E08,R41-15,defects liability period
+APG-S00-L0043,CARRIED,E27,R41-50,
+APG-S00-L0044,CARRIED,E64,R41-51,owned plant now in scope; existing rate basis and usage evidence apply; no explicit ownership-cost rate (see summary)
+APG-S00-C0049,CARRIED,E107,R41-16,status open/closed/transferred/waived/resolved with authorising decision
+APG-S00-L0051,CARRIED,E78,R41-12,"collateral, linked obligations, owner; source via E01"
+APG-S00-L0052,CARRIED,E08; E66; E70; E72,R41-15,"DLP dates; defects, deadlines, sign-offs existing"
+APG-S00-L0053,CARRIED,E66,R41-14,links to retention and security conditions
+APG-S00-L0055,CARRIED,E84,R41-17,overlap marker
+APG-S00-L0058,CARRIED,E100; E28,R41-48,consumed/returned/damaged/wasted quantities
+APG-S00-L0063,CARRIED,E100; E27,R41-48; R41-50,moved between projects; substitutions
+APG-S00-L0066,CARRIED,E02,R41-03,"market coverage by category, geography, specification, freshness"
+APG-S00-L0068,CARRIED,E86; E88; E96,R41-19; R41-20,net benefit; outcome classification incl. avoided
+APG-S00-L0069,CARRIED,E01,R41-01,"timestamps, mapping version"
+APG-S00-L0073,CARRIED,E84; E86,R41-17; R41-19,overlap marker; recommendation exposure reference
+APG-S00-L0075,CARRIED,E85; E88; E102,R41-18; R41-20; R41-02,action history
+APG-S00-L0086,CARRIED,E102,R41-02,access recorded as audit event (class P)
+APG-S02-L0017,CARRIED,E86,R41-19,gross benefit
+APG-S02-L0019,CARRIED,E86; E84,R41-19; R41-17,timing; intervention window
+APG-S02-L0022,CARRIED,E86; E88,R41-19; R41-20,estimate vs realised
+APG-S02-L0031,CARRIED,E102,R41-02,before/after values
+APG-S02-L0032,CARRIED,E01,R41-01,created/updated by
+APG-S02-L0050,CARRIED,E84,R41-17,overlap marker
+APG-S02-L0051,CARRIED,E85,R41-18,assigned owner
+APG-S02-L0057,CARRIED,E86,R41-19,
+APG-S02-L0058,CARRIED,E86,R41-19,"timing, dependencies, downside; uncertainty via E84 confidence"
+APG-S02-L0062,CARRIED,E88,R41-20,action state
+APG-S02-C0063,CARRIED,E88; E84,R41-20; R41-17,
+APG-S02-L0066,CARRIED,E100,R41-48,
+APG-S02-L0082,CARRIED,E85; E86,R41-18; R41-19,assigned owner; accountable role
+APG-S02-L0090,CARRIED,E08,R41-15,DLP
+APG-S02-L0091,CARRIED,E66,R41-14,
+APG-S02-L0092,CARRIED,E107,R41-16,
+APG-S02-L0094,CARRIED,E107; E78,R41-16; R41-12,
+APG-S02-L0095,CARRIED,E08; E84,R41-15; R41-17,final account; overlap marker
+APG-S02-C0096,CARRIED,E107,R41-16,
+APG-S02-L0102,CARRIED,E85,R41-18,
+APG-S02-L0106,CARRIED,E86,R41-19,estimated effect with basis
+APG-S02-L0110,CARRIED,E88,R41-20,estimated against realised
+APG-S02-L0111,CARRIED,E88,R41-20,reasons
+APG-S02-L0112,CARRIED,E88,R41-20,outcome classification
+APG-S02-L0117,CARRIED,E84; E01,R41-17; R41-01,scope; times
+APG-S02-L0118,CARRIED,E01,R41-01,
+APG-S02-L0119,CARRIED,E86,R41-19,"exposure reference, gross and net benefit, basis"
+APG-S02-L0120,CARRIED,E86,R41-19,accountable role
+APG-S02-C0125,STILL-GAP,E86,R41-19,"Withdrawn state not named. R41-19 lifecycle ""(proposed to superseded or invalidated)"" names no states. Fix: list E86 states: the S10 s9 states plus awaiting evidence, blocked, referred for resolution, withdrawn, superseded, invalidated."
+APG-S02-L0132,CARRIED,E84,R41-17,
+APG-S02-L0139,CARRIED,E84,R41-17,intervention window
+APG-S02-L0141,CARRIED,E86,R41-19,
+APG-S02-L0143,CARRIED,E86,R41-19,"implementation cost, downside"
+APG-S02-C0145,CARRIED,N01,R41-21,"grouping, escalation thresholds, notification frequency"
+APG-S03-C0014,CARRIED,E01,R41-01,"all S03 s3 fields now carried (observed=received, effective, recorded, valid from/to, created/updated by, evidence ref, schema version)"
+APG-S03-L0030,CARRIED,E88,R41-20,
+APG-S03-L0034,CARRIED,E86; E88,R41-19; R41-20,
+APG-S03-C0036,CARRIED,E90; E45,R41-22; R41-23,
+APG-S03-L0045,CARRIED,E01,R41-01,
+APG-S03-L0047,CARRIED,E90,R41-22,
+APG-S03-L0050,CARRIED,E90,R41-22,
+APG-S03-L0063,CARRIED,E08,R41-15,final account adjustments
+APG-S03-L0103,CARRIED,E27,R41-50,
+APG-S03-C0109,CARRIED,E100,R41-48,
+APG-S03-L0123,CARRIED,E27,R41-50,
+APG-S03-L0143,CARRIED,E75,R41-13,linked defects
+APG-S03-L0149,CARRIED,E78,R41-12,
+APG-S03-L0153,CARRIED,E78,R41-12,facility usage
+APG-S03-L0154,CARRIED,E78; E66,R41-12; R41-14,"lifecycle, linked obligations and disputes; defect link from E66"
+APG-S03-L0159,CARRIED,E66,R41-14,operational impact
+APG-S03-L0163,STILL-GAP,E16,none,"E08 carries the head-contract DLP only; a subcontractor defect's applicable period (S03 s10.3) sits in the subcontract, and E16 has no DLP. Fix: E16 add defects liability period."
+APG-S03-L0165,CARRIED,E66,R41-14,
+APG-S03-C0177,CARRIED,E96; E37,R41-10; R41-10b,
+APG-S03-C0181,CARRIED,E01; E45,R41-01; R41-23,five time kinds; time zone via E105 transformation
+APG-S03-L0186,CARRIED,E84,R41-17,calculation run
+APG-S03-L0190,CARRIED,E86; E88,R41-19; R41-20,
+APG-S03-L0192,CARRIED,E84,R41-17,links sharing a cause or exposure; transactions/obligations via evidence
+APG-S03-L0193,CARRIED,E84,R41-17,
+APG-S03-L0200,CARRIED,E102,R41-02,
+APG-S03-L0202,CARRIED,E88,R41-20,action state
+APG-S03-L0224,CARRIED,E01,R41-01,source-reported time
+APG-S03-L0229,CARRIED,E45; E01,R41-23; R41-01,references to findings and recommendations; execution time = recorded time of the run
+PG-DI-AC-02,CARRIED,E03,R41-04,
+PG-DI-AC-07,CARRIED,E35,R41-09,
+PG-DI-AC-15,CARRIED,E103; E104; E01,R41-05; R41-06; R41-01,
+APG-S04-L0009,CARRIED,E96; E73,R41-10; R41-52,journal lines as E96 records with journal reference; balances are bank-account only (see summary)
+APG-S04-L0011,CARRIED,E21,R41-32,delivery commitment
+APG-S04-L0012,CARRIED,E48,R41-30,forecast start/finish
+APG-S04-L0013,CARRIED,E100; E27,R41-48; R41-50,
+APG-S04-L0016,CARRIED,E08; E65,R41-15; R41-14b,
+APG-S04-L0017,CARRIED,E78,R41-12,release/cancellation events with evidence
+APG-S04-L0032,STILL-GAP,E103,R41-05,"Processing state and outcome carried; retries and replay are not. E103 (R41-05) has no retry or replay history. Fix: E103 add attempts/retry history, replay (when, by whom, why), downstream errors and final disposition (or link each receipt to E109)."
+APG-S04-L0036,CARRIED,E02; E01,R41-03; R41-01,
+APG-S04-L0037,CARRIED,E02,R41-03,direction
+APG-S04-L0038,CARRIED,E02,R41-03,"auth method, permissions, credential expiry dates (rotation as expiry dates only)"
+APG-S04-L0039,CARRIED,E02,R41-03,
+APG-S04-L0040,CARRIED,E105; E02,R41-07,
+APG-S04-L0041,STILL-GAP,E02,R41-03,"R41-03 omits the delivery policy that B5 named. Fix: E02 add idempotency basis, duplicate policy, retry policy and backoff, dead-letter handling, replay capability."
+APG-S04-L0042,STILL-GAP,E02,R41-03,Owner and escalation contact are still not on E02. Fix: E02 add source owner and escalation contact.
+APG-S04-L0047,CARRIED,E03,R41-04,
+APG-S04-L0048,STILL-GAP,E03,R41-04,"S04 s5 register entry must define handling of revisions, cancellations, late records and corrections; R41-04 omits it. Fix: E03 add that handling rule per field."
+APG-S04-L0049,CARRIED,E03,R41-04,field class
+APG-S04-L0050,STILL-GAP,E03,R41-04,"Conflict outcomes and resolver role (S04 s5) not in R41-04 (""owner"" is the entry owner). Fix: E03 add conflict outcomes and the role authorised to resolve them."
+APG-S04-L0053,CARRIED,E03; E01,R41-04; R41-01,
+APG-S04-L0059,CARRIED,E03,R41-04,trust expressed as field-level authority and precedence; no separate trust value
+APG-S04-L0066,CARRIED,E104,R41-06,
+APG-S04-C0075,CARRIED,E104,R41-06,
+APG-S04-L0084,CARRIED,E105; E01,R41-07; R41-01,
+APG-S04-L0086,CARRIED,E96,R41-10,
+APG-S04-C0091,CARRIED,E106,R41-08,
+APG-S04-L0095,CARRIED,E106; E104,R41-08; R41-06,
+APG-S04-L0096,CARRIED,E75; E08; E104,R41-13; R41-15; R41-06,
+APG-S04-L0098,CARRIED,E27,R41-50,
+APG-S04-L0099,CARRIED,E104,R41-06,
+APG-S04-C0100,CARRIED,E104,R41-06,"case type mismatch vs timing difference, outcome"
+APG-S04-C0102,CARRIED,E35,R41-09,
+APG-S04-L0103,CARRIED,E35,R41-09,
+APG-S04-L0104,CARRIED,E35,R41-09,
+APG-S04-L0105,CARRIED,E35,R41-09,
+APG-S04-L0107,CARRIED,E35; E01,R41-09,
+APG-S04-L0108,STILL-GAP,E35,R41-09,"Reviewer, time and confirmed/corrected carried; evidence considered and a disposition beyond confirmed/corrected (e.g. rejected) are not. Fix: E35 add evidence considered and disposition (confirmed, corrected, rejected)."
+APG-S04-L0111,CARRIED,E01,R41-01,
+APG-S04-L0114,CARRIED,E104,R41-06,
+APG-S04-L0125,CARRIED,E103; E102,R41-05; R41-02,correlation id
+APG-S04-L0129,CARRIED,E103,R41-05,per-record lines
+APG-S04-L0136,CARRIED,E01,R41-01,
+APG-S04-L0137,CARRIED,E103; E104; E106,R41-05; R41-06; R41-08,
+APG-S04-L0138,CARRIED,E01,R41-01,
+APG-S04-L0139,CARRIED,E104; E87,R41-06,
+APG-S04-L0140,STILL-GAP,E103,R41-05,"Canonical outcome carried; retry/replay history not. E103 (R41-05) has no retry or replay history. Fix: E103 add attempts/retry history, replay (when, by whom, why), downstream errors and final disposition (or link each receipt to E109)."
+APG-S04-L0145,CARRIED,E83,R41-11,
+APG-S04-L0147,STILL-GAP,E105; E103; E02,R41-07; R41-05,"Column mapping, units, currency, dates (E105) and row errors (E103 lines) carried; no import duplicate policy. R41-03 omits the delivery policy that B5 named. Fix: E02 add idempotency basis, duplicate policy, retry policy and backoff, dead-letter handling, replay capability."
+PG-PC-AC-02,CARRIED,E88,R41-20,benefit state
+PG-PC-AC-13,CARRIED,E88; E44; E87,R41-20; R41-24b,"baseline used, implementation evidence; verification as an E87 decision (verifier not on E88, see OFFSET fix)"
+APG-S05-L0013,CARRIED,E96; E45,R41-10; R41-23,
+APG-S05-L0023,CARRIED,E96; E45,R41-10; R41-23,
+APG-S05-L0024,CARRIED,E96; E73,R41-10; R41-52,
+APG-S05-L0045,CARRIED,E41,R41-24,
+APG-S05-L0046,CARRIED,E42,R41-25,
+APG-S05-L0047,STILL-GAP,E09,none,"S05 s3 ""overlap status"" of a variation/claim (whether its value is already in the forecast, another claim or a finding) is not held; R41-17 overlap marker is on findings only. Fix: E09 add overlap status with the record it overlaps."
+APG-S05-C0053,CARRIED,E01,R41-01,authority-rule version applied
+APG-S05-L0060,CARRIED,E64,R41-51,
+APG-S05-C0066,STILL-GAP,E96,R41-10,"E96 value status still has no risk-adjusted value; R41-10 (claims B9) adds none. Fix: add ""risk-adjusted"" to E96 value status."
+APG-S05-L0070,CARRIED,E44,R41-24b,replacement reason
+APG-S05-L0080,CARRIED,E89,R41-26,
+APG-S05-C0092,STILL-GAP,E84,R41-17,"Identity, relationships, time window, overlap, review state and resolution now carried; financial classification is not. E84 has no financial interpretation class (S06 s6); taxonomy family is a detection category, not this. Fix: E84 add financial interpretation (actual loss, forecast exposure, potential opportunity, data-quality risk, non-financial operational risk)."
+APG-S05-C0100,CARRIED,E75,R41-13,
+APG-S05-C0104,CARRIED,E88; E30; E33,R41-20; R41-34,baseline used; spec/quantity/landed cost on the baseline quote
+APG-S05-C0107,CARRIED,E88; E86,R41-20; R41-19,
+APG-S05-L0111,CARRIED,E46; E01,R41-27,
+APG-S05-L0112,CARRIED,E46,R41-27,
+APG-S05-L0122,CARRIED,E45,R41-23,
+APG-S05-L0124,CARRIED,E45,R41-23,
+APG-S05-L0125,CARRIED,E45,R41-23,
+PG-AI-AC-08,STILL-GAP,E84; E85,R41-17,"Severity and urgency are not held separately: E85 has one priority, E84 has confidence only; R41-17 adds neither (S06 s6 Priority). Fix: E84 add severity grade (N01 levels) and urgency, separate from confidence."
+PG-AI-AC-09,STILL-GAP,E84; E85; N01,R41-17; R41-21,"Reopening, notification history and re-notification rules carried. E84 still has no deduplication identity (S06 s6, s9.1; claimed by R41-17 via D-G-FND). Fix: E84 add a stable deduplication key for the underlying condition, with update history."
+PG-AI-AC-10,CARRIED,E84,R41-17,
+PG-AI-AC-11,STILL-GAP,E84,R41-17,"No assertion-basis label and no suspected/confirmed state on causes or links (S06 s5.6, s9); R41-17 adds root-cause hypotheses only, E68/E69 split is defect-only. Fix: E84 add per assertion its basis (evidenced, inference, hypothesis, unverified) and per cause or link suspected/confirmed with evidence."
+PG-AI-AC-12,STILL-GAP,E84,R41-17,"No assertion-basis label and no suspected/confirmed state on causes or links (S06 s5.6, s9); R41-17 adds root-cause hypotheses only, E68/E69 split is defect-only. Fix: E84 add per assertion its basis (evidenced, inference, hypothesis, unverified) and per cause or link suspected/confirmed with evidence."
+PG-AI-AC-16,CARRIED,E88,R41-20,
+PG-AI-AC-17,CARRIED,E05,R41-28,
+PG-AI-AC-18,CARRIED,E45; E02,R41-23; R41-03,
+APG-S06-L0017,CARRIED,E85,R41-18,
+APG-S06-L0019,CARRIED,E84; E88,R41-17; R41-20,
+APG-S06-L0020,CARRIED,E84; E102,R41-17; R41-02,
+APG-S06-C0021,CARRIED,E45,R41-23,
+APG-S06-L0028,CARRIED,E08; E107,R41-15; R41-16,
+APG-S06-L0031,CARRIED,E64,R41-51,
+APG-S06-C0036,STILL-GAP,E84,R41-17,"Taxonomy family ""Data integrity"" separates the detection category, but not confirmed leakage vs reporting risk. E84 has no financial interpretation class (S06 s6); taxonomy family is a detection category, not this. Fix: E84 add financial interpretation (actual loss, forecast exposure, potential opportunity, data-quality risk, non-financial operational risk)."
+APG-S06-C0040,CARRIED,N01,R41-21,allowed range and rule exceptions
+APG-S06-C0054,CARRIED,E84,R41-17,
+APG-S06-L0057,STILL-GAP,E84,R41-17,"R41-17 has no explanation group (S06 s6 Explanation). Fix: E84 add observed condition, expected condition and reason."
+APG-S06-C0065,STILL-GAP,E84,R41-17,"No assertion-basis label and no suspected/confirmed state on causes or links (S06 s5.6, s9); R41-17 adds root-cause hypotheses only, E68/E69 split is defect-only. Fix: E84 add per assertion its basis (evidenced, inference, hypothesis, unverified) and per cause or link suspected/confirmed with evidence."
+APG-S06-L0067,CARRIED,E84,R41-17,
+APG-S06-L0068,CARRIED,E84,R41-17,
+APG-S06-L0069,CARRIED,E84,R41-17,
+APG-S06-L0072,STILL-GAP,E84,R41-17,"R41-17 has no explanation group (S06 s6 Explanation). Fix: E84 add observed condition, expected condition and reason."
+APG-S06-L0073,STILL-GAP,E84,R41-17,"E84 has no financial interpretation class (S06 s6); taxonomy family is a detection category, not this. Fix: E84 add financial interpretation (actual loss, forecast exposure, potential opportunity, data-quality risk, non-financial operational risk)."
+APG-S06-L0076,STILL-GAP,E84; E85,R41-17,"Severity and urgency are not held separately: E85 has one priority, E84 has confidence only; R41-17 adds neither (S06 s6 Priority). Fix: E84 add severity grade (N01 levels) and urgency, separate from confidence."
+APG-S06-L0077,STILL-GAP,E84; E85,R41-17; R41-18,"E85 has the assigned owner, but reviewer and next review date are on no entity (S06 s6 Ownership). Fix: E84 add reviewer and next review date."
+APG-S06-L0078,CARRIED,E84,R41-17,
+APG-S06-C0087,STILL-GAP,E84; N01,R41-17,"Thresholds approved in N01. Severity and urgency are not held separately: E85 has one priority, E84 has confidence only; R41-17 adds neither (S06 s6 Priority). Fix: E84 add severity grade (N01 levels) and urgency, separate from confidence. Also N01 holds no priority weights (S06 s8)."
+APG-S06-L0090,STILL-GAP,E84,R41-17,"E84 still has no deduplication identity (S06 s6, s9.1; claimed by R41-17 via D-G-FND). Fix: E84 add a stable deduplication key for the underlying condition, with update history."
+APG-S06-L0092,CARRIED,E84,R41-17,
+APG-S06-L0093,STILL-GAP,E84,R41-17,"No assertion-basis label and no suspected/confirmed state on causes or links (S06 s5.6, s9); R41-17 adds root-cause hypotheses only, E68/E69 split is defect-only. Fix: E84 add per assertion its basis (evidenced, inference, hypothesis, unverified) and per cause or link suspected/confirmed with evidence."
+APG-S06-L0094,CARRIED,E84,R41-17,
+APG-S06-L0096,CARRIED,E84,R41-17,
+APG-S06-C0098,STILL-GAP,E84; E85; N01,R41-17; R41-21,"Suppression window and re-notification rules carried (N01). E84 still has no deduplication identity (S06 s6, s9.1; claimed by R41-17 via D-G-FND). Fix: E84 add a stable deduplication key for the underlying condition, with update history."
+APG-S06-C0109,CARRIED,E45,R41-23,
+APG-S06-C0112,CARRIED,E84; E86; E87; E88; E85,R41-17; R41-19; R41-20; R41-18,
+APG-S06-C0118,CARRIED,E05,R41-28,
+APG-S06-L0120,STILL-GAP,E84,R41-17,Detection method and lifecycle carried. No late/missed-detection marker (S06 s14). Fix: E84 add a late/missed flag with how it was identified.
+APG-S06-L0121,CARRIED,E84; E88; E45,R41-17; R41-20; R41-23,
+PG-SD-AC-01,CARRIED,E47,R41-29,
+PG-SD-AC-02,CARRIED,E47,R41-29,
+PG-SD-AC-06,CARRIED,E84; E52; E53,R41-17; R41-31,overlap marker
+PG-SD-AC-10,CARRIED,E28; E21,R41-32c; R41-32,
+PG-SD-AC-11,CARRIED,E46,R41-27,
+PG-SD-AC-14,CARRIED,E08; E75,R41-15; R41-13,
+PG-SD-AC-15,CARRIED,E08; E107,R41-15; R41-16,
+APG-S07-L0014,CARRIED,E47,R41-29,
+APG-S07-L0015,CARRIED,E48,R41-30,
+APG-S07-L0016,CARRIED,E48,R41-30,
+APG-S07-L0017,CARRIED,E48,R41-30,
+APG-S07-C0019,CARRIED,E47,R41-29,
+APG-S07-C0020,CARRIED,E47,R41-29,
+APG-S07-L0023,CARRIED,E48,R41-30,
+APG-S07-L0024,CARRIED,E48,R41-30,
+APG-S07-C0054,CARRIED,E84,R41-17,overlap marker
+APG-S07-L0056,CARRIED,E53,R41-31,
+APG-S07-C0068,CARRIED,E21; E28; E27,R41-32; R41-32c; R41-50,
+APG-S07-L0077,CARRIED,E46,R41-27,
+APG-S07-L0079,CARRIED,E46,R41-27,
+APG-S07-C0086,CARRIED,E12,R41-33,
+PG-MP-AC-01,CARRIED,E100,R41-48,
+PG-MP-AC-02,STILL-GAP,E30,R41-34,"R41-34 holds ""comparable or not"" only; S08 s5 needs five classes and documented adjustments. Fix: E30 comparability class (comparable, comparable with adjustment, partially comparable, not comparable, unverified), documented adjustments, and the ranking label (definitive or indicative)."
+PG-MP-AC-07,CARRIED,E36,R41-35,
+PG-MP-AC-13,CARRIED,E84; E86,R41-17; R41-19,
+PG-MP-AC-14,CARRIED,E100,R41-48,verified or estimated
+PG-MP-AC-15,CARRIED,E88,R41-20,
+PG-MP-AC-17,CARRIED,E27; E87,R41-50,
+APG-S08-L0013,CARRIED,E36,R41-35,
+APG-S08-L0015,CARRIED,E27; E87,R41-50,
+APG-S08-L0016,CARRIED,E88,R41-20,
+APG-S08-C0031,CARRIED,E26; E27; E28; E100; E21; E01,R41-32c; R41-50; R41-48; R41-32,
+APG-S08-C0032,CARRIED,E100; E27; E21,R41-48; R41-50,
+APG-S08-L0034,STILL-GAP,E30,R41-34,"R41-34 holds ""comparable or not"" only; S08 s5 needs five classes and documented adjustments. Fix: E30 comparability class (comparable, comparable with adjustment, partially comparable, not comparable, unverified), documented adjustments, and the ranking label (definitive or indicative)."
+APG-S08-L0035,STILL-GAP,E30,R41-34,"R41-34 holds ""comparable or not"" only; S08 s5 needs five classes and documented adjustments. Fix: E30 comparability class (comparable, comparable with adjustment, partially comparable, not comparable, unverified), documented adjustments, and the ranking label (definitive or indicative)."
+APG-S08-L0036,STILL-GAP,E30,R41-34,"R41-34 holds ""comparable or not"" only; S08 s5 needs five classes and documented adjustments. Fix: E30 comparability class (comparable, comparable with adjustment, partially comparable, not comparable, unverified), documented adjustments, and the ranking label (definitive or indicative)."
+APG-S08-L0037,STILL-GAP,E30,R41-34,"R41-34 holds ""comparable or not"" only; S08 s5 needs five classes and documented adjustments. Fix: E30 comparability class (comparable, comparable with adjustment, partially comparable, not comparable, unverified), documented adjustments, and the ranking label (definitive or indicative)."
+APG-S08-L0038,STILL-GAP,E30,R41-34,"R41-34 holds ""comparable or not"" only; S08 s5 needs five classes and documented adjustments. Fix: E30 comparability class (comparable, comparable with adjustment, partially comparable, not comparable, unverified), documented adjustments, and the ranking label (definitive or indicative)."
+APG-S08-C0039,CARRIED,E27; E86,R41-50; R41-19,approved substitutions; unresolved items as approval needed/dependencies
+APG-S08-C0050,CARRIED,E36,R41-35,
+APG-S08-C0065,CARRIED,E84,R41-17,
+APG-S08-C0068,CARRIED,E86; E88; E44; E30,R41-19; R41-20; R41-34,
+APG-S08-C0070,STILL-GAP,E88,R41-20,"Baseline and implementation evidence carried. R41-20 has no offsetting or hidden costs and no verifier (S05 s10.1; D-G-SAV named them). Fix: E88 add offsetting/hidden costs, net realised result, verified by and on."
+APG-S08-C0075,CARRIED,E100,R41-48,
+APG-S08-C0076,STILL-GAP,E100,R41-48,"Verified/estimated, condition and location carried; stock ownership is not (first check noted it). Fix: E100 add owner of the stock (builder entity, client, supplier, other project)."
+APG-S08-L0108,CARRIED,E84,R41-17,
+PG-LR-AC-01,CARRIED,E58,R41-41,
+PG-LR-AC-06,CARRIED,E63,R41-40,cause status
+PG-LR-AC-12,CARRIED,E84,R41-17,
+PG-LR-AC-15,CARRIED,E88,R41-20,
+APG-S09-C0052,STILL-GAP,E86,R41-19,"Linking carried by E84. E86 has no constraint fields (R41-19 adds approval needed, dependencies, downside only). Fix: E86 add applicable constraints (safety, quality, contractual, operational), which it addresses and which remain unresolved."
+APG-S09-C0055,STILL-GAP,E46,R41-27,"R41-27 omits affected activities/resources and required approvals, which C-G-SCN named (S10 s7). Fix: E46 add affected activities/resources and required approvals."
+APG-S09-C0059,CARRIED,E88,R41-20,
+APG-S09-C0070,STILL-GAP,E86,R41-19,"Blocked/referred state not named. R41-19 lifecycle ""(proposed to superseded or invalidated)"" names no states. Fix: list E86 states: the S10 s9 states plus awaiting evidence, blocked, referred for resolution, withdrawn, superseded, invalidated."
+APG-S09-L0102,CARRIED,E84; E88,R41-17; R41-20,
+PG-RS-AC-01,CARRIED,E86,R41-19,
+PG-RS-AC-02,CARRIED,E86; E84,R41-19,ranking factors held separately
+PG-RS-AC-04,CARRIED,E84,R41-17,
+PG-RS-AC-05,STILL-GAP,E86,R41-19,"E86 has no constraint fields (R41-19 adds approval needed, dependencies, downside only). Fix: E86 add applicable constraints (safety, quality, contractual, operational), which it addresses and which remain unresolved. R41-19 lifecycle ""(proposed to superseded or invalidated)"" names no states. Fix: list E86 states: the S10 s9 states plus awaiting evidence, blocked, referred for resolution, withdrawn, superseded, invalidated."
+PG-RS-AC-09,CARRIED,E87; E88,R41-42; R41-20,
+PG-RS-AC-10,CARRIED,E88,R41-20,
+APG-S10-C0016,STILL-GAP,E86,R41-19,"Overlap carried by E84. No entity holds the S10 s3 eligibility-gate result (C-G-REC named it; R41-19 omits it). Fix: E86 add eligibility result per check (evidence sufficiency, freshness, overlap, financial status, user authority, mandatory reviews, actionability) and decision deadline."
+APG-S10-C0017,CARRIED,E86,R41-19,category Investigate
+APG-S10-C0019,CARRIED,E86,R41-19,
+APG-S10-C0027,CARRIED,E86,R41-19,dependencies
+APG-S10-C0028,CARRIED,E86,R41-19,"downside, approval needed"
+APG-S10-C0029,CARRIED,E86; E45,R41-19; R41-23,
+APG-S10-L0031,CARRIED,E86,R41-19,category
+APG-S10-L0032,CARRIED,E86,R41-19,category
+APG-S10-L0033,CARRIED,E86,R41-19,category
+APG-S10-L0034,CARRIED,E86,R41-19,category
+APG-S10-L0035,CARRIED,E86,R41-19,category
+APG-S10-L0036,CARRIED,E86,R41-19,category
+APG-S10-L0037,CARRIED,E86,R41-19,category
+APG-S10-L0038,CARRIED,E86,R41-19,category
+APG-S10-L0039,CARRIED,E86; E84; E87,R41-19; R41-17,close reasons via E84 resolution reason and E87 basis
+APG-S10-C0044,CARRIED,E84,R41-17,
+APG-S10-L0048,STILL-GAP,E46,R41-27,"Proposed action carried. R41-27 omits affected activities/resources and required approvals, which C-G-SCN named (S10 s7). Fix: E46 add affected activities/resources and required approvals."
+APG-S10-L0051,STILL-GAP,E46,R41-27,"Dependencies carried. R41-27 omits affected activities/resources and required approvals, which C-G-SCN named (S10 s7). Fix: E46 add affected activities/resources and required approvals."
+APG-S10-L0054,CARRIED,E46,R41-27,invalidating conditions
+APG-S10-L0055,CARRIED,E46,R41-27,verification method
+APG-S10-L0065,CARRIED,E86,R41-19,"approval needed, accountable role"
+APG-S10-L0066,CARRIED,E86,R41-19,verification method
+APG-S10-L0091,CARRIED,E86,R41-19,lifecycle exists; state list gap at S10 rows (see RECLC)
+APG-S10-L0092,CARRIED,E84,R41-17,
+APG-S10-L0093,STILL-GAP,E86,R41-19,"Factor values carried. No entity holds the S10 s3 eligibility-gate result (C-G-REC named it; R41-19 omits it). Fix: E86 add eligibility result per check (evidence sufficiency, freshness, overlap, financial status, user authority, mandatory reviews, actionability) and decision deadline."
+APG-S10-L0094,CARRIED,E86; E84,R41-19,
+APG-S10-L0096,CARRIED,E88,R41-20,
+PG-CR-AC-04,STILL-GAP,E13; E08,R41-15,"Contract rate/quantity items now on E08, but E13 still holds only ""amount by item"": no claimed quantity or rate per item. Fix: E13 per item: contract item reference (E08), quantity, rate, amount, valuation evidence."
+PG-CR-AC-05,CARRIED,E12,R41-33,
+PG-CR-AC-06,CARRIED,E12,R41-33,interpretation status
+PG-CR-AC-10,CARRIED,E84,R41-17,
+PG-CR-AC-11,CARRIED,E86; E46,R41-19; R41-27,
+PG-CR-AC-13,CARRIED,E88,R41-20,
+APG-S11-L0012,CARRIED,E12,R41-33,
+APG-S11-L0015,CARRIED,E88,R41-20,
+APG-S11-L0027,CARRIED,E09,R41-36,
+APG-S11-C0034,CARRIED,E08,R41-15,valuation rules
+APG-S11-C0040,STILL-GAP,E12,R41-33,"Method, assumptions, interpretation status and responsible role carried; required action/review and last verification date are not. Fix: E12 add required action or review and last verification date."
+APG-S11-C0041,CARRIED,E12,R41-33,
+APG-S11-C0043,CARRIED,E12,R41-33,
+APG-S11-C0069,CARRIED,E88; E84; E14; E15,R41-20; R41-17,
+APG-S11-L0093,CARRIED,E84; E86,R41-17; R41-19,
+APG-S12-L0018,CARRIED,E73,R41-52,
+APG-S12-L0020,STILL-GAP,E101,R41-49,"E101 (R41-49) has no assumptions, uncertainty, known gaps or source freshness. Fix: E101 add key assumptions, uncertainty/confidence, known gaps and source freshness."
+APG-S12-L0021,CARRIED,E101,R41-49,
+APG-S12-L0022,CARRIED,E78; E74,R41-12; R41-37,
+APG-S12-L0025,CARRIED,E107,R41-16,
+APG-S12-L0029,CARRIED,E73,R41-52,
+APG-S12-L0031,STILL-GAP,E101,R41-49,"As-of and qualification carried. E101 (R41-49) has no assumptions, uncertainty, known gaps or source freshness. Fix: E101 add key assumptions, uncertainty/confidence, known gaps and source freshness."
+APG-S12-L0035,CARRIED,E101; E84,R41-49; R41-17,
+APG-S12-C0036,CARRIED,E102,R41-02,class P
+APG-S12-L0039,CARRIED,E73; E74,R41-52,
+APG-S12-L0042,CARRIED,E20; E21; E81; E64; E80; E107,R41-32b; R41-32; R41-16,
+APG-S12-L0043,CARRIED,E75; E76; E77; E08; E107,R41-13; R41-15; R41-16,
+APG-S12-L0044,CARRIED,E78,R41-12,
+APG-S12-L0045,CARRIED,E74,R41-37,
+APG-S12-L0046,CARRIED,E01; E35; E104,R41-01; R41-09; R41-06,
+APG-S12-C0049,CARRIED,E101,R41-49,
+APG-S12-C0060,STILL-GAP,E101,R41-49,"As-of, horizon and qualification carried. E101 (R41-49) has no assumptions, uncertainty, known gaps or source freshness. Fix: E101 add key assumptions, uncertainty/confidence, known gaps and source freshness."
+APG-S12-C0063,CARRIED,E101; E46,R41-49; R41-27,
+APG-S12-L0070,CARRIED,E74; E45,R41-37; R41-23,
+APG-S12-L0073,CARRIED,E84,R41-17,
+APG-S12-C0074,CARRIED,E45; E84; E88,R41-23; R41-17; R41-20,
+APG-S12-L0078,CARRIED,E75,R41-13,
+APG-S12-L0080,CARRIED,E107; E66; E72; E08,R41-16; R41-14; R41-15,
+APG-S12-L0081,STILL-GAP,E75; E101,R41-13; R41-49,"Expected date vs confirmed release carried (E75); the assumptions behind the expected date have no home. E101 (R41-49) has no assumptions, uncertainty, known gaps or source freshness. Fix: E101 add key assumptions, uncertainty/confidence, known gaps and source freshness."
+APG-S12-C0084,CARRIED,E78,R41-12,
+APG-S12-L0085,CARRIED,E78,R41-12,
+APG-S12-L0086,CARRIED,E78,R41-12,
+APG-S12-L0087,CARRIED,E78,R41-12,
+APG-S12-L0088,CARRIED,E78,R41-12,
+APG-S12-L0089,CARRIED,E78,R41-12,
+APG-S12-C0090,CARRIED,E78,R41-12,
+APG-S12-L0097,STILL-GAP,E101,R41-49,"Timing exposure carried. E101 (R41-49) has no assumptions, uncertainty, known gaps or source freshness. Fix: E101 add key assumptions, uncertainty/confidence, known gaps and source freshness."
+APG-S12-L0104,CARRIED,E46,R41-27,
+APG-S12-L0105,CARRIED,E86; E84,R41-19; R41-17,
+APG-S12-C0106,CARRIED,E88,R41-20,
+APG-S12-C0108,CARRIED,E107; E75; E78; E08,R41-16; R41-13; R41-12; R41-15,
+APG-S12-C0109,CARRIED,E84,R41-17,
+APG-S12-L0113,CARRIED,E90; E88,R41-20,
+APG-S12-L0114,STILL-GAP,E84,R41-17,"Lifecycle, overlap and outcome verification carried; repeated-finding control is not. E84 still has no deduplication identity (S06 s6, s9.1; claimed by R41-17 via D-G-FND). Fix: E84 add a stable deduplication key for the underlying condition, with update history."
+APG-S12-L0116,CARRIED,E101,R41-49,
+APG-S12-L0117,CARRIED,E101,R41-49,
+APG-S12-L0118,CARRIED,E86; E46,R41-19; R41-27,
+APG-S12-C0124,CARRIED,E84; E74,R41-17; R41-37,
+APG-S12-C0128,CARRIED,E88,R41-20,
+APG-S12-L0131,CARRIED,E01; E03; E101; E104,R41-01; R41-04; R41-49; R41-06,
+APG-S12-L0133,CARRIED,E102,R41-02,
+APG-S12-L0134,CARRIED,E101,R41-49,
+APG-S12-L0135,CARRIED,E74; E84,R41-37; R41-17,
+APG-S12-L0139,CARRIED,E46,R41-27,
+APG-S12-L0140,CARRIED,E107,R41-16,
+APG-S12-L0141,CARRIED,E84,R41-17,
+APG-S13-L0018,CARRIED,E66,R41-14,
+APG-S13-L0019,CARRIED,E67; E71,R41-38,cost components
+APG-S13-L0020,CARRIED,E65,R41-14b,type and stage
+APG-S13-L0021,CARRIED,E66; N01,R41-14; R41-21,configurable classification scheme with material link
+APG-S13-L0022,CARRIED,E66; N01,R41-14; R41-21,
+APG-S13-L0023,CARRIED,E66,R41-14,material and supplier links
+APG-S13-L0026,CARRIED,E107; E08,R41-16; R41-15,
+APG-S13-L0028,CARRIED,E97; E88,R41-20,
+APG-S13-L0045,CARRIED,E66; N01,R41-14; R41-21,classification (S13 s13.4)
+APG-S13-L0046,CARRIED,E66; N01,R41-14; R41-21,classification (S13 s13.4)
+APG-S13-L0047,CARRIED,E66; N01,R41-14; R41-21,classification (S13 s13.4)
+APG-S13-L0048,CARRIED,E66; N01,R41-14; R41-21,classification (S13 s13.4)
+APG-S13-L0049,CARRIED,E66; N01,R41-14; R41-21,classification (S13 s13.4)
+APG-S13-L0050,CARRIED,E66; N01,R41-14; R41-21,classification (S13 s13.4)
+APG-S13-L0051,CARRIED,E66; N01,R41-14; R41-21,classification (S13 s13.4)
+APG-S13-C0053,CARRIED,E66; N01,R41-14; R41-21,classification (S13 s13.4)
+APG-S13-L0059,CARRIED,E71,R41-38,cost components
+APG-S13-L0060,CARRIED,E71,R41-38,cost components
+APG-S13-L0061,CARRIED,E71,R41-38,cost components
+APG-S13-L0062,CARRIED,E71,R41-38,cost components
+APG-S13-L0066,CARRIED,E71,R41-38,cost components
+APG-S13-L0071,CARRIED,E71,R41-38,recovery split potential/approved/actual
+APG-S13-L0072,CARRIED,E71,R41-38,recovery split potential/approved/actual
+APG-S13-L0073,CARRIED,E71,R41-38,recovery split potential/approved/actual
+APG-S13-L0074,CARRIED,E71,R41-38,recovery split potential/approved/actual
+APG-S13-C0075,CARRIED,E71,R41-38,recovery split potential/approved/actual
+APG-S13-L0078,STILL-GAP,E44,R41-24b,"R41-24b says ""the savings-baseline contents (S10 s9, S13)"" without naming any field (and S10 s9 is approval boundaries). Fix: E44 list the S13 s13.6 baseline fields: scope and period, comparability characteristics, historical defect/rework frequency, cost method, exposure volume, assumptions and limitations, relevant changes."
+APG-S13-L0079,STILL-GAP,E44,R41-24b,"R41-24b says ""the savings-baseline contents (S10 s9, S13)"" without naming any field (and S10 s9 is approval boundaries). Fix: E44 list the S13 s13.6 baseline fields: scope and period, comparability characteristics, historical defect/rework frequency, cost method, exposure volume, assumptions and limitations, relevant changes."
+APG-S13-L0080,STILL-GAP,E44,R41-24b,"R41-24b says ""the savings-baseline contents (S10 s9, S13)"" without naming any field (and S10 s9 is approval boundaries). Fix: E44 list the S13 s13.6 baseline fields: scope and period, comparability characteristics, historical defect/rework frequency, cost method, exposure volume, assumptions and limitations, relevant changes."
+APG-S13-L0082,STILL-GAP,E44,R41-24b,"R41-24b says ""the savings-baseline contents (S10 s9, S13)"" without naming any field (and S10 s9 is approval boundaries). Fix: E44 list the S13 s13.6 baseline fields: scope and period, comparability characteristics, historical defect/rework frequency, cost method, exposure volume, assumptions and limitations, relevant changes."
+APG-S13-L0084,STILL-GAP,E44,R41-24b,"R41-24b says ""the savings-baseline contents (S10 s9, S13)"" without naming any field (and S10 s9 is approval boundaries). Fix: E44 list the S13 s13.6 baseline fields: scope and period, comparability characteristics, historical defect/rework frequency, cost method, exposure volume, assumptions and limitations, relevant changes."
+APG-S13-L0090,CARRIED,E66,R41-14,links to material and supplier
+APG-S13-L0091,STILL-GAP,E66,R41-14,No installation method or construction-sequence link on E66. Fix: E66 add installation method and the programme activity (E48) it belongs to.
+APG-S13-L0092,STILL-GAP,E66,R41-14,"No design detail, interface or specification reference on E66 (only the material link). Fix: E66 add design detail or drawing reference, interface, and specification reference."
+APG-S13-L0094,CARRIED,E65; E66,R41-14b; R41-14,
+APG-S13-C0097,CARRIED,E68,R41-39,
+APG-S13-C0111,CARRIED,E72; E69; E71; E75; E107,R41-38; R41-13; R41-16,
+APG-S13-C0123,STILL-GAP,E86,R41-19,"Evidence, outcome, cost, dependencies carried. E86 has no constraint fields (R41-19 adds approval needed, dependencies, downside only). Fix: E86 add applicable constraints (safety, quality, contractual, operational), which it addresses and which remain unresolved."
+APG-S13-L0134,CARRIED,E71; E96,R41-38,
+APG-S13-L0135,STILL-GAP,E84,R41-17,"E84 still has no deduplication identity (S06 s6, s9.1; claimed by R41-17 via D-G-FND). Fix: E84 add a stable deduplication key for the underlying condition, with update history."
+APG-S13-L0137,CARRIED,E66,R41-14,
+APG-S13-L0139,CARRIED,E86,R41-19,
+APG-S13-L0140,CARRIED,E71,R41-38,
+APG-S13-C0146,CARRIED,E08; E75,R41-15; R41-13,
+APG-S13-C0149,CARRIED,N01; E72,R41-21,evidence each class needs before closure
+APG-S13-C0151,CARRIED,E71,R41-38,
+APG-S13-C0155,STILL-GAP,E88; E44,R41-20; R41-24b,"R41-20 has no offsetting or hidden costs and no verifier (S05 s10.1; D-G-SAV named them). Fix: E88 add offsetting/hidden costs, net realised result, verified by and on. Also: R41-24b says ""the savings-baseline contents (S10 s9, S13)"" without naming any field (and S10 s9 is approval boundaries). Fix: E44 list the S13 s13.6 baseline fields: scope and period, comparability characteristics, historical defect/rework frequency, cost method, exposure volume, assumptions and limitations, relevant changes."
+APG-S13-L0158,CARRIED,E71,R41-38,
+APG-S13-L0159,CARRIED,E66,R41-14,
+APG-S13-L0161,CARRIED,N01; E72,R41-21,
+APG-S13-L0163,STILL-GAP,E88; E44,R41-20; R41-24b,"R41-20 has no offsetting or hidden costs and no verifier (S05 s10.1; D-G-SAV named them). Fix: E88 add offsetting/hidden costs, net realised result, verified by and on. Also: R41-24b says ""the savings-baseline contents (S10 s9, S13)"" without naming any field (and S10 s9 is approval boundaries). Fix: E44 list the S13 s13.6 baseline fields: scope and period, comparability characteristics, historical defect/rework frequency, cost method, exposure volume, assumptions and limitations, relevant changes."
+APG-S13-L0164,CARRIED,E84,R41-17,
+APG-S13-L0167,CARRIED,E107,R41-16,
+APG-S14-L0052,CARRIED,E102,R41-02,class P
+APG-S14-L0054,CARRIED,E05,R41-28,class P part
+APG-S14-L0055,CARRIED,E102,R41-02,tamper-evidence
+APG-S14-L0056,STILL-GAP,E84,R41-17,"Lifecycle and reopening carried. E84 still has no deduplication identity (S06 s6, s9.1; claimed by R41-17 via D-G-FND). Fix: E84 add a stable deduplication key for the underlying condition, with update history."
+APG-S14-L0069,STILL-GAP,E88,R41-20,"R41-20 has no offsetting or hidden costs and no verifier (S05 s10.1; D-G-SAV named them). Fix: E88 add offsetting/hidden costs, net realised result, verified by and on."
+APG-S14-L0073,CARRIED,E84,R41-17,
+APG-S14-L0079,CARRIED,E101; E08,R41-49; R41-15,
+APG-S14-L0084,CARRIED,E101; E08,R41-49; R41-15,
+APG-S14-L0087,CARRIED,E101; E08,R41-49; R41-15,
+APG-S14-L0090,CARRIED,E101; E08,R41-49; R41-15,
+APG-S14-L0091,STILL-GAP,E84,R41-17,"E84 still has no deduplication identity (S06 s6, s9.1; claimed by R41-17 via D-G-FND). Fix: E84 add a stable deduplication key for the underlying condition, with update history."
+APG-S14-C0093,CARRIED,E84; E102,R41-17; R41-02,
+APG-S15-C0029,CARRIED,E05,R41-28,identity type
+APG-S15-L0030,CARRIED,E05,R41-28,sessions (class P part)
+APG-S15-L0031,STILL-GAP,E05,R41-28,"Credentials are named nowhere, even as platform-held. Fix: E05 R41-28 add ""authentication credentials (password hash or federated identity reference), held by the Anchor platform""."
+APG-S15-L0032,CARRIED,E05,R41-28,MFA requirement
+APG-S15-L0033,CARRIED,E05,R41-28,sessions
+APG-S15-L0036,CARRIED,E05,R41-28,
+APG-S15-L0037,CARRIED,E05,R41-28,identity status and dates
+APG-S15-L0043,CARRIED,E05,R41-28,project-scoped roles
+APG-S15-L0044,STILL-GAP,E05,R41-28,Only project-scoped roles; G-IAM named resource-scoped assignments. Fix: E05 add resource-scoped access grants.
+APG-S15-L0045,CARRIED,E05,R41-28,permission sets
+APG-S15-L0046,CARRIED,E108; E01; E05,R41-43; R41-01; R41-28,
+APG-S15-L0048,CARRIED,E02; E05,R41-03; R41-28,
+APG-S15-L0049,CARRIED,E05,R41-28,
+APG-S15-L0058,CARRIED,E112,R41-47,"class P, conditional"
+APG-S15-L0059,CARRIED,E85; E102; E02,R41-02; R41-03,"credential metadata only, never secrets"
+APG-S15-L0060,STILL-GAP,E109,R41-44,Derived outputs carried by E45/E84; E109 has no payload reference (G-JOB named it). Fix: E109 add payload reference.
+APG-S15-C0062,CARRIED,E01,R41-01,organisation and project scope
+APG-S15-L0067,CARRIED,E108; E01,R41-43; R41-01,classification level
+APG-S15-L0068,CARRIED,E108; E01,R41-43; R41-01,classification level
+APG-S15-L0069,CARRIED,E108; E01,R41-43; R41-01,classification level
+APG-S15-L0070,CARRIED,E108; E01,R41-43; R41-01,classification level
+APG-S15-L0071,CARRIED,E108; E01,R41-43; R41-01,classification level
+APG-S15-C0074,CARRIED,E108; E01,R41-43; R41-01,
+APG-S15-L0090,CARRIED,E102,R41-02,class P
+APG-S15-L0091,CARRIED,E102,R41-02,class P
+APG-S15-L0092,CARRIED,E102,R41-02,class P
+APG-S15-L0093,CARRIED,E102,R41-02,class P
+APG-S15-L0094,CARRIED,E102,R41-02,class P
+APG-S15-L0095,CARRIED,E102,R41-02,class P
+APG-S15-L0096,CARRIED,E102,R41-02,class P
+APG-S15-L0097,CARRIED,E102,R41-02,class P
+APG-S15-L0098,CARRIED,E102,R41-02,class P
+APG-S15-C0100,CARRIED,E102,R41-02,
+APG-S15-L0117,CARRIED,E02,R41-03,
+APG-S15-L0123,CARRIED,E102; E109,R41-02; R41-44,
+APG-S15-L0134,CARRIED,E05; E102; E87,R41-28; R41-02; R41-42,
+APG-S15-L0135,CARRIED,E102; E87,R41-02; R41-42,
+APG-S15-C0136,STILL-GAP,E87,R41-42,"Proposed action, authority, decision, time carried; relevant risks and resulting state are not (D-G-APR named them). Fix: E87 add risks considered and resulting state."
+APG-S15-C0137,STILL-GAP,E87,R41-42,"Override who/why carried, but no override eligibility basis and no subsequent review; reason is only ""where given"". Fix: E87 add override eligibility basis, mandatory reason, subsequent review (by, date, result)."
+APG-S15-L0139,CARRIED,E110,R41-45,class P
+APG-S15-L0140,CARRIED,E110,R41-45,class P
+APG-S15-L0145,CARRIED,E110,R41-45,class P
+APG-S15-L0147,CARRIED,E110,R41-45,class P
+APG-S15-C0148,CARRIED,E110,R41-45,class P
+APG-S15-C0193,CARRIED,E87; E102,R41-42; R41-02,"see summary on ""rationale where given"""
+APG-S16-C0019,CARRIED,E111; E02,R41-46; R41-03,
+APG-S16-C0020,CARRIED,E111,R41-46,
+APG-S16-L0023,STILL-GAP,E02; E111,R41-03; R41-46,Last successful operation carried (E02 last success); affected functions are not. Fix: E111 add affected functions/capabilities per state.
+APG-S16-C0034,STILL-GAP,E102; E103; E109; E45,R41-02; R41-05; R41-44; R41-23,E102 and E103 carry correlation id; E109 and E45 do not. Fix: add correlation id to E109 and E45.
+APG-S16-L0041,CARRIED,E103; E02,R41-05; R41-03,
+APG-S16-C0045,CARRIED,E109,R41-44,state
+APG-S16-L0046,STILL-GAP,E109,R41-44,Attempts carried; failure class and next retry are not. Fix: E109 add failure class (transient or permanent) and next retry time.
+APG-S16-L0047,CARRIED,E109; E96,R41-44; R41-10,
+APG-S16-L0048,CARRIED,E103; E01,R41-05; R41-01,duplicate decision; received vs source times
+APG-S16-L0049,CARRIED,E109,R41-44,"state, outcome, external reference"
+APG-S16-L0051,STILL-GAP,E109,R41-44,"No owner, replay or closure on E109. Fix: E109 add owner of dead-lettered/intervention items, replay (by, when, scope kept) and closure."
+APG-S16-L0067,STILL-GAP,E111,R41-46,"""restore test and its result, time"" only. Fix: E111 add scope, versions, duration, exceptions and evidence."
+APG-S16-L0074,STILL-GAP,E02,R41-03,"Last success and failures carried; failure class, retry schedule, missing coverage and required intervention are not (D-G-INT named them). Fix: E02 add those four."
+APG-S16-L0087,STILL-GAP,E111,R41-46,"""release and its version, time"" only. Fix: E111 add configuration/migration versions, deployer identity, verification results, known exceptions, rollback/repair decisions."
+APG-S16-L0090,CARRIED,E110,R41-45,
+APG-S16-L0091,CARRIED,E110,R41-45,
+APG-S16-L0097,STILL-GAP,E110,R41-45,"""recovery, integrity sign-off"" carried; recovery verification result and residual limitations are not. Fix: E110 add recovery verification against criteria and residual limitations."
+APG-S16-L0098,STILL-GAP,E110,R41-45,Review and corrective actions carried; their owners and due dates are not. Fix: E110 add per corrective action owner and due date.
+APG-S16-C0099,CARRIED,E110,R41-45,"cause state, integrity sign-off"
+APG-S16-L0108,CARRIED,E102,R41-02,

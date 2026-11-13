@@ -1,0 +1,722 @@
+requirement_id,data_need,data_named,entities,verdict,note
+APG-S14-H0005,N,,,NO-DATA-NEED,Heading
+APG-S14-C0010,N,,,NO-DATA-NEED,Document control
+APG-S14-H0013,N,,,NO-DATA-NEED,Heading
+APG-S14-C0015,N,,,NO-DATA-NEED,Purpose of the build plan
+APG-S14-H0017,N,,,NO-DATA-NEED,Heading
+APG-S14-L0018,N,,,NO-DATA-NEED,Implementation principle
+APG-S14-L0019,N,,,NO-DATA-NEED,Implementation principle
+APG-S14-L0020,N,,,NO-DATA-NEED,Implementation principle
+APG-S14-L0021,N,,,NO-DATA-NEED,Implementation principle
+APG-S14-L0022,N,,,NO-DATA-NEED,Implementation principle
+APG-S14-L0023,N,,,NO-DATA-NEED,Implementation principle
+APG-S14-L0024,N,,,NO-DATA-NEED,"Build-programme principle: blockers are recorded in delivery artefacts, not APG data"
+APG-S14-L0025,N,,,NO-DATA-NEED,Implementation principle
+APG-S14-L0026,Y,"history of calculations, rules, configuration and findings",E01;E45;N01;E90,COVERED,E01 revision/supersession on every record; E45 calculation version and input set; N01 and E90 are versioned. Finding lifecycle history itself: see G-FND at L0056
+APG-S14-L0027,N,,,NO-DATA-NEED,Implementation principle
+APG-S14-H0028,N,,,NO-DATA-NEED,Heading
+APG-S14-L0030,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-L0031,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-L0032,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-L0033,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-L0034,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-L0035,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-L0036,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-L0037,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-L0038,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-L0039,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-C0040,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-C0041,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-L0042,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-L0043,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-L0044,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-L0045,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-L0046,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-L0047,N,,,NO-DATA-NEED,"Build-programme instruction (repository discovery); its outputs are delivery artefacts, not APG data"
+APG-S14-H0048,N,,,NO-DATA-NEED,Heading
+APG-S14-L0049,Y,canonical entity and financial data model,E96;E04;E90,COVERED,Build-plan restatement; the canonical financial record is E96 with E04 cost-code map and E90 policy
+APG-S14-L0050,Y,Source Authority Register; field-level provenance,E03;E01,COVERED,"E03 field-level authority; E01 source, source record id, verification"
+APG-S14-L0051,Y,"ingestion, reconciliation and quarantine state",E01;E02,COVERED,E01 ingestion state covers quarantine; E02 source registry
+APG-S14-L0052,Y,financial-state transition history,E96;E77,GAP,"E96 holds the current value status only; a transition record (from, to, event, actor or rule, evidence, timestamp) exists only for retention (E77). GAP fix G-AUD: new entity Audit log entry (tenant, actor identity and role, action/event type, subject kind and id, state or value before and after, reason, evidence ref, timestamp, correlation id, outcome, tamper-evidence sequence/hash) (state transitions as audit entries)"
+APG-S14-L0053,Y,calculation version; reproducible inputs,E45,COVERED,E45 calculation version and input set
+APG-S14-L0054,Y,"users, roles, tenant membership, permissions",E05,GAP,"E05 holds tenant, users, roles only. GAP fix G-IAM: field groups on E05 (identity type human/integration/service/automated; identity status active/disabled/suspended/expired/revoked with dates; MFA requirement and enrolment; session expiry/revocation unless held by the Anchor identity service; role permission sets read/create/update/approve/export/administer; role assignments scoped to organisation, project or resource; time-bounded privileged grants with grantor, expiry, revocation)"
+APG-S14-L0055,Y,immutable or tamper-evident audit history,,GAP,"No audit log entity in the register; E01 revision/supersession is record history, not an audit trail of actions. GAP fix G-AUD: new entity Audit log entry (tenant, actor identity and role, action/event type, subject kind and id, state or value before and after, reason, evidence ref, timestamp, correlation id, outcome, tamper-evidence sequence/hash)"
+APG-S14-L0056,Y,"finding lifecycle, deduplication, reopening",E84,GAP,"E84 field group is rule, evidence, quantification, confidence, limits: no lifecycle state, dedup identity or reopen history (S06 decision 2). GAP fix G-FND: field groups on E84 (stable finding identity/deduplication key, lifecycle state and history open/downgraded/closed/reopened/superseded, reopen reason, owner, relationships to linked findings and shared event/root cause, overlap/double-counting group)"
+APG-S14-L0057,Y,human approvals,E87,COVERED,E87 decision/approval
+APG-S14-L0058,Y,data-quality status and uncertainty,E01;E89;E45,COVERED,E01 verification and ingestion state; E89 readiness states and gaps; E45 warnings
+APG-S14-C0059,N,,,NO-DATA-NEED,Build gate
+APG-S14-H0060,N,,,NO-DATA-NEED,Heading
+APG-S14-L0062,Y,canonical financial classifications,E90;E04;E96,COVERED,E90 cost taxonomy; E04 map; E96 classification
+APG-S14-L0063,Y,actual/commitment/forecast/scenario distinction,E96,COVERED,E96 value status
+APG-S14-L0064,Y,recognised margin and forecast final margin,E45;E90,COVERED,E90 margin measures; E45 measures
+APG-S14-L0065,Y,cash-position-adjusted margin,E45;E90,COVERED,E90 margin measures; E45 measures
+APG-S14-L0066,Y,authoritative forecast selection; scenario isolation,E44;E41;E46,COVERED,E44 baseline approval; E41 forecast versions; E46 isolation from the authoritative forecast
+APG-S14-L0067,Y,qualified forecasts,E45;E89;E96,COVERED,E45 warnings; E89 eligibility and gaps; E96 value status
+APG-S14-L0068,Y,calculation versions and input snapshots,E45,COVERED,E45 calculation version and input set
+APG-S14-L0069,Y,verification evidence for realised savings and net benefits,E88;E01,GAP,"E88 holds decision, realised result, date only; S05 s10.1 requires approved versioned baseline, implementation evidence, offsetting costs and authorised verification. GAP fix G-SAV: field group on E88 (approved versioned savings baseline ref, implementation evidence, offsetting/hidden costs, net realised result, verified by and date)"
+APG-S14-C0070,Y,rule/formula versions; rounding and currency settings,E45;N01;E90,COVERED,E45 calculation version; N01 versioned rules; E90 rounding and currency
+APG-S14-C0071,N,,,NO-DATA-NEED,Build gate
+APG-S14-H0072,N,,,NO-DATA-NEED,Heading
+APG-S14-L0073,Y,finding lifecycle; cross-domain overlap relationships,E84,GAP,"Overlap/relationship groups and lifecycle are not in E84 (S06 s6 relationships). GAP fix G-FND: field groups on E84 (stable finding identity/deduplication key, lifecycle state and history open/downgraded/closed/reopened/superseded, reopen reason, owner, relationships to linked findings and shared event/root cause, overlap/double-counting group)"
+APG-S14-L0074,Y,"delay events, schedule evidence, holding costs",E52;E47;E48;E53;E83,COVERED,
+APG-S14-L0075,Y,"comparable sourcing, landed cost, market-data freshness",E30;E33;E36;N01,COVERED,N01 holds freshness thresholds
+APG-S14-L0076,Y,"productivity baselines, rework exposure, workforce privacy",E62;E67;E54;E57,COVERED,E54 pseudonymous worker
+APG-S14-L0077,Y,"recommendations, scenarios, approvals, outcomes",E86;E46;E87;E88,COVERED,
+APG-S14-L0078,Y,"claims, variations, certification, invoicing, recognition, collection states",E13;E09;E14;E15;E96,COVERED,
+APG-S14-L0079,Y,"cash forecast, working capital, financing cost, retentions, security",E101;E74;E75;E76;E78;E79,COVERED-BY-PROPOSED,Cash forecasting only by proposed E101 (M15 fix 2); the rest by existing entities
+APG-S14-L0080,Y,"defect lifecycle, rework cost, root cause, verified improvement",E66;E67;E71;E68;E69;E72;E97,COVERED,
+APG-S14-H0083,N,,,NO-DATA-NEED,Heading
+APG-S14-L0084,Y,"price change effects on commitments, forecast cost, cash timing",E30;E21;E41;E96;E101,COVERED-BY-PROPOSED,Commitments and forecast cost covered; cash timing needs proposed E101 (M15 fix 2)
+APG-S14-L0085,Y,rework cost and schedule exposure,E67;E57;E52,COVERED,
+APG-S14-L0086,Y,evidenced holding costs,E52;E53,COVERED,
+APG-S14-L0087,Y,"defect effects on rectification cost, schedule, retention, close-out obligations",E66;E70;E71;E75;E76;E08,COVERED-BY-PROPOSED,Close-out obligation (defects liability period) only by proposed E08 field group (M15 fix 4); rest covered
+APG-S14-L0088,Y,claim evidence and approval states,E13;E14;E09;E87;E83,COVERED,
+APG-S14-L0089,Y,potential recoveries separate from recognised/collected,E96;E15,COVERED,"E96 value status (potential, claimed, actual); E15 received amount"
+APG-S14-L0090,Y,cash-flow scenarios vs authoritative forecast,E46;E101,COVERED-BY-PROPOSED,E46 isolation exists; the cash-flow base it varies is proposed E101 (M15 fix 2)
+APG-S14-L0091,Y,repeated findings update existing record,E84,GAP,"Needs stable finding identity/dedup key and update history. GAP fix G-FND: field groups on E84 (stable finding identity/deduplication key, lifecycle state and history open/downgraded/closed/reopened/superseded, reopen reason, owner, relationships to linked findings and shared event/root cause, overlap/double-counting group)"
+APG-S14-L0092,Y,"recommendation evidence, dependencies, approval history, outcomes",E86;E87;E88;E84,COVERED,E86 conditions carry dependencies
+APG-S14-C0093,Y,links between related cross-domain impacts; audit record per relationship,E84,GAP,"Documentation part is design work; keeping related impacts linked needs finding relationships. GAP fix G-FND: field groups on E84 (stable finding identity/deduplication key, lifecycle state and history open/downgraded/closed/reopened/superseded, reopen reason, owner, relationships to linked findings and shared event/root cause, overlap/double-counting group)"
+APG-S14-H0095,N,,,NO-DATA-NEED,Heading
+APG-S14-L0096,N,,,NO-DATA-NEED,UI behaviour using data already named elsewhere
+APG-S14-L0097,N,,,NO-DATA-NEED,UI behaviour using data already named elsewhere
+APG-S14-L0098,N,,,NO-DATA-NEED,UI behaviour using data already named elsewhere
+APG-S14-L0099,N,,,NO-DATA-NEED,UI behaviour using data already named elsewhere
+APG-S14-L0100,N,,,NO-DATA-NEED,UI behaviour using data already named elsewhere
+APG-S14-L0101,N,,,NO-DATA-NEED,UI behaviour using data already named elsewhere
+APG-S14-L0102,N,,,NO-DATA-NEED,UI behaviour using data already named elsewhere
+APG-S14-L0103,N,,,NO-DATA-NEED,UI behaviour using data already named elsewhere
+APG-S14-C0104,N,,,NO-DATA-NEED,UI behaviour using data already named elsewhere
+APG-S14-H0106,N,,,NO-DATA-NEED,Heading
+APG-S14-L0107,N,,,NO-DATA-NEED,Test class; no new data
+APG-S14-L0108,N,,,NO-DATA-NEED,Test class; no new data
+APG-S14-L0109,N,,,NO-DATA-NEED,Test class; no new data
+APG-S14-L0110,N,,,NO-DATA-NEED,Test class; no new data
+APG-S14-L0111,N,,,NO-DATA-NEED,Test class; no new data
+APG-S14-L0112,N,,,NO-DATA-NEED,Test class; no new data
+APG-S14-L0113,N,,,NO-DATA-NEED,Test class; no new data
+APG-S14-L0114,N,,,NO-DATA-NEED,Test class; no new data
+APG-S14-L0115,N,,,NO-DATA-NEED,Test class; no new data
+APG-S14-L0116,N,,,NO-DATA-NEED,Test class; no new data
+APG-S14-L0117,N,,,NO-DATA-NEED,Test class; no new data
+APG-S14-C0118,N,,,NO-DATA-NEED,Test class; no new data
+APG-S14-H0121,N,,,NO-DATA-NEED,Heading
+APG-S14-C0122,N,,,NO-DATA-NEED,"Build-programme artefact (DB-Dependent Closure Register), held in the delivery repository, not in APG"
+APG-S14-C0123,N,,,NO-DATA-NEED,"Build-programme artefact (DB-Dependent Closure Register), held in the delivery repository, not in APG"
+APG-S14-L0124,N,,,NO-DATA-NEED,"Build-programme artefact (DB-Dependent Closure Register), held in the delivery repository, not in APG"
+APG-S14-L0125,N,,,NO-DATA-NEED,"Build-programme artefact (DB-Dependent Closure Register), held in the delivery repository, not in APG"
+APG-S14-L0126,N,,,NO-DATA-NEED,"Build-programme artefact (DB-Dependent Closure Register), held in the delivery repository, not in APG"
+APG-S14-L0127,N,,,NO-DATA-NEED,"Build-programme artefact (DB-Dependent Closure Register), held in the delivery repository, not in APG"
+APG-S14-L0128,N,,,NO-DATA-NEED,"Build-programme artefact (DB-Dependent Closure Register), held in the delivery repository, not in APG"
+APG-S14-L0129,N,,,NO-DATA-NEED,"Build-programme artefact (DB-Dependent Closure Register), held in the delivery repository, not in APG"
+APG-S14-L0130,N,,,NO-DATA-NEED,"Build-programme artefact (DB-Dependent Closure Register), held in the delivery repository, not in APG"
+APG-S14-C0131,N,,,NO-DATA-NEED,"Build-programme artefact (DB-Dependent Closure Register), held in the delivery repository, not in APG"
+APG-S14-H0133,N,,,NO-DATA-NEED,Heading
+APG-S14-C0134,N,,,NO-DATA-NEED,"Implementation job record: delivery artefact, not APG data"
+APG-S14-L0135,N,,,NO-DATA-NEED,"Implementation job record: delivery artefact, not APG data"
+APG-S14-L0136,N,,,NO-DATA-NEED,"Implementation job record: delivery artefact, not APG data"
+APG-S14-L0137,N,,,NO-DATA-NEED,"Implementation job record: delivery artefact, not APG data"
+APG-S14-L0138,N,,,NO-DATA-NEED,"Implementation job record: delivery artefact, not APG data"
+APG-S14-L0139,N,,,NO-DATA-NEED,"Implementation job record: delivery artefact, not APG data"
+APG-S14-L0140,N,,,NO-DATA-NEED,"Implementation job record: delivery artefact, not APG data"
+APG-S14-L0141,N,,,NO-DATA-NEED,"Implementation job record: delivery artefact, not APG data"
+APG-S14-L0142,N,,,NO-DATA-NEED,"Implementation job record: delivery artefact, not APG data"
+APG-S14-L0143,N,,,NO-DATA-NEED,"Implementation job record: delivery artefact, not APG data"
+APG-S14-L0144,N,,,NO-DATA-NEED,"Implementation job record: delivery artefact, not APG data"
+APG-S14-L0145,N,,,NO-DATA-NEED,"Implementation job record: delivery artefact, not APG data"
+APG-S14-L0146,N,,,NO-DATA-NEED,"Implementation job record: delivery artefact, not APG data"
+APG-S14-L0147,N,,,NO-DATA-NEED,"Implementation job record: delivery artefact, not APG data"
+APG-S14-C0148,N,,,NO-DATA-NEED,"Implementation job record: delivery artefact, not APG data"
+APG-S14-H0149,N,,,NO-DATA-NEED,Heading
+APG-S14-C0150,N,,,NO-DATA-NEED,"RTM status control: delivery artefact, not APG data"
+APG-S14-L0152,N,,,NO-DATA-NEED,"RTM status control: delivery artefact, not APG data"
+APG-S14-L0153,N,,,NO-DATA-NEED,"RTM status control: delivery artefact, not APG data"
+APG-S14-L0154,N,,,NO-DATA-NEED,"RTM status control: delivery artefact, not APG data"
+APG-S14-L0155,N,,,NO-DATA-NEED,"RTM status control: delivery artefact, not APG data"
+APG-S14-L0156,N,,,NO-DATA-NEED,"RTM status control: delivery artefact, not APG data"
+APG-S14-L0157,N,,,NO-DATA-NEED,"RTM status control: delivery artefact, not APG data"
+APG-S14-L0158,N,,,NO-DATA-NEED,"RTM status control: delivery artefact, not APG data"
+APG-S14-L0159,N,,,NO-DATA-NEED,"RTM status control: delivery artefact, not APG data"
+APG-S14-L0160,N,,,NO-DATA-NEED,"RTM status control: delivery artefact, not APG data"
+APG-S14-C0161,N,,,NO-DATA-NEED,"RTM status control: delivery artefact, not APG data"
+APG-S14-H0162,N,,,NO-DATA-NEED,Heading
+APG-S14-C0163,N,,,NO-DATA-NEED,"Blueprint change control: delivery governance, not APG data"
+APG-S14-L0164,N,,,NO-DATA-NEED,"Blueprint change control: delivery governance, not APG data"
+APG-S14-L0165,N,,,NO-DATA-NEED,"Blueprint change control: delivery governance, not APG data"
+APG-S14-L0166,N,,,NO-DATA-NEED,"Blueprint change control: delivery governance, not APG data"
+APG-S14-L0167,N,,,NO-DATA-NEED,"Blueprint change control: delivery governance, not APG data"
+APG-S14-L0168,N,,,NO-DATA-NEED,"Blueprint change control: delivery governance, not APG data"
+APG-S14-L0169,N,,,NO-DATA-NEED,"Blueprint change control: delivery governance, not APG data"
+APG-S14-L0170,N,,,NO-DATA-NEED,"Blueprint change control: delivery governance, not APG data"
+APG-S14-C0171,N,,,NO-DATA-NEED,"Blueprint change control: delivery governance, not APG data"
+APG-S14-H0172,N,,,NO-DATA-NEED,Heading
+APG-S14-C0173,N,,,NO-DATA-NEED,Implementation report content: delivery artefact
+APG-S14-L0174,N,,,NO-DATA-NEED,Implementation report content: delivery artefact
+APG-S14-L0175,N,,,NO-DATA-NEED,Implementation report content: delivery artefact
+APG-S14-L0176,N,,,NO-DATA-NEED,Implementation report content: delivery artefact
+APG-S14-L0177,N,,,NO-DATA-NEED,Implementation report content: delivery artefact
+APG-S14-L0178,N,,,NO-DATA-NEED,Implementation report content: delivery artefact
+APG-S14-L0179,N,,,NO-DATA-NEED,Implementation report content: delivery artefact
+APG-S14-L0180,N,,,NO-DATA-NEED,Implementation report content: delivery artefact
+APG-S14-L0181,N,,,NO-DATA-NEED,Implementation report content: delivery artefact
+APG-S14-L0182,N,,,NO-DATA-NEED,Implementation report content: delivery artefact
+APG-S14-L0183,N,,,NO-DATA-NEED,Implementation report content: delivery artefact
+APG-S14-H0185,N,,,NO-DATA-NEED,Heading
+APG-S14-C0186,N,,,NO-DATA-NEED,Completion criterion; no new data
+APG-S14-L0187,N,,,NO-DATA-NEED,Completion criterion; no new data
+APG-S14-L0188,N,,,NO-DATA-NEED,Completion criterion; no new data
+APG-S14-L0189,N,,,NO-DATA-NEED,Completion criterion; no new data
+APG-S14-L0190,N,,,NO-DATA-NEED,Completion criterion; no new data
+APG-S14-L0191,N,,,NO-DATA-NEED,Completion criterion; no new data
+APG-S14-L0192,N,,,NO-DATA-NEED,Completion criterion; no new data
+APG-S14-L0193,N,,,NO-DATA-NEED,Completion criterion; no new data
+APG-S14-L0194,N,,,NO-DATA-NEED,Completion criterion; no new data
+APG-S14-L0195,N,,,NO-DATA-NEED,Completion criterion; no new data
+APG-S14-L0196,N,,,NO-DATA-NEED,Completion criterion; no new data
+APG-S14-L0197,N,,,NO-DATA-NEED,Completion criterion; no new data
+APG-S14-L0198,N,,,NO-DATA-NEED,Completion criterion; no new data
+APG-S14-C0199,N,,,NO-DATA-NEED,Completion criterion; no new data
+APG-S14-H0200,N,,,NO-DATA-NEED,Heading
+APG-S14-H0201,N,,,NO-DATA-NEED,Heading
+APG-S14-C0202,N,,,NO-DATA-NEED,Checkpoint decision on the build process
+APG-S14-H0203,N,,,NO-DATA-NEED,Heading
+APG-S14-C0204,N,,,NO-DATA-NEED,Checkpoint decision on the build process
+APG-S14-H0205,N,,,NO-DATA-NEED,Heading
+APG-S14-C0206,N,,,NO-DATA-NEED,Checkpoint decision on the build process
+APG-S14-H0207,N,,,NO-DATA-NEED,Heading
+APG-S14-C0208,N,,,NO-DATA-NEED,Checkpoint decision on the build process
+APG-S14-H0209,N,,,NO-DATA-NEED,Heading
+APG-S14-L0210,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S14-L0211,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S14-L0212,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S14-L0213,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S14-L0214,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S14-L0215,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S14-L0216,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S14-L0217,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S14-L0218,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S14-L0219,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S14-H0220,N,,,NO-DATA-NEED,Heading
+APG-S14-C0222,N,,,NO-DATA-NEED,Audit instruction
+APG-S14-H0223,N,,,NO-DATA-NEED,Heading
+APG-S14-C0224,N,,,NO-DATA-NEED,Lock declaration
+APG-S14-H0225,N,,,NO-DATA-NEED,Heading
+APG-S14-L0226,N,,,NO-DATA-NEED,"Milestone evidence pack: delivery artefact, not APG data"
+APG-S14-L0227,N,,,NO-DATA-NEED,"Milestone evidence pack: delivery artefact, not APG data"
+APG-S14-L0228,N,,,NO-DATA-NEED,"Milestone evidence pack: delivery artefact, not APG data"
+APG-S14-L0229,N,,,NO-DATA-NEED,"Milestone evidence pack: delivery artefact, not APG data"
+APG-S14-L0230,N,,,NO-DATA-NEED,"Milestone evidence pack: delivery artefact, not APG data"
+APG-S14-L0231,N,,,NO-DATA-NEED,"Milestone evidence pack: delivery artefact, not APG data"
+APG-S14-L0232,N,,,NO-DATA-NEED,"Milestone evidence pack: delivery artefact, not APG data"
+APG-S14-L0233,N,,,NO-DATA-NEED,"Milestone evidence pack: delivery artefact, not APG data"
+APG-S14-L0234,N,,,NO-DATA-NEED,"Milestone evidence pack: delivery artefact, not APG data"
+APG-S14-L0235,N,,,NO-DATA-NEED,"Milestone evidence pack: delivery artefact, not APG data"
+APG-S15-H0005,N,,,NO-DATA-NEED,Heading
+APG-S15-C0010,N,,,NO-DATA-NEED,Document control
+APG-S15-H0013,N,,,NO-DATA-NEED,Heading
+APG-S15-C0014,N,,,NO-DATA-NEED,Purpose
+APG-S15-C0015,N,,,NO-DATA-NEED,Purpose
+APG-S15-H0017,N,,,NO-DATA-NEED,Heading
+APG-S15-L0018,N,,,NO-DATA-NEED,Security objective (principle); data needs are stated in 15.3 to 15.12
+APG-S15-L0019,N,,,NO-DATA-NEED,Security objective (principle); data needs are stated in 15.3 to 15.12
+APG-S15-L0020,N,,,NO-DATA-NEED,Security objective (principle); data needs are stated in 15.3 to 15.12
+APG-S15-L0021,N,,,NO-DATA-NEED,Security objective (principle); data needs are stated in 15.3 to 15.12
+APG-S15-L0022,N,,,NO-DATA-NEED,Security objective (principle); data needs are stated in 15.3 to 15.12
+APG-S15-L0023,N,,,NO-DATA-NEED,Security objective (principle); data needs are stated in 15.3 to 15.12
+APG-S15-L0024,N,,,NO-DATA-NEED,Security objective (principle); data needs are stated in 15.3 to 15.12
+APG-S15-L0025,N,,,NO-DATA-NEED,Security objective (principle); data needs are stated in 15.3 to 15.12
+APG-S15-L0026,N,,,NO-DATA-NEED,Security objective (principle); data needs are stated in 15.3 to 15.12
+APG-S15-C0027,N,,,NO-DATA-NEED,Security objective (principle); data needs are stated in 15.3 to 15.12
+APG-S15-H0028,N,,,NO-DATA-NEED,Heading
+APG-S15-C0029,Y,identities of users and service actors,E05,GAP,"E05 holds users only; no service/integration identities. GAP fix G-IAM: field groups on E05 (identity type human/integration/service/automated; identity status active/disabled/suspended/expired/revoked with dates; MFA requirement and enrolment; session expiry/revocation unless held by the Anchor identity service; role permission sets read/create/update/approve/export/administer; role assignments scoped to organisation, project or resource; time-bounded privileged grants with grantor, expiry, revocation)"
+APG-S15-L0030,Y,sessions,E05,GAP,"Unsure: session state may live in the Anchor identity service; if so the register should name that as the holder. GAP fix G-IAM: field groups on E05 (identity type human/integration/service/automated; identity status active/disabled/suspended/expired/revoked with dates; MFA requirement and enrolment; session expiry/revocation unless held by the Anchor identity service; role permission sets read/create/update/approve/export/administer; role assignments scoped to organisation, project or resource; time-bounded privileged grants with grantor, expiry, revocation)"
+APG-S15-L0031,Y,password credentials (where supported),E05,GAP,"Unsure: only if APG itself supports passwords; otherwise held by the identity service. GAP fix G-IAM: field groups on E05 (identity type human/integration/service/automated; identity status active/disabled/suspended/expired/revoked with dates; MFA requirement and enrolment; session expiry/revocation unless held by the Anchor identity service; role permission sets read/create/update/approve/export/administer; role assignments scoped to organisation, project or resource; time-bounded privileged grants with grantor, expiry, revocation)"
+APG-S15-L0032,Y,MFA requirement and enrolment,E05,GAP,"GAP fix G-IAM: field groups on E05 (identity type human/integration/service/automated; identity status active/disabled/suspended/expired/revoked with dates; MFA requirement and enrolment; session expiry/revocation unless held by the Anchor identity service; role permission sets read/create/update/approve/export/administer; role assignments scoped to organisation, project or resource; time-bounded privileged grants with grantor, expiry, revocation)"
+APG-S15-L0033,Y,session expiry and revocation,E05,GAP,"GAP fix G-IAM: field groups on E05 (identity type human/integration/service/automated; identity status active/disabled/suspended/expired/revoked with dates; MFA requirement and enrolment; session expiry/revocation unless held by the Anchor identity service; role permission sets read/create/update/approve/export/administer; role assignments scoped to organisation, project or resource; time-bounded privileged grants with grantor, expiry, revocation)"
+APG-S15-L0034,N,,,NO-DATA-NEED,Security control behaviour; no stored data beyond identity records judged elsewhere
+APG-S15-L0035,N,,,NO-DATA-NEED,Security control behaviour; no stored data beyond identity records judged elsewhere
+APG-S15-L0036,Y,distinct identities by actor type,E05,GAP,"GAP fix G-IAM: field groups on E05 (identity type human/integration/service/automated; identity status active/disabled/suspended/expired/revoked with dates; MFA requirement and enrolment; session expiry/revocation unless held by the Anchor identity service; role permission sets read/create/update/approve/export/administer; role assignments scoped to organisation, project or resource; time-bounded privileged grants with grantor, expiry, revocation)"
+APG-S15-L0037,Y,"identity status (disabled, suspended, expired, revoked)",E05,GAP,"GAP fix G-IAM: field groups on E05 (identity type human/integration/service/automated; identity status active/disabled/suspended/expired/revoked with dates; MFA requirement and enrolment; session expiry/revocation unless held by the Anchor identity service; role permission sets read/create/update/approve/export/administer; role assignments scoped to organisation, project or resource; time-bounded privileged grants with grantor, expiry, revocation)"
+APG-S15-L0038,N,,,NO-DATA-NEED,"Secrets and keys live in managed secret storage (L0079), outside the entity register; only a credential reference is needed (G-INT)"
+APG-S15-H0040,N,,,NO-DATA-NEED,Heading
+APG-S15-C0041,N,,,NO-DATA-NEED,Enforcement behaviour
+APG-S15-L0042,Y,organisation and tenant membership,E05,COVERED,"E05 tenant, users"
+APG-S15-L0043,Y,project-level access and role-based permissions,E05;E07,GAP,"E05 roles are not scoped to a project. GAP fix G-IAM: field groups on E05 (identity type human/integration/service/automated; identity status active/disabled/suspended/expired/revoked with dates; MFA requirement and enrolment; session expiry/revocation unless held by the Anchor identity service; role permission sets read/create/update/approve/export/administer; role assignments scoped to organisation, project or resource; time-bounded privileged grants with grantor, expiry, revocation)"
+APG-S15-L0044,Y,resource-specific restrictions,E05,GAP,"GAP fix G-IAM: field groups on E05 (identity type human/integration/service/automated; identity status active/disabled/suspended/expired/revoked with dates; MFA requirement and enrolment; session expiry/revocation unless held by the Anchor identity service; role permission sets read/create/update/approve/export/administer; role assignments scoped to organisation, project or resource; time-bounded privileged grants with grantor, expiry, revocation)"
+APG-S15-L0045,Y,"permission types (read, create, update, approve, export, administer)",E05,GAP,"Roles exist but no permission set. GAP fix G-IAM: field groups on E05 (identity type human/integration/service/automated; identity status active/disabled/suspended/expired/revoked with dates; MFA requirement and enrolment; session expiry/revocation unless held by the Anchor identity service; role permission sets read/create/update/approve/export/administer; role assignments scoped to organisation, project or resource; time-bounded privileged grants with grantor, expiry, revocation)"
+APG-S15-L0046,Y,restricted access to sensitive records,E05;E01,GAP,"Needs record classification plus permissions. GAP fix G-CLS: new configuration entity Data classification and retention policy (per data category: classification level, purpose, permitted users/services/integrations, retention rule, archival/deletion rule, legal-hold rule, export/audit restrictions) plus E01 field group (classification level, preservation/legal hold flag with reason, set by and date); and G-IAM"
+APG-S15-L0047,Y,approval authority for consequential actions,E90;E05;E87,COVERED,E90 approval roles; E87 records who approved
+APG-S15-L0048,Y,permissions for integrations and automated workflows,E02;E05,GAP,"GAP fix G-INT: field groups on E02 (integration scopes/permissions, credential reference and status with rotation/revocation dates, never the secret; last successful sync; import completeness complete/partial with counts; failure class; retry schedule; missing coverage; required intervention and owner); and G-IAM service identities"
+APG-S15-L0049,Y,time-bounded/revocable privileged access,E05,GAP,"GAP fix G-IAM: field groups on E05 (identity type human/integration/service/automated; identity status active/disabled/suspended/expired/revoked with dates; MFA requirement and enrolment; session expiry/revocation unless held by the Anchor identity service; role permission sets read/create/update/approve/export/administer; role assignments scoped to organisation, project or resource; time-bounded privileged grants with grantor, expiry, revocation)"
+APG-S15-C0050,N,,,NO-DATA-NEED,Enforcement behaviour
+APG-S15-H0051,N,,,NO-DATA-NEED,Heading
+APG-S15-C0052,N,,,NO-DATA-NEED,Lead-in to the isolation list; tenant key judged at C0062
+APG-S15-L0053,Y,"projects, entities, operational records (tenant-scoped)",E07;E06;E05,COVERED,Existing kinds; tenant key see C0062
+APG-S15-L0054,Y,"calculations, forecasts, scenarios (tenant-scoped)",E45;E41;E46,COVERED,Existing kinds
+APG-S15-L0055,Y,"contracts, invoices, claims, quotes, supplier records (tenant-scoped)",E08;E16;E23;E13;E17;E30;E20,COVERED,Existing kinds
+APG-S15-L0056,Y,"defects, workforce information, quality evidence (tenant-scoped)",E66;E54;E57;E83,COVERED,Existing kinds
+APG-S15-L0057,Y,"documents, uploads, generated reports and exports",E83,COVERED,"E83 document; note: E83 type should include APG-generated reports and exports, which are not received documents"
+APG-S15-L0058,Y,"AI conversation context, retrieval results, embeddings, memory",,GAP,"Unsure: the row implies APG holds these; no entity carries them. GAP fix G-AI (conditional): new entity AI interaction record (tenant, user, request, retrieval refs, output, model/version, verification status, retention class), or a register decision that APG retains no AI context/embeddings"
+APG-S15-L0059,Y,"notifications, audit records, integration credentials",E85,GAP,"Notifications by E85 alert; audit records and integration credential references have no entity. GAP fix G-AUD: new entity Audit log entry (tenant, actor identity and role, action/event type, subject kind and id, state or value before and after, reason, evidence ref, timestamp, correlation id, outcome, tamper-evidence sequence/hash); and G-INT"
+APG-S15-L0060,Y,"cached data, background-job payloads, derived analytical outputs",E45;E84,GAP,"Derived outputs by E45/E84; cache is not a data kind; background-job payloads have no entity. GAP fix G-JOB: new entity Background operation and external effect (operation type, tenant, trigger and correlation id, payload ref, lifecycle state pending/running/succeeded/failed/retry-scheduled/dead-lettered/interrupted/outcome-unknown, attempts, failure class, next retry, idempotency key, inbound event id and receipt order, external reference, reconciled outcome and evidence, dead-letter owner, replay and closure)"
+APG-S15-C0061,N,,,NO-DATA-NEED,Isolation behaviour or test; uses data already named
+APG-S15-C0062,Y,backend-established tenant and resource scope,E05;E01,GAP,"Needs each record to carry its owning tenant. GAP fix G-TEN: E01 gains the owning tenant (organisation) id on every record, so isolation does not rest on a client-supplied id or an indirect project link"
+APG-S15-C0063,N,,,NO-DATA-NEED,Isolation behaviour or test; uses data already named
+APG-S15-C0064,N,,,NO-DATA-NEED,Isolation behaviour or test; uses data already named
+APG-S15-H0065,N,,,NO-DATA-NEED,Heading
+APG-S15-L0067,Y,data classification level,,GAP,"Classification model level; no entity holds classification or the handling policy. GAP fix G-CLS: new configuration entity Data classification and retention policy (per data category: classification level, purpose, permitted users/services/integrations, retention rule, archival/deletion rule, legal-hold rule, export/audit restrictions) plus E01 field group (classification level, preservation/legal hold flag with reason, set by and date)"
+APG-S15-L0068,Y,data classification level,,GAP,"Classification model level; no entity holds classification or the handling policy. GAP fix G-CLS: new configuration entity Data classification and retention policy (per data category: classification level, purpose, permitted users/services/integrations, retention rule, archival/deletion rule, legal-hold rule, export/audit restrictions) plus E01 field group (classification level, preservation/legal hold flag with reason, set by and date)"
+APG-S15-L0069,Y,data classification level,,GAP,"Classification model level; no entity holds classification or the handling policy. GAP fix G-CLS: new configuration entity Data classification and retention policy (per data category: classification level, purpose, permitted users/services/integrations, retention rule, archival/deletion rule, legal-hold rule, export/audit restrictions) plus E01 field group (classification level, preservation/legal hold flag with reason, set by and date)"
+APG-S15-L0070,Y,data classification level,,GAP,"Classification model level; no entity holds classification or the handling policy. GAP fix G-CLS: new configuration entity Data classification and retention policy (per data category: classification level, purpose, permitted users/services/integrations, retention rule, archival/deletion rule, legal-hold rule, export/audit restrictions) plus E01 field group (classification level, preservation/legal hold flag with reason, set by and date)"
+APG-S15-L0071,Y,data classification level,,GAP,"Classification model level; no entity holds classification or the handling policy. GAP fix G-CLS: new configuration entity Data classification and retention policy (per data category: classification level, purpose, permitted users/services/integrations, retention rule, archival/deletion rule, legal-hold rule, export/audit restrictions) plus E01 field group (classification level, preservation/legal hold flag with reason, set by and date)"
+APG-S15-C0074,Y,retention/deletion rules; preservation (legal hold) obligations,E01,GAP,"GAP fix G-CLS: new configuration entity Data classification and retention policy (per data category: classification level, purpose, permitted users/services/integrations, retention rule, archival/deletion rule, legal-hold rule, export/audit restrictions) plus E01 field group (classification level, preservation/legal hold flag with reason, set by and date)"
+APG-S15-C0075,N,,,NO-DATA-NEED,Policy statement; no new data
+APG-S15-H0076,N,,,NO-DATA-NEED,Heading
+APG-S15-L0077,N,,,NO-DATA-NEED,"Infrastructure control; secrets live in managed secret storage, outside the entity register"
+APG-S15-L0078,N,,,NO-DATA-NEED,"Infrastructure control; secrets live in managed secret storage, outside the entity register"
+APG-S15-L0079,N,,,NO-DATA-NEED,"Infrastructure control; secrets live in managed secret storage, outside the entity register"
+APG-S15-L0080,N,,,NO-DATA-NEED,"Infrastructure control; secrets live in managed secret storage, outside the entity register"
+APG-S15-L0081,N,,,NO-DATA-NEED,"Infrastructure control; secrets live in managed secret storage, outside the entity register"
+APG-S15-L0082,N,,,NO-DATA-NEED,"Infrastructure control; secrets live in managed secret storage, outside the entity register"
+APG-S15-L0083,N,,,NO-DATA-NEED,"Infrastructure control; secrets live in managed secret storage, outside the entity register"
+APG-S15-L0084,N,,,NO-DATA-NEED,"Infrastructure control; secrets live in managed secret storage, outside the entity register"
+APG-S15-L0085,N,,,NO-DATA-NEED,"Infrastructure control; secrets live in managed secret storage, outside the entity register"
+APG-S15-L0086,N,,,NO-DATA-NEED,"Infrastructure control; secrets live in managed secret storage, outside the entity register"
+APG-S15-C0087,N,,,NO-DATA-NEED,"Infrastructure control; secrets live in managed secret storage, outside the entity register"
+APG-S15-H0088,N,,,NO-DATA-NEED,Heading
+APG-S15-L0090,Y,audit evidence: authentication and session events,,GAP,"Audit evidence list (15.8). Partly reflected in E87 or versioned N01/E90 approvals, but no entity holds audit entries. GAP fix G-AUD: new entity Audit log entry (tenant, actor identity and role, action/event type, subject kind and id, state or value before and after, reason, evidence ref, timestamp, correlation id, outcome, tamper-evidence sequence/hash)"
+APG-S15-L0091,Y,"audit evidence: permission, role and membership changes",,GAP,"Audit evidence list (15.8). Partly reflected in E87 or versioned N01/E90 approvals, but no entity holds audit entries. GAP fix G-AUD: new entity Audit log entry (tenant, actor identity and role, action/event type, subject kind and id, state or value before and after, reason, evidence ref, timestamp, correlation id, outcome, tamper-evidence sequence/hash)"
+APG-S15-L0092,Y,audit evidence: sensitive record access and exports,,GAP,"Audit evidence list (15.8). Partly reflected in E87 or versioned N01/E90 approvals, but no entity holds audit entries. GAP fix G-AUD: new entity Audit log entry (tenant, actor identity and role, action/event type, subject kind and id, state or value before and after, reason, evidence ref, timestamp, correlation id, outcome, tamper-evidence sequence/hash)"
+APG-S15-L0093,Y,"audit evidence: financial rule, configuration and calculation-version changes",,GAP,"Audit evidence list (15.8). Partly reflected in E87 or versioned N01/E90 approvals, but no entity holds audit entries. GAP fix G-AUD: new entity Audit log entry (tenant, actor identity and role, action/event type, subject kind and id, state or value before and after, reason, evidence ref, timestamp, correlation id, outcome, tamper-evidence sequence/hash)"
+APG-S15-L0094,Y,"audit evidence: approval, rejection and override events",,GAP,"Audit evidence list (15.8). Partly reflected in E87 or versioned N01/E90 approvals, but no entity holds audit entries. GAP fix G-AUD: new entity Audit log entry (tenant, actor identity and role, action/event type, subject kind and id, state or value before and after, reason, evidence ref, timestamp, correlation id, outcome, tamper-evidence sequence/hash)"
+APG-S15-L0095,Y,audit evidence: consequential external-action requests and outcomes,,GAP,"Audit evidence list (15.8). Partly reflected in E87 or versioned N01/E90 approvals, but no entity holds audit entries. GAP fix G-AUD: new entity Audit log entry (tenant, actor identity and role, action/event type, subject kind and id, state or value before and after, reason, evidence ref, timestamp, correlation id, outcome, tamper-evidence sequence/hash)"
+APG-S15-L0096,Y,audit evidence: integration credential and connection changes,,GAP,"Audit evidence list (15.8). Partly reflected in E87 or versioned N01/E90 approvals, but no entity holds audit entries. GAP fix G-AUD: new entity Audit log entry (tenant, actor identity and role, action/event type, subject kind and id, state or value before and after, reason, evidence ref, timestamp, correlation id, outcome, tamper-evidence sequence/hash)"
+APG-S15-L0097,Y,audit evidence: administrative actions and security-policy changes,,GAP,"Audit evidence list (15.8). Partly reflected in E87 or versioned N01/E90 approvals, but no entity holds audit entries. GAP fix G-AUD: new entity Audit log entry (tenant, actor identity and role, action/event type, subject kind and id, state or value before and after, reason, evidence ref, timestamp, correlation id, outcome, tamper-evidence sequence/hash)"
+APG-S15-L0098,Y,"audit evidence: data correction, reconciliation, deletion and recovery events",,GAP,"Audit evidence list (15.8). Partly reflected in E87 or versioned N01/E90 approvals, but no entity holds audit entries. GAP fix G-AUD: new entity Audit log entry (tenant, actor identity and role, action/event type, subject kind and id, state or value before and after, reason, evidence ref, timestamp, correlation id, outcome, tamper-evidence sequence/hash)"
+APG-S15-C0100,Y,"protected, tamper-evident audit history",,GAP,"GAP fix G-AUD: new entity Audit log entry (tenant, actor identity and role, action/event type, subject kind and id, state or value before and after, reason, evidence ref, timestamp, correlation id, outcome, tamper-evidence sequence/hash)"
+APG-S15-H0102,N,,,NO-DATA-NEED,Heading
+APG-S15-L0104,N,,,NO-DATA-NEED,AI trust-boundary behaviour; no new data
+APG-S15-L0105,N,,,NO-DATA-NEED,AI trust-boundary behaviour; no new data
+APG-S15-L0106,N,,,NO-DATA-NEED,AI trust-boundary behaviour; no new data
+APG-S15-L0107,N,,,NO-DATA-NEED,AI trust-boundary behaviour; no new data
+APG-S15-L0108,Y,verification status on AI-generated facts and extractions,E01;E35;E68;E84,COVERED,E01 verification; E35 quote readings verified by; E68 hypothesis confidence; E84 confidence
+APG-S15-L0109,N,,,NO-DATA-NEED,AI trust-boundary behaviour; no new data
+APG-S15-L0110,N,,,NO-DATA-NEED,AI trust-boundary behaviour; no new data
+APG-S15-L0111,N,,,NO-DATA-NEED,AI trust-boundary behaviour; no new data
+APG-S15-L0112,N,,,NO-DATA-NEED,AI trust-boundary behaviour; no new data
+APG-S15-L0113,N,,,NO-DATA-NEED,Minimisation constraint on AI logs; whether AI context is held at all is judged at L0058 (G-AI)
+APG-S15-H0115,N,,,NO-DATA-NEED,Heading
+APG-S15-L0116,N,,,NO-DATA-NEED,Integration control behaviour; no new data
+APG-S15-L0117,Y,integration scopes and permissions,E02,GAP,"GAP fix G-INT: field groups on E02 (integration scopes/permissions, credential reference and status with rotation/revocation dates, never the secret; last successful sync; import completeness complete/partial with counts; failure class; retry schedule; missing coverage; required intervention and owner)"
+APG-S15-L0118,N,,,NO-DATA-NEED,Integration control behaviour; no new data
+APG-S15-L0119,N,,,NO-DATA-NEED,Integration control behaviour; no new data
+APG-S15-L0120,Y,duplicate and replay detection for inbound deliveries,E01;E96,COVERED,E01 source record id and revision; E96 idempotency key. Webhook event receipts beyond records: see G-JOB at S16 L0048
+APG-S15-L0121,N,,,NO-DATA-NEED,Integration control behaviour; no new data
+APG-S15-L0122,N,,,NO-DATA-NEED,Integration control behaviour; no new data
+APG-S15-L0123,Y,audit records for inbound and outbound operations,,GAP,"GAP fix G-AUD: new entity Audit log entry (tenant, actor identity and role, action/event type, subject kind and id, state or value before and after, reason, evidence ref, timestamp, correlation id, outcome, tamper-evidence sequence/hash); outbound operations also need G-JOB"
+APG-S15-L0124,N,,,NO-DATA-NEED,Integration control behaviour; no new data
+APG-S15-L0125,Y,human approval for consequential actions,E87,COVERED,
+APG-S15-C0126,N,,,NO-DATA-NEED,Integration control behaviour; no new data
+APG-S15-H0127,N,,,NO-DATA-NEED,Heading
+APG-S15-L0129,Y,approval of purchase orders and commitments,E21;E87,COVERED,E21 approval
+APG-S15-L0130,Y,"approval of contract, scope, specification or material changes",E22;E09;E27;E87,COVERED,
+APG-S15-L0131,Y,"approval of claims, notices, commercial communications",E13;E11;E87,COVERED,
+APG-S15-L0132,Y,approval of retention release and security cancellation,E77;E78;E87,COVERED,
+APG-S15-L0133,Y,approval of financial rule or baseline changes,N01;E90;E44;E39;E87,COVERED,
+APG-S15-L0134,Y,approval of privileged access changes,E87;E05,GAP,"The subject (access grant) is not a registered record. GAP fix G-IAM: field groups on E05 (identity type human/integration/service/automated; identity status active/disabled/suspended/expired/revoked with dates; MFA requirement and enrolment; session expiry/revocation unless held by the Anchor identity service; role permission sets read/create/update/approve/export/administer; role assignments scoped to organisation, project or resource; time-bounded privileged grants with grantor, expiry, revocation)"
+APG-S15-L0135,Y,approval of data deletion or correction,E87;E01,GAP,"Correction via E01 supersession; deletion leaves no trace without an audit entry. GAP fix G-AUD: new entity Audit log entry (tenant, actor identity and role, action/event type, subject kind and id, state or value before and after, reason, evidence ref, timestamp, correlation id, outcome, tamper-evidence sequence/hash)"
+APG-S15-C0136,Y,"approval record: proposed action, evidence, risks, authority, decision, timestamp, resulting state",E87,GAP,"E87 has subject, decision, by whom, when, basis; lacks risks, approving authority and resulting state. GAP fix G-APR: field groups on E87 (proposed action, risks considered, approving authority role/limit, resulting state; emergency override: eligibility basis, reason, authoriser, subsequent review by/date/result)"
+APG-S15-C0137,Y,"emergency override: eligibility, authorisation, reason, audit trail, subsequent review",E87,GAP,"GAP fix G-APR: field groups on E87 (proposed action, risks considered, approving authority role/limit, resulting state; emergency override: eligibility basis, reason, authoriser, subsequent review by/date/result)"
+APG-S15-H0138,N,,,NO-DATA-NEED,Heading
+APG-S15-L0139,Y,security incident detection record,,GAP,"GAP fix G-INC (platform-operations scope; owner to decide if held in APG or in operations tooling): new entity Incident, security or operational (detected/start time, components, data and tenants affected, severity, suspected/confirmed status, cause state suspected/confirmed/unresolved, evidence refs, escalation and notification decisions, recovery, integrity sign-off, post-incident review, corrective actions with owners and due dates)"
+APG-S15-L0140,Y,incident severity and affected systems/data,,GAP,"GAP fix G-INC (platform-operations scope; owner to decide if held in APG or in operations tooling): new entity Incident, security or operational (detected/start time, components, data and tenants affected, severity, suspected/confirmed status, cause state suspected/confirmed/unresolved, evidence refs, escalation and notification decisions, recovery, integrity sign-off, post-incident review, corrective actions with owners and due dates)"
+APG-S15-L0141,N,,,NO-DATA-NEED,Incident process step; no record named beyond those judged GAP
+APG-S15-L0142,N,,,NO-DATA-NEED,Incident process step; no record named beyond those judged GAP
+APG-S15-L0143,N,,,NO-DATA-NEED,Incident process step; no record named beyond those judged GAP
+APG-S15-L0144,N,,,NO-DATA-NEED,Incident process step; no record named beyond those judged GAP
+APG-S15-L0145,Y,escalation and notification decisions,,GAP,"GAP fix G-INC (platform-operations scope; owner to decide if held in APG or in operations tooling): new entity Incident, security or operational (detected/start time, components, data and tenants affected, severity, suspected/confirmed status, cause state suspected/confirmed/unresolved, evidence refs, escalation and notification decisions, recovery, integrity sign-off, post-incident review, corrective actions with owners and due dates)"
+APG-S15-L0146,N,,,NO-DATA-NEED,Incident process step; no record named beyond those judged GAP
+APG-S15-L0147,Y,post-incident review and corrective actions,,GAP,"GAP fix G-INC (platform-operations scope; owner to decide if held in APG or in operations tooling): new entity Incident, security or operational (detected/start time, components, data and tenants affected, severity, suspected/confirmed status, cause state suspected/confirmed/unresolved, evidence refs, escalation and notification decisions, recovery, integrity sign-off, post-incident review, corrective actions with owners and due dates)"
+APG-S15-C0148,Y,suspected vs confirmed incident status,,GAP,"GAP fix G-INC (platform-operations scope; owner to decide if held in APG or in operations tooling): new entity Incident, security or operational (detected/start time, components, data and tenants affected, severity, suspected/confirmed status, cause state suspected/confirmed/unresolved, evidence refs, escalation and notification decisions, recovery, integrity sign-off, post-incident review, corrective actions with owners and due dates)"
+APG-S15-C0149,N,,,NO-DATA-NEED,Incident process step; no record named beyond those judged GAP
+APG-S15-H0150,N,,,NO-DATA-NEED,Heading
+APG-S15-L0151,N,,,NO-DATA-NEED,Secure development practice (delivery)
+APG-S15-L0152,N,,,NO-DATA-NEED,Secure development practice (delivery)
+APG-S15-L0153,N,,,NO-DATA-NEED,Secure development practice (delivery)
+APG-S15-L0154,N,,,NO-DATA-NEED,Secure development practice (delivery)
+APG-S15-L0155,N,,,NO-DATA-NEED,Secure development practice (delivery)
+APG-S15-L0156,N,,,NO-DATA-NEED,Secure development practice (delivery)
+APG-S15-L0157,N,,,NO-DATA-NEED,Secure development practice (delivery)
+APG-S15-L0158,N,,,NO-DATA-NEED,Secure development practice (delivery)
+APG-S15-L0159,N,,,NO-DATA-NEED,Secure development practice (delivery)
+APG-S15-L0160,N,,,NO-DATA-NEED,Secure development practice (delivery)
+APG-S15-C0161,N,,,NO-DATA-NEED,Secure development practice (delivery)
+APG-S15-H0162,N,,,NO-DATA-NEED,Heading
+APG-S15-L0163,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S15-L0164,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S15-L0165,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S15-L0166,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S15-L0167,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S15-L0168,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S15-L0169,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S15-L0170,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S15-L0171,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S15-L0172,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S15-L0173,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S15-L0174,N,,,NO-DATA-NEED,Acceptance criterion; no new data
+APG-S15-H0175,N,,,NO-DATA-NEED,Heading
+APG-S15-L0176,N,,,NO-DATA-NEED,Implementation instruction
+APG-S15-L0177,N,,,NO-DATA-NEED,Implementation instruction
+APG-S15-L0178,N,,,NO-DATA-NEED,Implementation instruction
+APG-S15-L0179,N,,,NO-DATA-NEED,Implementation instruction
+APG-S15-L0180,N,,,NO-DATA-NEED,Implementation instruction
+APG-S15-L0181,N,,,NO-DATA-NEED,Implementation instruction
+APG-S15-H0182,N,,,NO-DATA-NEED,Heading
+APG-S15-C0184,N,,,NO-DATA-NEED,Audit instruction
+APG-S15-H0185,N,,,NO-DATA-NEED,Heading
+APG-S15-H0186,N,,,NO-DATA-NEED,Heading
+APG-S15-C0187,N,,,NO-DATA-NEED,Checkpoint decision (principle)
+APG-S15-H0188,N,,,NO-DATA-NEED,Heading
+APG-S15-C0189,N,,,NO-DATA-NEED,Checkpoint decision (principle)
+APG-S15-H0190,N,,,NO-DATA-NEED,Heading
+APG-S15-C0191,N,,,NO-DATA-NEED,Checkpoint decision (principle)
+APG-S15-H0192,N,,,NO-DATA-NEED,Heading
+APG-S15-C0193,Y,"authority, recorded reasons and outcomes for privileged changes, approvals, overrides",E87,GAP,"Checkpoint D restates 15.8 and 15.11. GAP fix G-APR: field groups on E87 (proposed action, risks considered, approving authority role/limit, resulting state; emergency override: eligibility basis, reason, authoriser, subsequent review by/date/result); and G-AUD"
+APG-S15-H0194,N,,,NO-DATA-NEED,Heading
+APG-S15-C0195,N,,,NO-DATA-NEED,Checkpoint decision (principle)
+APG-S15-H0196,N,,,NO-DATA-NEED,Heading
+APG-S15-L0197,N,,,NO-DATA-NEED,Closure evidence: delivery artefact
+APG-S15-L0198,N,,,NO-DATA-NEED,Closure evidence: delivery artefact
+APG-S15-L0199,N,,,NO-DATA-NEED,Closure evidence: delivery artefact
+APG-S15-L0200,N,,,NO-DATA-NEED,Closure evidence: delivery artefact
+APG-S15-L0201,N,,,NO-DATA-NEED,Closure evidence: delivery artefact
+APG-S15-L0202,N,,,NO-DATA-NEED,Closure evidence: delivery artefact
+APG-S15-L0203,N,,,NO-DATA-NEED,Closure evidence: delivery artefact
+APG-S15-L0204,N,,,NO-DATA-NEED,Closure evidence: delivery artefact
+APG-S15-L0205,N,,,NO-DATA-NEED,Closure evidence: delivery artefact
+APG-S15-L0206,N,,,NO-DATA-NEED,Closure evidence: delivery artefact
+APG-S15-L0207,N,,,NO-DATA-NEED,Closure evidence: delivery artefact
+APG-S15-L0208,N,,,NO-DATA-NEED,Closure evidence: delivery artefact
+APG-S15-H0209,N,,,NO-DATA-NEED,Heading
+APG-S15-C0210,N,,,NO-DATA-NEED,Lock declaration
+APG-S16-H0005,N,,,NO-DATA-NEED,Heading
+APG-S16-C0006,N,,,NO-DATA-NEED,Purpose and scope
+APG-S16-C0007,N,,,NO-DATA-NEED,Purpose and scope
+APG-S16-C0008,N,,,NO-DATA-NEED,Purpose and scope
+APG-S16-H0009,N,,,NO-DATA-NEED,Heading
+APG-S16-L0010,N,,,NO-DATA-NEED,Reliability principle
+APG-S16-L0011,N,,,NO-DATA-NEED,Reliability principle
+APG-S16-L0012,N,,,NO-DATA-NEED,Reliability principle
+APG-S16-L0013,N,,,NO-DATA-NEED,Reliability principle
+APG-S16-L0014,N,,,NO-DATA-NEED,Reliability principle
+APG-S16-L0015,N,,,NO-DATA-NEED,Reliability principle
+APG-S16-L0016,N,,,NO-DATA-NEED,Reliability principle
+APG-S16-L0017,N,,,NO-DATA-NEED,Reliability principle
+APG-S16-H0018,N,,,NO-DATA-NEED,Heading
+APG-S16-C0019,Y,machine-readable operational states per component/data domain,E02,GAP,"E02 health covers sources only. GAP fix G-OPS (platform-operations scope; owner to decide if held in APG or in operations tooling): new entity Operational record (component/data-domain state transitions with entry/exit, affected capabilities, last successful operation; release records; restoration-test records)"
+APG-S16-C0020,Y,recorded operational state transitions,,GAP,"GAP fix G-OPS (platform-operations scope; owner to decide if held in APG or in operations tooling): new entity Operational record (component/data-domain state transitions with entry/exit, affected capabilities, last successful operation; release records; restoration-test records)"
+APG-S16-L0021,N,,,NO-DATA-NEED,Health-check behaviour; no new data
+APG-S16-L0022,N,,,NO-DATA-NEED,Health-check behaviour; no new data
+APG-S16-L0023,Y,affected functions; last known successful operation,E02,GAP,"GAP fix G-INT: field groups on E02 (integration scopes/permissions, credential reference and status with rotation/revocation dates, never the secret; last successful sync; import completeness complete/partial with counts; failure class; retry schedule; missing coverage; required intervention and owner); components other than sources: G-OPS"
+APG-S16-L0024,N,,,NO-DATA-NEED,Health-check behaviour; no new data
+APG-S16-H0025,N,,,NO-DATA-NEED,Heading
+APG-S16-C0026,N,,,NO-DATA-NEED,"Operational telemetry (metrics, logs, alerts) held in monitoring tooling; not a business data kind. Recommend the register state this exclusion"
+APG-S16-L0027,N,,,NO-DATA-NEED,"Operational telemetry (metrics, logs, alerts) held in monitoring tooling; not a business data kind. Recommend the register state this exclusion"
+APG-S16-L0028,N,,,NO-DATA-NEED,"Operational telemetry (metrics, logs, alerts) held in monitoring tooling; not a business data kind. Recommend the register state this exclusion"
+APG-S16-L0029,N,,,NO-DATA-NEED,"Operational telemetry (metrics, logs, alerts) held in monitoring tooling; not a business data kind. Recommend the register state this exclusion"
+APG-S16-L0030,N,,,NO-DATA-NEED,"Operational telemetry (metrics, logs, alerts) held in monitoring tooling; not a business data kind. Recommend the register state this exclusion"
+APG-S16-L0031,N,,,NO-DATA-NEED,"Operational telemetry (metrics, logs, alerts) held in monitoring tooling; not a business data kind. Recommend the register state this exclusion"
+APG-S16-L0032,N,,,NO-DATA-NEED,"Operational telemetry (metrics, logs, alerts) held in monitoring tooling; not a business data kind. Recommend the register state this exclusion"
+APG-S16-L0033,N,,,NO-DATA-NEED,"Operational telemetry (metrics, logs, alerts) held in monitoring tooling; not a business data kind. Recommend the register state this exclusion"
+APG-S16-C0034,Y,"correlation identifiers across action, import, job, request, calculation, audit record",E45,GAP,No entity carries a correlation id. Add it in G-AUD and G-JOB (and to E45)
+APG-S16-C0035,N,,,NO-DATA-NEED,"Operational telemetry (metrics, logs, alerts) held in monitoring tooling; not a business data kind. Recommend the register state this exclusion"
+APG-S16-H0036,N,,,NO-DATA-NEED,Heading
+APG-S16-L0038,Y,"freshness thresholds by decision and data type, with owner and rationale",N01;E90,COVERED,N01 freshness thresholds per decision; E90 freshness; owner/rationale via their versioned approval
+APG-S16-L0039,Y,stale/incomplete/provisional qualification of results,E89;E45;E84,COVERED,E89 states; E45 warnings; E84 limits
+APG-S16-L0040,N,,,NO-DATA-NEED,Freshness behaviour using data already named
+APG-S16-L0041,Y,import completeness; last valid state and its age,E01;E02,GAP,"E01 ingestion state is per record; nothing records batch completeness or last valid import time. GAP fix G-INT: field groups on E02 (integration scopes/permissions, credential reference and status with rotation/revocation dates, never the secret; last successful sync; import completeness complete/partial with counts; failure class; retry schedule; missing coverage; required intervention and owner)"
+APG-S16-L0042,Y,unavailable data vs confirmed zero,E89;E96,COVERED,E89 readiness states/gaps; E96 value status
+APG-S16-L0043,N,,,NO-DATA-NEED,Freshness behaviour using data already named
+APG-S16-H0044,N,,,NO-DATA-NEED,Heading
+APG-S16-C0045,Y,background operation lifecycle states,,GAP,"GAP fix G-JOB: new entity Background operation and external effect (operation type, tenant, trigger and correlation id, payload ref, lifecycle state pending/running/succeeded/failed/retry-scheduled/dead-lettered/interrupted/outcome-unknown, attempts, failure class, next retry, idempotency key, inbound event id and receipt order, external reference, reconciled outcome and evidence, dead-letter owner, replay and closure)"
+APG-S16-L0046,Y,retry counts and failure classification,,GAP,"GAP fix G-JOB: new entity Background operation and external effect (operation type, tenant, trigger and correlation id, payload ref, lifecycle state pending/running/succeeded/failed/retry-scheduled/dead-lettered/interrupted/outcome-unknown, attempts, failure class, next retry, idempotency key, inbound event id and receipt order, external reference, reconciled outcome and evidence, dead-letter owner, replay and closure)"
+APG-S16-L0047,Y,"idempotency keys for financial, contractual, notification effects",E96,GAP,"E96 idempotency key covers financial records only; outbound commitments and notifications need it too. GAP fix G-JOB: new entity Background operation and external effect (operation type, tenant, trigger and correlation id, payload ref, lifecycle state pending/running/succeeded/failed/retry-scheduled/dead-lettered/interrupted/outcome-unknown, attempts, failure class, next retry, idempotency key, inbound event id and receipt order, external reference, reconciled outcome and evidence, dead-letter owner, replay and closure)"
+APG-S16-L0048,Y,"inbound webhook/event receipts (duplicates, order, replay)",,GAP,"GAP fix G-JOB: new entity Background operation and external effect (operation type, tenant, trigger and correlation id, payload ref, lifecycle state pending/running/succeeded/failed/retry-scheduled/dead-lettered/interrupted/outcome-unknown, attempts, failure class, next retry, idempotency key, inbound event id and receipt order, external reference, reconciled outcome and evidence, dead-letter owner, replay and closure)"
+APG-S16-L0049,Y,unknown external outcome and its reconciliation,,GAP,"GAP fix G-JOB: new entity Background operation and external effect (operation type, tenant, trigger and correlation id, payload ref, lifecycle state pending/running/succeeded/failed/retry-scheduled/dead-lettered/interrupted/outcome-unknown, attempts, failure class, next retry, idempotency key, inbound event id and receipt order, external reference, reconciled outcome and evidence, dead-letter owner, replay and closure)"
+APG-S16-L0050,N,,,NO-DATA-NEED,Retry/cancellation behaviour
+APG-S16-L0051,Y,"dead-letter ownership, replay and closure",,GAP,"GAP fix G-JOB: new entity Background operation and external effect (operation type, tenant, trigger and correlation id, payload ref, lifecycle state pending/running/succeeded/failed/retry-scheduled/dead-lettered/interrupted/outcome-unknown, attempts, failure class, next retry, idempotency key, inbound event id and receipt order, external reference, reconciled outcome and evidence, dead-letter owner, replay and closure)"
+APG-S16-L0052,N,,,NO-DATA-NEED,Retry/cancellation behaviour
+APG-S16-L0053,N,,,NO-DATA-NEED,Retry/cancellation behaviour
+APG-S16-H0054,N,,,NO-DATA-NEED,Heading
+APG-S16-C0055,N,,,NO-DATA-NEED,Database resilience behaviour; schema migration versions are kept by migration tooling
+APG-S16-L0056,N,,,NO-DATA-NEED,Database resilience behaviour; schema migration versions are kept by migration tooling
+APG-S16-L0057,N,,,NO-DATA-NEED,Database resilience behaviour; schema migration versions are kept by migration tooling
+APG-S16-L0058,Y,persisted calculation with version and input evidence,E45;E44,COVERED,E45 calculation version and input set; E44 approved baseline
+APG-S16-L0059,N,,,NO-DATA-NEED,Database resilience behaviour; schema migration versions are kept by migration tooling
+APG-S16-L0060,N,,,NO-DATA-NEED,Database resilience behaviour; schema migration versions are kept by migration tooling
+APG-S16-L0061,Y,retained quarantined and conflicting records,E01,COVERED,E01 ingestion state
+APG-S16-L0062,N,,,NO-DATA-NEED,Database resilience behaviour; schema migration versions are kept by migration tooling
+APG-S16-H0063,N,,,NO-DATA-NEED,Heading
+APG-S16-C0064,N,,,NO-DATA-NEED,Backup scope; names audit records (no entity: see G-AUD) and integration metadata (see G-INT); no new kind
+APG-S16-L0065,N,,,NO-DATA-NEED,"Backup and DR procedure; backups copy existing data, no new data kind"
+APG-S16-L0066,N,,,NO-DATA-NEED,"Backup and DR procedure; backups copy existing data, no new data kind"
+APG-S16-L0067,Y,"restoration-test record (date, scope, versions, duration, outcome, exceptions, evidence)",,GAP,"GAP fix G-OPS (platform-operations scope; owner to decide if held in APG or in operations tooling): new entity Operational record (component/data-domain state transitions with entry/exit, affected capabilities, last successful operation; release records; restoration-test records)"
+APG-S16-L0068,N,,,NO-DATA-NEED,"Backup and DR procedure; backups copy existing data, no new data kind"
+APG-S16-L0069,N,,,NO-DATA-NEED,"Backup and DR procedure; backups copy existing data, no new data kind"
+APG-S16-L0070,N,,,NO-DATA-NEED,"Backup and DR procedure; backups copy existing data, no new data kind"
+APG-S16-L0071,N,,,NO-DATA-NEED,"Backup and DR procedure; backups copy existing data, no new data kind"
+APG-S16-H0072,N,,,NO-DATA-NEED,Heading
+APG-S16-L0074,Y,"integration status: last successful sync, failure class, retry schedule, missing coverage, intervention",E02,GAP,"E02 has health only. GAP fix G-INT: field groups on E02 (integration scopes/permissions, credential reference and status with rotation/revocation dates, never the secret; last successful sync; import completeness complete/partial with counts; failure class; retry schedule; missing coverage; required intervention and owner)"
+APG-S16-L0075,N,,,NO-DATA-NEED,Integration recovery behaviour
+APG-S16-L0076,N,,,NO-DATA-NEED,Integration recovery behaviour
+APG-S16-L0077,N,,,NO-DATA-NEED,Integration recovery behaviour
+APG-S16-L0078,N,,,NO-DATA-NEED,Integration recovery behaviour
+APG-S16-L0079,N,,,NO-DATA-NEED,Integration recovery behaviour
+APG-S16-H0080,N,,,NO-DATA-NEED,Heading
+APG-S16-C0081,N,,,NO-DATA-NEED,Deployment procedure
+APG-S16-L0082,N,,,NO-DATA-NEED,Deployment procedure
+APG-S16-L0083,N,,,NO-DATA-NEED,Deployment procedure
+APG-S16-L0084,N,,,NO-DATA-NEED,Deployment procedure
+APG-S16-L0085,N,,,NO-DATA-NEED,Deployment procedure
+APG-S16-L0086,N,,,NO-DATA-NEED,Deployment procedure
+APG-S16-L0087,Y,"release record (versions, deployer identity, time, verification, exceptions, rollback decisions)",,GAP,"GAP fix G-OPS (platform-operations scope; owner to decide if held in APG or in operations tooling): new entity Operational record (component/data-domain state transitions with entry/exit, affected capabilities, last successful operation; release records; restoration-test records)"
+APG-S16-H0088,N,,,NO-DATA-NEED,Heading
+APG-S16-C0089,N,,,NO-DATA-NEED,Incident process step
+APG-S16-L0090,Y,"operational incident record (components, start time, evidence)",,GAP,"GAP fix G-INC (platform-operations scope; owner to decide if held in APG or in operations tooling): new entity Incident, security or operational (detected/start time, components, data and tenants affected, severity, suspected/confirmed status, cause state suspected/confirmed/unresolved, evidence refs, escalation and notification decisions, recovery, integrity sign-off, post-incident review, corrective actions with owners and due dates)"
+APG-S16-L0091,Y,"incident severity, tenant impact, financial-integrity risk",,GAP,"GAP fix G-INC (platform-operations scope; owner to decide if held in APG or in operations tooling): new entity Incident, security or operational (detected/start time, components, data and tenants affected, severity, suspected/confirmed status, cause state suspected/confirmed/unresolved, evidence refs, escalation and notification decisions, recovery, integrity sign-off, post-incident review, corrective actions with owners and due dates)"
+APG-S16-L0092,N,,,NO-DATA-NEED,Incident process step
+APG-S16-L0093,N,,,NO-DATA-NEED,Incident process step
+APG-S16-L0094,N,,,NO-DATA-NEED,Incident process step
+APG-S16-L0095,N,,,NO-DATA-NEED,Incident process step
+APG-S16-L0096,N,,,NO-DATA-NEED,Incident process step
+APG-S16-L0097,Y,incident recovery verification and residual limitations,,GAP,"GAP fix G-INC (platform-operations scope; owner to decide if held in APG or in operations tooling): new entity Incident, security or operational (detected/start time, components, data and tenants affected, severity, suspected/confirmed status, cause state suspected/confirmed/unresolved, evidence refs, escalation and notification decisions, recovery, integrity sign-off, post-incident review, corrective actions with owners and due dates)"
+APG-S16-L0098,Y,"post-incident review, corrective actions, owners, due dates",,GAP,"GAP fix G-INC (platform-operations scope; owner to decide if held in APG or in operations tooling): new entity Incident, security or operational (detected/start time, components, data and tenants affected, severity, suspected/confirmed status, cause state suspected/confirmed/unresolved, evidence refs, escalation and notification decisions, recovery, integrity sign-off, post-incident review, corrective actions with owners and due dates)"
+APG-S16-C0099,Y,suspected/confirmed/unresolved cause; integrity sign-off,,GAP,"GAP fix G-INC (platform-operations scope; owner to decide if held in APG or in operations tooling): new entity Incident, security or operational (detected/start time, components, data and tenants affected, severity, suspected/confirmed status, cause state suspected/confirmed/unresolved, evidence refs, escalation and notification decisions, recovery, integrity sign-off, post-incident review, corrective actions with owners and due dates)"
+APG-S16-H0100,N,,,NO-DATA-NEED,Heading
+APG-S16-C0101,N,,,NO-DATA-NEED,Financial-integrity invariant (principle); data already named
+APG-S16-L0102,N,,,NO-DATA-NEED,Financial-integrity invariant (principle); data already named
+APG-S16-L0103,N,,,NO-DATA-NEED,Financial-integrity invariant (principle); data already named
+APG-S16-L0104,N,,,NO-DATA-NEED,Financial-integrity invariant (principle); data already named
+APG-S16-L0105,N,,,NO-DATA-NEED,Financial-integrity invariant (principle); data already named
+APG-S16-L0106,N,,,NO-DATA-NEED,Financial-integrity invariant (principle); data already named
+APG-S16-L0107,N,,,NO-DATA-NEED,Financial-integrity invariant (principle); data already named
+APG-S16-L0108,Y,"audit of original event, recovery actions, actor, reason, timestamps, resulting state",,GAP,"GAP fix G-AUD: new entity Audit log entry (tenant, actor identity and role, action/event type, subject kind and id, state or value before and after, reason, evidence ref, timestamp, correlation id, outcome, tamper-evidence sequence/hash)"
+APG-S16-L0109,N,,,NO-DATA-NEED,Financial-integrity invariant (principle); data already named
+APG-S16-H0110,N,,,NO-DATA-NEED,Heading
+APG-S16-L0112,N,,,NO-DATA-NEED,Operational acceptance criterion
+APG-S16-L0113,N,,,NO-DATA-NEED,Operational acceptance criterion
+APG-S16-L0114,N,,,NO-DATA-NEED,Operational acceptance criterion
+APG-S16-L0115,N,,,NO-DATA-NEED,Operational acceptance criterion
+APG-S16-L0116,N,,,NO-DATA-NEED,Operational acceptance criterion
+APG-S16-L0117,N,,,NO-DATA-NEED,Operational acceptance criterion
+APG-S16-L0118,N,,,NO-DATA-NEED,Operational acceptance criterion
+APG-S16-L0119,N,,,NO-DATA-NEED,Operational acceptance criterion
+APG-S16-L0120,N,,,NO-DATA-NEED,Operational acceptance criterion
+APG-S16-L0121,N,,,NO-DATA-NEED,Operational acceptance criterion
+APG-S16-L0122,N,,,NO-DATA-NEED,Operational acceptance criterion
+APG-S16-H0123,N,,,NO-DATA-NEED,Heading
+APG-S16-C0124,N,,,NO-DATA-NEED,Implementation method instruction
+APG-S16-L0125,N,,,NO-DATA-NEED,Implementation method instruction
+APG-S16-L0126,N,,,NO-DATA-NEED,Implementation method instruction
+APG-S16-L0127,N,,,NO-DATA-NEED,Implementation method instruction
+APG-S16-L0128,N,,,NO-DATA-NEED,Implementation method instruction
+APG-S16-L0129,N,,,NO-DATA-NEED,Implementation method instruction
+APG-S16-L0130,N,,,NO-DATA-NEED,Implementation method instruction
+APG-S16-L0131,N,,,NO-DATA-NEED,Implementation method instruction
+APG-S16-L0132,N,,,NO-DATA-NEED,Implementation method instruction
+APG-S16-H0133,N,,,NO-DATA-NEED,Heading
+APG-S16-C0135,N,,,NO-DATA-NEED,Audit instruction
+APG-S16-H0136,N,,,NO-DATA-NEED,Heading
+APG-S16-H0137,N,,,NO-DATA-NEED,Heading
+APG-S16-C0138,N,,,NO-DATA-NEED,Checkpoint decision (principle)
+APG-S16-H0139,N,,,NO-DATA-NEED,Heading
+APG-S16-C0140,N,,,NO-DATA-NEED,Checkpoint decision (principle)
+APG-S16-H0141,N,,,NO-DATA-NEED,Heading
+APG-S16-C0142,N,,,NO-DATA-NEED,Checkpoint decision (principle)
+APG-S16-H0143,N,,,NO-DATA-NEED,Heading
+APG-S16-C0144,N,,,NO-DATA-NEED,Checkpoint decision (principle)
+APG-S16-H0145,N,,,NO-DATA-NEED,Heading
+APG-S16-C0146,N,,,NO-DATA-NEED,Checkpoint decision (principle)
+APG-S16-H0147,N,,,NO-DATA-NEED,Heading
+APG-S16-C0148,N,,,NO-DATA-NEED,Change control and traceability: delivery governance
+APG-S16-C0149,N,,,NO-DATA-NEED,Change control and traceability: delivery governance
+APG-S16-H0150,N,,,NO-DATA-NEED,Heading
+APG-S16-C0154,N,,,NO-DATA-NEED,Lock record
+AI-03,N,,,NO-DATA-NEED,Audit instruction (row id taken from finding codes)
+FIN-01,N,,,NO-DATA-NEED,Audit instruction (row id taken from finding codes)
+FIN-02,N,,,NO-DATA-NEED,Audit instruction (row id taken from finding codes)
+APG-S17-H0005,N,,,NO-DATA-NEED,Heading
+APG-S17-C0006,N,,,NO-DATA-NEED,Purpose and governing rule
+APG-S17-C0007,N,,,NO-DATA-NEED,Purpose and governing rule
+APG-S17-H0009,N,,,NO-DATA-NEED,Heading
+APG-S17-C0010,N,,,NO-DATA-NEED,RTM status model: delivery artefact
+APG-S17-L0011,N,,,NO-DATA-NEED,RTM status model: delivery artefact
+APG-S17-L0012,N,,,NO-DATA-NEED,RTM status model: delivery artefact
+APG-S17-L0013,N,,,NO-DATA-NEED,RTM status model: delivery artefact
+APG-S17-L0014,N,,,NO-DATA-NEED,RTM status model: delivery artefact
+APG-S17-L0015,N,,,NO-DATA-NEED,RTM status model: delivery artefact
+APG-S17-L0016,N,,,NO-DATA-NEED,RTM status model: delivery artefact
+APG-S17-L0017,N,,,NO-DATA-NEED,RTM status model: delivery artefact
+APG-S17-L0018,N,,,NO-DATA-NEED,RTM status model: delivery artefact
+APG-S17-L0019,N,,,NO-DATA-NEED,RTM status model: delivery artefact
+APG-S17-L0020,N,,,NO-DATA-NEED,RTM status model: delivery artefact
+APG-S17-H0022,N,,,NO-DATA-NEED,Heading
+APG-S17-C0023,N,,,NO-DATA-NEED,"RTM content: delivery artefact, not APG data"
+APG-S17-L0024,N,,,NO-DATA-NEED,"RTM content: delivery artefact, not APG data"
+APG-S17-L0025,N,,,NO-DATA-NEED,"RTM content: delivery artefact, not APG data"
+APG-S17-L0026,N,,,NO-DATA-NEED,"RTM content: delivery artefact, not APG data"
+APG-S17-L0027,N,,,NO-DATA-NEED,"RTM content: delivery artefact, not APG data"
+APG-S17-L0028,N,,,NO-DATA-NEED,"RTM content: delivery artefact, not APG data"
+APG-S17-H0029,N,,,NO-DATA-NEED,Heading
+APG-S17-C0030,N,,,NO-DATA-NEED,Test class
+APG-S17-L0031,N,,,NO-DATA-NEED,Test class
+APG-S17-L0032,N,,,NO-DATA-NEED,Test class
+APG-S17-L0033,N,,,NO-DATA-NEED,Test class
+APG-S17-L0034,N,,,NO-DATA-NEED,Test class
+APG-S17-L0035,N,,,NO-DATA-NEED,Test class
+APG-S17-L0036,N,,,NO-DATA-NEED,Test class
+APG-S17-L0037,N,,,NO-DATA-NEED,Test class
+APG-S17-L0038,N,,,NO-DATA-NEED,Test class
+APG-S17-L0039,N,,,NO-DATA-NEED,Test class
+APG-S17-L0040,N,,,NO-DATA-NEED,Test class
+APG-S17-L0041,N,,,NO-DATA-NEED,Test class
+APG-S17-L0042,N,,,NO-DATA-NEED,Test class
+APG-S17-L0043,N,,,NO-DATA-NEED,Test class
+APG-S17-C0044,N,,,NO-DATA-NEED,Test class
+APG-S17-H0045,N,,,NO-DATA-NEED,Heading
+APG-S17-C0046,N,,,NO-DATA-NEED,Test fixture / regression rule; fixtures are test artefacts
+APG-S17-L0047,N,,,NO-DATA-NEED,Test fixture / regression rule; fixtures are test artefacts
+APG-S17-L0048,N,,,NO-DATA-NEED,Test fixture / regression rule; fixtures are test artefacts
+APG-S17-L0049,N,,,NO-DATA-NEED,Test fixture / regression rule; fixtures are test artefacts
+APG-S17-L0050,Y,formula/rule version and input snapshot for authoritative calculations,E45;N01;E90,COVERED,E45 calculation version and input set
+APG-S17-L0051,N,,,NO-DATA-NEED,Test fixture / regression rule; fixtures are test artefacts
+APG-S17-L0052,N,,,NO-DATA-NEED,Test fixture / regression rule; fixtures are test artefacts
+APG-S17-H0053,N,,,NO-DATA-NEED,Heading
+APG-S17-C0054,N,,,NO-DATA-NEED,"Test gate; data needs stated at source (S06, S14 L0073)"
+APG-S17-L0055,N,,,NO-DATA-NEED,"Test gate; data needs stated at source (S06, S14 L0073)"
+APG-S17-L0056,N,,,NO-DATA-NEED,"Test gate; data needs stated at source (S06, S14 L0073)"
+APG-S17-L0057,N,,,NO-DATA-NEED,"Test gate; data needs stated at source (S06, S14 L0073)"
+APG-S17-L0058,N,,,NO-DATA-NEED,"Test gate; data needs stated at source (S06, S14 L0073)"
+APG-S17-L0059,N,,,NO-DATA-NEED,"Test gate; data needs stated at source (S06, S14 L0073)"
+APG-S17-H0060,N,,,NO-DATA-NEED,Heading
+APG-S17-L0061,Y,quarantine of AI-extracted values until human verification recorded,E01;E35;E83,COVERED,E01 ingestion state and verification; E35 quote readings; E83 documents
+APG-S17-L0062,N,,,NO-DATA-NEED,Test rule; data needs stated at source
+APG-S17-L0063,N,,,NO-DATA-NEED,Test rule; data needs stated at source
+APG-S17-L0064,N,,,NO-DATA-NEED,Test rule; data needs stated at source
+APG-S17-L0065,N,,,NO-DATA-NEED,Test rule; data needs stated at source
+APG-S17-L0066,N,,,NO-DATA-NEED,Test rule; data needs stated at source
+APG-S17-L0067,N,,,NO-DATA-NEED,Test rule; data needs stated at source
+APG-S17-L0068,N,,,NO-DATA-NEED,Test rule; data needs stated at source
+APG-S17-H0069,N,,,NO-DATA-NEED,Heading
+APG-S17-L0071,N,,,NO-DATA-NEED,Test harness rule; data needs stated at source (S16 s6)
+APG-S17-L0072,N,,,NO-DATA-NEED,Test harness rule; data needs stated at source (S16 s6)
+APG-S17-L0073,N,,,NO-DATA-NEED,Test of unknown-outcome recording; data need judged GAP at S16 L0049 (G-JOB)
+APG-S17-L0074,N,,,NO-DATA-NEED,Test harness rule; data needs stated at source (S16 s6)
+APG-S17-L0075,N,,,NO-DATA-NEED,Test evidence capture; event ids and idempotency keys as data judged at S16 L0047/L0048 (G-JOB)
+APG-S17-L0076,N,,,NO-DATA-NEED,Test harness rule; data needs stated at source (S16 s6)
+APG-S17-H0077,N,,,NO-DATA-NEED,Heading
+APG-S17-C0078,N,,,NO-DATA-NEED,DB-Dependent Closure Register: delivery artefact
+APG-S17-C0079,N,,,NO-DATA-NEED,DB-Dependent Closure Register: delivery artefact
+APG-S17-C0080,N,,,NO-DATA-NEED,DB-Dependent Closure Register: delivery artefact
+APG-S17-L0081,N,,,NO-DATA-NEED,DB-Dependent Closure Register: delivery artefact
+APG-S17-L0082,N,,,NO-DATA-NEED,DB-Dependent Closure Register: delivery artefact
+APG-S17-L0083,N,,,NO-DATA-NEED,DB-Dependent Closure Register: delivery artefact
+APG-S17-L0084,N,,,NO-DATA-NEED,DB-Dependent Closure Register: delivery artefact
+APG-S17-L0085,N,,,NO-DATA-NEED,DB-Dependent Closure Register: delivery artefact
+APG-S17-L0086,N,,,NO-DATA-NEED,DB-Dependent Closure Register: delivery artefact
+APG-S17-L0087,N,,,NO-DATA-NEED,DB-Dependent Closure Register: delivery artefact
+APG-S17-L0088,N,,,NO-DATA-NEED,DB-Dependent Closure Register: delivery artefact
+APG-S17-C0089,N,,,NO-DATA-NEED,DB-Dependent Closure Register: delivery artefact
+APG-S17-C0090,N,,,NO-DATA-NEED,DB-Dependent Closure Register: delivery artefact
+APG-S17-H0091,N,,,NO-DATA-NEED,Heading
+APG-S17-C0092,N,,,NO-DATA-NEED,"Test evidence artefact: delivery artefact, not APG data"
+APG-S17-L0093,N,,,NO-DATA-NEED,"Test evidence artefact: delivery artefact, not APG data"
+APG-S17-L0094,N,,,NO-DATA-NEED,"Test evidence artefact: delivery artefact, not APG data"
+APG-S17-L0095,N,,,NO-DATA-NEED,"Test evidence artefact: delivery artefact, not APG data"
+APG-S17-L0096,N,,,NO-DATA-NEED,"Test evidence artefact: delivery artefact, not APG data"
+APG-S17-L0097,N,,,NO-DATA-NEED,"Test evidence artefact: delivery artefact, not APG data"
+APG-S17-L0098,N,,,NO-DATA-NEED,"Test evidence artefact: delivery artefact, not APG data"
+APG-S17-H0099,N,,,NO-DATA-NEED,Heading
+APG-S17-C0100,N,,,NO-DATA-NEED,Security test
+APG-S17-L0101,N,,,NO-DATA-NEED,Security test
+APG-S17-L0102,N,,,NO-DATA-NEED,Security test
+APG-S17-L0103,N,,,NO-DATA-NEED,Security test
+APG-S17-L0104,N,,,NO-DATA-NEED,Security test
+APG-S17-L0105,N,,,NO-DATA-NEED,Security test
+APG-S17-L0106,N,,,NO-DATA-NEED,Security test
+APG-S17-H0107,N,,,NO-DATA-NEED,Heading
+APG-S17-C0108,N,,,NO-DATA-NEED,Release test
+APG-S17-L0109,N,,,NO-DATA-NEED,Release test
+APG-S17-L0110,N,,,NO-DATA-NEED,Release test
+APG-S17-L0111,N,,,NO-DATA-NEED,Release test
+APG-S17-L0112,N,,,NO-DATA-NEED,Release test
+APG-S17-L0113,N,,,NO-DATA-NEED,Release test
+APG-S17-L0114,N,,,NO-DATA-NEED,Release test
+APG-S17-L0115,N,,,NO-DATA-NEED,Release test
+APG-S17-L0116,N,,,NO-DATA-NEED,Release test
+APG-S17-C0117,N,,,NO-DATA-NEED,Release test
+APG-S17-H0118,N,,,NO-DATA-NEED,Heading
+APG-S17-H0119,N,,,NO-DATA-NEED,Heading
+APG-S17-H0123,N,,,NO-DATA-NEED,Heading
+APG-S17-C0124,N,,,NO-DATA-NEED,Adversarial acceptance test; data needs stated at source rows
+APG-S17-H0127,N,,,NO-DATA-NEED,Heading
+APG-S17-H0131,N,,,NO-DATA-NEED,Heading
+APG-S17-H0135,N,,,NO-DATA-NEED,Heading
+APG-S17-H0139,N,,,NO-DATA-NEED,Heading
+APG-S17-H0143,N,,,NO-DATA-NEED,Heading
+APG-S17-H0147,N,,,NO-DATA-NEED,Heading
+APG-S17-C0149,N,,,NO-DATA-NEED,"Test expected outcome; data need (baseline, outcome, offsetting costs) is stated at S05 s10.1 and judged GAP at S14 L0069 (G-SAV)"
+APG-S17-H0151,N,,,NO-DATA-NEED,Heading
+APG-S17-C0152,N,,,NO-DATA-NEED,Adversarial acceptance test; data needs stated at source rows
+APG-S17-C0153,N,,,NO-DATA-NEED,Adversarial acceptance test; data needs stated at source rows
+APG-S17-H0155,N,,,NO-DATA-NEED,Heading
+APG-S17-C0156,N,,,NO-DATA-NEED,Adversarial acceptance test; data needs stated at source rows
+APG-S17-H0159,N,,,NO-DATA-NEED,Heading
+APG-S17-H0163,N,,,NO-DATA-NEED,Heading
+APG-S17-H0167,N,,,NO-DATA-NEED,Heading
+APG-S17-C0168,N,,,NO-DATA-NEED,Release-blocking condition
+APG-S17-L0169,N,,,NO-DATA-NEED,Release-blocking condition
+APG-S17-L0170,N,,,NO-DATA-NEED,Release-blocking condition
+APG-S17-L0171,N,,,NO-DATA-NEED,Release-blocking condition
+APG-S17-L0172,N,,,NO-DATA-NEED,Release-blocking condition
+APG-S17-L0173,N,,,NO-DATA-NEED,Release-blocking condition
+APG-S17-L0174,N,,,NO-DATA-NEED,Release-blocking condition
+APG-S17-L0175,N,,,NO-DATA-NEED,Release-blocking condition
+APG-S17-L0176,N,,,NO-DATA-NEED,Release-blocking condition
+APG-S17-L0177,N,,,NO-DATA-NEED,Release-blocking condition
+APG-S17-L0178,N,,,NO-DATA-NEED,Release-blocking condition
+APG-S17-C0179,N,,,NO-DATA-NEED,Release-blocking condition
+APG-S17-H0180,N,,,NO-DATA-NEED,Heading
+APG-S17-L0181,N,,,NO-DATA-NEED,Defect and sign-off governance: delivery
+APG-S17-L0182,N,,,NO-DATA-NEED,Defect and sign-off governance: delivery
+APG-S17-L0183,N,,,NO-DATA-NEED,Defect and sign-off governance: delivery
+APG-S17-L0184,N,,,NO-DATA-NEED,Defect and sign-off governance: delivery
+APG-S17-L0185,N,,,NO-DATA-NEED,Defect and sign-off governance: delivery
+APG-S17-L0186,N,,,NO-DATA-NEED,Defect and sign-off governance: delivery
+APG-S17-H0187,N,,,NO-DATA-NEED,Heading
+APG-S17-C0188,N,,,NO-DATA-NEED,Closure reporting: delivery
+APG-S17-C0189,N,,,NO-DATA-NEED,Closure reporting: delivery
+APG-S17-H0190,N,,,NO-DATA-NEED,Heading
+APG-S17-H0191,N,,,NO-DATA-NEED,Heading
+APG-S17-C0192,N,,,NO-DATA-NEED,Checkpoint decision (test process)
+APG-S17-H0193,N,,,NO-DATA-NEED,Heading
+APG-S17-C0194,N,,,NO-DATA-NEED,Checkpoint decision (test process)
+APG-S17-H0195,N,,,NO-DATA-NEED,Heading
+APG-S17-C0196,N,,,NO-DATA-NEED,Checkpoint decision (test process)
+APG-S17-H0197,N,,,NO-DATA-NEED,Heading
+APG-S17-C0198,N,,,NO-DATA-NEED,Checkpoint decision (test process)
+APG-S17-H0199,N,,,NO-DATA-NEED,Heading
+APG-S17-C0200,N,,,NO-DATA-NEED,Checkpoint decision (test process)
+APG-S17-H0201,N,,,NO-DATA-NEED,Heading
+APG-S17-L0202,N,,,NO-DATA-NEED,Implementation instruction
+APG-S17-L0203,N,,,NO-DATA-NEED,Implementation instruction
+APG-S17-L0204,N,,,NO-DATA-NEED,Implementation instruction
+APG-S17-L0205,N,,,NO-DATA-NEED,Implementation instruction
+APG-S17-L0206,N,,,NO-DATA-NEED,Implementation instruction
+APG-S17-L0207,N,,,NO-DATA-NEED,Implementation instruction
+APG-S17-L0208,N,,,NO-DATA-NEED,Implementation instruction
+APG-S17-L0209,N,,,NO-DATA-NEED,Implementation instruction
+APG-S17-L0210,N,,,NO-DATA-NEED,Implementation instruction
+APG-S17-L0211,N,,,NO-DATA-NEED,Implementation instruction
+APG-S17-H0212,N,,,NO-DATA-NEED,Heading
+APG-S17-H0215,N,,,NO-DATA-NEED,Heading
+APG-S17-C0219,N,,,NO-DATA-NEED,Lock record
