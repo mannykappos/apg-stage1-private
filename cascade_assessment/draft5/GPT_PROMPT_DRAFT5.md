@@ -2,7 +2,7 @@ You reviewed draft 4 of a Section 18 §6 cascade impact assessment. The assessme
 
 What changed since draft 4:
 - **Your findings.** Each one and its fix is in 08_checks/GPT_FIXES_CIA.md. Your review is 08_checks/GPT_REVIEW_DRAFT4.md.
-- **The owner's answers.** He answered questions 1 to 6, eight further questions raised by the independent checks of draft 5 (A to H) and two other points (items 19 and 22). They are owner record items 15 to 30 in 06_change_request_sources/OWNER_DECISIONS_2026-11-12.md. The ones that change the most:
+- **The owner's answers.** He answered questions 1 to 6, eight further questions raised by the independent checks of draft 5 (A to H) and two other points (items 19 and 22). They are owner record items 15 to 30 (item 31 makes this the last round) in 06_change_request_sources/OWNER_DECISIONS_2026-11-12.md. The ones that change the most:
     - a builder with exactly one person allowed to approve may approve his own settings, budget and its breakdown, and retention steps, and may confirm the values he keyed, each permanently marked (items 15, 20, 25 to 27); the two-person rule applies per kind of record once a second person may approve that kind, and every approval keeps a short reason (items 29, 30);
     - Profit Guardian advises and never blocks: a warning may be ignored or deferred without a reason, with who and when recorded (items 18, 23, 24);
     - severity percentages are measured against the job's approved budget, a part's budget, or both (items 16, 21, 28).
@@ -12,6 +12,8 @@ What changed since draft 4:
 - **Independent checks of draft 5.** A focused check found 2 blocking, 10 should-fix and 10 minor problems. A scoped re-check of its fixes found 1 blocking, 6 should-fix and 8 minor problems. A narrow final check of those fixes found 0 blocking, 1 should-fix and 4 minor problems. All of them are fixed. The last fixes are wording only, and were not checked by an agent again, to avoid a loop. The reports and fix lists are in 08_checks/ (CHECK_DRAFT5.md, CHECK5_FIXES_CIA.md, RECHECK_DRAFT5.md, RECHECK5_FIXES_CIA.md, FINAL_CHECK_DRAFT5.md, FINAL5_FIXES_CIA.md).
 
 Counts now: 87 additions (17 acceptance criteria PG-DS-AC-01 to 17, 8 amendment records); 12 version lines and 2 reworded sentences; 1,887 impact rows over 1,410 locked items. The draft is 01_ASSESSMENT_DRAFT5.md, and a Word copy of the same text is sent separately.
+
+**This is the last review round, by the owner's decision (owner record item 31).** After it, only a BLOCKING finding reopens anything. SHOULD FIX and MINOR points are fixed by the builder without another review. So put everything you would want to see again into this one pass.
 
 How to review:
 1. **One pass.** List EVERY problem you find. Do not stop at the first one or send it back for one fix at a time. If you run short of space, say exactly which parts you did not check.
@@ -29,6 +31,6 @@ How to review:
 7. **Reproduce, if you can run code.** Follow 00_README.txt to rebuild 03_tables and the draft from 05_locked_package, then compare them with the files given. python-docx is needed.
 8. **Boundaries.** This is design only: no build is authorised, and stage 2 is not authorised. Flag any claim of implementation, acceptance or production readiness.
 
-Then say whether the assessment is ready for the owner's formal approval once your findings are fixed. If the remaining points are wording only, say so, so the review does not loop.
+Then say whether the assessment is ready for the owner's formal approval once your findings are fixed. Only name a finding BLOCKING if approval genuinely must not proceed without it.
 
 End with a table of counts (BLOCKING, SHOULD FIX, MINOR) and a one-line disposition.
