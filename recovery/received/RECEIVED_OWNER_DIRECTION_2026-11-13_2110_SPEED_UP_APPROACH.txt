@@ -1,0 +1,16 @@
+Received from the owner (Emmanuel) in chat, 2026-11-13 21:10 (Australia/Sydney; clock read at 21:10).
+
+Context: the owner asked how many phases are left (Master Hybrid Architecture Blueprint v1.0 section 15: Phases 0 to 8; Phases 2 to 8 to
+build) and whether three ways to speed up the programme were safe. Claude answered that each is safe only as follows:
+1. Bigger milestones: each written with its "done" criteria and stop rules up front; every finished milestone still gets an independent
+   agent check and GPT's review.
+2. Lighter audits for the remaining D14 releases (stage 2: M9.4 and M7.3; stage 3: the other 15): reuse M10's audit only for files proven
+   byte-identical; review every differing file and what it affects in full; if that cannot be shown, fall back to the full review (as the
+   D14 execution plan R2, D-1, already says).
+3. Overlap: Phase 2 planning may run while the D14 audit finishes; Phase 2 building waits for the audit.
+Not to be done: dropping the independent checks, skipping GPT on finished milestones, or relaxing the Part B blocking defects.
+
+The owner's reply: "Ok if its safe then we do it"
+
+Recorded as a direction on approach. It authorises nothing by itself: stage 1 is not accepted; stage 2, stage 3, Part B, final
+verification and Phase 2 remain unauthorised until the owner posts their authorisations. Claude drafts those for him.
