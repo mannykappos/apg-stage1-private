@@ -1,6 +1,6 @@
 ## 11. Questions for the owner
 
-**All six questions are answered** (owner record items 15 to 18, 20 and 21, 2026-11-13). The proposed wording carries each answer.
+**Every question is answered** (owner record items 15 to 28, 2026-11-13): six questions, the CR-10 decision (item 19), the platform-held records (item 22), and six more (A to F) from the independent check of draft 5. The proposed wording carries each answer.
 
 | Question | The owner's answer | Where it goes |
 | --- | --- | --- |

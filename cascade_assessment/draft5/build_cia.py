@@ -14,7 +14,7 @@ From the locked package (the Master RTM and the 19 section documents, v1.0) and 
 It fails if an anchor or heading named below is not in the locked package, if a proposed ID is already used, or if an insertion point is not
 the true end of its block (the next item must be a heading, or for a list item the end of that list, or for a table row the last row).
 usage: python3 -I build_cia.py <folder holding the extracted locked package> <output folder>"""
-import csv, glob, os, re, sys, collections
+import collections, csv, glob, os, re, sys
 import docx
 from docx.oxml.ns import qn
 
@@ -159,8 +159,9 @@ L.append('Proposed additions: %d (%d paragraphs or bullets, %d headings, %d tabl
          (len(adds), sum(1 for p in adds if p['kind'] in ('paragraph', 'bullet')), sum(1 for p in adds if p['kind'].startswith('heading')),
           sum(1 for p in adds if p['kind'] == 'table row'), nac, nac, sum(1 for p in adds if p['kind'] == 'amendment record')))
 vl = [p for p in prop if p['kind'] == 'version line']; rx = [p for p in prop if p['change'] == 'reworded (owner-approved relaxation)']
-L.append('Locked text reworded: %d version lines (two in each of S01, S02 and S03, one in each of S04, S05, S06 and S11), and %d sentence(s) reworded as an owner-approved relaxation (%s); nothing else' %
-         (len(vl), len(rx), ', '.join('S%s %s' % (p['section'], p['anchor']) for p in rx)))
+vls = collections.Counter(p['section'] for p in vl)
+L.append('Locked text reworded: %d version lines (%s), and %d sentence(s) reworded as an owner-approved relaxation (%s); nothing else' %
+         (len(vl), ', '.join('%d in S%s' % (vls[k], k) for k in sorted(vls)), len(rx), ', '.join('S%s %s' % (p['section'], p['anchor']) for p in rx)))
 L.append('Sections amended (v1.0 -> v1.1): ' + ', '.join(amended))
 anchors = {r['RTM ID or source anchor'] for r in imp}
 L.append('Impact rows: %d; distinct locked items touched: %d (%d with an RTM ID, %d paragraphs and %d table rows the RTM does not map); insertion points: %d distinct anchors' %
