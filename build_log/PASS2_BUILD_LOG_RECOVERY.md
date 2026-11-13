@@ -263,3 +263,12 @@ review pack); everything after that is restated here from the conversation recor
   old commit still holds the unmasked line in the repository's history; removing it needs a history rewrite, which is the owner's
   call. Also: the 17:47 build log push today was made before running the search; the search run afterwards finds nothing in it.
   From now on the search runs on every commit before each push.
+- 2026-11-13 18:13 Step 5 checkpoint zip made (APG_RECOVERY_CHECKPOINT_STEP5.zip, SHA-256 1daa6ae6dee464306d00283e891241d62e623892f99680a77fc6130b38d1ef40)
+  and sent to the owner: freeze ee1ce3ec, the step 5 evidence, the builder tools, branch records at 7eb273e. Text files masked
+  (<WORKSPACE>, <SESSION-ID>; MASKING.csv); the extracted copies of the freeze and byte-code caches left out (removed_x.txt). Privacy
+  search: 0 hits apart from the immutable M10 baseline's 00_hashes.txt inside the freeze zips, as at step 3 (PRIVACY_CHECK.txt).
+- 2026-11-13 18:14 Step 6 started: a fresh agent, INDEPENDENT READ-ONLY (agent), brief remap6/BRIEF.md. Scope, a builder reading: the
+  re-mapping v4 report on 303b6414 (56 closed, 8 partly, 0 open) and the v3 report were lost with the workspace; only v4's counts
+  survive. The builder reconstructed "the 64 items plus row 42" from amendment 5 draft v4: Appendix A part 1 (58 entries, row 42 among
+  them), part 3 (discrepancies 15, 16, 18, 22) and rows 106, 110, 111, 65 in all. The agent checks the reconstruction, and the comparison
+  with v4 can only be made on counts.
