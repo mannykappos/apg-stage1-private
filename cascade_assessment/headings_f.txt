@@ -1,0 +1,256 @@
+S00|p10|00.3 The two permanent missions|Identify emerging and existing avoidable costs as early as reliable source data permits, preferably before the
+S00|p11|Mission A — Stop profit leakage|Identify emerging and existing avoidable costs as early as reliable source data permits, preferably before the
+S00|p17|Mission B — Find ways to increase profit|Search for upside even when the project is on budget and no alert threshold has been crossed.
+S00|p24|00.4 Active operating model|The required operating model is event-driven and continuously reassessed, not dependent on a user logging in a
+S00|p34|00.5 Whole-project and whole-business intelligence domains|Commercial and revenue protection — Scope changes, approved/unapproved variations, potentially unbilled work, 
+S00|p47|00.5.1 Retentions, security and post-completion economics|Profit Guardian's monitoring does not automatically end at practical completion, handover or occupancy. Where 
+S00|p55|00.6 Materials and global market intelligence|Materials and procurement intelligence is a first-class capability, but it is one input into the wider profit 
+S00|p66|00.7 Financial integrity and evidence rules|Separate actual, committed, forecast, scenario, opportunity, avoided cost, expected net benefit, additional re
+S00|p76|00.8 Human authority and prohibited autonomous actions|Profit Guardian is an intelligence and advisory system. It may automatically ingest permitted events, calculat
+S00|p79|00.9 Platform alignment and discovery constraint|Profit Guardian is a vertical module in the Anchor ecosystem. The detailed blueprint must inspect the actual c
+S00|p82|00.10 Security, privacy and tenant boundaries|Enforce tenant, organisation, project and role permissions server-side for all reads, writes, calculations, al
+S00|p89|00.11 Blueprint sections and controlled sequence|Section 00 — Control & Product Charter. This controlling mission, scope, principles, workflow and governance.
+S00|p109|00.12 Required control artefacts|Versioned product requirements and architecture specifications.
+S00|p136|00.15 Definition of blueprint completion|The blueprint is complete only when every mandatory requirement is unambiguous and testable; financial formula
+S00|p139|00.16 Section 00 acceptance checklist|☐ The construction edition is the only scope; NDIS-specific product requirements are excluded.
+S00|p152|00.17 Audit status and change control|Status: LOCKED BASELINE — VERSION 1.0. This charter has been consolidated to include the accepted whole-projec
+S01|p9|2. Mandatory discovery gates|Claude must locate and inspect the existing Anchor platform contracts before designing new services or adapter
+S01|p10|Gate 01-A — Core Platform Contract Inspection|Claude must locate and inspect the existing Anchor platform contracts before designing new services or adapter
+S01|p21|Gate 01-B — Tenant and Data Isolation Verification|Claude must establish how multi-tenancy is actually enforced. Inspect and verify, as applicable:
+S01|p33|Gate 01-C — Audit Logging and State Machine Conventions|Inspect the platform's existing audit trail and state-transition architecture before defining financial record
+S01|p44|Gate 01-D — Integration Surface Mapping|Inspect existing integration infrastructure before designing construction data ingestion.
+S01|p57|3. Additional mandatory discovery|Identify actual repositories, branches, commit identifiers and relevant package versions.
+S01|p58|3.1 Repository and build baseline|Identify actual repositories, branches, commit identifiers and relevant package versions.
+S01|p65|3.2 Existing financial and domain models|Locate existing representations of organisations, projects, entities, users, budgets, estimates, actual costs,
+S01|p68|3.3 Financial integrity and reconciliation|Establish conventions for monetary precision, currency, rounding, tax treatment, unit conversions, time period
+S01|p70|3.4 Materials and market-data readiness|Identify data structures and connectors for material specifications, supplier pricing, quantities, lead times,
+S01|p72|3.5 Post-completion lifecycle|Verify how existing systems represent practical completion and obligations that continue afterwards. Investiga
+S01|p81|3.6 Testing and operational readiness|Unit, integration, contract and end-to-end test conventions.
+S01|p90|4. Evidence and deliverables|Section 01 is not complete merely because Claude has read the code. Findings must be recorded in inspectable a
+S01|p93|5. Assumptions and unknowns register|Each unresolved item must include:
+S01|p103|6. Database and environment constraints|If a real or staging database, credentials, integrations or required tooling are unavailable, Claude must cont
+S01|p112|7. Discovery exit criteria|Section 01 can be recommended for closure only when:
+S01|p125|8. Implementation freeze before discovery sign-off|Zero production feature code or core integration logic may be merged or executed until the Section 01 Discover
+S01|p138|10. Claude discovery execution sequence|Inspect the actual repository and establish the baseline.
+S01|p148|11. Handoff to Section 02|Section 01 supplies the verified current-state baseline. Section 02 uses that baseline to define product requi
+S02|p9|2. Product scope|These are required areas of intelligence, not a claim that every data source is already integrated. Each featu
+S02|p10|2.1 Mandatory functional domains|These are required areas of intelligence, not a claim that every data source is already integrated. Each featu
+S02|p12|2.2 Core product capabilities|Continuous or source-event-driven monitoring, subject to actual source freshness.
+S02|p23|3. Actors and permissions|The following are logical roles. Section 01 must establish actual Anchor identity and authorisation convention
+S02|p25|3.1 Permission and segregation principles|Access is scoped to the authorised organisation, projects and functions.
+S02|p33|4. Core user workflows|Connect authorised data sources.
+S02|p34|Workflow A — Connect and establish the project baseline|Connect authorised data sources.
+S02|p43|Workflow B — Detect leakage and create an actionable finding|Process a source event or scheduled refresh.
+S02|p53|Workflow C — Evaluate a profit-improvement opportunity|Identify the opportunity and supporting evidence.
+S02|p63|Workflow D — Materials purchase timing|Identify the required material, specification, quantity and required-on-site date.
+S02|p74|Workflow E — Delay and holding-cost exposure|Detect a schedule deviation or emerging delay risk from available evidence.
+S02|p85|Workflow F — Retentions, security and post-completion|Record practical completion and relevant documented contractual milestones.
+S02|p96|Workflow G — Subcontractor and trade compliance exposure|Identify subcontractors and trades associated with projects, scopes and active work.
+S02|p104|Workflow H — Validate realised benefit|Original estimate and assumptions.
+S02|p113|5. Functional requirements register|Every actionable recommendation should use a consistent logical structure:
+S02|p114|6. Recommendation contract|Every actionable recommendation should use a consistent logical structure:
+S02|p125|7. Financial and decision boundaries|Deterministic financial core: authoritative arithmetic must use versioned, testable calculation logic. AI-gene
+S02|p135|8. Priority and alert behaviour|Findings should be prioritised using configurable and explainable factors, including:
+S02|p145|9. Non-functional requirements|Numerical service-level objectives are deferred until Section 01 establishes the platform baseline and Section
+S02|p147|10. Initial scope exclusions|Unless explicitly approved through a later change decision, the initial scope does not authorise:
+S03|p9|2. Canonical domain hierarchy|The logical hierarchy supports organisations, projects, contracts, work packages, cost codes, suppliers/subcon
+S03|p12|3. Common identity, provenance and lifecycle fields|These are logical field names, not mandatory literal database columns. Final mapping must follow existing Anch
+S03|p14|3.1 Identity and duplicate handling|Distinguish source records from the canonical entities to which they map.
+S03|p21|4. Canonical financial classifications|These categories have different meanings. Related representations of one underlying item must not be summed as
+S03|p23|4.1 Mandatory separation rules|An estimate is not an actual.
+S03|p34|5. Canonical financial views and margin authority|Profit Guardian must support multiple explicitly named financial views. It must not collapse accounting perfor
+S03|p36|5.1 Recognised Margin|Recognised Margin represents recognised revenue less recognised costs for a defined reporting period or cumula
+S03|p38|5.2 Forecast Final Margin|Forecast Final Margin represents forecast final revenue less forecast final cost at project completion. It mus
+S03|p40|5.3 Cash-Position-Adjusted Margin|Cash-Position-Adjusted Margin is a distinct management view that connects project economics with cash collecti
+S03|p42|5.4 Required view metadata|Canonical view identifier and version.
+S03|p52|6. Project revenue and cost semantics|Contracted or approved revenue.
+S03|p53|6.1 Revenue concepts|Contracted or approved revenue.
+S03|p64|6.2 Cost concepts|Original estimate and current approved budget.
+S03|p73|6.3 Core calculations|For a defined scope, period and accounting convention:
+S03|p80|6.4 No mixed-basis calculations|Do not silently combine cash-received revenue with incurred costs.
+S03|p87|7. Cost and commitment lifecycle|The logical lifecycle may include estimate/budget, quote/tender, approved commitment, delivery or work perform
+S03|p97|8. Materials and procurement model|Material identity and category.
+S03|p98|8.1 Material specification|Material identity and category.
+S03|p107|8.2 Material quantity lifecycle|Distinguish required, planned, quoted, ordered, delivered, accepted, consumed/installed, returned, damaged, wa
+S03|p109|8.3 Procurement cost semantics|Supplier unit price and extended quotation value.
+S03|p120|8.4 Buy, wait and stage scenarios|Required-on-site date; current quotation and expiry, if available.
+S03|p128|9. Schedule, delay and holding-cost semantics|Schedule facts include planned, forecast and actual dates; milestone dependencies; progress; delay events; sch
+S03|p135|10. Retentions, security and post-completion semantics|Associated contract and project.
+S03|p136|10.1 Retention record|Associated contract and project.
+S03|p145|10.2 Security instrument record|Instrument type and issuer.
+S03|p155|10.3 Defect and DLP record|Defect identifier, description, project/location and related work package.
+S03|p165|10.4 Incremental cost of capital|The system must model the face value of withheld retention or security separately from the incremental economi
+S03|p170|10.5 Cross-domain relationship rules|An unresolved defect may delay a retention release. Represent the defect, affected retention and any resulting
+S03|p172|10.6 Post-completion closure invariant|Practical completion alone does not mean the project is economically closed. Relevant obligations remain monit
+S03|p174|11. Currency, units, time and normalisation|Every monetary value must have an explicit currency. Currency conversions must record source and target curren
+S03|p175|11.1 Currency|Every monetary value must have an explicit currency. Currency conversions must record source and target curren
+S03|p177|11.2 Units of measure|Material and labour quantities must have explicit units. Conversions must use defined, testable rules. Incompa
+S03|p179|11.3 Time|Distinguish effective/event time, source-reported time, Anchor observation time, persistence time and calculat
+S03|p181|11.4 Tax and inclusions|Record tax-inclusive/exclusive treatment where applicable. Freight, duties, discounts, rebates and other adjus
+S03|p183|12. Finding, recommendation, decision and outcome relationsh|Preserve the distinction between what was observed, inferred, recommended, decided, executed and verified.
+S03|p194|13. Canonical state and transition rules|These are illustrative canonical states, not a requirement for every entity to use every state.
+S03|p204|14. Deterministic calculation and AI boundaries|Arithmetic and aggregation.
+S03|p205|14.1 Deterministic responsibilities|Arithmetic and aggregation.
+S03|p213|14.2 AI-assisted responsibilities|Classify unstructured evidence for review.
+S03|p220|14.3 Calculation record|Calculation identifier and version.
+S04|p7|2. Source categories and scope|Accounting and finance: posted invoices, credits, payments, receipts, journals and relevant account balances.
+S04|p20|3. Logical ingestion pipeline|The implementation must provide the following logical stages, mapping each stage to existing Anchor/AUIF conve
+S04|p33|4. Source registry and connector contract|Maintain a source registry sufficient to identify, at minimum:
+S04|p44|5. Source authority register — mandatory field-level precede|Before a source can update an authoritative financial or contractual fact, a formally approved Source Authorit
+S04|p54|6. Authentication, authorisation and source trust|Authenticate sources and authorise access using least privilege and tenant-scoped permissions.
+S04|p60|7. Idempotency, duplicates and delivery semantics|Design ingestion to tolerate duplicate delivery and retries without creating duplicate authoritative financial
+S04|p66|8. Validation layers and outcomes|Transport/security validation: authentication, authorisation, tenant scope, payload integrity and permitted si
+S04|p73|9. Quarantine versus provisional use — mandatory isolation|Ambiguous or conflicting financial records must be excluded from authoritative financial calculations. They mu
+S04|p81|10. Canonical mapping and normalisation|Preserve original source values and a durable reference to original evidence alongside normalised values.
+S04|p89|11. Entity resolution and reconciliation|Resolve incoming records against canonical projects, organisations, suppliers, subcontractors, contracts, purc
+S04|p100|12. AI-extracted documents — mandatory human verification fo|AI/OCR-extracted values from invoices, contracts, supplier quotations, delivery dockets and other documents mu
+S04|p109|13. Source revisions, conflicts and corrections|Maintain source revision/version, received time, effective time where available, and relationship to supersede
+S04|p115|14. Freshness, completeness and data quality|Track freshness and completeness by source, project, domain and decision use. A source can be technically conn
+S04|p122|15. Events, retries, backfill and replay|Use existing Anchor event, workflow and state conventions discovered under Section 01.
+S04|p129|16. Tenant isolation and security boundary|Tenant isolation applies to the full data lifecycle: credentials, connector configuration, inbound payloads, o
+S04|p132|17. Operational observability and audit trail|Maintain a traceable chain from source receipt to final disposition, including as applicable:
+S04|p142|18. Manual uploads and controlled entry|Manual uploads must pass the same tenant, schema, validation, provenance, reconciliation and authority control
+S05|p16|3. Core financial measures|Recognised Margin = Recognised Revenue − Recognised Costs.
+S05|p17|3.1 Recognised margin|Recognised Margin = Recognised Revenue − Recognised Costs.
+S05|p27|3.2 Forecast final margin|Forecast Final Margin = Forecast Final Revenue − Forecast Final Cost.
+S05|p34|3.3 Budget and forecast variance|For comparable scope and basis: Cost Variance = Approved Budget − Forecast Final Cost. Positive means forecast
+S05|p37|3.4 Cash-position-adjusted margin|This is a separate management view connecting profitability with liquidity constraints and capital tied up in 
+S05|p40|4. Canonical calculation inputs|Contract/revenue: approved, recognised, submitted, disputed and scenario-only amounts.
+S05|p53|5. Forecast cost-to-complete engine|Support a defensible forecast of remaining project cost. The precise algorithm must be selected after reposito
+S05|p66|5.1 One authoritative forecast — mandatory|Each project must have one formally approved Authoritative Forecast for the applicable scope and as-of state. 
+S05|p73|5.2 Provisional and qualified forecasts — mandatory|Where material cost-to-complete inputs are missing, stale, incomplete or unresolved, the engine may calculate 
+S05|p80|5.3 Forecast movement bridge|Every forecast revision must explain the change from its prior comparable version. Classify movements includin
+S05|p83|6. Cost commitment and actual-cost reconciliation|Avoid counting one economic cost in multiple financial states.
+S05|p89|7. Profit leakage and exposure calculations|Potential categories include cost overruns, unrecovered variations/claims, unpriced scope changes, procurement
+S05|p93|8. Schedule and holding-cost calculations|A simplified calculation is Estimated Holding Cost = Applicable Cost Rate × Eligible Delay Duration. It is val
+S05|p96|9. Retentions, security and DLP|Maintain separate values for retention principal withheld/receivable, expected release amount/timing, security
+S05|p100|10. Profit improvement and realised-benefit accounting|Maintain explicit states: identified opportunity; estimated gross benefit; estimated implementation cost; esti
+S05|p104|10.1 Realised savings verification gate — mandatory|A benefit may be reported as realised net profit improvement only after (a) an approved, versioned baseline is
+S05|p107|11. Scenario calculations|Support buy-now/wait, domestic/international sourcing, exchange-rate/freight assumptions, delivery schedules, 
+S05|p113|12. Rounding, currency, tax and numerical integrity|Define decimal precision, currency-specific precision, rounding boundaries, unit conversion, tax treatment, ex
+S05|p119|13. Reproducibility and immutable calculation versioning — m|Every material calculation must preserve its formula/rule version and an immutable input snapshot or equivalen
+S06|p11|3. Intelligence operating model|Observe new, changed, stale or corrected evidence.
+S06|p21|4. Intelligence taxonomy|Commercial and revenue: unpriced scope changes, unsubmitted variations, disputed revenue exposure and missed c
+S06|p36|5. Detection methods|The initial implementation must establish a tested deterministic rules baseline before relying on statistical 
+S06|p37|5.1 Deterministic-first strategy — mandatory|The initial implementation must establish a tested deterministic rules baseline before relying on statistical 
+S06|p40|5.2 Deterministic rules|Actual cost exceeds a defined tolerance against a comparable budget/forecast.
+S06|p50|5.3 Trend and deviation analysis|Detect repeated cost increases, deteriorating productivity, growing rework rates, commitment-to-budget varianc
+S06|p52|5.4 Cross-domain relationship detection|Connect related evidence across design, quantities, procurement, delivery, programme, labour, quality, defects
+S06|p54|5.5 Statistical/anomaly detection|Establish an explainable baseline or comparison population.
+S06|p62|5.6 AI-assisted analysis|AI may classify unstructured evidence, summarise findings, identify related records, generate investigation qu
+S06|p65|6. Finding data contract|Identity: stable finding ID, project/portfolio scope and finding version.
+S06|p80|7. Financial classification and quantification|Preserve Section 03 classifications and Section 05 calculation authority. Distinguish confirmed actual cost/lo
+S06|p84|8. Severity, urgency and prioritisation|Prioritisation may consider financial materiality, evidence strength, time sensitivity, preventable loss, time
+S06|p87|9. Deduplication, correlation and root cause|One event can create schedule, equipment-hire, overhead and productivity findings. Retain distinct findings wh
+S06|p96|9.1 Alert noise control — mandatory|Repeated detections of the same unresolved condition must update the existing finding rather than generate dup
+S06|p98|10. Continuous monitoring and reassessment|New/revised source record or changed canonical state.
+S06|p109|11. Finding lifecycle and human review|Logical lifecycle: signal detected → evidence/data-quality checks → quantify where defensible or mark unquanti
+S06|p112|12. Opportunity discovery when budgets are on track|Identify opportunities independent of budget overruns: supplier pricing/terms, purchase timing, waste/surplus 
+S06|p115|13. Portfolio intelligence|Where authorised, identify repeated overruns, supplier trends, comparable pricing differences, recurring rewor
+S06|p118|14. False positives, missed detections and model performance|Track findings by detection method/category, confirmation/dismissal rates, reopened findings and identifiable 
+S07|p8|2. Scope and architectural boundary|Schedule intelligence consumes governed schedule, progress, cost, procurement, commercial and quality data. It
+S07|p12|3. Schedule data and baseline management|Project/programme identity, programme version and approval status, baseline date and scope.
+S07|p20|4. Schedule-state assessment|Planned versus actual progress.
+S07|p28|4.1 Critical-path capability gate — mandatory|Full critical-path and concurrency analysis is permitted only when connected schedule data has sufficient vali
+S07|p30|5. Delay classification and attribution|Late material delivery.
+S07|p45|5.1 Attribution states — mandatory separation|Maintain distinct states for (1) observed event, (2) suspected cause, (3) supported causal relationship, (4) e
+S07|p48|6. Incremental holding-cost calculation|Basic calculation: Incremental Holding Cost = Eligible Cost Rate × Eligible Incremental Duration. For multiple
+S07|p52|6.1 Counterfactual baseline and overlap controls — mandatory|Every material quantified holding-cost exposure must use a documented counterfactual baseline or scenario, evi
+S07|p60|7. Critical-path and downstream impact|Where supported, evaluate critical/near-critical status, float, dependency chains, successor activities, indep
+S07|p63|8. Labour productivity and resource disruption|Potential effects include labour waiting for access/materials/instructions, movement between incomplete areas,
+S07|p66|9. Materials, delivery and schedule interaction|Link required-on-site dates, forecast delivery dates, lead times and affected activities. Detect late forecast
+S07|p69|10. Schedule scenarios and mitigation|Support scenarios for resequencing, resource changes, alternative delivery, expediting critical materials, pla
+S07|p80|10.1 Mitigation trade-off transparency — mandatory|Before a human approves a mitigation action, show the estimated time benefit, incremental cost, other material
+S07|p83|11. Contractual dates, notices and commercial implications|The system may monitor verified contractual milestones, notice deadlines and commercial implications. It may f
+S07|p86|12. Retentions, security and post-completion delay|Continue monitoring where obligations remain after practical completion, including defects delaying retention 
+S07|p89|13. Data quality, freshness and confidence|Age of latest schedule revision and progress update.
+S07|p95|14. Finding lifecycle and Active Intelligence integration|Use Section 06's governed finding lifecycle and alert-noise controls. Repeated detections update the existing 
+S08|p16|3. Procurement intelligence domains|Demand and quantities: Reconcile demand against approved scope, programme and inventory.
+S08|p29|4. Material demand and specification control|Relevant inputs include canonical material identity, specification/grade/dimensions/performance requirements, 
+S08|p32|4.1 Specification comparability gate — mandatory|Comparable: specification and commercial basis sufficiently aligned.
+S08|p39|5. Supplier quotation intelligence|Capture supplier identity and quote reference, issue/expiry date, material specification and quantity, unit pr
+S08|p42|6. Landed-cost calculation engine|Conceptual calculation: Landed Cost = Material Purchase Cost + Freight and Insurance + Duties and Applicable C
+S08|p47|7. Domestic and international market benchmarking|Potential references include approved supplier lists, recent comparable project purchases, supplier quotes, pu
+S08|p51|7.1 Market-data freshness gate — mandatory|Every market-dependent recommendation must use a decision-specific freshness threshold appropriate to the deci
+S08|p53|8. Buy now, wait, stage or negotiate|Buy now: Assess current landed cost, validity, availability, required-on-site date, storage, working capital, 
+S08|p59|9. Supplier performance and reliability|Potential measures include on-time delivery, completeness, quote accuracy, quality acceptance, defects/returns
+S08|p62|10. Procurement, schedule and quality trade-offs|Link procurement decisions to schedule, quality, inventory, cash flow and financial outcomes. Examples include
+S08|p65|11. Procurement opportunities and verified savings|Potential opportunities include comparable pricing improvements, better commercial terms, delivery optimisatio
+S08|p68|11.1 Savings verification gate — mandatory|A reported procurement saving must satisfy Section 05: approved comparable baseline, implementation evidence a
+S08|p70|12. International sourcing and compliance safeguards|International sourcing must consider more than currency-adjusted purchase price. Where relevant, flag import r
+S08|p73|13. Inventory, waste and surplus intelligence|Reconcile materials required, ordered, delivered, accepted, installed, returned and held in inventory. Potenti
+S08|p76|14. Finding and source governance|Every market-dependent finding retains source identity, observation/quote date, retrieval timestamp, applicabl
+S09|p8|2. Scope and architectural boundaries|Covers labour hours/costs/utilisation, crew and trade productivity, subcontractor labour/performance, planned 
+S09|p12|3. Labour and resource data model|Labour identity: Worker or approved pseudonymous identifier, employer and trade.
+S09|p25|4. Labour cost and time reconciliation|Reconcile authorised timesheets, payroll/cost systems, subcontractor claims and project activity records where
+S09|p29|5. Productivity measurement|Measure productivity against a documented, suitable unit of output, such as units installed per labour hour, s
+S09|p31|5.1 Like-for-like comparison gate — mandatory|A definitive productivity conclusion requires a documented, sufficiently comparable baseline. Account for scop
+S09|p34|6. Waiting time and work interruption intelligence|Identify evidence of labour time potentially lost through missing materials, incomplete drawings/approvals, re
+S09|p37|7. Overtime and recovery-cost intelligence|Overtime may be necessary and is not automatically wasteful. Compare it with the approved plan and assess prem
+S09|p40|8. Rework and quality-adjusted productivity|Link labour consumption to initial installation, inspection/rejection, rectification, repeat inspections, supe
+S09|p43|9. Crew allocation and resource utilisation|Identify crews allocated before work areas are ready, skill/resource mismatches, concurrent resource conflicts
+S09|p46|10. Subcontractor and trade productivity|Assess agreed scope/work-package boundaries, planned and actual progress, attendance/resource deployment, acce
+S09|p49|11. Labour, materials, equipment and schedule interaction|Connect labour findings to material availability, equipment, programme dependencies, design approvals, site ac
+S09|p52|12. Productivity improvement scenarios|Support scenarios for sequencing, work-area readiness, trade coordination, material staging, crew composition/
+S09|p55|13. Financial exposure and benefit verification|Keep actual expenditure, approved commitments, forecast cost, estimated avoidable exposure, scenario reduction
+S09|p59|14. Worker privacy, fairness and appropriate use|Use authorised data for legitimate project/operational purposes and apply least-privilege access and tenant is
+S09|p68|14.1 Quality, safety and competence gate — mandatory|No productivity or cost-improvement recommendation may bypass required safety, quality, competence, inspection
+S09|p70|15. Data quality and uncertainty|Identify missing/delayed timesheets, inconsistent work-package IDs, unverified quantities, incomplete crew rec
+S10|p7|2. Core operating model|1. Governed findings and evidence: Sections 04–09; sources, calculations, confidence and freshness.
+S10|p14|3. Finding eligibility before ranking|Before prioritisation, assess evidence sufficiency, data freshness, duplication/overlap, financial status (aut
+S10|p17|4. Explainable multi-factor prioritisation|The engine must not collapse every consideration into one unexplained score. Expose dimensions separately:
+S10|p29|5. Recommendation categories|Investigate: obtain missing evidence or resolve conflicting data.
+S10|p40|6. Financial comparison and net-benefit discipline|Use Section 05 canonical financial semantics. Conceptually: Estimated Net Benefit = Eligible Benefits − Increm
+S10|p44|7. Scenario comparison|For material decisions, compare reasonable alternatives rather than presenting a single preferred action witho
+S10|p55|7.1 Scenario isolation — mandatory|Scenarios must remain isolated from the authoritative forecast until changes pass required approval and calcul
+S10|p57|8. Decision transparency|Every recommendation must explain in plain language:
+S10|p67|9. Human approval and action boundaries|The engine must not autonomously execute consequential external actions, including purchase orders, contracts,
+S10|p71|10. Outcome verification and feedback|Preserve recommendation history, original finding/evidence, prioritisation inputs and method version, recommen
+S11|p7|2. Core commercial principles|Contract evidence first: findings reference relevant contract, approved variation, instruction, valuation, cor
+S11|p15|3. Contract and commercial baseline|Maintain contract/project identifiers, parties and roles, original value/currency, approved scope/exclusions/p
+S11|p18|4. Variation and scope-change intelligence|Compare commercial records with operational evidence to identify possible mismatches between work performed an
+S11|p29|4.1 Commercial entitlement gate — mandatory|Detected scope changes and potential claims remain analytical opportunities until the relevant evidence and co
+S11|p31|5. Progress claims and payment applications|Reconcile eligible work and commercial valuation evidence against relevant claim cycles. Potential findings in
+S11|p34|6. Claim evidence and substantiation|For each material opportunity, identify evidence needed for a defensible review, potentially including contrac
+S11|p37|7. Notice and deadline intelligence|Monitor recorded commercial dates and identify potential notice, submission, valuation, certification, payment
+S11|p41|7.1 Deadline and notice governance — mandatory|Contract-derived deadlines must be traceable to their source, trigger, calculation and review status. Ambiguou
+S11|p43|8. Revenue and commercial-value states|Potential commercial opportunity: Possible source of additional value requiring assessment.
+S11|p53|8.1 Commercial lifecycle separation — mandatory|Potential, estimated, submitted, approved/certified, recognised, invoiced and collected values must remain dis
+S11|p55|9. Revenue leakage and margin exposure|Connect potential revenue loss to cost and operational evidence. Examples include work without a linked commer
+S11|p58|10. Integration with finance and cash flow|Link commercial findings to Section 05 margin calculations, cash-position-adjusted margin, receivables/payment
+S11|p61|11. Disputes, deductions and commercial exceptions|Track differences between claimed, certified, invoiced and collected amounts. Potential findings include rejec
+S11|p64|12. Commercial scenarios and recommendations|Support scenarios for completing claim evidence, reassessing measured quantities, preparing variations for hum
+S11|p67|13. Revenue recovery verification — mandatory|Commercial opportunities remain estimates until their financial outcome is supported and verified. Verificatio
+S12|p16|12.2 Scope|Actual cash positions and dated cash movements.
+S12|p26|12.3 Canonical financial-state separation|The system must maintain separate, explicit states for at least the following:
+S12|p36|12.4 Data inputs, provenance, and reconciliation|Potential inputs include:
+S12|p47|12.5 Cash-flow forecasting|The forecast must support dated, time-phased inflows and outflows at the relevant project and business level.
+S12|p60|12.6 Working-capital exposure|Identify and explain timing mismatches between eligible cash outflows and expected inflows, including supplier
+S12|p63|12.7 Financing and capital-carrying cost calculations|Where suitable evidence exists, a simple interest/carrying-cost estimate may use:
+S12|p74|12.8 Retention intelligence|Track retention as a distinct financial state, including:
+S12|p82|12.9 Security instruments and guarantees|Security instruments are not equivalent to cash or retention and must have a distinct record and lifecycle. Ca
+S12|p90|12.10 Payment delays and receivables intelligence|Detect and explain, where supported:
+S12|p98|12.11 Cash-timing scenarios and recommendations|The system may compare options such as staging purchases, coordinating claim submissions, resolving certificat
+S12|p106|12.12 Post-completion capital and obligation monitoring|Monitoring must continue after practical completion where relevant obligations remain unresolved. Track retent
+S12|p109|12.13 Integration with Sections 03–11|Section 03 — Use canonical financial semantics and preserve distinctions between actuals, commitments, forecas
+S12|p120|A — Cash-flow state separation|MANDATORY. Actual cash, scheduled receipts/payments, forecast values, disputed/conditional amounts, and scenar
+S12|p122|B — Financing-cost evidence gate|MANDATORY. Material estimates require an eligible balance, evidenced or explicitly qualified rate, defined per
+S12|p124|C — Retention/security release gate|MANDATORY. Release/cancellation review must consider relevant contractual conditions, obligations, evidence, a
+S12|p126|D — Working-capital/profit separation|MANDATORY. Cash-timing improvements remain distinct from accounting margin and realised profit. Financing bene
+S12|p156|Appendix A — Required evidence categories for closure|Requirement-to-test traceability matrix with requirement IDs and pass/fail results.
+S13|p16|13.2 Scope|Defect identification, classification and lifecycle tracking.
+S13|p29|13.3 Canonical quality and rework records|Support distinct, linkable records for:
+S13|p42|13.4 Evidence, severity and classification|Use a documented classification scheme configurable for the relevant project and construction context. Classif
+S13|p54|13.5 Rework and defect cost intelligence|Identify and, where evidence permits, calculate the cost of rework and defect resolution. Potential cost compo
+S13|p75|13.6 Baseline and counterfactual controls|Where the system calculates savings from a quality-improvement initiative, it must use an approved, versioned 
+S13|p86|13.7 Root-cause and recurrence intelligence|Identify potential recurring patterns across:
+S13|p97|13.8 Rectification workflow and closure|Support a controlled defect lifecycle, with states such as:
+S13|p111|13.9 Prevention and corrective recommendations|The system may recommend preventive measures such as:
+S13|p124|13.10 Supplier, subcontractor and workforce fairness control|An association does not automatically establish responsibility.
+S13|p132|13.11 Cross-domain financial and operational integration|Section 05 — Profitability: verified rework costs and recoveries flow into the appropriate financial classific
+S13|p142|13.12 Post-completion quality intelligence|Continue tracking relevant defects and obligations after practical completion where the business retains expos
+S13|p147|A — Evidence-based defect closure|MANDATORY. A defect cannot be marked verified and closed solely because someone reports the work complete. Con
+S13|p149|B — Rework-cost and recovery separation|MANDATORY. Actual costs, estimated costs, potential recoveries, approved recoveries and collected amounts rema
+S13|p151|C — Root-cause and responsibility evidence gate|MANDATORY. Correlation or AI inference alone cannot establish causation or assign fault. Material responsibili
+S13|p153|D — Verified quality-improvement benefits|MANDATORY. Claimed savings require an approved, versioned and sufficiently comparable baseline, implementation
+S13|p181|Appendix A — Required closure evidence|Requirement-to-test traceability matrix with requirement IDs and pass/fail results.
