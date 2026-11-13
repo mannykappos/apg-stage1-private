@@ -1,0 +1,8 @@
+Received from the owner (Emmanuel) in chat, 2026-11-13 21:00 (Australia/Sydney, clock read at 21:00), in reply to the question
+"do you approve the assessment (the Word file) as it is?":
+
+Approved
+
+Applies to: APG_CR_DSR_CASCADE_ASSESSMENT_DRAFT5_FOR_APPROVAL.zip (SHA-256 6908948ab65d1927abdae64d07617f52bc3e578df808921e9895e735faefd3aa)
+and APG_CR_DSR_Cascade_Impact_Assessment_draft5.docx (SHA-256 fbcf2bbd8efe2f0f5f1d7224cb789556852afbb3ca57f0a8bb2ef16ac3b31c6e).
+Recorded as owner record item 32. Design only: no build, no stage 2, version 1.1 files not yet authorised; CR number still to be given.
