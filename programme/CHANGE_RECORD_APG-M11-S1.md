@@ -38,7 +38,7 @@ no production-readiness claim.
   - **(c)** `tools/evkit.list_mutants`, used by the 14 AST successor mutation tools (`m3` to `m7`, `m73_store`, `m91`, `f67`, `f671` to `f674`, `mie`, `mie11`): a failure of the tool's own listing of its mutants is a refusal, not a crash. The listing fails when a target file is missing or a region marker is gone. The tool prints `RUN_ERROR MUTANT_LIST_INVALID`, every pinned mutant `NOT_RUN cause=run_error`, one `RESULT v=2` line, and exits 2. The mutants themselves are unchanged.
   - **(f)** `tools/evkit.tests_runner_main` and `tools/child_unittest_runner.py`: a child given `APG_AUIF_ROOT` verifies that copy with AUIF's own loader (`apg_auif.dependency.ensure`) before any test. A copy that cannot be verified is `RUN_ERROR ENV_AUIF_ROOT_UNVERIFIED`, every file `NOT_RUN`, exit 2.
   - **(a′)** `tools/evkit.check_output`, for `kind=cases`: given the tool's pinned case inventories, the checker verifies `case_inventory_sha256` (owner, 15:33). It must be the hash of the selected suites' pinned inventories, in their order, for a choice of `suites_selected` pinned suites that contains the suites the `CASE` records name, in their printed order. A mismatch, or a `CASE` suite that is not pinned, is a problem. Without the pins this field cannot be verified, and that limitation is stated. The first rule approved, (a) at 14:24, hashed the printed `CASE` records. It was wrong for partial `--only` runs, because it confused the pinned inventory with the executed subset. It was reverted before anything depended on it, and (a′) replaces it.
-  - **Pins v87 to v97:** the `check_lists` entries of `run_m7_all_s1`, `run_m71_all_s1`, `run_m72_all_s1`, `run_m73_all_s1` (two), `run_f67_all_s1`, `run_f671_all_s1` to `run_f674_all_s1`, `run_mie1_all_s1` and `run_mie1_1_all_s1`. These name the changed tool files' hashes; each re-pin has a change record. No other pin changed. The other eight wrappers were re-pinned too and came out unchanged.
+  - **Pins v87 to v97 (the numbering of freeze c9b324eb, before the workspace loss of 2026-11-11; this rebuilt tree's own pin versions are listed under "Pin history of the rebuilt tree" below):** the `check_lists` entries of `run_m7_all_s1`, `run_m71_all_s1`, `run_m72_all_s1`, `run_m73_all_s1` (two), `run_f67_all_s1`, `run_f671_all_s1` to `run_f674_all_s1`, `run_mie1_all_s1` and `run_mie1_1_all_s1`. These name the changed tool files' hashes; each re-pin has a change record. No other pin changed. The other eight wrappers were re-pinned too and came out unchanged.
   - Owner-accepted deviations, with no code change:
     - D2, f672's short-timeout rerun removed;
     - D8, `CASE_INVENTORY_MISMATCH` for an empty corpus;
@@ -104,15 +104,15 @@ no production-readiness claim.
     - mistake 17: `_check_case_inventory`'s docstring no longer says "in their order", because `sha256_lines` sorts its lines;
     - mistake 18: `tests_tools/test_runner_zero_work.py`'s stale "decision pending, (g)" comment.
     - The (a′) item above keeps its original wording as historical; this item corrects it.
-  - **Pins v98 to v109:** the `check_lists` entries of the B and N groups whose tool file changed, 13 entries in 12 wrappers:
+  - **Pins v98 to v109 (c9b324eb's numbering):** the `check_lists` entries of the B and N groups whose tool file changed, 13 entries in 12 wrappers:
     - `run_f67_all_s1`, `run_f671_all_s1` to `run_f674_all_s1` (G09);
     - `run_m3_all_s1` (G08, `run_cr02_reference_s1`);
     - `run_m7_all_s1` (G15), `run_m71_all_s1` (G16), `run_m72_all_s1` (G18) and `run_m73_all_s1` (G23, G24);
     - `run_mie1_all_s1` and `run_mie1_1_all_s1` (G08).
-  - **Pins v110:** the `test_files` entries of the 10 `tests_tools` files, which hold the new tests. New test files are not allowed by the manifest contract, so the tests went into the existing files.
+  - **Pins v110 (c9b324eb's numbering):** the `test_files` entries of the 10 `tests_tools` files, which hold the new tests. New test files are not allowed by the manifest contract, so the tests went into the existing files.
     - These ten entries had not been updated since they were first pinned. In freeze `d5f87d6b…` they named stale hashes and listed 158 test ids, while the files held 508 tests (mistake 27).
     - Nothing in the evidence reads them: the T set runs each file directly. A runner given those files would refuse on the mismatch.
-  - **Pins v111:** `tests_tools/test_no_timeout_kill.py`, for the mistake 29 test.
+  - **Pins v111 (c9b324eb's numbering):** `tests_tools/test_no_timeout_kill.py`, for the mistake 29 test.
   - **Mistake 29, a race in the builder's P code, found by the full suite.**
     - `evkit._Supervision.scan` read the process table before it pruned the reaped registrations.
     - A direct child reaped by its own handle in between was taken for an adopted orphan. Its status was still collected correctly, but P.4 requires that the reaper never sees an unregistered direct child.
@@ -152,6 +152,33 @@ no production-readiness claim.
     retained, the process recorded as non-compliant); mistake 34 (that logic change made before the stop).
   - **Pins:** the `test_files` entries of the changed `tests_tools` files; each version has its change record in
     `tools/expected_counts.json`.
+  - **Pin history of the rebuilt tree** (fix 6, discrepancy D6-2 of the step 6 re-mapping: the pin numbers above are c9b324eb's):
+    - v87 to v98 (2026-11-11): the recovery's re-pins of the `check_lists` entries listed above under c9b324eb's v87 to v109;
+    - v99: the `tests_tools` files, byte-identical to freeze c9b324eb;
+    - v100 and v101 (step 3): the rewritten amendment 5 tests (700 tests; v101 the row 55 held group);
+    - v102 (row 68, owner 2026-11-12 "Add limits, then refreeze"): a time limit on the ten helper process starts in two
+      `tests_tools` files (`test_consumer_exit_codes.py`, `test_no_timeout_kill.py`), tests only, ids and counts unchanged;
+    - v103 (fix 6): below.
+- **Fix 6 (owner, 2026-11-13 18:34, "Fix them, then re-run"), after the step 6 re-mapping (37 closed, 28 partly addressed):**
+  tests only, in the existing `tests_tools` files; no product or successor-tool logic changed.
+  - `test_no_timeout_kill.py` (`AM6Supervision`): row 11 with real processes (an equal-start-time grandchild, ambiguous, adopted and
+    reaped after its parent ends); row 21 (the records in the units' id order, the builder reading "id order is creation order"
+    stated in the test, against completion order and name order); row 91 (no other member signalled while the nested supervisor
+    lives); row 99 (a phase with children counted once); row 12's older test now asserts each unit's leak (S15).
+  - `test_mutation_timeout.py` (`AM6MutationToolGaps`, `AM6LeafInterrupts`): rows 4 (the /proc, pidfd_open, prctl set and read-back
+    refusals at tool level), 12 (an orphan at `--jobs 2`: each item in flight INDETERMINATE processes_left), 21 (gone when the RESULT
+    line arrives), 22 (a mutant's leak), 41 (a mutation tool's control crash and rejected output), 51 to 53 and 66 (the three leaves,
+    SIGINT and SIGTERM); row 121's identity record from `P2MutationFamily`, with each process group noted while it lived (D6-7).
+  - `test_runner_zero_work.py` (`AM6AttributionAndSignals`, `AM6FindingThirteenProbes`, `AM6RunEndAndCounts`): rows 21, 30 (an
+    unkillable forked case), 46 (the case hash for every case runner; the item count never skipped), 52 and 53 (run_contracts_s1
+    SIGTERM and during the batch's cleanup; sabotage_m7_s1 and run_faults_s1 between items; run_faults_s1 during the end control's
+    cleanup), 71 (m8_mutants_s1's own AUIF children at its start), 73 and D6-3 (run_start and run_end on m8_mutants_s1 and
+    run_m8_tests_s1; R03's "(INCOMPLETE: processes left)"), 75 (probes of finding 13 classes 2 to 6, recorded as `P_PROBE` lines in
+    the test log), 85 (stderr and the rewritten command), 96 and 99 at tool level; row 121's identity record from `P2FaultRunners`,
+    `P2CaseRunners` and `P2NoResultSupervisors`, process groups noted while they lived (D6-7).
+  - `test_exec_env.py`: row 29's first chain (m3_mutants_s1 -> run_m2_tests_s1 -> test -> process -> child, normal and interrupt
+    paths) and the interrupt path's CLEANUP attribution in the second chain; D17: `test_m8_mutants_controls_and_a_known_kill`
+    renamed `test_m8_mutants_control_is_killed_at_tier_1_and_ml01_never_runs`, so its name says what it asserts.
 
 ## What changed
 `programme/APG-M11-S1_MANIFEST.csv` holds the exact list:

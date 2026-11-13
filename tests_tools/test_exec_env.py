@@ -572,8 +572,8 @@ class E7ChildIsolationM10Halves(unittest.TestCase):
         self.assertEqual(code, 0, out[-2000:] + err[-1500:])
         self.assertIn('M8 tests 7 in 1 files, failed files 0', out)
 
-    def test_m8_mutants_controls_and_a_known_kill(self):
-        # amendment 5, discrepancy 17: the known kill on the M10 view is the control's own: M10's unmutated copy is KILLED at tier 1 by
+    def test_m8_mutants_control_is_killed_at_tier_1_and_ml01_never_runs(self):
+        # fix 6, D17: renamed from test_m8_mutants_controls_and_a_known_kill, so the name says what it asserts.  Amendment 5, discrepancy 17: the known kill on the M10 view is the control's own: M10's unmutated copy is KILLED at tier 1 by
         # the stage 1 boundary test (decision M8-T), and M10 then stops (its main returns 2 after a failed control), so ML-01 itself
         # never runs here; the successor half (ChildrenStartIsolated) asserts ML-01 KILLED
         code, out, err = self.go('m8_mutants.py', '--only', 'ML-01', '--jobs', '1')
@@ -700,7 +700,66 @@ class AM5SecondChain(unittest.TestCase):
         self.assertRegex(out.strip().splitlines()[-2], r'^INTERRUPTED signal=SIGINT at=\S+ received=1$')   # before the RESULT line
         self.assertTrue(out.strip().splitlines()[-1].startswith('RESULT v=2 kind=tests '))
         self.assertRegex(out, r'(?m)^FILE test_m8_dependency\.py state=INDETERMINATE ')
+        # fix 6, row 29: the CLEANUP attribution on the interrupt path: run_m8_tests_s1's record names the leaf, the process and its child
+        rec = _am5re.search(r'(?m)^CLEANUP test_m8_dependency\.py by=run_m8_tests_s1:\d+ .* left=(\S+) ', out)
+        self.assertTrue(rec, out[-2000:])
+        self.assertGreaterEqual(len(rec.group(1).split(',')), 3)
         self.assertEqual(self.E.check_output(out, code), [], out[-3000:])
+        self.Z.p2b_gone(self, seen)
+
+
+class AM6FirstChain(unittest.TestCase):
+    """Fix 6, row 29: the first chain, a mutation tool -> its leaf (run_m2_tests_s1) -> a test -> a process -> its child, on
+    m3_mutants_s1 in a copy (its commands cut to the first test pattern), on the normal and interrupt paths, with the CLEANUP attribution
+    of the mutation tool's unit."""
+
+    setUp = AM5SecondChain.setUp
+    tearDown = AM5SecondChain.tearDown
+
+    def tree(self, mode):
+        root = os.path.join(self.tmp, 'first_' + mode)
+        self.Z.p2b_copy(root, [('tools/evkit.py', '            with owning(name) as o_file:\n                suite.run(res)\n',
+                                '            with owning(name) as o_file:\n                _am5_chain()\n                suite.run(res)\n'),
+                               ('tools/evkit.py', '            o_file = None\n            suite.run(res)\n',
+                                '            o_file = None\n            _am5_chain()\n            suite.run(res)\n'),
+                               ('tools/m3_mutants_s1.py', '            for pat in M.TEST_ORDER]', '            for pat in M.TEST_ORDER[:1]]')])
+        with open(os.path.join(root, 'tools', 'evkit.py'), 'a', encoding='utf-8') as fh:
+            fh.write(AM5_CHAIN % {'root': root})
+        os.makedirs(os.path.join(root, '_p2'))
+        with open(os.path.join(root, '_p2', 'mode'), 'w') as fh:
+            fh.write(mode)
+        return root
+
+    def test_row29_the_first_chain_normal_path(self):
+        # the leaf's test leaves a process and its child; the leaf is not a supervisor, so the mutation tool's cleanup of the start
+        # control's unit finds them: CONTROL start CONTROL_FAIL cause=processes_left, every mutant NOT_RUN, and the record names both
+        first = self.E.load_pins()[0]['mutation_lists']['m3_mutants_s1']['ids'][0]
+        root = self.tree('normal')
+        code, out, seen = self.Z.p2b_run(root, ['tools/m3_mutants_s1.py', '--ids', first])
+        self.Z.p2_identity_record(self, seen, out)
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertRegex(out, r'(?m)^CONTROL start CONTROL_FAIL cause=processes_left ')
+        rec = _am5re.search(r'(?m)^CLEANUP control_start\S* by=m3_mutants_s1:\d+ .* left=(\S+) ', out)
+        self.assertTrue(rec, out[-2000:])
+        self.assertGreaterEqual(len(rec.group(1).split(',')), 2)        # the process and its child
+        self.assertRegex(out, r'(?m)^MUTANT %s NOT_RUN ' % _am5re.escape(first))
+        self.assertEqual(self.E.check_output(out, code, selected=[first]), [], out[-3000:])
+        self.Z.p2b_gone(self, seen)
+
+    def test_row29_the_first_chain_interrupt_path(self):
+        # the leaf blocks after starting the chain; SIGINT to the mutation tool: CONTROL start CONTROL_INTERRUPTED, and its cleanup's
+        # record names the leaf, the process and its child
+        first = self.E.load_pins()[0]['mutation_lists']['m3_mutants_s1']['ids'][0]
+        root = self.tree('hang')
+        code, out, seen = self.Z.p2b_run(root, ['tools/m3_mutants_s1.py', '--ids', first], when=self.Z.p2b_mark('chain'), delay=0.5)
+        self.Z.p2_identity_record(self, seen, out)
+        self.assertEqual(code, 3, out[-2000:])
+        self.assertRegex(out, r'(?m)^CONTROL start CONTROL_INTERRUPTED cause=interrupted$')
+        self.assertRegex(out.strip().splitlines()[-2], r'^INTERRUPTED signal=SIGINT at=control_start received=1$')
+        rec = _am5re.search(r'(?m)^CLEANUP control_start\S* by=m3_mutants_s1:\d+ .* left=(\S+) ', out)
+        self.assertTrue(rec, out[-2000:])
+        self.assertGreaterEqual(len(rec.group(1).split(',')), 3)        # the leaf, the process and its child
+        self.assertEqual(self.E.check_output(out, code, selected=[first]), [], out[-3000:])
         self.Z.p2b_gone(self, seen)
 
 

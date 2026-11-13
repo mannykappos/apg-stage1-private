@@ -454,7 +454,8 @@ class P2SubprocessUnits(P2Base):
             # unit's cleanup finds it alive at its step 3 records the leak (P.6) and kills it
             g_ident = p2_read_idents(self.rec)[0]
             self.assertEqual(sorted(o.id for o in E._SUP.adopted[g_ident]), ['ua', 'ub'])
-            self.assertTrue(res['ua'].leaked or res['ub'].leaked)
+            self.assertTrue(res['ua'].leaked)           # fix 6, row 12 (S15): each unit in flight records the leak, not either
+            self.assertTrue(res['ub'].leaked)
             recs = [l for l in E._SUP.final_lines() if l.startswith('CLEANUP ')]
             self.assertTrue(any(('%d:%d' % g_ident) in l for l in recs), recs)
         finally:
@@ -1058,6 +1059,106 @@ class AM5Supervision(P2Base):
         lines = E._SUP.final_lines()
         self.assertEqual(lines[-1], 'CLEANUP_SUMMARY units=4 leaked=1 remaining=0')
         self.assertEqual([l.split()[1] for l in lines if l.startswith('CLEANUP ')], ['s2'])
+
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Fix 6 (owner, 2026-11-13 18:34, "Fix them, then re-run"): rows 11, 21, 91 and 99, the gaps the step 6 re-mapping found at helper
+# level. Tests only; no product or successor-tool logic is changed.
+# ---------------------------------------------------------------------------------------------------------------------------------------
+class AM6Supervision(P2Base):
+    def recording_send_with(self, probe):
+        sent = []
+        real = E._send_pidfd
+
+        def send(ident, sig):
+            sent.append((ident, sig, probe()))
+            return real(ident, sig)
+        E._SUP.send = send
+        return sent
+
+    def test_row11_a_real_ambiguous_process_is_adopted_cleaned_up_and_reaped_after_its_parent_ends(self):
+        # P.3 with real processes: the unit's grandchild G is forked by its parent M in the same clock tick, so its only link is an
+        # equal-start-time parent that is not a direct child: ambiguous, recorded, and not signalled while M lives. When M has ended,
+        # G is re-parented to this supervisor, adopted (attributed to the unit), cleaned up and reaped
+        s = self.script('amb.py', 'import os, time\nrec(%r)\n'
+                        'if os.fork() == 0:\n    if os.fork() == 0:\n        rec(%r)\n        time.sleep(60)\n        os._exit(0)\n'
+                        '    rec(%r)\n    time.sleep(1.5)\n    os._exit(0)\ntime.sleep(0.3)\n' % (self.rec, self.rec, self.rec))
+        order = []
+        sent = self.recording_send_with(lambda: [p2_exists(i) for i in p2_read_idents(self.rec)])
+        r = E.run_unit('am', [PY, '-I', '-S', s], 30, self.env(), self.d)
+        ids = p2_read_idents(self.rec)
+        self.assertEqual(len(ids), 3, ids)
+        d = ids[0]
+        m, g = sorted(ids[1:])                             # M forked first (the lower pid), G forked by M
+        self.assertEqual(m[1], g[1], 'the planted grandchild did not get its parent\'s start time: %r' % (ids,))
+        self.assertTrue(r.leaked)
+        rec = [l for l in E._SUP.final_lines() if l.startswith('CLEANUP am ')][0]
+        self.assertIn(' ambiguous=%d:%d ' % g, rec)
+        self.assertEqual([o.id for o in E._SUP.adopted[g]], ['am'])
+        self.assertIn(g, E._SUP.reaped_orphans)
+        for ident, sig, alive in sent:
+            if ident == g:                                    # never signalled while its equal-start parent still existed
+                self.assertFalse(alive[ids.index(m)], sent)
+        self.assert_all_gone(ids)
+
+    def test_row21_the_records_follow_the_units_ids_not_their_completion(self):
+        # P.5 step 8: "the order of the CLEANUP lines is the order of the units' ids". Builder reading (evkit final_lines' docstring,
+        # disclosed): a unit's id order is its creation order. Here the unit created first finishes last, and its id sorts after the
+        # second's, so neither completion order nor sorting by name would give this order
+        res = {}
+
+        def go(uid, delay):
+            s = self.script(uid + '.py', 'import subprocess, sys, time\nrec(%r)\ntime.sleep(%r)\n'
+                            'subprocess.Popen([sys.executable, "-c", %r])\n'
+                            % (self.rec, delay, P2_REC + 'rec(%r)\nimport time\ntime.sleep(60)\n' % self.rec))
+            res[uid] = E.run_unit(uid, [PY, '-I', '-S', s], 30, self.env(), self.d)
+        t1 = _thr.Thread(target=go, args=('z_first', 1.5))
+        t1.start()
+        _t.sleep(0.4)
+        t2 = _thr.Thread(target=go, args=('a_second', 0.0))
+        t2.start()
+        t1.join()
+        t2.join()
+        self.assertTrue(res['z_first'].leaked and res['a_second'].leaked)
+        lines = E._SUP.final_lines()
+        self.assertEqual([l.split()[1] for l in lines if l.startswith('CLEANUP ')], ['z_first', 'a_second'], lines)
+        self.assertEqual(lines[-1], 'CLEANUP_SUMMARY units=2 leaked=2 remaining=0')
+        self.assert_all_gone(p2_read_idents(self.rec))
+
+    def test_row91_sigterm_goes_to_the_nested_supervisor_alone_while_it_lives(self):
+        # reading 4: every SIGTERM sent while the nested supervisor (the unit's direct child) is alive goes to it alone; the other
+        # member is signalled only once the supervisor has ended
+        sup = os.path.join(self.d, 'run_faults_s1.py')
+        with open(sup, 'w') as fh:
+            fh.write(P2_REC + 'import signal, subprocess, sys, time\nrec(%r)\n'
+                     'subprocess.Popen([sys.executable, "-c", %r])\n'
+                     'signal.signal(signal.SIGTERM, lambda *a: (time.sleep(0.5), sys.exit(3)))\ntime.sleep(60)\n'
+                     % (self.rec, P2_REC + 'rec(%r)\nimport time\ntime.sleep(60)\n' % self.rec))
+        sent = self.recording_send_with(lambda: [p2_alive(i) for i in p2_read_idents(self.rec)])
+        r = E.run_unit('ns', [PY, '-I', '-S', sup], 1, self.env(), self.d)
+        self.assertEqual(r.how, 'timeout')
+        ids = p2_read_idents(self.rec)
+        self.assertEqual(len(ids), 2, ids)
+        direct, other = ids
+        terms = [(i, alive) for i, sig, alive in sent if sig == _sig.SIGTERM]
+        self.assertTrue(terms)
+        self.assertEqual(terms[0][0], direct)
+        for i, alive in terms:
+            if alive and alive[0]:                            # the nested supervisor was alive when this SIGTERM was sent
+                self.assertEqual(i, direct, terms)
+        self.assertIn(other, [i for i, _ in terms] + [i for i, sig, _ in sent if sig == _sig.SIGKILL])
+        self.assert_all_gone(ids)
+
+    def test_row99_a_phase_with_children_is_counted_once(self):
+        # reading 13: CLEANUP_SUMMARY units= counts each unit, and a phase with children once, never once per child
+        s = self.script('c.py', 'rec(%r)\n' % self.rec)
+        with E.owning('run_start'):
+            subprocess.run([PY, '-I', '-S', s], timeout=60)
+            subprocess.run([PY, '-I', '-S', s], timeout=60)
+        E.run_unit('u1', [PY, '-I', '-S', s], 30, self.env(), self.d)
+        lines = E._SUP.final_lines()
+        self.assertEqual(lines[-1], 'CLEANUP_SUMMARY units=2 leaked=0 remaining=0', lines)
 
 
 if __name__ == '__main__':

@@ -4097,6 +4097,67 @@
    "date": "2026-11-11T19:34:06Z",
    "reason": "amendment 5, row 68 (owner 2026-11-12 answer \"Add limits, then refreeze\"): the test_files entries of the two tests_tools files whose helper process starts were given a time limit",
    "version": 102
+  },
+  {
+   "cause": "tests_tools files changed on branch fix6",
+   "changes": [
+    {
+     "entry": "test_files/tests_tools/test_exec_env.py",
+     "new": {
+      "ids_sha256": "d678073341cdc1eec4829e3e53e8c304ae5af57a8881e49858c0973a811ba5cc",
+      "sha256": "d7f75e7342265d76e5a4e6be7c6ddbddc1d90f09a51aa73d1d16b058620edf9c",
+      "tests": 44
+     },
+     "old": {
+      "ids_sha256": "f3b208c4ea459120decf0e90af59bf973d323d80665cd5b876526e5a420e5c15",
+      "sha256": "fb0ebacf5bac6019f8c053223d1636f7ffd9bae5e19ff0063ccbf71e25a0237c",
+      "tests": 42
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_mutation_timeout.py",
+     "new": {
+      "ids_sha256": "7323bef384c4f25feea4580e365193f555a3801226f4c85006a889af387f8137",
+      "sha256": "8ae9c0d82a68b1e90045e0cfdbd5dd0e48e506095f292fd429597b52df1933e5",
+      "tests": 206
+     },
+     "old": {
+      "ids_sha256": "1789b9e3ee8a4c7eb7d5106faafe53ca6b8ab7c745a34c8fab40cbb042a4b718",
+      "sha256": "8367ef42815a97a7ad9802d916721717414e95ade54f7784e53e12a8b1179ad8",
+      "tests": 200
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_no_timeout_kill.py",
+     "new": {
+      "ids_sha256": "f635090a51a5719e332cc0fef73b24a089468bc997f65d5078a59dc0b4e03ae4",
+      "sha256": "e178708993c60a676507a7d7bbd24349c1f0efecf672b2dbce31e0956b790930",
+      "tests": 56
+     },
+     "old": {
+      "ids_sha256": "9d8fff121d3f473f26a678525fe1727ca177887dc44b75dc8f038bf35583a8f2",
+      "sha256": "5c04aed862ec4ef723e09e131236ac4e8c2044d5ec3019df9e73987ebc479f55",
+      "tests": 52
+     }
+    },
+    {
+     "entry": "test_files/tests_tools/test_runner_zero_work.py",
+     "new": {
+      "ids_sha256": "4ae0457b994bed9d7fcdb34030cdd0afbc6e66d888a0a008875b9e47a9a3af69",
+      "sha256": "6cbf97f05470c1b92379db75bb1f34e9cd0240b1ac8ac4d6e8d6e2862afd0016",
+      "tests": 181
+     },
+     "old": {
+      "ids_sha256": "050ea34f42bad2dc154eb2dd76e45fba6c1e716e73c9e42c8ba24a37a0109b90",
+      "sha256": "0d480af2790f0ebf00257d65ae867dc63819d841411193f675534ace9260d987",
+      "tests": 166
+     }
+    }
+   ],
+   "content_sha256": "e53a4b397512ef86aa05a4f29064c50f479df6b18404c028d3e1e62fd195b55e",
+   "date": "2026-11-13T08:05:22Z",
+   "reason": "fix 6 (owner 2026-11-13 18:34, \"Fix them, then re-run\"): the step 6 re-mapping gaps, tests only, in four tests_tools files",
+   "version": 103
   }
  ],
  "check_lists": {
@@ -38916,6 +38977,8 @@
     "tests_tools.test_exec_env.AM5SecondChain.test_row29_the_second_chain_through_run_m8_tests_s1",
     "tests_tools.test_exec_env.AM5SecondChain.test_row29_the_second_chain_through_run_m8_tests_s1_interrupt",
     "tests_tools.test_exec_env.AM5SecondChain.test_row29_the_second_chain_through_run_m8_tests_s1_timeout",
+    "tests_tools.test_exec_env.AM6FirstChain.test_row29_the_first_chain_interrupt_path",
+    "tests_tools.test_exec_env.AM6FirstChain.test_row29_the_first_chain_normal_path",
     "tests_tools.test_exec_env.AuifRootAtRunnerLevel.test_an_inherited_value_that_is_not_a_verified_copy_is_refused",
     "tests_tools.test_exec_env.AuifRootAtRunnerLevel.test_children_get_only_the_copy_the_runner_verified",
     "tests_tools.test_exec_env.AuifRootAtRunnerLevel.test_the_child_accepts_the_copy_its_runner_verified",
@@ -38931,7 +38994,7 @@
     "tests_tools.test_exec_env.CleanEnvAndCommands.test_clean_env_is_the_allowlist_only",
     "tests_tools.test_exec_env.CleanEnvAndCommands.test_clean_env_refuses_a_missing_tmpdir",
     "tests_tools.test_exec_env.CleanEnvAndCommands.test_run_error_codes_are_tokens_and_details_one_line",
-    "tests_tools.test_exec_env.E7ChildIsolationM10Halves.test_m8_mutants_controls_and_a_known_kill",
+    "tests_tools.test_exec_env.E7ChildIsolationM10Halves.test_m8_mutants_control_is_killed_at_tier_1_and_ml01_never_runs",
     "tests_tools.test_exec_env.E7ChildIsolationM10Halves.test_run_m8_tests",
     "tests_tools.test_exec_env.E7ChildIsolationM10Halves.test_run_regression_m10_step_r07",
     "tests_tools.test_exec_env.E7ChildIsolationM10Halves.test_sabotage_m10_one_plant",
@@ -38956,8 +39019,8 @@
     "tests_tools.test_exec_env.StartChecksInAChild.test_started_with_site_is_a_run_error",
     "tests_tools.test_exec_env.StartChecksInAChild.test_started_without_isolation_is_a_run_error"
    ],
-   "ids_sha256": "f3b208c4ea459120decf0e90af59bf973d323d80665cd5b876526e5a420e5c15",
-   "sha256": "fb0ebacf5bac6019f8c053223d1636f7ffd9bae5e19ff0063ccbf71e25a0237c"
+   "ids_sha256": "d678073341cdc1eec4829e3e53e8c304ae5af57a8881e49858c0973a811ba5cc",
+   "sha256": "d7f75e7342265d76e5a4e6be7c6ddbddc1d90f09a51aa73d1d16b058620edf9c"
   },
   "tests_tools/test_harness_isolation.py": {
    "ids": [
@@ -39103,6 +39166,12 @@
     "tests_tools.test_mutation_timeout.AM5ToolLevelRefusals.test_row4_m2_mutants_s1_without_pidfd_send_signal",
     "tests_tools.test_mutation_timeout.AM5ToolLevelRefusals.test_row4_run_faults_s1_without_a_libc",
     "tests_tools.test_mutation_timeout.AM5ToolLevelRefusals.test_row4_sigchld_not_default_at_tool_level",
+    "tests_tools.test_mutation_timeout.AM6LeafInterrupts.test_rows51_53_66_each_leaf_stops_on_either_signal_and_no_test_starts_after_it",
+    "tests_tools.test_mutation_timeout.AM6MutationToolGaps.test_row12_an_orphan_at_jobs_2_is_a_leak_of_each_item_in_flight",
+    "tests_tools.test_mutation_timeout.AM6MutationToolGaps.test_row21_every_descendant_is_gone_when_the_result_line_is_printed",
+    "tests_tools.test_mutation_timeout.AM6MutationToolGaps.test_row22_a_mutation_items_leak_is_indeterminate_processes_left",
+    "tests_tools.test_mutation_timeout.AM6MutationToolGaps.test_row41_a_mutation_tools_control_that_crashes_or_returns_rejected_output",
+    "tests_tools.test_mutation_timeout.AM6MutationToolGaps.test_row4_each_remaining_setup_failure_refuses_at_tool_level",
     "tests_tools.test_mutation_timeout.BaselineOptionW1A.test_control_failure",
     "tests_tools.test_mutation_timeout.BaselineOptionW1A.test_only_the_nine_tools_take_the_option",
     "tests_tools.test_mutation_timeout.BaselineOptionW1A.test_pass",
@@ -39284,8 +39353,8 @@
     "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_mie",
     "tests_tools.test_mutation_timeout.ToolLevelTimeoutCrashKill.test_timeout_mie11"
    ],
-   "ids_sha256": "1789b9e3ee8a4c7eb7d5106faafe53ca6b8ab7c745a34c8fab40cbb042a4b718",
-   "sha256": "8367ef42815a97a7ad9802d916721717414e95ade54f7784e53e12a8b1179ad8"
+   "ids_sha256": "7323bef384c4f25feea4580e365193f555a3801226f4c85006a889af387f8137",
+   "sha256": "8ae9c0d82a68b1e90045e0cfdbd5dd0e48e506095f292fd429597b52df1933e5"
   },
   "tests_tools/test_no_timeout_kill.py": {
    "ids": [
@@ -39307,6 +39376,10 @@
     "tests_tools.test_no_timeout_kill.AM5Supervision.test_row99_the_summary_counts_the_units_started",
     "tests_tools.test_no_timeout_kill.AM5Supervision.test_s15_a_phase_in_flight_is_a_leak_for_an_unrecorded_orphan",
     "tests_tools.test_no_timeout_kill.AM5Supervision.test_s15_each_units_record_names_the_conservatively_attributed_orphan",
+    "tests_tools.test_no_timeout_kill.AM6Supervision.test_row11_a_real_ambiguous_process_is_adopted_cleaned_up_and_reaped_after_its_parent_ends",
+    "tests_tools.test_no_timeout_kill.AM6Supervision.test_row21_the_records_follow_the_units_ids_not_their_completion",
+    "tests_tools.test_no_timeout_kill.AM6Supervision.test_row91_sigterm_goes_to_the_nested_supervisor_alone_while_it_lives",
+    "tests_tools.test_no_timeout_kill.AM6Supervision.test_row99_a_phase_with_children_is_counted_once",
     "tests_tools.test_no_timeout_kill.Census.test_every_m10_mutation_tool_has_a_successor_and_the_successors_are_clean",
     "tests_tools.test_no_timeout_kill.Census.test_the_census_finds_the_m10_pattern",
     "tests_tools.test_no_timeout_kill.Census.test_the_census_of_tools_evkit",
@@ -39342,8 +39415,8 @@
     "tests_tools.test_no_timeout_kill.SuccessorNeverCountsATimeoutOrCrash.test_run_child_timeout_and_crash",
     "tests_tools.test_no_timeout_kill.SuccessorNeverCountsATimeoutOrCrash.test_timeout_is_indeterminate_in_every_kind"
    ],
-   "ids_sha256": "9d8fff121d3f473f26a678525fe1727ca177887dc44b75dc8f038bf35583a8f2",
-   "sha256": "5c04aed862ec4ef723e09e131236ac4e8c2044d5ec3019df9e73987ebc479f55"
+   "ids_sha256": "f635090a51a5719e332cc0fef73b24a089468bc997f65d5078a59dc0b4e03ae4",
+   "sha256": "e178708993c60a676507a7d7bbd24349c1f0efecf672b2dbce31e0956b790930"
   },
   "tests_tools/test_runner_zero_work.py": {
    "ids": [
@@ -39388,6 +39461,21 @@
     "tests_tools.test_runner_zero_work.AM5Wrappers.test_row51_to_53_run_m4_all_s1_between_groups",
     "tests_tools.test_runner_zero_work.AM5Wrappers.test_row55_an_interrupted_wrapper_group",
     "tests_tools.test_runner_zero_work.AM5Wrappers.test_s16_an_exit_3_check_of_a_class_that_is_not_n_or_b",
+    "tests_tools.test_runner_zero_work.AM6AttributionAndSignals.test_row21_a_fault_runners_descendants_are_gone_when_its_result_line_is_printed",
+    "tests_tools.test_runner_zero_work.AM6AttributionAndSignals.test_row30_a_forked_case_that_cannot_be_killed_after_its_valid_result",
+    "tests_tools.test_runner_zero_work.AM6AttributionAndSignals.test_row71_m8_mutants_s1s_own_auif_children_are_registered_at_its_start",
+    "tests_tools.test_runner_zero_work.AM6AttributionAndSignals.test_row73_an_m10_steps_child_that_leaves_a_process",
+    "tests_tools.test_runner_zero_work.AM6AttributionAndSignals.test_row73_run_m8_tests_s1s_start_and_end",
+    "tests_tools.test_runner_zero_work.AM6AttributionAndSignals.test_rows52_53_run_contracts_s1_sigterm_and_both_signals_during_the_batchs_cleanup",
+    "tests_tools.test_runner_zero_work.AM6AttributionAndSignals.test_rows52_53_run_faults_s1_between_items_and_during_the_end_controls_cleanup",
+    "tests_tools.test_runner_zero_work.AM6AttributionAndSignals.test_rows52_53_sabotage_m7_s1_between_items_on_either_signal",
+    "tests_tools.test_runner_zero_work.AM6FindingThirteenProbes.test_row75_class2_the_r03_register_generators",
+    "tests_tools.test_runner_zero_work.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren",
+    "tests_tools.test_runner_zero_work.AM6FindingThirteenProbes.test_row75_class4_the_grandchildren_of_an_m10_tool_run_as_a_child",
+    "tests_tools.test_runner_zero_work.AM6FindingThirteenProbes.test_row75_class5_a_process_a_test_file_starts",
+    "tests_tools.test_runner_zero_work.AM6FindingThirteenProbes.test_row75_class6_sabotage_m10s_ui_check_a_node_child_and_its_grandchild",
+    "tests_tools.test_runner_zero_work.AM6RunEndAndCounts.test_row96_a_child_outside_every_unit_and_phase_is_the_run_ends_at_tool_level",
+    "tests_tools.test_runner_zero_work.AM6RunEndAndCounts.test_row99_a_real_runs_units_count_reconciled",
     "tests_tools.test_runner_zero_work.CasesRunners.test_a_changed_case_inventory_fails_closed",
     "tests_tools.test_runner_zero_work.CasesRunners.test_every_successor_runs_its_whole_pinned_inventory_and_the_checker_accepts_it",
     "tests_tools.test_runner_zero_work.CasesRunners.test_m10_det_corpus_with_an_unknown_only_reports_zero_cases_as_a_pass",
@@ -39514,12 +39602,12 @@
     "tests_tools.test_runner_zero_work.ZeroAndPartialWork.test_partial_work_is_never_ok",
     "tests_tools.test_runner_zero_work.ZeroAndPartialWork.test_zero_selected_never_succeeds_in_any_kind"
    ],
-   "ids_sha256": "050ea34f42bad2dc154eb2dd76e45fba6c1e716e73c9e42c8ba24a37a0109b90",
-   "sha256": "0d480af2790f0ebf00257d65ae867dc63819d841411193f675534ace9260d987"
+   "ids_sha256": "4ae0457b994bed9d7fcdb34030cdd0afbc6e66d888a0a008875b9e47a9a3af69",
+   "sha256": "6cbf97f05470c1b92379db75bb1f34e9cd0240b1ac8ac4d6e8d6e2862afd0016"
   }
  },
  "timeout_kill_factor": null,
- "version": 102,
+ "version": 103,
  "wrapper_inventories": {
   "run_f671_all_s1": {
    "files": {

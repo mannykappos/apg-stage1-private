@@ -1021,6 +1021,19 @@ def p2_descendants(pid):
     return out
 
 
+P2_PGIDS = {}
+
+
+def p2_note_pgids(d):
+    """Fix 6 (D6-7, rows 42 and 121): note each descendant's process group while it lives, during the run, for the identity record."""
+    for x in d:
+        if (x[0], x[1]) not in P2_PGIDS:
+            try:
+                P2_PGIDS[(x[0], x[1])] = os.getpgid(x[0])
+            except OSError:
+                pass
+
+
 def p2_run(tree, script, args, when=None, sig=_p2sig.SIGINT, again=None, delay=0.0, timeout=600):
     """Run a tool in the tree; when(descendants) -> True decides the moment to send sig (then again, if given, 0.3 s later).  Returns
     (exit code, output, the identities of the descendants seen at the signal, plus every identity seen while it ran)."""
@@ -1036,6 +1049,7 @@ def p2_run(tree, script, args, when=None, sig=_p2sig.SIGINT, again=None, delay=0
         while p.poll() is None and _p2t.monotonic() < t_end:
             d = p2_descendants(p.pid)
             seen |= {(x[0], x[1]) for x in d}
+            p2_note_pgids(d)
             if when is not None and not sent and when(d):
                 if delay:
                     _p2t.sleep(delay)
@@ -1121,6 +1135,7 @@ class P2MutationFamily(unittest.TestCase):
     def test_f2_sigint_while_a_child_runs(self):
         tree = self.m2_tree('item_hang')
         code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', ['--ids', ','.join(self.ids), '--jobs', '1'], when=p2_in('/m_'))
+        p2_identity_record(self, seen, out)          # fix 6, row 121
         self.assertTrue(sent)
         self.assertEqual(code, 3, out[-2000:])
         self.assertRegex(out, r'(?m)^MUTANT %s INDETERMINATE cause=interrupted$' % _re.escape(self.ids[0]))
@@ -1136,6 +1151,7 @@ class P2MutationFamily(unittest.TestCase):
         tree = self.m2_tree('item_hang')
         code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', ['--ids', self.ids[0]], when=p2_in('/m_'), sig=_p2sig.SIGTERM,
                                        again=_p2sig.SIGTERM)
+        p2_identity_record(self, seen, out)          # fix 6, row 121
         self.assertEqual(code, 3, out[-2000:])
         self.assertEqual(out.strip().splitlines()[-2], 'INTERRUPTED signal=SIGTERM at=%s received=2' % self.ids[0])
         self.check(out, code, [self.ids[0]])
@@ -1144,6 +1160,7 @@ class P2MutationFamily(unittest.TestCase):
     def test_f2_during_the_end_control(self):
         tree = self.m2_tree('end_hang')
         code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', ['--ids', self.ids[0]], when=p2_in('control_end'))
+        p2_identity_record(self, seen, out)          # fix 6, row 121
         self.assertEqual(code, 3, out[-2000:])
         self.assertRegex(out, r'(?m)^CONTROL end CONTROL_NOT_RUN cause=interrupted$')
         self.assertEqual(out.strip().splitlines()[-2], 'INTERRUPTED signal=SIGINT at=control_end received=1')
@@ -1158,6 +1175,7 @@ class P2MutationFamily(unittest.TestCase):
         tree = self.m2_tree('end_leak_last')
         code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', ['--ids', self.ids[0]],
                                        when=lambda d: os.path.exists(os.path.join(tree, '_p2mark', 'leaked')), delay=1.5)
+        p2_identity_record(self, seen, out)          # fix 6, row 121
         self.assertTrue(sent)
         self.assertRegex(out, r'(?m)^CONTROL end CONTROL_FAIL cause=processes_left ')
         self.assertRegex(out, r'(?m)^SIGNAL_AFTER_COMPLETION signal=SIGINT$')
@@ -1173,6 +1191,7 @@ class P2MutationFamily(unittest.TestCase):
         tree = self.m2_tree('end_leak')
         code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', ['--ids', self.ids[0]],
                                        when=lambda d: os.path.exists(os.path.join(tree, '_p2mark', 'leaked')), delay=1.5)
+        p2_identity_record(self, seen, out)          # fix 6, row 121
         self.assertTrue(sent)
         self.assertEqual(code, 3, out[-2000:])
         self.assertRegex(out, r'(?m)^CONTROL end CONTROL_NOT_RUN cause=interrupted$')
@@ -1190,6 +1209,7 @@ class P2MutationFamily(unittest.TestCase):
         tree = self.m2_tree('ok', extra=[hold])
         code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', ['--ids', ','.join(self.ids), '--jobs', '1'],
                                        when=lambda d: os.path.exists(os.path.join(tree, '_p2mark', 'between')))
+        p2_identity_record(self, seen, out)          # fix 6, row 121
         self.assertEqual(code, 3, out[-2000:])
         self.assertEqual(out.strip().splitlines()[-2], 'INTERRUPTED signal=SIGINT at=between received=1')
         self.assertRegex(out, r'(?m)^MUTANT %s NOT_RUN cause=run_stopped$' % _re.escape(self.ids[1]))
@@ -1205,6 +1225,7 @@ class P2MutationFamily(unittest.TestCase):
         # copy 1 is the start control's, 2 and 3 the two items': the second item's copy is refused while the first is in flight
         tree = self.m2_tree('item_slow', extra=self.disk_at(3))
         code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', ['--ids', ','.join(self.ids), '--jobs', '2'])
+        p2_identity_record(self, seen, out)          # fix 6, row 121
         self.assertEqual(code, 2, out[-2000:])
         for mid in self.ids:
             self.assertRegex(out, r'(?m)^MUTANT %s INDETERMINATE cause=run_stopped$' % _re.escape(mid))
@@ -1217,6 +1238,7 @@ class P2MutationFamily(unittest.TestCase):
     def test_f1_the_floor_at_the_start_controls_copy(self):
         tree = self.m2_tree('ok', extra=self.disk_at(1))
         code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', ['--ids', ','.join(self.ids)])
+        p2_identity_record(self, seen, out)          # fix 6, row 121
         self.assertEqual(code, 2, out[-2000:])
         self.assertRegex(out, r'(?m)^CONTROL start CONTROL_FAIL cause=disk_below_floor$')
         self.assertRegex(out, r'(?m)^RUN_ERROR ENV_DISK_BELOW_FLOOR control_start free=1 floor=2$')
@@ -1228,6 +1250,7 @@ class P2MutationFamily(unittest.TestCase):
     def test_f1_the_floor_at_the_end_controls_copy(self):
         tree = self.m2_tree('ok', extra=self.disk_at(3))
         code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', ['--ids', self.ids[0]])
+        p2_identity_record(self, seen, out)          # fix 6, row 121
         self.assertEqual(code, 2, out[-2000:])
         self.assertRegex(out, r'(?m)^MUTANT %s (SURVIVED|EQUIVALENT) ' % _re.escape(self.ids[0]))         # the item line is kept
         self.assertRegex(out, r'(?m)^CONTROL end CONTROL_NOT_RUN cause=disk_below_floor$')
@@ -1246,6 +1269,7 @@ class P2MutationFamily(unittest.TestCase):
             with self.subTest(sig=sig):
                 tree, pid = self.sab_tree('sleep')
                 code, out, seen, sent = p2_run(tree, 'sabotage_m7_s1.py', ['--ids', pid], when=p2_in('/m_'), sig=sig)
+                p2_identity_record(self, seen, out)          # fix 6, row 121
                 shutil.rmtree(tree, ignore_errors=True)
                 self.assertEqual(code, 3, out[-2000:])
                 self.assertRegex(out, r'(?m)^PLANT %s INDETERMINATE cause=interrupted$' % _re.escape(pid))
@@ -1256,6 +1280,7 @@ class P2MutationFamily(unittest.TestCase):
     def test_sabotage_m7_f1_the_floor_at_the_end_controls_copy(self):
         tree, pid = self.sab_tree('failed', extra=self.disk_at(3))
         code, out, seen, sent = p2_run(tree, 'sabotage_m7_s1.py', ['--ids', pid])
+        p2_identity_record(self, seen, out)          # fix 6, row 121
         self.assertEqual(code, 2, out[-2000:])
         self.assertRegex(out, r'(?m)^CONTROL end CONTROL_NOT_RUN cause=disk_below_floor$')
         self.assertRegex(out, r'(?m)^RUN_ERROR ENV_DISK_BELOW_FLOOR control_end ')
@@ -1264,6 +1289,7 @@ class P2MutationFamily(unittest.TestCase):
     def test_sabotage_m7_f1_the_floor_at_the_start_controls_copy(self):
         tree, pid = self.sab_tree('failed', extra=self.disk_at(1))
         code, out, seen, sent = p2_run(tree, 'sabotage_m7_s1.py', ['--ids', pid])
+        p2_identity_record(self, seen, out)          # fix 6, row 121
         self.assertEqual(code, 2, out[-2000:])
         self.assertRegex(out, r'(?m)^CONTROL start CONTROL_FAIL cause=disk_below_floor$')
         self.assertEqual(E.check_output(out, code, selected=[pid]), [], out[-3000:])
@@ -1275,13 +1301,10 @@ class P2MutationFamily(unittest.TestCase):
 # ---------------------------------------------------------------------------------------------------------------------------------------
 def p2_identity_record(test, seen, out):
     """Amendment 5, row 121: the per-test evidence record, written to the test log (stderr): every descendant seen while the tool ran
-    (pid, start time, process group when it could be read) and the CLEANUP lines of the supervisor that cleaned them up."""
+    (pid, start time, process group read while it lived, during the run) and the CLEANUP lines of the supervisor that cleaned them up."""
     ds = []
     for pid, start in sorted(seen):
-        try:
-            pg = os.getpgid(pid)
-        except OSError:
-            pg = '-'
+        pg = P2_PGIDS.get((pid, start), '-')         # fix 6 (D6-7): read while it lived, during the run (p2_note_pgids)
         ds.append('%d:%d:%s' % (pid, start, pg))
     lines = ['P_IDENTITY test=%s run=%s descendants=%s' % (test.id(), 'tool', ','.join(ds) or '-')]
     lines += ['P_IDENTITY test=%s %s' % (test.id(), l) for l in out.splitlines() if l.startswith('CLEANUP')]
@@ -1595,6 +1618,237 @@ class AM5MoreMutationFamily(unittest.TestCase):
                 self.assertRegex(out, r'(?m)^PLANT %s %s cause=%s$' % (_re.escape(pid0), state, cause), out[-2000:])
                 self.assertEqual(E.check_output(out, code, selected=[pid0]), [], out[-3000:])
                 shutil.rmtree(root, ignore_errors=True)
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Fix 6 (owner, 2026-11-13 18:34, "Fix them, then re-run"): the gaps the step 6 re-mapping found at tool level (rows 4, 12, 21, 22, 41,
+# 51 to 53 and 66). Tests only, in temporary copies; no product or successor-tool logic is changed.
+# ---------------------------------------------------------------------------------------------------------------------------------------
+AM6_M2_STUB = r"""import os, sys, time, subprocess
+# planted by tests_tools/test_mutation_timeout.py (fix 6): the m2 kill-oracle children, replaced in a temporary copy
+MODE, OK, MARK = %(mode)r, %(ok)r, %(mark)r
+a = sys.argv[1:]
+rid = a[a.index('--run-id') + 1] if '--run-id' in a else ''
+name = os.path.basename(sys.argv[0])
+ctl = rid.startswith('control')
+k = 0
+if ctl and name == 'run_m2_tests_s1.py':
+    with open(os.path.join(MARK, 'controls'), 'a') as fh:
+        fh.write('x')
+    k = len(open(os.path.join(MARK, 'controls')).read())
+here = 'end' if ctl and (k == 2 or 'control_end' in os.getcwd()) else 'start'
+if ctl and name == 'run_m2_tests_s1.py' and MODE in ('start_crash', 'start_bad', 'end_crash', 'end_bad') and MODE.startswith(here):
+    if MODE.endswith('crash'):
+        print('Segmentation fault (core dumped)'); sys.exit(139)
+    ls = OK.splitlines(); ls[-1] = ls[-1].replace(' exit=0', ' exit=1'); print('\n'.join(ls)); sys.exit(0)
+if not ctl and name == 'run_m2_tests_s1.py' and MODE == 'item_leak':
+    subprocess.Popen([sys.executable, '-c', 'import signal, time; signal.signal(signal.SIGTERM, signal.SIG_IGN); time.sleep(30)'])
+if not ctl and name == 'run_m2_tests_s1.py' and MODE == 'item_orphan':
+    try:
+        os.close(os.open(os.path.join(MARK, 'orphan'), os.O_CREAT | os.O_EXCL | os.O_WRONLY))
+        m = 'import subprocess, sys; subprocess.Popen([sys.executable, "-c", "import time; time.sleep(30)"])'
+        subprocess.Popen([sys.executable, '-c', m]).wait(timeout=60)     # m exits at once: its child is orphaned between two scans
+    except FileExistsError:
+        pass
+    time.sleep(3)
+print(OK)
+sys.exit(0)
+"""
+
+
+def p2_run_result_check(tree, script, args, timeout=600):
+    """Fix 6, row 21 (P.5 step 9, discrepancy 12 at tool level): run the tool reading its output line by line; at the moment its RESULT
+    line arrives, check every descendant seen so far.  Returns (code, output, seen, the identities still present at the RESULT line)."""
+    import threading
+    tmp = tempfile.mkdtemp(prefix='s1_p2rc_')
+    env = {'PATH': '/usr/local/bin:/usr/bin:/bin', 'LANG': 'C.UTF-8', 'LC_ALL': 'C.UTF-8', 'TZ': 'UTC', 'TMPDIR': tmp,
+           'PYTHONDONTWRITEBYTECODE': '1'}
+    p = _sp.Popen([sys.executable, '-I', '-S', os.path.join('tools', script)] + list(args), cwd=tree, env=env, stdin=_sp.DEVNULL,
+                  stdout=_sp.PIPE, stderr=_sp.STDOUT, text=True, start_new_session=True)
+    seen, lines, at_result, lock = set(), [], [], threading.Lock()
+
+    def present(i):
+        st = E.proc_stat(i[0])
+        return st is not None and st[2] == i[1]
+
+    def reader():
+        for l in p.stdout:
+            lines.append(l)
+            if l.startswith('RESULT '):
+                with lock:
+                    at_result.append([i for i in sorted(seen) if present(i)])
+    th = threading.Thread(target=reader, daemon=True)
+    th.start()
+    t_end = _p2t.monotonic() + timeout
+    try:
+        while p.poll() is None and _p2t.monotonic() < t_end:
+            d = p2_descendants(p.pid)
+            with lock:
+                seen |= {(x[0], x[1]) for x in d}
+            p2_note_pgids(d)
+            _p2t.sleep(0.02)
+        p.wait(timeout=max(1, t_end - _p2t.monotonic()))
+        th.join(timeout=60)
+    finally:
+        if p.poll() is None:
+            os.killpg(p.pid, 9)
+            p.wait()
+        shutil.rmtree(tmp, ignore_errors=True)
+    return p.returncode, ''.join(lines), seen, at_result
+
+
+class AM6MutationToolGaps(unittest.TestCase):
+    """Fix 6: rows 4, 12, 21, 22 and 41 at tool level, on m2_mutants_s1 (its two kill oracles stubbed) and run_faults_s1."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_am6_')
+        doc, _ = E.load_pins()
+        self.ids = doc['mutation_lists']['m2_mutants_s1']['ids'][:2]
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def m2_tree(self, mode, extra=()):
+        tree = os.path.join(self.tmp, 'm2_' + mode)
+        shutil.copytree(ROOT, tree, ignore=shutil.ignore_patterns('.git', 'logs', '__pycache__'))
+        mark = os.path.join(tree, '_p2mark')
+        os.makedirs(mark)
+        for f in ('run_m2_tests_s1.py', 'run_contracts_s1.py'):
+            with open(os.path.join(tree, 'tools', f), 'w', encoding='utf-8') as fh:
+                fh.write(AM6_M2_STUB % {'mode': mode, 'ok': _stub_text('ok')[0], 'mark': mark})
+        p2_patch_evkit(tree, extra)
+        return tree
+
+    def test_row4_each_remaining_setup_failure_refuses_at_tool_level(self):
+        # P.2 / P.10: /proc, pidfd_open, the prctl setting and its read-back, each failing at a supervisor tool's start: RUN_ERROR
+        # ENV_NO_PROCESS_SUPERVISION with the step's reason, exit 2, every pinned item NOT_RUN cause=run_error, no control run
+        doc, _ = E.load_pins()
+        pinned = doc['plant_lists']['run_faults_s1']['ids']
+        for old, new, want in (("        if not os.path.isfile('/proc/self/stat'):\n", "        if True:\n", 'proc_unavailable'),
+                               ('            os.close(_pidfd_open(os.getpid()))\n', '            raise PermissionError(1, "x")\n',
+                                'pidfd_open_failed_PermissionError'),
+                               ('_PR_SET_CHILD_SUBREAPER = 36', '_PR_SET_CHILD_SUBREAPER = 9999', 'prctl_set_failed_errno_22'),
+                               ('_PR_GET_CHILD_SUBREAPER = 37', '_PR_GET_CHILD_SUBREAPER = 4', 'prctl_readback_failed')):
+            with self.subTest(want=want):
+                tree = AM5ToolLevelRefusals.tree(self, 'r4_' + want, [(old, new)])
+                code, out, seen, sent = p2_run(tree, 'run_faults_s1.py', [])
+                p2_identity_record(self, seen, out)
+                AM5ToolLevelRefusals.refused(self, out, code, 'PLANT', pinned, want)
+                shutil.rmtree(tree, ignore_errors=True)
+
+    def test_row22_a_mutation_items_leak_is_indeterminate_processes_left(self):
+        # P.6: the item's oracle returns a valid result and leaves a background process: the mutant is INDETERMINATE processes_left
+        # (never SURVIVED on a result its leftover could have affected), its CLEANUP line names the leftover
+        tree = self.m2_tree('item_leak')
+        code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', ['--ids', self.ids[0]])
+        p2_identity_record(self, seen, out)
+        self.assertRegex(out, r'(?m)^MUTANT %s INDETERMINATE cause=processes_left$' % _re.escape(self.ids[0]), out[-3000:])
+        self.assertRegex(out, r'(?m)^CLEANUP \S*%s\S* .* killed=\d+:\d+' % _re.escape(self.ids[0]))
+        self.assertEqual(E.check_output(out, code, selected=[self.ids[0]]), [], out[-3000:])
+        p2_gone(self, seen)
+
+    def test_row21_every_descendant_is_gone_when_the_result_line_is_printed(self):
+        # P.5 step 9 (discrepancy 12) at tool level: checked at the moment the RESULT line arrives, not after the tool has exited
+        tree = self.m2_tree('item_leak')
+        code, out, seen, at_result = p2_run_result_check(tree, 'm2_mutants_s1.py', ['--ids', self.ids[0]])
+        p2_identity_record(self, seen, out)
+        self.assertEqual(len(at_result), 1, out[-3000:])
+        self.assertEqual(at_result[0], [])
+        self.assertTrue(any(l.startswith('CLEANUP ') and ' killed=' in l and ' killed=- ' not in l for l in out.splitlines()), out[-3000:])
+        self.assertTrue(seen)
+        self.assertEqual(E.check_output(out, code, selected=[self.ids[0]]), [], out[-3000:])
+
+    def test_row12_an_orphan_at_jobs_2_is_a_leak_of_each_item_in_flight(self):
+        # P.3 and S15 (owner, 12:47, option A) at tool level: an orphan created and orphaned between two scans while both items are in
+        # flight is attributed to each; each item is INDETERMINATE processes_left, and each item's CLEANUP line names the same orphan
+        tree = self.m2_tree('item_orphan')
+        code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', ['--ids', ','.join(self.ids), '--jobs', '2'])
+        p2_identity_record(self, seen, out)
+        for mid in self.ids:
+            self.assertRegex(out, r'(?m)^MUTANT %s INDETERMINATE cause=processes_left$' % _re.escape(mid), out[-3000:])
+        left = []
+        for mid in self.ids:
+            recs = [l for l in out.splitlines() if l.startswith('CLEANUP ') and mid in l.split()[1]]
+            self.assertTrue(recs, out[-3000:])
+            left.append(set(_re.search(r' left=(\S+) ', ' '.join(recs) + ' ').group(1).split(',')))
+        self.assertTrue(left[0] & left[1], (left, out[-3000:]))
+        self.assertEqual(E.check_output(out, code, selected=self.ids), [], out[-3000:])
+        p2_gone(self, seen)
+
+    def test_row41_a_mutation_tools_control_that_crashes_or_returns_rejected_output(self):
+        # B.4 (S17 (a), owner, 12:47, option A) for the mutation family: the start or end control whose command crashes is CONTROL_FAIL
+        # cause=CRASH_NO_RESULT, and one whose output the checker rejects is CONTROL_FAIL cause=CHILD_EVIDENCE_ERROR
+        for where in ('start', 'end'):
+            for mode, want in (('crash', 'CRASH_NO_RESULT'), ('bad', 'CHILD_EVIDENCE_ERROR')):
+                with self.subTest(where=where, mode=mode):
+                    tree = self.m2_tree('%s_%s' % (where, mode))
+                    code, out, seen, sent = p2_run(tree, 'm2_mutants_s1.py', ['--ids', self.ids[0]])
+                    p2_identity_record(self, seen, out)
+                    shutil.rmtree(tree, ignore_errors=True)
+                    self.assertEqual(code, 3, out[-2000:])
+                    self.assertRegex(out, r'(?m)^CONTROL %s CONTROL_FAIL cause=%s' % (where, want), out[-3000:])
+                    self.assertIn(' control_%s=FAIL ' % where, out.strip().splitlines()[-1])
+                    if where == 'start':
+                        self.assertRegex(out, r'(?m)^MUTANT %s NOT_RUN ' % _re.escape(self.ids[0]))
+                        self.assertNotRegex(out, r'(?m)^CONTROL end ')
+                    else:
+                        self.assertRegex(out, r'(?m)^MUTANT %s (SURVIVED|EQUIVALENT) ' % _re.escape(self.ids[0]))   # kept
+                    self.assertEqual(E.check_output(out, code, selected=[self.ids[0]]), [], out[-3000:])
+                    p2_gone(self, seen)
+
+
+AM6_LEAF_TESTS = ('import os, time, unittest\n'
+                  'D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "_p2")\n\n\n'
+                  'class T(unittest.TestCase):\n'
+                  '    def test_a(self):\n        open(os.path.join(D, "in_test"), "w").close()\n        time.sleep(6)\n\n'
+                  '    def test_b(self):\n        open(os.path.join(D, "b_started"), "w").close()\n')
+
+
+class AM6LeafInterrupts(unittest.TestCase):
+    """Fix 6, rows 51 to 53 and 66 (F.2 in every work loop; AM-2: the leaves): each of the three leaves (LEAF_STEMS), signalled with
+    SIGINT and, separately, SIGTERM during a test: no test starts after the signal, the run ends INTERRUPTED with exit 3, its output
+    passes the checker and nothing is left behind."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix='s1_am6l_')
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def leaf_tree(self, name):
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import test_runner_zero_work as Z
+        root = Z.p2b_copy(os.path.join(self.tmp, name))
+        os.makedirs(os.path.join(root, '_p2'), exist_ok=True)
+        doc, _ = E.load_pins()
+        rel = sorted(k for k in doc['test_files'] if k.startswith('tests/'))[0]
+        with open(os.path.join(root, rel), 'w', encoding='utf-8') as fh:
+            fh.write(AM6_LEAF_TESTS)
+        p = _sp.run([sys.executable, '-I', '-S', '-c', 'import sys; sys.path.insert(0, "."); import tools.evkit as E; '
+                     'E.update_pins("fix 6 rows 51 to 53, 66 (test copy)", "fix6", files=[%r])' % rel],
+                    cwd=root, capture_output=True, text=True, timeout=600)
+        self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
+        return Z, root, rel
+
+    def test_rows51_53_66_each_leaf_stops_on_either_signal_and_no_test_starts_after_it(self):
+        self.assertEqual(E.LEAF_STEMS, ('run_m2_tests_s1', 'mut_runner_s1', 'run_test_files_s1'))
+        for leaf in E.LEAF_STEMS:
+            for sig in (_p2sig.SIGINT, _p2sig.SIGTERM):
+                with self.subTest(leaf=leaf, sig=sig.name):
+                    Z, root, rel = self.leaf_tree('%s_%s' % (leaf, sig.name))
+                    name = os.path.basename(rel)
+                    arg = name if leaf != 'mut_runner_s1' else name
+                    code, out, seen = Z.p2b_run(root, ['tools/%s.py' % leaf, arg],
+                                                when=lambda t, d: os.path.exists(os.path.join(t, '_p2', 'in_test')), sig=sig)
+                    Z.p2_identity_record(self, seen, out)
+                    self.assertTrue(os.path.exists(os.path.join(root, '_p2', 'in_test')), out[-2000:])
+                    self.assertFalse(os.path.exists(os.path.join(root, '_p2', 'b_started')), 'a test started after the signal')
+                    self.assertEqual(code, 3, out[-2000:])
+                    self.assertRegex(out, r'(?m)^INTERRUPTED signal=%s at=\S+ received=1$' % sig.name)
+                    pins = E.test_file_pins(E.load_pins(os.path.join(root, 'tools', 'expected_counts.json'))[0], [rel])
+                    self.assertEqual(E.check_output(out, code, pins=pins), [], out[-3000:])
+                    Z.p2b_gone(self, seen)
+                    shutil.rmtree(root, ignore_errors=True)
 
 
 if __name__ == '__main__':
