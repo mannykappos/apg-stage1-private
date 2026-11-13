@@ -272,3 +272,13 @@ review pack); everything after that is restated here from the conversation recor
   survive. The builder reconstructed "the 64 items plus row 42" from amendment 5 draft v4: Appendix A part 1 (58 entries, row 42 among
   them), part 3 (discrepancies 15, 16, 18, 22) and rows 106, 110, 111, 65 in all. The agent checks the reconstruction, and the comparison
   with v4 can only be made on counts.
+- 2026-11-13 18:29 Step 6 result (INDEPENDENT READ-ONLY (agent), evidence_recovery/step6_remap/REMAP6_REPORT.md): of the 65 items, 37 closed,
+  28 partly addressed, 0 open; over the 64 without row 42, 37 C, 27 P, 0 O, against re-mapping v4 on 303b6414's 56 C, 8 P, 0 O (counts
+  only; v4's item list was lost). The scope reconstruction matches amendment 5 (row 17 and E.2 possibly in scope, both C). Eight new
+  discrepancies, D6-1 to D6-8: the row 68 scanner misses the _p2sp alias, so "83 sites" is an undercount (D6-1, the class of mistake 31;
+  the builder's tool); the change record's pin numbers are c9b324eb's (D6-2); a test named run_start_and_run_end tests run_start only
+  (D6-3); the repo holds the pre-fix copy of recorded_totals_s1.py (D6-4); no audit conclusions file for ee1ce3ec (D6-5); a wrong entry
+  time in the 03:15 correction (D6-6); per-test pgids read after the run, 204 of 291 '-' (D6-7); timeout-kill counts on this freeze
+  79 (3.13) and 0 (3.12), not 83 (D6-8).
+- 2026-11-13 18:33 STOP (recovery authorisation: "the re-mapping finds more partly addressed or open items than on 303b6414"; and new
+  defects, paper H). Step 7 not started. Reported to the owner with options; nothing changed in the tree or the evidence.
