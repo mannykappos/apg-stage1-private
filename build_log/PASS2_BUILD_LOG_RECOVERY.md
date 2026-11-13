@@ -323,3 +323,5 @@ review pack); everything after that is restated here from the conversation recor
   refused by freeze_s1.py (it needs a git tree); nothing was made.
 - 19:23:30 The full evidence on a7f599f9 started (ev6/driver6.sh: 5.1, then 5.2 and 5.3, then 5.4 with the row 6 demonstration),
   detached, with a waiter beside it.
+
+- **2026-11-14 09:05 (clock read).** The full evidence on a7f599f9 was interrupted by a container restart. The last write in job py312_T was at 2026-11-13 21:18:11, during T03; it was found at 09:04. Done before it, all as expected: py313_T, py313_W and py313_M (m8_check: 79 KILLED, 3 EQUIVALENT MI-36, MI-39, MD-02; tree changes 0). The partial py312_T is kept in `interrupted/` and the run resumed at 09:05 from py312_T, as the driver provides. Not a lost workspace: every file is intact. BUILDER-EXECUTED: NOT INDEPENDENT.
