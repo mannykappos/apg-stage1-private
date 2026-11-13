@@ -6,7 +6,7 @@
 # Resumable: marks/<job>.done.  Any result not as expected stops the driver (paper H).  Disk: below 10 GB free the running job is
 # stopped and the driver stops (the authorisation's floor).          BUILDER-EXECUTED: NOT INDEPENDENT.
 set -u
-R=/tmp/claude-0/-home-claude/9c1f68fa-600c-55a6-9aff-0843afa2c30f/scratchpad/recovery
+R=/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery
 EV=$R/ev5; BT=$R/btools; NEW=$R/freeze5/a/APG-M11-S1.zip; OLD=$R/e4531a35/APG-M11-S1.zip; M10=$R/in/APG_M10_CODE_AND_DATA.zip
 REC=$R/pack/APG_D14_PASS2_AM5_REVIEW_PACK/04_evidence
 mkdir -p $EV/marks; P=$EV/progress523.txt; W=$EV/disk_watch523.txt

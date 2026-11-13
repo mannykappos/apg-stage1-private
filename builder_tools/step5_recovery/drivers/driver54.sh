@@ -5,7 +5,7 @@
 # The names check is made at packaging (amendment 5 Appendix A part 2).  Resumable: marks/<job>.done.  A tool's non-zero exit stops.
 # BUILDER-EXECUTED: NOT INDEPENDENT.
 set -u
-R=/tmp/claude-0/-home-claude/9c1f68fa-600c-55a6-9aff-0843afa2c30f/scratchpad/recovery
+R=/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery
 EV=$R/ev5; BT=$R/btools; NEW=$R/freeze5/a/APG-M11-S1.zip; M10=$R/in/APG_M10_CODE_AND_DATA.zip; EXCL=$R/w1b/W1_EXCLUSION_LIST_v3.csv
 PY3=/usr/bin/python3.13
 mkdir -p $EV/marks $EV/static $EV/audit_final; P=$EV/progress54.txt

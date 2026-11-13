@@ -241,3 +241,25 @@ review pack); everything after that is restated here from the conversation recor
   run apart from the label. The wrong-label outputs, consoles and marks are kept in ev5/compare_py313/ and compare_py312/wrong_label_m56/.
 - 2026-11-13 17:48:49 Step 5.4 (driver54.sh) launched detached, with a waiter beside it: historical on both Pythons, the static checks, the
   audits from a fresh extraction with env -i and five names, the child-start scan and the tset start scan.
+- 2026-11-13 17:48:49-18:04:37 Step 5.4 finished (ev5/progress54.txt, STEP54 DONE), every tool exit 0. BUILDER-EXECUTED: NOT INDEPENDENT.
+  Compared with the c9b324eb review pack's evidence (04_evidence):
+  - historical, both Pythons: 100 rows, 45 distinct commands, exit as recorded 100/100, last line as recorded 100/100, archive files
+    changed 0. Every column except seconds and log_sha256 identical to the review pack's sets. log_sha256 differs on 4 rows on each
+    Python (run_m91_all G12 and G13, run_m92_all G14 and G15: H016, H017). Those M10 logs print per-check timings such as "(0s)", so a
+    one-second difference changes the hash; exit and last line are as recorded.
+  - frozen_compare: problems 0, text identical. route_scan: identical. route_children: HOLDS, the same first part, plus a per-wrapper
+    listing the rewritten tool adds (its c9b324eb-era tool was lost; rewritten 11-12, commit 5730ad8). case_inventory_limit: HOLDS on
+    both Pythons, identical apart from column padding and the RESULT line naming the Python.
+  - child_start_scan: the same 2 successor process-start sites (evkit run_unit, _subprocess.Popen; run_forked, os.fork), 9 lines lower
+    (1748 and 1840; the S15-S17 fixes added lines above them); the CR-02 shim file; 0 M10 tools name an *_s1 tool.
+  - outside_services (tool rewritten for discrepancy 7, started with env -i and the five names): the subprocess unit (through run_unit)
+    and the forked unit (through run_forked) each have exactly clean_env's six names, standard input /dev/null and no planted
+    descriptor; the labelled control (a raw fork, no scrub) shows the planted AUDIT_PARENT_ONLY and parent_only.txt, as designed.
+    Network as before: direct connect to 1.1.1.1:443 accepted, 8.8.8.8:53 refused; egress stays UNKNOWN.
+  - process_api_reach: exit 0, leaked False; tset_start_scan: 83 sites, a limit found at 83, NONE 0.
+- MISTAKE 59 (disclosed): the three step 5 drivers pushed to GitHub on 11-12 06:47 (commit 5730ad8, branch records) carried this
+  workspace's session folder id in their path line (one line each). The privacy search before that push was not run or missed them.
+  Masked now as <SESSION-ID> (recovery/PRIVACY_MASKING.csv, with the before and after hashes); the copies that run stay unmasked. The
+  old commit still holds the unmasked line in the repository's history; removing it needs a history rewrite, which is the owner's
+  call. Also: the 17:47 build log push today was made before running the search; the search run afterwards finds nothing in it.
+  From now on the search runs on every commit before each push.

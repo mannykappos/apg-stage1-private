@@ -3,7 +3,7 @@
 # Resumable: a finished job has marks/<job>.done; a partial job's folder is moved to interrupted/ and the job rerun.
 # BUILDER-EXECUTED: NOT INDEPENDENT.
 set -u
-R=/tmp/claude-0/-home-claude/9c1f68fa-600c-55a6-9aff-0843afa2c30f/scratchpad/recovery
+R=/tmp/claude-0/-home-claude/<SESSION-ID>/scratchpad/recovery
 EV=$R/ev5; BT=$R/btools; ZIP=$R/freeze5/a/APG-M11-S1.zip
 mkdir -p $EV/run_sets $EV/marks $EV/interrupted
 P=$EV/progress51.txt
