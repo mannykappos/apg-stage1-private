@@ -6,7 +6,7 @@ From the locked package (the Master RTM and the 19 section documents, v1.0) and 
                           lines it rewords (the only locked text it rewords), with the proposed ID, the section, the anchor it follows
                           (RTM ID; or paragraph index, or table and row, where the RTM has none), the locked text there, and the new text.
   CIA_RTM_IMPACT.csv      every locked paragraph and table row each change item touches, as an insertion point, a reworded version line,
-                          or a dependent reviewed with no text change.  Spans are read from the section documents themselves (paragraphs
+                          or a dependent reviewed with no text change.  Tables and rows are numbered from 0, as python-docx counts them, like paragraph indices.  Spans are read from the section documents themselves (paragraphs
                           and table rows between a heading and the next heading of the same or a higher level), so locked text the RTM
                           does not map is listed too, as "Sxx paragraph N (no RTM row)" or "Sxx table T row R (no RTM row)".
   CIA_DEPENDENT_TEXT.txt  the full locked text of every dependent, for the reviewer.
@@ -51,8 +51,8 @@ def ref(sec, it):
     """-> (RTM ID or anchor text, locked text) for a body item"""
     if it[0] == 'p':
         x = bypi.get((sec, it[1]))
-        return (x['requirement_id'], x['requirement_summary']) if x else ('S%s paragraph %d (no RTM row)' % (sec, it[1]), it[3])
-    return ('S%s table %d row %d (no RTM row)' % (sec, it[1] + 1, it[2]), it[3])
+        return (x['requirement_id'], it[3]) if x else ('S%s paragraph %d (no RTM row)' % (sec, it[1]), it[3])
+    return ('S%s table %d row %d (no RTM row)' % (sec, it[1], it[2]), it[3])
 
 def span(sec, num):
     """the non-empty paragraphs and table rows from heading `num` to the next heading of the same or a higher level"""
@@ -150,9 +150,9 @@ with open(os.path.join(OUT, 'CIA_DEPENDENT_TEXT.txt'), 'w') as fh:
 L = []
 adds = [p for p in prop if p['change'] == 'added after']
 amended = sorted({p['section'] for p in prop})
-L.append('Proposed additions: %d (%d paragraphs or bullets, %d headings, %d table rows, %d acceptance criteria PG-DS-AC-01 to 14); each is one new RTM row' %
+L.append('Proposed additions: %d (%d paragraphs or bullets, %d headings, %d table rows, %d acceptance criteria PG-DS-AC-01 to 14, %d amendment records); each is one new RTM row' %
          (len(adds), sum(1 for p in adds if p['kind'] in ('paragraph', 'bullet')), sum(1 for p in adds if p['kind'].startswith('heading')),
-          sum(1 for p in adds if p['kind'] == 'table row'), sum(1 for p in adds if p['kind'] == 'acceptance criterion')))
+          sum(1 for p in adds if p['kind'] == 'table row'), sum(1 for p in adds if p['kind'] == 'acceptance criterion'), sum(1 for p in adds if p['kind'] == 'amendment record')))
 L.append('Locked text reworded: %d version lines (two in each of S01, S02 and S03, one in each of S04, S05, S06 and S11); nothing else' % (len(prop) - len(adds)))
 L.append('Sections amended (v1.0 -> v1.1): ' + ', '.join(amended))
 anchors = {r['RTM ID or source anchor'] for r in imp}

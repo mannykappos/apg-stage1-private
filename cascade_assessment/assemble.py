@@ -30,10 +30,7 @@ def summary():
             if it.startswith('C'):
                 items[r['section']].add(it)
     out = ['| Section | Title (as the section itself is titled) | Disposition | Additions (reworded lines) | Locked items touched | Change items |', '| --- | --- | --- | --- | --- | --- |']
-    for s in sorted(set(ids) | set(amended) | {'18'}):
-        if s == '18':
-            out.append('| 18 | %s | reviewed; no text change; its package assets change (section 6.7) | 0 | none (S18 has no RTM rows: section 13) | C21 |' % TITLE[s])
-            continue
+    for s in sorted(set(ids) | set(amended)):
         disp = 'amended: v1.0 to v1.1; additions, and the version line reworded' if s in amended else 'dependent: reviewed, no text change'
         add = sum(1 for p in prop if p['section'] == s and p['change'] == 'added after'); rw = sum(1 for p in prop if p['section'] == s and p['change'] != 'added after')
         out.append('| %s | %s | %s | %d (%d) | %d | %s |' % (s, TITLE[s], disp, add, rw, len(ids[s]), ', '.join(sorted(items[s]))))

@@ -1,12 +1,12 @@
 S01 paragraph 89 (no RTM row)	Record which checks can run immediately and which require unavailable services or access.
 APG-S01-C0155	Evidence boundary: this lock approves the discovery mandate, not the live repository's compliance with it. Repository findings, test results, security status and discovery exit sign-off must be established later from actual evidence.
-S02 table 3 row 25 (no RTM row)	PG-FR-025 | Support finance-controller review and appropriate segregation of duties for material financial approvals, retention/security decisions and working-capital actions.
+S02 table 2 row 25 (no RTM row)	PG-FR-025 | Support finance-controller review and appropriate segregation of duties for material financial approvals, retention/security decisions and working-capital actions.
 APG-S02-C0176	Evidence boundary: this lock approves the intended product requirements and governance boundaries. It does not establish that any source integration, platform role, compliance data feed or implementation capability already exists. Implementation must respect the Section 01 discovery findings.
-S03 table 1 row 20 (no RTM row)	Outcome record | Evidence of the realised financial or operational result following an action.
+S03 table 0 row 20 (no RTM row)	Outcome record | Evidence of the realised financial or operational result following an action.
 APG-S03-C0012	Use existing Anchor primitives where suitable. Do not create duplicate canonical entities solely because Profit Guardian needs a different view. Repository inspection must determine actual schemas, names and service boundaries.
-S03 table 2 row 14 (no RTM row)	schema_version | Version of the canonical representation where needed.
+S03 table 1 row 14 (no RTM row)	schema_version | Version of the canonical representation where needed.
 APG-S03-L0072	Verified cost savings.
-S03 table 4 row 8 (no RTM row)	Outcome | Pending Verification → Partially Realised / Realised / Not Realised / Reversed
+S03 table 3 row 8 (no RTM row)	Outcome | Pending Verification → Partially Realised / Realised / Not Realised / Reversed
 APG-S03-C0278	Evidence boundary: this lock approves the semantic specification. It does not establish that existing Anchor services, schemas, accounting conventions or data feeds have been verified or implemented. Those findings must be evidenced under Section 01 and implementation verification.
 APG-S04-L0122	Keep data-quality warnings visible and traceable to the affected calculation or recommendation.
 APG-S04-L0148	Manual entry must not be a bypass around approval or audit requirements.
@@ -342,19 +342,19 @@ APG-S05-L0052	Risks/opportunities: estimated exposure separate from booked costs
 APG-S05-C0053	Every material input must have source, status, effective date where available, provenance and applicable authority rule.
 APG-S02-H0024	3. Actors and permissions
 APG-S02-C0025	The following are logical roles. Section 01 must establish actual Anchor identity and authorisation conventions before mapping them to platform roles.
-S02 table 2 row 1 (no RTM row)	Business owner / director | Business-wide profitability, priorities, material risks and approval of high-impact actions.
-S02 table 2 row 2 (no RTM row)	Developer / principal / client representative | Portfolio-level capital exposure, milestone tracking, holding costs, commercial visibility and project outcomes from the developer/principal perspective.
-S02 table 2 row 3 (no RTM row)	CFO / finance controller | Financial oversight, working-capital decisions, retention and security review, financial controls and approval of decisions requiring elevated finance authority.
-S02 table 2 row 4 (no RTM row)	Commercial manager | Variations, claims, commitments, margin forecasts, supplier disputes and final accounts.
-S02 table 2 row 5 (no RTM row)	Project manager | Project performance, schedules, delivery risks, corrective actions and coordination.
-S02 table 2 row 6 (no RTM row)	Quantity surveyor / estimator | Estimates, quantities, cost plans, variations, commitments and forecast validation.
-S02 table 2 row 7 (no RTM row)	Procurement manager | Supplier quotations, purchase timing, material availability, ordering proposals and negotiation.
-S02 table 2 row 8 (no RTM row)	Site manager / supervisor | Site progress, labour, deliveries, defects, waste and operational evidence.
-S02 table 2 row 9 (no RTM row)	Finance team | Actual costs, payment status, cash-flow forecasts, retention balances and financial reconciliation, subject to delegated permissions.
-S02 table 2 row 10 (no RTM row)	Quality / defects coordinator | Defect ownership, rectification, maintenance periods and closeout evidence.
-S02 table 2 row 11 (no RTM row)	System administrator | Tenant configuration, user access, integrations and system-level settings within authorised boundaries.
-S02 table 2 row 12 (no RTM row)	Auditor / reviewer | Read-only access to authorised evidence, calculation histories, approvals and outcomes.
-S02 table 2 row 13 (no RTM row)	Profit Guardian intelligence services | Detection, calculations, prioritisation, explanation and recommendations within governed permissions.
+S02 table 1 row 1 (no RTM row)	Business owner / director | Business-wide profitability, priorities, material risks and approval of high-impact actions.
+S02 table 1 row 2 (no RTM row)	Developer / principal / client representative | Portfolio-level capital exposure, milestone tracking, holding costs, commercial visibility and project outcomes from the developer/principal perspective.
+S02 table 1 row 3 (no RTM row)	CFO / finance controller | Financial oversight, working-capital decisions, retention and security review, financial controls and approval of decisions requiring elevated finance authority.
+S02 table 1 row 4 (no RTM row)	Commercial manager | Variations, claims, commitments, margin forecasts, supplier disputes and final accounts.
+S02 table 1 row 5 (no RTM row)	Project manager | Project performance, schedules, delivery risks, corrective actions and coordination.
+S02 table 1 row 6 (no RTM row)	Quantity surveyor / estimator | Estimates, quantities, cost plans, variations, commitments and forecast validation.
+S02 table 1 row 7 (no RTM row)	Procurement manager | Supplier quotations, purchase timing, material availability, ordering proposals and negotiation.
+S02 table 1 row 8 (no RTM row)	Site manager / supervisor | Site progress, labour, deliveries, defects, waste and operational evidence.
+S02 table 1 row 9 (no RTM row)	Finance team | Actual costs, payment status, cash-flow forecasts, retention balances and financial reconciliation, subject to delegated permissions.
+S02 table 1 row 10 (no RTM row)	Quality / defects coordinator | Defect ownership, rectification, maintenance periods and closeout evidence.
+S02 table 1 row 11 (no RTM row)	System administrator | Tenant configuration, user access, integrations and system-level settings within authorised boundaries.
+S02 table 1 row 12 (no RTM row)	Auditor / reviewer | Read-only access to authorised evidence, calculation histories, approvals and outcomes.
+S02 table 1 row 13 (no RTM row)	Profit Guardian intelligence services | Detection, calculations, prioritisation, explanation and recommendations within governed permissions.
 APG-S02-H0026	3.1 Permission and segregation principles
 APG-S02-L0027	Access is scoped to the authorised organisation, projects and functions.
 APG-S02-L0028	A recommendation does not grant permission to execute the recommended action.
@@ -365,33 +365,33 @@ APG-S02-L0032	Where practical and supported by policy, preparation of financial 
 APG-S02-L0033	The AI component cannot grant itself permissions or override deterministic governance.
 APG-S03-H0010	2. Canonical domain hierarchy
 S03 paragraph 10 (no RTM row)	The logical hierarchy supports organisations, projects, contracts, work packages, cost codes, suppliers/subcontractors, materials, schedules, financial records, defects, security/retention records, findings, recommendations, calculation runs, decisions and outcomes. This is a semantic model, not a prescribed database schema.
-S03 table 1 row 1 (no RTM row)	Organisation | Business or legal/commercial operating context within the authorised tenancy model.
-S03 table 1 row 2 (no RTM row)	Project | Construction project with its own commercial, operational and financial context.
-S03 table 1 row 3 (no RTM row)	Contract | Contractual relationship governing scope, price, milestones, payment and relevant obligations.
-S03 table 1 row 4 (no RTM row)	Work package | Defined portion of project work used to organise cost, progress and responsibility.
-S03 table 1 row 5 (no RTM row)	Cost code | Controlled classification for grouping budgeted, committed, actual and forecast costs.
-S03 table 1 row 6 (no RTM row)	Supplier | Business supplying materials, equipment, logistics or services.
-S03 table 1 row 7 (no RTM row)	Subcontractor / trade | Party responsible for defined construction work, including relevant compliance evidence.
-S03 table 1 row 8 (no RTM row)	Material specification | Identity and technical attributes needed to establish comparability of materials and quotations.
-S03 table 1 row 9 (no RTM row)	Material requirement | Project demand for a defined material, quantity and required-on-site date.
-S03 table 1 row 10 (no RTM row)	Purchase order | Authorised purchasing commitment with lifecycle and revision history.
-S03 table 1 row 11 (no RTM row)	Schedule milestone | Dated project event used to assess progress, dependencies and delay exposure.
-S03 table 1 row 12 (no RTM row)	Financial record | Typed monetary fact, obligation, commitment, transaction or forecast input.
-S03 table 1 row 13 (no RTM row)	Defect | Recorded quality issue with evidence, status, responsibility and rectification lifecycle.
-S03 table 1 row 14 (no RTM row)	Security instrument | Bank guarantee, performance bond or other documented security arrangement.
-S03 table 1 row 15 (no RTM row)	Retention record | Amounts withheld, claimed, approved, released or outstanding under documented terms.
-S03 table 1 row 16 (no RTM row)	Finding | Evidence-backed detected issue, risk or opportunity.
-S03 table 1 row 17 (no RTM row)	Recommendation | Proposed action with rationale, financial effect and approval requirements.
-S03 table 1 row 18 (no RTM row)	Calculation run | Reproducible execution of a versioned calculation against identified inputs.
-S03 table 1 row 19 (no RTM row)	Decision record | Human approval, rejection, override or other authorised decision.
+S03 table 0 row 1 (no RTM row)	Organisation | Business or legal/commercial operating context within the authorised tenancy model.
+S03 table 0 row 2 (no RTM row)	Project | Construction project with its own commercial, operational and financial context.
+S03 table 0 row 3 (no RTM row)	Contract | Contractual relationship governing scope, price, milestones, payment and relevant obligations.
+S03 table 0 row 4 (no RTM row)	Work package | Defined portion of project work used to organise cost, progress and responsibility.
+S03 table 0 row 5 (no RTM row)	Cost code | Controlled classification for grouping budgeted, committed, actual and forecast costs.
+S03 table 0 row 6 (no RTM row)	Supplier | Business supplying materials, equipment, logistics or services.
+S03 table 0 row 7 (no RTM row)	Subcontractor / trade | Party responsible for defined construction work, including relevant compliance evidence.
+S03 table 0 row 8 (no RTM row)	Material specification | Identity and technical attributes needed to establish comparability of materials and quotations.
+S03 table 0 row 9 (no RTM row)	Material requirement | Project demand for a defined material, quantity and required-on-site date.
+S03 table 0 row 10 (no RTM row)	Purchase order | Authorised purchasing commitment with lifecycle and revision history.
+S03 table 0 row 11 (no RTM row)	Schedule milestone | Dated project event used to assess progress, dependencies and delay exposure.
+S03 table 0 row 12 (no RTM row)	Financial record | Typed monetary fact, obligation, commitment, transaction or forecast input.
+S03 table 0 row 13 (no RTM row)	Defect | Recorded quality issue with evidence, status, responsibility and rectification lifecycle.
+S03 table 0 row 14 (no RTM row)	Security instrument | Bank guarantee, performance bond or other documented security arrangement.
+S03 table 0 row 15 (no RTM row)	Retention record | Amounts withheld, claimed, approved, released or outstanding under documented terms.
+S03 table 0 row 16 (no RTM row)	Finding | Evidence-backed detected issue, risk or opportunity.
+S03 table 0 row 17 (no RTM row)	Recommendation | Proposed action with rationale, financial effect and approval requirements.
+S03 table 0 row 18 (no RTM row)	Calculation run | Reproducible execution of a versioned calculation against identified inputs.
+S03 table 0 row 19 (no RTM row)	Decision record | Human approval, rejection, override or other authorised decision.
 APG-S03-H0195	13. Canonical state and transition rules
-S03 table 4 row 1 (no RTM row)	Source record | Received → Validated → Reconciled, or Rejected / Quarantined
-S03 table 4 row 2 (no RTM row)	Purchase order | Draft → Submitted → Approved → Issued → Partially Fulfilled → Fulfilled / Cancelled
-S03 table 4 row 3 (no RTM row)	Finding | Detected → Validated → Active → Acknowledged → Resolved / Superseded
-S03 table 4 row 4 (no RTM row)	Recommendation | Proposed → Under Review → Approved / Rejected → Executed / Withdrawn
-S03 table 4 row 5 (no RTM row)	Defect | Open → Assigned → Rectification in Progress → Awaiting Verification → Closed
-S03 table 4 row 6 (no RTM row)	Retention | Withheld → Release Claimed → Under Review → Approved → Released / Disputed
-S03 table 4 row 7 (no RTM row)	Security instrument | Active → Approaching Expiry → Release Review → Released / Renewed / Disputed
+S03 table 3 row 1 (no RTM row)	Source record | Received → Validated → Reconciled, or Rejected / Quarantined
+S03 table 3 row 2 (no RTM row)	Purchase order | Draft → Submitted → Approved → Issued → Partially Fulfilled → Fulfilled / Cancelled
+S03 table 3 row 3 (no RTM row)	Finding | Detected → Validated → Active → Acknowledged → Resolved / Superseded
+S03 table 3 row 4 (no RTM row)	Recommendation | Proposed → Under Review → Approved / Rejected → Executed / Withdrawn
+S03 table 3 row 5 (no RTM row)	Defect | Open → Assigned → Rectification in Progress → Awaiting Verification → Closed
+S03 table 3 row 6 (no RTM row)	Retention | Withheld → Release Claimed → Under Review → Approved → Released / Disputed
+S03 table 3 row 7 (no RTM row)	Security instrument | Active → Approaching Expiry → Release Review → Released / Renewed / Disputed
 S03 paragraph 195 (no RTM row)	These are illustrative canonical states, not a requirement for every entity to use every state.
 APG-S03-L0197	Reject or explicitly handle invalid transitions.
 APG-S03-L0198	Enforce the verified authorisation model for consequential transitions.
@@ -552,20 +552,20 @@ APG-S14-L0103	Ensure reporting and exports preserve underlying data meaning.
 APG-S14-C0104	An uncertain estimate must not appear definitive merely because it is shown as a single currency value or prominent dashboard figure.
 S14 paragraph 104 (no RTM row)	Gate 5: User workflows are tested with authorised and unauthorised roles, incomplete evidence, stale data, rejected actions, integration failures and relevant edge cases.
 APG-S02-H0011	2.1 Mandatory functional domains
-S02 table 1 row 1 (no RTM row)	Commercial & revenue | Variations, claims, scope changes, commercial entitlements, final accounts and revenue at risk.
-S02 table 1 row 2 (no RTM row)	Costs & commitments | Budgets, estimates, actuals, commitments, forecasts, cost overruns and emerging margin pressure.
-S02 table 1 row 3 (no RTM row)	Materials & procurement | Material quantities, supplier quotations, purchase timing, lead times, price changes, waste and landed cost.
-S02 table 1 row 4 (no RTM row)	Labour & productivity | Labour utilisation, productivity deviations, rework, overtime and subcontractor performance where reliable data exists.
-S02 table 1 row 5 (no RTM row)	Schedule & holding costs | Delay exposure, critical milestones, schedule slippage, financing costs and time-dependent overheads.
-S02 table 1 row 6 (no RTM row)	Quality & post-completion | Defects, rectification, maintenance obligations, retention exposure, security instruments and closeout.
-S02 table 1 row 7 (no RTM row)	Suppliers, subcontractors & trade compliance | Pricing, delivery reliability, variation behaviour, quality outcomes, commitments, licensing, insurance validity, safety accreditations and relevant statutory or industrial compliance risk.
-S02 table 1 row 8 (no RTM row)	Design & constructability | Evidence-backed opportunities involving specifications, sequencing, alternatives and avoidable construction costs.
-S02 table 1 row 9 (no RTM row)	Equipment & logistics | Plant utilisation, hire duration, delivery coordination, storage, transport and idle-resource costs.
-S02 table 1 row 10 (no RTM row)	Cash flow & capital | Forecast inflows and outflows, payment timing, working capital, retention balances and capital tied up in security.
-S02 table 1 row 11 (no RTM row)	Markets & external conditions | Domestic and international price signals, supply availability, freight, currency, lead times and market uncertainty.
-S02 table 1 row 12 (no RTM row)	Portfolio intelligence | Cross-project patterns, repeat leakage, supplier comparisons and transferable lessons within authorised data boundaries.
+S02 table 0 row 1 (no RTM row)	Commercial & revenue | Variations, claims, scope changes, commercial entitlements, final accounts and revenue at risk.
+S02 table 0 row 2 (no RTM row)	Costs & commitments | Budgets, estimates, actuals, commitments, forecasts, cost overruns and emerging margin pressure.
+S02 table 0 row 3 (no RTM row)	Materials & procurement | Material quantities, supplier quotations, purchase timing, lead times, price changes, waste and landed cost.
+S02 table 0 row 4 (no RTM row)	Labour & productivity | Labour utilisation, productivity deviations, rework, overtime and subcontractor performance where reliable data exists.
+S02 table 0 row 5 (no RTM row)	Schedule & holding costs | Delay exposure, critical milestones, schedule slippage, financing costs and time-dependent overheads.
+S02 table 0 row 6 (no RTM row)	Quality & post-completion | Defects, rectification, maintenance obligations, retention exposure, security instruments and closeout.
+S02 table 0 row 7 (no RTM row)	Suppliers, subcontractors & trade compliance | Pricing, delivery reliability, variation behaviour, quality outcomes, commitments, licensing, insurance validity, safety accreditations and relevant statutory or industrial compliance risk.
+S02 table 0 row 8 (no RTM row)	Design & constructability | Evidence-backed opportunities involving specifications, sequencing, alternatives and avoidable construction costs.
+S02 table 0 row 9 (no RTM row)	Equipment & logistics | Plant utilisation, hire duration, delivery coordination, storage, transport and idle-resource costs.
+S02 table 0 row 10 (no RTM row)	Cash flow & capital | Forecast inflows and outflows, payment timing, working capital, retention balances and capital tied up in security.
+S02 table 0 row 11 (no RTM row)	Markets & external conditions | Domestic and international price signals, supply availability, freight, currency, lead times and market uncertainty.
+S02 table 0 row 12 (no RTM row)	Portfolio intelligence | Cross-project patterns, repeat leakage, supplier comparisons and transferable lessons within authorised data boundaries.
 APG-S02-C0012	These are required areas of intelligence, not a claim that every data source is already integrated. Each feature must identify its data prerequisites, coverage, freshness and limitations. Compliance-related intelligence must record the source, status, expiry or review date where relevant, and verification provenance; it must not represent an unverified document or third-party signal as definitive legal compliance.
-S02 table 3 row 20 (no RTM row)	PG-FR-020 | Surface data gaps, stale sources, failed ingestion and incomplete reconciliation.
+S02 table 2 row 20 (no RTM row)	PG-FR-020 | Surface data gaps, stale sources, failed ingestion and incomplete reconciliation.
 APG-S05-H0074	5.2 Provisional and qualified forecasts — mandatory
 APG-S05-C0075	Where material cost-to-complete inputs are missing, stale, incomplete or unresolved, the engine may calculate a provisional forecast to support operational decisions. The result must be marked qualified and expose missing components, stale sources, unresolved conflicts, assumptions and uncertainty/impact information where it can be reasonably supported.
 APG-S05-L0076	Never silently present a qualified forecast as complete or authoritative.
@@ -652,8 +652,8 @@ APG-S02-L0142	Cost of inaction.
 APG-S02-L0143	Cost and risk of intervention.
 APG-S02-L0144	Source freshness and evidence completeness.
 APG-S02-C0145	The system must avoid duplicate and low-value alert flooding. Related findings should be grouped when they share a root cause or financial exposure while material differences remain visible. Escalation thresholds and notification frequency must be configurable under authorised business rules. The exact scoring algorithm belongs in a later specification and must have a documented rationale and testable acceptance criteria.
-S02 table 3 row 6 (no RTM row)	PG-FR-006 | Provide evidence, estimated financial effect, uncertainty, priority and classification rationale for each material finding.
-S02 table 3 row 21 (no RTM row)	PG-FR-021 | Support alerts, escalation and ownership assignment based on approved rules.
+S02 table 2 row 6 (no RTM row)	PG-FR-006 | Provide evidence, estimated financial effect, uncertainty, priority and classification rationale for each material finding.
+S02 table 2 row 21 (no RTM row)	PG-FR-021 | Support alerts, escalation and ownership assignment based on approved rules.
 APG-S11-H0016	3. Contract and commercial baseline
 S11 paragraph 16 (no RTM row)	Maintain contract/project identifiers, parties and roles, original value/currency, approved scope/exclusions/pricing structure, schedule of rates/BoQ or other pricing basis, milestones/payment terms, approved variations and value revisions, notice/submission requirements, retention/security provisions, valuation rules, supporting documents/revisions, approval status, effective dates and provenance.
 APG-S11-C0018	Preserve original contract values and approved changes historically. Draft variations, proposed claims and unapproved assumptions must not silently replace the approved baseline.
@@ -834,7 +834,7 @@ APG-S01-L0017	Entity, organisation, project and state-management conventions.
 APG-S01-L0018	Workflow execution, notification and audit-log interfaces.
 APG-S01-L0019	AI orchestration boundaries and deterministic calculation conventions.
 APG-S01-L0020	API versioning, error envelopes, correlation identifiers and compatibility requirements.
-APG-S01-C0021	For each relevant interface, record its repository location, public contract, dependencies, callers, tests, failure behaviour and suitability for Profit Guardian. Required output: a Platform Contract Inventory and integration map showing how external data enters Anchor, is validated and reconciled, and reaches governed intelligence and user-facing workflows. Do not create a parallel event bus, authorisation system, audit mechanism or integration framework without evidence that existing capabilit
+APG-S01-C0021	For each relevant interface, record its repository location, public contract, dependencies, callers, tests, failure behaviour and suitability for Profit Guardian. Required output: a Platform Contract Inventory and integration map showing how external data enters Anchor, is validated and reconciled, and reaches governed intelligence and user-facing workflows. Do not create a parallel event bus, authorisation system, audit mechanism or integration framework without evidence that existing capabilities are insufficient.
 APG-S01-H0022	Gate 01-B — Tenant and Data Isolation Verification
 APG-S01-C0023	Claude must establish how multi-tenancy is actually enforced. Inspect and verify, as applicable:
 APG-S01-L0024	Tenant and organisation identification at authentication and request boundaries.
@@ -857,7 +857,7 @@ APG-S01-L0040	Financial calculation inputs, versions, outputs and reproducibilit
 APG-S01-L0041	Event ordering, duplicate handling and concurrent updates.
 APG-S01-L0042	Immutable or append-only guarantees, if implemented.
 APG-S01-L0043	Permissions governing audit access and supported retention/export mechanisms.
-APG-S01-C0044	Distinguish between an audit log that records activity and a mechanism that technically prevents historical records from being altered. Neither property may be claimed without evidence. Required output: an Audit and State-Machine Compatibility Report identifying the preferred platform-native mechanism for calculation runs, evidence references, recommendation lifecycle changes and consequential user decisions. Financial calculations must be reproducible from recorded inputs, calculation versions 
+APG-S01-C0044	Distinguish between an audit log that records activity and a mechanism that technically prevents historical records from being altered. Neither property may be claimed without evidence. Required output: an Audit and State-Machine Compatibility Report identifying the preferred platform-native mechanism for calculation runs, evidence references, recommendation lifecycle changes and consequential user decisions. Financial calculations must be reproducible from recorded inputs, calculation versions and assumptions. Corrections must preserve the history of prior decisions and outputs rather than silently rewriting it.
 APG-S01-H0045	Gate 01-D — Integration Surface Mapping
 S01 paragraph 45 (no RTM row)	Inspect existing integration infrastructure before designing construction data ingestion.
 APG-S01-L0047	Webhook handlers, authentication and signature verification.
@@ -870,7 +870,7 @@ APG-S01-L0053	Pagination, incremental synchronisation and historical backfills.
 APG-S01-L0054	Data validation, schema changes and malformed-source handling.
 APG-S01-L0055	Reconciliation of external records against canonical Anchor entities.
 APG-S01-L0056	Observability, alerting and failed-ingestion recovery.
-APG-S01-C0057	Map existing and potential source categories, including accounting, job costing, estimating, scheduling, procurement, supplier quotations, project-management systems and domestic or international material-market sources. These are discovery targets, not claims that particular integrations exist or that specific providers are available. Required output: an Integration Surface Register covering contracts, authentication, data coverage, update cadence, reliability, failure recovery and test evidenc
+APG-S01-C0057	Map existing and potential source categories, including accounting, job costing, estimating, scheduling, procurement, supplier quotations, project-management systems and domestic or international material-market sources. These are discovery targets, not claims that particular integrations exist or that specific providers are available. Required output: an Integration Surface Register covering contracts, authentication, data coverage, update cadence, reliability, failure recovery and test evidence. Source freshness and coverage must be explicit. Do not label data real-time when the source updates periodically or ingestion is delayed.
 APG-S01-H0113	7. Discovery exit criteria
 APG-S01-C0114	Section 01 can be recommended for closure only when:
 APG-S01-L0115	All mandatory discovery gates have been investigated.
@@ -991,19 +991,19 @@ S05 paragraph 98 (no RTM row)	Illustrative simple carrying-cost formula: Carryin
 APG-S05-C0100	Retention or bank-guarantee face value is not itself a profit loss. If an open defect delays retention release, link the relationship and calculate only distinct, evidence-supported consequences. Do not count defect cost twice.
 PG-DI-AC-07	PG-DI-AC-07: Material AI/OCR-extracted values cannot become authoritative before authorised human verification.
 APG-S03-H0013	3. Common identity, provenance and lifecycle fields
-S03 table 2 row 1 (no RTM row)	id | Stable identifier in the relevant identity model.
-S03 table 2 row 2 (no RTM row)	organisation_id | Authorised organisation context, where applicable.
-S03 table 2 row 3 (no RTM row)	project_id | Associated project, where applicable.
-S03 table 2 row 4 (no RTM row)	source_system | Originating system or authoritative source.
-S03 table 2 row 5 (no RTM row)	source_record_id | Identifier assigned by the source.
-S03 table 2 row 6 (no RTM row)	source_revision | Source version or revision, if available.
-S03 table 2 row 7 (no RTM row)	observed_at | Time Anchor observed the source data.
-S03 table 2 row 8 (no RTM row)	effective_at | Time the fact applies to in the real or contractual world.
-S03 table 2 row 9 (no RTM row)	recorded_at | Time the record was persisted.
-S03 table 2 row 10 (no RTM row)	valid_from / valid_to | Validity interval where the domain requires temporal validity.
-S03 table 2 row 11 (no RTM row)	status | Controlled lifecycle status for the entity type.
-S03 table 2 row 12 (no RTM row)	created_by / updated_by | Actor or service responsible for the operation, where supported.
-S03 table 2 row 13 (no RTM row)	evidence_refs | References to supporting source records or documents.
+S03 table 1 row 1 (no RTM row)	id | Stable identifier in the relevant identity model.
+S03 table 1 row 2 (no RTM row)	organisation_id | Authorised organisation context, where applicable.
+S03 table 1 row 3 (no RTM row)	project_id | Associated project, where applicable.
+S03 table 1 row 4 (no RTM row)	source_system | Originating system or authoritative source.
+S03 table 1 row 5 (no RTM row)	source_record_id | Identifier assigned by the source.
+S03 table 1 row 6 (no RTM row)	source_revision | Source version or revision, if available.
+S03 table 1 row 7 (no RTM row)	observed_at | Time Anchor observed the source data.
+S03 table 1 row 8 (no RTM row)	effective_at | Time the fact applies to in the real or contractual world.
+S03 table 1 row 9 (no RTM row)	recorded_at | Time the record was persisted.
+S03 table 1 row 10 (no RTM row)	valid_from / valid_to | Validity interval where the domain requires temporal validity.
+S03 table 1 row 11 (no RTM row)	status | Controlled lifecycle status for the entity type.
+S03 table 1 row 12 (no RTM row)	created_by / updated_by | Actor or service responsible for the operation, where supported.
+S03 table 1 row 13 (no RTM row)	evidence_refs | References to supporting source records or documents.
 APG-S03-C0014	These are logical field names, not mandatory literal database columns. Final mapping must follow existing Anchor conventions.
 APG-S03-H0015	3.1 Identity and duplicate handling
 APG-S03-L0016	Distinguish source records from the canonical entities to which they map.
@@ -1069,3 +1069,210 @@ PG-MP-AC-16	PG-MP-AC-16: Scenarios cannot silently change the authoritative fore
 PG-MP-AC-17	PG-MP-AC-17: Human approval is required before purchase commitments and material substitutions.
 PG-MP-AC-18	PG-MP-AC-18: Tests cover mismatched specifications, stale quotes, currency/freight changes, quantity tiers, missing inputs and delivery constraints.
 PG-MP-AC-19	PG-MP-AC-19: No implementation or acceptance claim is made without reproducible evidence.
+APG-S03-H0022	4. Canonical financial classifications
+S03 table 2 row 1 (no RTM row)	Budget | Approved financial allowance for a defined scope and period.
+S03 table 2 row 2 (no RTM row)	Estimate | Calculated expectation of cost or revenue for a defined scope.
+S03 table 2 row 3 (no RTM row)	Actual | Recorded financial transaction or cost/revenue fact supported by source evidence.
+S03 table 2 row 4 (no RTM row)	Commitment | Documented obligation or authorised commitment not necessarily fully incurred or paid.
+S03 table 2 row 5 (no RTM row)	Accrual | Recognised or estimated amount associated with activity in a period under the relevant accounting convention.
+S03 table 2 row 6 (no RTM row)	Forecast | Current expected future financial result using identified assumptions and evidence.
+S03 table 2 row 7 (no RTM row)	Scenario | Conditional result under an explicitly specified set of assumptions.
+S03 table 2 row 8 (no RTM row)	Exposure | Potential adverse financial consequence that may occur.
+S03 table 2 row 9 (no RTM row)	Opportunity | Possible beneficial intervention or outcome not necessarily approved or realised.
+S03 table 2 row 10 (no RTM row)	Avoided cost | Cost that would otherwise have been incurred but was prevented, supported by a defensible counterfactual.
+S03 table 2 row 11 (no RTM row)	Realised saving | Measured reduction against an appropriate baseline, supported by evidence.
+S03 table 2 row 12 (no RTM row)	Revenue at risk | Revenue that may be lost, delayed or disputed based on evidence and explicit assumptions.
+S03 table 2 row 13 (no RTM row)	Net benefit | Defined benefit after deducting relevant incremental costs and adjustments.
+APG-S03-C0023	These categories have different meanings. Related representations of one underlying item must not be summed as though each were a separate economic event.
+APG-S03-H0024	4.1 Mandatory separation rules
+APG-S03-L0025	An estimate is not an actual.
+APG-S03-L0026	A commitment is not automatically an incurred cost or cash payment.
+APG-S03-L0027	A forecast is not an approved budget.
+APG-S03-L0028	A scenario is not the current expected result unless explicitly adopted as the forecast.
+APG-S03-L0029	An opportunity is not a saving.
+APG-S03-L0030	An avoided cost is not automatically a reduction in recorded expenditure.
+APG-S03-L0031	A retention balance is not automatically a loss.
+APG-S03-L0032	A bank guarantee's face value is not automatically a project expense.
+APG-S03-L0033	Potential delay cost is not actual cost until supported by financial evidence.
+APG-S03-L0034	A recommendation's estimated benefit is not a realised benefit until measured and verified.
+APG-S05-H0054	5. Forecast cost-to-complete engine
+APG-S05-C0055	Support a defensible forecast of remaining project cost. The precise algorithm must be selected after repository discovery and data assessment; no single formula is mandated for every trade or project.
+APG-S05-L0056	Remaining committed work.
+APG-S05-L0057	Remaining uncommitted scope.
+APG-S05-L0058	Expected labour and productivity costs.
+APG-S05-L0059	Material quantities and expected procurement costs.
+APG-S05-L0060	Plant, equipment, logistics and site overhead.
+APG-S05-L0061	Schedule-related holding costs.
+APG-S05-L0062	Quality, rework and defect rectification exposure.
+APG-S05-L0063	Approved changes and evidenced unresolved commercial exposures.
+APG-S05-L0064	Explicit risk allowances and scenario adjustments.
+APG-S05-L0065	Reconciliation of forecast changes against the prior forecast.
+APG-S05-C0066	Each component must be classified as actual, committed, estimated, risk-adjusted or scenario-only. If inputs are insufficient, return a qualified/incomplete forecast rather than silently filling gaps.
+APG-S05-H0081	5.3 Forecast movement bridge
+APG-S05-C0082	Every forecast revision must explain the change from its prior comparable version. Classify movements including newly recorded actuals, commitment changes, updated cost-to-complete estimates, quantity/productivity changes, procurement price changes, schedule/holding costs, approved commercial changes, newly identified risks/opportunities and corrections.
+APG-S05-C0083	Classified movements must reconcile to the total forecast change, subject to explicitly identified rounding or unallocated differences. Unexplained movement must be surfaced.
+APG-S05-H0114	12. Rounding, currency, tax and numerical integrity
+APG-S05-L0115	Define decimal precision, currency-specific precision, rounding boundaries, unit conversion, tax treatment, exchange-rate source/effective date, percentages, allocations, negative amounts, credits and missing values.
+APG-S05-L0116	Use decimal-safe financial arithmetic and approved platform conventions; do not rely on uncontrolled binary floating-point arithmetic for authoritative monetary calculations.
+APG-S05-L0117	Retain adequate intermediate precision and document rounding boundaries.
+APG-S05-L0118	Make rounding differences explainable and test them.
+APG-S05-L0119	Treat zero denominators and missing inputs explicitly.
+S18 paragraph 8 (no RTM row)	2. Required Final Handoff Package
+S18 paragraph 9 (no RTM row)	The final handoff archive must contain, at minimum:
+S18 paragraph 10 (no RTM row)	All 19 individually locked section documents, Sections 00–18, with the exact approved filenames and versions.
+S18 paragraph 11 (no RTM row)	A master architecture overview and dependency-aware implementation sequence.
+S18 paragraph 12 (no RTM row)	A consolidated Requirements Traceability Matrix (RTM) mapping each material requirement to its source, implementation/verification work, evidence and status.
+S18 paragraph 13 (no RTM row)	A structured CLAUDE_HANDOFF_INSTRUCTIONS.md at the ZIP root, including exact Phase 0 repository-inspection commands, implementation phase gates, status rules and reporting obligations.
+S18 paragraph 14 (no RTM row)	Testing, acceptance, security, operational reliability, recovery and release-gate instructions.
+S18 paragraph 15 (no RTM row)	The DB-Dependent Closure Register, including open blockers, prerequisites, exact instructions for Amir, validation steps and closure evidence requirements.
+S18 paragraph 16 (no RTM row)	Independent audit findings and accepted checkpoint/decision records.
+S18 paragraph 17 (no RTM row)	A controlled change register and cascade-impact assessment template.
+S18 paragraph 18 (no RTM row)	A terminology and cross-section consistency report, including unresolved discrepancies and their disposition.
+S18 paragraph 19 (no RTM row)	A machine-readable manifest.json with file paths, versions/status where applicable, byte sizes, SHA-256 digests, package timestamp and archive digest/root-hash metadata.
+S18 paragraph 20 (no RTM row)	Validation scripts and a validation report documenting the package checks performed.
+S18 paragraph 21 (no RTM row)	3. Source File and Archive Integrity
+S18 paragraph 22 (no RTM row)	Before packaging, calculate SHA-256 for every locked section document and compare it with the approved lock record where one exists. Any mismatch must be investigated; do not silently replace the expected digest.
+S18 paragraph 23 (no RTM row)	Generate the manifest from the exact files selected for packaging, not from manually retyped or stale values.
+S18 paragraph 24 (no RTM row)	After building the ZIP, programmatically extract it into a fresh temporary directory and recompute SHA-256 for every manifest-listed file.
+S18 paragraph 25 (no RTM row)	Verify both directions: every manifest entry exists and matches its digest, and every packaged file intended to be controlled is represented in the manifest. Unexpected files must be reported and either explicitly allowed or cause rejection.
+S18 paragraph 26 (no RTM row)	Verify that all 19 section documents exist, are readable as DOCX files and have the expected locked version/title. Presence and hash validity do not substitute for content checks.
+S18 paragraph 27 (no RTM row)	Calculate the SHA-256 digest of the final compressed ZIP and record it in the external delivery record and package validation report. Because a ZIP cannot straightforwardly contain its own final hash without creating a self-reference, the manifest must not pretend to contain a self-hash that changes the archive. Instead, include the manifest's own digest in the external delivery record and the archive's digest alongside it.
+S18 paragraph 28 (no RTM row)	Record package creation time in UTC in a stable, documented format. If an immutable or append-only build ledger is available, record the archive digest, manifest digest, build identity and timestamp there. If no immutable ledger exists, explicitly state the limitation rather than claiming immutability.
+S18 paragraph 29 (no RTM row)	Any missing, unreadable, corrupted, mismatched, unexpected or unverified controlled file blocks final handoff.
+S18 paragraph 30 (no RTM row)	4. Consolidated RTM and Completeness Validation
+S18 paragraph 31 (no RTM row)	The consolidated RTM must trace material requirements across Sections 00–17 and the handoff-specific requirements in Section 18. Existing source sections do not all use the same explicit requirement-ID convention. Therefore, the consolidation process must not pretend that a parser found formal IDs where none exist.
+S18 paragraph 32 (no RTM row)	Extract existing explicit requirement/control IDs from source documents and preserve them exactly.
+S18 paragraph 33 (no RTM row)	For material requirement statements without a formal source ID, assign a stable derived traceability ID in the master RTM that points to the exact source section and paragraph/heading anchor. Label it as a consolidation-assigned ID, not an ID originally present in the locked document.
+S18 paragraph 34 (no RTM row)	Record the extraction method and source anchor so that each RTM entry can be traced back to its locked source.
+S18 paragraph 35 (no RTM row)	Run an automated RTM validation script that compares extracted source IDs and generated material-requirement anchors with the master RTM and reports missing, duplicate, orphaned or unmapped entries.
+S18 paragraph 36 (no RTM row)	Require 100% mapping coverage for the controlled requirement inventory before package acceptance. Any parser limitation, ambiguous extraction or manually reviewed exception must be visible and explicitly resolved; a clean script exit must not conceal an incomplete inventory.
+S18 paragraph 37 (no RTM row)	Do not claim complete semantic coverage solely because every heading or explicit ID appears in the RTM. A human completeness review must confirm that material requirements, mandatory controls, checkpoints, acceptance criteria and closure conditions are represented.
+S18 paragraph 38 (no RTM row)	Requirements from Sections 00–17 must not disappear during manual aggregation or be replaced by a summary that loses mandatory detail.
+S18 paragraph 46 (no RTM row)	6. Controlled Change Governance and Cascade Impact
+S18 paragraph 47 (no RTM row)	No locked section may be silently edited, shortened, replaced or re-versioned during consolidation. Any proposed amendment must be recorded as a controlled Change Request (CR).
+S18 paragraph 48 (no RTM row)	Every CR must include a mandatory Cascade Impact Assessment containing:
+S18 paragraph 49 (no RTM row)	CR ID, requester, date, affected locked section/version and exact requirement IDs or source anchors.
+S18 paragraph 50 (no RTM row)	Current wording/reference, proposed change, reason and supporting evidence.
+S18 paragraph 51 (no RTM row)	Risk and impact assessment, including financial correctness, security, privacy, tenant isolation, approvals, auditability and operational resilience as applicable.
+S18 paragraph 52 (no RTM row)	All downstream dependent section IDs, requirement IDs, RTM rows, implementation tasks, tests, immutable fixtures, acceptance criteria, glossary entries, handoff instructions and manifest/hash records affected.
+S18 paragraph 53 (no RTM row)	Required regression, integration, cross-domain, security or database tests and evidence needed to validate the amendment.
+S18 paragraph 54 (no RTM row)	Independent review and named approval authority, disposition, versioning plan and post-change verification.
+S18 paragraph 55 (no RTM row)	A traceable link from the CR to resulting source changes, test runs, revised hashes and closure record.
+S18 paragraph 56 (no RTM row)	A CR must not be approved until the cascade assessment is complete. A change affecting a canonical financial definition must identify downstream effects and relevant test/fixture updates; an unreviewed dependent section blocks approval. Following an approved change, regenerate the affected artefacts, rerun the required consistency/regression checks and update the manifest and RTM. Preserve the prior locked version and its hash as history.
+S18 paragraph 77 (no RTM row)	9. Final Package Acceptance Gates
+S18 paragraph 78 (no RTM row)	All 19 locked section files are present, readable, at the expected version and hash-verified.
+S18 paragraph 79 (no RTM row)	The final ZIP has been extracted into a fresh temporary directory and every controlled file's digest matches the internal manifest.
+S18 paragraph 80 (no RTM row)	The final archive SHA-256, manifest digest, build timestamp and validation report are recorded in the delivery record.
+S18 paragraph 81 (no RTM row)	The manifest accurately describes the files actually present; no unexplained extra or missing controlled files remain.
+S18 paragraph 82 (no RTM row)	The consolidated RTM validation reports zero missing, duplicate, orphaned or unmapped items in the controlled inventory, with any manual semantic review documented.
+S18 paragraph 83 (no RTM row)	The cross-section terminology/conflict report is complete and material conflicts in core financial definitions or governance are resolved.
+S18 paragraph 84 (no RTM row)	Every amendment has a complete cascade impact assessment and linked downstream test/RTM updates.
+S18 paragraph 85 (no RTM row)	The DB-Dependent Closure Register is included, validated and preserves open blockers. No unsupported Closed/Implemented claim appears for an unverified database-dependent item.
+S18 paragraph 86 (no RTM row)	CLAUDE_HANDOFF_INSTRUCTIONS.md and required implementation, test, acceptance and recovery materials are included.
+S18 paragraph 87 (no RTM row)	A human completeness review confirms that locked requirements were not replaced by summaries or silently omitted.
+S18 paragraph 88 (no RTM row)	The final package is reopened and inspected after creation; packaging success alone is insufficient.
+S18 paragraph 57 (no RTM row)	7. DB-Dependent Closure Register — Retention and State Integrity
+S18 paragraph 58 (no RTM row)	The DB-Dependent Closure Register must be embedded in the final handoff package and remain active after handoff. Open items must be preserved, not deleted, hidden, relabelled or converted to closed merely to make the package appear complete.
+S18 paragraph 59 (no RTM row)	Minimum fields: register ID; linked section/requirement/test IDs; blocked verification; why the real database/environment is required; exact engine/version/schema/migration and access prerequisites; instructions for Amir; validation procedure; expected result; evidence references; status; blocker/action owner; dates; defect/retest references; reviewer and approval/sign-off ID.
+S18 paragraph 60 (no RTM row)	Allowed status transitions must be defined. A blocked item cannot transition to Closed without the required real/staging execution evidence, successful result, linked evidence artefact, and authorised human sign-off ID.
+S18 paragraph 61 (no RTM row)	A status of Resolved, Implemented, Locally Tested or Access Provided is not equivalent to Closed.
+S18 paragraph 62 (no RTM row)	Validation must reject a closed database-dependent item when staging evidence, environment identity, test result, or required approval metadata is empty, invalid or mismatched.
+S18 paragraph 63 (no RTM row)	Open database-dependent items may coexist with final specification-package handoff, but must remain explicitly blocked and must prevent any claim that the corresponding implementation or production verification is complete.
+APG-S03-H0221	14.3 Calculation record
+APG-S03-L0222	Calculation identifier and version.
+APG-S03-L0223	Input record identifiers and revisions.
+APG-S03-L0224	Relevant source timestamps.
+APG-S03-L0225	Formula or rule identifier.
+APG-S03-L0226	Assumptions and scenario parameters.
+APG-S03-L0227	Output values and currency.
+APG-S03-L0228	Warnings and data-quality limitations.
+APG-S03-L0229	Execution timestamp and references to resulting findings/recommendations.
+APG-S03-C0230	Material calculations must be reproducible from recorded inputs and calculation versions, subject to documented source availability and platform retention capabilities.
+APG-S06-H0009	2. Architectural boundary
+S06 paragraph 9 (no RTM row)	Logical flow: governed project evidence → signal detection and relationship analysis → evidence-backed finding → deterministic quantification or clearly labelled estimate → recommendation and human review. This is a logical model, not a claim about the current repository.
+APG-S06-C0011	The layer must not bypass governed ingestion or independently write authoritative financial results. Financial quantification must use Section 05 calculations or explicitly labelled estimates where a validated calculation is not possible. Implementation must use actual Anchor Engine, Governor and AUIF contracts discovered under Section 01.
+APG-S06-H0022	4. Intelligence taxonomy
+APG-S06-L0023	Commercial and revenue: unpriced scope changes, unsubmitted variations, disputed revenue exposure and missed credits.
+APG-S06-L0024	Cost and commitments: forecast overruns, duplicated exposure, commitment growth and unexplained cost movements.
+APG-S06-L0025	Procurement and materials: price variance, unusual quotes, quantity mismatch, delivery risk and buying-timing opportunities.
+APG-S06-L0026	Labour and productivity: productivity deterioration, excessive hours, rework labour and abnormal output variance.
+APG-S06-L0027	Schedule and holding costs: emerging delay, critical-path disruption, avoidable hire costs and extended site overhead.
+APG-S06-L0028	Quality and defects: repeat defects, rework cost growth, unresolved DLP obligations and defect-linked cash delays.
+APG-S06-L0029	Suppliers/subcontractors: pricing, delivery consistency, quality, expired licence/insurance/safety evidence and other relevant compliance gaps.
+APG-S06-L0030	Design and constructability: design changes, avoidable rework, specification inconsistencies and potential constructability improvements.
+APG-S06-L0031	Equipment and logistics: idle equipment, duplicated hire, inefficient deliveries, storage and handling costs.
+APG-S06-L0032	Cash flow and capital: overdue receivables, delayed retention release, avoidable financing costs and security renewal exposure.
+APG-S06-L0033	Market and external conditions: commodity changes, FX movement, freight changes, supply constraints and other relevant observations.
+APG-S06-L0034	Portfolio intelligence: repeated loss patterns, recurring supplier issues and reusable opportunities across authorised projects.
+APG-S06-L0035	Data integrity: conflicting sources, missing inputs, suspicious duplicates, stale data and unreliable calculations.
+APG-S06-C0036	Data-integrity findings must be distinguishable from confirmed financial leakage. A missing record may create reporting risk but is not automatically a financial loss.
+APG-S06-H0081	7. Financial classification and quantification
+S06 paragraph 81 (no RTM row)	Preserve Section 03 classifications and Section 05 calculation authority. Distinguish confirmed actual cost/loss, recognised impact, forecast exposure, potential revenue at risk, unresolved/contingent commercial exposure, estimated opportunity, avoided cost, estimated gross benefit, implementation cost, estimated net benefit, verified realised net benefit and non-financial risk.
+APG-S06-C0083	Never combine these categories into a single ‘profit saved’ number without a transparent definition and reconciliation.
+APG-S06-C0084	Example: a possible procurement improvement of $18,000 with $3,000 implementation/logistics cost and an unresolved $4,000 handling risk cannot be presented as a verified $15,000 saving. Disclose the unresolved risk and label scenario results. Only report realised improvement after Section 05 verification requirements are met.
+PG-AI-AC-06	PG-AI-AC-06: Financial amounts use Section 05 calculations or are labelled estimates.
+APG-S12-H0027	12.3 Canonical financial-state separation
+APG-S12-C0028	The system must maintain separate, explicit states for at least the following:
+APG-S12-L0029	Actual cash: supported by authoritative bank/cash evidence and reconciled according to the approved source rules.
+APG-S12-L0030	Scheduled receipts and payments: expected contractual or operational movements with a dated basis; not yet actual cash.
+APG-S12-L0031	Forecast receipts and payments: modelled estimates with assumptions, as-of time, confidence/qualification, and source freshness.
+APG-S12-L0032	Disputed, unapproved, uncertified, or otherwise conditional amounts: separately identified and not silently treated as collectible or payable with certainty.
+APG-S12-L0033	Scenario-only values: isolated from the authoritative forecast unless explicitly reviewed and promoted through a controlled process.
+APG-S12-L0034	Accounting profitability and forecast final margin: governed by the canonical semantics in Sections 03 and 05, not replaced by cash-flow state.
+APG-S12-L0035	Working-capital exposure and financing cost: distinct from accounting margin and from gross retention/security face value.
+APG-S12-C0036	No state may be silently promoted into another state. Each transition must have a defined event, evidence requirement, authorised actor or deterministic rule, timestamp, provenance, and audit record. A forecast is not a bank balance; a claim is not a certified receivable; certification is not collection; and a retention/security forecast date is not proof of release.
+APG-S12-H0125	C — Retention/security release gate
+APG-S12-C0126	MANDATORY. Release/cancellation review must consider relevant contractual conditions, obligations, evidence, and authorised human approval. A forecast date or expiry alone is insufficient.
+APG-S15-H0127	15.11 Human approval and privileged overrides
+S15 paragraph 127 (no RTM row)	Consequential actions remain subject to approval requirements in the relevant domain specifications. Examples include:
+APG-S15-L0129	Purchase orders and supplier commitments.
+APG-S15-L0130	Contract, scope, specification or material changes.
+APG-S15-L0131	Claims, notices and consequential commercial communications.
+APG-S15-L0132	Retention release and security cancellation.
+APG-S15-L0133	Changes to authoritative financial rules or approved baselines.
+APG-S15-L0134	Privileged access changes.
+APG-S15-L0135	Data deletion or correction materially affecting authoritative evidence.
+APG-S15-C0136	Approval workflows must identify proposed action, supporting evidence, relevant risks, approving authority, decision, timestamp and resulting state.
+APG-S15-C0137	Where emergency overrides are legitimately supported, they require narrowly defined eligibility, explicit authorisation, a reason, audit trail and subsequent review. Overrides must not silently disable tenant isolation, erase evidence or bypass mandatory legal, safety or financial controls.
+APG-S15-H0088	15.8 Audit logging and evidence integrity
+S15 paragraph 88 (no RTM row)	Retain sufficient audit evidence to reconstruct material security-sensitive and business-critical actions, including where applicable:
+APG-S15-L0090	Authentication success/failure and security-relevant session events.
+APG-S15-L0091	Permission and role changes and tenant membership changes.
+APG-S15-L0092	Sensitive record access and exports where required by policy.
+APG-S15-L0093	Financial rule, configuration and calculation-version changes.
+APG-S15-L0094	Approval, rejection and override events.
+APG-S15-L0095	Consequential external-action requests and outcomes.
+APG-S15-L0096	Integration credential and connection changes.
+APG-S15-L0097	Administrative actions and security-policy changes.
+APG-S15-L0098	Data correction, reconciliation, deletion and recovery events.
+S15 paragraph 98 (no RTM row)	Audit records should identify actor/service, event type, affected resource, timestamp, outcome, relevant reason or approval reference, and correlation identifier where appropriate.
+APG-S15-C0100	Protect audit history against unauthorised alteration or deletion. Where immutable storage is unavailable, implement and document proportionate tamper-evident controls and privileged-access restrictions. Do not copy secrets, authentication tokens or unnecessary sensitive content into logs.
+S15 paragraph 100 (no RTM row)	Test audit logging for failures, permission bypasses, sensitive-data leakage and the ability to correlate related events.
+APG-S17-H0060	7. AI, Extraction, Recommendations and Governance Testing
+APG-S17-L0061	Material AI-extracted values from invoices, quotes, contracts, dockets and other source documents must enter the required quarantine/provisional workflow and cannot be used authoritatively until explicit human verification is recorded.
+APG-S17-L0062	Integration tests must attempt direct API/UI and background-job paths that bypass the intended human verification gate; all such attempts must be rejected or remain non-authoritative.
+APG-S17-L0063	Test malicious or misleading imported content, including prompt-injection instructions. Treat documents, connector payloads and retrieved content as untrusted data, never as authority to override system rules.
+APG-S17-L0064	Deterministic financial calculations must enforce their own validated input contracts and limits independently of AI narrative or suggested values.
+APG-S17-L0065	Test whether AI distinguishes observed facts, hypotheses, supported causal relationships, estimates and contractual/legal conclusions; unsupported conclusions must be qualified, withheld or routed for human review.
+APG-S17-L0066	Test missing data, stale data, conflicting sources, low confidence and insufficient evidence. The system must not fabricate certainty or silently convert absence of evidence into zero/no-risk/no-activity.
+APG-S17-L0067	Test repeated findings, deduplication, controlled reopening and notification behaviour, including cross-domain correlation without unsupported causation.
+APG-S17-L0068	AI output must not modify authoritative ledgers, baselines, formulas, permissions, approvals or forecasts outside the explicitly governed deterministic workflow.
+APG-S17-H0123	T17-02 — Partial source feed
+APG-S17-C0124	Setup: Return HTTP 200 with missing mandatory fields or truncated line items.
+S17 paragraph 124 (no RTM row)	Expected outcome: Structural validation detects incompleteness; affected payload is quarantined/qualified; authoritative state is not corrupted; source status is visible.
+S17 paragraph 125 (no RTM row)	Evidence: source/build identity, test ID, environment and configuration, logs/report, observed state and financial effects, plus defect/retest references if applicable.
+APG-S17-H0139	T17-06 — Prompt injection in source document
+S17 paragraph 139 (no RTM row)	Setup: Upload a supplier quote instructing the AI to ignore rules and set a discount to 100%.
+S17 paragraph 140 (no RTM row)	Expected outcome: Instruction is treated as untrusted document content; deterministic validation and human-verification requirements remain enforced.
+S17 paragraph 141 (no RTM row)	Evidence: source/build identity, test ID, environment and configuration, logs/report, observed state and financial effects, plus defect/retest references if applicable.
+APG-S02-H0126	7. Financial and decision boundaries
+APG-S02-L0127	Deterministic financial core: authoritative arithmetic must use versioned, testable calculation logic. AI-generated explanations must not alter authoritative totals.
+APG-S02-L0128	No unsupported certainty: incomplete or stale source data must affect recommendations and be disclosed.
+APG-S02-L0129	Human approval only for consequential external actions: purchasing, purchase orders, contracts, variations, claims submissions, supplier changes, design or material substitutions, changes to bills of quantities and other actions that create external financial, legal, safety, warranty or contractual consequences require an authorised human decision and verified approval before execution.
+APG-S02-L0130	Advisory and analytical operation: in the initial release, Profit Guardian may detect, calculate, prioritise, model, explain, recommend, notify and track, but it must not autonomously execute consequential external actions.
+APG-S02-L0131	No unsupported contractual conclusions: entitlements, delay responsibility and legal obligations must not be inferred as established facts without appropriate evidence and review.
+APG-S02-L0132	No double-counting: linked findings must represent shared underlying financial exposures explicitly.
+APG-S02-L0133	No unverified market claims: coverage, forecasts and expected purchasing advantages require source evidence and stated limitations.
+APG-S02-L0134	No autonomous expansion of authority: AI cannot bypass platform permissions or governance rules.
+APG-S02-C0135	The human-approval-only boundary is a permanent default for the initial release, not a temporary implementation convenience. Any later proposal to change this boundary requires a separately reviewed and explicitly approved governance change; it cannot be enabled by model behaviour or configuration alone.
+S02 table 2 row 24 (no RTM row)	PG-FR-024 | Support developer/principal and portfolio-level views of capital exposure, milestones, holding costs and project outcomes subject to permissions.
