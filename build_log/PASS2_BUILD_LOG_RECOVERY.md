@@ -313,3 +313,13 @@ review pack); everything after that is restated here from the conversation recor
 - MISTAKE 61 (disclosed, data supply work, not stage 1): the morning's heading-level M15 check reported 2 missing entities and 4 field
   gaps; the row-level check of all 2,712 RTM rows found 430 rows whose data the register does not carry. Recorded in the cascade
   assessment's records.
+- 19:06 to 19:22 Focused checks of fix 6 on both Pythons (focus6/run_focus6.sh): the new and changed classes of the four files, and
+  PinnedCounts; every file OK on Python 3.13 and 3.12 (14, 18, 51 and 9 tests per run). Logs in evidence_recovery/fix6_focus (masked).
+  The full tests_tools suite runs as step 5.1's T set on the new freeze (disclosed: no separate full-suite run before the freeze).
+- 19:23 Manifest regenerated on an export of fix6 (check: problems 0; a5d8b99). main fast-forwarded to a5d8b99 and pushed. Freeze of
+  a5d8b99 built twice from two fresh clones: byte-identical, 1555 files, APG-M11-S1.zip SHA-256
+  a7f599f936937d5fd06a720d19ba3bbd1966ef81e2b9395687db28501c2f76bd; frozen_compare against M10: 73 successor tools, every M10 original
+  byte-identical, problems 0. It supersedes ee1ce3ec (kept, with its evidence in ev5). A first freeze attempt on plain exports was
+  refused by freeze_s1.py (it needs a git tree); nothing was made.
+- 19:23:30 The full evidence on a7f599f9 started (ev6/driver6.sh: 5.1, then 5.2 and 5.3, then 5.4 with the row 6 demonstration),
+  detached, with a waiter beside it.

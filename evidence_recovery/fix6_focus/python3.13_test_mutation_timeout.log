@@ -1,0 +1,95 @@
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row12_an_orphan_at_jobs_2_is_a_leak_of_each_item_in_flight run=tool descendants=13134:2840980:13134,13137:2841012:13137,13138:2841013:13138,13140:2841016:13137
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row12_an_orphan_at_jobs_2_is_a_leak_of_each_item_in_flight CLEANUP CA02-nonstring-key-allowed:run_m2_tests_s1 by=m2_mutants_s1:13132 child=13137:2841012 pgid=13137 scan=4-4 left=13140:2841016 exited_in_grace=- killed=- sigterm=0 sigkill=0 scans=1 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row12_an_orphan_at_jobs_2_is_a_leak_of_each_item_in_flight CLEANUP CA01-float-allowed:run_m2_tests_s1 by=m2_mutants_s1:13132 child=13138:2841013 pgid=13138 scan=3-6 left=13140:2841016 exited_in_grace=13140:2841016 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row12_an_orphan_at_jobs_2_is_a_leak_of_each_item_in_flight CLEANUP_SUMMARY units=6 leaked=2 remaining=0
+.P_IDENTITY test=__main__.AM6MutationToolGaps.test_row21_every_descendant_is_gone_when_the_result_line_is_printed run=tool descendants=13146:2841396:13146,13147:2841401:13147,13149:2841418:13149,13150:2841419:13149,13159:2841658:13159,13160:2841666:13160
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row21_every_descendant_is_gone_when_the_result_line_is_printed CLEANUP CA01-float-allowed:run_m2_tests_s1 by=m2_mutants_s1:13144 child=13149:2841418 pgid=13149 scan=3-15 left=13150:2841419 exited_in_grace=- killed=13150:2841419 sigterm=1 sigkill=1 scans=13 deadline=grace escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row21_every_descendant_is_gone_when_the_result_line_is_printed CLEANUP_SUMMARY units=5 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM6MutationToolGaps.test_row22_a_mutation_items_leak_is_indeterminate_processes_left run=tool descendants=13163:2841747:13163,13166:2841784:13165,13167:2842065:13167,13168:2842070:13168
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row22_a_mutation_items_leak_is_indeterminate_processes_left CLEANUP CA01-float-allowed:run_m2_tests_s1 by=m2_mutants_s1:13161 child=13165:2841782 pgid=13165 scan=3-15 left=13166:2841784 exited_in_grace=- killed=13166:2841784 sigterm=1 sigkill=1 scans=13 deadline=grace escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row22_a_mutation_items_leak_is_indeterminate_processes_left CLEANUP_SUMMARY units=5 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM6MutationToolGaps.test_row41_a_mutation_tools_control_that_crashes_or_returns_rejected_output run=tool descendants=-
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row41_a_mutation_tools_control_that_crashes_or_returns_rejected_output CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row41_a_mutation_tools_control_that_crashes_or_returns_rejected_output run=tool descendants=-
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row41_a_mutation_tools_control_that_crashes_or_returns_rejected_output CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row41_a_mutation_tools_control_that_crashes_or_returns_rejected_output run=tool descendants=13175:2842411:13175
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row41_a_mutation_tools_control_that_crashes_or_returns_rejected_output CLEANUP_SUMMARY units=5 leaked=0 remaining=0
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row41_a_mutation_tools_control_that_crashes_or_returns_rejected_output run=tool descendants=13191:2842723:13191
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row41_a_mutation_tools_control_that_crashes_or_returns_rejected_output CLEANUP_SUMMARY units=5 leaked=0 remaining=0
+.<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_mutation_timeout.py:1367: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6_ma0zsbpw/r4_proc_unavailable/tools/evkit.py' mode='r' encoding='utf-8'>
+  src = open(p, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_mutation_timeout.py:1371: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6_ma0zsbpw/r4_proc_unavailable/tools/evkit.py' mode='w' encoding='utf-8'>
+  open(p, 'w', encoding='utf-8').write(src)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row4_each_remaining_setup_failure_refuses_at_tool_level run=tool descendants=-
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row4_each_remaining_setup_failure_refuses_at_tool_level CLEANUP_SUMMARY units=0 leaked=0 remaining=0
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_mutation_timeout.py:1367: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6_ma0zsbpw/r4_pidfd_open_failed_PermissionError/tools/evkit.py' mode='r' encoding='utf-8'>
+  src = open(p, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_mutation_timeout.py:1371: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6_ma0zsbpw/r4_pidfd_open_failed_PermissionError/tools/evkit.py' mode='w' encoding='utf-8'>
+  open(p, 'w', encoding='utf-8').write(src)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row4_each_remaining_setup_failure_refuses_at_tool_level run=tool descendants=-
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row4_each_remaining_setup_failure_refuses_at_tool_level CLEANUP_SUMMARY units=0 leaked=0 remaining=0
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_mutation_timeout.py:1367: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6_ma0zsbpw/r4_prctl_set_failed_errno_22/tools/evkit.py' mode='r' encoding='utf-8'>
+  src = open(p, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_mutation_timeout.py:1371: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6_ma0zsbpw/r4_prctl_set_failed_errno_22/tools/evkit.py' mode='w' encoding='utf-8'>
+  open(p, 'w', encoding='utf-8').write(src)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row4_each_remaining_setup_failure_refuses_at_tool_level run=tool descendants=-
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row4_each_remaining_setup_failure_refuses_at_tool_level CLEANUP_SUMMARY units=0 leaked=0 remaining=0
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_mutation_timeout.py:1367: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6_ma0zsbpw/r4_prctl_readback_failed/tools/evkit.py' mode='r' encoding='utf-8'>
+  src = open(p, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_mutation_timeout.py:1371: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6_ma0zsbpw/r4_prctl_readback_failed/tools/evkit.py' mode='w' encoding='utf-8'>
+  open(p, 'w', encoding='utf-8').write(src)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row4_each_remaining_setup_failure_refuses_at_tool_level run=tool descendants=-
+P_IDENTITY test=__main__.AM6MutationToolGaps.test_row4_each_remaining_setup_failure_refuses_at_tool_level CLEANUP_SUMMARY units=0 leaked=0 remaining=0
+.P_IDENTITY test=__main__.AM6LeafInterrupts.test_rows51_53_66_each_leaf_stops_on_either_signal_and_no_test_starts_after_it run=tool descendants=-
+P_IDENTITY test=__main__.AM6LeafInterrupts.test_rows51_53_66_each_leaf_stops_on_either_signal_and_no_test_starts_after_it run=tool descendants=-
+P_IDENTITY test=__main__.AM6LeafInterrupts.test_rows51_53_66_each_leaf_stops_on_either_signal_and_no_test_starts_after_it run=tool descendants=-
+P_IDENTITY test=__main__.AM6LeafInterrupts.test_rows51_53_66_each_leaf_stops_on_either_signal_and_no_test_starts_after_it run=tool descendants=-
+P_IDENTITY test=__main__.AM6LeafInterrupts.test_rows51_53_66_each_leaf_stops_on_either_signal_and_no_test_starts_after_it run=tool descendants=-
+P_IDENTITY test=__main__.AM6LeafInterrupts.test_rows51_53_66_each_leaf_stops_on_either_signal_and_no_test_starts_after_it run=tool descendants=-
+.P_IDENTITY test=__main__.P2MutationFamily.test_f1_the_floor_at_the_end_controls_copy run=tool descendants=13247:2847286:13247,13248:2847291:13248,13250:2847354:13250
+P_IDENTITY test=__main__.P2MutationFamily.test_f1_the_floor_at_the_end_controls_copy CLEANUP_SUMMARY units=4 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2MutationFamily.test_f1_the_floor_at_the_start_controls_copy run=tool descendants=-
+P_IDENTITY test=__main__.P2MutationFamily.test_f1_the_floor_at_the_start_controls_copy CLEANUP_SUMMARY units=0 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2MutationFamily.test_f1_the_floor_during_the_items_with_jobs_2 run=tool descendants=13254:2847554:13254,13255:2847559:13255,13258:2847610:13258
+P_IDENTITY test=__main__.P2MutationFamily.test_f1_the_floor_during_the_items_with_jobs_2 CLEANUP CA01-float-allowed:run_m2_tests_s1 by=m2_mutants_s1:13253 child=13258:2847610 pgid=13258 scan=3-5 left=13258:2847610 exited_in_grace=13258:2847610 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2MutationFamily.test_f1_the_floor_during_the_items_with_jobs_2 CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+.P_IDENTITY test=__main__.P2MutationFamily.test_f2_a_second_signal_is_counted_without_cutting_the_output run=tool descendants=13262:2847769:13262,13264:2847831:13264
+P_IDENTITY test=__main__.P2MutationFamily.test_f2_a_second_signal_is_counted_without_cutting_the_output CLEANUP CA01-float-allowed:run_m2_tests_s1 by=m2_mutants_s1:13260 child=13264:2847831 pgid=13264 scan=3-5 left=13264:2847831 exited_in_grace=13264:2847831 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2MutationFamily.test_f2_a_second_signal_is_counted_without_cutting_the_output CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+.P_IDENTITY test=__main__.P2MutationFamily.test_f2_and_k1_during_the_end_controls_cleanup run=tool descendants=13266:2847975:13266,13267:2847981:13267,13269:2848026:13269,13271:2848095:13271,13272:2848099:13272,13273:2848101:13272
+P_IDENTITY test=__main__.P2MutationFamily.test_f2_and_k1_during_the_end_controls_cleanup CLEANUP control_end:run_contracts_s1 by=m2_mutants_s1:13265 child=13272:2848099 pgid=13272 scan=6-28 left=13273:2848101 exited_in_grace=- killed=13273:2848101 sigterm=1 sigkill=1 scans=23 deadline=grace escalated_after=2.0s ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2MutationFamily.test_f2_and_k1_during_the_end_controls_cleanup CLEANUP_SUMMARY units=6 leaked=1 remaining=0
+.P_IDENTITY test=__main__.P2MutationFamily.test_f2_between_items run=tool descendants=-
+P_IDENTITY test=__main__.P2MutationFamily.test_f2_between_items CLEANUP_SUMMARY units=4 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2MutationFamily.test_f2_during_the_end_control run=tool descendants=13289:2849056:13289,13291:2849098:13291,13293:2849146:13293
+P_IDENTITY test=__main__.P2MutationFamily.test_f2_during_the_end_control CLEANUP control_end:run_m2_tests_s1 by=m2_mutants_s1:13287 child=13293:2849146 pgid=13293 scan=5-7 left=13293:2849146 exited_in_grace=13293:2849146 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2MutationFamily.test_f2_during_the_end_control CLEANUP_SUMMARY units=5 leaked=1 remaining=0
+.P_IDENTITY test=__main__.P2MutationFamily.test_f2_sigint_while_a_child_runs run=tool descendants=13295:2849304:13295,13296:2849309:13296,13298:2849349:13298
+P_IDENTITY test=__main__.P2MutationFamily.test_f2_sigint_while_a_child_runs CLEANUP CA01-float-allowed:run_m2_tests_s1 by=m2_mutants_s1:13294 child=13298:2849349 pgid=13298 scan=3-5 left=13298:2849349 exited_in_grace=13298:2849349 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2MutationFamily.test_f2_sigint_while_a_child_runs CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+.P_IDENTITY test=__main__.P2MutationFamily.test_reading_7_an_interrupt_during_an_earlier_commands_cleanup run=tool descendants=13309:2849598:13308
+P_IDENTITY test=__main__.P2MutationFamily.test_reading_7_an_interrupt_during_an_earlier_commands_cleanup CLEANUP control_end:run_m2_tests_s1 by=m2_mutants_s1:13299 child=13308:2849596 pgid=13308 scan=5-17 left=13309:2849598 exited_in_grace=- killed=13309:2849598 sigterm=1 sigkill=1 scans=13 deadline=grace escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2MutationFamily.test_reading_7_an_interrupt_during_an_earlier_commands_cleanup CLEANUP_SUMMARY units=5 leaked=1 remaining=0
+.P_IDENTITY test=__main__.P2MutationFamily.test_sabotage_m7_f1_the_floor_at_the_end_controls_copy run=tool descendants=-
+P_IDENTITY test=__main__.P2MutationFamily.test_sabotage_m7_f1_the_floor_at_the_end_controls_copy CLEANUP_SUMMARY units=2 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2MutationFamily.test_sabotage_m7_f1_the_floor_at_the_start_controls_copy run=tool descendants=-
+P_IDENTITY test=__main__.P2MutationFamily.test_sabotage_m7_f1_the_floor_at_the_start_controls_copy CLEANUP_SUMMARY units=0 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2MutationFamily.test_sabotage_m7_f2_sigint_and_sigterm_while_a_child_runs run=tool descendants=13318:2850239:13318
+P_IDENTITY test=__main__.P2MutationFamily.test_sabotage_m7_f2_sigint_and_sigterm_while_a_child_runs CLEANUP S01:R09 by=sabotage_m7_s1:13315 child=13318:2850239 pgid=13318 scan=2-4 left=13318:2850239 exited_in_grace=13318:2850239 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2MutationFamily.test_sabotage_m7_f2_sigint_and_sigterm_while_a_child_runs CLEANUP_SUMMARY units=2 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2MutationFamily.test_sabotage_m7_f2_sigint_and_sigterm_while_a_child_runs run=tool descendants=13324:2850452:13324
+P_IDENTITY test=__main__.P2MutationFamily.test_sabotage_m7_f2_sigint_and_sigterm_while_a_child_runs CLEANUP S01:R09 by=sabotage_m7_s1:13320 child=13324:2850452 pgid=13324 scan=2-4 left=13324:2850452 exited_in_grace=13324:2850452 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2MutationFamily.test_sabotage_m7_f2_sigint_and_sigterm_while_a_child_runs CLEANUP_SUMMARY units=2 leaked=1 remaining=0
+.
+----------------------------------------------------------------------
+Ran 18 tests in 95.537s
+
+OK

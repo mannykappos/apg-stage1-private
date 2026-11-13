@@ -1,0 +1,47 @@
+P_IDENTITY test=__main__.AM6Supervision.test_row11_a_real_ambiguous_process_is_adopted_cleaned_up_and_reaped_after_its_parent_ends descendants=13036:2836673:13036,13038:2836674:13036,13037:2836674:13036
+P_IDENTITY test=__main__.AM6Supervision.test_row11_a_real_ambiguous_process_is_adopted_cleaned_up_and_reaped_after_its_parent_ends CLEANUP am by=p2test:13034 child=13036:2836673 pgid=13036 scan=1-4 left=13037:2836674,13038:2836674 exited_in_grace=13037:2836674,13038:2836674 killed=- sigterm=2 sigkill=0 scans=4 deadline=none escalated_after=- ambiguous=13038:2836674 remaining=-
+P_IDENTITY test=__main__.AM6Supervision.test_row11_a_real_ambiguous_process_is_adopted_cleaned_up_and_reaped_after_its_parent_ends CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM6Supervision.test_row21_the_records_follow_the_units_ids_not_their_completion descendants=13040:2836844:13040,13042:2836884:13042,13043:2836886:13042,13044:2836996:13040
+P_IDENTITY test=__main__.AM6Supervision.test_row21_the_records_follow_the_units_ids_not_their_completion CLEANUP z_first by=p2test:13034 child=13040:2836844 pgid=13040 scan=6-6 left=13043:2836886,13044:2836996 exited_in_grace=- killed=- sigterm=0 sigkill=0 scans=1 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6Supervision.test_row21_the_records_follow_the_units_ids_not_their_completion CLEANUP a_second by=p2test:13034 child=13042:2836884 pgid=13042 scan=5-8 left=13043:2836886,13044:2836996 exited_in_grace=13043:2836886,13044:2836996 killed=- sigterm=2 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6Supervision.test_row21_the_records_follow_the_units_ids_not_their_completion CLEANUP_SUMMARY units=2 leaked=2 remaining=0
+.P_IDENTITY test=__main__.AM6Supervision.test_row91_sigterm_goes_to_the_nested_supervisor_alone_while_it_lives descendants=13045:2837025:13045,13046:2837027:13045
+P_IDENTITY test=__main__.AM6Supervision.test_row91_sigterm_goes_to_the_nested_supervisor_alone_while_it_lives CLEANUP ns by=p2test:13034 child=13045:2837025 pgid=13045 scan=9-16 left=13045:2837025,13046:2837027 exited_in_grace=13045:2837025,13046:2837027 killed=- sigterm=2 sigkill=0 scans=8 deadline=none escalated_after=0.7s ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6Supervision.test_row91_sigterm_goes_to_the_nested_supervisor_alone_while_it_lives CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM6Supervision.test_row99_a_phase_with_children_is_counted_once descendants=13047:2837196:13033,13048:2837198:13033,13049:2837200:13049
+P_IDENTITY test=__main__.AM6Supervision.test_row99_a_phase_with_children_is_counted_once CLEANUP_SUMMARY units=2 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_a_member_that_cannot_be_killed_is_cleanup_incomplete descendants=13050:2837201:13050
+P_IDENTITY test=__main__.P2SubprocessUnits.test_a_member_that_cannot_be_killed_is_cleanup_incomplete CLEANUP u1 by=p2test:13034 child=13050:2837201 pgid=13050 scan=19-49 left=13050:2837201 exited_in_grace=- killed=13050:2837201 sigterm=1 sigkill=0 scans=31 deadline=kill_verify escalated_after=- ambiguous=- remaining=13050:2837201
+P_IDENTITY test=__main__.P2SubprocessUnits.test_a_member_that_cannot_be_killed_is_cleanup_incomplete CLEANUP_SUMMARY units=1 leaked=1 remaining=1
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_a_member_that_ignores_sigterm_is_killed descendants=13053:2838008:13053
+P_IDENTITY test=__main__.P2SubprocessUnits.test_a_member_that_ignores_sigterm_is_killed CLEANUP u1 by=p2test:13034 child=13053:2838008 pgid=13053 scan=70-82 left=13053:2838008 exited_in_grace=- killed=13053:2838008 sigterm=1 sigkill=1 scans=13 deadline=grace escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_a_member_that_ignores_sigterm_is_killed CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_concurrent_orphan_attribution_and_an_unrelated_process_survives descendants=13064:2838233:13061
+P_IDENTITY test=__main__.P2SubprocessUnits.test_concurrent_orphan_attribution_and_an_unrelated_process_survives CLEANUP ua by=p2test:13034 child=13061:2838230 pgid=13061 scan=84-84 left=13064:2838233 exited_in_grace=- killed=- sigterm=0 sigkill=0 scans=1 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_concurrent_orphan_attribution_and_an_unrelated_process_survives CLEANUP ub by=p2test:13034 child=13062:2838230 pgid=13062 scan=83-86 left=13064:2838233 exited_in_grace=13064:2838233 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_concurrent_orphan_attribution_and_an_unrelated_process_survives CLEANUP_SUMMARY units=3 leaked=2 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_hang_timeout_and_setsid_double_fork_are_contained descendants=13066:2838452:13066,13067:2838453:13066,13068:2838454:13067,13069:2838672:13069,13070:2838674:13069,13071:2838675:13070
+P_IDENTITY test=__main__.P2SubprocessUnits.test_hang_timeout_and_setsid_double_fork_are_contained CLEANUP u1 by=p2test:13034 child=13066:2838452 pgid=13066 scan=87-89 left=13066:2838452,13068:2838454 exited_in_grace=13066:2838452,13068:2838454 killed=- sigterm=2 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_hang_timeout_and_setsid_double_fork_are_contained CLEANUP u2 by=p2test:13034 child=13069:2838672 pgid=13069 scan=90-92 left=13069:2838672,13071:2838675 exited_in_grace=13069:2838672,13071:2838675 killed=- sigterm=2 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_hang_timeout_and_setsid_double_fork_are_contained CLEANUP_SUMMARY units=2 leaked=2 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_normal_path_background_grandchild_after_a_passing_result_is_a_leak descendants=13072:2838793:13072,13073:2838795:13072,13074:2838936:13074,13075:2838937:13074
+P_IDENTITY test=__main__.P2SubprocessUnits.test_normal_path_background_grandchild_after_a_passing_result_is_a_leak CLEANUP u1 by=p2test:13034 child=13072:2838793 pgid=13072 scan=93-95 left=13073:2838795 exited_in_grace=13073:2838795 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_normal_path_background_grandchild_after_a_passing_result_is_a_leak CLEANUP u2 by=p2test:13034 child=13074:2838936 pgid=13074 scan=96-98 left=13075:2838937 exited_in_grace=13075:2838937 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_normal_path_background_grandchild_after_a_passing_result_is_a_leak CLEANUP_SUMMARY units=2 leaked=2 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_the_registration_race_child_exits_immediately descendants=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_the_registration_race_child_exits_immediately CLEANUP_SUMMARY units=20 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_the_registration_race_with_the_window_widened descendants=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_the_registration_race_with_the_window_widened CLEANUP_SUMMARY units=20 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_the_supervisor_is_a_subreaper_and_supervision_is_available descendants=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_the_supervisor_is_a_subreaper_and_supervision_is_available CLEANUP_SUMMARY units=0 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_wait_ownership_two_concurrent_units_and_an_adopted_zombie descendants=13123:2840787:13121
+P_IDENTITY test=__main__.P2SubprocessUnits.test_wait_ownership_two_concurrent_units_and_an_adopted_zombie CLEANUP ua by=p2test:13034 child=13121:2840785 pgid=13121 scan=36374-36374 left=13123:2840787 exited_in_grace=- killed=- sigterm=0 sigkill=0 scans=1 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_wait_ownership_two_concurrent_units_and_an_adopted_zombie CLEANUP ub by=p2test:13034 child=13122:2840785 pgid=13122 scan=36375-36375 left=13123:2840787 exited_in_grace=- killed=- sigterm=0 sigkill=0 scans=1 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_wait_ownership_two_concurrent_units_and_an_adopted_zombie CLEANUP_SUMMARY units=2 leaked=2 remaining=0
+.P_IDENTITY test=__main__.P2SubprocessUnits.test_what_a_unit_child_inherits descendants=-
+P_IDENTITY test=__main__.P2SubprocessUnits.test_what_a_unit_child_inherits CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+.
+----------------------------------------------------------------------
+Ran 14 tests in 42.654s
+
+OK

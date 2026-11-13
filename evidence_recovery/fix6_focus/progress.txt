@@ -1,0 +1,17 @@
+19:06:03 start python3.13 test_no_timeout_kill
+19:06:46 end python3.13 test_no_timeout_kill rc=0 Ran 14 tests in 42.654s OK 
+19:06:46 start python3.13 test_mutation_timeout
+19:08:22 end python3.13 test_mutation_timeout rc=0 Ran 18 tests in 95.537s OK 
+19:08:22 start python3.13 test_runner_zero_work
+19:12:55 end python3.13 test_runner_zero_work rc=0 Ran 51 tests in 272.666s OK 
+19:12:55 start python3.13 test_exec_env
+19:14:26 end python3.13 test_exec_env rc=0 Ran 9 tests in 91.591s OK 
+19:14:26 start python3.12 test_no_timeout_kill
+19:15:01 end python3.12 test_no_timeout_kill rc=0 Ran 14 tests in 34.440s OK 
+19:15:01 start python3.12 test_mutation_timeout
+19:16:41 end python3.12 test_mutation_timeout rc=0 Ran 18 tests in 99.955s OK 
+19:16:41 start python3.12 test_runner_zero_work
+19:21:01 end python3.12 test_runner_zero_work rc=0 Ran 51 tests in 259.731s OK 
+19:21:01 start python3.12 test_exec_env
+19:22:31 end python3.12 test_exec_env rc=0 Ran 9 tests in 90.124s OK 
+19:22:31 FOCUS6 DONE

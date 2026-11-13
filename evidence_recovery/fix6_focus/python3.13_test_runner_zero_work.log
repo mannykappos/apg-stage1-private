@@ -1,0 +1,423 @@
+.<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:31: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_pins_xcjaqly_/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(self.path))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:31: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_pins_n7y3_2en/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(self.path))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+..<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:31: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_pins_lhg0zol5/expected_counts.json' mode='r' encoding='utf-8'>
+  doc = json.load(open(self.path))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.....P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row21_a_fault_runners_descendants_are_gone_when_its_result_line_is_printed run=tool descendants=13334:2850591:13334,13335:2850594:13335,13336:2850594:13335,13337:2850721:13337
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row21_a_fault_runners_descendants_are_gone_when_its_result_line_is_printed CLEANUP F-TC-01 by=run_faults_s1:13332 child=13335:2850594 pgid=13335 scan=2-14 left=13336:2850594 exited_in_grace=- killed=13336:2850594 sigterm=1 sigkill=1 scans=13 deadline=grace escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row21_a_fault_runners_descendants_are_gone_when_its_result_line_is_printed CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row30_a_forked_case_that_cannot_be_killed_after_its_valid_result run=tool descendants=13339:2850788:13339
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row30_a_forked_case_that_cannot_be_killed_after_its_valid_result CLEANUP fin_corpus/K01 by=run_fin_corpus_s1:13338 child=13339:2850788 pgid=13339 scan=1-31 left=13339:2850788 exited_in_grace=- killed=13339:2850788 sigterm=1 sigkill=0 scans=31 deadline=kill_verify escalated_after=- ambiguous=- remaining=13339:2850788
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row30_a_forked_case_that_cannot_be_killed_after_its_valid_result CLEANUP_SUMMARY units=1 leaked=1 remaining=1
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:2968: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6z_j01qwfyi/fin_unkill/_p2/unkillable' mode='r' encoding='utf-8'>
+  self.unkill = [int(x) for x in open(os.path.join(root, '_p2', 'unkillable')).read().split()]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row71_m8_mutants_s1s_own_auif_children_are_registered_at_its_start run=tool descendants=13354:2851460:13353,13355:2851460:13353
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row71_m8_mutants_s1s_own_auif_children_are_registered_at_its_start CLEANUP run_start by=m8_mutants_s1:13353 child=13354:2851460 pgid=- scan=1-3 left=13354:2851460 exited_in_grace=13354:2851460 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row71_m8_mutants_s1s_own_auif_children_are_registered_at_its_start CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row73_an_m10_steps_child_that_leaves_a_process run=tool descendants=13360:2851550:13357,13425:2854551:13357,13426:2854554:13357,13486:2857555:13357
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row73_an_m10_steps_child_that_leaves_a_process CLEANUP R03 by=run_regression_m8_s1:13357 child=13359:2851548 pgid=- scan=1-1 left=13360:2851550,13426:2854554 exited_in_grace=- killed=- sigterm=0 sigkill=0 scans=1 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row73_an_m10_steps_child_that_leaves_a_process CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row73_run_m8_tests_s1s_start_and_end run=tool descendants=13497:2857638:13496,13498:2857638:13496
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row73_run_m8_tests_s1s_start_and_end CLEANUP run_start by=run_m8_tests_s1:13496 child=13497:2857638 pgid=- scan=1-3 left=13497:2857638 exited_in_grace=13497:2857638 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row73_run_m8_tests_s1s_start_and_end CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row73_run_m8_tests_s1s_start_and_end run=tool descendants=13501:2857723:13500,13503:2857729:13503,13504:2857739:13503,13506:2857760:13503,13508:2857765:13503,13509:2857776:13503,13510:2857779:13503,13511:2857784:13503,13513:2857787:13503,13514:2857815:13500,13515:2857815:13500
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row73_run_m8_tests_s1s_start_and_end CLEANUP run_end by=run_m8_tests_s1:13500 child=13514:2857815 pgid=- scan=3-5 left=13514:2857815 exited_in_grace=13514:2857815 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_row73_run_m8_tests_s1s_start_and_end CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_contracts_s1_sigterm_and_both_signals_during_the_batchs_cleanup run=tool descendants=13518:2857890:13518
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_contracts_s1_sigterm_and_both_signals_during_the_batchs_cleanup CLEANUP run_contracts_s1:batch by=run_contracts_s1:13517 child=13518:2857890 pgid=13518 scan=1-3 left=13518:2857890 exited_in_grace=13518:2857890 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_contracts_s1_sigterm_and_both_signals_during_the_batchs_cleanup CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_contracts_s1_sigterm_and_both_signals_during_the_batchs_cleanup run=tool descendants=13520:2857964:13520,13521:2857967:13520
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_contracts_s1_sigterm_and_both_signals_during_the_batchs_cleanup CLEANUP run_contracts_s1:batch by=run_contracts_s1:13519 child=13520:2857964 pgid=13520 scan=1-13 left=13521:2857967 exited_in_grace=- killed=13521:2857967 sigterm=1 sigkill=1 scans=13 deadline=grace escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_contracts_s1_sigterm_and_both_signals_during_the_batchs_cleanup CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_contracts_s1_sigterm_and_both_signals_during_the_batchs_cleanup run=tool descendants=13529:2858126:13529,13530:2858128:13529
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_contracts_s1_sigterm_and_both_signals_during_the_batchs_cleanup CLEANUP run_contracts_s1:batch by=run_contracts_s1:13528 child=13529:2858126 pgid=13529 scan=1-13 left=13530:2858128 exited_in_grace=- killed=13530:2858128 sigterm=1 sigkill=1 scans=13 deadline=grace escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_contracts_s1_sigterm_and_both_signals_during_the_batchs_cleanup CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:3032: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6z_6k4s2gnl/none_x/tools/evkit.py' mode='r' encoding='utf-8'>
+  src = open(p, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:3035: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6z_6k4s2gnl/none_x/tools/evkit.py' mode='w' encoding='utf-8'>
+  open(p, 'w', encoding='utf-8').write(src.replace(old, (
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_faults_s1_between_items_and_during_the_end_controls_cleanup run=tool descendants=13533:2858322:13533
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_faults_s1_between_items_and_during_the_end_controls_cleanup CLEANUP_SUMMARY units=2 leaked=0 remaining=0
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_faults_s1_between_items_and_during_the_end_controls_cleanup run=tool descendants=13536:2858687:13536,13537:2858689:13537,13538:2858689:13537
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_faults_s1_between_items_and_during_the_end_controls_cleanup CLEANUP control_end by=run_faults_s1:13534 child=13537:2858689 pgid=13537 scan=3-15 left=13538:2858689 exited_in_grace=- killed=13538:2858689 sigterm=1 sigkill=1 scans=13 deadline=grace escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_faults_s1_between_items_and_during_the_end_controls_cleanup CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_faults_s1_between_items_and_during_the_end_controls_cleanup run=tool descendants=13541:2858880:13541
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_faults_s1_between_items_and_during_the_end_controls_cleanup CLEANUP_SUMMARY units=2 leaked=0 remaining=0
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_faults_s1_between_items_and_during_the_end_controls_cleanup run=tool descendants=13545:2859269:13545,13546:2859272:13546,13547:2859272:13546
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_faults_s1_between_items_and_during_the_end_controls_cleanup CLEANUP control_end by=run_faults_s1:13543 child=13546:2859272 pgid=13546 scan=3-15 left=13547:2859272 exited_in_grace=- killed=13547:2859272 sigterm=1 sigkill=1 scans=13 deadline=grace escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_run_faults_s1_between_items_and_during_the_end_controls_cleanup CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_sabotage_m7_s1_between_items_on_either_signal run=tool descendants=13551:2859521:13551
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_sabotage_m7_s1_between_items_on_either_signal CLEANUP_SUMMARY units=2 leaked=0 remaining=0
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_sabotage_m7_s1_between_items_on_either_signal run=tool descendants=-
+P_IDENTITY test=__main__.AM6AttributionAndSignals.test_rows52_53_sabotage_m7_s1_between_items_on_either_signal CLEANUP_SUMMARY units=2 leaked=0 remaining=0
+.P_IDENTITY test=__main__.AM6FindingThirteenProbes.test_row75_class2_the_r03_register_generators run=tool descendants=13560:2860437:13558,13562:2860442:13558
+P_IDENTITY test=__main__.AM6FindingThirteenProbes.test_row75_class2_the_r03_register_generators CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:3107: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6p_4o2fowvs/c2.jsonl' mode='r' encoding='utf-8'>
+  recs = [_json.loads(l) for l in open(path)] if os.path.exists(path) else []
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class2_the_r03_register_generators {"argv": ["/tmp/s1_am6p_4o2fowvs/c2/tools/make_m8_registers.py"], "class": 2, "env": ["LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 1]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class2_the_r03_register_generators {"argv": ["/tmp/s1_am6p_4o2fowvs/c2/tools/make_m8r1_registers.py"], "class": 2, "env": ["LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 1]}
+.P_IDENTITY test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren run=tool descendants=13565:2860503:13565,13566:2860795:13566,13570:2860798:13566,13571:2860801:13566,13574:2860805:13566,13578:2860811:13566,13579:2860811:13566,13581:2860814:13566,13582:2860816:13566,13585:2860821:13566,13586:2860821:13566,13589:2860825:13566,13590:2860827:13566,13592:2860830:13566,13593:2860830:13566,13596:2860835:13566,13597:2860837:13566,13599:2860841:13566,13600:2860841:13566,13602:2860845:13566,13603:2860847:13566,13606:2860851:13566,13607:2860852:13566,13609:2860855:13566,13610:2860857:13566,13613:2860861:13566,13616:2860867:13566,13617:2860867:13566,13620:2860873:13566,13621:2860873:13566,13623:2860876:13566,13624:2860878:13566,13626:2860881:13566,13627:2860883:13566,13629:2860886:13566,13630:2860887:13566,13633:2860892:13566,13634:2860894:13566,13636:2860898:13566,13637:2860898:13566,13639:2860901:13566,13640:2860904:13566,13642:2860907:13566,13643:2860908:13566,13645:2860912:13566,13646:2860912:13566
+P_IDENTITY test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren CLEANUP_SUMMARY units=2 leaked=0 remaining=0
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:3107: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6p_0g71aglt/c3.jsonl' mode='r' encoding='utf-8'>
+  recs = [_json.loads(l) for l in open(path)] if os.path.exists(path) else []
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 1, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class3_cr02s_grandchildren {"argv": ["/tmp/s1_p2b_tewvg0cm/cr02pkg_hd4e61es/cr02_materiality_tests.py"], "class": 3, "env": ["CR02_MODEL_PATH", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+.<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:3147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6p_89p1_zni/c4/tools/make_m7_registers.py' mode='r' encoding='utf-8'>
+  src = open(p, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:3148: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6p_89p1_zni/c4/tools/make_m7_registers.py' mode='w' encoding='utf-8'>
+  open(p, 'w', encoding='utf-8').write(am6_probe_py(probe, 4) + src)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.AM6FindingThirteenProbes.test_row75_class4_the_grandchildren_of_an_m10_tool_run_as_a_child run=tool descendants=13649:2861027:13649,13650:2861032:13649
+P_IDENTITY test=__main__.AM6FindingThirteenProbes.test_row75_class4_the_grandchildren_of_an_m10_tool_run_as_a_child CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:3107: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6p_89p1_zni/c4.jsonl' mode='r' encoding='utf-8'>
+  recs = [_json.loads(l) for l in open(path)] if os.path.exists(path) else []
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class4_the_grandchildren_of_an_m10_tool_run_as_a_child {"argv": ["/tmp/s1_p2b_tn7fovi5/s1_sabotage_m7_s1_n2muq8nd/control_start/tools/make_m7_registers.py"], "class": 4, "env": ["LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [1, 0, 0]}
+.P_IDENTITY test=__main__.AM6FindingThirteenProbes.test_row75_class5_a_process_a_test_file_starts run=tool descendants=-
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:3107: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6p_n5f4c6g4/c5.jsonl' mode='r' encoding='utf-8'>
+  recs = [_json.loads(l) for l in open(path)] if os.path.exists(path) else []
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class5_a_process_a_test_file_starts {"argv": ["-c"], "class": 5, "env": ["LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "flags": [0, 0, 1]}
+.P_IDENTITY test=__main__.AM6FindingThirteenProbes.test_row75_class6_sabotage_m10s_ui_check_a_node_child_and_its_grandchild run=tool descendants=13656:2861250:13656
+P_IDENTITY test=__main__.AM6FindingThirteenProbes.test_row75_class6_sabotage_m10s_ui_check_a_node_child_and_its_grandchild CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:3107: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am6p_yzyca7t1/c6.jsonl' mode='r' encoding='utf-8'>
+  recs = [_json.loads(l) for l in open(path)] if os.path.exists(path) else []
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class6_sabotage_m10s_ui_check_a_node_child_and_its_grandchild {"class": 6, "env": ["LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "execArgv": [], "who": "node"}
+P_PROBE test=__main__.AM6FindingThirteenProbes.test_row75_class6_sabotage_m10s_ui_check_a_node_child_and_its_grandchild {"class": 6, "env": ["LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE", "TMPDIR", "TZ"], "who": "grandchild"}
+.P_IDENTITY test=__main__.AM6RunEndAndCounts.test_row96_a_child_outside_every_unit_and_phase_is_the_run_ends_at_tool_level run=tool descendants=13676:2861319:13675,13678:2861321:13678
+P_IDENTITY test=__main__.AM6RunEndAndCounts.test_row96_a_child_outside_every_unit_and_phase_is_the_run_ends_at_tool_level CLEANUP run_end by=run_faults_s1:13675 child=13676:2861319 pgid=- scan=4-6 left=13676:2861319 exited_in_grace=13676:2861319 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM6RunEndAndCounts.test_row96_a_child_outside_every_unit_and_phase_is_the_run_ends_at_tool_level CLEANUP_SUMMARY units=4 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM6RunEndAndCounts.test_row99_a_real_runs_units_count_reconciled run=tool descendants=13681:2861400:13681,13683:2861405:13683
+P_IDENTITY test=__main__.AM6RunEndAndCounts.test_row99_a_real_runs_units_count_reconciled CLEANUP_SUMMARY units=4 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2FaultRunners.test_controls run=tool descendants=13686:2861475:13686
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP control_start by=run_faults_s1:13685 child=13686:2861475 pgid=13686 scan=1-3 left=13686:2861475 exited_in_grace=13686:2861475 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_controls run=tool descendants=-
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_controls run=tool descendants=-
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_controls run=tool descendants=13692:2861968:13692,13693:2861968:13692
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP control_start by=run_faults_s1:13691 child=13692:2861968 pgid=13692 scan=1-3 left=13693:2861968 exited_in_grace=13693:2861968 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_controls run=tool descendants=-
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_controls run=tool descendants=13697:2862036:13697
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP control_start by=run_faults_s1:13696 child=13697:2862036 pgid=13697 scan=1-3 left=13697:2862036 exited_in_grace=13697:2862036 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_controls run=tool descendants=13700:2862104:13700,13701:2862106:13701
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP control_end by=run_faults_s1:13698 child=13701:2862106 pgid=13701 scan=3-5 left=13701:2862106 exited_in_grace=13701:2862106 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_controls run=tool descendants=13705:2862457:13705,13706:2862461:13706
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_controls run=tool descendants=13709:2862498:13709
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_controls run=tool descendants=13713:2862529:13713,13715:2862535:13715,13716:2862535:13715
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP control_end by=run_faults_s1:13712 child=13715:2862535 pgid=13715 scan=3-5 left=13716:2862535 exited_in_grace=13716:2862535 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_controls run=tool descendants=13718:2862580:13718
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_controls run=tool descendants=13722:2862615:13722,13724:2862619:13724
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP control_end by=run_faults_s1:13721 child=13724:2862619 pgid=13724 scan=3-5 left=13724:2862619 exited_in_grace=13724:2862619 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2FaultRunners.test_controls CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+.P_IDENTITY test=__main__.P2FaultRunners.test_f2_sigterm_while_a_plant_runs run=tool descendants=13727:2862715:13727
+P_IDENTITY test=__main__.P2FaultRunners.test_f2_sigterm_while_a_plant_runs CLEANUP F-TC-01 by=run_faults_s1:13725 child=13727:2862715 pgid=13727 scan=2-4 left=13727:2862715 exited_in_grace=13727:2862715 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2FaultRunners.test_f2_sigterm_while_a_plant_runs CLEANUP_SUMMARY units=2 leaked=1 remaining=0
+.P_IDENTITY test=__main__.P2FaultRunners.test_plants run=tool descendants=13730:2862790:13730
+P_IDENTITY test=__main__.P2FaultRunners.test_plants CLEANUP F-TC-01 by=run_faults_s1:13728 child=13730:2862790 pgid=13730 scan=2-4 left=13730:2862790 exited_in_grace=13730:2862790 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2FaultRunners.test_plants CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_plants run=tool descendants=13733:2863142:13733,13734:2863145:13734,13735:2863145:13734
+P_IDENTITY test=__main__.P2FaultRunners.test_plants CLEANUP F-TC-01 by=run_faults_s1:13732 child=13734:2863145 pgid=13734 scan=2-4 left=13734:2863145,13735:2863145 exited_in_grace=13734:2863145,13735:2863145 killed=- sigterm=2 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2FaultRunners.test_plants CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_plants run=tool descendants=13742:2863501:13742,13743:2863501:13742
+P_IDENTITY test=__main__.P2FaultRunners.test_plants CLEANUP F-TC-01 by=run_faults_s1:13740 child=13742:2863501 pgid=13742 scan=2-4 left=13743:2863501 exited_in_grace=13743:2863501 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2FaultRunners.test_plants CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_plants run=tool descendants=13747:2863550:13747
+P_IDENTITY test=__main__.P2FaultRunners.test_plants CLEANUP F-TC-01 by=run_faults_s1:13745 child=13747:2863550 pgid=13747 scan=2-4 left=13747:2863550 exited_in_grace=13747:2863550 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2FaultRunners.test_plants CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_plants run=tool descendants=13750:2863697:13750
+P_IDENTITY test=__main__.P2FaultRunners.test_plants CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_plants run=tool descendants=-
+P_IDENTITY test=__main__.P2FaultRunners.test_plants CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_plants run=tool descendants=13760:2863758:13757
+P_IDENTITY test=__main__.P2FaultRunners.test_plants CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_plants run=tool descendants=13762:2863783:13762,13764:2863788:13764
+P_IDENTITY test=__main__.P2FaultRunners.test_plants CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_plants run=tool descendants=13766:2863815:13766
+P_IDENTITY test=__main__.P2FaultRunners.test_plants CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_plants run=tool descendants=-
+P_IDENTITY test=__main__.P2FaultRunners.test_plants CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_plants run=tool descendants=13774:2863877:13774
+P_IDENTITY test=__main__.P2FaultRunners.test_plants CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_plants run=tool descendants=13778:2863909:13778
+P_IDENTITY test=__main__.P2FaultRunners.test_plants CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2FaultRunners.test_the_hang_on_each_of_the_other_four_runners run=tool descendants=13783:2864012:13783,13784:2864333:13784
+P_IDENTITY test=__main__.P2FaultRunners.test_the_hang_on_each_of_the_other_four_runners CLEANUP FF-01 by=run_m3_faults_s1:13781 child=13783:2864012 pgid=13783 scan=2-4 left=13783:2864012 exited_in_grace=13783:2864012 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2FaultRunners.test_the_hang_on_each_of_the_other_four_runners CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_the_hang_on_each_of_the_other_four_runners run=tool descendants=13786:2864396:13786
+P_IDENTITY test=__main__.P2FaultRunners.test_the_hang_on_each_of_the_other_four_runners CLEANUP control_start by=run_m5_faults_s1:13785 child=13786:2864396 pgid=13786 scan=1-3 left=13786:2864396 exited_in_grace=13786:2864396 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2FaultRunners.test_the_hang_on_each_of_the_other_four_runners CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_the_hang_on_each_of_the_other_four_runners run=tool descendants=13789:2864790:13789
+P_IDENTITY test=__main__.P2FaultRunners.test_the_hang_on_each_of_the_other_four_runners CLEANUP FF-01 by=run_m6_faults_s1:13787 child=13789:2864790 pgid=13789 scan=2-4 left=13789:2864790 exited_in_grace=13789:2864790 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2FaultRunners.test_the_hang_on_each_of_the_other_four_runners CLEANUP_SUMMARY units=3 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2FaultRunners.test_the_hang_on_each_of_the_other_four_runners run=tool descendants=13792:2865159:13792
+P_IDENTITY test=__main__.P2FaultRunners.test_the_hang_on_each_of_the_other_four_runners CLEANUP control_start by=run_history_contract_s1:13791 child=13792:2865159 pgid=13792 scan=1-3 left=13792:2865159 exited_in_grace=13792:2865159 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2FaultRunners.test_the_hang_on_each_of_the_other_four_runners CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.P_IDENTITY test=__main__.P2CaseRunners.test_a4_the_v3_contract_on_the_real_runners run=tool descendants=-
+P_IDENTITY test=__main__.P2CaseRunners.test_a4_the_v3_contract_on_the_real_runners CLEANUP_SUMMARY units=0 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_a4_the_v3_contract_on_the_real_runners run=tool descendants=-
+P_IDENTITY test=__main__.P2CaseRunners.test_a4_the_v3_contract_on_the_real_runners CLEANUP_SUMMARY units=0 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=13811:2865686:13811
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP run_contracts_s1:batch by=run_contracts_s1:13810 child=13811:2865686 pgid=13811 scan=1-3 left=13811:2865686 exited_in_grace=13811:2865686 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=13813:2866089:13813,13814:2866092:13813
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP run_contracts_s1:batch by=run_contracts_s1:13812 child=13813:2866089 pgid=13813 scan=1-3 left=13813:2866089,13814:2866092 exited_in_grace=13813:2866089,13814:2866092 killed=- sigterm=2 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=-
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP run_contracts_s1:batch by=run_contracts_s1:13815 child=13816:2866473 pgid=13816 scan=1-3 left=13817:2866476 exited_in_grace=13817:2866476 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=13819:2866545:13819
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP run_contracts_s1:batch by=run_contracts_s1:13818 child=13819:2866545 pgid=13819 scan=1-3 left=13819:2866545 exited_in_grace=13819:2866545 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=13821:2866722:13821
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=-
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=13825:2866805:13825
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=13827:2866840:13827
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=13829:2866875:13829
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=-
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=13833:2866945:13833
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=13835:2866985:13835
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP run_contracts_s1:batch by=run_contracts_s1:13834 child=13835:2866985 pgid=13835 scan=1-3 left=13835:2866985 exited_in_grace=13835:2866985 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=13837:2867045:13837
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=13839:2867088:13839
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=13841:2867129:13841
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP run_contracts_s1:batch by=run_contracts_s1:13840 child=13841:2867129 pgid=13841 scan=1-3 left=13842:2867131 exited_in_grace=13842:2867131 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=-
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP run_contracts_s1:batch by=run_contracts_s1:13843 child=13844:2867185 pgid=13844 scan=1-3 left=13845:2867187 exited_in_grace=13845:2867187 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=-
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=-
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=13852:2867320:13852
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP run_contracts_s1:batch by=run_contracts_s1:13851 child=13852:2867320 pgid=13852 scan=1-3 left=13852:2867320 exited_in_grace=13852:2867320 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=-
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit run=tool descendants=-
+P_IDENTITY test=__main__.P2CaseRunners.test_am2_1_the_batch_unit CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+..P_IDENTITY test=__main__.P2CaseRunners.test_k2_the_hang_on_the_other_three_corpus_runners run=tool descendants=14185:2869157:14185,14195:2869477:14195
+P_IDENTITY test=__main__.P2CaseRunners.test_k2_the_hang_on_the_other_three_corpus_runners CLEANUP det_corpus/B01 by=run_det_corpus_s1:14184 child=14185:2869157 pgid=14185 scan=1-3 left=14185:2869157 exited_in_grace=14185:2869157 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_k2_the_hang_on_the_other_three_corpus_runners CLEANUP_SUMMARY units=2 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_k2_the_hang_on_the_other_three_corpus_runners run=tool descendants=14197:2869559:14197
+P_IDENTITY test=__main__.P2CaseRunners.test_k2_the_hang_on_the_other_three_corpus_runners CLEANUP ingest_corpus/F01 by=run_ingest_corpus_s1:14196 child=14197:2869559 pgid=14197 scan=1-3 left=14197:2869559 exited_in_grace=14197:2869559 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_k2_the_hang_on_the_other_three_corpus_runners CLEANUP_SUMMARY units=2 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_k2_the_hang_on_the_other_three_corpus_runners run=tool descendants=14200:2869990:14200,14201:2870311:14201
+P_IDENTITY test=__main__.P2CaseRunners.test_k2_the_hang_on_the_other_three_corpus_runners CLEANUP mkt_corpus/A01 by=run_mkt_corpus_s1:14199 child=14200:2869990 pgid=14200 scan=1-3 left=14200:2869990 exited_in_grace=14200:2869990 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_k2_the_hang_on_the_other_three_corpus_runners CLEANUP_SUMMARY units=2 leaked=1 remaining=0
+.P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners run=tool descendants=14203:2870377:14203
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners CLEANUP run_guard_contract_s1:batch by=run_guard_contract_s1:14202 child=14203:2870377 pgid=14203 scan=1-3 left=14203:2870377 exited_in_grace=14203:2870377 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners run=tool descendants=14205:2870763:14205
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners CLEANUP run_m3_contracts_s1:batch by=run_m3_contracts_s1:14204 child=14205:2870763 pgid=14205 scan=1-3 left=14205:2870763 exited_in_grace=14205:2870763 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners run=tool descendants=14207:2871156:14207
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners CLEANUP run_m5_contracts_s1:batch by=run_m5_contracts_s1:14206 child=14207:2871156 pgid=14207 scan=1-3 left=14207:2871156 exited_in_grace=14207:2871156 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners run=tool descendants=14210:2871534:14210
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners CLEANUP run_m6_contracts_s1:batch by=run_m6_contracts_s1:14209 child=14210:2871534 pgid=14210 scan=1-3 left=14210:2871534 exited_in_grace=14210:2871534 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners run=tool descendants=14212:2871901:14212
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners CLEANUP run_m91_contracts_s1:batch by=run_m91_contracts_s1:14211 child=14212:2871901 pgid=14212 scan=1-3 left=14212:2871901 exited_in_grace=14212:2871901 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners run=tool descendants=14222:2872286:14222
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners CLEANUP run_history_contract_s1:batch by=run_history_contract_s1:14221 child=14222:2872286 pgid=14222 scan=1-3 left=14222:2872286 exited_in_grace=14222:2872286 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2CaseRunners.test_the_hang_on_the_other_six_batch_runners CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:1659: ResourceWarning: unclosed file <_io.BufferedReader name='/proc/14225/cmdline'>
+  if needle in open('/proc/%d/cmdline' % pid, 'rb').read().decode('utf-8', 'replace'):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_a_child_step_interrupted_by_sigint run=tool descendants=14225:2872704:14225
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_a_child_step_interrupted_by_sigint CLEANUP R07:1 by=run_regression_m8_s1:14223 child=14225:2872704 pgid=14225 scan=3-5 left=14225:2872704 exited_in_grace=14225:2872704 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_a_child_step_interrupted_by_sigint CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.P_IDENTITY test=__main__.P2NoResultSupervisors.test_between_steps_and_after_the_last_step run=tool descendants=-
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_between_steps_and_after_the_last_step CLEANUP_SUMMARY units=0 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_between_steps_and_after_the_last_step run=tool descendants=-
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_between_steps_and_after_the_last_step CLEANUP_SUMMARY units=0 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2NoResultSupervisors.test_consumer_a_redirected_regression_successor run=tool descendants=14234:2873539:14234
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_consumer_a_redirected_regression_successor CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2NoResultSupervisors.test_consumer_a_wrappers_class_n_check run=tool descendants=14237:2873659:14237
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_consumer_a_wrappers_class_n_check CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+.P_IDENTITY test=__main__.P2NoResultSupervisors.test_consumer_sabotage_m8_s1_at_a_plant_and_at_each_control run=tool descendants=14247:2873865:14247,14249:2873876:14247,14251:2873881:14247,14254:2873953:14254,14256:2874053:14256,14258:2874065:14256,14260:2874070:14256
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_consumer_sabotage_m8_s1_at_a_plant_and_at_each_control CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_consumer_sabotage_m8_s1_at_a_plant_and_at_each_control run=tool descendants=14266:2874202:14266
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_consumer_sabotage_m8_s1_at_a_plant_and_at_each_control CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_consumer_sabotage_m8_s1_at_a_plant_and_at_each_control run=tool descendants=14269:2874397:14269,14271:2874406:14269,14273:2874411:14269,14278:2874482:14278,14280:2874493:14278,14282:2874499:14278,14284:2874571:14284
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_consumer_sabotage_m8_s1_at_a_plant_and_at_each_control CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+.<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:1659: ResourceWarning: unclosed file <_io.BufferedReader name='/proc/14287/cmdline'>
+  if needle in open('/proc/%d/cmdline' % pid, 'rb').read().decode('utf-8', 'replace'):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_cr02_sigterm_during_its_first_child run=tool descendants=14287:2874703:14287
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_cr02_sigterm_during_its_first_child CLEANUP cr02:1 by=run_cr02_reference_s1:14286 child=14287:2874703 pgid=14287 scan=1-3 left=14287:2874703 exited_in_grace=14287:2874703 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_cr02_sigterm_during_its_first_child CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:1659: ResourceWarning: unclosed file <_io.BufferedReader name='/proc/14290/cmdline'>
+  if needle in open('/proc/%d/cmdline' % pid, 'rb').read().decode('utf-8', 'replace'):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_r03_blocked_in_process_is_stopped_by_the_watcher run=tool descendants=14290:2874824:14288
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_r03_blocked_in_process_is_stopped_by_the_watcher CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+.<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:1659: ResourceWarning: unclosed file <_io.BufferedReader name='/proc/14299/cmdline'>
+  if needle in open('/proc/%d/cmdline' % pid, 'rb').read().decode('utf-8', 'replace'):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_r04_of_run_regression_m81_blocked_in_the_auif_verification run=tool descendants=14299:2874948:14297
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_r04_of_run_regression_m81_blocked_in_the_auif_verification CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+.<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:1659: ResourceWarning: unclosed file <_io.BufferedReader name='/proc/14302/cmdline'>
+  if needle in open('/proc/%d/cmdline' % pid, 'rb').read().decode('utf-8', 'replace'):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_r06_of_run_regression_m8_blocked_in_the_auif_verification run=tool descendants=14302:2875068:14300
+P_IDENTITY test=__main__.P2NoResultSupervisors.test_r06_of_run_regression_m8_blocked_in_the_auif_verification CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+....<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:2737: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/s1_am5cr_72id2n47/leak/tools/am5_cr02_stub.py'>
+  h = hashlib.sha256(open(stub, 'rb').read()).hexdigest()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:2739: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5cr_72id2n47/leak/tools/run_cr02_reference_s1.py' mode='r' encoding='utf-8'>
+  src = open(p, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:2744: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5cr_72id2n47/leak/tools/run_cr02_reference_s1.py' mode='w' encoding='utf-8'>
+  open(p, 'w', encoding='utf-8').write(src)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.AM5CR02.test_row69_a_leak_is_never_a_pass run=tool descendants=14400:2876822:14399
+P_IDENTITY test=__main__.AM5CR02.test_row69_a_leak_is_never_a_pass CLEANUP cr02:1 by=run_cr02_reference_s1:14398 child=14399:2876820 pgid=14399 scan=1-3 left=14400:2876822 exited_in_grace=14400:2876822 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5CR02.test_row69_a_leak_is_never_a_pass CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:2737: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/s1_am5cr_mn56yf1i/normal/tools/am5_cr02_stub.py'>
+  h = hashlib.sha256(open(stub, 'rb').read()).hexdigest()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:2739: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5cr_mn56yf1i/normal/tools/run_cr02_reference_s1.py' mode='r' encoding='utf-8'>
+  src = open(p, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:2744: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5cr_mn56yf1i/normal/tools/run_cr02_reference_s1.py' mode='w' encoding='utf-8'>
+  open(p, 'w', encoding='utf-8').write(src)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.AM5CR02.test_row69_the_systemexit_path_is_cleaned_up run=tool descendants=-
+P_IDENTITY test=__main__.AM5CR02.test_row69_the_systemexit_path_is_cleaned_up CLEANUP_SUMMARY units=1 leaked=0 remaining=0
+.<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:2737: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/s1_am5cr_1tmfuxr6/interrupt/tools/am5_cr02_stub.py'>
+  h = hashlib.sha256(open(stub, 'rb').read()).hexdigest()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:2739: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5cr_1tmfuxr6/interrupt/tools/run_cr02_reference_s1.py' mode='r' encoding='utf-8'>
+  src = open(p, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<WORKSPACE>/scratchpad/recovery/work/tests_tools/test_runner_zero_work.py:2744: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/s1_am5cr_1tmfuxr6/interrupt/tools/run_cr02_reference_s1.py' mode='w' encoding='utf-8'>
+  open(p, 'w', encoding='utf-8').write(src)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P_IDENTITY test=__main__.AM5CR02.test_row85_the_synthetic_completed_process_fields run=tool descendants=14404:2877102:14404
+P_IDENTITY test=__main__.AM5CR02.test_row85_the_synthetic_completed_process_fields CLEANUP cr02:1 by=run_cr02_reference_s1:14403 child=14404:2877102 pgid=14404 scan=1-3 left=14404:2877102 exited_in_grace=14404:2877102 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5CR02.test_row85_the_synthetic_completed_process_fields CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+.P_IDENTITY test=__main__.AM5AttributionTable.test_child_unittest_runner_start_as_its_parent_reads_it run=tool descendants=14407:2877216:14405,14408:2877218:14408,14409:2877229:14408,14421:2877262:14405
+P_IDENTITY test=__main__.AM5AttributionTable.test_child_unittest_runner_start_as_its_parent_reads_it CLEANUP_SUMMARY units=3 leaked=0 remaining=0
+..P_IDENTITY test=__main__.AM5AttributionTable.test_run_start_and_run_end_of_a_mutation_tool run=tool descendants=14456:2877564:14454
+P_IDENTITY test=__main__.AM5AttributionTable.test_run_start_and_run_end_of_a_mutation_tool CLEANUP run_start by=m8_mutants_s1:14454 child=14455:2877559 pgid=- scan=1-3 left=14457:2877567 exited_in_grace=14457:2877567 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5AttributionTable.test_run_start_and_run_end_of_a_mutation_tool CLEANUP_SUMMARY units=1 leaked=1 remaining=0
+P_IDENTITY test=__main__.AM5AttributionTable.test_run_start_and_run_end_of_a_mutation_tool run=tool descendants=14460:2877615:14458,14468:2877740:14458,14469:2877740:14458
+P_IDENTITY test=__main__.AM5AttributionTable.test_run_start_and_run_end_of_a_mutation_tool CLEANUP run_end by=m8_mutants_s1:14458 child=14468:2877740 pgid=- scan=8-10 left=14468:2877740 exited_in_grace=14468:2877740 killed=- sigterm=1 sigkill=0 scans=3 deadline=none escalated_after=- ambiguous=- remaining=-
+P_IDENTITY test=__main__.AM5AttributionTable.test_run_start_and_run_end_of_a_mutation_tool CLEANUP_SUMMARY units=8 leaked=1 remaining=0
+.
+----------------------------------------------------------------------
+Ran 51 tests in 272.666s
+
+OK
