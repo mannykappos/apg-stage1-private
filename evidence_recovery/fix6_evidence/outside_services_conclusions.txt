@@ -1,0 +1,86 @@
+BUILDER-EXECUTED: NOT INDEPENDENT. Corrective pass 2, P.2 outside-service audit on freeze a7f599f9 (fix 6; run 2026-11-15 01:22
+Melbourne, step 5.4 of the full evidence): the conclusions, with the basis for each (audit item 6; fix 6 row 7, D6-5, D18).
+They follow the last conclusions file (freeze c9b324eb, 2026-11-08, in the amendment 5 review pack) point by point, and say what
+changed. Freeze ee1ce3ec (ev5) had no conclusions file; that gap is D6-5, and this file closes it for a7f599f9 only. The raw records
+are in this folder: outside_services.txt, process_api_reach.txt, secret_stop_demo.txt, child_start_scan.txt, tset_start_scan.txt.
+Each "Basis" line names the record and the field a reader can check. Workspace paths are written <WORKSPACE>.
+
+0. HOW THIS RUN WAS MADE
+ - The auditor was started as the run index starts a runner: env -i PATH TMPDIR LANG LC_ALL TZ, python3 -I -S, from a fresh
+   extraction of freeze a7f599f9 (<WORKSPACE>/recovery/ev6/audit_x), by driver6_54.sh.
+   Basis: outside_services.txt auditor_env_names = LANG, LC_ALL, PATH, TMPDIR, TZ (five names); driver6_54.sh line 38 (E5).
+ - Since fix 6 the tool starts its two unit children through this freeze's own E.run_unit and E.run_forked (as on ee1ce3ec), plus a
+   control child forked without the scrub. So, unlike the c9b324eb audit (its point 0), this audit does exercise run_unit and
+   run_forked.
+   Basis: outside_services.txt keys subprocess_unit (how=exit, leaked=false) and forked_unit (how=message, leaked=false); the tool
+   audit_outside_services_s1.py, children through E.run_unit and E.run_forked.
+ - New since fix 6 (row 6): the audit stops (exit 3) if any unit's environment holds a secret-bearing name, recording the name only.
+   Basis: outside_services.txt p2_secret_check = {secret_bearing_names: [], units_checked: [subprocess_unit, forked_unit]}; the run
+   ended exit 0 (progress54.txt: outside_services rc=0).
+
+1. THE ENVIRONMENT
+ - Same as c9b324eb and ee1ce3ec. Each unit child (run_unit and run_forked) has exactly clean_env's allowlist: PATH, LANG, LC_ALL,
+   TZ, TMPDIR, PYTHONDONTWRITEBYTECODE. The control child forked without the scrub has the auditor's five names plus the planted
+   AUDIT_PARENT_ONLY, which the unit children do not have. secret_bearing_names is empty in all three children.
+   Basis: outside_services.txt subprocess_unit.record.env, forked_unit.record.env, control_raw_fork_no_scrub.env, and each
+   child's secret_bearing_names; field-by-field comparison with ev5 (ee1ce3ec): every unit field the same once process ids, pipe
+   numbers, socket numbers and paths are set aside.
+
+2. THE SECRET STOP (fix 6 row 6: the planted demonstration)
+ - Run separately with --demo-planted-secret, the audit planted APG_AUDIT_DEMO_API_TOKEN in the parent. The control child (no
+   scrub) carried it, so the audit stopped with exit 3 and the line "STOP P.2: a secret-bearing variable in a unit's environment,
+   by name only: control_raw_fork_no_scrub:APG_AUDIT_DEMO_API_TOKEN". The value was not recorded ("<secret-bearing: value not
+   recorded>"). Neither unit child carried the name (their secret_bearing_names are empty).
+   Basis: secret_stop_demo.txt (p2_secret_check and its last line); the driver requires exit 3 for this job (driver6_54.sh line 40,
+   `test $? -eq 3`), and it ended rc=0 (progress54.txt, 01:22:34).
+ - What this shows: the stop works at tool level when a secret-bearing name reaches a child's environment, and the unit children
+   started through run_unit and run_forked do not inherit it. It does not show that no other route could give a unit a secret.
+
+3. STANDARD INPUT
+ - Descriptor 0 is /dev/null in all three children. Since AM-4, run_unit and run_forked set it themselves, and this audit now runs
+   through them (point 0), so this is evidence of that, not only of how the auditor was started (as on c9b324eb).
+   Basis: outside_services.txt fds."0" in each child.
+
+4. THE NETWORK
+ - Same as c9b324eb and ee1ce3ec. A unit has no proxy variable and a default route via eth0. A direct TCP connect to 1.1.1.1:443 was
+   accepted (closed at once, nothing sent); one to 8.8.8.8:53 was refused. The egress boundary stays UNKNOWN; nothing here claims
+   that egress is restricted.
+   Basis: outside_services.txt network (proxy_variables_in_unit_env, proc_net_route, direct_tcp_*) in each unit record.
+
+5. THE SOCKETS AND SERVICES
+ - PID 1 (/process_api): REACHABLE (TCP connects to 127.0.0.1:2024 and 192.0.2.2:2024 accepted; nothing sent). Its command line is
+   the same as on c9b324eb and ee1ce3ec, including --tcp-readiness-only. Whether a unit could use it to start a process is NOT
+   RULED OUT and NOT ESTABLISHED.
+   Basis: process_api_reach.txt (tcp lines and the PID 1 line). One cosmetic difference from ee1ce3ec: the vsock cid 1 timeout now
+   prints its error number (110) where ee1ce3ec printed None; the outcome (timeout) is the same.
+ - The agent harness's socket is now /tmp/cc-socks/101.sock (100.sock on ee1ce3ec; the number changes when the container
+   restarts): root, 0600, REACHABLE, as units run as uid 0. Abilities unknown. NOT RULED OUT.
+   Basis: outside_services.txt socket_files and proc_net_unix_checked.
+ - /run/sandbox-telemetry/ingest.sock and /var/run/sandbox-telemetry/ingest.sock (uid 64321, 0666): REACHABLE. Abilities unknown.
+   NOT RULED OUT. Basis: outside_services.txt socket_files.
+ - Known daemon sockets (docker, containerd, crio, podman, dbus, systemd): all absent. Basis: known_service_paths.
+ - Process-launching daemons: none running. The process list shows no cron, crond, atd, systemd, dockerd or containerd; the same
+   set of long-running processes as on ee1ce3ec (PID 1, the uid 64321 collector, rclone-filestor, the harness), with new ids
+   after the restarts. /etc/cron.d is still writable by a unit; with no cron daemon, no route as observed.
+   Basis: process_api_reach.txt (user-space processes); outside_services.txt spools.
+ - Launcher programs on a unit's PATH (docker, ctr, runc, nsenter, unshare, systemd-run, systemctl, setsid, nohup, sudo, su and
+   others) and setuid programs are listed, unchanged from ee1ce3ec. Having them on the PATH is not a route by itself; with no
+   daemon behind docker, ctr or systemctl, none was observed working. NOT probed.
+   Basis: launchers_on_unit_path, setuid_setgid_on_unit_path.
+ - Privileges: every unit runs as uid 0, gid 0, with no supplementary groups. Basis: uid, gid, groups.
+
+6. THE CODE SCANS (P.9 part 1)
+ - Process starts in successor code: two, run_unit (evkit.py:1748, Popen) and run_forked (evkit.py:1840, fork); one file shims
+   subprocess.run (run_cr02_reference_s1.py). No M10 tool names an *_s1 tool. No code under test or tool opens a socket or names
+   port 2024, cc-socks or process_api. Identical to ee1ce3ec.
+   Basis: child_start_scan.txt sections A, D and E (no difference from ev5's file once paths are set aside).
+ - Every process start in tests_tools has a limit: 102 sites, 102 with a limit found, 0 without (fix 6 D6-1: aliases such as
+   _p2sp now included, with a leaf column). Basis: tset_start_scan.txt; progress54.txt tset_start_scan line.
+
+7. WHAT THE AUDIT DOES AND DOES NOT ESTABLISH
+ - It establishes: what a unit started through run_unit or run_forked inherits (environment, standard input, privileges); that a
+   secret-bearing name reaching a child stops the audit, by name only; which services a unit can connect to; and that no unit's code
+   opens a socket or names any of them.
+ - It does NOT establish that a unit cannot use PID 1's process API, the harness socket or the telemetry socket to have a process
+   started outside its tree. P.2's requirement is NOT MET in this workspace. That is open finding 11, unchanged.
+ - Nothing here is independent, and nothing here is acceptance.

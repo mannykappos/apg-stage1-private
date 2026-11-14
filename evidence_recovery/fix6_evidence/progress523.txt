@@ -1,0 +1,70 @@
+2026-11-14T11:04:29+1100 start golden_313 free=29G
+2026-11-14T11:04:59+1100 end golden_313 rc=0 RESULT golden SAME
+2026-11-14T11:04:59+1100 start pairs_313 free=29G
+2026-11-14T11:05:29+1100 end pairs_313 rc=0 RESULT pairs SAME
+2026-11-14T11:05:29+1100 start b6_313 free=29G
+2026-11-14T11:05:39+1100 end b6_313 rc=0 RESULT b6 SAME
+2026-11-14T11:05:39+1100 start k2_313 free=29G
+2026-11-14T11:06:09+1100 end k2_313 rc=0 RESULT k2 SAME
+2026-11-14T11:06:09+1100 start b6tot_313 free=29G
+2026-11-14T11:06:19+1100 end b6tot_313 rc=0 RESULT b6_recorded_totals SAME
+2026-11-14T11:06:19+1100 start k2tot_313 free=29G
+2026-11-14T11:06:29+1100 end k2tot_313 rc=0 RESULT k2_recorded_totals SAME
+2026-11-14T11:06:29+1100 start golden_312 free=29G
+2026-11-14T11:06:59+1100 end golden_312 rc=0 RESULT golden SAME
+2026-11-14T11:06:59+1100 start pairs_312 free=29G
+2026-11-14T11:07:29+1100 end pairs_312 rc=0 RESULT pairs SAME
+2026-11-14T11:07:29+1100 start b6_312 free=29G
+2026-11-14T11:07:39+1100 end b6_312 rc=0 RESULT b6 SAME
+2026-11-14T11:07:39+1100 start k2_312 free=29G
+2026-11-14T11:08:10+1100 end k2_312 rc=0 RESULT k2 SAME
+2026-11-14T11:08:10+1100 start b6tot_312 free=29G
+2026-11-14T11:08:20+1100 end b6tot_312 rc=0 RESULT b6_recorded_totals SAME
+2026-11-14T11:08:20+1100 start k2tot_312 free=29G
+2026-11-14T11:08:30+1100 end k2tot_312 rc=0 RESULT k2_recorded_totals SAME
+2026-11-14T11:08:30+1100 STEP52 DONE
+2026-11-14T11:08:30+1100 start m2list_313 free=29G
+2026-11-14T11:08:40+1100 end m2list_313 rc=0 m10 --list: exit 0, 199 ids, RI10 at 51, m2_mutants.py as expected: OK
+2026-11-14T11:08:40+1100 start m2h_0_40_313 free=29G
+2026-11-14T11:25:11+1100 end m2h_0_40_313 rc=0 RESULT m2h_000_040 SAME
+2026-11-14T11:25:11+1100 start m2h_40_80_313 free=29G
+2026-11-14T11:43:22+1100 INTERRUPTED m2h_40_80_313: the container restarted (last disk-watch line 11:41:13 on 2026-11-14, during the job); found at 11:43; the partial console output is kept in interrupted/m2h_40_80_313_1794617002 and the job rerun (no done mark, so the driver reruns it)
+2026-11-14T11:43:22+1100 STEP52 DONE
+2026-11-14T11:43:22+1100 start m2h_40_80_313 free=27G
+2026-11-14T12:12:15+1100 end m2h_40_80_313 rc=0 RESULT m2h_040_080 SAME
+2026-11-14T12:12:15+1100 start m2h_80_120_313 free=27G
+2026-11-14T12:43:08+1100 end m2h_80_120_313 rc=0 RESULT m2h_080_120 SAME
+2026-11-14T12:43:08+1100 start m2h_120_160_313 free=27G
+2026-11-14T13:26:43+1100 end m2h_120_160_313 rc=0 RESULT m2h_120_160 SAME
+2026-11-14T13:26:43+1100 start m2h_160_199_313 free=27G
+2026-11-14T13:50:25+1100 end m2h_160_199_313 rc=0 RESULT m2h_160_199 SAME
+2026-11-14T13:50:25+1100 start m2s_313 free=27G
+2026-11-14T16:00:13+1100 INTERRUPTED m2s_313: the container restarted (boot 15:57:42 on 2026-11-14; job started 13:50:25, last disk-watch line 15:56:35, no end line); partial console moved to interrupted/m2s_313_1794632347, its temp folder (9.6 GB) removed. Also removed: the temp folder (2.0 GB) left by the m2h_40_80_313 job interrupted at 11:43, which I should have removed then (builder omission; it changed no result). No .done mark, so the driver reruns m2s_313 from the start
+2026-11-14T16:00:13+1100 STEP52 DONE
+2026-11-14T16:00:13+1100 start m2s_313 free=29G
+2026-11-14T16:00:17+1100 INTERRUPTED m2s_313: the container restarted (boot 15:57:42 on 2026-11-14; job started 13:50:25, last disk-watch line 15:56:35, no end line); partial console moved to interrupted/m2s_313_1794632347, its temp folder (9.6 GB) removed. Also removed: the temp folder (2.0 GB) left by the m2h_40_80_313 job interrupted at 11:43, which I should have removed then (builder omission; it changed no result). No .done mark, so the driver reruns m2s_313 from the start
+2026-11-14T16:00:33+1100 NOTE: the INTERRUPTED m2s_313 line at 16:00:17 duplicates the one at 16:00:13 (builder slip: the relaunch command ran in the background, and I wrote the line again when it seemed not to have run). One driver is running, and m2s_313 restarted once, at 16:00:13
+2026-11-14T19:18:59+1100 end m2s_313 rc=0 RESULT m2s SAME
+2026-11-14T19:18:59+1100 start m2eq1_313 free=29G
+2026-11-14T19:29:59+1100 end m2eq1_313 rc=0 AM5-3 B: every EQUIV id SURVIVED (supports the allowance)
+2026-11-14T19:29:59+1100 start m2c_313 free=29G
+2026-11-14T19:30:09+1100 end m2c_313 rc=0 RESULT m2 SAME
+2026-11-14T19:30:09+1100 start m2list_312 free=29G
+2026-11-14T19:30:19+1100 end m2list_312 rc=0 m10 --list: exit 0, 199 ids, RI10 at 51, m2_mutants.py as expected: OK
+2026-11-14T19:30:19+1100 start m2h_0_40_312 free=29G
+2026-11-14T19:48:12+1100 end m2h_0_40_312 rc=0 RESULT m2h_000_040 SAME
+2026-11-14T19:48:12+1100 start m2h_40_80_312 free=29G
+2026-11-14T20:18:36+1100 end m2h_40_80_312 rc=0 RESULT m2h_040_080 SAME
+2026-11-14T20:18:36+1100 start m2h_80_120_312 free=29G
+2026-11-14T20:50:59+1100 end m2h_80_120_312 rc=0 RESULT m2h_080_120 SAME
+2026-11-14T20:50:59+1100 start m2h_120_160_312 free=29G
+2026-11-14T21:36:24+1100 end m2h_120_160_312 rc=0 RESULT m2h_120_160 SAME
+2026-11-14T21:36:24+1100 start m2h_160_199_312 free=29G
+2026-11-14T22:05:37+1100 end m2h_160_199_312 rc=0 RESULT m2h_160_199 SAME
+2026-11-14T22:05:37+1100 start m2s_312 free=29G
+2026-11-15T00:54:30+1100 end m2s_312 rc=0 RESULT m2s SAME
+2026-11-15T00:54:30+1100 start m2eq1_312 free=29G
+2026-11-15T01:03:00+1100 end m2eq1_312 rc=0 AM5-3 B: every EQUIV id SURVIVED (supports the allowance)
+2026-11-15T01:03:00+1100 start m2c_312 free=29G
+2026-11-15T01:03:10+1100 end m2c_312 rc=0 RESULT m2 SAME
+2026-11-15T01:03:10+1100 STEP53 DONE

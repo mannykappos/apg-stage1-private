@@ -1,0 +1,25 @@
+2026-11-15T01:03:11+1100 start historical_313 free=29G
+2026-11-15T01:12:56+1100 end historical_313 rc=0 {"python": "/usr/bin/python3.13", "rows": 100, "distinct_commands_run": 45, "exit_as_recorded": 100, "last_line_as_recorded": 100, "archive_files_changed_by_the_checks": 0}
+2026-11-15T01:12:56+1100 start historical_312 free=29G
+2026-11-15T01:22:23+1100 end historical_312 rc=0 {"python": "/usr/bin/python3.12", "rows": 100, "distinct_commands_run": 45, "exit_as_recorded": 100, "last_line_as_recorded": 100, "archive_files_changed_by_the_checks": 0}
+2026-11-15T01:22:23+1100 start frozen_compare free=29G
+2026-11-15T01:22:23+1100 end frozen_compare rc=0 problems 0
+2026-11-15T01:22:23+1100 start route_scan free=29G
+2026-11-15T01:22:24+1100 end route_scan rc=0   tools/sabotage_mie1_s1.py :: <module>  -> sabotage_mie1
+2026-11-15T01:22:24+1100 start route_children free=29G
+2026-11-15T01:22:25+1100 end route_children rc=0 RESULT route_children HOLDS
+2026-11-15T01:22:25+1100 start case_inventory_limit_313 free=29G
+2026-11-15T01:22:26+1100 end case_inventory_limit_313 rc=0 RESULT case_inventory_limit HOLDS (python /usr/bin/python3.13)
+2026-11-15T01:22:26+1100 start case_inventory_limit_312 free=29G
+2026-11-15T01:22:27+1100 end case_inventory_limit_312 rc=0 RESULT case_inventory_limit HOLDS (python /usr/bin/python3.12)
+2026-11-15T01:22:27+1100 start outside_services free=29G
+2026-11-15T01:22:34+1100 end outside_services rc=0 wrote <WORKSPACE>/recovery/ev6/audit_final/outside_services.txt
+2026-11-15T01:22:34+1100 start secret_stop_demo free=29G
+2026-11-15T01:22:34+1100 end secret_stop_demo rc=0 STOP P.2: a secret-bearing variable in a unit's environment, by name only: control_raw_fork_no_scrub:APG_AUDIT_DEMO_API_TOKEN
+2026-11-15T01:22:34+1100 start process_api_reach free=29G
+2026-11-15T01:22:36+1100 end process_api_reach rc=0 wrote <WORKSPACE>/recovery/ev6/audit_final/process_api_reach.txt how=exit exit=0
+2026-11-15T01:22:36+1100 start child_start_scan free=29G
+2026-11-15T01:22:37+1100 end child_start_scan rc=0   reference  py=3    socket/http/urllib/asyncio imports=0   port-2024/cc-socks/process_api=0   process starts=1
+2026-11-15T01:22:37+1100 start tset_start_scan free=29G
+2026-11-15T01:22:38+1100 end tset_start_scan rc=0 sites 102; with a limit found 102; NONE 0
+2026-11-15T01:22:38+1100 STEP54 DONE

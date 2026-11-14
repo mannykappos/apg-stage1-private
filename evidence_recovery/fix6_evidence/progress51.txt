@@ -1,0 +1,22 @@
+2026-11-13T19:23:30+1100 start py313_T Python 3.13.18 free=  29G
+2026-11-13T20:13:39+1100 end py313_T rc=0 DONE zip a7f599f936937d5fd06a720d19ba3bbd1966ef81e2b9395687db28501c2f76bd  tree changes 0
+2026-11-13T20:13:39+1100 start py313_W Python 3.13.18 free=  29G
+2026-11-13T21:00:25+1100 end py313_W rc=0 DONE zip a7f599f936937d5fd06a720d19ba3bbd1966ef81e2b9395687db28501c2f76bd  tree changes 0
+2026-11-13T21:00:26+1100 wrapper_check rc=0 non-passing group lines: none
+2026-11-13T21:00:26+1100 start py313_M Python 3.13.18 free=  29G
+2026-11-13T21:11:02+1100 end py313_M rc=0 DONE zip a7f599f936937d5fd06a720d19ba3bbd1966ef81e2b9395687db28501c2f76bd  tree changes 0
+2026-11-13T21:11:02+1100 m8_check rc=0 as expected (exit 0, no checker problem, 79 KILLED, 3 EQUIVALENT: MI-36 MI-39 MD-02): True
+2026-11-13T21:11:02+1100 start py312_T Python 3.12.3 free=  29G
+2026-11-14T09:05:26+1100 INTERRUPTED py312_T: the container restarted (last write in the job 2026-11-13 21:18:11, during T03); found at 09:04 on 2026-11-14; the partial job is kept in interrupted/ and the job rerun, as the driver provides
+2026-11-14T09:05:26+1100 moved partial py312_T to interrupted/
+2026-11-14T09:05:26+1100 start py312_T Python 3.12.3 free=  29G
+2026-11-14T09:59:15+1100 end py312_T rc=0 DONE zip a7f599f936937d5fd06a720d19ba3bbd1966ef81e2b9395687db28501c2f76bd  tree changes 0
+2026-11-14T09:59:15+1100 start py312_W Python 3.12.3 free=  29G
+2026-11-14T10:52:49+1100 end py312_W rc=0 DONE zip a7f599f936937d5fd06a720d19ba3bbd1966ef81e2b9395687db28501c2f76bd  tree changes 0
+2026-11-14T10:52:49+1100 wrapper_check rc=0 non-passing group lines: none
+2026-11-14T10:52:49+1100 start py312_M Python 3.12.3 free=  29G
+2026-11-14T11:04:29+1100 end py312_M rc=0 DONE zip a7f599f936937d5fd06a720d19ba3bbd1966ef81e2b9395687db28501c2f76bd  tree changes 0
+2026-11-14T11:04:29+1100 m8_check rc=0 as expected (exit 0, no checker problem, 79 KILLED, 3 EQUIVALENT: MI-36 MI-39 MD-02): True
+2026-11-14T11:04:29+1100 STEP51 DONE
+2026-11-14T11:43:22+1100 STEP51 DONE
+2026-11-14T16:00:13+1100 STEP51 DONE
