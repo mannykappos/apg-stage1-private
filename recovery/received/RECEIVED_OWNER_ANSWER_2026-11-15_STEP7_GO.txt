@@ -1,0 +1,14 @@
+Received from the owner (Emmanuel) in this session, as an answer to the builder's question after the re-mapping of a7f599f9.
+Clock read when recorded: 2026-11-15 05:38 (Australia/Melbourne). The answer arrived shortly before; its exact time was not read.
+
+The question (builder), in summary: 59 of 65 items closed, 6 partly addressed (rows 6, 29, 53, 66, 75, 121), D7-1 to D7-11.
+Option 1: go to step 7 now; the builder makes the paperwork-only fixes (no tree change, no rerun) and lists the 5 remaining test
+gaps openly for the fresh-agent pre-gate audit and GPT; if GPT asks for them, fix everything in one round after GPT's one-pass
+review. Option 2: fix the 5 test gaps first (new freeze, full evidence rerun, re-mapping), then step 7.
+
+The owner's answer, verbatim: "Go to final step (Recommended)"
+
+Builder's reading: step 7 proceeds on freeze a7f599f9 and its evidence ev6, unchanged. No test or code change. The paperwork-only
+items (row 75's records into the audit folder at packaging, D6-8's counts, D7-4, D7-10, D7-11 and the other statements) are made in
+the documents and package; the remaining test gaps (rows 6, 29, 53, 66, 121 and D7-1, D7-2, D7-5 to D7-9 as they apply) are
+disclosed as open. This authorises no acceptance and no stage 2.
