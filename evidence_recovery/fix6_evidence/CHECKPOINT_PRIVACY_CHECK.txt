@@ -1,0 +1,11 @@
+Privacy check, fix 6 checkpoint (2026-11-15 01:27 AEDT)
+Searched every file (text and binary) and the members of every zip for: the user's e-mail (plain and base64), session-id
+shapes, session links, the session folder id, the workspace path, credential shapes (Anthropic, GitHub, AWS keys, private keys).
+The search terms are not written here, so that this file does not match them. Script: ckpt6_scan.py (builder).
+Result:
+- Text files: 0 hits after masking (MASKING.csv).
+- The four copies of the freeze zip (freeze6/ and records_36387f7/freezes/): 1 member each, APG-M11-S1/logs/m81/baseline/00_hashes.txt
+  (paths of two earlier deliverables). Kept unchanged: part of the immutable M10 baseline (PO decision), as at the step 3 and
+  step 5 checkpoints.
+- Not searched inside the nested third_party/auif_rev14/AUIF_Independent_Build_v1.0_rev14.zip within each freeze (an earlier,
+  already audited, immutable package), as at steps 3 and 5.
