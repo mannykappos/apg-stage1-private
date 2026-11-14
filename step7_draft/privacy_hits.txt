@@ -1,0 +1,18 @@
+accepted | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/logs/m81/baseline/00_hashes.txt | home-claude temp path
+accepted | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/logs/m81/baseline/00_hashes.txt | session folder id
+accepted | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/logs/m81/baseline/00_hashes.txt | session folder id, first part
+accepted | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/logs/m81/baseline/00_hashes.txt | session id
+accepted | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/logs/m81/baseline/00_hashes.txt | workspace path
+HIT | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/third_party/auif_rev14/AUIF_Independent_Build_v1.0_rev14.zip::AUIF_Independent_Build_v1.0/auif_ext/tests/fixtures/tls/expired.key.pem | private key
+HIT | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/third_party/auif_rev14/AUIF_Independent_Build_v1.0_rev14.zip::AUIF_Independent_Build_v1.0/auif_ext/tests/fixtures/tls/good.key.pem | private key
+HIT | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/third_party/auif_rev14/AUIF_Independent_Build_v1.0_rev14.zip::AUIF_Independent_Build_v1.0/auif_ext/tests/fixtures/tls/wronghost.key.pem | private key
+HIT | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/third_party/auif_rev14/AUIF_Independent_Build_v1.0_rev14.zip::AUIF_Independent_Build_v1.0/auif_onboard/secrets_scan.py | AWS key shape
+HIT | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/third_party/auif_rev14/AUIF_Independent_Build_v1.0_rev14.zip::AUIF_Independent_Build_v1.0/auif_onboard/secrets_scan.py | GitHub token shape
+HIT | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/third_party/auif_rev14/AUIF_Independent_Build_v1.0_rev14.zip::AUIF_Independent_Build_v1.0/auif_onboard/secrets_scan.py | private key
+HIT | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/third_party/auif_rev14/AUIF_Independent_Build_v1.0_rev14.zip::AUIF_Independent_Build_v1.0/auif_onboard/tests/test_config_gen.py | GitHub token shape
+HIT | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/third_party/auif_rev14/AUIF_Independent_Build_v1.0_rev14.zip::AUIF_Independent_Build_v1.0/auif_onboard/tests/test_secrets.py | AWS key shape
+HIT | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/third_party/auif_rev14/AUIF_Independent_Build_v1.0_rev14.zip::AUIF_Independent_Build_v1.0/auif_onboard/tests/test_secrets.py | GitHub token shape
+HIT | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/third_party/auif_rev14/AUIF_Independent_Build_v1.0_rev14.zip::AUIF_Independent_Build_v1.0/auif_onboard/tests/test_secrets.py | private key
+HIT | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/third_party/auif_rev14/AUIF_Independent_Build_v1.0_rev14.zip::AUIF_Independent_Build_v1.0/tools/mutants_onboard.py | GitHub token shape
+HIT | APG-M11-S1_PASS2_RECOVERY_PACKAGE/freeze/APG-M11-S1.zip::APG-M11-S1/third_party/auif_rev14/AUIF_Independent_Build_v1.0_rev14.zip::AUIF_Independent_Build_v1.0/tools/mutants_onboard.py | private key
+patterns searched: 19 kinds; hits outside the accepted list: 12

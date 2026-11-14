@@ -1,0 +1,16 @@
+BUILDER-EXECUTED: NOT INDEPENDENT. Cited test names checked against APG-M11-S1.zip
+OK       test      test_consumer_exit_codes
+OK       test      test_det_static
+OK       test      test_exec_env
+OK       test      test_fin_static
+OK       test      test_m8_dependency
+OK       test      test_m8_layout_config
+OK       test      test_mie_construction
+OK       test      test_mkt_intake
+OK       test      test_mkt_static
+OK       test      test_mutation_timeout
+OK       test      test_no_timeout_kill
+OK       test      test_runner_zero_work
+OK       file      test_runner_zero_work.py
+OK       file:line test_runner_zero_work.py:1516
+RESULT cited_names HOLDS (14 checked, 0 missing)

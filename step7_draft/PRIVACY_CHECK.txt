@@ -1,0 +1,28 @@
+Package-level privacy check (amendment 5, discrepancy 22), 2026-11-15 05:49 Melbourne. BUILDER-EXECUTED: NOT INDEPENDENT.
+Tool: builder_tools/package_privacy_s1.py (search). Searched: every file of this package, every member of every ZIP, and the members
+of the ZIP inside the freeze (third_party/auif_rev14/AUIF_Independent_Build_v1.0_rev14.zip, searched this time; the step 3 and step 5
+checkpoints did not search it), and the documents file APG_D14_Stage1_Pass2_Recovery_Documents_a7f599f9.docx.
+Searched for: the user's e-mail address (plain, base64, local part), the account and organisation identifiers, the session id and the
+remote session id, the session folder id, the container id, session links, session-id shapes, the workspace path, and credential
+shapes (Anthropic, GitHub and AWS key shapes, private-key blocks). The identifier values were read from the environment and are not
+written here; only the kind of each hit is.
+
+Masking: 74 text files had the workspace path replaced by <WORKSPACE> and the session folder id by <SESSION-ID> (MASKING.csv, with
+each file's SHA-256 before and after, so a masked log still matches the hash in its run index).
+
+Result:
+- The documents file: no hit.
+- This package outside the freeze ZIP: no hit.
+- The freeze ZIP, APG-M11-S1/logs/m81/baseline/00_hashes.txt (immutable M10 baseline): the session folder id (which is also the
+  session id) inside two workspace paths. Accepted under the owner's decision of 2026-11-11 ("Mask loose, accept in ZIPs"), as at
+  every checkpoint.
+- The freeze ZIP, inside the immutable AUIF rev14 package (third_party/auif_rev14/..., part of every freeze since e4531a35):
+  12 credential-shaped strings in 7 files. None is a real credential:
+    - auif_ext/tests/fixtures/tls/expired.key.pem, good.key.pem, wronghost.key.pem: private-key blocks of throwaway self-signed
+      TLS test keys; the folder's README says "TEST-ONLY ... The private keys here protect nothing";
+    - auif_onboard/secrets_scan.py and tools/mutants_onboard.py: the secret scanner's detection patterns and their mutants;
+    - auif_onboard/tests/test_secrets.py and test_config_gen.py: fake tokens that the scanner's tests must detect.
+  DECISION PENDING: amendment 5 says any hit stops the packaging. These files are inside an immutable, already-audited package and
+  cannot be changed. The package is held, not distributed, until the owner decides.
+
+The hit list is in privacy_hits.txt (kinds and places only).
